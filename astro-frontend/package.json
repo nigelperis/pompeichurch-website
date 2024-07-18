@@ -1,0 +1,35 @@
+{
+	"name": "church-website",
+	"type": "module",
+	"version": "0.0.1",
+	"scripts": {
+		"dev": "astro dev",
+		"start": "astro dev",
+		"build": "astro check && astro build",
+		"preview": "astro preview",
+		"astro": "astro",
+		"format": "prettier src/**/* --write",
+		"lint": "eslint ./src",
+		"lint:fix": "eslit ./src --fix"
+	},
+	"dependencies": {
+		"astro": "4.11.3"
+	},
+	"packageManager": "pnpm@8.10.2+sha1.e0b68270e89c817ff88b7be62466a2128c53af02",
+	"devDependencies": {
+		"@astrojs/check": "0.7.0",
+		"@astrojs/tailwind": "5.1.0",
+		"@types/eslint__js": "8.42.3",
+		"@typescript-eslint/parser": "7.16.0",
+		"eslint": "9.7.0",
+		"eslint-config-prettier": "9.1.0",
+		"eslint-plugin-astro": "1.2.3",
+		"prettier": "3.3.2",
+		"prettier-plugin-astro": "0.14.0",
+		"prettier-plugin-organize-imports": "4.0.0",
+		"prettier-plugin-tailwindcss": "0.6.5",
+		"tailwindcss": "3.4.4",
+		"typescript": "5.5.3",
+		"typescript-eslint": "7.16.0"
+	}
+}
