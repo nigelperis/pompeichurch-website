@@ -31,10 +31,13 @@ const { title } = Astro.props;
 			rgb(var(--accent-light)) 30%,
 			white 60%
 		);
+		::-webkit-scrollbar{
+			display: none;
+		}
+
 	}
 	html {
 		font-family: system-ui, sans-serif;
-		background: #13151a;
 		background-size: 224px;
 	}
 	code {
