@@ -13,7 +13,9 @@
 		"lint:fix": "eslit ./src --fix"
 	},
 	"dependencies": {
-		"astro": "4.11.3"
+		"astro": "4.11.3",
+		"astro-icon": "^1.1.0",
+		"flowbite": "2.4.1"
 	},
 	"packageManager": "pnpm@8.10.2+sha1.e0b68270e89c817ff88b7be62466a2128c53af02",
 	"devDependencies": {
