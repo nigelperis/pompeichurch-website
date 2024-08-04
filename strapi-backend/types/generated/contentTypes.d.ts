@@ -850,6 +850,41 @@ export interface ApiAssociationAssociation extends Schema.CollectionType {
   };
 }
 
+export interface ApiConventConvent extends Schema.CollectionType {
+  collectionName: 'convents';
+  info: {
+    singularName: 'convent';
+    pluralName: 'convents';
+    displayName: 'Convent';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    conventName: Attribute.String;
+    conventImage: Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    description: Attribute.Blocks;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::convent.convent',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::convent.convent',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiEventEvent extends Schema.CollectionType {
   collectionName: 'events';
   info: {
@@ -878,6 +913,38 @@ export interface ApiEventEvent extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::event.event',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiInfrastructureInfrastructure extends Schema.CollectionType {
+  collectionName: 'infrastructures';
+  info: {
+    singularName: 'infrastructure';
+    pluralName: 'infrastructures';
+    displayName: 'Infrastructure';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    images: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
+    description: Attribute.Blocks;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::infrastructure.infrastructure',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::infrastructure.infrastructure',
       'oneToOne',
       'admin::user'
     > &
@@ -917,6 +984,64 @@ export interface ApiInstitutionInstitution extends Schema.CollectionType {
   };
 }
 
+export interface ApiObituaryObituary extends Schema.CollectionType {
+  collectionName: 'obituaries';
+  info: {
+    singularName: 'obituary';
+    pluralName: 'obituaries';
+    displayName: 'Obituary';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    description: Attribute.Blocks;
+    DoD: Attribute.Date;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::obituary.obituary',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::obituary.obituary',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiWardWard extends Schema.CollectionType {
+  collectionName: 'wards';
+  info: {
+    singularName: 'ward';
+    pluralName: 'wards';
+    displayName: 'Ward';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    wardName: Attribute.String;
+    gurkaarName: Attribute.String;
+    wardImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
+    description: Attribute.Blocks;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::ward.ward', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::ward.ward', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -937,8 +1062,12 @@ declare module '@strapi/types' {
       'plugin::i18n.locale': PluginI18NLocale;
       'api::about-parish.about-parish': ApiAboutParishAboutParish;
       'api::association.association': ApiAssociationAssociation;
+      'api::convent.convent': ApiConventConvent;
       'api::event.event': ApiEventEvent;
+      'api::infrastructure.infrastructure': ApiInfrastructureInfrastructure;
       'api::institution.institution': ApiInstitutionInstitution;
+      'api::obituary.obituary': ApiObituaryObituary;
+      'api::ward.ward': ApiWardWard;
     }
   }
 }

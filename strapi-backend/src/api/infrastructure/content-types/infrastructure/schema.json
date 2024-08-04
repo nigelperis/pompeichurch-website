@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "infrastructures",
+  "info": {
+    "singularName": "infrastructure",
+    "pluralName": "infrastructures",
+    "displayName": "Infrastructure"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "images": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    },
+    "description": {
+      "type": "blocks"
+    }
+  }
+}
