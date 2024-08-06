@@ -920,6 +920,36 @@ export interface ApiEventEvent extends Schema.CollectionType {
   };
 }
 
+export interface ApiGalleryGallery extends Schema.CollectionType {
+  collectionName: 'galleries';
+  info: {
+    singularName: 'gallery';
+    pluralName: 'galleries';
+    displayName: 'Gallery';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    images: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::gallery.gallery',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::gallery.gallery',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiInfrastructureInfrastructure extends Schema.CollectionType {
   collectionName: 'infrastructures';
   info: {
@@ -1017,6 +1047,51 @@ export interface ApiObituaryObituary extends Schema.CollectionType {
   };
 }
 
+export interface ApiParishInstitutionParishInstitution
+  extends Schema.CollectionType {
+  collectionName: 'parish_institutions';
+  info: {
+    singularName: 'parish-institution';
+    pluralName: 'parish-institutions';
+    displayName: 'ParishInstitution';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    institutions: Attribute.Relation<
+      'api::parish-institution.parish-institution',
+      'oneToMany',
+      'api::institution.institution'
+    >;
+    infrastructures: Attribute.Relation<
+      'api::parish-institution.parish-institution',
+      'oneToMany',
+      'api::infrastructure.infrastructure'
+    >;
+    convents: Attribute.Relation<
+      'api::parish-institution.parish-institution',
+      'oneToMany',
+      'api::convent.convent'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::parish-institution.parish-institution',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::parish-institution.parish-institution',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiWardWard extends Schema.CollectionType {
   collectionName: 'wards';
   info: {
@@ -1064,9 +1139,11 @@ declare module '@strapi/types' {
       'api::association.association': ApiAssociationAssociation;
       'api::convent.convent': ApiConventConvent;
       'api::event.event': ApiEventEvent;
+      'api::gallery.gallery': ApiGalleryGallery;
       'api::infrastructure.infrastructure': ApiInfrastructureInfrastructure;
       'api::institution.institution': ApiInstitutionInstitution;
       'api::obituary.obituary': ApiObituaryObituary;
+      'api::parish-institution.parish-institution': ApiParishInstitutionParishInstitution;
       'api::ward.ward': ApiWardWard;
     }
   }
