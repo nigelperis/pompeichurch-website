@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "parish_newss",
+  "info": {
+    "singularName": "parish-news",
+    "pluralName": "parish-newss",
+    "displayName": "ParishNews"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "obituaries": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::obituary.obituary"
+    },
+    "events": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::event.event"
+    }
+  }
+}

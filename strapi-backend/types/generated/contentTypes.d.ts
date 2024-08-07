@@ -1092,6 +1092,45 @@ export interface ApiParishInstitutionParishInstitution
   };
 }
 
+export interface ApiParishNewsParishNews extends Schema.CollectionType {
+  collectionName: 'parish_newss';
+  info: {
+    singularName: 'parish-news';
+    pluralName: 'parish-newss';
+    displayName: 'ParishNews';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    obituaries: Attribute.Relation<
+      'api::parish-news.parish-news',
+      'oneToMany',
+      'api::obituary.obituary'
+    >;
+    events: Attribute.Relation<
+      'api::parish-news.parish-news',
+      'oneToMany',
+      'api::event.event'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::parish-news.parish-news',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::parish-news.parish-news',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiWardWard extends Schema.CollectionType {
   collectionName: 'wards';
   info: {
@@ -1144,6 +1183,7 @@ declare module '@strapi/types' {
       'api::institution.institution': ApiInstitutionInstitution;
       'api::obituary.obituary': ApiObituaryObituary;
       'api::parish-institution.parish-institution': ApiParishInstitutionParishInstitution;
+      'api::parish-news.parish-news': ApiParishNewsParishNews;
       'api::ward.ward': ApiWardWard;
     }
   }
