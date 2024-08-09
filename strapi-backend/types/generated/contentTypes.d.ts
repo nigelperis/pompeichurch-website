@@ -1047,6 +1047,39 @@ export interface ApiObituaryObituary extends Schema.CollectionType {
   };
 }
 
+export interface ApiParishCouncilMemberParishCouncilMember
+  extends Schema.SingleType {
+  collectionName: 'parish_council_members';
+  info: {
+    singularName: 'parish-council-member';
+    pluralName: 'parish-council-members';
+    displayName: 'ParishCouncilMember';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    memberName: Attribute.String;
+    memberImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    description: Attribute.Blocks;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::parish-council-member.parish-council-member',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::parish-council-member.parish-council-member',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiParishInstitutionParishInstitution
   extends Schema.CollectionType {
   collectionName: 'parish_institutions';
@@ -1131,6 +1164,38 @@ export interface ApiParishNewsParishNews extends Schema.CollectionType {
   };
 }
 
+export interface ApiPriestDetailPriestDetail extends Schema.SingleType {
+  collectionName: 'priest_details';
+  info: {
+    singularName: 'priest-detail';
+    pluralName: 'priest-details';
+    displayName: 'PriestDetail';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    priestName: Attribute.String;
+    priestImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    description: Attribute.Blocks;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::priest-detail.priest-detail',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::priest-detail.priest-detail',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiWardWard extends Schema.CollectionType {
   collectionName: 'wards';
   info: {
@@ -1182,8 +1247,10 @@ declare module '@strapi/types' {
       'api::infrastructure.infrastructure': ApiInfrastructureInfrastructure;
       'api::institution.institution': ApiInstitutionInstitution;
       'api::obituary.obituary': ApiObituaryObituary;
+      'api::parish-council-member.parish-council-member': ApiParishCouncilMemberParishCouncilMember;
       'api::parish-institution.parish-institution': ApiParishInstitutionParishInstitution;
       'api::parish-news.parish-news': ApiParishNewsParishNews;
+      'api::priest-detail.priest-detail': ApiPriestDetailPriestDetail;
       'api::ward.ward': ApiWardWard;
     }
   }
