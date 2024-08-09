@@ -1,0 +1,18 @@
+{
+  "kind": "singleType",
+  "collectionName": "about_parishes",
+  "info": {
+    "singularName": "about-parish",
+    "pluralName": "about-parishes",
+    "displayName": "AboutParish"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "description": {
+      "type": "blocks"
+    }
+  }
+}
