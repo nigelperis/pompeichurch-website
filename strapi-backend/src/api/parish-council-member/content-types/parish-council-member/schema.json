@@ -1,0 +1,31 @@
+{
+  "kind": "singleType",
+  "collectionName": "parish_council_members",
+  "info": {
+    "singularName": "parish-council-member",
+    "pluralName": "parish-council-members",
+    "displayName": "ParishCouncilMember"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "memberName": {
+      "type": "string"
+    },
+    "memberImage": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "description": {
+      "type": "blocks"
+    }
+  }
+}
