@@ -13,13 +13,14 @@
 		"lint:fix": "eslit ./src --fix"
 	},
 	"dependencies": {
-		"astro": "4.11.3",
+		"@iconify/tools": "4.0.5",
+		"astro": "4.13.3",
 		"astro-icon": "^1.1.0",
 		"flowbite": "2.4.1"
 	},
 	"packageManager": "pnpm@8.10.2+sha1.e0b68270e89c817ff88b7be62466a2128c53af02",
 	"devDependencies": {
-		"@astrojs/check": "0.7.0",
+		"@astrojs/check": "0.9.2",
 		"@astrojs/tailwind": "5.1.0",
 		"@types/eslint__js": "8.42.3",
 		"@typescript-eslint/parser": "7.16.0",
