@@ -84,6 +84,70 @@ import churchInterior from '../assets/church-int.jpg';
 				Signature of Fr. Rudolf DSa
 			</div>
 		</section>
+
+		<section
+			class="relative flex items-center justify-center bg-cover bg-center text-white"
+		>
+			<!-- add dynamic url to the below div @reevan-->
+			<div
+				class="relative flex h-[700px] w-full flex-col items-center justify-center bg-cover bg-center p-7"
+				style="background-image: url('/src/assets/mary-grotto.jpg');"
+
+			>
+				<div class="absolute inset-0 bg-black opacity-60"></div>
+
+				<h1
+					class="font-poppins relative mb-4 text-5xl font-extrabold leading-tight"
+				>
+					ABOUT POMPEI CHURCH
+				</h1>
+				<div class="relative mb-6 h-[5px] w-24 bg-orange-500"></div>
+				<p class="relative mb-6 max-w-2xl text-lg">
+					Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor, nemo?
+					Animi fugiat quis vero nemo reprehenderit dignissimos eligendi,
+					quaerat omnis?
+				</p>
+				<button
+					class="relative rounded bg-orange-500 px-5 py-3 font-bold text-white transition-colors duration-300 hover:bg-orange-700"
+				>
+					KNOW MORE
+				</button>
+			</div>
+		</section>
+
+		<section class="bg-gray-100 py-8">
+			<div class="container mx-auto text-center">
+				<h2 class="font-poppins mb-4 text-3xl font-extrabold text-gray-800">
+					Mass Timings
+				</h2>
+
+				<div class="relative inline-block">
+					<Image
+						src={churchInterior}
+						alt="church interior"
+						class="h-80 w-80 rounded-3xl object-cover shadow-lg"
+					/>
+
+					<div class="absolute inset-0 flex items-center justify-center">
+						<div class="w-72 rounded-lg bg-white bg-opacity-90 p-4 shadow-lg">
+							<p class="font-poppins text-sm font-bold text-gray-700">
+								All Masses are in Konkani
+								<br />
+								Monday - Thursday: 6:45 AM
+								<br />
+								Friday: 4:45 PM (Chaplet of Divine Mercy & Mass)
+								<br />
+								Saturday: 4 PM
+								<br />
+								Sunday: 7:30 AM & 10:15 AM
+								<br />
+								Catechism: Sundays at 9:15 AM, except on the first Sunday.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
 	</main>
 </Layout>
 
