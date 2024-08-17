@@ -1,9 +1,180 @@
 ---
+import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
-import Header from '../components/header.astro';
+import churchLogo from '../assets/church-logo.png';
+import priestImage from '../assets/pp1.png';
+import maryGrotto from '../assets/mary-grotto.jpg';
+import churchInterior from '../assets/church-int.jpg';
 ---
 
-<Layout title="Home | Pompei Church.">
-	<Header />
-	<main class="h-screen bg-yellow-50"></main>
+<Layout title="Pompei Church | Gurupur Kaikamba">
+	<main>
+		<section class="relative h-screen w-screen bg-slate-200 pb-8">
+			<div
+				class="mx-auto h-80 w-96 rounded-b-[12rem] rounded-t-lg bg-yellow-50 bg-[url('/church-main.webp')] bg-cover bg-center shadow-lg"
+			>
+			</div>
+			<h1
+				class="mx-2 mt-5 animate-slidein text-center font-serif text-4xl font-semibold opacity-0 [--slidein-delay:700ms]"
+			>
+				Our Lady Of Pompei Church
+			</h1>
+
+			<p
+				class="mx-2 mt-3 animate-slidein text-center font-serif text-2xl opacity-0 [--slidein-delay:800ms]"
+			>
+				Gurupur, Kaikamba
+			</p>
+
+			<div class="mx-auto">
+				<Image
+					src={churchLogo}
+					alt="church logo"
+					width={180}
+					class="mx-auto my-4 animate-slidein opacity-0 [--slidein-delay:1000ms]"
+				/>
+			</div>
+		</section>
+
+		<section class="mx-6 mt-5">
+			<h2
+				data-animate-on-view="animate-slidein-left"
+				class="mb-4 text-center font-serif text-4xl font-extrabold opacity-0 transition-opacity duration-700"
+			>
+				PARISH PRIEST SPEAKS
+			</h2>
+
+			<div
+				data-animate-on-view="animate-slidein-right"
+				class="mx-auto h-[3px] w-24 bg-yellow-500 opacity-0 transition-opacity duration-700"
+			>
+			</div>
+
+			<div class="relative mx-auto flex w-fit flex-col items-center">
+				<div
+					class="absolute top-full -z-10 h-[50%] w-[103%] -translate-y-full rounded bg-gradient-to-r from-yellow-200 via-yellow-300 to-yellow-400"
+				>
+				</div>
+				<Image
+					src={priestImage}
+					alt="priest image"
+					width={350}
+					class="mx-auto transition-transform duration-700 ease-in-out"
+				/>
+			</div>
+
+			<figcaption class="mt-2 text-center font-serif italic text-slate-600">
+				Fr. Ravi Rudolf DSa
+			</figcaption>
+
+			<p
+				class="text-justify font-serif text-base first-letter:font-serif first-letter:text-3xl"
+			>
+				Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsum est hic
+				quidem tempora quaerat voluptate, ex dicta pariatur, dolor deleniti sed
+				nostrum sequi vel aliquid necessitatibus? Ex, tenetur inventore, alias a
+				et enim fugiat error nesciunt aliquam sint numquam eaque non provident
+				quod, voluptates ab quidem repellat vel voluptatum laboriosam ipsa
+				dolorem! At vel reiciendis tempore ratione fugiat quasi corporis. Magnam
+				laudantium sequi dolorem ad aut! Quisquam iusto dicta dignissimos?
+			</p>
+			<div
+				class="relative mb-8 ml-auto w-fit text-lg font-semibold after:absolute after:left-0 after:top-full after:w-[120%] after:-translate-x-[10%]"
+			>
+				Signature of Fr. Rudolf DSa
+			</div>
+		</section>
+
+		<section
+			class="relative flex items-center justify-center bg-cover bg-center text-white"
+		>
+			<!-- add dynamic url to the below div @reevan-->
+			<div
+				class="relative flex h-[700px] w-full flex-col items-center justify-center bg-cover bg-center p-7"
+				style="background-image: url('/src/assets/mary-grotto.jpg');"
+
+			>
+				<div class="absolute inset-0 bg-black opacity-60"></div>
+
+				<h1
+					class="font-poppins relative mb-4 text-5xl font-extrabold leading-tight"
+				>
+					ABOUT POMPEI CHURCH
+				</h1>
+				<div class="relative mb-6 h-[5px] w-24 bg-orange-500"></div>
+				<p class="relative mb-6 max-w-2xl text-lg">
+					Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor, nemo?
+					Animi fugiat quis vero nemo reprehenderit dignissimos eligendi,
+					quaerat omnis?
+				</p>
+				<button
+					class="relative rounded bg-orange-500 px-5 py-3 font-bold text-white transition-colors duration-300 hover:bg-orange-700"
+				>
+					KNOW MORE
+				</button>
+			</div>
+		</section>
+
+		<section class="bg-gray-100 py-8">
+			<div class="container mx-auto text-center">
+				<h2 class="font-poppins mb-4 text-3xl font-extrabold text-gray-800">
+					Mass Timings
+				</h2>
+
+				<div class="relative inline-block">
+					<Image
+						src={churchInterior}
+						alt="church interior"
+						class="h-80 w-80 rounded-3xl object-cover shadow-lg"
+					/>
+
+					<div class="absolute inset-0 flex items-center justify-center">
+						<div class="w-72 rounded-lg bg-white bg-opacity-90 p-4 shadow-lg">
+							<p class="font-poppins text-sm font-bold text-gray-700">
+								All Masses are in Konkani
+								<br />
+								Monday - Thursday: 6:45 AM
+								<br />
+								Friday: 4:45 PM (Chaplet of Divine Mercy & Mass)
+								<br />
+								Saturday: 4 PM
+								<br />
+								Sunday: 7:30 AM & 10:15 AM
+								<br />
+								Catechism: Sundays at 9:15 AM, except on the first Sunday.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
 </Layout>
+
+<script>
+	const DEFAULT_ANIMATION = 'animate-slidein';
+	const animatedElements = document.querySelectorAll('[data-animate-on-view]');
+
+	const observer = new IntersectionObserver(
+		(entries) => {
+			for (const elem of animatedElements) {
+				const entriesIntersectingViewPort = new Set(
+					entries.filter((itm) => itm.isIntersecting).map((itm) => itm.target),
+				);
+
+				if (entriesIntersectingViewPort.has(elem)) {
+					const animation = elem.getAttribute('data-animate-on-view');
+
+					elem.classList.add(animation ?? DEFAULT_ANIMATION);
+				}
+			}
+		},
+		{ threshold: 1 },
+	);
+
+	if (animatedElements.length > 0) {
+		for (const elem of animatedElements) {
+			observer.observe(elem);
+		}
+	}
+</script>
