@@ -13,9 +13,12 @@
 		"lint:fix": "eslit ./src --fix"
 	},
 	"dependencies": {
-		"@fontsource/inknut-antiqua": "5.0.13",
+		"@fontsource/bona-nova-sc": "5.0.1",
 		"astro": "4.11.3",
-		"sharp": "0.33.4"
+		"astro-icon": "^1.1.1",
+		"clsx": "2.1.1",
+		"sharp": "0.33.4",
+		"tailwind-merge": "2.5.2"
 	},
 	"packageManager": "pnpm@8.10.2+sha1.e0b68270e89c817ff88b7be62466a2128c53af02",
 	"devDependencies": {

@@ -2,26 +2,47 @@
 import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import churchLogo from '../assets/church-logo.png';
-import priestImage from '../assets/pp1.png';
+import priestImage from '../assets/church-priest-photo.png';
 import maryGrotto from '../assets/mary-grotto.jpg';
-import churchInterior from '../assets/church-int.jpg';
+
+import Card from '../components/card.astro';
+import Hamburger from '../components/hamburger-menu.astro';
+import Navbar from '../components/navbar.astro';
+import HoverableLink from '../components/hoverable-link.astro';
+import Footer from '../components/footer.astro';
+
+const loremIpsum = `
+	Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptates vero
+numquam dolore, molestias ipsa voluptate consequatur ratione illo quas
+voluptatem blanditiis ex dolorem doloremque at obcaecati reprehenderit
+voluptatum aliquid fugiat, nisi fuga. Ducimus voluptas quasi cupiditate
+praesentium, neque et eligendi itaque. Molestiae dolorem voluptatibus minima
+deserunt corporis dolor consectetur, suscipit distinctio explicabo aspernatur
+numquam ea sit dicta repellendus, voluptatum aliquam perspiciatis mollitia
+obcaecati. Perferendis praesentium eos dolorum! Facilis possimus odit temporibus
+sint quia voluptates corrupti iste exercitationem magnam tenetur voluptatum
+libero earum, totam iusto similique nulla, commodi, laborum distinctio aut hic
+quaerat? Alias qui reprehenderit eligendi labore architecto hic corrupti?
+`;
 ---
 
 <Layout title="Pompei Church | Gurupur Kaikamba">
+	<Navbar id="navbar" />
 	<main>
 		<section class="relative h-screen w-screen bg-slate-200 pb-8">
 			<div
-				class="mx-auto h-80 w-96 rounded-b-[12rem] rounded-t-lg bg-yellow-50 bg-[url('/church-main.webp')] bg-cover bg-center shadow-lg"
+				class="animated-background relative mx-auto h-80 w-96 rounded-b-[12rem] rounded-t-lg bg-yellow-50 bg-[url('/church-main.webp')] bg-cover bg-center bg-no-repeat shadow-lg"
 			>
+				<Hamburger id="hamburger" />
 			</div>
 			<h1
-				class="mx-2 mt-5 animate-slidein text-center font-serif text-4xl font-semibold opacity-0 [--slidein-delay:700ms]"
+				class="mx-2 mt-5 animate-slidein text-center font-bona-nova-sc text-4xl font-bold opacity-0 [--slidein-delay:700ms]"
 			>
 				Our Lady Of Pompei Church
 			</h1>
 
 			<p
-				class="mx-2 mt-3 animate-slidein text-center font-serif text-2xl opacity-0 [--slidein-delay:800ms]"
+				class="mx-2 mt-3 animate-slidein text-center font-bona-nova-sc text-2xl opacity-0 [--slidein-delay:800ms]"
 			>
 				Gurupur, Kaikamba
 			</p>
@@ -39,18 +60,23 @@ import churchInterior from '../assets/church-int.jpg';
 		<section class="mx-6 mt-5">
 			<h2
 				data-animate-on-view="animate-slidein-left"
-				class="mb-4 text-center font-serif text-4xl font-extrabold opacity-0 transition-opacity duration-700"
+				class="relative mb-4 border-l-4 border-natgeo-yellow pl-3 text-left font-roboto text-4xl font-extrabold opacity-0 transition-opacity duration-700"
 			>
 				PARISH PRIEST SPEAKS
 			</h2>
 
-			<div
-				data-animate-on-view="animate-slidein-right"
-				class="mx-auto h-[3px] w-24 bg-yellow-500 opacity-0 transition-opacity duration-700"
-			>
-			</div>
+			<!--@nigel check if it looks good for new font -->
 
-			<div class="relative mx-auto flex w-fit flex-col items-center">
+			<!-- <div
+				data-animate-on-view="animate-slidein-right"
+				class="bg-natgeo-yellow mx-auto h-[3px] w-24 opacity-0 transition-opacity duration-700"
+			>
+			</div> -->
+
+			<div
+				data-animate-on-view="animate-zoom-in"
+				class="relative mx-auto flex w-fit flex-col items-center opacity-0 duration-300"
+			>
 				<div
 					class="absolute top-full -z-10 h-[50%] w-[103%] -translate-y-full rounded bg-gradient-to-r from-yellow-200 via-yellow-300 to-yellow-400"
 				>
@@ -58,8 +84,8 @@ import churchInterior from '../assets/church-int.jpg';
 				<Image
 					src={priestImage}
 					alt="priest image"
-					width={350}
-					class="mx-auto transition-transform duration-700 ease-in-out"
+					width={340}
+					class="mx-auto mt-8 transition-transform duration-700 ease-in-out"
 				/>
 			</div>
 
@@ -70,88 +96,163 @@ import churchInterior from '../assets/church-int.jpg';
 			<p
 				class="text-justify font-serif text-base first-letter:font-serif first-letter:text-3xl"
 			>
-				Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsum est hic
-				quidem tempora quaerat voluptate, ex dicta pariatur, dolor deleniti sed
-				nostrum sequi vel aliquid necessitatibus? Ex, tenetur inventore, alias a
-				et enim fugiat error nesciunt aliquam sint numquam eaque non provident
-				quod, voluptates ab quidem repellat vel voluptatum laboriosam ipsa
-				dolorem! At vel reiciendis tempore ratione fugiat quasi corporis. Magnam
-				laudantium sequi dolorem ad aut! Quisquam iusto dicta dignissimos?
+				{loremIpsum}
 			</p>
 			<div
-				class="relative mb-8 ml-auto w-fit text-lg font-semibold after:absolute after:left-0 after:top-full after:w-[120%] after:-translate-x-[10%]"
+				data-animate-on-view="animate-slidein-right"
+				class="relative mb-8 ml-auto w-fit text-lg font-semibold opacity-0 after:absolute after:left-0 after:top-full after:w-[120%] after:-translate-x-[10%]"
 			>
 				Signature of Fr. Rudolf DSa
 			</div>
 		</section>
 
 		<section
-			class="relative flex items-center justify-center bg-cover bg-center text-white"
+			style={{ backgroundImage: `url(${maryGrotto.src})` }}
+			class="relative bg-black/60 bg-cover bg-center pb-8 text-white bg-blend-darken"
 		>
-			<!-- add dynamic url to the below div @reevan-->
 			<div
-				class="relative flex h-[700px] w-full flex-col items-center justify-center bg-cover bg-center p-7"
-				style="background-image: url('/src/assets/mary-grotto.jpg');"
-
+				class="relative flex w-full flex-col items-center justify-center bg-cover bg-center p-7 pb-2"
 			>
-				<div class="absolute inset-0 bg-black opacity-60"></div>
-
 				<h1
-					class="font-poppins relative mb-4 text-5xl font-extrabold leading-tight"
+					data-animate-on-view="animate-slidein-left"
+					class="font-poppins relative mb-2 text-5xl font-extrabold leading-tight opacity-0"
 				>
 					ABOUT POMPEI CHURCH
 				</h1>
-				<div class="relative mb-6 h-[5px] w-24 bg-orange-500"></div>
-				<p class="relative mb-6 max-w-2xl text-lg">
+				<div
+					class="relative mb-6 mr-auto h-1 w-20 bg-natgeo-yellow opacity-0"
+					data-animate-on-view="animate-slidein-right"
+				>
+				</div>
+				<p class="relative mb-6 max-w-2xl font-sans text-lg">
 					Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor, nemo?
 					Animi fugiat quis vero nemo reprehenderit dignissimos eligendi,
 					quaerat omnis?
 				</p>
-				<button
-					class="relative rounded bg-orange-500 px-5 py-3 font-bold text-white transition-colors duration-300 hover:bg-orange-700"
-				>
-					KNOW MORE
-				</button>
 			</div>
+
+			<HoverableLink class="m-7">KNOW MORE </HoverableLink>
 		</section>
 
-		<section class="bg-gray-100 py-8">
+		<section class="mt-5">
+			<h2
+				class="font-poppins mx-5 mb-4 border-l-4 border-natgeo-yellow pl-3 text-4xl font-extrabold opacity-0"
+				data-animate-on-view="animate-slidein-left"
+			>
+				Parish Pastoral Parishad
+			</h2>
+
+			<ul
+				class="my-4 flex w-full max-w-full snap-x scroll-pl-6 space-x-8 overflow-y-scroll py-1.5"
+				style=" scrollbar-width: none;"
+			>
+				<Card
+					imageUrl=""
+					subtitle="Parish Priest"
+					title="Most Rev. Fr. Rudolph Ravi D'Sa"
+				/>
+				<Card imageUrl="" subtitle="Vice-President" title="Mr. Romans Lobo" />
+				<Card imageUrl="" subtitle="Secretary" title="Mr. Johnson Lobo" />
+				<Card
+					imageUrl=""
+					subtitle="21 Pastoral Commission Coordinator"
+					title="Mrs. Hilda Menezes"
+				/>
+			</ul>
+		</section>
+
+		<section class="mx-6 mb-5 mt-5">
 			<div class="container mx-auto text-center">
-				<h2 class="font-poppins mb-4 text-3xl font-extrabold text-gray-800">
+				<h2
+					data-animate-on-view="animate-slidein-left"
+					class="relative mb-4 border-l-4 border-natgeo-yellow pl-3 text-left font-roboto text-4xl font-extrabold opacity-0 transition-opacity duration-700"
+				>
 					Mass Timings
 				</h2>
 
-				<div class="relative inline-block">
-					<Image
-						src={churchInterior}
-						alt="church interior"
-						class="h-80 w-80 rounded-3xl object-cover shadow-lg"
-					/>
-
-					<div class="absolute inset-0 flex items-center justify-center">
-						<div class="w-72 rounded-lg bg-white bg-opacity-90 p-4 shadow-lg">
-							<p class="font-poppins text-sm font-bold text-gray-700">
-								All Masses are in Konkani
-								<br />
-								Monday - Thursday: 6:45 AM
-								<br />
-								Friday: 4:45 PM (Chaplet of Divine Mercy & Mass)
-								<br />
-								Saturday: 4 PM
-								<br />
-								Sunday: 7:30 AM & 10:15 AM
-								<br />
-								Catechism: Sundays at 9:15 AM, except on the first Sunday.
-							</p>
-						</div>
-					</div>
+				<div
+					class="mx-auto max-w-sm rounded-lg bg-white p-6 shadow-lg transition-shadow duration-300 hover:shadow-2xl"
+				>
+					<p
+						class="font-merriweather mb-4 text-base font-semibold text-gray-800"
+					>
+						All Masses are in Konkani
+					</p>
+					<ul class="space-y-2 font-roboto text-sm text-gray-700">
+						<li><strong>Monday - Thursday:</strong> 6:45 AM</li>
+						<li>
+							<strong>Friday:</strong> 4:45 PM (Chaplet of Divine Mercy & Mass)
+						</li>
+						<li><strong>Saturday:</strong> 4 PM</li>
+						<li><strong>Sunday:</strong> 7:30 AM & 10:15 AM</li>
+						<li>
+							<strong>Catechism:</strong> Sundays at 9:15 AM (Except first Sunday)
+						</li>
+					</ul>
 				</div>
 			</div>
 		</section>
+		<Footer />
+
+		<!--footer is replaced by <Footer/> component will remove comented code in next MR -->
+
+		<!-- <footer class="bg-gray-900 p-6 text-sm text-white">
+			<div class="container mx-auto flex flex-col items-center space-y-6">
+				<div class="flex space-x-6 text-xl">
+					<a
+						href="#"
+						class="text-white hover:text-gray-200"
+						aria-label="Facebook"
+					>
+						<span class="iconify text-3xl" data-icon="mdi:facebook"></span>
+					</a>
+					<a
+						href="#"
+						class="text-white hover:text-gray-200"
+						aria-label="Instagram"
+					>
+						<span class="iconify text-3xl" data-icon="mdi:instagram"></span>
+					</a>
+					<a
+						href="#"
+						class="text-white hover:text-gray-200"
+						aria-label="YouTube"
+					>
+						<span class="iconify text-3xl" data-icon="mdi:youtube"></span>
+					</a>
+				</div>
+				<p class="mt-4 text-center text-sm">
+					&copy; 2024 | Powered by: Commission for Social Communication, Gurpur
+					Kaikamba
+				</p>
+			</div>
+		</footer> -->
 	</main>
 </Layout>
 
+<style>
+	@keyframes animatedBackground {
+		from {
+			background-size: 150%;
+		}
+		to {
+			background-size: 105%;
+		}
+	}
+	.animated-background {
+		animation: animatedBackground 6s ease-out forwards;
+	}
+</style>
+
 <script>
+	const hamburgerMenu = document.querySelector<HTMLDivElement>('#hamburger');
+	hamburgerMenu?.addEventListener('click', () => {
+		const navbar = document.querySelector<HTMLDivElement>('#navbar');
+		if (navbar?.classList.contains('hidden')) {
+			navbar.classList.replace('hidden', 'block');
+		}
+	});
+
 	const DEFAULT_ANIMATION = 'animate-slidein';
 	const animatedElements = document.querySelectorAll('[data-animate-on-view]');
 
@@ -178,3 +279,4 @@ import churchInterior from '../assets/church-int.jpg';
 		}
 	}
 </script>
+<script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>

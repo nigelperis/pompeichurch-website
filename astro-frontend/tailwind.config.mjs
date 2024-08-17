@@ -5,8 +5,11 @@ export default {
 	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
 	theme: {
 		extend: {
+			colors: {
+				'natgeo-yellow': '#ffdd00',
+			},
 			fontFamily: {
-				'inknut-antiqua': ['Inknut Antiqua', defaultTheme.fontFamily.serif],
+				'bona-nova-sc': ['Bona Nova SC', defaultTheme.fontFamily.serif],
 				roboto: ['Roboto', defaultTheme.fontFamily.sans],
 			},
 			keyframes: {
@@ -40,12 +43,23 @@ export default {
 						transform: 'translateX(0)',
 					},
 				},
+				zoomIn: {
+					from: {
+						opacity: '0',
+						transform: 'scale(0)',
+					},
+					to: {
+						opacity: '1',
+						transform: 'scale(1)',
+					},
+				},
 			},
 		},
 		animation: {
 			slidein: 'slidein 1s ease-out var(--slidein-delay, 0) forwards',
 			'slidein-left': 'slideInLeft 1s ease-out forwards',
 			'slidein-right': 'slideInRight 1s ease-out forwards',
+			'zoom-in': 'zoomIn 1s ease-out forwards',
 		},
 	},
 
