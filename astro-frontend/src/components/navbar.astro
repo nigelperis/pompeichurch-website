@@ -1,0 +1,66 @@
+---
+interface Props {
+	id: string;
+}
+const { id } = Astro.props;
+---
+
+<nav id={id} class="fixed inset-0 z-10 hidden w-full bg-white px-6 py-6">
+	<span
+		class="iconify ml-auto cursor-pointer text-3xl font-bold"
+		data-icon="iconoir:cancel"
+	>
+	</span>
+	<ul class="flex flex-col gap-y-6">
+		<li>
+			<a
+				href="#"
+				class="text-center font-roboto text-4xl font-bold text-black transition-all duration-300 hover:border-b-4 hover:border-natgeo-yellow"
+				>Home</a
+			>
+		</li>
+		<li>
+			<a
+				href="#"
+				class="text-center font-roboto text-4xl font-bold text-black transition-all duration-300 hover:border-b-4 hover:border-natgeo-yellow"
+				>Our Church</a
+			>
+		</li>
+		<li>
+			<a
+				href="#"
+				class="text-center font-roboto text-4xl font-bold text-black transition-all duration-300 hover:border-b-4 hover:border-natgeo-yellow"
+				>Institutions</a
+			>
+		</li>
+		<li>
+			<a
+				href="#"
+				class="text-center font-roboto text-4xl font-bold text-black transition-all duration-300 hover:border-b-4 hover:border-natgeo-yellow"
+				>Associations</a
+			>
+		</li>
+		<li>
+			<a
+				href="#"
+				class="text-center font-roboto text-4xl font-bold text-black transition-all duration-300 hover:border-b-4 hover:border-natgeo-yellow"
+				>News</a
+			>
+		</li>
+		<li>
+			<a
+				href="#"
+				class="text-center font-roboto text-4xl font-bold text-black transition-all duration-300 hover:border-b-4 hover:border-natgeo-yellow"
+				>Wards</a
+			>
+		</li>
+		<li>
+			<a
+				href="#"
+				class="text-center font-roboto text-4xl font-bold text-black transition-all duration-300 hover:border-b-4 hover:border-natgeo-yellow"
+				>Gallery</a
+			>
+		</li>
+	</ul>
+</nav>
+
