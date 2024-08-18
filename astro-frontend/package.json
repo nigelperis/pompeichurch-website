@@ -21,7 +21,6 @@
 		"tailwind-merge": "2.5.2",
 		"tailwind-scrollbar": "3.1.0"
 	},
-	"packageManager": "pnpm@8.10.2+sha1.e0b68270e89c817ff88b7be62466a2128c53af02",
 	"devDependencies": {
 		"@astrojs/check": "0.7.0",
 		"@astrojs/tailwind": "5.1.0",
