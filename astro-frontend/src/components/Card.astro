@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets';
+import { cn } from '../utils/cn.js';
 
 import fatherImage from '../assets/fr-image.jpg';
 
@@ -7,13 +8,17 @@ interface Props {
 	title: string;
 	imageUrl: string;
 	subtitle: string;
+	class?: string;
 }
 
-const { title, imageUrl, subtitle } = Astro.props;
+const { title, subtitle, class: className } = Astro.props;
 ---
 
 <li
-	class="group min-h-fit w-60 max-w-xs flex-shrink-0 transform snap-start overflow-hidden rounded-sm border shadow transition-transform duration-300 ease-in-out sm:w-64"
+	class={cn(
+		'group min-h-fit w-64 snap-start first:snap-align-none max-w-xs flex-shrink-0 transform overflow-hidden rounded-sm border shadow transition-transform duration-300 ease-in-out sm:w-64',
+		className,
+	)}
 >
 	<div class="card-image flex-none">
 		<Image
@@ -33,5 +38,3 @@ const { title, imageUrl, subtitle } = Astro.props;
 		</p>
 	</div>
 </li>
-
-

@@ -1,66 +1,143 @@
 ---
-interface Props {
-	id: string;
-}
-const { id } = Astro.props;
+import { Icon } from 'astro-icon/components';
+import { navLinks } from '../constants/nav-links.ts';
 ---
 
-<nav id={id} class="fixed inset-0 z-10 hidden w-full bg-white px-6 py-6">
-	<span
-		class="iconify ml-auto cursor-pointer text-3xl font-bold"
-		data-icon="iconoir:cancel"
-	>
-	</span>
-	<ul class="flex flex-col gap-y-6">
-		<li>
-			<a
-				href="#"
-				class="text-center font-roboto text-4xl font-bold text-black transition-all duration-300 hover:border-b-4 hover:border-natgeo-yellow"
-				>Home</a
-			>
-		</li>
-		<li>
-			<a
-				href="#"
-				class="text-center font-roboto text-4xl font-bold text-black transition-all duration-300 hover:border-b-4 hover:border-natgeo-yellow"
-				>Our Church</a
-			>
-		</li>
-		<li>
-			<a
-				href="#"
-				class="text-center font-roboto text-4xl font-bold text-black transition-all duration-300 hover:border-b-4 hover:border-natgeo-yellow"
-				>Institutions</a
-			>
-		</li>
-		<li>
-			<a
-				href="#"
-				class="text-center font-roboto text-4xl font-bold text-black transition-all duration-300 hover:border-b-4 hover:border-natgeo-yellow"
-				>Associations</a
-			>
-		</li>
-		<li>
-			<a
-				href="#"
-				class="text-center font-roboto text-4xl font-bold text-black transition-all duration-300 hover:border-b-4 hover:border-natgeo-yellow"
-				>News</a
-			>
-		</li>
-		<li>
-			<a
-				href="#"
-				class="text-center font-roboto text-4xl font-bold text-black transition-all duration-300 hover:border-b-4 hover:border-natgeo-yellow"
-				>Wards</a
-			>
-		</li>
-		<li>
-			<a
-				href="#"
-				class="text-center font-roboto text-4xl font-bold text-black transition-all duration-300 hover:border-b-4 hover:border-natgeo-yellow"
-				>Gallery</a
-			>
-		</li>
-	</ul>
-</nav>
+<header class="sticky top-0 z-10 w-full bg-white/90 px-4 py-2 shadow-sm">
+	<section class="flex justify-between">
+		<a href="#" class="font-roboto text-lg font-semibold">Pompei Church</a>
+		<div
+			id="hamburger"
+			class="ml-auto flex w-fit cursor-pointer flex-col items-end"
+		>
+			<span class="mb-1 block h-1 w-8 rounded-sm bg-gray-900/90"></span>
+			<span class="mb-1 block h-1 w-6 rounded-sm bg-gray-900/90"></span>
+			<span class="mb-1 block h-1 w-8 rounded-sm bg-gray-900/90"></span>
+		</div>
+	</section>
 
+	<nav
+		class="fixed inset-0 z-10 hidden w-full overflow-y-auto bg-white px-6 py-6"
+		id="navbar"
+	>
+		<Icon
+			name="cancel"
+			id="hamburger-close"
+			class="sticky top-5 mb-5 ml-auto cursor-pointer rounded-full text-4xl"
+		/>
+		<ul class="flex flex-col gap-y-6">
+			{
+				navLinks.map((link) => {
+					return (
+						<li>
+							<a
+								data-expandable-links={
+									link.type === 'expandable' ? 'true' : 'false'
+								}
+								href={link.type === 'link' ? link.href : '#'}
+								class="group flex items-center justify-between font-roboto text-4xl font-bold text-black"
+							>
+								<span class="border-b-4 border-b-transparent transition-all duration-150 group-hover:border-natgeo-yellow">
+									{link.title}
+								</span>
+
+								{link.type === 'expandable' ? (
+									<Icon
+										name="chevron-right"
+										class="text-3xl"
+										data-icon-name="chevron-right"
+									/>
+								) : null}
+							</a>
+
+							{link.type === 'expandable' ? (
+								<ul class="ml-3 mt-3 flex flex-col gap-y-6">
+									{link.expandedLinks.map((sublinks) => {
+										return (
+											<a
+												href={sublinks.href}
+												class="group flex items-center justify-between font-roboto text-2xl font-bold text-black"
+											>
+												<span class="border-b-4 border-b-transparent transition-all duration-150 group-hover:border-natgeo-yellow">
+													{sublinks.title}
+												</span>
+											</a>
+										);
+									})}
+								</ul>
+							) : null}
+						</li>
+					);
+				})
+			}
+		</ul>
+	</nav>
+</header>
+
+<style>
+	a[data-expandable-links='true'] + ul {
+		display: none;
+	}
+	a[data-is-submenu-expanded='true'] + ul {
+		display: flex;
+	}
+	svg[data-icon-name='chevron-right'] {
+		transition: transform 200ms ease-out;
+	}
+	a[data-is-submenu-expanded='true'] > svg[data-icon-name='chevron-right'] {
+		transform: rotate(90deg);
+	}
+</style>
+
+<script>
+	const hamburgerMenu = document.querySelector<HTMLDivElement>('#hamburger');
+	const hamburgerClose =
+		document.querySelector<HTMLDivElement>('#hamburger-close');
+
+	const navbar = document.querySelector<HTMLDivElement>('#navbar');
+
+	const expandableLinks = document.querySelectorAll<HTMLAnchorElement>(
+		'[data-expandable-links=true]',
+	);
+
+	const allNavigationLinks = document.querySelectorAll<HTMLAnchorElement>(
+		'a:not([data-expandable-links=true])',
+	);
+
+	hamburgerMenu?.addEventListener('click', () => {
+		if (navbar?.classList.contains('hidden')) {
+			navbar.classList.replace('hidden', 'block');
+		}
+	});
+
+	for (const element of expandableLinks) {
+		element.addEventListener('click', (e) => {
+			e.preventDefault();
+			const subMenuStatus = element.getAttribute('data-is-submenu-expanded');
+			if (subMenuStatus === 'true') {
+				element.setAttribute('data-is-submenu-expanded', 'false');
+			} else {
+				element.setAttribute('data-is-submenu-expanded', 'true');
+			}
+		});
+	}
+
+	for (const links of allNavigationLinks) {
+		links.addEventListener('click', (_) => {
+			navbar?.classList.replace('block', 'hidden');
+			for (const element of expandableLinks) {
+				element.setAttribute('data-is-submenu-expanded', 'false');
+			}
+		});
+	}
+
+	hamburgerClose?.addEventListener('click', () => {
+		if (navbar?.classList.contains('block')) {
+			navbar.classList.replace('block', 'hidden');
+
+			for (const element of expandableLinks) {
+				element.setAttribute('data-is-submenu-expanded', 'false');
+			}
+		}
+	});
+</script>

@@ -11,6 +11,7 @@ export default defineConfig({
 			iconDir: 'src/assets/icons',
 		}),
 	],
+
 	devToolbar: {
 		enabled: false,
 	},

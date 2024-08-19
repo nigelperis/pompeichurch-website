@@ -6,7 +6,20 @@ export default {
 	theme: {
 		extend: {
 			colors: {
-				'natgeo-yellow': '#ffdd00',
+				'natgeo-yellow': {
+					DEFAULT: '#ffdd00',
+					50: '#feffe7',
+					100: '#fcffc1',
+					200: '#feff86',
+					300: '#fff941',
+					400: '#ffec0d',
+					500: '#ffdd00',
+					600: '#d1a300',
+					700: '#a67502',
+					800: '#895b0a',
+					900: '#744a0f',
+					950: '#442704',
+				},
 			},
 			fontFamily: {
 				'bona-nova-sc': ['Bona Nova SC', defaultTheme.fontFamily.serif],
@@ -63,5 +76,5 @@ export default {
 		},
 	},
 
-	plugins: [],
+	plugins: [require('tailwind-scrollbar')],
 };
