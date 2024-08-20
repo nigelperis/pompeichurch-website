@@ -1,6 +1,11 @@
 ---
 import { Image, getImage } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
+
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
 import churchLogo from '../assets/church-logo.png';
 
 import churchHeroImage from '../assets/church-hero-image.webp';
@@ -37,7 +42,7 @@ quaerat? Alias qui reprehenderit eligendi labore architecto hic corrupti?
 `;
 ---
 
-<Layout title="Pompei Church | Gurupur Kaikamba">
+<Layout title=`${t("landing.church-name")} | ${t("landing.town-name")}`>
 	<Navbar />
 	<main>
 		<section
@@ -60,13 +65,13 @@ quaerat? Alias qui reprehenderit eligendi labore architecto hic corrupti?
 			<h1
 				class="mx-2 mt-5 animate-slidein text-center font-bona-nova-sc text-4xl font-bold opacity-0 [--slidein-delay:700ms]"
 			>
-				Our Lady Of Pompei Church
+				{t('landing.church-name')}
 			</h1>
 
 			<p
 				class="mx-2 mt-3 animate-slidein text-center font-bona-nova-sc text-2xl opacity-0 [--slidein-delay:800ms]"
 			>
-				Gurupur, Kaikamba
+				{t('landing.town-name')}
 			</p>
 
 			<div class="mx-auto">
@@ -79,12 +84,12 @@ quaerat? Alias qui reprehenderit eligendi labore architecto hic corrupti?
 			</div>
 		</section>
 
-		<section class="mx-6 mt-6 ">
+		<section class="mx-6 mt-6">
 			<h2
 				data-animate-on-view="animate-slidein-left"
 				class="relative mb-4 border-l-4 border-natgeo-yellow pl-3 text-left font-roboto text-3xl font-extrabold opacity-0 transition-opacity duration-700"
 			>
-				PARISH PRIEST SPEAKS
+				{t('landing.priest-speaks')}
 			</h2>
 
 			<div
@@ -107,7 +112,7 @@ quaerat? Alias qui reprehenderit eligendi labore architecto hic corrupti?
 			<figcaption
 				class="mt-2 text-center font-serif text-lg italic text-slate-600"
 			>
-				Fr. Ravi Rudolf DSa
+				{t('landing.priest-name')}
 			</figcaption>
 
 			<p
@@ -115,17 +120,17 @@ quaerat? Alias qui reprehenderit eligendi labore architecto hic corrupti?
 			>
 				{loremIpsum}
 			</p>
+			<!-- data-animate-on-view="animate-slidein-right" -->
 			<div
-				data-animate-on-view="animate-slidein-right"
 				class="relative mb-8 ml-auto w-fit text-lg font-semibold opacity-0 after:absolute after:left-0 after:top-full after:w-[120%] after:-translate-x-[10%]"
 			>
-				Signature of Fr. Rudolf DSa
+				Signature of Fr. Rudolf DSa(image)
 			</div>
 		</section>
 
 		<section
 			style={{ backgroundImage: `url(${optimizedGrottoImage.src})` }}
-			class="relative bg-black/70 bg-cover bg-center pb-8 text-white bg-blend-darken mt-3 mb-6"
+			class="relative mb-6 mt-3 bg-black/70 bg-cover bg-center pb-8 text-white bg-blend-darken"
 		>
 			<div
 				class="relative flex w-full flex-col items-center justify-center bg-cover bg-center p-7 pb-2"
@@ -134,7 +139,7 @@ quaerat? Alias qui reprehenderit eligendi labore architecto hic corrupti?
 					data-animate-on-view="animate-slidein-left"
 					class="font-poppins relative mb-2 text-5xl font-extrabold leading-tight opacity-0"
 				>
-					ABOUT POMPEI CHURCH
+					{t('landing.about-church')}
 				</h1>
 				<div
 					class="relative mb-6 mr-auto h-1 w-20 bg-natgeo-yellow opacity-0"
@@ -146,15 +151,17 @@ quaerat? Alias qui reprehenderit eligendi labore architecto hic corrupti?
 				</p>
 			</div>
 
-			<HoverableLink class="m-7">KNOW MORE</HoverableLink>
+			<HoverableLink class="m-7">
+				{t('ui.more-button-know')}
+			</HoverableLink>
 		</section>
 
-		<section class="mt-7 mb-8">
+		<section class="mb-8 mt-7">
 			<h2
 				class="font-poppins mx-5 mb-4 border-l-4 border-natgeo-yellow pl-3 text-3xl font-extrabold opacity-0"
 				data-animate-on-view="animate-slidein-left"
 			>
-				Parish Pastoral Parishad
+				{t('landing.pastoral-parishad')}
 			</h2>
 
 			<ul
@@ -162,38 +169,48 @@ quaerat? Alias qui reprehenderit eligendi labore architecto hic corrupti?
 			>
 				<Card
 					imageUrl=""
-					subtitle="Parish Priest"
-					title="Most Rev. Fr. Rudolph Ravi D'Sa"
-				/>
-				<Card imageUrl="" subtitle="Vice-President" title="Mr. Romans Lobo" />
-				<Card imageUrl="" subtitle="Secretary" title="Mr. Johnson Lobo" />
-				<Card
-					imageUrl=""
-					subtitle="21 Pastoral Commission Coordinator"
-					title="Mrs. Hilda Menezes"
+					subtitle={t('landing.priest')}
+					title={t('landing.priest-name')}
 				/>
 				<Card
 					imageUrl=""
-					subtitle="21 Pastoral Commission Coordinator"
-					title="Mrs. Hilda Menezes"
+					subtitle={t('landing.vice-president')}
+					title={t('landing.vp-name')}
 				/>
 				<Card
 					imageUrl=""
-					subtitle="21 Pastoral Commission Coordinator"
-					title="Mrs. Hilda Menezes"
+					subtitle={t('landing.secretary')}
+					title={t('landing.secretary-name')}
 				/>
 				<Card
 					imageUrl=""
-					subtitle="21 Pastoral Commission Coordinator"
-					title="Mrs. Hilda Menezes"
+					subtitle={t('landing.pastoral-commission-coordinator')}
+					title={t('landing.pastoral-commission-coordinator-name')}
 				/>
 				<Card
 					imageUrl=""
-					subtitle="21 Pastoral Commission Coordinator"
-					title="Mrs. Hilda Menezes"
+					subtitle={t('landing.pastoral-commission-coordinator')}
+					title={t('landing.pastoral-commission-coordinator-name')}
+				/>
+				<Card
+					imageUrl=""
+					subtitle={t('landing.pastoral-commission-coordinator')}
+					title={t('landing.pastoral-commission-coordinator-name')}
+				/>
+				<Card
+					imageUrl=""
+					subtitle={t('landing.pastoral-commission-coordinator')}
+					title={t('landing.pastoral-commission-coordinator-name')}
+				/>
+				<Card
+					imageUrl=""
+					subtitle={t('landing.pastoral-commission-coordinator')}
+					title={t('landing.pastoral-commission-coordinator-name')}
 				/>
 			</ul>
-			<HoverableLink class="m-7">SHOW MORE</HoverableLink>
+			<HoverableLink class="m-7">
+				{t('ui.more-button-show')}
+			</HoverableLink>
 		</section>
 
 		<section
@@ -206,22 +223,27 @@ quaerat? Alias qui reprehenderit eligendi labore architecto hic corrupti?
 						class="font-poppins border-l-4 border-natgeo-yellow pl-3 text-3xl font-extrabold opacity-0"
 						data-animate-on-view="animate-slidein-left"
 					>
-						Mass Timings
+						{t('landing.mass-timings')}
 					</h2>
 
 					<div class="p-5 pb-3">
 						<p class="mb-4 font-roboto font-semibold text-white">
-							All Masses are in Konkani
+							{t('landing.mass-timings-note')}
 						</p>
 						<ul class="space-y-2 font-roboto text-sm text-white">
-							<li><strong>Monday - Saturday:</strong> 6:45 AM (Daily Mass)</li>
 							<li>
-								<strong>Friday:</strong> 4:45 PM (Chaplet of Divine Mercy & Mass)
+								<strong>{t('landing.mon-sat')}</strong> 6:45 AM ({t('landing.daily-mass')})
 							</li>
-							<li><strong>Saturday:</strong> 4 PM</li>
-							<li><strong>Sunday:</strong> 7:30 AM & 10:15 AM</li>
 							<li>
-								<strong>Catechism:</strong> Sundays at 9:15 AM (Except first Sunday)
+								<strong>{t('landing.mon-sat')}</strong> 4:45 PM ({t('landing.friday-note')})
+							</li>
+							<li><strong>{t('landing.saturday')}:</strong> 4 PM ({t('landing.saturday-note')})</li>
+							<li><strong>{t('landing.sunday')}:</strong> 7:30 AM & 10:15 AM</li>
+							<li>
+								<strong>{t('landing.catechism')}:</strong> {t('landing.catechism-note')}
+							</li>
+							<li>
+								<strong>{t('landing.novena')}:</strong> {t('landing.novena-note')}
 							</li>
 						</ul>
 					</div>

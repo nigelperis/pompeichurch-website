@@ -1,5 +1,9 @@
 ---
 import { Icon } from 'astro-icon/components';
+
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <footer
@@ -7,7 +11,7 @@ import { Icon } from 'astro-icon/components';
 >
 	<div class="flex items-start justify-between">
 		<section class="space-y-3">
-			<h2 class="mb-2 text-xl font-medium">Contact Us</h2>
+			<h2 class="mb-2 text-xl font-medium">{t('footer.contact-us')}</h2>
 
 			<div class="flex items-center gap-x-2">
 				<p>Email:</p>
@@ -20,7 +24,7 @@ import { Icon } from 'astro-icon/components';
 		</section>
 
 		<section class="ml-5">
-			<h2 class="mb-2 text-xl font-medium">Follow Us</h2>
+			<h2 class="mb-2 text-xl font-medium">{t('footer.follow-us')}</h2>
 			<div class="flex space-x-4">
 				<a
 					href="https://www.facebook.com/ladyofpompeichurch.gurpur/"

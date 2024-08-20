@@ -1,11 +1,17 @@
 ---
 import { Icon } from 'astro-icon/components';
 import { navLinks } from '../constants/nav-links.ts';
+
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <header class="sticky top-0 z-10 w-full bg-white/90 px-4 py-2 shadow-sm">
 	<section class="flex justify-between">
-		<a href="#" class="font-roboto text-lg font-semibold">Pompei Church</a>
+		<a href="#" class="font-roboto text-lg font-semibold"
+			>{t('landing.church-name')}</a
+		>
 		<div
 			id="hamburger"
 			class="ml-auto flex w-fit cursor-pointer flex-col items-end"
@@ -38,7 +44,7 @@ import { navLinks } from '../constants/nav-links.ts';
 								class="group flex items-center justify-between font-roboto text-4xl font-bold text-black"
 							>
 								<span class="border-b-4 border-b-transparent transition-all duration-150 group-hover:border-natgeo-yellow">
-									{link.title}
+									{t(link.title)}
 								</span>
 
 								{link.type === 'expandable' ? (
@@ -59,7 +65,7 @@ import { navLinks } from '../constants/nav-links.ts';
 												class="group flex items-center justify-between font-roboto text-2xl font-bold text-black"
 											>
 												<span class="border-b-4 border-b-transparent transition-all duration-150 group-hover:border-natgeo-yellow">
-													{sublinks.title}
+													{t(sublinks.title)}
 												</span>
 											</a>
 										);
