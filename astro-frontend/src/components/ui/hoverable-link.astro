@@ -1,0 +1,31 @@
+---
+import { cn } from '~/helpers/cn';
+
+interface Props {
+	href?: string;
+	class?: string;
+}
+const { href, class: className } = Astro.props;
+---
+
+<a
+	href={href}
+	class={cn(
+		'from-natgeo-yellow to-natgeo-yellow hoverable-link border-natgeo-yellow border-b-2 bg-gradient-to-r px-2 py-1 hover:border-transparent hover:text-black',
+		className,
+	)}
+>
+	<slot />
+</a>
+
+<style>
+	.hoverable-link {
+		background-position: 0 100%;
+		background-repeat: no-repeat;
+		background-size: 100% 0;
+		transition: background-size 230ms ease-out;
+	}
+	.hoverable-link:hover {
+		background-size: 100% 100%;
+	}
+</style>

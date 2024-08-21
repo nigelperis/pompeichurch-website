@@ -1,0 +1,40 @@
+---
+import { Image } from 'astro:assets';
+import { cn } from '~/helpers/cn.ts';
+
+import fatherImage from '~/assets/fr-image.jpg';
+
+interface Props {
+	title: string;
+	imageUrl: string;
+	subtitle: string;
+	class?: string;
+}
+
+const { title, subtitle, class: className } = Astro.props;
+---
+
+<li
+	class={cn(
+		'group min-h-fit w-64 snap-start first:snap-align-none max-w-xs flex-shrink-0 transform overflow-hidden rounded-sm border shadow transition-transform duration-300 ease-in-out sm:w-64',
+		className,
+	)}
+>
+	<div class="card-image flex-none">
+		<Image
+			src={fatherImage}
+			alt=""
+			width={200}
+			class="h-auto w-full rounded-md object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
+		/>
+	</div>
+
+	<div class="card-content mt-3 flex flex-1 flex-col justify-end space-y-1 p-3">
+		<h3 class="card-title text-lg font-bold leading-snug text-slate-900">
+			{title}
+		</h3>
+		<p class="card-subtitle line-clamp-3 text-sm text-slate-600">
+			{subtitle}
+		</p>
+	</div>
+</li>

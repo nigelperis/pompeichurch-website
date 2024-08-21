@@ -1,0 +1,20 @@
+---
+import { Icon } from 'astro-icon/components';
+const currentLocale = Astro.currentLocale;
+
+const currentPath = new URL(Astro.request.url).pathname;
+const pathWithLocaleStripped = currentPath.replace(/^\/kok\//, '/');
+
+const localeToSwitchTo = currentLocale === 'en' ? 'kok' : 'en';
+---
+
+<aside>
+	<a
+		class="fixed bottom-3 right-4 flex items-center justify-center rounded-sm bg-natgeo-yellow-400 p-3"
+		href={localeToSwitchTo === 'kok'
+			? `/${localeToSwitchTo}${pathWithLocaleStripped}`
+			: `${pathWithLocaleStripped}`}
+	>
+		<Icon name="translation" size={20} />
+	</a>
+</aside>

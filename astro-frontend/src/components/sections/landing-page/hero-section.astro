@@ -1,0 +1,72 @@
+---
+import { Image, getImage } from 'astro:assets';
+
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+import skyImage from '~/assets/sky-bg.jpg';
+const optimizedSkyImage = await getImage({ src: skyImage });
+
+import churchHeroImage from '~/assets/church-hero-image.webp';
+const optimizedChurchHeroImage = await getImage({ src: churchHeroImage });
+
+import churchLogo from '~/assets/church-logo.png';
+---
+
+<section
+	class="relative h-screen w-screen bg-black/30 bg-cover pb-8 bg-blend-overlay"
+	style={{
+		backgroundImage: `url(${optimizedSkyImage.src})`,
+	}}
+>
+	<div class="absolute inset-0 bg-white opacity-70 bg-blend-darken"></div>
+
+	<div
+		class="relative mx-auto h-80 w-96 overflow-hidden rounded-b-[12rem] bg-yellow-50"
+	>
+		<div
+			class="animated-background mx-auto h-full w-full bg-cover bg-center bg-no-repeat shadow-2xl"
+			style={{ backgroundImage: `url(${optimizedChurchHeroImage.src})` }}
+		>
+		</div>
+	</div>
+	<h1
+		class="mx-2 mt-5 animate-slidein text-center font-bona-nova-sc text-4xl font-bold opacity-0 [--slidein-delay:700ms]"
+	>
+		{t('landing.church-name')}
+	</h1>
+
+	<p
+		class="mx-2 mt-3 animate-slidein text-center font-bona-nova-sc text-2xl opacity-0 [--slidein-delay:800ms]"
+	>
+		{t('landing.town-name')}
+	</p>
+
+	<div class="mx-auto">
+		<Image
+			src={churchLogo}
+			alt="church logo"
+			width={180}
+			class="mx-auto my-4 animate-slidein opacity-0 [--slidein-delay:1000ms]"
+		/>
+	</div>
+</section>
+
+<style>
+	@keyframes animatedBackground {
+		from {
+			width: 110%;
+			height: 110%;
+			transform: translate(-10%);
+		}
+		to {
+			width: 100%;
+			height: 100%;
+			transform: translate(0);
+		}
+	}
+	.animated-background {
+		animation: animatedBackground 3s ease-out forwards;
+	}
+</style>

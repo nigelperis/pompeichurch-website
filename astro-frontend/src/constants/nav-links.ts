@@ -18,114 +18,155 @@ export type NavItem = Expandable | Link;
 export const navLinks = [
 	{
 		type: 'link',
-		title: 'Home',
+		title: 'nav.home',
 		href: '#',
 	},
 	{
 		type: 'expandable',
-		title: 'Our Church',
+		title: 'nav.our-church',
 		expandedLinks: [
 			{
-				title: 'Parish History',
+				title: 'nav.parish-history',
 				href: '#',
 			},
 			{
-				title: 'Parish Priests',
+				title: 'nav.parish-priests',
 				href: '#',
 			},
 			{
-				title: 'Parish Pastoral Parishad',
+				title: 'nav.parish-pastoral-parishad',
 				href: '#',
 			},
 			{
-				title: 'Parish Pastoral Commission',
+				title: 'nav.parish-pastoral-commission',
 				href: '#',
 			},
 		],
 	},
 	{
 		type: 'expandable',
-		title: 'Institutions',
+		title: 'nav.institutions',
 		expandedLinks: [
 			{
-				title: 'Our Institutions',
+				title: 'nav.our-institutions',
 				href: '#',
 			},
 			{
-				title: 'Convents',
+				title: 'nav.convents',
 				href: '#',
 			},
 			{
-				title: 'Infrastructure',
+				title: 'nav.infrastructure',
 				href: '#',
 			},
 		],
 	},
 	{
 		type: 'expandable',
-		title: 'Associations',
+		title: 'nav.associations',
 		expandedLinks: [
 			{
-				title: 'SVP',
+				title: 'nav.svp',
 				href: '#',
 			},
 			{
-				title: 'ICYM (PYC)',
+				title: 'nav.icym-pyc',
 				href: '#',
 			},
 			{
-				title: 'Altar Servers',
+				title: 'nav.altar-servers',
 				href: '#',
 			},
 			{
-				title: 'Catholic Sabha',
+				title: 'nav.catholic-sabha',
 				href: '#',
 			},
 			{
-				title: 'YCS',
+				title: 'nav.ycs',
 				href: '#',
 			},
 			{
-				title: 'Secular Fransican',
+				title: 'nav.secular-franciscan',
 				href: '#',
 			},
 			{
-				title: 'Catechism',
+				title: 'nav.catechism',
 				href: '#',
 			},
 			{
-				title: ' ಲ್ಹಾನ್ ಕ್ರಿಸ್ತಾಂವ್ ಸಮುದಾಯ್',
+				title: 'nav.small-christian-community',
 				href: '#',
 			},
 			{
-				title: 'Gurpur Gayan Mandali',
+				title: 'nav.gurpur-gayan-mandali',
 				href: '#',
 			},
 			{
-				title: 'Women’s Forum',
+				title: 'nav.womens-forum',
+				href: '#',
+			},
+		],
+	},
+	{
+		type: 'expandable',
+		title: 'nav.wards',
+		expandedLinks: [
+			{
+				title: 'nav.kowdoor-a-ward',
+				href: '#',
+			},
+			{
+				title: 'nav.kowdoor-b-ward',
+				href: '#',
+			},
+			{
+				title: 'nav.pompei-a-ward',
+				href: '#',
+			},
+			{
+				title: 'nav.pompei-b-ward',
+				href: '#',
+			},
+			{
+				title: 'nav.kandar-a-ward',
+				href: '#',
+			},
+			{
+				title: 'nav.kandar-b-ward',
+				href: '#',
+			},
+			{
+				title: 'nav.monel-ward',
+				href: '#',
+			},
+			{
+				title: 'nav.gurpur-ward',
+				href: '#',
+			},
+			{
+				title: 'nav.church-ward',
+				href: '#',
+			},
+			{
+				title: 'nav.addoor-ward',
 				href: '#',
 			},
 		],
 	},
 	{
 		type: 'link',
-		title: 'Wards',
-		href: '#',
-	},
-	{
-		type: 'link',
-		title: 'News',
+		title: 'nav.news',
 		href: '#',
 	},
 
 	{
 		type: 'link',
-		title: 'Gallery',
+		title: 'nav.gallery',
 		href: '#',
 	},
 	{
 		type: 'link',
-		title: 'Contact',
+		title: 'nav.contact',
 		href: '#',
 	},
 ] as const satisfies NavItem[];

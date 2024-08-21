@@ -1,255 +1,35 @@
 ---
-import { Image, getImage } from 'astro:assets';
-import Layout from '../layouts/Layout.astro';
-import churchLogo from '../assets/church-logo.png';
+import Layout from '~/layouts/layout.astro';
 
-import churchHeroImage from '../assets/church-hero-image.webp';
-const optimizedChurchHeroImage = await getImage({ src: churchHeroImage });
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
-import priestImage from '../assets/priest-photo.png';
+import HeroSection from '~/components/sections/landing-page/hero-section.astro';
+import ParishPriestSpeaks from '~/components/sections/landing-page/parish-priest-speaks-section.astro';
+import AboutChurch from '~/components/sections/landing-page/about-church-section.astro';
+import PastoralParishadSection from '~/components/sections/landing-page/pastoral-parishad-section.astro';
+import MassTimingsSection from '~/components/sections/landing-page/mass-timings-section.astro';
 
-import maryGrotto from '../assets/mary-grotto.jpg';
-const optimizedGrottoImage = await getImage({ src: maryGrotto });
-
-import massInteriorImage from '../assets/mass-interior.jpg';
-const optimizedmassInteriorImage = await getImage({ src: massInteriorImage });
-
-import skyImage from '../assets/sky-bg.jpg';
-const optimizedSkyImage = await getImage({ src: skyImage });
-
-import Card from '../components/card.astro';
-import Navbar from '../components/navbar.astro';
-import HoverableLink from '../components/hoverable-link.astro';
-import Footer from '../components/footer.astro';
-
-const loremIpsum = `
-	Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptates vero
-numquam dolore, molestias ipsa voluptate consequatur ratione illo quas
-voluptatem blanditiis ex dolorem doloremque at obcaecati reprehenderit
-voluptatum aliquid fugiat, nisi fuga. Ducimus voluptas quasi cupiditate
-praesentium, neque et eligendi itaque. Molestiae dolorem voluptatibus minima
-deserunt corporis dolor consectetur, suscipit distinctio explicabo aspernatur
-numquam ea sit dicta repellendus, voluptatum aliquam perspiciatis mollitia
-obcaecati. Perferendis praesentium eos dolorum! Facilis possimus odit temporibus
-sint quia voluptates corrupti iste exercitationem magnam tenetur voluptatum
-libero earum, totam iusto similique nulla, commodi, laborum distinctio aut hic
-quaerat? Alias qui reprehenderit eligendi labore architecto hic corrupti?
-`;
+import Navbar from '~/components/navbar.astro';
+import Footer from '~/components/footer.astro';
 ---
 
-<Layout title="Pompei Church | Gurupur Kaikamba">
+<Layout title=`${t("landing.church-name")} | ${t("landing.town-name")}`>
 	<Navbar />
 	<main>
-		<section
-			class="relative h-screen w-screen bg-black/30 bg-cover pb-8 bg-blend-overlay"
-			style={{
-				backgroundImage: `url(${optimizedSkyImage.src})`,
-			}}
-		>
-			<div class="absolute inset-0 bg-white opacity-70 bg-blend-darken"></div>
+		<HeroSection />
 
-			<div
-				class="relative mx-auto h-80 w-96 overflow-hidden rounded-b-[12rem] bg-yellow-50"
-			>
-				<div
-					class="animated-background mx-auto h-full w-full bg-cover bg-center bg-no-repeat shadow-2xl"
-					style={{ backgroundImage: `url(${optimizedChurchHeroImage.src})` }}
-				>
-				</div>
-			</div>
-			<h1
-				class="mx-2 mt-5 animate-slidein text-center font-bona-nova-sc text-4xl font-bold opacity-0 [--slidein-delay:700ms]"
-			>
-				Our Lady Of Pompei Church
-			</h1>
+		<ParishPriestSpeaks />
+		<AboutChurch />
 
-			<p
-				class="mx-2 mt-3 animate-slidein text-center font-bona-nova-sc text-2xl opacity-0 [--slidein-delay:800ms]"
-			>
-				Gurupur, Kaikamba
-			</p>
+		<PastoralParishadSection />
 
-			<div class="mx-auto">
-				<Image
-					src={churchLogo}
-					alt="church logo"
-					width={180}
-					class="mx-auto my-4 animate-slidein opacity-0 [--slidein-delay:1000ms]"
-				/>
-			</div>
-		</section>
-
-		<section class="mx-6 mt-6 ">
-			<h2
-				data-animate-on-view="animate-slidein-left"
-				class="relative mb-4 border-l-4 border-natgeo-yellow pl-3 text-left font-roboto text-3xl font-extrabold opacity-0 transition-opacity duration-700"
-			>
-				PARISH PRIEST SPEAKS
-			</h2>
-
-			<div
-				data-animate-on-view="animate-zoom-in"
-				class="relative mx-auto flex w-fit flex-col items-center opacity-0 duration-300"
-			>
-				<div
-					class="absolute top-full -z-10 h-[50%] w-[103%] -translate-y-full rounded bg-gradient-to-r from-natgeo-yellow-200 via-natgeo-yellow-300 to-natgeo-yellow-400"
-				>
-				</div>
-				<Image
-					src={priestImage}
-					alt="priest image"
-					width={340}
-					height={300}
-					class="transition-transform duration-700 ease-in-out"
-				/>
-			</div>
-
-			<figcaption
-				class="mt-2 text-center font-serif text-lg italic text-slate-600"
-			>
-				Fr. Ravi Rudolf DSa
-			</figcaption>
-
-			<p
-				class="text-justify font-serif text-base first-letter:font-serif first-letter:text-3xl"
-			>
-				{loremIpsum}
-			</p>
-			<div
-				data-animate-on-view="animate-slidein-right"
-				class="relative mb-8 ml-auto w-fit text-lg font-semibold opacity-0 after:absolute after:left-0 after:top-full after:w-[120%] after:-translate-x-[10%]"
-			>
-				Signature of Fr. Rudolf DSa
-			</div>
-		</section>
-
-		<section
-			style={{ backgroundImage: `url(${optimizedGrottoImage.src})` }}
-			class="relative bg-black/70 bg-cover bg-center pb-8 text-white bg-blend-darken mt-3 mb-6"
-		>
-			<div
-				class="relative flex w-full flex-col items-center justify-center bg-cover bg-center p-7 pb-2"
-			>
-				<h1
-					data-animate-on-view="animate-slidein-left"
-					class="font-poppins relative mb-2 text-5xl font-extrabold leading-tight opacity-0"
-				>
-					ABOUT POMPEI CHURCH
-				</h1>
-				<div
-					class="relative mb-6 mr-auto h-1 w-20 bg-natgeo-yellow opacity-0"
-					data-animate-on-view="animate-slidein-right"
-				>
-				</div>
-				<p class="relative mb-6 max-w-2xl font-sans text-lg">
-					{loremIpsum}
-				</p>
-			</div>
-
-			<HoverableLink class="m-7">KNOW MORE</HoverableLink>
-		</section>
-
-		<section class="mt-7 mb-8">
-			<h2
-				class="font-poppins mx-5 mb-4 border-l-4 border-natgeo-yellow pl-3 text-3xl font-extrabold opacity-0"
-				data-animate-on-view="animate-slidein-left"
-			>
-				Parish Pastoral Parishad
-			</h2>
-
-			<ul
-				class="my-4 flex w-full max-w-full scroll-ml-6 space-x-8 overflow-y-auto py-1.5 pl-6 scrollbar-thin"
-			>
-				<Card
-					imageUrl=""
-					subtitle="Parish Priest"
-					title="Most Rev. Fr. Rudolph Ravi D'Sa"
-				/>
-				<Card imageUrl="" subtitle="Vice-President" title="Mr. Romans Lobo" />
-				<Card imageUrl="" subtitle="Secretary" title="Mr. Johnson Lobo" />
-				<Card
-					imageUrl=""
-					subtitle="21 Pastoral Commission Coordinator"
-					title="Mrs. Hilda Menezes"
-				/>
-				<Card
-					imageUrl=""
-					subtitle="21 Pastoral Commission Coordinator"
-					title="Mrs. Hilda Menezes"
-				/>
-				<Card
-					imageUrl=""
-					subtitle="21 Pastoral Commission Coordinator"
-					title="Mrs. Hilda Menezes"
-				/>
-				<Card
-					imageUrl=""
-					subtitle="21 Pastoral Commission Coordinator"
-					title="Mrs. Hilda Menezes"
-				/>
-				<Card
-					imageUrl=""
-					subtitle="21 Pastoral Commission Coordinator"
-					title="Mrs. Hilda Menezes"
-				/>
-			</ul>
-			<HoverableLink class="m-7">SHOW MORE</HoverableLink>
-		</section>
-
-		<section
-			style={{ backgroundImage: `url(${optimizedmassInteriorImage.src})` }}
-			class="relative bg-black/60 bg-cover bg-center pb-5 text-white bg-blend-darken"
-		>
-			<div class="relative flex items-center justify-start p-5">
-				<div class="max-w-sm">
-					<h2
-						class="font-poppins border-l-4 border-natgeo-yellow pl-3 text-3xl font-extrabold opacity-0"
-						data-animate-on-view="animate-slidein-left"
-					>
-						Mass Timings
-					</h2>
-
-					<div class="p-5 pb-3">
-						<p class="mb-4 font-roboto font-semibold text-white">
-							All Masses are in Konkani
-						</p>
-						<ul class="space-y-2 font-roboto text-sm text-white">
-							<li><strong>Monday - Saturday:</strong> 6:45 AM (Daily Mass)</li>
-							<li>
-								<strong>Friday:</strong> 4:45 PM (Chaplet of Divine Mercy & Mass)
-							</li>
-							<li><strong>Saturday:</strong> 4 PM</li>
-							<li><strong>Sunday:</strong> 7:30 AM & 10:15 AM</li>
-							<li>
-								<strong>Catechism:</strong> Sundays at 9:15 AM (Except first Sunday)
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</section>
+		<MassTimingsSection />
 
 		<Footer />
 	</main>
 </Layout>
-
-<style>
-	@keyframes animatedBackground {
-		from {
-			width: 110%;
-			height: 110%;
-			transform: translate(-10%);
-		}
-		to {
-			width: 100%;
-			height: 100%;
-			transform: translate(0);
-		}
-	}
-	.animated-background {
-		animation: animatedBackground 3s ease-out forwards;
-	}
-</style>
 
 <script>
 	const DEFAULT_ANIMATION = 'animate-slidein';

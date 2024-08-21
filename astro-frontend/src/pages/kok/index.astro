@@ -1,0 +1,60 @@
+---
+import Layout from '~/layouts/layout.astro';
+
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+import HeroSection from '~/components/sections/landing-page/hero-section.astro';
+import ParishPriestSpeaks from '~/components/sections/landing-page/parish-priest-speaks-section.astro';
+import AboutChurch from '~/components/sections/landing-page/about-church-section.astro';
+import PastoralParishadSection from '~/components/sections/landing-page/pastoral-parishad-section.astro';
+import MassTimingsSection from '~/components/sections/landing-page/mass-timings-section.astro';
+
+import Navbar from '~/components/navbar.astro';
+import Footer from '~/components/footer.astro';
+---
+
+<Layout title=`${t("landing.church-name")} | ${t("landing.town-name")}`>
+	<Navbar />
+	<main>
+		<HeroSection />
+
+		<ParishPriestSpeaks />
+		<AboutChurch />
+
+		<PastoralParishadSection />
+
+		<MassTimingsSection />
+
+		<Footer />
+	</main>
+</Layout>
+
+<script>
+	const DEFAULT_ANIMATION = 'animate-slidein';
+	const animatedElements = document.querySelectorAll('[data-animate-on-view]');
+
+	const observer = new IntersectionObserver(
+		(entries) => {
+			for (const elem of animatedElements) {
+				const entriesIntersectingViewPort = new Set(
+					entries.filter((itm) => itm.isIntersecting).map((itm) => itm.target),
+				);
+
+				if (entriesIntersectingViewPort.has(elem)) {
+					const animation = elem.getAttribute('data-animate-on-view');
+
+					elem.classList.add(animation ?? DEFAULT_ANIMATION);
+				}
+			}
+		},
+		{ threshold: 1 },
+	);
+
+	if (animatedElements.length > 0) {
+		for (const elem of animatedElements) {
+			observer.observe(elem);
+		}
+	}
+</script>

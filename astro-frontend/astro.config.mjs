@@ -11,7 +11,13 @@ export default defineConfig({
 			iconDir: 'src/assets/icons',
 		}),
 	],
-
+	i18n: {
+		locales: ['en', 'kok'],
+		defaultLocale: 'en',
+		routing: {
+			redirectToDefaultLocale: true,
+		},
+	},
 	devToolbar: {
 		enabled: false,
 	},
