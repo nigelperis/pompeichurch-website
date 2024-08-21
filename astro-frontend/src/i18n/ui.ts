@@ -3,7 +3,7 @@ export const languages = {
 	kok: 'ಕೊಂಕಣಿ',
 } as const;
 
-export const defaultLang: keyof typeof languages = 'kok';
+export const defaultLang: keyof typeof languages = 'en';
 
 export const ui = {
 	en: {
@@ -32,8 +32,8 @@ export const ui = {
 		'nav.small-christian-community': 'Small Christian Community',
 		'nav.gurpur-gayan-mandali': 'Gurpur Gayan Mandali',
 		'nav.womens-forum': 'Women’s Forum',
-		'nav.kowdoor-a-ward':'Kowdoor A',
-		'nav.kowdoor-b-ward':'Kowdoor B',
+		'nav.kowdoor-a-ward': 'Kowdoor A',
+		'nav.kowdoor-b-ward': 'Kowdoor B',
 		'nav.monel-ward': 'Monel',
 		'nav.gurpur-ward': 'Gurpur',
 		'nav.church-ward': 'Church',
@@ -47,7 +47,8 @@ export const ui = {
 		'landing.priest': 'Parish Priest',
 		'landing.vice-president': 'Vice President',
 		'landing.secretary': 'Secretary',
-		'landing.pastoral-commission-coordinator': '21 Pastoral Commission Coordinator',
+		'landing.pastoral-commission-coordinator':
+			'21 Pastoral Commission Coordinator',
 		'landing.priest-speaks': 'Parish Priest Speaks',
 		'landing.priest-name': 'Most Rev. Fr. Ravi Rudolf DSa',
 		'landing.vp-name': 'Mr. Romans Lobo ',
@@ -70,8 +71,8 @@ export const ui = {
 		'landing.novena-note': 'Saturday and Sunday after Mass',
 		'ui.more-button-know': 'KNOW MORE',
 		'ui.more-button-show': 'SHOW MORE',
-		'footer.contact-us':'Contact Us',
-		'footer.follow-us':'Follow Us',
+		'footer.contact-us': 'Contact Us',
+		'footer.follow-us': 'Follow Us',
 	},
 	kok: {
 		'nav.home': 'ಹೋಮ್',
@@ -137,7 +138,7 @@ export const ui = {
 		'landing.novena-note': 'ಸನ್ವಾರಾ ಸಾಂಜೆರ್ ಆನಿ ಆಯ್ತಾರಾ ಸಾಕಾಳಿಂ ಮಿಸಾ ಉಪ್ರಾಂತ್',
 		'ui.more-button-know': 'ಚಡಿತ್ ಮಾಹೆತ್',
 		'ui.more-button-show': 'ಚಡಿತ್ ಮಾಹೆತ್',
-		'footer.contact-us':'ಸಂಪರ್ಕ್',
-		'footer.follow-us':'ಮಾಧ್ಯಮ್',
+		'footer.contact-us': 'ಸಂಪರ್ಕ್',
+		'footer.follow-us': 'ಮಾಧ್ಯಮ್',
 	},
 } as const;

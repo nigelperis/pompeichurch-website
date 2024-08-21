@@ -14,6 +14,9 @@ export default defineConfig({
 	i18n: {
 		locales: ['en', 'kok'],
 		defaultLocale: 'en',
+		routing: {
+			redirectToDefaultLocale: true,
+		},
 	},
 	devToolbar: {
 		enabled: false,

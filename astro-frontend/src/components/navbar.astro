@@ -1,8 +1,8 @@
 ---
 import { Icon } from 'astro-icon/components';
-import { navLinks } from '../constants/nav-links.ts';
+import { navLinks } from '~/constants/nav-links.ts';
 
-import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
@@ -31,7 +31,7 @@ const t = useTranslations(lang);
 			id="hamburger-close"
 			class="sticky top-5 mb-5 ml-auto cursor-pointer rounded-full text-4xl"
 		/>
-		<ul class="flex flex-col gap-y-6">
+		<ul class="flex flex-col gap-y-5">
 			{
 				navLinks.map((link) => {
 					return (
@@ -57,7 +57,7 @@ const t = useTranslations(lang);
 							</a>
 
 							{link.type === 'expandable' ? (
-								<ul class="ml-3 mt-3 flex flex-col gap-y-6">
+								<ul class="ml-3 mt-3 flex flex-col gap-y-5">
 									{link.expandedLinks.map((sublinks) => {
 										return (
 											<a

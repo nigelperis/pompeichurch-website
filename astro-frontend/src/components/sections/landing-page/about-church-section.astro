@@ -1,0 +1,42 @@
+---
+import { getImage } from 'astro:assets';
+
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+Astro.currentLocale;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+import maryGrotto from '~/assets/mary-grotto.jpg';
+const optimizedGrottoImage = await getImage({ src: maryGrotto });
+
+import HoverableLink from '~/components/ui/hoverable-link.astro';
+import { loremIpsum } from '~/constants/lorem-ipsum';
+---
+
+<section
+	style={{ backgroundImage: `url(${optimizedGrottoImage.src})` }}
+	class="relative mb-6 mt-3 bg-black/70 bg-cover bg-center pb-8 text-white bg-blend-darken"
+>
+	<div
+		class="relative flex w-full flex-col items-center justify-center bg-cover bg-center p-7 pb-2"
+	>
+		<h1
+			data-animate-on-view="animate-slidein-left"
+			class="font-poppins relative mb-2 text-5xl font-extrabold leading-tight opacity-0"
+		>
+			{t('landing.about-church')}
+		</h1>
+		<div
+			class="relative mb-6 mr-auto h-1 w-20 bg-natgeo-yellow opacity-0"
+			data-animate-on-view="animate-slidein-right"
+		>
+		</div>
+		<p class="relative mb-6 max-w-2xl font-sans text-lg">
+			{loremIpsum}
+		</p>
+	</div>
+
+	<HoverableLink class="m-7">
+		{t('ui.more-button-know')}
+	</HoverableLink>
+</section>

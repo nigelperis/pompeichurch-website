@@ -1,0 +1,65 @@
+---
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+import Card from './pastrol-parishad-info-card.astro';
+import HoverableLink from '~/components/ui/hoverable-link.astro';
+---
+
+<section class="mb-8 mt-7">
+	<h2
+		class="font-poppins mx-5 mb-4 border-l-4 border-natgeo-yellow pl-3 text-3xl font-extrabold opacity-0"
+		data-animate-on-view="animate-slidein-left"
+	>
+		{t('landing.pastoral-parishad')}
+	</h2>
+
+	<ul
+		class="my-4 flex w-full max-w-full scroll-ml-6 space-x-8 overflow-y-auto py-1.5 pl-6 scrollbar-thin"
+	>
+		<Card
+			imageUrl=""
+			subtitle={t('landing.priest')}
+			title={t('landing.priest-name')}
+		/>
+		<Card
+			imageUrl=""
+			subtitle={t('landing.vice-president')}
+			title={t('landing.vp-name')}
+		/>
+		<Card
+			imageUrl=""
+			subtitle={t('landing.secretary')}
+			title={t('landing.secretary-name')}
+		/>
+		<Card
+			imageUrl=""
+			subtitle={t('landing.pastoral-commission-coordinator')}
+			title={t('landing.pastoral-commission-coordinator-name')}
+		/>
+		<Card
+			imageUrl=""
+			subtitle={t('landing.pastoral-commission-coordinator')}
+			title={t('landing.pastoral-commission-coordinator-name')}
+		/>
+		<Card
+			imageUrl=""
+			subtitle={t('landing.pastoral-commission-coordinator')}
+			title={t('landing.pastoral-commission-coordinator-name')}
+		/>
+		<Card
+			imageUrl=""
+			subtitle={t('landing.pastoral-commission-coordinator')}
+			title={t('landing.pastoral-commission-coordinator-name')}
+		/>
+		<Card
+			imageUrl=""
+			subtitle={t('landing.pastoral-commission-coordinator')}
+			title={t('landing.pastoral-commission-coordinator-name')}
+		/>
+	</ul>
+	<HoverableLink class="m-7">
+		{t('ui.more-button-show')}
+	</HoverableLink>
+</section>

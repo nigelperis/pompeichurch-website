@@ -1,7 +1,8 @@
 ---
 import '@fontsource/bona-nova-sc';
 
-import { getLangFromUrl } from '../i18n/utils';
+import LanguageSwitcher from '~/components/language-switcher.astro';
+import { getLangFromUrl } from '~/i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
 
@@ -24,5 +25,6 @@ const { title } = Astro.props;
 	</head>
 	<body class="max-w-full overflow-x-hidden">
 		<slot />
+		<LanguageSwitcher />
 	</body>
 </html>
