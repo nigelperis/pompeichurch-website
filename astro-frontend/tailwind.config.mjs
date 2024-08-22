@@ -23,7 +23,22 @@ export default {
 			},
 			fontFamily: {
 				'bona-nova-sc': ['Bona Nova SC', defaultTheme.fontFamily.serif],
-				roboto: ['Roboto', defaultTheme.fontFamily.sans],
+				poppins: ['poppins-latin-500-normal', defaultTheme.fontFamily.sans],
+				'poppins-semibold': [
+					'poppins-latin-600-normal',
+					defaultTheme.fontFamily.sans,
+				],
+				montserrat: ['Montserrat', defaultTheme.fontFamily.sans],
+				merriweather: ['Merriweather', defaultTheme.fontFamily.serif],
+				lora: ['Lora', defaultTheme.fontFamily.serif],
+				'noto-sans-kannada': [
+					'noto-sans-kannada-latin-500-normal',
+					defaultTheme.fontFamily.sans,
+				],
+				'noto-sans-kannada-semibold': [
+					'noto-sans-kannada-latin-600-normal',
+					defaultTheme.fontFamily.sans,
+				],
 			},
 			keyframes: {
 				slidein: {
@@ -36,43 +51,10 @@ export default {
 						transform: 'translateY(0)',
 					},
 				},
-				slideInLeft: {
-					from: {
-						opacity: '0',
-						transform: 'translateX(-100%)',
-					},
-					to: {
-						opacity: '1',
-						transform: 'translateX(0)',
-					},
-				},
-				slideInRight: {
-					from: {
-						opacity: '0',
-						transform: 'translateX(100%)',
-					},
-					to: {
-						opacity: '1',
-						transform: 'translateX(0)',
-					},
-				},
-				zoomIn: {
-					from: {
-						opacity: '0',
-						transform: 'scale(0)',
-					},
-					to: {
-						opacity: '1',
-						transform: 'scale(1)',
-					},
-				},
 			},
 		},
 		animation: {
 			slidein: 'slidein 1s ease-out var(--slidein-delay, 0) forwards',
-			'slidein-left': 'slideInLeft 1s ease-out forwards',
-			'slidein-right': 'slideInRight 1s ease-out forwards',
-			'zoom-in': 'zoomIn 1s ease-out forwards',
 		},
 	},
 
