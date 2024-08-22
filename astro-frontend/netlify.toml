@@ -1,5 +1,0 @@
-[build]
-  base = "astro-frontend"
-  command = "pnpm run build"
-  publish = "astro-frontend/dist"
-  functions = "astro-frontend/netlify/functions"
