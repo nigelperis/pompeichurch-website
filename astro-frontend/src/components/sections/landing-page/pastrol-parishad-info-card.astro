@@ -2,35 +2,35 @@
 import { Image } from 'astro:assets';
 import { cn } from '~/helpers/cn.ts';
 
-import fatherImage from '~/assets/fr-image.jpg';
-
 interface Props {
 	title: string;
-	imageUrl: string;
+	imageUrl: ImageMetadata;
 	subtitle: string;
 	class?: string;
 }
 
-const { title, subtitle, class: className } = Astro.props;
+const { title, subtitle, class: className, imageUrl } = Astro.props;
 ---
 
 <li
 	class={cn(
-		'group min-h-fit w-64 snap-start first:snap-align-none max-w-xs flex-shrink-0 transform overflow-hidden rounded-sm border shadow transition-transform duration-300 ease-in-out sm:w-64',
+		'hover:scale-[1.03] hover:shadow-lg w-64 snap-start first:snap-align-none max-w-xs flex-shrink-0 transform overflow-hidden rounded-lg border shadow transition-all duration-500 ease-in-out sm:w-64',
 		className,
 	)}
 >
 	<div class="card-image flex-none">
 		<Image
-			src={fatherImage}
+			src={imageUrl}
 			alt=""
 			width={200}
-			class="h-auto w-full rounded-md object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
+			class="h-auto w-full rounded-md object-cover transition-transform duration-700 ease-in-out"
 		/>
 	</div>
 
 	<div class="card-content mt-3 flex flex-1 flex-col justify-end space-y-1 p-3">
-		<h3 class="card-title text-lg font-bold leading-snug text-slate-900">
+		<h3
+			class="card-title line-clamp-1 text-lg font-bold leading-snug text-slate-900"
+		>
 			{title}
 		</h3>
 		<p class="card-subtitle line-clamp-3 text-sm text-slate-600">
