@@ -10,11 +10,19 @@ const localeToSwitchTo = currentLocale === 'en' ? 'kok' : 'en';
 
 <aside>
 	<a
-		class="fixed bottom-3 right-4 flex items-center justify-center rounded-sm bg-natgeo-yellow-400 p-3"
+		class="fixed bottom-3 right-4 flex items-center justify-center rounded-sm bg-natgeo-yellow-400 p-3 text-2xl leading-none transition-colors hover:bg-natgeo-yellow-700 active:bg-natgeo-yellow-600"
+		data-astro-prefetch="load"
+		data-astro-prefetch
 		href={localeToSwitchTo === 'kok'
 			? `/${localeToSwitchTo}${pathWithLocaleStripped}`
 			: `${pathWithLocaleStripped}`}
 	>
-		<Icon name="translation" size={20} />
+		{
+			currentLocale === 'en' ? (
+				<Icon name="translation" size={20} />
+			) : (
+				<Icon name="translation" size={20} class="rotate-90" />
+			)
+		}
 	</a>
 </aside>
