@@ -1,0 +1,118 @@
+---
+import Layout from '~/layouts/layout.astro';
+import Navbar from '~/components/navbar.astro';
+import Footer from '~/components/footer.astro';
+import centenaryHallImage from '~/assets/centenary-hall.jpg';
+import pompeiSabhaBhavanImage from '~/assets/pompei-sabha-bhavan.jpg';
+import institutionDummyImage from '~/assets/institution-dummy.jpg';
+import { loremIpsum } from '~/constants/lorem-ipsum';
+---
+
+<Layout title="Institutions">
+	<main class="overflow-hidden bg-white">
+		<section
+			style={{ backgroundImage: `url(${institutionDummyImage.src})` }}
+			class="relative flex h-[250px] w-full items-center justify-center bg-black/70 bg-cover bg-center px-10 text-white bg-blend-darken"
+		>
+			<div class="text-center">
+				<h1 class="font-poppins text-4xl font-extrabold sm:text-6xl">
+					INFRASTRUCTURE
+				</h1>
+				<p class="text-roboto mt-4 text-lg text-white">
+					Explore our mission and the institutions that help make it possible.
+				</p>
+			</div>
+		</section>
+
+		<section id="our-institutions" class="my-8 bg-white">
+			<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+				<div class="rounded-lgl̥ mb-2 mt-6 bg-white px-6">
+					<img
+						src={pompeiSabhaBhavanImage.src}
+						alt="Pompei Sabha Bhavan"
+						class="h-54 mb-4 w-full rounded-md object-cover"
+					/>
+					<h2
+						class="text-slate-1000 mb-3 border-l-4 border-yellow-400 pl-3 font-poppins text-2xl font-extrabold"
+					>
+						Pompei Sabha Bhavan
+					</h2>
+					<p class="mt-4 text-justify text-lg text-slate-700">{loremIpsum}</p>
+				</div>
+				<div class="mx-8 border-t-2 border-yellow-400"></div>
+
+				<div class="mb-6 mt-4 rounded-lg bg-white px-6">
+					<img
+						src={centenaryHallImage.src}
+						alt="Centenary Hall"
+						class="h-54 mb-4 w-full rounded-md object-cover"
+					/>
+					<h2
+						class="text-slate-1000 mb-3 border-l-4 border-yellow-400 pl-3 font-poppins text-2xl font-extrabold"
+					>
+						Centenary Hall
+					</h2>
+					<p class="mt-4 text-justify text-lg text-slate-700">{loremIpsum}</p>
+				</div>
+			</div>
+		</section>
+	</main>
+</Layout>
+
+<style>
+	@keyframes slidein {
+		from {
+			opacity: 0;
+			transform: translateY(20px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	.animate-slidein {
+		animation: slidein 1s ease-out forwards;
+		opacity: 1;
+	}
+
+	@keyframes zoom-in {
+		from {
+			opacity: 0;
+			transform: scale(0.9);
+		}
+		to {
+			opacity: 1;
+			transform: scale(1);
+		}
+	}
+
+	.animate-zoom-in {
+		animation: zoom-in 0.5s ease-out forwards;
+		opacity: 1;
+	}
+</style>
+
+<script>
+	const animatedElements = document.querySelectorAll(
+		'.animate-slidein, .animate-zoom-in'
+	);
+
+	const observer = new IntersectionObserver(
+		(entries) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					const element = entry.target as HTMLElement;
+					const animationDelay =
+						getComputedStyle(element).getPropertyValue('--slidein-delay') ||
+						'0s';
+					element.style.animationDelay = animationDelay;
+					element.classList.add('opacity-1');
+				}
+			});
+		},
+		{ threshold: 0.1 }
+	);
+
+	animatedElements.forEach((element) => observer.observe(element));
+</script>

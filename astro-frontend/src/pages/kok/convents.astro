@@ -1,0 +1,121 @@
+---
+import Layout from '~/layouts/layout.astro';
+import rosaMysticaConvent from '~/assets/rosa-mystica-convent.jpg';
+import pompeiConvent from '~/assets/pompei-convent.jpg'
+import dummyConventImage from '~/assets/convent-dummy.jpg'
+---
+
+<Layout title="Convents">
+	<main class="overflow-hidden bg-white">
+		<section
+		style={{ backgroundImage: `url(${dummyConventImage.src})` }}
+		class="relative w-full h-[250px] bg-black/50 flex bg-cover bg-center items-center justify-center px-10 bg-blend-darken">
+			<div class="text-center">
+				<h1 class="text-4xl font-poppins font-extrabold text-white sm:text-6xl">
+					Convents
+				</h1>
+				<p class="mt-4 text-lg font-roboto text-white">
+					Explore our mission and the institutions that help make it possible.
+				</p>
+			</div>
+		</section>
+
+		<section id="our-institutions" class="my-8 bg-white">
+			<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+				<div class="bg-white px-6 mt-6 mb-2 rounded-lgl̥ ">
+					<img src={rosaMysticaConvent.src} alt="Rosa Mystica Convent" class="h-54 w-full object-cover rounded-md mb-4" />
+					<h2 class="mb-6 border-l-4 border-yellow-400 pl-3 font-poppins text-2xl font-extrabold text-slate-1000">
+						Rosa Mystica Convent
+					</h2>
+					<p class="mt-4 text-lg text-justify text-slate-700">
+						<strong>Name of the Convent:</strong> Rosa Mystica Convent, Kinnikambla<br /><br />
+						<strong>Year of Establishment:</strong> 11.02.1932<br /><br />
+						<strong>Pioneer Sisters:</strong> Sr M Benigna BS, Sr M Agata BS, Sr M Barthalomea BS
+				</p>
+				<h4 class="text-lg text-justify mt-4 mb-2 text-slate-700"><strong>Superiors Who Served</strong></h4>
+				<p class="mt-4 text-lg text-justify text-slate-700">
+						Sr M Benigna BS, Sr M Zeeta BS, Sr M Gonzaga BS, Sr M Berchmans BS, Sr M Louise BS, Sr M Macrina BS, Sr M Honoratha BS, Sr M Claudia BS, Sr M Olympia BS, Sr M Lucian BS, Sr M Virginia BS, Sr M Bertha BS, Sr M Medella BS, Sr M Anseline BS, Sr M Juliana BS, Sr M Christte BS, Sr M Theresine BS, Sr M Felicia BS, Sr M Sharon BS, Sr M Helen BS, Sr M Amita BS
+				</p>
+				<h4 class="text-lg text-justify mt-4 mb-2 text-slate-700"><strong>Address of the Convent:</strong></h4>
+				<p class="mt-4 text-lg text-justify text-slate-700">
+						Rosa Mystica Convent,<br />
+						Kinnikambla post,<br />
+						Kaikamba, Mangalore 574151<br />
+						<strong>Email:</strong> me_rosamystica2@rediffmail.com<br />
+						<strong>Phone Number:</strong> 0824-2258226
+				</p>
+			</div>
+
+      <div class="border-t-2 border-yellow-400 mx-8"></div>
+
+        <div class="bg-white px-6 mb-6 mt-4 rounded-lg ">
+					<img src={pompeiConvent.src} alt="Rosa Mystica" class="h-54 w-full object-cover rounded-md mb-4" />
+					<h2 class="mb-3 border-l-4 border-yellow-400 pl-3 font-poppins text-2xl font-extrabold text-slate-1000">
+						Pompei Convent
+					</h2>
+					<p class="mt-4 text-lg text-justify text-slate-700">
+						The Pompei convent was started with the intention of raising the Pompei Primary School to higher primary status, Rev. Fr,John ST Rodriguez requested Rev. Mother Macrina the Superior General to assign a few Sisters to teach there. Her response was that two sisters would be assigned to his school provided that there would be two vocations from his parish to the Bethany congregation. Rev. Fr John ST Rodrigues accepted the challenge knowing fully well that not a single girl from his parish had ever sought admission into the Bethany Congregation despite the fact that the nearby Rosa Mystica Convent had been in existence for almost thirty years. Since then more have entered until at present they number close to twenty five to Bethany Congregation.
+				</p>
+				<p class="mt-4 text-lg text-justify text-slate-700">
+					The school gained the higher primary status on 4th June ,1961.Sr.Patricea and a postulant  Sr. Florita were assigned to teach there starting on 13th June, 1962. St the request of Rew.Fr.John ST Rodrigues for more teachers a couple of years later, two additional Sisters were sent. The Four Sisters resided at Rosa mystica Convent and Walked to and from school, a distance of about two kilometers. To remedy this situation the Congregation took on lease half an acre of church land to build a modest Convent. The Vicar General, Rev,Mgr William A. Lewis dedicated it on 15th December. 1964. On 1st January 1965 the community took up residence there with Sister Gertrude as superior-in-charge for three months until Sr Susanna could be appointed as the first canonical superior. Sr. Joanet, Sr.Jacintha, Sr Sume, Sr.Helen Mary,Sr Ima, Sr. Electa, Sr Praescilda and  presently Sr.Helen Rodrigues are  the superiors.
+				</p>
+				<p class="mt-4 text-lg text-justify text-slate-700">
+					Since the convent is located in the heart of the church campus, the Sister are very much involved in all parish activities.They assist the pastor4 by teaching  Christian Doctrine, preparing children for the Sacraments, and fostering pious associations in the parish. Small Christian community meetings, family visits, teaching Catechism ,helping in the church, preparing the children for First communion, Girls Sodality of Blessed Vergin Mary, altar boys, attending Catholic Sabha Meetings, Legion of Mary , Pastoral Council and visiting the bereaved families. Their main apostolate of education was backed up by the dynamic leadership of Sr.Patricia, Sr Marie Hazel, Sr Selma,Sr Milburge, Sr Jacintha, Sr Helen Mary Sr Ims  Sr Sybil  Sr Rita Felcy,  Sr Mercine  presently Sr Pavana in Pompei Higher Primary School. She is the only one teaching sister left in the school. For the journey covered, the sisters remain grateful to the pioneer Sr Patricia for her fidelity to the charism of Bethany that has struck the deep chord of faithfulness in their hearts.
+				</p>
+				</div>
+			</div>
+		</section>
+	</main>
+</Layout>
+
+<style>
+	@keyframes slidein {
+		from {
+			opacity: 0;
+			transform: translateY(20px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	.animate-slidein {
+		animation: slidein 1s ease-out forwards;
+		opacity: 1;
+	}
+
+	@keyframes zoom-in {
+		from {
+			opacity: 0;
+			transform: scale(0.9);
+		}
+		to {
+			opacity: 1;
+			transform: scale(1);
+		}
+	}
+
+	.animate-zoom-in {
+		animation: zoom-in 0.5s ease-out forwards;
+		opacity: 1;
+	}
+</style>
+
+<script>
+	const animatedElements = document.querySelectorAll('.animate-slidein, .animate-zoom-in');
+
+	const observer = new IntersectionObserver((entries) => {
+		entries.forEach((entry) => {
+			if (entry.isIntersecting) {
+				const element = entry.target as HTMLElement;
+				const animationDelay =
+					getComputedStyle(element).getPropertyValue('--slidein-delay') || '0s';
+				element.style.animationDelay = animationDelay;
+				element.classList.add('opacity-1');
+			}
+		});
+	}, { threshold: 0.1 });
+
+	animatedElements.forEach((element) => observer.observe(element));
+</script>

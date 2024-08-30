@@ -10,24 +10,22 @@ import ParishPriestSpeaks from '~/components/sections/landing-page/parish-priest
 import AboutChurch from '~/components/sections/landing-page/about-church-section.astro';
 import PastoralParishadSection from '~/components/sections/landing-page/pastoral-parishad-section.astro';
 import MassTimingsSection from '~/components/sections/landing-page/mass-timings-section.astro';
-
-import Navbar from '~/components/navbar.astro';
-import Footer from '~/components/footer.astro';
+import ImageCarousel from '~/components/sections/landing-page/image-carousel';
 ---
 
 <Layout title=`${t("landing.church-name")} | ${t("landing.town-name")}`>
-	<Navbar />
 	<main>
 		<HeroSection />
 
 		<ParishPriestSpeaks />
+
+		<ImageCarousel client:idle />
+
 		<AboutChurch />
 
 		<PastoralParishadSection />
 
 		<MassTimingsSection />
-
-		<Footer />
 	</main>
 </Layout>
 
