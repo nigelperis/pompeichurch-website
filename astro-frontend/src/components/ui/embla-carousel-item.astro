@@ -1,0 +1,19 @@
+---
+import { cn } from '~/helpers/cn';
+
+interface Props {
+	class?: string;
+	style?: astroHTML.JSX.CSSProperties | undefined;
+}
+const { class: className, style } = Astro.props;
+---
+
+<div
+	class={cn(
+		'mx-3 flex aspect-video w-5/6 min-w-0 flex-none items-center justify-center rounded-lg',
+		className,
+	)}
+	style={style}
+>
+	<slot />
+</div>
