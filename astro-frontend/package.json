@@ -8,7 +8,7 @@
 		"build": "astro check && astro build",
 		"preview": "astro preview",
 		"astro": "astro",
-		"format": "prettier src/**/* --write",
+		"format": "prettier \"src/**/*.{js,jsx,ts,tsx,astro,css,md}\" --write",
 		"lint": "eslint ./src",
 		"lint:fix": "eslint ./src --fix"
 	},
@@ -20,7 +20,7 @@
 		"@fontsource/montserrat": "5.0.19",
 		"@fontsource/noto-sans-kannada": "5.0.14",
 		"@fontsource/poppins": "5.0.15",
-		"@types/react": "^18.3.4",
+		"@types/react": "^18.3.5",
 		"@types/react-dom": "^18.3.0",
 		"aos": "2.3.4",
 		"astro": "4.11.3",
