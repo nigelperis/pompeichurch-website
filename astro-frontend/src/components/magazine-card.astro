@@ -1,0 +1,36 @@
+---
+import { Image } from 'astro:assets';
+import { cn } from '~/helpers/cn';
+
+interface Props {
+	title: string;
+	imageUrl: ImageMetadata;
+	class?: string;
+}
+
+const { title, imageUrl, class: className } = Astro.props;
+---
+
+<div
+	class={cn(
+		'hover:scale-[1.03] hover:shadow-lg transform overflow-hidden rounded-lg border shadow transition-all duration-500 ease-in-out max-w-xs mx-auto',
+		className
+	)}
+>
+	<div class="magazine-image">
+		<Image
+			src={imageUrl}
+			alt={title}
+			width={300}
+			class="h-auto w-full rounded-md object-cover transition-transform duration-700 ease-in-out"
+		/>
+	</div>
+
+	<div class="magazine-content mt-4 p-4 text-center">
+		<h3
+			class="magazine-title text-lg font-bold leading-snug text-slate-900 sm:text-xl"
+		>
+			{title}
+		</h3>
+	</div>
+</div>

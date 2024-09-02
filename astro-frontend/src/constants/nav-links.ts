@@ -154,11 +154,23 @@ export const navLinks = [
 		],
 	},
 	{
-		type: 'link',
+		type: 'expandable',
 		title: 'nav.news',
-		href: '#',
+		expandedLinks: [
+			{
+				title: 'nav.obituary',
+				href: '/obituary',
+			},
+			{
+				title: 'nav.events',
+				href: '/events',
+			},
+			{
+				title: 'nav.pompeichem-falkem',
+				href: '/pompeichem-falkem',
+			},
+		],
 	},
-
 	{
 		type: 'link',
 		title: 'nav.gallery',
