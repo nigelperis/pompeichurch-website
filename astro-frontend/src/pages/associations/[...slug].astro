@@ -14,8 +14,7 @@ export async function getStaticPaths() {
 	const pages = [
 		{
 			slug: 'svp',
-			title: 'Society of Saint Vincent de Paul',
-			logo: '../../assets/church-logo.png',
+			title: 'SVP',
 			associationImage: '../../assets/svp.jpg',
 			officeBearers: [
 				{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
@@ -25,7 +24,6 @@ export async function getStaticPaths() {
 		{
 			slug: 'icym-pyc',
 			title: 'ICYM (PYC)',
-			logo: '../../assets/icym.jpeg',
 			associationImage: '../../assets/svp.jpg',
 			officeBearers: [
 				{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
@@ -35,7 +33,6 @@ export async function getStaticPaths() {
 		{
 			slug: 'altar-servers',
 			title: 'Altar Servers',
-			logo: '../../assets/dummy-image.png',
 			associationImage: '../../assets/svp.jpg',
 			officeBearers: [
 				{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
@@ -45,7 +42,6 @@ export async function getStaticPaths() {
 		{
 			slug: 'catholic-sabha',
 			title: 'Catholic Sabha',
-			logo: '../../assets/icym.jpeg',
 			associationImage: '../../assets/svp.jpg',
 			officeBearers: [
 				{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
@@ -55,7 +51,6 @@ export async function getStaticPaths() {
 		{
 			slug: 'ycs',
 			title: 'Young catholic students',
-			logo: '../../assets/icym.jpeg',
 			associationImage: '../../assets/svp.jpg',
 			officeBearers: [
 				{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
@@ -65,7 +60,6 @@ export async function getStaticPaths() {
 		{
 			slug: 'secular-franciscan',
 			title: 'Secular Franciscan',
-			logo: '../../assets/icym.jpeg',
 			associationImage: '../../assets/svp.jpg',
 			officeBearers: [
 				{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
@@ -75,7 +69,6 @@ export async function getStaticPaths() {
 		{
 			slug: 'catechism',
 			title: 'Catechism',
-			logo: '../../assets/icym.jpeg',
 			associationImage: '../../assets/svp.jpg',
 			officeBearers: [
 				{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
@@ -85,7 +78,6 @@ export async function getStaticPaths() {
 		{
 			slug: 'small-christian-community',
 			title: 'Small Christian Community',
-			logo: '../../assets/icym.jpeg',
 			associationImage: '../../assets/svp.jpg',
 			officeBearers: [
 				{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
@@ -95,7 +87,6 @@ export async function getStaticPaths() {
 		{
 			slug: 'gurpur-gayan-mandali',
 			title: 'Gurpur Gayan Mandali',
-			logo: '../../assets/icym.jpeg',
 			associationImage: '../../assets/svp.jpg',
 			officeBearers: [
 				{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
@@ -105,7 +96,6 @@ export async function getStaticPaths() {
 		{
 			slug: 'womens-forum',
 			title: 'Womens Forum',
-			logo: '../../assets/icym.jpeg',
 			associationImage: '../../assets/svp.jpg',
 			officeBearers: [
 				{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
@@ -113,67 +103,58 @@ export async function getStaticPaths() {
 			],
 		},
 	];
-	return pages.map(({ slug, title, logo, associationImage, officeBearers }) => {
+	return pages.map(({ slug, title, associationImage, officeBearers }) => {
 		return {
 			params: { slug },
-			props: { title, logo, associationImage, officeBearers },
+			props: { title, associationImage, officeBearers },
 		};
 	});
 }
-const { title, logo, associationImage, officeBearers } = Astro.props;
+const { title, associationImage, officeBearers } = Astro.props;
 
-const images = import.meta.glob<{ default: ImageMetadata }>(
-	'../../assets/*.{jpeg,jpg,png,gif}'
-);
-const logoImage =
-	(await images[logo]?.()) || (await images['../../assets/dummy-image.jpg']());
 ---
-
 <Layout title={`Associations | ${title}`}>
 	<main>
-		<section
-			class="relative flex h-[250px] w-full items-center justify-center bg-gray-100 px-4 sm:px-10"
-		>
-			<div class="flex flex-col items-center text-center">
+		<section id="associations" class="my-5">
+			<div class="flex flex-col items-start text-left mx-6">
 				<h1
-					class="font-roboto border-l-4 border-yellow-400 pl-3 text-4xl font-extrabold text-slate-950 sm:text-6xl"
+					class="font-poppins border-l-4 border-natgeo-yellow pl-3 text-3xl font-extrabold sm:text-4xl lg:text-6xl"
 				>
 					{title}
 				</h1>
-
-				<Image
-					src={logoImage.default}
-					alt={`${title} Logo`}
-					width={80}
-					height={80}
-					class="mt-4"
-				/>
-			</div>
-		</section>
-
-		<section class="mx-6 mt-6">
-			<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-				<Image
-					src={churchHeroImage}
-					alt="Church Hero Image"
-					class="h-54 mb-4 w-full rounded-md object-cover"
-				/>
 			</div>
 
-			<h2 class="font-poppins text-2xl font-bold">About the Association</h2>
-			<p class="my-4 text-justify text-base text-slate-700">
-				{loremIpsum}
-			</p>
-			<h2 class="mt-8 font-poppins text-2xl font-bold">Office Bearers</h2>
-			<ul class="my-4 list-inside list-disc text-base text-slate-700">
-				{
-					officeBearers.map((bearer) => (
-						<li>
-							<strong>{bearer.position}:</strong> {bearer.name}
-						</li>
-					))
-				}
-			</ul>
+			<section class="mx-6 mt-6">
+				<div class="flex justify-center">
+					<div class="max-w-md rounded-md overflow-hidden shadow-lg">
+						<Image
+							src={churchHeroImage}
+							alt="Church Hero Image"
+							class="w-full h-auto object-cover"
+						/>
+					</div>
+				</div>
+
+				<h2 class="mt-6 font-poppins text-2xl font-bold text-slate-900 text-left">
+					About the Association
+				</h2>
+				<p class="my-4 text-justify text-base text-slate-700">
+					{loremIpsum}
+				</p>
+
+				<h2 class="mt-8 font-poppins text-2xl text-slate-900 font-bold text-left">
+					Office Bearers
+				</h2>
+				<ul class="my-4 list-inside list-disc text-base text-slate-700">
+					{
+						officeBearers.map((bearer) => (
+							<li class="text-left">
+								<strong>{bearer.position}:</strong> {bearer.name}
+							</li>
+						))
+					}
+				</ul>
+			</section>
 		</section>
 	</main>
 </Layout>
