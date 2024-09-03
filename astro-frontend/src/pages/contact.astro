@@ -6,7 +6,7 @@ import Layout from '~/layouts/layout.astro';
 <Layout title="Pompei Church | Contact Us">
 	<section class="p-6 font-poppins text-slate-100">
 		<h1
-			class="text-slate-1000 mb-6 border-l-4 border-yellow-400 pl-3 font-poppins text-3xl font-extrabold text-black"
+			class="mb-6 border-l-4 border-yellow-400 pl-3 text-3xl font-extrabold text-black"
 		>
 			CONTACT US
 		</h1>
@@ -14,17 +14,34 @@ import Layout from '~/layouts/layout.astro';
 			<div class="rounded-lg bg-slate-800 p-6 shadow-lg">
 				<div class="space-y-4">
 					<div class="flex items-center space-x-2">
-						<Icon name="map-pin" class="text-natgeo-yellow-500" size={24} />
+						<Icon
+							name="map-pin"
+							class="text-natgeo-yellow-500"
+							size={24}
+							aria-label="Location Icon"
+						/>
 						<p class="text-lg">Gurupur, Kinnikambla</p>
 					</div>
 
 					<div class="flex items-center space-x-2">
-						<Icon name="phone" class="text-natgeo-yellow-500" size={24} />
-						<p class="text-lg">7899999665</p>
+						<Icon
+							name="phone"
+							class="text-natgeo-yellow-500"
+							size={24}
+							aria-label="Phone Icon"
+						/>
+						<p class="text-lg">
+							<a href="tel:+917899999665" class="hover:text-natgeo-yellow-400">+91 7899999665</a>
+						</p>
 					</div>
 
 					<div class="flex items-center space-x-2">
-						<Icon name="mail" class="text-natgeo-yellow-500" size={24} />
+						<Icon
+							name="mail"
+							class="text-natgeo-yellow-500"
+							size={24}
+							aria-label="Email Icon"
+						/>
 						<a
 							href="mailto:pompeichurch100@gmail.com"
 							class="text-lg underline hover:text-natgeo-yellow-400"
@@ -33,17 +50,15 @@ import Layout from '~/layouts/layout.astro';
 					</div>
 				</div>
 
-				<div class="mt-8 space-y-2">
-					<h3 class="text-center text-xl font-semibold">Office Hours:</h3>
-					<p class="text-center">
-						Monday - Saturday: 9 AM to 1 PM | 2 PM - 5 PM
-					</p>
-					<p class="text-center">Sunday: Closed</p>
+				<div class="mt-8 space-y-2 text-center">
+					<h3 class="text-xl font-semibold">Office Hours:</h3>
+					<p>Monday - Saturday: 9 AM to 1 PM | 2 PM - 5 PM</p>
+					<p>Sunday: Closed</p>
 				</div>
 
-				<div class="mt-4 space-y-2">
-					<h3 class="text-center text-xl font-semibold">Office Clerk:</h3>
-					<p class="text-center">John Cena</p>
+				<div class="mt-4 space-y-2 text-center">
+					<h3 class="text-xl font-semibold">Office Clerk:</h3>
+					<p>John Cena</p>
 				</div>
 			</div>
 
@@ -56,7 +71,8 @@ import Layout from '~/layouts/layout.astro';
 					allowfullscreen=""
 					loading="lazy"
 					referrerpolicy="no-referrer-when-downgrade"
-					class="h-72 w-full rounded-lg"></iframe>
+					class="h-72 w-full rounded-lg"
+				></iframe>
 			</div>
 		</div>
 	</section>
