@@ -1,0 +1,35 @@
+---
+import Layout from '~/layouts/layout.astro';
+import MagazineCard from '~/components/magazine-card.astro';
+import maryImage from '~/assets/mother-mary.jpg';
+
+const magazines = [
+	{
+		title: 'Pompeichem Falkem - August Edition',
+		imageUrl: maryImage,
+	},
+	{
+		title: 'Pompeichem Falkem - July Edition',
+		imageUrl: maryImage,
+	},
+	// Add more editions as needed
+];
+---
+
+<Layout title="Pompei Church | Pompeichem Falkem">
+	<section class="p-6 font-poppins text-slate-100">
+		<h1
+			class="text-slate-1000 mb-6 border-l-4 border-yellow-400 pl-3 font-poppins text-3xl font-extrabold text-black"
+		>
+			Pompeichem Falkem
+		</h1>
+
+		<div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+			{
+				magazines.map((magazine) => (
+					<MagazineCard title={magazine.title} imageUrl={magazine.imageUrl} />
+				))
+			}
+		</div>
+	</section>
+</Layout>

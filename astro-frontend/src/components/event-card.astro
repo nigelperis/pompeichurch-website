@@ -1,0 +1,43 @@
+---
+import { Image } from 'astro:assets';
+import { cn } from '~/helpers/cn';
+import HoverableLink from './ui/hoverable-link.astro';
+
+interface Props {
+	eventName: string;
+	imageUrl: ImageMetadata;
+	description: string;
+	facebookLink: string;
+	class?: string;
+}
+
+const { eventName, imageUrl, description, facebookLink, class: className } = Astro.props;
+---
+
+<div
+	class={cn(
+		'hover:scale-[1.03] hover:shadow-lg transform overflow-hidden rounded-lg border shadow transition-all duration-500 ease-in-out max-w-xs mx-auto',
+		className
+	)}
+>
+	<div class="event-image">
+		<Image
+			src={imageUrl}
+			alt={eventName}
+			width={450}
+			class="h-auto w-auto rounded-t-lg object-cover transition-transform duration-700 ease-in-out"
+		/>
+	</div>
+
+	<div class="event-content p-4">
+		<h3 class="event-title text-left text-xl font-bold text-slate-900">
+			{eventName}
+		</h3>
+		<p class="event-description mt-2 text-left text-base text-slate-700 justify">
+			{description}
+		</p>
+		<HoverableLink class="inline-block mt-2 mb-2 text-black">
+			Know More
+		</HoverableLink>
+	</div>
+</div>
