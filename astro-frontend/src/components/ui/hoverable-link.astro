@@ -1,6 +1,9 @@
 ---
 import { cn } from '~/helpers/cn';
 
+import { getLangFromUrl } from '~/i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+
 interface Props {
 	href?: string;
 	class?: string;
@@ -12,6 +15,7 @@ const { href, class: className } = Astro.props;
 	href={href}
 	class={cn(
 		'from-natgeo-yellow to-natgeo-yellow hoverable-link border-natgeo-yellow border-b-2 bg-gradient-to-r px-2 py-1 hover:border-transparent hover:text-black',
+		{ 'font-noto-sans-kannada': lang === 'kok' },
 		className,
 	)}
 >

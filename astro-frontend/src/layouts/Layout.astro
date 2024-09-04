@@ -1,8 +1,19 @@
 ---
 import '@fontsource/bona-nova-sc';
+import '@fontsource/noto-sans-kannada';
+import '@fontsource/poppins';
+import poppinsRegular from '@fontsource/poppins/files/poppins-latin-500-normal.woff2?url';
+import notoSansKannadaRegualar from '@fontsource/noto-sans-kannada/files/noto-sans-kannada-latin-500-normal.woff2?url';
 
-import LanguageSwitcher from '../components/language-switcher.astro';
-import { getLangFromUrl } from '../i18n/utils';
+import poppinsSemibold from '@fontsource/poppins/files/poppins-latin-600-normal.woff2?url';
+import notoSansKannadaSemiBold from '@fontsource/noto-sans-kannada/files/noto-sans-kannada-latin-600-normal.woff2?url';
+import 'aos/dist/aos.css';
+
+import LanguageSwitcher from '~/components/language-switcher.astro';
+import { getLangFromUrl } from '~/i18n/utils';
+
+import Navbar from '~/components/navbar.astro';
+import Footer from '~/components/footer.astro';
 
 const lang = getLangFromUrl(Astro.url);
 
@@ -20,11 +31,45 @@ const { title } = Astro.props;
 		<meta name="description" content="Astro description" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link
+			rel="preload"
+			as="font"
+			type="font/woff2"
+			href={poppinsRegular}
+			crossorigin="anonymous"
+		/>
+		<link
+			rel="preload"
+			as="font"
+			type="font/woff2"
+			href={notoSansKannadaRegualar}
+			crossorigin="anonymous"
+		/>
+		<link
+			rel="preload"
+			as="font"
+			type="font/woff2"
+			href={poppinsSemibold}
+			crossorigin="anonymous"
+		/>
+		<link
+			rel="preload"
+			as="font"
+			type="font/woff2"
+			href={notoSansKannadaSemiBold}
+			crossorigin="anonymous"
+		/>
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
 	<body class="max-w-full overflow-x-hidden">
+		<Navbar />
 		<slot />
+		<Footer />
 		<LanguageSwitcher />
 	</body>
+	<script>
+		import { aosInit } from '~/helpers/aos-config';
+		aosInit();
+	</script>
 </html>

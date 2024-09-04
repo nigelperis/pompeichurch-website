@@ -1,0 +1,179 @@
+---
+import Layout from '~/layouts/layout.astro';
+import type { ImageMetadata } from 'astro';
+
+import { Image } from 'astro:assets';
+import churchHeroImage from '~/assets/mary-grotto.jpg';
+import { loremIpsum } from '~/constants/lorem-ipsum';
+
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+export async function getStaticPaths() {
+	const pages = [
+		{
+			slug: 'svp',
+			title: 'Society of Saint Vincent de Paul',
+			logo: '../../assets/church-logo.png',
+			associationImage: '../../assets/svp.jpg',
+			officeBearers: [
+				{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
+				{ name: 'Emily Davis', position: 'Ward Secretary' },
+			],
+		},
+		{
+			slug: 'icym-pyc',
+			title: 'ICYM (PYC)',
+			logo: '../../assets/icym.jpeg',
+			associationImage: '../../assets/svp.jpg',
+			officeBearers: [
+				{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
+				{ name: 'Emily Davis', position: 'Ward Secretary' },
+			],
+		},
+		{
+			slug: 'altar-servers',
+			title: 'Altar Servers',
+			logo: '../../assets/dummy-image.png',
+			associationImage: '../../assets/svp.jpg',
+			officeBearers: [
+				{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
+				{ name: 'Emily Davis', position: 'Ward Secretary' },
+			],
+		},
+		{
+			slug: 'catholic-sabha',
+			title: 'Catholic Sabha',
+			logo: '../../assets/icym.jpeg',
+			associationImage: '../../assets/svp.jpg',
+			officeBearers: [
+				{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
+				{ name: 'Emily Davis', position: 'Ward Secretary' },
+			],
+		},
+		{
+			slug: 'ycs',
+			title: 'Young catholic students',
+			logo: '../../assets/icym.jpeg',
+			associationImage: '../../assets/svp.jpg',
+			officeBearers: [
+				{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
+				{ name: 'Emily Davis', position: 'Ward Secretary' },
+			],
+		},
+		{
+			slug: 'secular-franciscan',
+			title: 'Secular Franciscan',
+			logo: '../../assets/icym.jpeg',
+			associationImage: '../../assets/svp.jpg',
+			officeBearers: [
+				{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
+				{ name: 'Emily Davis', position: 'Ward Secretary' },
+			],
+		},
+		{
+			slug: 'catechism',
+			title: 'Catechism',
+			logo: '../../assets/icym.jpeg',
+			associationImage: '../../assets/svp.jpg',
+			officeBearers: [
+				{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
+				{ name: 'Emily Davis', position: 'Ward Secretary' },
+			],
+		},
+		{
+			slug: 'small-christian-community',
+			title: 'Small Christian Community',
+			logo: '../../assets/icym.jpeg',
+			associationImage: '../../assets/svp.jpg',
+			officeBearers: [
+				{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
+				{ name: 'Emily Davis', position: 'Ward Secretary' },
+			],
+		},
+		{
+			slug: 'gurpur-gayan-mandali',
+			title: 'Gurpur Gayan Mandali',
+			logo: '../../assets/icym.jpeg',
+			associationImage: '../../assets/svp.jpg',
+			officeBearers: [
+				{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
+				{ name: 'Emily Davis', position: 'Ward Secretary' },
+			],
+		},
+		{
+			slug: 'womens-forum',
+			title: 'Womens Forum',
+			logo: '../../assets/icym.jpeg',
+			associationImage: '../../assets/svp.jpg',
+			officeBearers: [
+				{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
+				{ name: 'Emily Davis', position: 'Ward Secretary' },
+			],
+		},
+	];
+	return pages.map(({ slug, title, logo, associationImage, officeBearers }) => {
+		return {
+			params: { slug },
+			props: { title, logo, associationImage, officeBearers },
+		};
+	});
+}
+const { title, logo, associationImage, officeBearers } = Astro.props;
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+	'../../assets/*.{jpeg,jpg,png,gif}'
+);
+const logoImage =
+	(await images[logo]?.()) || (await images['../../assets/dummy-image.jpg']());
+---
+
+<Layout title={`Associations | ${title}`}>
+	<main>
+		<section
+			class="relative flex h-[250px] w-full items-center justify-center bg-gray-100 px-4 sm:px-10"
+		>
+			<div class="flex flex-col items-center text-center">
+				<h1
+					class="font-roboto border-l-4 border-yellow-400 pl-3 text-4xl font-extrabold text-slate-950 sm:text-6xl"
+				>
+					{title}
+				</h1>
+
+				<Image
+					src={logoImage.default}
+					alt={`${title} Logo`}
+					width={80}
+					height={80}
+					class="mt-4"
+				/>
+			</div>
+		</section>
+
+		<section class="mx-6 mt-6">
+			<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+				<Image
+					src={churchHeroImage}
+					alt="Church Hero Image"
+					class="h-54 mb-4 w-full rounded-md object-cover"
+				/>
+			</div>
+
+			<h2 class="font-poppins text-2xl font-bold">About the Association</h2>
+			<p class="my-4 text-justify text-base text-slate-700">
+				{loremIpsum}
+			</p>
+			<h2 class="mt-8 font-poppins text-2xl font-bold">Office Bearers</h2>
+			<ul class="my-4 list-inside list-disc text-base text-slate-700">
+				{
+					officeBearers.map((bearer) => (
+						<li>
+							<strong>{bearer.position}:</strong> {bearer.name}
+						</li>
+					))
+				}
+			</ul>
+		</section>
+	</main>
+</Layout>

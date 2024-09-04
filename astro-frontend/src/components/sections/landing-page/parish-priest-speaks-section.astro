@@ -5,50 +5,43 @@ import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-import priestImage from '~/assets/priest-photo.png';
+import priestImage from '~/assets/pp1.png';
 
 import { loremIpsum } from '~/constants/lorem-ipsum';
 ---
 
 <section class="mx-6 mt-6">
 	<h2
-		data-animate-on-view="animate-slidein-left"
-		class="relative mb-4 border-l-4 border-natgeo-yellow pl-3 text-left font-roboto text-3xl font-extrabold opacity-0 transition-opacity duration-700"
+		data-aos="fade-right"
+		class="relative mb-4 border-l-4 border-natgeo-yellow pl-3 text-left font-poppins text-3xl font-extrabold"
 	>
 		{t('landing.priest-speaks')}
 	</h2>
 
 	<div
-		data-animate-on-view="animate-zoom-in"
-		class="relative mx-auto flex w-fit flex-col items-center opacity-0 duration-300"
+		data-aos="zoom-in-up"
+		class="relative mx-auto flex w-fit flex-col items-center"
 	>
 		<div
-			class="absolute top-full -z-10 h-[50%] w-[103%] -translate-y-full rounded bg-gradient-to-r from-natgeo-yellow-200 via-natgeo-yellow-300 to-natgeo-yellow-400"
+			class="absolute top-full -z-10 h-[43%] w-[103%] -translate-y-full rounded bg-gradient-to-r from-natgeo-yellow-200 via-natgeo-yellow-300 to-natgeo-yellow-400"
 		>
 		</div>
-		<Image
-			src={priestImage}
-			alt="priest image"
-			width={340}
-			height={300}
-			class="transition-transform duration-700 ease-in-out"
-		/>
+		<Image src={priestImage} alt="priest image" width={300} />
 	</div>
 
-	<figcaption class="mt-2 text-center font-serif text-lg italic text-slate-600">
+	<figcaption class="mt-2 text-center font-lora text-lg italic text-slate-600">
 		{t('landing.priest-name')}
 	</figcaption>
 
 	<p
-		class="text-justify font-serif text-base first-letter:font-serif first-letter:text-3xl"
+		class="text-justify font-poppins text-base first-letter:font-serif first-letter:text-3xl"
 	>
 		{loremIpsum}
 	</p>
-	//TODO: @reevan to fix this animation
-	<!-- data-animate-on-view="animate-slidein-right" -->
-	<div
-		class="relative mb-8 ml-auto w-fit text-lg font-semibold opacity-0 after:absolute after:left-0 after:top-full after:w-[120%] after:-translate-x-[10%]"
-	>
-		Signature of Fr. Rudolf DSa(image)
+
+	<div class="relative mb-8 ml-auto overflow-hidden text-lg font-semibold">
+		<p data-aos="fade-left" class="text-right">
+			Signature of Fr. Rudolf DSa(image)
+		</p>
 	</div>
 </section>

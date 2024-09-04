@@ -50,7 +50,7 @@ export const ui = {
 		'landing.pastoral-commission-coordinator':
 			'21 Pastoral Commission Coordinator',
 		'landing.priest-speaks': 'Parish Priest Speaks',
-		'landing.priest-name': 'Most Rev. Fr. Ravi Rudolf DSa',
+		'landing.priest-name': 'Rev. Fr. Ravi Rudolf DSa',
 		'landing.vp-name': 'Mr. Romans Lobo ',
 		'landing.secretary-name': 'Mr. Johnson Lobo',
 		'landing.pastoral-commission-coordinator-name': 'Mrs. Hilda Menezes',

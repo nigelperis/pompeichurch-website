@@ -19,7 +19,7 @@ export const navLinks = [
 	{
 		type: 'link',
 		title: 'nav.home',
-		href: '#',
+		href: '/',
 	},
 	{
 		type: 'expandable',
@@ -27,19 +27,19 @@ export const navLinks = [
 		expandedLinks: [
 			{
 				title: 'nav.parish-history',
-				href: '#',
+				href: '/parish-history',
 			},
 			{
 				title: 'nav.parish-priests',
-				href: '#',
+				href: '/parish-priests',
 			},
 			{
 				title: 'nav.parish-pastoral-parishad',
-				href: '#',
+				href: '/parish-pastoral-parishad',
 			},
 			{
 				title: 'nav.parish-pastoral-commission',
-				href: '#',
+				href: '/parish-pastoral-commission',
 			},
 		],
 	},
@@ -49,15 +49,15 @@ export const navLinks = [
 		expandedLinks: [
 			{
 				title: 'nav.our-institutions',
-				href: '#',
+				href: '/our-institutions',
 			},
 			{
 				title: 'nav.convents',
-				href: '#',
+				href: '/convents',
 			},
 			{
 				title: 'nav.infrastructure',
-				href: '#',
+				href: '/infrastructure',
 			},
 		],
 	},
@@ -67,43 +67,43 @@ export const navLinks = [
 		expandedLinks: [
 			{
 				title: 'nav.svp',
-				href: '#',
+				href: '/associations/svp',
 			},
 			{
 				title: 'nav.icym-pyc',
-				href: '#',
+				href: '/associations/icym-pyc',
 			},
 			{
 				title: 'nav.altar-servers',
-				href: '#',
+				href: '/associations/altar-servers',
 			},
 			{
 				title: 'nav.catholic-sabha',
-				href: '#',
+				href: '/associations/catholic-sabha',
 			},
 			{
 				title: 'nav.ycs',
-				href: '#',
+				href: '/associations/ycs',
 			},
 			{
 				title: 'nav.secular-franciscan',
-				href: '#',
+				href: '/associations/secular-franciscan',
 			},
 			{
 				title: 'nav.catechism',
-				href: '#',
+				href: '/associations/catechism',
 			},
 			{
 				title: 'nav.small-christian-community',
-				href: '#',
+				href: '/associations/small-christian-community',
 			},
 			{
 				title: 'nav.gurpur-gayan-mandali',
-				href: '#',
+				href: '/associations/gurpur-gayan-mandali',
 			},
 			{
 				title: 'nav.womens-forum',
-				href: '#',
+				href: '/associations/womens-forum',
 			},
 		],
 	},
@@ -113,43 +113,43 @@ export const navLinks = [
 		expandedLinks: [
 			{
 				title: 'nav.kowdoor-a-ward',
-				href: '#',
+				href: '/wards/kowdoor-a',
 			},
 			{
 				title: 'nav.kowdoor-b-ward',
-				href: '#',
+				href: '/wards/kowdoor-b',
 			},
 			{
 				title: 'nav.pompei-a-ward',
-				href: '#',
+				href: '/wards/pompei-a',
 			},
 			{
 				title: 'nav.pompei-b-ward',
-				href: '#',
+				href: '/wards/pompei-b',
 			},
 			{
 				title: 'nav.kandar-a-ward',
-				href: '#',
+				href: '/wards/kandar-a',
 			},
 			{
 				title: 'nav.kandar-b-ward',
-				href: '#',
+				href: '/wards/kandar-b',
 			},
 			{
 				title: 'nav.monel-ward',
-				href: '#',
+				href: '/wards/monel',
 			},
 			{
 				title: 'nav.gurpur-ward',
-				href: '#',
+				href: '/wards/gurpur',
 			},
 			{
 				title: 'nav.church-ward',
-				href: '#',
+				href: '/wards/church',
 			},
 			{
 				title: 'nav.addoor-ward',
-				href: '#',
+				href: '/wards/addoor',
 			},
 		],
 	},
@@ -162,11 +162,11 @@ export const navLinks = [
 	{
 		type: 'link',
 		title: 'nav.gallery',
-		href: '#',
+		href: '/gallery',
 	},
 	{
 		type: 'link',
 		title: 'nav.contact',
-		href: '#',
+		href: '/contact',
 	},
 ] as const satisfies NavItem[];

@@ -10,51 +10,53 @@ import ParishPriestSpeaks from '~/components/sections/landing-page/parish-priest
 import AboutChurch from '~/components/sections/landing-page/about-church-section.astro';
 import PastoralParishadSection from '~/components/sections/landing-page/pastoral-parishad-section.astro';
 import MassTimingsSection from '~/components/sections/landing-page/mass-timings-section.astro';
+import EmblaCarosuel from '~/components/ui/embla-carousel.astro';
+import EmblaCarosuelItem from '~/components/ui/embla-carousel-item.astro';
 
-import Navbar from '~/components/navbar.astro';
-import Footer from '~/components/footer.astro';
+import ciboriumImage from '~/assets/ciborium.jpg';
+import sacramentImage from '~/assets/sacrament.jpg';
+import maryGrottoImage from '~/assets/mary-grotto.jpg';
+import { Image } from 'astro:assets';
+
+const optimizedImageOne = ciboriumImage;
+const optimizedImageTwo = sacramentImage;
+const optimizedImageThree = maryGrottoImage;
 ---
 
 <Layout title=`${t("landing.church-name")} | ${t("landing.town-name")}`>
-	<Navbar />
 	<main>
 		<HeroSection />
 
 		<ParishPriestSpeaks />
+
 		<AboutChurch />
+
+		<EmblaCarosuel>
+			<EmblaCarosuelItem>
+				<Image
+					src={optimizedImageOne}
+					alt="Ciborium"
+					class="h-full w-full object-cover"
+				/>
+			</EmblaCarosuelItem>
+			<EmblaCarosuelItem>
+				<Image
+					src={optimizedImageTwo}
+					alt="Sacrament"
+					class="h-full w-full object-cover"
+				/>
+			</EmblaCarosuelItem>
+			<EmblaCarosuelItem>
+				<Image
+					src={optimizedImageThree}
+					alt="Mary Grotto"
+					class="h-auto w-full object-cover"
+				/>
+			</EmblaCarosuelItem>
+		</EmblaCarosuel>
 
 		<PastoralParishadSection />
 
 		<MassTimingsSection />
-
-		<Footer />
 	</main>
 </Layout>
-
-<script>
-	const DEFAULT_ANIMATION = 'animate-slidein';
-	const animatedElements = document.querySelectorAll('[data-animate-on-view]');
-
-	const observer = new IntersectionObserver(
-		(entries) => {
-			for (const elem of animatedElements) {
-				const entriesIntersectingViewPort = new Set(
-					entries.filter((itm) => itm.isIntersecting).map((itm) => itm.target),
-				);
-
-				if (entriesIntersectingViewPort.has(elem)) {
-					const animation = elem.getAttribute('data-animate-on-view');
-
-					elem.classList.add(animation ?? DEFAULT_ANIMATION);
-				}
-			}
-		},
-		{ threshold: 1 },
-	);
-
-	if (animatedElements.length > 0) {
-		for (const elem of animatedElements) {
-			observer.observe(elem);
-		}
-	}
-</script>

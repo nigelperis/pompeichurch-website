@@ -1,0 +1,192 @@
+---
+import Layout from '~/layouts/layout.astro';
+import type { ImageMetadata } from 'astro';
+
+import { Image } from 'astro:assets';
+import { loremIpsum } from '~/constants/lorem-ipsum';
+
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+export async function getStaticPaths() {
+	const pages = [
+		{
+			slug: 'kowdoor-a',
+			title: 'Kowdoor A',
+			patronImage: '../../assets/church-logo.png',
+			wardGroupImageSrc: '../../assets/kowdoor-a-group.jpg',
+			officeBearers: [
+				{ name: 'John Doe', position: 'Ward Gurkaar' },
+				{ name: 'Jane Smith', position: 'Ward Secretary' },
+			],
+		},
+		{
+			slug: 'kowdoor-b',
+			title: 'Kowdoor B',
+			patronImage: '../../assets/church-logo.png',
+			wardGroupImageSrc: '../../assets/kowdoor-b-group.jpg',
+			officeBearers: [
+				{ name: 'Alice Johnson', position: 'Ward Gurkaar' },
+				{ name: 'Bob Williams', position: 'Ward Secretary' },
+			],
+		},
+		{
+			slug: 'pompei-a',
+			title: 'Pompei A',
+			patronImage: '../../assets/church-logo.png',
+			wardGroupImageSrc: '../../assets/pompei-a-group.jpg',
+			officeBearers: [
+				{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
+				{ name: 'Emily Davis', position: 'Ward Secretary' },
+			],
+		},
+		{
+			slug: 'pompei-b',
+			title: 'Pompei B',
+			patronImage: '../../assets/church-logo.png',
+			wardImage: '../../assets/pompei-a-group.jpg',
+			officeBearers: [
+				{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
+				{ name: 'Emily Davis', position: 'Ward Secretary' },
+			],
+		},
+		{
+			slug: 'kandar-a',
+			title: 'Kandar A',
+			patronImage: '../../assets/church-logo.png',
+			wardImage: '../../assets/pompei-a-group.jpg',
+			officeBearers: [
+				{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
+				{ name: 'Emily Davis', position: 'Ward Secretary' },
+			],
+		},
+		{
+			slug: 'kandar-b',
+			title: 'Kandar B',
+			patronImage: '../../assets/church-logo.png',
+			wardImage: '../../assets/pompei-a-group.jpg',
+			officeBearers: [
+				{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
+				{ name: 'Emily Davis', position: 'Ward Secretary' },
+			],
+		},
+		{
+			slug: 'monel',
+			title: 'Monel',
+			patronImage: '../../assets/church-logo.png',
+			wardImage: '../../assets/pompei-a-group.jpg',
+			officeBearers: [
+				{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
+				{ name: 'Emily Davis', position: 'Ward Secretary' },
+			],
+		},
+		{
+			slug: 'gurpur',
+			title: 'Gurpur',
+			patronImage: '../../assets/church-logo.png',
+			wardImage: '../../assets/pompei-a-group.jpg',
+			officeBearers: [
+				{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
+				{ name: 'Emily Davis', position: 'Ward Secretary' },
+			],
+		},
+		{
+			slug: 'church',
+			title: 'Church',
+			patronImage: '../../assets/church-logo.png',
+			wardImage: '../../assets/pompei-a-group.jpg',
+			officeBearers: [
+				{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
+				{ name: 'Emily Davis', position: 'Ward Secretary' },
+			],
+		},
+		{
+			slug: 'addoor',
+			title: 'Addoor',
+			patronImage: '../../assets/church-logo.png',
+			wardImage: '../../assets/pompei-a-group.jpg',
+			officeBearers: [
+				{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
+				{ name: 'Emily Davis', position: 'Ward Secretary' },
+			],
+		},
+	];
+
+	return pages.map(({ slug, title, patronImage, wardImage, officeBearers }) => {
+		return {
+			params: { slug },
+			props: {
+				title,
+				patronImage,
+				wardImage,
+				officeBearers,
+			},
+		};
+	});
+}
+
+const { title, patronImage, officeBearers } = Astro.props;
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+	'../../assets/*.{jpeg,jpg,png,gif}'
+);
+const logoImage =
+	(await images[patronImage]?.()) ||
+	(await images['../../assets/default-logo.png']());
+---
+
+<Layout title={`Wards | ${title}`}>
+	<main>
+		<section
+			class="relative flex h-[250px] w-full items-center justify-center bg-gray-100"
+		>
+			<div class="flex flex-col items-center text-center">
+				<h1
+					class="text-slate-1000 mb-2 border-l-4 border-yellow-400 pl-3 font-poppins text-4xl font-extrabold"
+				>
+					{title}
+				</h1>
+			</div>
+		</section>
+
+		<section class="mx-6 mt-6">
+			<h2 class="mt-8 pb-4 font-poppins text-2xl font-bold">Ward Patron</h2>
+			<div class="flex items-center">
+				<Image src={logoImage.default} alt="Ward Patron Image" class="mr-4" />
+			</div>
+
+			<h2 class="font-poppins text-2xl font-bold">About the Ward</h2>
+			<p class="my-4 text-justify text-base text-slate-700">
+				{loremIpsum}
+			</p>
+
+			<h2 class="mt-8 font-poppins text-2xl font-bold">Ward Images</h2>
+			<div class="mt-4 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+				<Image
+					src={logoImage.default}
+					alt="Ward Group Image"
+					width={400}
+					class="h-54 mb-4 rounded-md object-cover"
+				/>
+
+				<Image
+					src={logoImage.default}
+					alt="Ward Activity Image"
+					class="h-54 mb-4 w-full rounded-md object-cover"
+				/>
+			</div>
+
+			<h2 class="mt-8 font-poppins text-2xl font-bold">Office Bearers</h2>
+			<ul class="my-4 list-inside list-disc text-base text-slate-700">
+				{
+					officeBearers.map((bearer) => (
+						<li>
+							<strong>{bearer.position}:</strong> {bearer.name}
+						</li>
+					))
+				}
+			</ul>
+		</section>
+	</main>
+</Layout>
