@@ -4,18 +4,19 @@ import EventCard from '~/components/event-card.astro';
 import eventImage from '~/assets/mass-interior.jpg';
 import eventImage1 from '~/assets/centenary-hall.jpg';
 
-
 const events = [
 	{
 		eventName: 'Community Gathering',
 		imageUrl: eventImage,
-		description: 'Join us for a community gathering filled with fun, food, and fellowship.',
+		description:
+			'Join us for a community gathering filled with fun, food, and fellowship.',
 		facebookLink: 'https://facebook.com/event-link', // Replace with actual Facebook event link
 	},
 	{
 		eventName: 'Charity Drive',
 		imageUrl: eventImage1,
-		description: 'Help us support those in need by participating in our charity drive.',
+		description:
+			'Help us support those in need by participating in our charity drive.',
 		facebookLink: 'https://facebook.com/event-link', // Replace with actual Facebook event link
 	},
 ];
@@ -30,14 +31,16 @@ const events = [
 		</h1>
 
 		<div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-			{events.map((event) => (
-				<EventCard
-					eventName={event.eventName}
-					imageUrl={event.imageUrl}
-					description={event.description}
-					facebookLink={event.facebookLink}
-				/>
-			))}
+			{
+				events.map((event) => (
+					<EventCard
+						eventName={event.eventName}
+						imageUrl={event.imageUrl}
+						description={event.description}
+						facebookLink={event.facebookLink}
+					/>
+				))
+			}
 		</div>
 	</section>
 </Layout>

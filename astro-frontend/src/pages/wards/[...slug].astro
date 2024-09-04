@@ -129,7 +129,7 @@ export async function getStaticPaths() {
 const { title, patronImage, officeBearers } = Astro.props;
 
 const images = import.meta.glob<{ default: ImageMetadata }>(
-	'../../assets/*.{jpeg,jpg,png,gif}'
+	'../../assets/*.{jpeg,jpg,png,gif}',
 );
 const logoImage =
 	(await images[patronImage]?.()) ||
@@ -138,55 +138,59 @@ const logoImage =
 
 <Layout title={`Wards | ${title}`}>
 	<main>
-		<section
-			class="relative flex h-[250px] w-full items-center justify-center bg-gray-100"
-		>
-			<div class="flex flex-col items-center text-center">
+		<section id="wards" class="my-5">
+			<div class="mx-6 flex flex-col items-start text-left">
 				<h1
-					class="text-slate-1000 mb-2 border-l-4 border-yellow-400 pl-3 font-poppins text-4xl font-extrabold"
+					class="border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold sm:text-4xl lg:text-6xl"
 				>
 					{title}
 				</h1>
 			</div>
-		</section>
 
-		<section class="mx-6 mt-6">
-			<h2 class="mt-8 pb-4 font-poppins text-2xl font-bold">Ward Patron</h2>
-			<div class="flex items-center">
-				<Image src={logoImage.default} alt="Ward Patron Image" class="mr-4" />
-			</div>
+			<section class="mx-6 mt-6">
+				<h2 class="mt-8 pb-4 font-poppins text-2xl font-bold text-slate-900">
+					Ward Patron
+				</h2>
+				<div class="flex items-center">
+					<Image src={logoImage.default} alt="Ward Patron Image" class="mr-4" />
+				</div>
 
-			<h2 class="font-poppins text-2xl font-bold">About the Ward</h2>
-			<p class="my-4 text-justify text-base text-slate-700">
-				{loremIpsum}
-			</p>
+				<h2 class="font-poppins text-2xl font-bold text-slate-900">
+					About the Ward
+				</h2>
+				<p class="my-4 text-justify text-base text-slate-700">
+					{loremIpsum}
+				</p>
 
-			<h2 class="mt-8 font-poppins text-2xl font-bold">Ward Images</h2>
-			<div class="mt-4 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-				<Image
-					src={logoImage.default}
-					alt="Ward Group Image"
-					width={400}
-					class="h-54 mb-4 rounded-md object-cover"
-				/>
+				<h2 class="mt-8 font-poppins text-2xl font-bold text-slate-900">
+					Ward Images
+				</h2>
+				<div class="mt-4 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+					<Image
+						src={logoImage.default}
+						alt="Ward Group Image"
+						width={400}
+						class="h-54 mb-4 rounded-md object-cover"
+					/>
 
-				<Image
-					src={logoImage.default}
-					alt="Ward Activity Image"
-					class="h-54 mb-4 w-full rounded-md object-cover"
-				/>
-			</div>
+					<Image
+						src={logoImage.default}
+						alt="Ward Activity Image"
+						class="h-54 mb-4 w-full rounded-md object-cover"
+					/>
+				</div>
 
-			<h2 class="mt-8 font-poppins text-2xl font-bold">Office Bearers</h2>
-			<ul class="my-4 list-inside list-disc text-base text-slate-700">
-				{
-					officeBearers.map((bearer) => (
-						<li>
-							<strong>{bearer.position}:</strong> {bearer.name}
-						</li>
-					))
-				}
-			</ul>
+				<h2 class="mt-8 font-poppins text-2xl font-bold">Office Bearers</h2>
+				<ul class="my-4 list-inside list-disc text-base text-slate-700">
+					{
+						officeBearers.map((bearer) => (
+							<li>
+								<strong>{bearer.position}:</strong> {bearer.name}
+							</li>
+						))
+					}
+				</ul>
+			</section>
 		</section>
 	</main>
 </Layout>

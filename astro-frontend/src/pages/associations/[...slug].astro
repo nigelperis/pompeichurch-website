@@ -111,14 +111,14 @@ export async function getStaticPaths() {
 	});
 }
 const { title, associationImage, officeBearers } = Astro.props;
-
 ---
+
 <Layout title={`Associations | ${title}`}>
 	<main>
 		<section id="associations" class="my-5">
-			<div class="flex flex-col items-start text-left mx-6">
+			<div class="mx-6 flex flex-col items-start text-left">
 				<h1
-					class="font-poppins border-l-4 border-natgeo-yellow pl-3 text-3xl font-extrabold sm:text-4xl lg:text-6xl"
+					class="border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold sm:text-4xl lg:text-6xl"
 				>
 					{title}
 				</h1>
@@ -126,23 +126,27 @@ const { title, associationImage, officeBearers } = Astro.props;
 
 			<section class="mx-6 mt-6">
 				<div class="flex justify-center">
-					<div class="max-w-md rounded-md overflow-hidden shadow-lg">
+					<div class="max-w-md overflow-hidden rounded-md shadow-lg">
 						<Image
 							src={churchHeroImage}
 							alt="Church Hero Image"
-							class="w-full h-auto object-cover"
+							class="h-auto w-full object-cover"
 						/>
 					</div>
 				</div>
 
-				<h2 class="mt-6 font-poppins text-2xl font-bold text-slate-900 text-left">
+				<h2
+					class="mt-6 text-left font-poppins text-2xl font-bold text-slate-900"
+				>
 					About the Association
 				</h2>
 				<p class="my-4 text-justify text-base text-slate-700">
 					{loremIpsum}
 				</p>
 
-				<h2 class="mt-8 font-poppins text-2xl text-slate-900 font-bold text-left">
+				<h2
+					class="mt-8 text-left font-poppins text-2xl font-bold text-slate-900"
+				>
 					Office Bearers
 				</h2>
 				<ul class="my-4 list-inside list-disc text-base text-slate-700">

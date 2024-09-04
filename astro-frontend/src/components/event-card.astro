@@ -11,13 +11,19 @@ interface Props {
 	class?: string;
 }
 
-const { eventName, imageUrl, description, facebookLink, class: className } = Astro.props;
+const {
+	eventName,
+	imageUrl,
+	description,
+	facebookLink,
+	class: className,
+} = Astro.props;
 ---
 
 <div
 	class={cn(
 		'hover:scale-[1.03] hover:shadow-lg transform overflow-hidden rounded-lg border shadow transition-all duration-500 ease-in-out max-w-xs mx-auto',
-		className
+		className,
 	)}
 >
 	<div class="event-image">
@@ -33,10 +39,12 @@ const { eventName, imageUrl, description, facebookLink, class: className } = Ast
 		<h3 class="event-title text-left text-xl font-bold text-slate-900">
 			{eventName}
 		</h3>
-		<p class="event-description mt-2 text-left text-base text-slate-700 justify">
+		<p
+			class="event-description justify mt-2 text-left text-base text-slate-700"
+		>
 			{description}
 		</p>
-		<HoverableLink class="inline-block mt-2 mb-2 text-black">
+		<HoverableLink class="mb-2 mt-2 inline-block text-black">
 			Know More
 		</HoverableLink>
 	</div>

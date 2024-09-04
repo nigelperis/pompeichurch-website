@@ -10,7 +10,7 @@
 		"astro": "astro",
 		"format": "prettier src/**/* --write",
 		"lint": "eslint ./src",
-		"lint:fix": "eslit ./src --fix"
+		"lint:fix": "eslint ./src --fix"
 	},
 	"dependencies": {
 		"@astrojs/react": "^3.6.2",
