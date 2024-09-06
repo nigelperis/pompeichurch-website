@@ -71,7 +71,7 @@ import { navLinks } from '~/constants/nav-links.ts';
 							</a>
 
 							{link.type === 'expandable' ? (
-								<ul class="ml-3 mt-3 flex flex-col gap-y-5 overflow-hidden max-h-0 transition-max-height duration-300 ease-in-out">
+								<ul class="ml-3 mt-3 flex flex-col gap-y-5 max-h-0 overflow-hidden transition-max-height duration-300 ease-in-out">
 									{link.expandedLinks.map((sublinks) => {
 										return (
 											<li>
@@ -152,7 +152,10 @@ import { navLinks } from '~/constants/nav-links.ts';
       const subMenu = element.nextElementSibling;
       const isExpanded = element.getAttribute('data-is-submenu-expanded') === 'true';
 
+      // Toggle the expanded state
       element.setAttribute('data-is-submenu-expanded', isExpanded ? 'false' : 'true');
+
+      // Animate max-height for submenu
       subMenu.style.maxHeight = isExpanded ? '0' : `${subMenu.scrollHeight}px`;
     });
   }
