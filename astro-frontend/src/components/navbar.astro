@@ -89,23 +89,23 @@ import { navLinks } from '~/constants/nav-links.ts';
 <style>
   #navbar {
     transform: translateX(100%);
-    /* Hide the navbar off-screen to the right initially */
+    transition: transform 500ms ease-out;
   }
   #navbar.open {
     transform: translateX(0);
-    /* Slide the navbar into view */
+  }
+  #navbar.slide-out {
+    transform: translateX(100%);
   }
 
   a[data-expandable-links='true'] + ul.expandable-links {
     max-height: 0;
-    /* Hide the expandable links initially */
-    padding: 0; /* Ensure no padding when collapsed */
+    padding: 0;
     margin: 0;
   }
   a[data-is-submenu-expanded='true'] + ul.expandable-links {
-    max-height: 500px; /* Adjust based on content */
-    /* Show the expandable links with animation */
-    padding: 10px 0; /* Add padding to show space between sublinks */
+    max-height: 500px;
+    padding: 10px 0;
     margin: 0;
   }
   svg[data-icon-name='chevron-right'] {
@@ -117,25 +117,35 @@ import { navLinks } from '~/constants/nav-links.ts';
 </style>
 
 <script>
-  const hamburgerMenu = document.querySelector<HTMLDivElement>('#hamburger');
-  const hamburgerClose = document.querySelector<HTMLDivElement>('#hamburger-close');
-  const navbar = document.querySelector<HTMLDivElement>('#navbar');
-  const expandableLinks = document.querySelectorAll<HTMLAnchorElement>('[data-expandable-links=true]');
-  const allNavigationLinks = document.querySelectorAll<HTMLAnchorElement>('a:not([data-expandable-links=true])');
+  const hamburgerMenu = document.querySelector('#hamburger');
+  const hamburgerClose = document.querySelector('#hamburger-close');
+  const navbar = document.querySelector('#navbar');
+  const expandableLinks = document.querySelectorAll('[data-expandable-links=true]');
+  const allNavigationLinks = document.querySelectorAll('a:not([data-expandable-links=true])');
+
+  let previouslyExpanded;
 
   hamburgerMenu?.addEventListener('click', () => {
     navbar?.classList.add('open');
+    navbar?.classList.remove('slide-out');
   });
 
   hamburgerClose?.addEventListener('click', () => {
+    navbar?.classList.add('slide-out');
     navbar?.classList.remove('open');
-    for (const element of expandableLinks) {
-      element.setAttribute('data-is-submenu-expanded', 'false');
-      (element.nextElementSibling as HTMLElement).style.maxHeight = '0'; // Slide up
+
+    if (previouslyExpanded) {
+      previouslyExpanded.setAttribute('data-is-submenu-expanded', 'false');
+      const expandableContent = previouslyExpanded.nextElementSibling as HTMLElement;
+      expandableContent.style.maxHeight = '0'; // Slide up
     }
+
+    setTimeout(() => {
+      navbar?.classList.remove('slide-out');
+    }, 500); // Match the transition duration
   });
 
-  for (const element of expandableLinks) {
+  expandableLinks.forEach(element => {
     element.addEventListener('click', (e) => {
       e.preventDefault();
       const subMenuStatus = element.getAttribute('data-is-submenu-expanded');
@@ -144,20 +154,35 @@ import { navLinks } from '~/constants/nav-links.ts';
       if (subMenuStatus === 'true') {
         element.setAttribute('data-is-submenu-expanded', 'false');
         expandableContent.style.maxHeight = '0'; // Slide up
+        previouslyExpanded = null;
       } else {
+        if (previouslyExpanded) {
+          previouslyExpanded.setAttribute('data-is-submenu-expanded', 'false');
+          const prevContent = previouslyExpanded.nextElementSibling as HTMLElement;
+          prevContent.style.maxHeight = '0'; // Slide up
+        }
+
         element.setAttribute('data-is-submenu-expanded', 'true');
         expandableContent.style.maxHeight = `${expandableContent.scrollHeight}px`; // Slide down
+        previouslyExpanded = element;
       }
     });
-  }
+  });
 
-  for (const links of allNavigationLinks) {
-    links.addEventListener('click', () => {
+  allNavigationLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      navbar?.classList.add('slide-out');
       navbar?.classList.remove('open');
-      for (const element of expandableLinks) {
-        element.setAttribute('data-is-submenu-expanded', 'false');
-        (element.nextElementSibling as HTMLElement).style.maxHeight = '0'; // Slide up
+
+      if (previouslyExpanded) {
+        previouslyExpanded.setAttribute('data-is-submenu-expanded', 'false');
+        const expandableContent = previouslyExpanded.nextElementSibling as HTMLElement;
+        expandableContent.style.maxHeight = '0'; // Slide up
       }
+
+      setTimeout(() => {
+        navbar?.classList.remove('slide-out');
+      }, 500); // Match the transition duration
     });
-  }
+  });
 </script>
