@@ -28,24 +28,19 @@ import { navLinks } from '~/constants/nav-links.ts';
 	</section>
 
 	<nav
-		class="fixed inset-0 z-10 hidden w-full overflow-y-auto bg-white px-6 py-6"
+		class="fixed inset-0 z-10 w-3/4 bg-white px-6 py-6 transform -translate-x-full transition-transform duration-300 overflow-y-auto"
 		id="navbar"
 	>
 		<Icon
 			name="cancel"
 			id="hamburger-close"
-			class="sticky top-5 mb-5 ml-auto cursor-pointer rounded-full text-4xl"
+			class="absolute top-5 right-5 cursor-pointer rounded-full text-4xl"
 		/>
-		<ul class="flex flex-col gap-y-5"
-			id="navbar-list"
-		>
+		<ul class="flex flex-col gap-y-5">
 			{
-				navLinks.map((link, index) => {
+				navLinks.map((link) => {
 					return (
-						<li
-							class={`opacity-0 transform transition-opacity duration-500 ease-out delay-[${index * 100}ms]`}
-							style="transition-delay: ${index * 100}ms"
-						>
+						<li>
 							<a
 								data-expandable-links={
 									link.type === 'expandable' ? 'true' : 'false'
@@ -69,29 +64,31 @@ import { navLinks } from '~/constants/nav-links.ts';
 								{link.type === 'expandable' ? (
 									<Icon
 										name="chevron-right"
-										class="text-3xl"
+										class="text-3xl transition-transform duration-300"
 										data-icon-name="chevron-right"
 									/>
 								) : null}
 							</a>
 
 							{link.type === 'expandable' ? (
-								<ul class="ml-3 mt-3 flex flex-col gap-y-5">
+								<ul class="ml-3 mt-3 flex flex-col gap-y-5 overflow-hidden max-h-0 transition-max-height duration-300 ease-in-out">
 									{link.expandedLinks.map((sublinks) => {
 										return (
-											<a
-												href={getRelativeLocaleUrl(lang, sublinks.href)}
-												class="group flex items-center justify-between font-merriweather text-xl font-bold text-black"
-											>
-												<span
-													class={cn(
-														'border-b-4 border-b-transparent font-poppins transition-all duration-150 group-hover:border-natgeo-yellow',
-														{ 'font-noto-sans-kannada': lang === 'kok' },
-													)}
+											<li>
+												<a
+													href={getRelativeLocaleUrl(lang, sublinks.href)}
+													class="group flex items-center justify-between font-merriweather text-xl font-bold text-black"
 												>
-													{t(sublinks.title)}
-												</span>
-											</a>
+													<span
+														class={cn(
+															'border-b-4 border-b-transparent font-poppins transition-all duration-150 group-hover:border-natgeo-yellow',
+															{ 'font-noto-sans-kannada': lang === 'kok' },
+														)}
+													>
+														{t(sublinks.title)}
+													</span>
+												</a>
+											</li>
 										);
 									})}
 								</ul>
@@ -105,85 +102,69 @@ import { navLinks } from '~/constants/nav-links.ts';
 </header>
 
 <style>
-	a[data-expandable-links='true'] + ul {
-		display: none;
-	}
-	a[data-is-submenu-expanded='true'] + ul {
-		display: flex;
-	}
-	svg[data-icon-name='chevron-right'] {
-		transition: transform 200ms ease-out;
-	}
-	a[data-is-submenu-expanded='true'] > svg[data-icon-name='chevron-right'] {
-		transform: rotate(90deg);
-	}
+  #navbar {
+    transform: translateX(-100%); /* Hide sidebar off-screen to the left */
+    height: 100vh; /* Full viewport height */
+  }
+
+  #navbar.open {
+    transform: translateX(0); /* Slide sidebar into view */
+  }
+
+  /* For expandable links */
+  [data-expandable-links='true'] + ul {
+    max-height: 0;
+    overflow: hidden;
+  }
+
+  [data-is-submenu-expanded='true'] + ul {
+    max-height: 500px; /* Adjust based on content */
+    overflow: visible;
+  }
+
+  svg[data-icon-name='chevron-right'] {
+    transition: transform 200ms ease-out;
+  }
+
+  [data-is-submenu-expanded='true'] > svg[data-icon-name='chevron-right'] {
+    transform: rotate(90deg);
+  }
 </style>
 
 <script>
-	const hamburgerMenu = document.querySelector<HTMLDivElement>('#hamburger');
-	const hamburgerClose =
-		document.querySelector<HTMLDivElement>('#hamburger-close');
+  const hamburgerMenu = document.querySelector('#hamburger');
+  const hamburgerClose = document.querySelector('#hamburger-close');
+  const navbar = document.querySelector('#navbar');
+  const expandableLinks = document.querySelectorAll('[data-expandable-links=true]');
+  const allNavigationLinks = document.querySelectorAll('a:not([data-expandable-links=true])');
 
-	const navbar = document.querySelector<HTMLDivElement>('#navbar');
-	const navbarList = document.querySelector<HTMLUListElement>('#navbar-list');
-	const expandableLinks = document.querySelectorAll<HTMLAnchorElement>(
-		'[data-expandable-links=true]',
-	);
+  hamburgerMenu?.addEventListener('click', () => {
+    navbar.classList.add('open');
+  });
 
-	const allNavigationLinks = document.querySelectorAll<HTMLAnchorElement>(
-		'a:not([data-expandable-links=true])',
-	);
+  hamburgerClose?.addEventListener('click', () => {
+    navbar.classList.remove('open');
+  });
 
-	// Show navbar with animations
-	hamburgerMenu?.addEventListener('click', () => {
-		if (navbar?.classList.contains('hidden')) {
-			navbar.classList.replace('hidden', 'block');
-			// Reveal links with delay animation
-			const listItems = navbarList.querySelectorAll('li');
-			listItems.forEach((li, index) => {
-				setTimeout(() => {
-					li.classList.replace('opacity-0', 'opacity-100');
-				}, index * 100); // delay each item by 100ms
-			});
-		}
-	});
+  for (const element of expandableLinks) {
+    element.addEventListener('click', (e) => {
+      e.preventDefault();
+      const subMenu = element.nextElementSibling;
+      const isExpanded = element.getAttribute('data-is-submenu-expanded') === 'true';
 
-	for (const element of expandableLinks) {
-		element.addEventListener('click', (e) => {
-			e.preventDefault();
-			const subMenuStatus = element.getAttribute('data-is-submenu-expanded');
-			if (subMenuStatus === 'true') {
-				element.setAttribute('data-is-submenu-expanded', 'false');
-			} else {
-				element.setAttribute('data-is-submenu-expanded', 'true');
-			}
-		});
-	}
+      element.setAttribute('data-is-submenu-expanded', isExpanded ? 'false' : 'true');
+      subMenu.style.maxHeight = isExpanded ? '0' : `${subMenu.scrollHeight}px`;
+    });
+  }
 
-	for (const links of allNavigationLinks) {
-		links.addEventListener('click', (_) => {
-			navbar?.classList.replace('block', 'hidden');
-			const listItems = navbarList.querySelectorAll('li');
-			listItems.forEach((li) => {
-				li.classList.replace('opacity-100', 'opacity-0');
-			});
-			for (const element of expandableLinks) {
-				element.setAttribute('data-is-submenu-expanded', 'false');
-			}
-		});
-	}
-
-	hamburgerClose?.addEventListener('click', () => {
-		if (navbar?.classList.contains('block')) {
-			navbar.classList.replace('block', 'hidden');
-			const listItems = navbarList.querySelectorAll('li');
-			listItems.forEach((li) => {
-				li.classList.replace('opacity-100', 'opacity-0');
-			});
-			for (const element of expandableLinks) {
-				element.setAttribute('data-is-submenu-expanded', 'false');
-			}
-		}
-	});
+  for (const links of allNavigationLinks) {
+    links.addEventListener('click', () => {
+      navbar.classList.remove('open');
+      for (const element of expandableLinks) {
+        element.setAttribute('data-is-submenu-expanded', 'false');
+        const subMenu = element.nextElementSibling;
+        subMenu.style.maxHeight = '0';
+      }
+    });
+  }
 </script>
-
