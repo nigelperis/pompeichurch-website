@@ -1,172 +1,162 @@
 ---
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import { Icon } from 'astro-icon/components';
-
 import { cn } from '~/helpers/cn';
-
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-
 import { navLinks } from '~/constants/nav-links.ts';
 ---
 
 <header class="sticky top-0 z-10 w-full bg-white/90 p-5 shadow-sm">
-	<section class="flex items-center justify-between">
-		<a
-			href="#"
-			class={cn('font-poppins-semibold text-lg font-semibold', {
-				'font-noto-sans-kannada-semibold': lang === 'kok',
-			})}>{t('landing.church-name')}</a
-		>
-		<div
-			id="hamburger"
-			class="ml-auto flex w-fit cursor-pointer flex-col items-end"
-		>
-			<Icon name="menu" size={26} />
-		</div>
-	</section>
+  <section class="flex items-center justify-between">
+    <a
+      href="#"
+      class={cn('font-poppins-semibold text-lg font-semibold', {
+        'font-noto-sans-kannada-semibold': lang === 'kok',
+      })}
+    >{t('landing.church-name')}</a>
+    <div
+      id="hamburger"
+      class="ml-auto flex w-fit cursor-pointer flex-col items-end"
+    >
+      <Icon name="menu" size={26} />
+    </div>
+  </section>
 
-	<nav
-		class="fixed inset-0 z-10 w-3/4 bg-white px-6 py-6 transform -translate-x-full transition-transform duration-300 overflow-y-auto"
-		id="navbar"
-	>
-		<Icon
-			name="cancel"
-			id="hamburger-close"
-			class="absolute top-5 right-5 cursor-pointer rounded-full text-4xl"
-		/>
-		<ul class="flex flex-col gap-y-5">
-			{
-				navLinks.map((link) => {
-					return (
-						<li>
-							<a
-								data-expandable-links={
-									link.type === 'expandable' ? 'true' : 'false'
-								}
-								href={
-									link.type === 'link'
-										? getRelativeLocaleUrl(lang, link.href)
-										: '#'
-								}
-								class="font-popppins group flex items-center justify-between text-3xl font-extrabold text-black"
-							>
-								<span
-									class={cn(
-										'border-b-4 border-b-transparent font-poppins transition-all duration-150 group-hover:border-natgeo-yellow',
-										{ 'font-noto-sans-kannada': lang === 'kok' },
-									)}
-								>
-									{t(link.title)}
-								</span>
-
-								{link.type === 'expandable' ? (
-									<Icon
-										name="chevron-right"
-										class="text-3xl transition-transform duration-300"
-										data-icon-name="chevron-right"
-									/>
-								) : null}
-							</a>
-
-							{link.type === 'expandable' ? (
-								<ul class="ml-3 mt-3 flex flex-col gap-y-5 max-h-0 overflow-hidden transition-max-height duration-300 ease-in-out">
-									{link.expandedLinks.map((sublinks) => {
-										return (
-											<li>
-												<a
-													href={getRelativeLocaleUrl(lang, sublinks.href)}
-													class="group flex items-center justify-between font-merriweather text-xl font-bold text-black"
-												>
-													<span
-														class={cn(
-															'border-b-4 border-b-transparent font-poppins transition-all duration-150 group-hover:border-natgeo-yellow',
-															{ 'font-noto-sans-kannada': lang === 'kok' },
-														)}
-													>
-														{t(sublinks.title)}
-													</span>
-												</a>
-											</li>
-										);
-									})}
-								</ul>
-							) : null}
-						</li>
-					);
-				})
-			}
-		</ul>
-	</nav>
+  <nav
+    class="fixed inset-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 transition-transform duration-500 ease-out"
+    id="navbar"
+  >
+    <Icon
+      name="cancel"
+      id="hamburger-close"
+      class="sticky top-5 mb-5 ml-auto cursor-pointer rounded-full text-4xl"
+    />
+    <ul class="flex flex-col gap-y-5">
+      {
+        navLinks.map((link) => (
+          <li key={link.href}>
+            <a
+              data-expandable-links={link.type === 'expandable' ? 'true' : 'false'}
+              href={link.type === 'link' ? getRelativeLocaleUrl(lang, link.href) : '#'}
+              class="group flex items-center justify-between font-popppins text-3xl font-extrabold text-black"
+            >
+              <span
+                class={cn(
+                  'border-b-4 border-b-transparent font-poppins transition-all duration-150 group-hover:border-natgeo-yellow',
+                  { 'font-noto-sans-kannada': lang === 'kok' }
+                )}
+              >
+                {t(link.title)}
+              </span>
+              {link.type === 'expandable' ? (
+                <Icon
+                  name="chevron-right"
+                  class="text-3xl"
+                  data-icon-name="chevron-right"
+                />
+              ) : null}
+            </a>
+            {link.type === 'expandable' ? (
+              <ul class="expandable-links max-h-0 overflow-hidden transition-all duration-500 ease-out">
+                {link.expandedLinks.map((sublinks) => (
+                  <li key={sublinks.href}>
+                    <a
+                      href={getRelativeLocaleUrl(lang, sublinks.href)}
+                      class="group flex items-center justify-between font-merriweather mb-4 text-xl font-bold text-black"
+                    >
+                      <span
+                        class={cn(
+                          'border-b-4 border-b-transparent font-poppins transition-all duration-150 group-hover:border-natgeo-yellow',
+                          { 'font-noto-sans-kannada': lang === 'kok' }
+                        )}
+                      >
+                        {t(sublinks.title)}
+                      </span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
 </header>
 
 <style>
   #navbar {
-    transform: translateX(-100%); /* Hide sidebar off-screen to the left */
-    height: 100vh; /* Full viewport height */
+    transform: translateX(100%);
+    /* Hide the navbar off-screen to the right initially */
   }
-
   #navbar.open {
-    transform: translateX(0); /* Slide sidebar into view */
+    transform: translateX(0);
+    /* Slide the navbar into view */
   }
 
-  /* For expandable links */
-  [data-expandable-links='true'] + ul {
+  a[data-expandable-links='true'] + ul.expandable-links {
     max-height: 0;
-    overflow: hidden;
+    /* Hide the expandable links initially */
+    padding: 0; /* Ensure no padding when collapsed */
+    margin: 0;
   }
-
-  [data-is-submenu-expanded='true'] + ul {
+  a[data-is-submenu-expanded='true'] + ul.expandable-links {
     max-height: 500px; /* Adjust based on content */
-    overflow: visible;
+    /* Show the expandable links with animation */
+    padding: 10px 0; /* Add padding to show space between sublinks */
+    margin: 0;
   }
-
   svg[data-icon-name='chevron-right'] {
     transition: transform 200ms ease-out;
   }
-
-  [data-is-submenu-expanded='true'] > svg[data-icon-name='chevron-right'] {
+  a[data-is-submenu-expanded='true'] > svg[data-icon-name='chevron-right'] {
     transform: rotate(90deg);
   }
 </style>
 
 <script>
-  const hamburgerMenu = document.querySelector('#hamburger');
-  const hamburgerClose = document.querySelector('#hamburger-close');
-  const navbar = document.querySelector('#navbar');
-  const expandableLinks = document.querySelectorAll('[data-expandable-links=true]');
-  const allNavigationLinks = document.querySelectorAll('a:not([data-expandable-links=true])');
+  const hamburgerMenu = document.querySelector<HTMLDivElement>('#hamburger');
+  const hamburgerClose = document.querySelector<HTMLDivElement>('#hamburger-close');
+  const navbar = document.querySelector<HTMLDivElement>('#navbar');
+  const expandableLinks = document.querySelectorAll<HTMLAnchorElement>('[data-expandable-links=true]');
+  const allNavigationLinks = document.querySelectorAll<HTMLAnchorElement>('a:not([data-expandable-links=true])');
 
   hamburgerMenu?.addEventListener('click', () => {
-    navbar.classList.add('open');
+    navbar?.classList.add('open');
   });
 
   hamburgerClose?.addEventListener('click', () => {
-    navbar.classList.remove('open');
+    navbar?.classList.remove('open');
+    for (const element of expandableLinks) {
+      element.setAttribute('data-is-submenu-expanded', 'false');
+      (element.nextElementSibling as HTMLElement).style.maxHeight = '0'; // Slide up
+    }
   });
 
   for (const element of expandableLinks) {
     element.addEventListener('click', (e) => {
       e.preventDefault();
-      const subMenu = element.nextElementSibling;
-      const isExpanded = element.getAttribute('data-is-submenu-expanded') === 'true';
+      const subMenuStatus = element.getAttribute('data-is-submenu-expanded');
+      const expandableContent = element.nextElementSibling as HTMLElement;
 
-      // Toggle the expanded state
-      element.setAttribute('data-is-submenu-expanded', isExpanded ? 'false' : 'true');
-
-      // Animate max-height for submenu
-      subMenu.style.maxHeight = isExpanded ? '0' : `${subMenu.scrollHeight}px`;
+      if (subMenuStatus === 'true') {
+        element.setAttribute('data-is-submenu-expanded', 'false');
+        expandableContent.style.maxHeight = '0'; // Slide up
+      } else {
+        element.setAttribute('data-is-submenu-expanded', 'true');
+        expandableContent.style.maxHeight = `${expandableContent.scrollHeight}px`; // Slide down
+      }
     });
   }
 
   for (const links of allNavigationLinks) {
     links.addEventListener('click', () => {
-      navbar.classList.remove('open');
+      navbar?.classList.remove('open');
       for (const element of expandableLinks) {
         element.setAttribute('data-is-submenu-expanded', 'false');
-        const subMenu = element.nextElementSibling;
-        subMenu.style.maxHeight = '0';
+        (element.nextElementSibling as HTMLElement).style.maxHeight = '0'; // Slide up
       }
     });
   }
