@@ -36,11 +36,16 @@ import { navLinks } from '~/constants/nav-links.ts';
 			id="hamburger-close"
 			class="sticky top-5 mb-5 ml-auto cursor-pointer rounded-full text-4xl"
 		/>
-		<ul class="flex flex-col gap-y-5">
+		<ul class="flex flex-col gap-y-5"
+			id="navbar-list"
+		>
 			{
-				navLinks.map((link) => {
+				navLinks.map((link, index) => {
 					return (
-						<li>
+						<li
+							class={`opacity-0 transform transition-opacity duration-500 ease-out delay-[${index * 100}ms]`}
+							style="transition-delay: ${index * 100}ms"
+						>
 							<a
 								data-expandable-links={
 									link.type === 'expandable' ? 'true' : 'false'
@@ -120,7 +125,7 @@ import { navLinks } from '~/constants/nav-links.ts';
 		document.querySelector<HTMLDivElement>('#hamburger-close');
 
 	const navbar = document.querySelector<HTMLDivElement>('#navbar');
-
+	const navbarList = document.querySelector<HTMLUListElement>('#navbar-list');
 	const expandableLinks = document.querySelectorAll<HTMLAnchorElement>(
 		'[data-expandable-links=true]',
 	);
@@ -129,9 +134,17 @@ import { navLinks } from '~/constants/nav-links.ts';
 		'a:not([data-expandable-links=true])',
 	);
 
+	// Show navbar with animations
 	hamburgerMenu?.addEventListener('click', () => {
 		if (navbar?.classList.contains('hidden')) {
 			navbar.classList.replace('hidden', 'block');
+			// Reveal links with delay animation
+			const listItems = navbarList.querySelectorAll('li');
+			listItems.forEach((li, index) => {
+				setTimeout(() => {
+					li.classList.replace('opacity-0', 'opacity-100');
+				}, index * 100); // delay each item by 100ms
+			});
 		}
 	});
 
@@ -150,6 +163,10 @@ import { navLinks } from '~/constants/nav-links.ts';
 	for (const links of allNavigationLinks) {
 		links.addEventListener('click', (_) => {
 			navbar?.classList.replace('block', 'hidden');
+			const listItems = navbarList.querySelectorAll('li');
+			listItems.forEach((li) => {
+				li.classList.replace('opacity-100', 'opacity-0');
+			});
 			for (const element of expandableLinks) {
 				element.setAttribute('data-is-submenu-expanded', 'false');
 			}
@@ -159,10 +176,14 @@ import { navLinks } from '~/constants/nav-links.ts';
 	hamburgerClose?.addEventListener('click', () => {
 		if (navbar?.classList.contains('block')) {
 			navbar.classList.replace('block', 'hidden');
-
+			const listItems = navbarList.querySelectorAll('li');
+			listItems.forEach((li) => {
+				li.classList.replace('opacity-100', 'opacity-0');
+			});
 			for (const element of expandableLinks) {
 				element.setAttribute('data-is-submenu-expanded', 'false');
 			}
 		}
 	});
 </script>
+
