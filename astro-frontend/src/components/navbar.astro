@@ -126,11 +126,13 @@ import { navLinks } from '~/constants/nav-links.ts';
   hamburgerMenu?.addEventListener('click', () => {
     navbar?.classList.add('open');
     navbar?.classList.remove('slide-out');
+    document.body.style.overflow = 'hidden';  // Disable main body scrolling
   });
 
   hamburgerClose?.addEventListener('click', () => {
     navbar?.classList.add('slide-out');
     navbar?.classList.remove('open');
+    document.body.style.overflow = '';  // Re-enable main body scrolling
 
     expandableLinks.forEach(element => {
       element.setAttribute('data-is-submenu-expanded', 'false');
@@ -163,6 +165,7 @@ import { navLinks } from '~/constants/nav-links.ts';
     link.addEventListener('click', () => {
       navbar?.classList.add('slide-out');
       navbar?.classList.remove('open');
+      document.body.style.overflow = '';  // Re-enable main body scrolling
 
       expandableLinks.forEach(element => {
         element.setAttribute('data-is-submenu-expanded', 'false');
@@ -172,8 +175,7 @@ import { navLinks } from '~/constants/nav-links.ts';
 
       setTimeout(() => {
         navbar?.classList.remove('slide-out');
-      }, 500); 
+      }, 500);
     });
   });
 </script>
-
