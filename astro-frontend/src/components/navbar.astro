@@ -123,17 +123,19 @@ import { navLinks } from '~/constants/nav-links.ts';
   const expandableLinks = document.querySelectorAll('[data-expandable-links=true]');
   const allNavigationLinks = document.querySelectorAll('a:not([data-expandable-links=true])');
 
+  // Opens the hamburger menu with smooth transition
   hamburgerMenu?.addEventListener('click', () => {
     navbar?.classList.add('open');
     navbar?.classList.remove('slide-out');
     document.body.style.overflow = 'hidden';  // Disable main body scrolling
   });
 
+  // Closes the hamburger menu, and collapses all sublinks without animation
   hamburgerClose?.addEventListener('click', () => {
     // Close all expanded submenus without animation
     expandableLinks.forEach(element => {
       const expandableContent = element.nextElementSibling as HTMLElement;
-      expandableContent.style.transition = 'none';  // Disable animation
+      expandableContent.style.transition = 'none';  // Disable animation for instant closing
       expandableContent.style.maxHeight = '0';
       element.setAttribute('data-is-submenu-expanded', 'false');
 
@@ -152,6 +154,7 @@ import { navLinks } from '~/constants/nav-links.ts';
     }, 500);
   });
 
+  // Enables smooth transition for sublink expand/collapse
   expandableLinks.forEach(element => {
     element.addEventListener('click', (e) => {
       e.preventDefault();
@@ -160,29 +163,42 @@ import { navLinks } from '~/constants/nav-links.ts';
 
       if (subMenuStatus === 'true') {
         element.setAttribute('data-is-submenu-expanded', 'false');
-        expandableContent.style.maxHeight = '0';
+        expandableContent.style.maxHeight = '0';  // Collapse submenu smoothly
       } else {
         element.setAttribute('data-is-submenu-expanded', 'true');
-        expandableContent.style.maxHeight = `${expandableContent.scrollHeight}px`;
+        expandableContent.style.maxHeight = `${expandableContent.scrollHeight}px`;  // Expand smoothly
       }
     });
   });
 
   allNavigationLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      navbar?.classList.add('slide-out');
-      navbar?.classList.remove('open');
-      document.body.style.overflow = '';  // Re-enable main body scrolling
+  link.addEventListener('click', (e) => {
+    e.preventDefault(); // Prevent immediate navigation
 
-      expandableLinks.forEach(element => {
-        element.setAttribute('data-is-submenu-expanded', 'false');
-        const expandableContent = element.nextElementSibling as HTMLElement;
-        expandableContent.style.maxHeight = '0';
-      });
+    // Instantly close the navbar without animation
+    expandableLinks.forEach(element => {
+      const expandableContent = element.nextElementSibling as HTMLElement;
+      expandableContent.style.transition = 'none';  // Disable animation for instant collapse
+      expandableContent.style.maxHeight = '0';
+      element.setAttribute('data-is-submenu-expanded', 'false');
 
+      // Re-enable animation after closing
       setTimeout(() => {
-        navbar?.classList.remove('slide-out');
-      }, 500);
+        expandableContent.style.transition = '';
+      }, 0);
     });
+
+    // Close the navbar with slide-out animation
+    navbar?.classList.add('slide-out');
+    navbar?.classList.remove('open');
+    document.body.style.overflow = '';  // Re-enable scrolling
+
+    // Delay navigation until after the navbar closes
+    setTimeout(() => {
+      navbar?.classList.remove('slide-out');
+      window.location.href = link.href; // Navigate to the target page
+    }, 500);  // Delay navigation for the closing animation
   });
+});
+
 </script>
