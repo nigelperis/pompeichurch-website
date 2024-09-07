@@ -1,168 +1,195 @@
 ---
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import { Icon } from 'astro-icon/components';
-
 import { cn } from '~/helpers/cn';
-
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-
 import { navLinks } from '~/constants/nav-links.ts';
 ---
 
 <header class="sticky top-0 z-10 w-full bg-white/90 p-5 shadow-sm">
-	<section class="flex items-center justify-between">
-		<a
-			href="#"
-			class={cn('font-poppins-semibold text-lg font-semibold', {
-				'font-noto-sans-kannada-semibold': lang === 'kok',
-			})}>{t('landing.church-name')}</a
-		>
-		<div
-			id="hamburger"
-			class="ml-auto flex w-fit cursor-pointer flex-col items-end"
-		>
-			<Icon name="menu" size={26} />
-		</div>
-	</section>
+  <section class="flex items-center justify-between">
+    <a
+      href="#"
+      class={cn('font-poppins-semibold text-lg font-semibold', {
+        'font-noto-sans-kannada-semibold': lang === 'kok',
+      })}
+    >{t('landing.church-name')}</a>
+    <div
+      id="hamburger"
+      class="ml-auto flex w-fit cursor-pointer flex-col items-end"
+    >
+      <Icon name="menu" size={26} />
+    </div>
+  </section>
 
-	<nav
-		class="fixed inset-0 z-10 hidden w-full overflow-y-auto bg-white px-6 py-6"
-		id="navbar"
-	>
-		<Icon
-			name="cancel"
-			id="hamburger-close"
-			class="sticky top-5 mb-5 ml-auto cursor-pointer rounded-full text-4xl"
-		/>
-		<ul class="flex flex-col gap-y-5">
-			{
-				navLinks.map((link) => {
-					return (
-						<li>
-							<a
-								data-expandable-links={
-									link.type === 'expandable' ? 'true' : 'false'
-								}
-								href={
-									link.type === 'link'
-										? getRelativeLocaleUrl(lang, link.href)
-										: '#'
-								}
-								class="font-popppins group flex items-center justify-between text-3xl font-extrabold text-black"
-							>
-								<span
-									class={cn(
-										'border-b-4 border-b-transparent font-poppins transition-all duration-150 group-hover:border-natgeo-yellow',
-										{ 'font-noto-sans-kannada': lang === 'kok' },
-									)}
-								>
-									{t(link.title)}
-								</span>
-
-								{link.type === 'expandable' ? (
-									<Icon
-										name="chevron-right"
-										class="text-3xl"
-										data-icon-name="chevron-right"
-									/>
-								) : null}
-							</a>
-
-							{link.type === 'expandable' ? (
-								<ul class="ml-3 mt-3 flex flex-col gap-y-5">
-									{link.expandedLinks.map((sublinks) => {
-										return (
-											<a
-												href={getRelativeLocaleUrl(lang, sublinks.href)}
-												class="group flex items-center justify-between font-merriweather text-xl font-bold text-black"
-											>
-												<span
-													class={cn(
-														'border-b-4 border-b-transparent font-poppins transition-all duration-150 group-hover:border-natgeo-yellow',
-														{ 'font-noto-sans-kannada': lang === 'kok' },
-													)}
-												>
-													{t(sublinks.title)}
-												</span>
-											</a>
-										);
-									})}
-								</ul>
-							) : null}
-						</li>
-					);
-				})
-			}
-		</ul>
-	</nav>
+  <nav
+    class="fixed inset-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 transition-transform duration-500 ease-out"
+    id="navbar"
+  >
+    <Icon
+      name="cancel"
+      id="hamburger-close"
+      class="sticky top-5 mb-5 ml-auto cursor-pointer rounded-full text-4xl"
+    />
+    <ul class="flex flex-col gap-y-5">
+      {
+        navLinks.map((link) => (
+          <li key={link.href}>
+            <a
+              data-expandable-links={link.type === 'expandable' ? 'true' : 'false'}
+              href={link.type === 'link' ? getRelativeLocaleUrl(lang, link.href) : '#'}
+              class="group flex items-center justify-between font-popppins text-3xl font-extrabold text-black"
+            >
+              <span
+                class={cn(
+                  'border-b-4 border-b-transparent font-poppins transition-all duration-150 group-hover:border-natgeo-yellow',
+                  { 'font-noto-sans-kannada': lang === 'kok' }
+                )}
+              >
+                {t(link.title)}
+              </span>
+              {link.type === 'expandable' ? (
+                <Icon
+                  name="chevron-right"
+                  class="text-3xl"
+                  data-icon-name="chevron-right"
+                />
+              ) : null}
+            </a>
+            {link.type === 'expandable' ? (
+              <ul class="expandable-links max-h-0 overflow-hidden transition-all duration-500 ease-out">
+                {link.expandedLinks.map((sublinks) => (
+                  <li key={sublinks.href}>
+                    <a
+                      href={getRelativeLocaleUrl(lang, sublinks.href)}
+                      class="group flex items-center justify-between font-merriweather mb-4 text-xl font-bold text-black"
+                    >
+                      <span
+                        class={cn(
+                          'border-b-4 border-b-transparent font-poppins transition-all duration-150 group-hover:border-natgeo-yellow',
+                          { 'font-noto-sans-kannada': lang === 'kok' }
+                        )}
+                      >
+                        {t(sublinks.title)}
+                      </span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
 </header>
 
 <style>
-	a[data-expandable-links='true'] + ul {
-		display: none;
-	}
-	a[data-is-submenu-expanded='true'] + ul {
-		display: flex;
-	}
-	svg[data-icon-name='chevron-right'] {
-		transition: transform 200ms ease-out;
-	}
-	a[data-is-submenu-expanded='true'] > svg[data-icon-name='chevron-right'] {
-		transform: rotate(90deg);
-	}
+  #navbar {
+    transform: translateX(100%);
+    transition: transform 200ms ease-out;
+  }
+  #navbar.open {
+    transform: translateX(0);
+  }
+  #navbar.slide-out {
+    transform: translateX(100%);
+  }
+
+  a[data-expandable-links='true'] + ul.expandable-links {
+    max-height: 0;
+    padding: 0;
+    margin: 0;
+  }
+  a[data-is-submenu-expanded='true'] + ul.expandable-links {
+    max-height: 500px;
+    padding: 10px 0;
+    margin: 0;
+  }
+  svg[data-icon-name='chevron-right'] {
+    transition: transform 200ms ease-out;
+  }
+  a[data-is-submenu-expanded='true'] > svg[data-icon-name='chevron-right'] {
+    transform: rotate(90deg);
+  }
 </style>
 
 <script>
-	const hamburgerMenu = document.querySelector<HTMLDivElement>('#hamburger');
-	const hamburgerClose =
-		document.querySelector<HTMLDivElement>('#hamburger-close');
+  const hamburgerMenu = document.querySelector('#hamburger');
+  const hamburgerClose = document.querySelector('#hamburger-close');
+  const navbar = document.querySelector('#navbar');
+  const expandableLinks = document.querySelectorAll('[data-expandable-links=true]');
+  const allNavigationLinks = document.querySelectorAll('a:not([data-expandable-links=true])');
 
-	const navbar = document.querySelector<HTMLDivElement>('#navbar');
+  hamburgerMenu?.addEventListener('click', () => {
+    navbar?.classList.add('open');
+    navbar?.classList.remove('slide-out');
+    document.body.style.overflow = 'hidden';
+  });
 
-	const expandableLinks = document.querySelectorAll<HTMLAnchorElement>(
-		'[data-expandable-links=true]',
-	);
+  hamburgerClose?.addEventListener('click', () => {
+    expandableLinks.forEach(element => {
+      const expandableContent = element.nextElementSibling as HTMLElement;
+      expandableContent.style.transition = 'none';
+      expandableContent.style.maxHeight = '0';
+      element.setAttribute('data-is-submenu-expanded', 'false');
 
-	const allNavigationLinks = document.querySelectorAll<HTMLAnchorElement>(
-		'a:not([data-expandable-links=true])',
-	);
+      setTimeout(() => {
+        expandableContent.style.transition = '';
+      }, 0);
+    });
 
-	hamburgerMenu?.addEventListener('click', () => {
-		if (navbar?.classList.contains('hidden')) {
-			navbar.classList.replace('hidden', 'block');
-		}
-	});
+    navbar?.classList.add('slide-out');
+    navbar?.classList.remove('open');
+    document.body.style.overflow = '';
 
-	for (const element of expandableLinks) {
-		element.addEventListener('click', (e) => {
-			e.preventDefault();
-			const subMenuStatus = element.getAttribute('data-is-submenu-expanded');
-			if (subMenuStatus === 'true') {
-				element.setAttribute('data-is-submenu-expanded', 'false');
-			} else {
-				element.setAttribute('data-is-submenu-expanded', 'true');
-			}
-		});
-	}
+    setTimeout(() => {
+      navbar?.classList.remove('slide-out');
+    }, 500);
+  });
 
-	for (const links of allNavigationLinks) {
-		links.addEventListener('click', (_) => {
-			navbar?.classList.replace('block', 'hidden');
-			for (const element of expandableLinks) {
-				element.setAttribute('data-is-submenu-expanded', 'false');
-			}
-		});
-	}
+  expandableLinks.forEach(element => {
+    element.addEventListener('click', (e) => {
+      e.preventDefault();
+      const subMenuStatus = element.getAttribute('data-is-submenu-expanded');
+      const expandableContent = element.nextElementSibling as HTMLElement;
 
-	hamburgerClose?.addEventListener('click', () => {
-		if (navbar?.classList.contains('block')) {
-			navbar.classList.replace('block', 'hidden');
+      if (subMenuStatus === 'true') {
+        element.setAttribute('data-is-submenu-expanded', 'false');
+        expandableContent.style.maxHeight = '0';
+      } else {
+        element.setAttribute('data-is-submenu-expanded', 'true');
+        expandableContent.style.maxHeight = `${expandableContent.scrollHeight}px`;
+      }
+    });
+  });
 
-			for (const element of expandableLinks) {
-				element.setAttribute('data-is-submenu-expanded', 'false');
-			}
-		}
-	});
+  allNavigationLinks.forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    expandableLinks.forEach(element => {
+      const expandableContent = element.nextElementSibling as HTMLElement;
+      expandableContent.style.transition = 'none';
+      expandableContent.style.maxHeight = '0';
+      element.setAttribute('data-is-submenu-expanded', 'false');
+
+      setTimeout(() => {
+        expandableContent.style.transition = '';
+      }, 0);
+    });
+
+    navbar?.classList.add('slide-out');
+    navbar?.classList.remove('open');
+    document.body.style.overflow = '';
+
+    setTimeout(() => {
+      navbar?.classList.remove('slide-out');
+      window.location.href = link.href;
+    }, 500);
+  });
+});
+
 </script>
