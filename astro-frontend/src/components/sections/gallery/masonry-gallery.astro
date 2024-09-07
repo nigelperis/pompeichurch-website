@@ -1,0 +1,63 @@
+---
+import { Image, getImage } from 'astro:assets';
+
+import imageOne from '~/assets/mary-grotto.jpg';
+import imageTwo from '~/assets/church-hero-image.webp';
+import imageThree from '~/assets/ciborium.jpg';
+import imageFour from '~/assets/mother-mary.jpg';
+import imageFive from '~/assets/sacrament.jpg';
+import imageSix from '~/assets/mass-interior.jpg';
+import imageSeven from '~/assets/snehasadan.jpg';
+import imageEight from '~/assets/jeevadaan.jpg';
+import imageNine from '~/assets/sky-bg.jpg';
+import imageTen from '~/assets/pompei-convent.jpg';
+import imageEleven from '~/assets/pompei-sabha-bhavan.jpg';
+import imageTwelve from '~/assets/centenary-hall.jpg';
+
+const imgArr = [
+	imageOne,
+	imageTwo,
+	imageThree,
+	imageFour,
+	imageFive,
+	imageSix,
+	imageSeven,
+	imageEight,
+	imageNine,
+	imageTen,
+	imageEleven,
+	imageTwelve,
+] as const;
+---
+
+<section class="masonry-grid m-4 mx-auto flex w-screen">
+	{
+		imgArr.map((itm) => (
+			<Image
+				src={itm}
+				class="masonry-grid-item w-1/2 overflow-hidden rounded-2xl object-cover p-1 px-1 lg:w-1/4"
+				alt="masaonry grid item"
+			/>
+		))
+	}
+	{
+		imgArr.map((itm) => (
+			<Image
+				src={itm}
+				class="masonry-grid-item w-1/2 overflow-hidden rounded-2xl object-cover p-1 lg:w-1/4"
+				alt="masaonry grid item"
+			/>
+		))
+	}
+</section>
+
+<script>
+	import Masonry from 'masonry-layout';
+
+	const masonryGrid = document.querySelector<HTMLDivElement>('.masonry-grid')!;
+
+	const _ = new Masonry(masonryGrid, {
+		itemSelector: '.masonry-grid-item',
+		resize: true,
+	});
+</script>
