@@ -8,41 +8,88 @@ import HoverableLink from '~/components/ui/hoverable-link.astro';
 
 import dummyImage from '~/assets/dummy-image.png';
 import priestImage from '~/assets/fr-image.jpg';
+import vicepresident from '~/assets/vp-image.jpg'
+import Commission_Coordinator from '~/assets/Commission_Coordinator.jpg'
 ---
 
 <section class="mb-8 mt-7">
-	<h2
-		class="mx-5 mb-4 border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold"
-		data-aos="fade-right"
-	>
-		{t('landing.pastoral-parishad')}
-	</h2>
+  <h2
+    class="mx-5 mb-4 border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold"
+    data-aos="fade-right"
+  >
+    {t('landing.pastoral-parishad')}
+  </h2>
 
-	<ul
-		class="my-4 flex w-full max-w-full scroll-ml-6 space-x-8 overflow-y-auto py-1.5 pl-6 scrollbar-thin"
-	>
-		<Card
-			imageUrl={priestImage}
-			subtitle={t('landing.priest')}
-			title={t('landing.priest-name')}
-		/>
-		<Card
-			imageUrl={dummyImage}
-			subtitle={t('landing.vice-president')}
-			title={t('landing.vp-name')}
-		/>
-		<Card
-			imageUrl={dummyImage}
-			subtitle={t('landing.secretary')}
-			title={t('landing.secretary-name')}
-		/>
-		<Card
-			imageUrl={dummyImage}
-			subtitle={t('landing.pastoral-commission-coordinator')}
-			title={t('landing.pastoral-commission-coordinator-name')}
-		/>
-	</ul>
-	<HoverableLink class="m-7">
-		{t('ui.more-button-show')}
-	</HoverableLink>
+  <ul
+    class="my-4 flex w-full max-w-full scroll-ml-6 space-x-8 overflow-x-auto overflow-y-hidden pr-2 py-1.5 pl-3"
+  >
+    <Card
+      imageUrl={priestImage}
+      subtitle={t('landing.priest')}
+      title={t('landing.priest-name')}
+    />
+    <Card
+      imageUrl={vicepresident}
+      subtitle={t('landing.vice-president')}
+      title={t('landing.vp-name')}
+    />
+    <Card
+      imageUrl={dummyImage}
+      subtitle={t('landing.secretary')}
+      title={t('landing.secretary-name')}
+    />
+    <Card
+      imageUrl={Commission_Coordinator}
+      subtitle={t('landing.pastoral-commission-coordinator')}
+      title={t('landing.pastoral-commission-coordinator-name')}
+    />
+
+    <!-- 5th Card acting as "View All" with centered grey div -->
+		<a href="/parish-pastoral-parishad/" class="flex items-center justify-center">
+			<!-- Wrapper div for the "View All" text and SVG -->
+			<div class="w-40 h-40 bg-gray-100 flex flex-col items-center justify-center space-y-2">
+				<!-- Text centered in the box -->
+				<h1 class="text-xl font-bold ">View All</h1>
+				<!-- SVG centered below the text -->
+				<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48"><defs><mask id="ipSRightC0"><g fill="none" stroke-linejoin="round" stroke-width="2"><path fill="#fff" stroke="#fff" d="M24 44c11.046 0 20-8.954 20-20S35.046 4 24 4S4 12.954 4 24s8.954 20 20 20Z"/><path stroke="#000" stroke-linecap="round" d="m21 33l9-9l-9-9"/></g></mask></defs><path fill="#000000" d="M0 0h48v48H0z" mask="url(#ipSRightC0)"/></svg>
+			</div>
+		</a>
+
+  </ul>
 </section>
+
+
+
+<style>
+
+  ul {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  ul::-webkit-scrollbar {
+    display: none;
+  }
+
+
+  @media (min-width: 768px) {
+    ul {
+      scrollbar-width: thin;
+      scrollbar-color: grey transparent;
+    }
+
+    ul::-webkit-scrollbar {
+      display: block;
+      height: 6px;
+    }
+
+    ul::-webkit-scrollbar-thumb {
+      background-color: grey;
+      border-radius: 10px;
+    }
+
+    ul::-webkit-scrollbar-track {
+      background: transparent;
+    }
+  }
+</style>
