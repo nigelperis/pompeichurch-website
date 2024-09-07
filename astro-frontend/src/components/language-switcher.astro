@@ -1,28 +1,33 @@
 ---
-import { Icon } from 'astro-icon/components';
 const currentLocale = Astro.currentLocale;
-
 const currentPath = new URL(Astro.request.url).pathname;
 const pathWithLocaleStripped = currentPath.replace(/^\/kok\//, '/');
-
 const localeToSwitchTo = currentLocale === 'en' ? 'kok' : 'en';
 ---
 
 <aside>
-	<a
-		class="fixed bottom-3 right-4 flex items-center justify-center rounded-sm bg-natgeo-yellow-400 p-3 text-2xl leading-none transition-colors hover:bg-natgeo-yellow-700 active:bg-natgeo-yellow-600"
-		data-astro-prefetch="load"
-		data-astro-prefetch
-		href={localeToSwitchTo === 'kok'
-			? `/${localeToSwitchTo}${pathWithLocaleStripped}`
-			: `${pathWithLocaleStripped}`}
-	>
-		{
-			currentLocale === 'en' ? (
-				<Icon name="translation" size={20} />
-			) : (
-				<Icon name="translation" size={20} class="rotate-90" />
-			)
-		}
-	</a>
+  <a
+    class="fixed bottom-6 right-4 flex items-center justify-center rounded-full"
+    data-astro-prefetch="load"
+    href={
+      localeToSwitchTo === 'kok'
+        ? `/${localeToSwitchTo}${pathWithLocaleStripped}`
+        : `${pathWithLocaleStripped}`
+    }
+    aria-label={`Switch to ${localeToSwitchTo === 'kok' ? 'English' : 'Kannada'}`}
+  >
+    <div class="relative inline-flex items-center cursor-pointer">
+      <div class="group ring-0 rounded-full outline-none bg-yellow-100 duration-700 w-16 h-8 bg-transparent transition-transform">
+        <span
+          class={`absolute top-1 flex items-center justify-center text-black rounded-full h-6 w-6 bg-natgeo-yellow font-bold transition-transform duration-300 ${
+            currentLocale === 'en' ? 'left-1' : 'right-1'
+          }`}
+          aria-hidden="true"
+        >
+          {currentLocale === 'en' ? 'ಕ' : 'E'}
+        </span>
+      </div>
+    </div>
+  </a>
 </aside>
+
