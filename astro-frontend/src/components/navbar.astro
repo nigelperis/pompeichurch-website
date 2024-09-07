@@ -123,8 +123,6 @@ import { navLinks } from '~/constants/nav-links.ts';
   const expandableLinks = document.querySelectorAll('[data-expandable-links=true]');
   const allNavigationLinks = document.querySelectorAll('a:not([data-expandable-links=true])');
 
-  let previouslyExpanded;
-
   hamburgerMenu?.addEventListener('click', () => {
     navbar?.classList.add('open');
     navbar?.classList.remove('slide-out');
@@ -134,15 +132,15 @@ import { navLinks } from '~/constants/nav-links.ts';
     navbar?.classList.add('slide-out');
     navbar?.classList.remove('open');
 
-    if (previouslyExpanded) {
-      previouslyExpanded.setAttribute('data-is-submenu-expanded', 'false');
-      const expandableContent = previouslyExpanded.nextElementSibling as HTMLElement;
-      expandableContent.style.maxHeight = '0'; // Slide up
-    }
+    expandableLinks.forEach(element => {
+      element.setAttribute('data-is-submenu-expanded', 'false');
+      const expandableContent = element.nextElementSibling as HTMLElement;
+      expandableContent.style.maxHeight = '0';
+    });
 
     setTimeout(() => {
       navbar?.classList.remove('slide-out');
-    }, 500); // Match the transition duration
+    }, 500);
   });
 
   expandableLinks.forEach(element => {
@@ -153,18 +151,10 @@ import { navLinks } from '~/constants/nav-links.ts';
 
       if (subMenuStatus === 'true') {
         element.setAttribute('data-is-submenu-expanded', 'false');
-        expandableContent.style.maxHeight = '0'; // Slide up
-        previouslyExpanded = null;
+        expandableContent.style.maxHeight = '0';
       } else {
-        if (previouslyExpanded) {
-          previouslyExpanded.setAttribute('data-is-submenu-expanded', 'false');
-          const prevContent = previouslyExpanded.nextElementSibling as HTMLElement;
-          prevContent.style.maxHeight = '0'; // Slide up
-        }
-
         element.setAttribute('data-is-submenu-expanded', 'true');
-        expandableContent.style.maxHeight = `${expandableContent.scrollHeight}px`; // Slide down
-        previouslyExpanded = element;
+        expandableContent.style.maxHeight = `${expandableContent.scrollHeight}px`;
       }
     });
   });
@@ -174,15 +164,16 @@ import { navLinks } from '~/constants/nav-links.ts';
       navbar?.classList.add('slide-out');
       navbar?.classList.remove('open');
 
-      if (previouslyExpanded) {
-        previouslyExpanded.setAttribute('data-is-submenu-expanded', 'false');
-        const expandableContent = previouslyExpanded.nextElementSibling as HTMLElement;
-        expandableContent.style.maxHeight = '0'; // Slide up
-      }
+      expandableLinks.forEach(element => {
+        element.setAttribute('data-is-submenu-expanded', 'false');
+        const expandableContent = element.nextElementSibling as HTMLElement;
+        expandableContent.style.maxHeight = '0';
+      });
 
       setTimeout(() => {
         navbar?.classList.remove('slide-out');
-      }, 500); // Match the transition duration
+      }, 500); 
     });
   });
 </script>
+
