@@ -130,15 +130,22 @@ import { navLinks } from '~/constants/nav-links.ts';
   });
 
   hamburgerClose?.addEventListener('click', () => {
+    // Close all expanded submenus without animation
+    expandableLinks.forEach(element => {
+      const expandableContent = element.nextElementSibling as HTMLElement;
+      expandableContent.style.transition = 'none';  // Disable animation
+      expandableContent.style.maxHeight = '0';
+      element.setAttribute('data-is-submenu-expanded', 'false');
+
+      // Re-enable animation after closing
+      setTimeout(() => {
+        expandableContent.style.transition = '';
+      }, 0);
+    });
+
     navbar?.classList.add('slide-out');
     navbar?.classList.remove('open');
     document.body.style.overflow = '';  // Re-enable main body scrolling
-
-    expandableLinks.forEach(element => {
-      element.setAttribute('data-is-submenu-expanded', 'false');
-      const expandableContent = element.nextElementSibling as HTMLElement;
-      expandableContent.style.maxHeight = '0';
-    });
 
     setTimeout(() => {
       navbar?.classList.remove('slide-out');
