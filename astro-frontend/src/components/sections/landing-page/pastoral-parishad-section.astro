@@ -4,91 +4,87 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 import Card from './pastoral-parishad-info-card.astro';
-import HoverableLink from '~/components/ui/hoverable-link.astro';
-
 import dummyImage from '~/assets/dummy-image.png';
 import priestImage from '~/assets/fr-image.jpg';
-import vicepresident from '~/assets/vp-image.jpg'
-import Commission_Coordinator from '~/assets/Commission_Coordinator.jpg'
+import vicepresident from '~/assets/vp-image.jpg';
+import ayogPresident from '~/assets/ayog-president.jpg';
+import { Icon } from 'astro-icon/components';
 ---
 
 <section class="mb-8 mt-7">
-  <h2
-    class="mx-5 mb-4 border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold"
-    data-aos="fade-right"
-  >
-    {t('landing.pastoral-parishad')}
-  </h2>
+	<h2
+		class="mx-5 mb-4 border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold"
+		data-aos="fade-right"
+	>
+		{t('landing.pastoral-parishad')}
+	</h2>
 
-  <ul
-    class="my-4 flex w-full max-w-full scroll-ml-6 space-x-8 overflow-x-auto overflow-y-hidden pr-2 py-1.5 pl-3"
-  >
-    <Card
-      imageUrl={priestImage}
-      subtitle={t('landing.priest')}
-      title={t('landing.priest-name')}
-    />
-    <Card
-      imageUrl={vicepresident}
-      subtitle={t('landing.vice-president')}
-      title={t('landing.vp-name')}
-    />
-    <Card
-      imageUrl={dummyImage}
-      subtitle={t('landing.secretary')}
-      title={t('landing.secretary-name')}
-    />
-    <Card
-      imageUrl={Commission_Coordinator}
-      subtitle={t('landing.pastoral-commission-coordinator')}
-      title={t('landing.pastoral-commission-coordinator-name')}
-    />
+	<ul
+		class="my-4 flex w-full max-w-full scroll-ml-6 space-x-8 overflow-x-auto overflow-y-hidden py-1.5 pl-3 pr-2"
+	>
+		<Card
+			imageUrl={priestImage}
+			subtitle={t('landing.priest')}
+			title={t('landing.priest-name')}
+		/>
+		<Card
+			imageUrl={vicepresident}
+			subtitle={t('landing.vice-president')}
+			title={t('landing.vp-name')}
+		/>
+		<Card
+			imageUrl={dummyImage}
+			subtitle={t('landing.secretary')}
+			title={t('landing.secretary-name')}
+		/>
+		<Card
+			imageUrl={ayogPresident}
+			subtitle={t('landing.pastoral-commission-coordinator')}
+			title={t('landing.pastoral-commission-coordinator-name')}
+		/>
 
-
-		<div  class="flex items-center hover:scale-[1.03] justify-center hover:shadow-lg	 w-64 snap-start first:snap-align-none max-w-xs flex-shrink-0 transform overflow-hidden rounded-lg border shadow transition-all duration-500 ease-in-out sm:w-64">
-
-			<a href="/parish-pastoral-parishad/" class="w-40 h-40 rounded-full bg-yellow-100 flex flex-col items-center justify-center space-y-2">
-
-				<h1 class="text-xl font-bold ">View All</h1>
-				<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48"><g fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="4.55"><path d="M34 24.0083H6"/><path d="M22 12L34 24L22 36"/><path d="M42 12V36"/></g></svg>
+		<div
+			class="flex w-64 max-w-xs flex-shrink-0 transform snap-start items-center justify-center overflow-hidden rounded-lg border transition-all duration-500 ease-in-out first:snap-align-none hover:scale-[1.03] hover:shadow-lg sm:w-64"
+		>
+			<a
+				href="/parish-pastoral-parishad/"
+				class="flex h-40 w-40 flex-row items-center justify-center space-x-2 rounded-full bg-yellow-200"
+			>
+				<h1 class="text-xl font-bold">View All</h1>
+				<Icon name="viewall" size={30} />
 			</a>
 		</div>
-
-  </ul>
+	</ul>
 </section>
 
-
-
 <style>
+	ul {
+		scrollbar-width: none;
+		-ms-overflow-style: none;
+	}
 
-  ul {
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-  }
+	ul::-webkit-scrollbar {
+		display: none;
+	}
 
-  ul::-webkit-scrollbar {
-    display: none;
-  }
+	@media (min-width: 768px) {
+		ul {
+			scrollbar-width: thin;
+			scrollbar-color: grey transparent;
+		}
 
+		ul::-webkit-scrollbar {
+			display: block;
+			height: 6px;
+		}
 
-  @media (min-width: 768px) {
-    ul {
-      scrollbar-width: thin;
-      scrollbar-color: grey transparent;
-    }
+		ul::-webkit-scrollbar-thumb {
+			background-color: grey;
+			border-radius: 10px;
+		}
 
-    ul::-webkit-scrollbar {
-      display: block;
-      height: 6px;
-    }
-
-    ul::-webkit-scrollbar-thumb {
-      background-color: grey;
-      border-radius: 10px;
-    }
-
-    ul::-webkit-scrollbar-track {
-      background: transparent;
-    }
-  }
+		ul::-webkit-scrollbar-track {
+			background: transparent;
+		}
+	}
 </style>
