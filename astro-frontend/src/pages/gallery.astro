@@ -1,32 +1,6 @@
 ---
-import Layout from '../layouts/layout.astro';
-import { getImage } from 'astro:assets';
-
-import imageOne from '../assets/mary-grotto.jpg';
-import imageTwo from '../assets/church-hero-image.webp';
-import imageThree from '../assets/ciborium.jpg';
-import imageFour from '../assets/mother-mary.jpg';
-import imageFive from '../assets/sacrament.jpg';
-import imageSix from '../assets/mass-interior.jpg';
-import imageSeven from '../assets/snehasadan.jpg';
-import imageEight from '../assets/jeevadaan.jpg';
-import imageNine from '../assets/sky-bg.jpg';
-import imageTen from '../assets/pompei-convent.jpg';
-import imageEleven from '../assets/pompei-sabha-bhavan.jpg';
-import imageTwelve from '../assets/centenary-hall.jpg';
-
-const optimizedImageOne = await getImage({ src: imageOne });
-const optimizedImageTwo = await getImage({ src: imageTwo });
-const optimizedImageThree = await getImage({ src: imageThree });
-const optimizedImageFour = await getImage({ src: imageFour });
-const optimizedImageFive = await getImage({ src: imageFive });
-const optimizedImageSix = await getImage({ src: imageSix });
-const optimizedImageSeven = await getImage({ src: imageSeven });
-const optimizedImageEight = await getImage({ src: imageEight });
-const optimizedImageNine = await getImage({ src: imageNine });
-const optimizedImageTen = await getImage({ src: imageTen });
-const optimizedImageEleven = await getImage({ src: imageEleven });
-const optimizedImageTwelve = await getImage({ src: imageTwelve });
+import Layout from '~/layouts/layout.astro';
+import MasonryGallery from '~/components/sections/gallery/masonry-gallery.astro';
 ---
 
 <Layout title="Gallery">
@@ -35,136 +9,16 @@ const optimizedImageTwelve = await getImage({ src: imageTwelve });
 			class="relative flex h-[225px] w-full items-center justify-center bg-slate-100 px-10"
 		>
 			<div class="text-center">
-				<h2
-					class="relative mb-4 pl-3 text-center font-poppins text-3xl font-extrabold"
+				<h1
+					class="text-slate-1000 mb-6 font-poppins text-3xl font-extrabold text-black"
 				>
 					Gallery
-				</h2>
-				<p class="font-roboto text-md text-slate-400">
+				</h1>
+				<p class="text-md font-poppins text-slate-400">
 					Capturing moments of grace
 				</p>
 			</div>
 		</section>
-
-		<div class="mx-auto max-w-6xl p-6">
-			<div class="grid grid-cols-2 gap-4 md:grid-cols-4">
-				<div class="grid gap-4">
-					<div>
-						<img
-							class="h-auto max-w-full rounded-lg"
-							src={optimizedImageOne.src}
-							alt=""
-						/>
-					</div>
-					<div>
-						<img
-							class="h-auto max-w-full rounded-lg"
-							src={optimizedImageTwo.src}
-							alt=""
-						/>
-					</div>
-					<div>
-						<img
-							class="h-auto max-w-full rounded-lg"
-							src={optimizedImageThree.src}
-							alt=""
-						/>
-					</div>
-				</div>
-				<div class="grid gap-4">
-					<div>
-						<img
-							class="h-auto max-w-full rounded-lg"
-							src={optimizedImageFour.src}
-							alt=""
-						/>
-					</div>
-					<div>
-						<img
-							class="h-auto max-w-full rounded-lg"
-							src={optimizedImageFive.src}
-							alt=""
-						/>
-					</div>
-					<div>
-						<img
-							class="h-auto max-w-full rounded-lg"
-							src={optimizedImageSix.src}
-							alt=""
-						/>
-					</div>
-				</div>
-				<div class="grid gap-4">
-					<div>
-						<img
-							class="h-auto max-w-full rounded-lg"
-							src={optimizedImageSeven.src}
-							alt=""
-						/>
-					</div>
-					<div>
-						<img
-							class="h-auto max-w-full rounded-lg"
-							src={optimizedImageEight.src}
-							alt=""
-						/>
-					</div>
-					<div>
-						<img
-							class="h-auto max-w-full rounded-lg"
-							src={optimizedImageNine.src}
-							alt=""
-						/>
-					</div>
-				</div>
-				<div class="grid gap-4">
-					<div>
-						<img
-							class="h-auto max-w-full rounded-lg"
-							src={optimizedImageTen.src}
-							alt=""
-						/>
-					</div>
-					<div>
-						<img
-							class="h-auto max-w-full rounded-lg"
-							src={optimizedImageEleven.src}
-							alt=""
-						/>
-					</div>
-					<div>
-						<img
-							class="h-auto max-w-full rounded-lg"
-							src={optimizedImageTwelve.src}
-							alt=""
-						/>
-					</div>
-				</div>
-			</div>
-		</div>
+		<MasonryGallery />
 	</main>
 </Layout>
-
-<style>
-	.masonry {
-		column-count: 1;
-		column-gap: 1rem;
-	}
-
-	.masonry-sm {
-		column-count: 2;
-	}
-
-	.masonry-md {
-		column-count: 3;
-	}
-
-	.masonry-lg {
-		column-count: 4;
-	}
-
-	.masonry > div {
-		break-inside: avoid;
-		margin-bottom: 1rem;
-	}
-</style>
