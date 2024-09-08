@@ -4,10 +4,11 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 import Card from './pastoral-parishad-info-card.astro';
-import HoverableLink from '~/components/ui/hoverable-link.astro';
-
 import dummyImage from '~/assets/dummy-image.png';
 import priestImage from '~/assets/fr-image.jpg';
+import vicepresident from '~/assets/vp-image.jpg';
+import ayogPresident from '~/assets/ayog-president.jpg';
+import { Icon } from 'astro-icon/components';
 ---
 
 <section class="mb-8 mt-7">
@@ -19,7 +20,7 @@ import priestImage from '~/assets/fr-image.jpg';
 	</h2>
 
 	<ul
-		class="my-4 flex w-full max-w-full scroll-ml-6 space-x-8 overflow-y-auto py-1.5 pl-6 scrollbar-thin"
+		class="my-4 flex w-full max-w-full scroll-ml-6 space-x-8 overflow-x-auto overflow-y-hidden py-1.5 pl-3 pr-2"
 	>
 		<Card
 			imageUrl={priestImage}
@@ -27,7 +28,7 @@ import priestImage from '~/assets/fr-image.jpg';
 			title={t('landing.priest-name')}
 		/>
 		<Card
-			imageUrl={dummyImage}
+			imageUrl={vicepresident}
 			subtitle={t('landing.vice-president')}
 			title={t('landing.vp-name')}
 		/>
@@ -37,12 +38,53 @@ import priestImage from '~/assets/fr-image.jpg';
 			title={t('landing.secretary-name')}
 		/>
 		<Card
-			imageUrl={dummyImage}
+			imageUrl={ayogPresident}
 			subtitle={t('landing.pastoral-commission-coordinator')}
 			title={t('landing.pastoral-commission-coordinator-name')}
 		/>
+
+		<div
+			class="flex w-64 max-w-xs flex-shrink-0 transform snap-start items-center justify-center overflow-hidden rounded-lg border transition-all duration-500 ease-in-out first:snap-align-none hover:scale-[1.03] hover:shadow-lg sm:w-64"
+		>
+			<a
+				href="/parish-pastoral-parishad/"
+				class="flex h-40 w-40 flex-row items-center justify-center space-x-2 rounded-full bg-yellow-200"
+			>
+				<h1 class="text-xl font-bold">View All</h1>
+				<Icon name="viewall" size={30} />
+			</a>
+		</div>
 	</ul>
-	<HoverableLink class="m-7">
-		{t('ui.more-button-show')}
-	</HoverableLink>
 </section>
+
+<style>
+	ul {
+		scrollbar-width: none;
+		-ms-overflow-style: none;
+	}
+
+	ul::-webkit-scrollbar {
+		display: none;
+	}
+
+	@media (min-width: 768px) {
+		ul {
+			scrollbar-width: thin;
+			scrollbar-color: grey transparent;
+		}
+
+		ul::-webkit-scrollbar {
+			display: block;
+			height: 6px;
+		}
+
+		ul::-webkit-scrollbar-thumb {
+			background-color: grey;
+			border-radius: 10px;
+		}
+
+		ul::-webkit-scrollbar-track {
+			background: transparent;
+		}
+	}
+</style>
