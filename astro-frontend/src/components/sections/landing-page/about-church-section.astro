@@ -13,11 +13,12 @@ import HoverableLink from '~/components/ui/hoverable-link.astro';
 import { cn } from '~/helpers/cn';
 
 import { loremIpsum } from '~/constants/lorem-ipsum';
+import YoutubeVideo from './youtube-video.astro';
 ---
 
 <section
 	style={{ backgroundImage: `url(${optimizedGrottoImage.src})` }}
-	class="relative mb-6 mt-5 bg-black/70 bg-cover bg-center pb-8 text-white bg-blend-darken"
+	class="relative mb-6 mt-5 bg-black/70 bg-cover bg-center pb-4 text-white bg-blend-darken"
 >
 	<div
 		class="relative flex w-full flex-col items-center justify-center bg-cover bg-center p-7 pb-2"
@@ -37,13 +38,17 @@ import { loremIpsum } from '~/constants/lorem-ipsum';
 		>
 		</div>
 		<p
-			class="relative mb-6 max-w-2xl text-justify font-poppins text-lg drop-shadow-lg"
+			class="relative max-w-2xl text-justify font-poppins text-lg drop-shadow-lg"
 		>
 			{loremIpsum}
 		</p>
 	</div>
 
-	<HoverableLink class="m-7">
+	<YoutubeVideo />
+
+	<div class="flex justify-center">
+	<HoverableLink href="/parish-history/" class="m-3">
 		{t('ui.more-button-know')}
 	</HoverableLink>
+	</div>
 </section>
