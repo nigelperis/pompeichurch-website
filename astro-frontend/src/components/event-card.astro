@@ -22,7 +22,7 @@ const {
 
 <div
 	class={cn(
-		'hover:scale-[1.03] hover:shadow-lg transform overflow-hidden rounded-lg border shadow transition-all duration-500 ease-in-out max-w-xs mx-auto',
+		'hover:scale-[1.03]  hover:shadow-lg transform overflow-hidden rounded-lg border shadow transition-all duration-500 ease-in-out max-w-xs mx-auto',
 		className,
 	)}
 >
@@ -31,7 +31,8 @@ const {
 			src={imageUrl}
 			alt={eventName}
 			width={450}
-			class="h-auto w-auto rounded-t-lg object-cover transition-transform duration-700 ease-in-out"
+			height={450}
+			class="h-auto w-auto rounded-t-lg object-fit aspect-[1.2/0.7] transition-transform duration-700 ease-in-out"
 		/>
 	</div>
 
