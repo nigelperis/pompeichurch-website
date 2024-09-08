@@ -2,6 +2,7 @@
 import EventCard from '~/components/event-card.astro';
 import eventImage from '~/assets/mass-interior.jpg';
 import eventImage1 from '~/assets/centenary-hall.jpg';
+import HoverableLink from '~/components/ui/hoverable-link.astro';
 
 const events = [
 	{
@@ -20,24 +21,28 @@ const events = [
 	},
 ];
 ---
-	<section class="p-6 font-poppins text-slate-100">
-		<h1
-			class="text-slate-1000 mb-6 border-l-4 border-yellow-400 pl-3 font-poppins text-3xl font-extrabold text-black"
-		>
-			Events
-		</h1>
 
-		<div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-			{
-				events.map((event) => (
-					<EventCard
-						eventName={event.eventName}
-						imageUrl={event.imageUrl}
-						description={event.description}
-						facebookLink={event.facebookLink}
-					/>
-				))
-			}
-		</div>
-	</section>
+<section class="mx-6 mt-6">
+	<h1
+		data-aos="fade-right"
+		class="relative mb-4 border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold"
+	>
+		Events
+	</h1>
 
+	<div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+		{
+			events.map((event) => (
+				<EventCard
+					eventName={event.eventName}
+					imageUrl={event.imageUrl}
+					description={event.description}
+					facebookLink={event.facebookLink}
+				/>
+			))
+		}
+	</div>
+	<div class="flex justify-center">
+		<HoverableLink href="/events" class="m-3"> Show More Events </HoverableLink>
+	</div>
+</section>

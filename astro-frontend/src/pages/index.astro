@@ -4,7 +4,6 @@ import HoverableLink from '~/components/ui/hoverable-link.astro';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-import RecentEvents from '~/components/recent-events.astro';
 import HeroSection from '~/components/sections/landing-page/hero-section.astro';
 import ParishPriestSpeaks from '~/components/sections/landing-page/parish-priest-speaks-section.astro';
 import AboutChurch from '~/components/sections/landing-page/about-church-section.astro';
@@ -20,6 +19,7 @@ import { Image } from 'astro:assets';
 
 const optimizedImageOne = ciboriumImage;
 import InstagramGrid from '~/components/sections/landing-page/instagram-grid.astro';
+import ChurchEventsSection from '~/components/sections/landing-page/church-events-section.astro';
 const optimizedImageTwo = sacramentImage;
 const optimizedImageThree = maryGrottoImage;
 ---
@@ -58,12 +58,7 @@ const optimizedImageThree = maryGrottoImage;
 	</main>
 
 	<PastoralParishadSection />
-	<RecentEvents/>
-	<HoverableLink class="mb-2 mt-2 ml-20 inline-block text-black"
-	href={"http://localhost:4321/events/"}>
-		Show More
-	</HoverableLink>
-
+	<ChurchEventsSection />
 	<InstagramGrid />
 
 	<MassTimingsSection />
