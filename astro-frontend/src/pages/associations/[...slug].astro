@@ -102,6 +102,15 @@ export async function getStaticPaths() {
 				{ name: 'Emily Davis', position: 'Ward Secretary' },
 			],
 		},
+		{
+			slug: 'legion-of-mary',
+			title: 'Legion Of Mary',
+			associationImage: '../../assets/svp.jpg',
+			officeBearers: [
+				{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
+				{ name: 'Emily Davis', position: 'Ward Secretary' },
+			],
+		},
 	];
 	return pages.map(({ slug, title, associationImage, officeBearers }) => {
 		return {
