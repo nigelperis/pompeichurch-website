@@ -15,14 +15,14 @@ const { title, subtitles, seceratory, convenor } = Astro.props;
 const uniqueId = Math.random().toString(36).substring(2, 9);
 ---
 
-<div class="border  border-yellow-600 rounded-md w-full max-w-lg mx-auto my-10 ">
+<div class="border  border-yellow-600 rounded-md w-full max-w-3xl mx-auto my-10  ">
   <div class="flex justify-between items-center p-3 bg-yellow-200 cursor-pointer dropdown-toggle" data-dropdown-id={uniqueId}>
     <h3 class="font-semibold text-lg">{title}</h3>
     <span class="arrow transform transition-transform">&#x25BC;</span>
   </div>
 
   <div class="dropdown-content overflow-hidden pl-3 border-t border-gray-300" data-dropdown-id={uniqueId}>
-    <ul class="list-none space-y-2">
+    <ul class="list-none space-y-2 mt-3">
       {subtitles?.map((subtitle) => (
         <li>{subtitle.commission} - <span class="text-gray-500">{subtitle.name}</span></li>
       ))}
