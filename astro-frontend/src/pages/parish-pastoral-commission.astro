@@ -1,0 +1,78 @@
+---
+import PullDown from "~/components/pull-down.astro";
+import Layout from '~/layouts/layout.astro';
+
+const events = [
+  {
+    title: 'Community Gathering',
+    subtitles: [
+      { commission: 'Commission for Education', name: 'John Doe' },
+      { commission: 'Commission for Health', name: 'Jane Smith' },
+      { commission: 'Commission for Labour', name: 'Michael Johnson' },
+      { commission: 'Commission for Migrants', name: 'Emily Davis' },
+      { commission: 'Commission for SC/ST Christians', name: 'Chris Brown' },
+      { commission: 'Commission for Differently Abled', name: 'Jessica Taylor' }
+    ],
+    seceratory: 'John Doe',
+    convenor: 'Jane Doe'
+  },
+  {
+    title: 'Community Gathering',
+    subtitles: [
+      { commission: 'Commission for Education', name: 'John Doe' },
+      { commission: 'Commission for Health', name: 'Jane Smith' },
+      { commission: 'Commission for Labour', name: 'Michael Johnson' },
+      { commission: 'Commission for Migrants', name: 'Emily Davis' },
+      { commission: 'Commission for SC/ST Christians', name: 'Chris Brown' },
+      { commission: 'Commission for Differently Abled', name: 'Jessica Taylor' }
+    ],
+    seceratory: 'John Doe',
+    convenor: 'Jane Doe'
+  },
+  {
+    title: 'Community Gathering',
+    subtitles: [
+      { commission: 'Commission for Education', name: 'John Doe' },
+      { commission: 'Commission for Health', name: 'Jane Smith' },
+      { commission: 'Commission for Labour', name: 'Michael Johnson' },
+      { commission: 'Commission for Migrants', name: 'Emily Davis' },
+      { commission: 'Commission for SC/ST Christians', name: 'Chris Brown' },
+      { commission: 'Commission for Differently Abled', name: 'Jessica Taylor' }
+    ],
+    seceratory: 'John Doe',
+    convenor: 'Jane Doe'
+  },
+  {
+    title: 'Community Gathering',
+    subtitles: [
+      { commission: 'Commission for Education', name: 'John Doe' },
+      { commission: 'Commission for Health', name: 'Jane Smith' },
+      { commission: 'Commission for Labour', name: 'Michael Johnson' },
+      { commission: 'Commission for Migrants', name: 'Emily Davis' },
+      { commission: 'Commission for SC/ST Christians', name: 'Chris Brown' },
+      { commission: 'Commission for Differently Abled', name: 'Jessica Taylor' }
+    ],
+    seceratory: 'John Doe',
+    convenor: 'Jane Doe'
+  }
+  // Add more events here
+];
+---
+<Layout title="Pompei Church | Parish Pastoral Commission">
+  <section class="mx-6 mt-5">
+    <h2
+    data-animate-on-view="animate-slidein-left"
+    class="font-roboto relative mb-4 border-l-4 border-natgeo-yellow pl-3 text-left text-3xl font-extrabold transition-opacity duration-700 mb-20"
+  >
+    PARISH PASTORAL COMMISSION
+  </h2>
+    {events.map((event) => (
+      <PullDown
+        title={event.title}
+        subtitles={event.subtitles}
+        seceratory={event.seceratory}
+        convenor={event.convenor}
+      />
+    ))}
+  </section>
+</Layout>
