@@ -15,31 +15,32 @@ const { convenor, title, subtitles } = Astro.props;
 const uniqueId = Math.random().toString(36).substring(2, 9);
 ---
 
-<div class="border border-yellow-600 rounded-md w-full max-w-3xl mx-auto my-10">
-  <div class="flex justify-between items-center p-3  rounded-md  bg-yellow-100 cursor-pointer dropdown-toggle" data-dropdown-id={uniqueId}>
-    <h3 class="font-semibold text-lg">{title}</h3>
+<div class="border border-yellow-300 shadow-sm rounded-md w-full max-w-3xl mx-auto my-10">
+  <div class="flex justify-between items-center p-4 rounded-md bg-yellow-100 cursor-pointer dropdown-toggle" data-dropdown-id={uniqueId}>
+    <h3 class="font-extrabold text-xl">{title}</h3>
     <Icon
-      name="chevron-right";
-      class="arrow transform transition-transform w-6 h-6"
+      name="chevron-right"
+      class="arrow transform transition-transform w-6 h-6 text-yellow-600"
+      data-icon-name="chevron-right"
     />
   </div>
 
-  <div class="dropdown-content overflow-hidden pl-3 pr-3" data-dropdown-id={uniqueId}>
+  <div class="dropdown-content overflow-hidden text-left pl-4 pr-4" data-dropdown-id={uniqueId}>
     <div class="mt-2">
-      <p><strong>Convenor:</strong> <span class="text-gray-500">{convenor}</span></p>
+      <p class="text-xl text-gray-700"><strong>Convenor:</strong> <span class="text-gray-500 text-xl">{convenor}</span></p>
     </div>
-    <table class="table-auto w-full mt-3 mb-3">
+    <table class="table-auto w-full mt-4 mb-4">
       <thead>
         <tr>
-          <th class="text-left font-semibold border-b-2 pb-2">Commission</th>
-          <th class="text-left font-semibold border-b-2 pb-2">Name</th>
+          <th class="text-left text-xl font-bold border-b-2 pb-2 text-yellow-500">Commission</th>
+          <th class="text-left text-xl font-bold border-b-2 pb-2 text-yellow-500">Secretary</th>
         </tr>
       </thead>
       <tbody>
         {subtitles?.map((subtitle) => (
           <tr key={subtitle.commission}>
-            <td class="py-2"><strong>{subtitle.commission}</strong></td>
-            <td class="py-2 text-gray-500">{subtitle.name}</td>
+            <td class="py-2 text-sm"><strong>{subtitle.commission}</strong></td>
+            <td class="py-2 text-sm text-gray-600">{subtitle.name}</td>
           </tr>
         ))}
       </tbody>
@@ -51,7 +52,7 @@ const uniqueId = Math.random().toString(36).substring(2, 9);
   .dropdown-content {
     max-height: 0;
     opacity: 0;
-    transition: max-height 0.5s ease, opacity 0.5s ease;
+    transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out;
     overflow: hidden;
   }
   .dropdown-content.open {
@@ -60,12 +61,18 @@ const uniqueId = Math.random().toString(36).substring(2, 9);
   }
   .arrow {
     transition: transform 0.3s ease;
-    transform: rotate(-90deg);
-  }
-  .arrow.rotate {
     transform: rotate(90deg);
   }
+  .arrow.rotate {
+    transform: rotate(-90deg);
+  }
+  @media (max-width: 768px) {
+    .text-lg {
+      font-size: 0.875rem;
+    }
+  }
 </style>
+
 
 <script>
   document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
