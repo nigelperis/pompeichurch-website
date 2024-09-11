@@ -5,13 +5,12 @@ interface Subtitle {
 }
 
 interface Props {
+  convenor: string;
   title: string;
   subtitles?: Subtitle[];
-  seceratory: string;
-  convenor: string;
 }
 
-const { title, subtitles, seceratory, convenor } = Astro.props;
+const { convenor, title, subtitles } = Astro.props;
 const uniqueId = Math.random().toString(36).substring(2, 9);
 ---
 
@@ -22,15 +21,15 @@ const uniqueId = Math.random().toString(36).substring(2, 9);
   </div>
 
   <div class="dropdown-content overflow-hidden pl-3 border-t border-gray-300" data-dropdown-id={uniqueId}>
-    <ul class="list-none space-y-2 mt-3">
+    <div class="mt-2">
+      <p><strong>Convenor:</strong> <span class="text-gray-500">{convenor}</span></p>
+    </div>
+    <ul class="list-none space-y-2 mt-2 mb-2">
       {subtitles?.map((subtitle) => (
-        <li>{subtitle.commission} - <span class="text-gray-500">{subtitle.name}</span></li>
+        <li><strong>{subtitle.commission}</strong> : <span class="text-gray-500">{subtitle.name}</span></li>
       ))}
     </ul>
-    <div class="mt-4">
-      <p><strong>Convenor:</strong> {convenor}</p>
-      <p><strong>Secretary:</strong> {seceratory}</p>
-    </div>
+
   </div>
 </div>
 
