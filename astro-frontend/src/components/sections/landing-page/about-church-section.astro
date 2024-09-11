@@ -12,8 +12,8 @@ import HoverableLink from '~/components/ui/hoverable-link.astro';
 
 import { cn } from '~/helpers/cn';
 
-import { loremIpsum } from '~/constants/lorem-ipsum';
 import YoutubeVideo from './youtube-video.astro';
+import { churchHistory } from '~/constants/church-history';
 ---
 
 <section
@@ -38,9 +38,9 @@ import YoutubeVideo from './youtube-video.astro';
 		>
 		</div>
 		<p
-			class="relative max-w-2xl text-justify font-poppins text-lg drop-shadow-lg"
+			class="relative max-w-2xl leading-relaxed font-poppins text-justify drop-shadow-xl"
 		>
-			{loremIpsum}
+			{churchHistory}
 		</p>
 	</div>
 
