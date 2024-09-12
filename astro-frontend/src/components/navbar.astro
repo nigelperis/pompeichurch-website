@@ -6,8 +6,10 @@ import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 import { navLinks } from '~/constants/nav-links.ts';
+import ScrollProgress from './ui/scroll-progress.astro';
+import ScrollTop from './scroll-top.astro';
 ---
-
+<ScrollProgress/>
 <header class="sticky top-0 z-10 w-full backdrop-blur-lg and bg-white/80 p-5 shadow-md">
 	<section class="flex items-center justify-between ">
 		<a
