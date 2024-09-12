@@ -1,0 +1,27 @@
+<style>
+  #scroll-progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background-color: #ffdd00;
+    transform-origin: left;
+    transform: scaleX(0);
+    transition: transform 0.1s ease-out;
+    z-index: 9999;
+    width: 100%;
+  }
+</style>
+
+<div id="scroll-progress-bar"></div>
+
+<script>
+  window.addEventListener('scroll', () => {
+    const scrollProgressBar = document.getElementById('scroll-progress-bar');
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPercentage = scrollTop / scrollHeight;
+
+    scrollProgressBar.style.transform = `scaleX(${scrollPercentage})`;
+  });
+</script>
