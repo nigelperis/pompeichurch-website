@@ -2,23 +2,29 @@
 import { Icon } from "astro-icon/components"
 ---
 
-<section class="mb-8 mt-6">
-  <h1
-		data-aos="fade-right"
-		class="mx-5 mb-4 border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold"
-	>
-		Follow <span class="text-3xl font-semibold">our journey</span>
-	</h1>
+
+<h1
+data-aos="fade-right"
+class="mx-5 mb-4 border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold"
+>
+Follow <span class="text-3xl font-semibold">our journey</span>
+</h1>
+
+<section class="mb-8 mt-5 flex justify-center">
+
+
   <div class="flex flex-col md:flex-row justify-between items-center w-full max-w-2xl gap-4">
     <div class="flex-1 flex flex-col rounded-lg justify-center overflow-hidden max-w-xs w-full">
       <h2 class="text-base flex items-center mb-3 font-thin">
-        <Icon name="facebook" class="text-2xl ml-2 mr-1" />
+        <Icon name="facebook" class="text-blue-500 text-2xl ml-2 mr-1" />
         <span class="font-semibold">OurLadyOfPompeiChurch</span>
+
       </h2>
 
-      <div class="relative rounded-xl border shadow-lg bg-white">
+      <div class="relative rounded-lg bg-white">
         <div id="fb-root"></div>
-        <div class="fb-page"
+        <div class="fb-page rounded-lg shadow-[0_-1px_2px_rgba(0,0,0,0.1),_0_3px_4px_rgba(0,0,0,0.1)]
+ "
              data-href="https://www.facebook.com/ladyofpompeichurch.gurpur?ref=embed_page"
              data-height="300"
              data-width="320"
@@ -36,25 +42,27 @@ import { Icon } from "astro-icon/components"
       </div>
     </div>
 
-    <div class="flex-1 flex flex-col rounded-lg justify-center overflow-hidden p-2 max-w-xs w-full">
+    <div class="flex-1 flex flex-col rounded-xl justify-center overflow-hidden p-2 max-w-xs w-full">
       <h2 class="text-base flex items-center mb-3 font-thin">
-        <Icon name="instagram" class="text-2xl ml-2 mr-1" />
+        <Icon name="instagram" class="text-pink-500 text-2xl ml-2 mr-1" />
         <span class="font-semibold">@our_lady_of_pompei_church</span>
       </h2>
-      <div class="relative rounded-xl border shadow-md bg-white">
+      <div  class="relative rounded-xl bg-white shadow-[0_-1px_2px_rgba(0,0,0,0.1),_0_3px_4px_rgba(0,0,0,0.1)]
+">
         <iframe
           src="https://www.instagram.com/our_lady_of_pompei_church/embed/"
           width="100%"
           height="300"
 					seamless="seamless"
           style="border:none; overflow: auto;">
+          class="rounded-lg"
         </iframe>
       </div>
     </div>
   </div>
 
-</section>
 
+</section>
 <script
 async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v20.0" nonce="sTNs2jJW">
 </script>
