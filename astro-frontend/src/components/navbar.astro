@@ -8,8 +8,8 @@ const t = useTranslations(lang);
 import { navLinks } from '~/constants/nav-links.ts';
 ---
 
-<header class="sticky top-0 z-10 w-full bg-white/90 p-5 shadow-sm">
-	<section class="flex items-center justify-between">
+<header class="sticky top-0 z-10 w-full backdrop-blur-lg and bg-white/80 p-5 shadow-md">
+	<section class="flex items-center justify-between ">
 		<a
 			href="/"
 			class={cn('font-poppins-semibold text-lg font-semibold', {
@@ -24,75 +24,78 @@ import { navLinks } from '~/constants/nav-links.ts';
 		</div>
 	</section>
 
-	<nav
-		class="fixed inset-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 transition-transform duration-500 ease-out"
-		id="navbar"
-	>
-		<Icon
-			name="cancel"
-			id="hamburger-close"
-			class="sticky top-5 mb-5 ml-auto cursor-pointer rounded-full text-4xl"
-		/>
-		<ul class="flex flex-col gap-y-5">
-			{
-				navLinks.map((link) => (
-					<li key={link.href}>
-						<a
-							data-expandable-links={
-								link.type === 'expandable' ? 'true' : 'false'
-							}
-							href={
-								link.type === 'link'
-									? getRelativeLocaleUrl(lang, link.href)
-									: '#'
-							}
-							class="font-popppins group flex items-center justify-between text-3xl font-extrabold text-black"
-						>
-							<span
-								class={cn(
-									'border-b-4 border-b-transparent font-poppins transition-all duration-150 group-hover:border-natgeo-yellow',
-									{ 'font-noto-sans-kannada': lang === 'kok' },
-								)}
-							>
-								{t(link.title)}
-							</span>
-							{link.type === 'expandable' ? (
-								<Icon
-									name="chevron-right"
-									class="text-3xl"
-									data-icon-name="chevron-right"
-								/>
-							) : null}
-						</a>
-						{link.type === 'expandable' ? (
-							<ul class="expandable-links max-h-0 overflow-hidden transition-all duration-500 ease-out">
-								{link.expandedLinks.map((sublinks) => (
-									<li key={sublinks.href}>
-										<a
-											href={getRelativeLocaleUrl(lang, sublinks.href)}
-											class="group mb-4 flex items-center justify-between font-merriweather text-xl font-bold text-black"
-										>
-											<span
-												class={cn(
-													'border-b-4 border-b-transparent font-poppins transition-all duration-150 group-hover:border-natgeo-yellow',
-													{ 'font-noto-sans-kannada': lang === 'kok' },
-												)}
-											>
-												{t(sublinks.title)}
-											</span>
-										</a>
-									</li>
-								))}
-							</ul>
-						) : null}
-					</li>
-				))
-			}
-		</ul>
-	</nav>
+
 </header>
+<nav
+class="fixed inset-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 transition-transform duration-500 ease-out"
+id="navbar"
+>
+<Icon
+	name="cancel"
+	id="hamburger-close"
+	class="sticky top-5 mb-5 ml-auto cursor-pointer rounded-full text-4xl"
+/>
+<ul class="flex flex-col gap-y-5">
+	{
+		navLinks.map((link) => (
+			<li key={link.href}>
+				<a
+					data-expandable-links={
+						link.type === 'expandable' ? 'true' : 'false'
+					}
+					href={
+						link.type === 'link'
+							? getRelativeLocaleUrl(lang, link.href)
+							: '#'
+					}
+					class="font-popppins group flex items-center justify-between text-3xl font-extrabold text-black"
+				>
+					<span
+						class={cn(
+							'border-b-4 border-b-transparent font-poppins transition-all duration-150 group-hover:border-natgeo-yellow',
+							{ 'font-noto-sans-kannada': lang === 'kok' },
+						)}
+					>
+						{t(link.title)}
+					</span>
+					{link.type === 'expandable' ? (
+						<Icon
+							name="chevron-right"
+							class="text-3xl"
+							data-icon-name="chevron-right"
+						/>
+					) : null}
+				</a>
+				{link.type === 'expandable' ? (
+					<ul class="expandable-links max-h-0 overflow-hidden transition-all duration-500 ease-out">
+						{link.expandedLinks.map((sublinks) => (
+							<li key={sublinks.href}>
+								<a
+									href={getRelativeLocaleUrl(lang, sublinks.href)}
+									class="group mb-4 flex items-center justify-between font-merriweather text-xl font-bold text-black"
+								>
+									<span
+										class={cn(
+											'border-b-4 border-b-transparent font-poppins transition-all duration-150 group-hover:border-natgeo-yellow',
+											{ 'font-noto-sans-kannada': lang === 'kok' },
+										)}
+									>
+										{t(sublinks.title)}
+									</span>
+								</a>
+							</li>
+						))}
+					</ul>
+				) : null}
+			</li>
+		))
+	}
+</ul>
+</nav>
 
 <style>
+
+
 	#navbar {
 		transform: translateX(100%);
 		transition: transform 200ms ease-out;
