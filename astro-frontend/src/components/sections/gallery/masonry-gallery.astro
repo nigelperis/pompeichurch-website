@@ -1,5 +1,5 @@
 ---
-import { Image, getImage } from 'astro:assets';
+import { Image } from 'astro:assets';
 
 import imageOne from '~/assets/mary-grotto.jpg';
 import imageTwo from '~/assets/church-hero-image.webp';
@@ -53,11 +53,15 @@ const imgArr = [
 
 <script>
 	import Masonry from 'masonry-layout';
+	import mediumZoom from 'medium-zoom';
 
 	const masonryGrid = document.querySelector<HTMLDivElement>('.masonry-grid')!;
 
 	const _ = new Masonry(masonryGrid, {
 		itemSelector: '.masonry-grid-item',
 		resize: true,
+	});
+	const zoom = mediumZoom('.masonry-grid-item', {
+		background: '#fff',
 	});
 </script>
