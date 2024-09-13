@@ -105,6 +105,10 @@ export const navLinks = [
 				title: 'nav.womens-forum',
 				href: '/associations/womens-forum',
 			},
+			{
+				title: 'nav.legion-of-mary',
+				href: '/associations/legion-of-mary',
+			},
 		],
 	},
 	{
