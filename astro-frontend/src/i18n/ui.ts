@@ -78,6 +78,8 @@ export const ui = {
 		'ui.more-button-show': 'SHOW MORE',
 		'footer.contact-us': 'Contact Us',
 		'footer.follow-us': 'Follow Us',
+		'priest.title': 'PARISH PRIESTS',
+		'priest.aaecolaco': 'Rev. Fr. A.A.E Colaco'
 	},
 	kok: {
 		'nav.home': 'ಹೋಮ್',
@@ -152,5 +154,7 @@ export const ui = {
 		'ui.more-button-show': 'ಚಡಿತ್ ಮಾಹೆತ್',
 		'footer.contact-us': 'ಸಂಪರ್ಕ್',
 		'footer.follow-us': 'ಮಾಧ್ಯಮ್',
+		'priest.title': 'ಫಿರ್ಗಜೆಚೆ ವಿಗಾರ್',
+		'priest.aaecolaco': 'ಮಾ| ಬಾ| ಆಂತೊನ್ ಎ. ಕುಲಾಸೊ'
 	},
 } as const;
