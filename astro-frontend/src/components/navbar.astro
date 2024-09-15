@@ -1,5 +1,4 @@
 ---
-// Imports
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import { Icon } from 'astro-icon/components';
 import { cn } from '~/helpers/cn';
@@ -7,14 +6,15 @@ import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import { navLinks } from '~/constants/nav-links.ts';
 import ScrollProgress from './ui/scroll-progress.astro';
 
-
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
+
 <ScrollProgress/>
 <header class="sticky top-0 z-10 w-full backdrop-blur-lg bg-white/80 p-5 shadow-md">
 	<section class="flex items-center justify-between">
-		<a href="/" class={cn('font-poppins-semibold text-lg font-semibold', { 'font-noto-sans-kannada-semibold': lang === 'kok' })}>
+		<a href={lang === 'kok' ? '/kok' : '/'}
+		class={cn('font-poppins-semibold text-lg font-semibold', { 'font-noto-sans-kannada-semibold': lang === 'kok' })}>
 			{t('landing.church-name')}
 		</a>
 		<div id="hamburger" class="ml-auto flex w-fit cursor-pointer flex-col items-end">

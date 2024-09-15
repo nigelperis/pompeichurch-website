@@ -1,6 +1,5 @@
 ---
 import Layout from '~/layouts/layout.astro';
-import HoverableLink from '~/components/ui/hoverable-link.astro';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -18,8 +17,8 @@ import maryGrottoImage from '~/assets/mary-grotto.jpg';
 import { Image } from 'astro:assets';
 
 const optimizedImageOne = ciboriumImage;
-import InstagramGrid from '~/components/sections/landing-page/social-grid.astro';
 import ChurchEventsSection from '~/components/sections/landing-page/church-events-section.astro';
+import SocialGrid from '~/components/sections/landing-page/social-grid.astro';
 const optimizedImageTwo = sacramentImage;
 const optimizedImageThree = maryGrottoImage;
 ---
@@ -55,11 +54,13 @@ const optimizedImageThree = maryGrottoImage;
 		</EmblaCarosuel>
 
 		<AboutChurch />
+
+		<PastoralParishadSection />
+
+		<ChurchEventsSection />
+
+		<SocialGrid />
+
+		<MassTimingsSection />
 	</main>
-
-	<PastoralParishadSection />
-	<ChurchEventsSection />
-	<InstagramGrid />
-
-	<MassTimingsSection />
 </Layout>

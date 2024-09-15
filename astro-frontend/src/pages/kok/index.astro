@@ -19,7 +19,7 @@ import maryGrottoImage from '~/assets/mary-grotto.jpg';
 import { Image } from 'astro:assets';
 
 const optimizedImageOne = ciboriumImage;
-import InstagramGrid from '~/components/sections/landing-page/social-grid.astro';
+import SocialGrid from '~/components/sections/landing-page/social-grid.astro';
 const optimizedImageTwo = sacramentImage;
 const optimizedImageThree = maryGrottoImage;
 ---
@@ -53,13 +53,9 @@ const optimizedImageThree = maryGrottoImage;
 				/>
 			</EmblaCarosuelItem>
 		</EmblaCarosuel>
-
 		<AboutChurch />
+		<PastoralParishadSection />
+		<SocialGrid />
+		<MassTimingsSection />
 	</main>
-
-	<PastoralParishadSection />
-
-	<InstagramGrid />
-
-	<MassTimingsSection />
 </Layout>

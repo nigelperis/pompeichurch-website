@@ -78,6 +78,7 @@ export const ui = {
 		'ui.more-button-show': 'SHOW MORE',
 		'footer.contact-us': 'Contact Us',
 		'footer.follow-us': 'Follow Us',
+		'history.title': 'OUR HISTORY'
 	},
 	kok: {
 		'nav.home': 'ಹೋಮ್',
@@ -145,12 +146,13 @@ export const ui = {
 		'landing.daily-mass': 'ಸದಾಂ ಮೀಸ್',
 		'landing.catechism': 'ಭುರ್ಗ್ಯಾಂಕ್ ದೊತೊರ್ನ್',
 		'landing.catechism-note':
-			'ಆಯ್ತಾರಾ ಸಾಕಾಳಿಂ, 9:15AM (ಮಹಿನ್ಯಾಚೊ ಪಯ್ಲೊ ಆಯ್ತಾರ್  ಸೊಡ್ನ್)',
+			'ಆಯ್ತಾರಾ ಸಾಕಾಳಿಂ, 9:15AM (ಮಹಿನ್ಯಾಚೊ ಪಯ್ಲೊ ಆಯ್ತಾರ್ ಸೊಡ್ನ್)',
 		'landing.novena': 'ಪೊಂಪೈ ಮಾಯೆಚೆ‌ ನೊವೆನ್',
 		'landing.novena-note': 'ಸನ್ವಾರಾ ಸಾಂಜೆರ್ ಆನಿ ಆಯ್ತಾರಾ ಸಕಾಳಿಂ ಮಿಸಾ ಉಪ್ರಾಂತ್',
 		'ui.more-button-know': 'ಚಡಿತ್ ಮಾಹೆತ್',
 		'ui.more-button-show': 'ಚಡಿತ್ ಮಾಹೆತ್',
 		'footer.contact-us': 'ಸಂಪರ್ಕ್',
 		'footer.follow-us': 'ಮಾಧ್ಯಮ್',
+		'history.title': 'ಆಮ್ಚಿಂ ಚರಿತ್ರಾ'
 	},
 } as const;
