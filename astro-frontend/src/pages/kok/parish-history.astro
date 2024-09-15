@@ -1,10 +1,15 @@
 ---
+import churchBanner from '~/assets/church-banner.jpg';
 import ParishDetails from '~/components/sections/parish-history/parish-details.astro';
-
 import Layout from '~/layouts/layout.astro';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+import EmblaCarosuel from '~/components/ui/embla-carousel.astro';
+import EmblaCarosuelItem from '~/components/ui/embla-carousel-item.astro';
+
+import churchHeroImage from '~/assets/church-hero.jpg'
+import { Image } from 'astro:assets';
 ---
 
 <Layout title="Pompei Church | Parish History">
@@ -18,6 +23,29 @@ const t = useTranslations(lang);
 				</h2>
 			</div>
 			<ParishDetails />
+			<EmblaCarosuel>
+			<EmblaCarosuelItem>
+				<Image
+					src={churchBanner}
+					alt="Banner Image"
+					class="h-full w-full object-cover"
+				/>
+			</EmblaCarosuelItem>
+			<EmblaCarosuelItem>
+				<Image
+					src={churchHeroImage}
+					alt="Church Image"
+					class="h-full w-full object-cover"
+				/>
+			</EmblaCarosuelItem>
+			<EmblaCarosuelItem>
+				<Image
+					src={churchBanner}
+					alt="Church Banner"
+					class="h-auto w-full object-cover"
+				/>
+			</EmblaCarosuelItem>
+		</EmblaCarosuel>
 		</section>
 	</main>
 </Layout>

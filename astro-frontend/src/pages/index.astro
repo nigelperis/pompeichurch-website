@@ -10,17 +10,13 @@ import PastoralParishadSection from '~/components/sections/landing-page/pastoral
 import MassTimingsSection from '~/components/sections/landing-page/mass-timings-section.astro';
 import EmblaCarosuel from '~/components/ui/embla-carousel.astro';
 import EmblaCarosuelItem from '~/components/ui/embla-carousel-item.astro';
+import ChurchEventsSection from '~/components/sections/landing-page/church-events-section.astro';
+import SocialGrid from '~/components/sections/landing-page/social-grid.astro';
 
 import ciboriumImage from '~/assets/ciborium.jpg';
 import sacramentImage from '~/assets/sacrament.jpg';
 import maryGrottoImage from '~/assets/mary-grotto.jpg';
 import { Image } from 'astro:assets';
-
-const optimizedImageOne = ciboriumImage;
-import ChurchEventsSection from '~/components/sections/landing-page/church-events-section.astro';
-import SocialGrid from '~/components/sections/landing-page/social-grid.astro';
-const optimizedImageTwo = sacramentImage;
-const optimizedImageThree = maryGrottoImage;
 ---
 
 <Layout title={`${t('landing.church-name')} | ${t('landing.town-name')}`}>
@@ -32,21 +28,21 @@ const optimizedImageThree = maryGrottoImage;
 		<EmblaCarosuel>
 			<EmblaCarosuelItem>
 				<Image
-					src={optimizedImageOne}
+					src={ciboriumImage}
 					alt="Ciborium"
 					class="h-full w-full object-cover"
 				/>
 			</EmblaCarosuelItem>
 			<EmblaCarosuelItem>
 				<Image
-					src={optimizedImageTwo}
+					src={sacramentImage}
 					alt="Sacrament"
 					class="h-full w-full object-cover"
 				/>
 			</EmblaCarosuelItem>
 			<EmblaCarosuelItem>
 				<Image
-					src={optimizedImageThree}
+					src={maryGrottoImage}
 					alt="Mary Grotto"
 					class="h-auto w-full object-cover"
 				/>
