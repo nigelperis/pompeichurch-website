@@ -38,7 +38,7 @@ import { parishHistoryExcerpt } from '~/constants/parish-history-excerpt';
 		>
 		</div>
 		<p
-			class="relative max-w-2xl leading-relaxed font-poppins text-justify drop-shadow-xl"
+			class="relative max-w-2xl text-justify font-poppins leading-relaxed drop-shadow-xl"
 		>
 			{parishHistoryExcerpt}
 		</p>
@@ -47,7 +47,10 @@ import { parishHistoryExcerpt } from '~/constants/parish-history-excerpt';
 	<YoutubeVideo />
 
 	<div class="flex justify-center">
-		<HoverableLink href="/parish-history/" class="m-3">
+		<HoverableLink
+			href={lang === 'kok' ? '/kok/parish-history' : '/parish-history'}
+			class="m-3"
+		>
 			{t('ui.more-button-know')}
 		</HoverableLink>
 	</div>

@@ -2,30 +2,32 @@
 import churchOutsideImage from '~/assets/church-outside.jpg';
 import { parishHistory } from '~/constants/parish-history';
 ---
+
 <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-  <div class="mb-2 mt-6 rounded-lg bg-white px-6">
-   <img
-      src={churchOutsideImage.src}
-      alt="Pompei Church"
-      class="h-54 mb-4 w-full rounded-md object-cover"
-   />
-  {parishHistory.intro.map((paragraph) => (
-    <p class="mt-4 text-justify font-poppins text-lg text-slate-700">
-      {paragraph}
-    </p>
-  ))}
-  {parishHistory.priests.map((priest) => (
-    <div class="mt-6">
-      <h3 class="font-bold text-lg text-slate-900">
-        {priest.name} ({priest.years})
-      </h3>
-      <p class="mt-2 text-justify text-lg text-slate-700">
-        {priest.description}
-      </p>
-    </div>
-  ))}
+	<div class="mb-2 mt-6 rounded-lg bg-white px-6">
+		<img
+			src={churchOutsideImage.src}
+			alt="Pompei Church"
+			class="h-54 mb-4 w-full rounded-md object-cover"
+		/>
+		{
+			parishHistory.intro.map((paragraph) => (
+				<p class="mt-4 text-justify font-poppins text-lg text-slate-700">
+					{paragraph}
+				</p>
+			))
+		}
+		{
+			parishHistory.priests.map((priest) => (
+				<div class="mt-6">
+					<h3 class="text-lg font-bold text-slate-900">
+						{priest.name} ({priest.years})
+					</h3>
+					<p class="mt-2 text-justify text-lg text-slate-700">
+						{priest.description}
+					</p>
+				</div>
+			))
+		}
+	</div>
 </div>
-
-
-
-

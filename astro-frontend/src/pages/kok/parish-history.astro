@@ -1,7 +1,8 @@
 ---
 import ParishDetails from '~/components/sections/parish-history/parish-details.astro';
 
-import Layout from '~/layouts/layout.astro';import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+import Layout from '~/layouts/layout.astro';
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
@@ -16,7 +17,7 @@ const t = useTranslations(lang);
 					{t('history.title')}
 				</h2>
 			</div>
-			<ParishDetails>
+			<ParishDetails />
 		</section>
 	</main>
 </Layout>

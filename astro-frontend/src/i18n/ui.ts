@@ -20,7 +20,7 @@ export const ui = {
 		'nav.parish-pastoral-parishad': 'Parish Pastoral Parishad',
 		'nav.parish-pastoral-commission': 'Parish Pastoral Commission',
 		'nav.our-institutions': 'Our Institutions',
-		'nav.convents': 'Convents',
+		'nav.our-convents': 'Our Convents',
 		'nav.infrastructure': 'Infrastructure',
 		'nav.svp': 'SVP',
 		'nav.icym-pyc': 'ICYM (PYC)',
@@ -78,7 +78,7 @@ export const ui = {
 		'ui.more-button-show': 'SHOW MORE',
 		'footer.contact-us': 'Contact Us',
 		'footer.follow-us': 'Follow Us',
-		'history.title': 'OUR HISTORY'
+		'history.title': 'OUR HISTORY',
 	},
 	kok: {
 		'nav.home': 'ಹೋಮ್',
@@ -94,7 +94,7 @@ export const ui = {
 		'nav.parish-pastoral-parishad': 'ಫಿರ್ಗಜ್ ಗೊವ್ಳಿಕ್ ಪರಿಷಧ್',
 		'nav.parish-pastoral-commission': 'ಆಯೋಗ್',
 		'nav.our-institutions': 'ಆಮ್ಚೆ ಸಂಸ್ಥೆ',
-		'nav.convents': 'ಆಮ್ಚಿಂ ಕೊವೆಂತಾಂ',
+		'nav.our-convents': 'ಆಮ್ಚಿಂ ಕೊವೆಂತಾಂ',
 		'nav.infrastructure': 'ಮೂಳ್ ಸಂಪನ್ಮುಳಾಂ',
 		'nav.svp': 'ಸಾಂ. ವಿಶೆಂತ್ ಪಾವ್ಲ್ ಸಭಾ',
 		'nav.icym-pyc': 'ಐ.ಸಿ.ವೈ.ಎಮ್. /ಪಿ.ವೈ.ಸಿ.',
@@ -153,6 +153,6 @@ export const ui = {
 		'ui.more-button-show': 'ಚಡಿತ್ ಮಾಹೆತ್',
 		'footer.contact-us': 'ಸಂಪರ್ಕ್',
 		'footer.follow-us': 'ಮಾಧ್ಯಮ್',
-		'history.title': 'ಆಮ್ಚಿಂ ಚರಿತ್ರಾ'
+		'history.title': 'ಆಮ್ಚಿಂ ಚರಿತ್ರಾ',
 	},
 } as const;

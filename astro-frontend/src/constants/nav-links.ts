@@ -52,8 +52,8 @@ export const navLinks = [
 				href: '/our-institutions',
 			},
 			{
-				title: 'nav.convents',
-				href: '/convents',
+				title: 'nav.our-convents',
+				href: '/our-convents',
 			},
 			{
 				title: 'nav.infrastructure',
