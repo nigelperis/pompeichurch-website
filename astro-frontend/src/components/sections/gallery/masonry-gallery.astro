@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 
 import imageOne from '~/assets/mary-grotto.jpg';
-import imageTwo from '~/assets/church-hero-image.webp';
+import imageTwo from '~/assets/church-hero.jpg';
 import imageThree from '~/assets/ciborium.jpg';
 import imageFour from '~/assets/mother-mary.jpg';
 import imageFive from '~/assets/sacrament.jpg';
@@ -14,7 +14,7 @@ import imageTen from '~/assets/pompei-convent.jpg';
 import imageEleven from '~/assets/pompei-sabha-bhavan.jpg';
 import imageTwelve from '~/assets/centenary-hall.jpg';
 
-const imgArr = [
+const images = [
   imageOne,
   imageTwo,
   imageThree,
@@ -32,18 +32,18 @@ const imgArr = [
 
 <section class="masonry-grid m-4 mx-auto flex w-screen">
   {
-    imgArr.map((itm) => (
+    images.map((image) => (
       <a
         href="javascript:void(0);"
-        data-pswp-src={itm.src}
-        data-pswp-width={itm.width}
-        data-pswp-height={itm.height}
+        data-pswp-src={image.src}
+        data-pswp-width={image.width}
+        data-pswp-height={image.height}
         class="masonry-grid-item-link"
       >
         <Image
-          src={itm}
+          src={image}
           class="masonry-grid-item w-1/2 overflow-hidden rounded-2xl object-cover p-1 px-1 lg:w-1/4"
-          alt="masonry grid item"
+          alt={image.alt || "Gallery image"}
         />
       </a>
     ))
@@ -53,66 +53,50 @@ const imgArr = [
 <script>
   import Masonry from 'masonry-layout';
   import 'photoswipe/style.css';
-  import pswpModule from 'photoswipe';
   import PhotoSwipeLightbox from 'photoswipe/lightbox';
 
   const masonryGrid = document.querySelector<HTMLDivElement>('.masonry-grid')!;
-const leftArrowSVGString2='<svg xmlns="http://www.w3.org/2000/svg" width="82" height="82" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right"><path d="m9 18 6-6-6-6"/></svg>'
-		const leftArrowSVGString = '<svg xmlns="http://www.w3.org/2000/svg" width="82" height="82" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left"><path d="m15 18-6-6 6-6"/></svg>';
+
   const _ = new Masonry(masonryGrid, {
     itemSelector: '.masonry-grid-item',
     resize: true,
   });
-  const options = {
-		arrowPrevSVG: leftArrowSVGString,
-  arrowNextSVG: leftArrowSVGString2,
 
-  // to apply styles just to this instance of PhotoSwipe
-  mainClass: 'pswp--custom-icon-colors',
+  const lightbox = new PhotoSwipeLightbox({
+    mainClass: 'pswp--custom-icon-colors',
     gallery: '.masonry-grid',
     children: 'a',
-    pswpModule,
+    pswpModule: () => import('photoswipe'),
     getImageURLForShare: (slide) => slide.data.pswpSrc,
-  }
-
-	const lightbox = new PhotoSwipeLightbox(options);
-lightbox.on('uiRegister', function() {
-   lightbox.pswp.ui.registerElement({
-    name: 'download-button',
-    order: 8,
-    isButton: true,
-    tagName: 'a',
-
-    // SVG with outline
-    html: {
-      isCustomSVG: true,
-      inner: '<path d="M20.5 14.3 17.1 18V10h-2.2v7.9l-3.4-3.6L10 16l6 6.1 6-6.1ZM23 23H9v2h14Z" id="pswp__icn-download"/>',
-      outlineID: 'pswp__icn-download'
-    },
-
-    // Or provide full svg:
-    // html: '<svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true" class="pswp__icn"><path d="M20.5 14.3 17.1 18V10h-2.2v7.9l-3.4-3.6L10 16l6 6.1 6-6.1ZM23 23H9v2h14Z" /></svg>',
-
-    // Or provide any other markup:
-    // html: '<i class="fa-solid fa-download"></i>'
-
-    onInit: (el, pswp) => {
-      el.setAttribute('download', '');
-      el.setAttribute('target', '_blank');
-      el.setAttribute('rel', 'noopener');
-
-      pswp.on('change', () => {
-        console.log('change');
-        el.href = pswp.currSlide.data.src;
-      });
-    }
   });
-});
-lightbox.init();
-var imagesLoaded = require('imagesloaded');
 
-imagesLoaded( '#container', function() {
-  // images have loaded
-});
+  lightbox.on('uiRegister', function() {
+    lightbox.pswp.ui.registerElement({
+      name: 'download-button',
+      order: 8,
+      isButton: true,
+      tagName: 'a',
+      html: {
+        isCustomSVG: true,
+        inner: '<path d="M20.5 14.3 17.1 18V10h-2.2v7.9l-3.4-3.6L10 16l6 6.1 6-6.1ZM23 23H9v2h14Z" id="pswp__icn-download"/>',
+        outlineID: 'pswp__icn-download'
+      },
+      onInit: (el, pswp) => {
+        el.setAttribute('download', '');
+        el.setAttribute('target', '_blank');
+        el.setAttribute('rel', 'noopener');
+        pswp.on('change', () => {
+          el.href = pswp.currSlide.data.src;
+        });
+      }
+    });
+  });
 
+  lightbox.init();
+
+  import('imagesloaded').then((imagesLoaded) => {
+    imagesLoaded(masonryGrid, function() {
+      // images have loaded
+    });
+  });
 </script>

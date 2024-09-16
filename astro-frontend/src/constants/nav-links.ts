@@ -52,8 +52,8 @@ export const navLinks = [
 				href: '/our-institutions',
 			},
 			{
-				title: 'nav.convents',
-				href: '/convents',
+				title: 'nav.our-convents',
+				href: '/our-convents',
 			},
 			{
 				title: 'nav.infrastructure',
@@ -104,6 +104,10 @@ export const navLinks = [
 			{
 				title: 'nav.womens-forum',
 				href: '/associations/womens-forum',
+			},
+			{
+				title: 'nav.legion-of-mary',
+				href: '/associations/legion-of-mary',
 			},
 		],
 	},
