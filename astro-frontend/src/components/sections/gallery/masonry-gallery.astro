@@ -15,52 +15,64 @@ import imageEleven from '~/assets/pompei-sabha-bhavan.jpg';
 import imageTwelve from '~/assets/centenary-hall.jpg';
 
 const imgArr = [
-	imageOne,
-	imageTwo,
-	imageThree,
-	imageFour,
-	imageFive,
-	imageSix,
-	imageSeven,
-	imageEight,
-	imageNine,
-	imageTen,
-	imageEleven,
-	imageTwelve,
+  imageOne,
+  imageTwo,
+  imageThree,
+  imageFour,
+  imageFive,
+  imageSix,
+  imageSeven,
+  imageEight,
+  imageNine,
+  imageTen,
+  imageEleven,
+  imageTwelve,
 ] as const;
 ---
 
 <section class="masonry-grid m-4 mx-auto flex w-screen">
-	{
-		imgArr.map((itm) => (
-			<Image
-				src={itm}
-				class="masonry-grid-item w-1/2 overflow-hidden rounded-2xl object-cover p-1 px-1 lg:w-1/4"
-				alt="masaonry grid item"
-			/>
-		))
-	}
-	{
-		imgArr.map((itm) => (
-			<Image
-				src={itm}
-				class="masonry-grid-item w-1/2 overflow-hidden rounded-2xl object-cover p-1 lg:w-1/4"
-				alt="masaonry grid item"
-			/>
-		))
-	}
+  {
+    imgArr.map((itm) => (
+      <a
+			href="#" onclick="event.preventDefault();"
+        data-pswp-src={itm.src}
+        data-pswp-width={itm.width}
+        data-pswp-height={itm.height}
+        class="masonry-grid-item-link"
+        href="/"
+
+      >
+        <Image
+          src={itm}
+          class="masonry-grid-item w-1/2 overflow-hidden rounded-2xl object-cover p-1 px-1 lg:w-1/4"
+          alt="masonry grid item"
+        />
+      </a>
+    ))
+  }
 </section>
 
 <script>
-	import Masonry from 'masonry-layout';
-	import mediumZoom from 'medium-zoom';
-	const masonryGrid = document.querySelector<HTMLDivElement>('.masonry-grid')!;
+  import Masonry from 'masonry-layout';
+  import 'photoswipe/style.css';
+  import pswpModule from 'photoswipe';
+  import PhotoSwipeLightbox from 'photoswipe/lightbox';
 
-	const _ = new Masonry(masonryGrid, {
-		itemSelector: '.masonry-grid-item',
-		resize: true,
-	});
-	const zoom = mediumZoom('.masonry-grid-item', {
-		background: '#fff',
-	});
+  const masonryGrid = document.querySelector<HTMLDivElement>('.masonry-grid')!;
+
+
+  const _ = new Masonry(masonryGrid, {
+    itemSelector: '.masonry-grid-item',
+    resize: true,
+  });
+  const lightbox = new PhotoSwipeLightbox({
+    gallery: '.masonry-grid',
+    children: 'a',
+    pswpModule,
+    getImageURLForShare: (slide) => slide.data.pswpSrc,
+  });
+
+  lightbox.init();
+
+
 </script>
