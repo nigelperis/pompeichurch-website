@@ -56,14 +56,13 @@ const imgArr = [
   import pswpModule from 'photoswipe';
   import PhotoSwipeLightbox from 'photoswipe/lightbox';
 
-  const masonryGrid = document.querySelector<HTMLDivElement>('.masonry-grid');
-    const leftArrowSVGString2='<svg xmlns="http://www.w3.org/2000/svg" width="82" height="82" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right"><path d="m9 18 6-6-6-6"/></svg>'
+  const masonryGrid = document.querySelector<HTMLDivElement>('.masonry-grid')!;
+const leftArrowSVGString2='<svg xmlns="http://www.w3.org/2000/svg" width="82" height="82" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right"><path d="m9 18 6-6-6-6"/></svg>'
 		const leftArrowSVGString = '<svg xmlns="http://www.w3.org/2000/svg" width="82" height="82" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left"><path d="m15 18-6-6 6-6"/></svg>';
   const _ = new Masonry(masonryGrid, {
     itemSelector: '.masonry-grid-item',
     resize: true,
   });
-
   const options = {
 		arrowPrevSVG: leftArrowSVGString,
   arrowNextSVG: leftArrowSVGString2,
