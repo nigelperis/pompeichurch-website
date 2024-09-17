@@ -29,6 +29,7 @@
 		"clsx": "2.1.1",
 		"embla-carousel": "8.2.0",
 		"embla-carousel-autoplay": "8.2.0",
+		"embla-carousel-wheel-gestures": "8.0.1",
 		"imagesloaded": "5.0.0",
 		"masonry-layout": "4.2.2",
 		"photoswipe": "5.4.4",

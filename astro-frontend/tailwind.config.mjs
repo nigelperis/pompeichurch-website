@@ -56,6 +56,9 @@ export default {
 		animation: {
 			slidein: 'slidein 1s ease-out var(--slidein-delay, 0) forwards',
 		},
+		screens: {
+			xs: '380',
+		},
 	},
 
 	plugins: [require('tailwind-scrollbar')],
