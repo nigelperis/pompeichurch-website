@@ -16,7 +16,7 @@ const { name, description, ward, class: className, imageUrl } = Astro.props;
 <li
 	class={cn(
 		'hover:scale-[1.02] hover:shadow-sm snap-start first:snap-align-none transform overflow-hidden rounded-lg border shadow transition-all duration-500 ease-in-out sm:w-full',
-		className,
+		className
 	)}
 >
 	<div class="card-image flex-none">
@@ -30,21 +30,21 @@ const { name, description, ward, class: className, imageUrl } = Astro.props;
 
 	<div class="card-content mt-4 flex flex-1 flex-col justify-end space-y-2 p-4">
 		<h3
-			class="card-title line-clamp-1 text-lg font-extrabold leading-snug text-slate-900 sm:text-2xl"
+			class="card-title sm:text-2xl line-clamp-1 text-lg font-extrabold leading-snug text-slate-900"
 			title={name}
 		>
 			{name}
 		</h3>
 		{
 			description && (
-				<p class="card-description line-clamp-3 text-base text-slate-700 sm:text-lg">
+				<p class="card-description sm:text-lg line-clamp-3 text-base text-slate-700">
 					{description}
 				</p>
 			)
 		}
 		{
 			ward && (
-				<p class="card-ward line-clamp-3 text-sm font-semibold text-slate-600 sm:text-base">
+				<p class="card-ward sm:text-base line-clamp-3 text-sm font-semibold text-slate-600">
 					Ward: {ward}
 				</p>
 			)
