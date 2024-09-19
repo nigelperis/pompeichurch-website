@@ -46,7 +46,7 @@ const shouldDragFreelyFlagToUse = shouldDragFreely ?? false;
 
 	function tweenOpacity(
 		emblaApi: EmblaCarouselType,
-		eventName?: EmblaEventType,
+		eventName?: EmblaEventType
 	): void {
 		const engine = emblaApi.internalEngine();
 		const scrollProgress = emblaApi.scrollProgress();
@@ -86,7 +86,7 @@ const shouldDragFreelyFlagToUse = shouldDragFreely ?? false;
 	}
 
 	export const setupTweenOpacity = (
-		emblaApi: EmblaCarouselType,
+		emblaApi: EmblaCarouselType
 	): (() => void) => {
 		const slideNodes = emblaApi.slideNodes();
 
