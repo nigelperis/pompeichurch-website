@@ -20,38 +20,39 @@ import { Icon } from 'astro-icon/components';
 	</h2>
 
 	<ul
-		class="my-4 flex w-full max-w-full scroll-ml-6 space-x-8 overflow-x-auto overflow-y-hidden py-1.5 pl-4 pr-4 scrollbar-none">
-			<Card
-				imageUrl={priestImage}
-				subtitle={t('landing.priest')}
-				title={t('landing.priest-name')}
-			/>
-			<Card
-				imageUrl={vicepresident}
-				subtitle={t('landing.vice-president')}
-				title={t('landing.vp-name')}
-			/>
-			<Card
-				imageUrl={dummyImage}
-				subtitle={t('landing.secretary')}
-				title={t('landing.secretary-name')}
-			/>
-			<Card
-				imageUrl={ayogPresident}
-				subtitle={t('landing.pastoral-commission-coordinator')}
-				title={t('landing.pastoral-commission-coordinator-name')}
-			/>
+		class="my-4 flex w-full max-w-full scroll-ml-6 space-x-8 overflow-x-auto overflow-y-hidden py-1.5 pl-4 pr-4 scrollbar-none"
+	>
+		<Card
+			imageUrl={priestImage}
+			subtitle={t('landing.priest')}
+			title={t('landing.priest-name')}
+		/>
+		<Card
+			imageUrl={vicepresident}
+			subtitle={t('landing.vice-president')}
+			title={t('landing.vp-name')}
+		/>
+		<Card
+			imageUrl={dummyImage}
+			subtitle={t('landing.secretary')}
+			title={t('landing.secretary-name')}
+		/>
+		<Card
+			imageUrl={ayogPresident}
+			subtitle={t('landing.pastoral-commission-coordinator')}
+			title={t('landing.pastoral-commission-coordinator-name')}
+		/>
 
-			<div
-				class="hover:scale-[1.01] flex w-64 snap-start first:snap-align-none max-w-xs flex-shrink-0 transform items-center justify-center overflow-hidden rounded-lg border shadow-md transition-all duration-200 ease-in-out sm:w-64"
+		<div
+			class="sm:w-64 flex w-64 max-w-xs flex-shrink-0 transform snap-start items-center justify-center overflow-hidden rounded-lg border shadow-md transition-all duration-200 ease-in-out first:snap-align-none hover:scale-[1.01]"
+		>
+			<a
+				href="/parish-pastoral-parishad/"
+				class="flex h-40 w-40 flex-row items-center justify-center space-x-2 rounded-full bg-yellow-200"
 			>
-				<a
-					href="/parish-pastoral-parishad/"
-					class="flex h-40 w-40 flex-row items-center justify-center space-x-2 rounded-full bg-yellow-200"
-				>
-					<h1 class="text-xl font-bold">View All</h1>
-					<Icon name="viewall" size={30} />
-				</a>
-			</div>
+				<h1 class="text-xl font-bold">View All</h1>
+				<Icon name="viewall" size={30} />
+			</a>
+		</div>
 	</ul>
 </section>
