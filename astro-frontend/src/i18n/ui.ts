@@ -20,7 +20,7 @@ export const ui = {
 		'nav.parish-pastoral-parishad': 'Parish Pastoral Parishad',
 		'nav.parish-pastoral-commission': 'Parish Pastoral Commission',
 		'nav.our-institutions': 'Our Institutions',
-		'nav.convents': 'Convents',
+		'nav.our-convents': 'Our Convents',
 		'nav.infrastructure': 'Infrastructure',
 		'nav.svp': 'SVP',
 		'nav.icym-pyc': 'ICYM (PYC)',
