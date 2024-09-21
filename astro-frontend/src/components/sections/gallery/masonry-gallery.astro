@@ -14,7 +14,7 @@ import imageTen from '~/assets/pompei-convent.jpg';
 import imageEleven from '~/assets/pompei-sabha-bhavan.jpg';
 import imageTwelve from '~/assets/centenary-hall.jpg';
 
-const imgArr = [
+const images = [
   imageOne,
   imageTwo,
   imageThree,
@@ -32,18 +32,18 @@ const imgArr = [
 
 <section class="masonry-grid m-4 mx-auto flex w-screen">
   {
-    imgArr.map((itm) => (
+    images.map((image) => (
       <a
         href="javascript:void(0);"
-        data-pswp-src={itm.src}
-        data-pswp-width={itm.width}
-        data-pswp-height={itm.height}
+        data-pswp-src={image.src}
+        data-pswp-width={image.width}
+        data-pswp-height={image.height}
         class="masonry-grid-item-link"
       >
         <Image
-          src={itm}
+          src={image}
           class="masonry-grid-item w-1/2 overflow-hidden rounded-2xl object-cover p-1 px-1 lg:w-1/4"
-          alt="masonry grid item"
+          alt={image.alt || "Gallery image"}
         />
       </a>
     ))
@@ -53,11 +53,9 @@ const imgArr = [
 <script>
   import Masonry from 'masonry-layout';
   import 'photoswipe/style.css';
-  import pswpModule from 'photoswipe';
   import PhotoSwipeLightbox from 'photoswipe/lightbox';
 
   const masonryGrid = document.querySelector<HTMLDivElement>('.masonry-grid')!;
-
 
   const _ = new Masonry(masonryGrid, {
     itemSelector: '.masonry-grid-item',
@@ -65,13 +63,34 @@ const imgArr = [
   });
 
   const lightbox = new PhotoSwipeLightbox({
+    mainClass: 'pswp--custom-icon-colors',
     gallery: '.masonry-grid',
     children: 'a',
-    pswpModule,
+    pswpModule: () => import('photoswipe'),
     getImageURLForShare: (slide) => slide.data.pswpSrc,
   });
 
+  lightbox.on('uiRegister', function() {
+    lightbox.pswp.ui.registerElement({
+      name: 'download-button',
+      order: 8,
+      isButton: true,
+      tagName: 'a',
+      html: {
+        isCustomSVG: true,
+        inner: '<path d="M20.5 14.3 17.1 18V10h-2.2v7.9l-3.4-3.6L10 16l6 6.1 6-6.1ZM23 23H9v2h14Z" id="pswp__icn-download"/>',
+        outlineID: 'pswp__icn-download'
+      },
+      onInit: (el, pswp) => {
+        el.setAttribute('download', '');
+        el.setAttribute('target', '_blank');
+        el.setAttribute('rel', 'noopener');
+        pswp.on('change', () => {
+          el.href = pswp.currSlide.data.src;
+        });
+      }
+    });
+  });
+
   lightbox.init();
-
-
 </script>
