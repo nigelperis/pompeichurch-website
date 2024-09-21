@@ -1,0 +1,47 @@
+<style>
+	#scroll-progress-bar {
+		position: fixed;
+		top: 0;
+		left: 0;
+		height: 4px;
+		background-color: #ffdd00;
+		transform-origin: left;
+		transform: scaleX(0);
+		transition: transform 0.1s ease-out;
+		z-index: 9999;
+		width: 100%;
+	}
+	#scroll-progress-bar.hidden {
+		display: none;
+	}
+</style>
+
+<div id="scroll-progress-bar"></div>
+
+<script>
+	const scrollProgressBar = document.getElementById('scroll-progress-bar');
+	const navbar = document.getElementById('navbar');
+	const hamburgerMenu = document.querySelector('#hamburger');
+	const hamburgerClose = document.querySelector('#hamburger-close');
+
+	window.addEventListener('scroll', () => {
+		const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+		const scrollHeight =
+			document.documentElement.scrollHeight - window.innerHeight;
+		const scrollPercentage = scrollTop / scrollHeight;
+
+		scrollProgressBar.style.transform = `scaleX(${Math.min(Math.max(scrollPercentage, 0), 1)})`;
+	});
+
+	hamburgerMenu?.addEventListener('click', () => {
+		navbar?.classList.add('open');
+		scrollProgressBar.classList.add('hidden');
+		document.body.style.overflow = 'hidden';
+	});
+
+	hamburgerClose?.addEventListener('click', () => {
+		navbar?.classList.remove('open');
+		scrollProgressBar.classList.remove('hidden');
+		document.body.style.overflow = '';
+	});
+</script>

@@ -13,7 +13,7 @@ import HoverableLink from '~/components/ui/hoverable-link.astro';
 import { cn } from '~/helpers/cn';
 
 import YoutubeVideo from './youtube-video.astro';
-import { churchHistory } from '~/constants/church-history';
+import { parishHistoryExcerpt } from '~/constants/parish-history-excerpt';
 ---
 
 <section
@@ -38,16 +38,19 @@ import { churchHistory } from '~/constants/church-history';
 		>
 		</div>
 		<p
-			class="relative max-w-2xl leading-relaxed font-poppins text-justify drop-shadow-xl"
+			class="relative max-w-2xl text-justify font-poppins leading-relaxed drop-shadow-xl"
 		>
-			{churchHistory}
+			{parishHistoryExcerpt}
 		</p>
 	</div>
 
 	<YoutubeVideo />
 
 	<div class="flex justify-center">
-		<HoverableLink href="/parish-history/" class="m-3">
+		<HoverableLink
+			href={lang === 'kok' ? '/kok/parish-history' : '/parish-history'}
+			class="m-3"
+		>
 			{t('ui.more-button-know')}
 		</HoverableLink>
 	</div>

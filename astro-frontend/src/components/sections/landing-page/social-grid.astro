@@ -1,0 +1,80 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<h1
+	data-aos="fade-right"
+	class="mx-5 mb-4 border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold"
+>
+	Follow <span class="text-3xl font-semibold">our journey</span>
+</h1>
+
+<section class="mb-8 mt-5 flex justify-center">
+	<div
+		class="flex w-full max-w-2xl flex-col items-center justify-between gap-4 md:flex-row"
+	>
+		<div
+			class="flex w-full max-w-xs flex-1 flex-col justify-center overflow-hidden rounded-lg"
+		>
+			<h2 class="mb-3 flex items-center text-base font-thin">
+				<Icon name="facebook" class="ml-2 mr-1 text-2xl text-blue-500" />
+				<span class="font-semibold">OurLadyOfPompeiChurch</span>
+			</h2>
+
+			<div class="relative rounded-lg bg-white">
+				<div id="fb-root"></div>
+				<div
+					class="fb-page rounded-lg shadow-[0_-1px_2px_rgba(0,0,0,0.1),_0_3px_4px_rgba(0,0,0,0.1)]"
+					data-href="https://www.facebook.com/ladyofpompeichurch.gurpur?ref=embed_page"
+					data-height="300"
+					data-width="320"
+					data-small-header="true"
+					data-adapt-container-width="true"
+					data-hide-cover="false"
+					data-show-facepile="true"
+					data-show-posts="true"
+					style="width: 100%; margin: auto; overflow: hidden;"
+				>
+					<blockquote
+						cite="https://www.facebook.com/ladyofpompeichurch.gurpur?ref=embed_page"
+						class="fb-xfbml-parse-ignore"
+					>
+						<a
+							href="https://www.facebook.com/ladyofpompeichurch.gurpur?ref=embed_page"
+							>Our Lady of Pompei Church, Gurpur Kaikamba</a
+						>
+					</blockquote>
+				</div>
+			</div>
+		</div>
+
+		<div
+			class="flex w-full max-w-xs flex-1 flex-col justify-center overflow-hidden rounded-xl p-2"
+		>
+			<h2 class="mb-3 flex items-center text-base font-thin">
+				<Icon name="instagram" class="ml-2 mr-1 text-2xl text-pink-500" />
+				<span class="font-semibold">@our_lady_of_pompei_church</span>
+			</h2>
+			<div
+				class="relative rounded-xl bg-white shadow-[0_-1px_2px_rgba(0,0,0,0.1),_0_3px_4px_rgba(0,0,0,0.1)]"
+			>
+				<iframe
+					src="https://www.instagram.com/our_lady_of_pompei_church/embed/"
+					width="100%"
+					height="300"
+					seamless="seamless"
+					style="border:none; overflow: auto;"
+				>
+					class="rounded-lg"
+				</iframe>
+			</div>
+		</div>
+	</div>
+</section>
+<script
+	async
+	defer
+	crossorigin="anonymous"
+	src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v20.0"
+	nonce="sTNs2jJW"
+></script>
