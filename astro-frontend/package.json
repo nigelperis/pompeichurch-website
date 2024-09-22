@@ -20,6 +20,7 @@
 		"@fontsource/montserrat": "5.0.19",
 		"@fontsource/noto-sans-kannada": "5.0.14",
 		"@fontsource/poppins": "5.0.15",
+		"@types/imagesloaded": "4.1.6",
 		"@types/react": "^18.3.5",
 		"@types/react-dom": "^18.3.0",
 		"aos": "2.3.4",
