@@ -1,4 +1,24 @@
-<div class="embla overflow-hidden p-4">
+---
+type CarouselType = 'opacityTransition' | 'scroll';
+
+interface Props {
+	carouselType?: CarouselType;
+	shouldLoop?: boolean;
+	shouldDragFreely?: boolean;
+}
+const { carouselType, shouldLoop, shouldDragFreely } = Astro.props;
+
+const carouselTypeToUse = carouselType ?? 'opacityTransition';
+const shouldLoopFlagToUse = shouldLoop ?? true;
+const shouldDragFreelyFlagToUse = shouldDragFreely ?? false;
+---
+
+<div
+	class="embla overflow-hidden p-4"
+	data-carousel-type={carouselTypeToUse}
+	data-should-loop={String(shouldLoopFlagToUse)}
+	data-drag-freely={String(shouldDragFreelyFlagToUse)}
+>
 	<div class="embla_container flex">
 		{(<slot />)}
 	</div>
@@ -10,17 +30,11 @@
 		type EmblaCarouselType,
 		type EmblaEventType,
 	} from 'embla-carousel';
-	import AutoPlay from 'embla-carousel-autoplay';
-
-	const emblaNode = document.querySelector<HTMLDivElement>('.embla')!;
-	const options = { loop: true } satisfies EmblaOptionsType;
-
-	const emblaApi = EmblaCarousel(emblaNode, options, [
-		AutoPlay({ delay: 3000, stopOnInteraction: false, jump: false }),
-	]);
 
 	const TWEEN_FACTOR_BASE = 0.84;
 	let tweenFactor = 0;
+
+	const emblaNodes = document.querySelectorAll<HTMLDivElement>('.embla')!;
 
 	function numberWithinRange(number: number, min: number, max: number): number {
 		return Math.min(Math.max(number, min), max);
@@ -30,10 +44,10 @@
 		tweenFactor = TWEEN_FACTOR_BASE * emblaApi.scrollSnapList().length;
 	}
 
-	const tweenOpacity = (
+	function tweenOpacity(
 		emblaApi: EmblaCarouselType,
 		eventName?: EmblaEventType,
-	): void => {
+	): void {
 		const engine = emblaApi.internalEngine();
 		const scrollProgress = emblaApi.scrollProgress();
 		const slidesInView = emblaApi.slidesInView();
@@ -69,7 +83,7 @@
 				emblaApi.slideNodes()[slideIndex].style.opacity = opacity;
 			});
 		});
-	};
+	}
 
 	export const setupTweenOpacity = (
 		emblaApi: EmblaCarouselType,
@@ -90,7 +104,36 @@
 		};
 	};
 
-	const removeTweenOpacity = setupTweenOpacity(emblaApi);
+	for (const node of emblaNodes) {
+		const carouselType = node.getAttribute('data-carousel-type');
+		const shouldLoop = node.getAttribute('data-should-loop');
+		const shouldDragFreely = node.getAttribute('data-drag-freely');
 
-	emblaApi.on('destroy', removeTweenOpacity);
+		const carouselOptions = {
+			loop: shouldLoop === 'true' ? true : false,
+			dragFree: shouldDragFreely === 'true' ? true : false,
+		} satisfies EmblaOptionsType;
+
+		if (carouselType === 'opacityTransition') {
+			const AutoPlay = await import('embla-carousel-autoplay');
+			const WheelGesturesPlugin = await import('embla-carousel-wheel-gestures');
+
+			const emblaApi = EmblaCarousel(node, carouselOptions, [
+				AutoPlay.default({
+					delay: 3000,
+					stopOnInteraction: false,
+					jump: false,
+				}),
+				WheelGesturesPlugin.WheelGesturesPlugin({}),
+			]);
+			const removeTweenOpacity = setupTweenOpacity(emblaApi);
+
+			emblaApi.on('destroy', removeTweenOpacity);
+		} else {
+			const WheelGesturesPlugin = await import('embla-carousel-wheel-gestures');
+			const _ = EmblaCarousel(node, carouselOptions, [
+				WheelGesturesPlugin.WheelGesturesPlugin({}),
+			]);
+		}
+	}
 </script>

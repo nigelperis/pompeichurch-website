@@ -1,21 +1,15 @@
 ---
 import { Image, getImage } from 'astro:assets';
-
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-
 import { cn } from '~/helpers/cn';
-
 import skyImage from '~/assets/sky-bg.jpg';
 const optimizedSkyImage = await getImage({ src: skyImage });
-
 import churchHeroImage from '~/assets/church-hero.jpg';
 const optimizedChurchHeroImage = await getImage({ src: churchHeroImage });
-
 import churchLogo from '~/assets/church-logo.png';
 ---
-
 <section
 	class="relative h-screen w-screen bg-black/30 bg-cover pb-8 bg-blend-overlay"
 	style={{
@@ -25,7 +19,9 @@ import churchLogo from '~/assets/church-logo.png';
 	<div class="absolute inset-0 bg-white opacity-70 bg-blend-darken"></div>
 
 	<div
-		class="relative mx-auto h-80 w-80 overflow-hidden rounded-b-[12rem] bg-yellow-50"	>
+		class="relative mx-auto h-80 w-96 overflow-hidden rounded-b-[12rem] bg-yellow-50"
+		class="xs:w-96 relative mx-auto h-80 w-80 overflow-hidden rounded-b-[12rem] bg-yellow-50"
+	>
 		<div
 			class="animated-background mx-auto h-full w-full bg-cover bg-center bg-no-repeat shadow-2xl"
 			style={{ backgroundImage: `url(${optimizedChurchHeroImage.src})` }}
@@ -41,7 +37,6 @@ import churchLogo from '~/assets/church-logo.png';
 	>
 		{t('landing.church-name')}
 	</h1>
-
 	<p
 		data-aos="fade-up"
 		data-aos-delay="900"
@@ -54,7 +49,6 @@ import churchLogo from '~/assets/church-logo.png';
 	>
 		{t('landing.town-name')}
 	</p>
-
 	<div class="mx-auto">
 		<Image
 			src={churchLogo}
@@ -66,7 +60,6 @@ import churchLogo from '~/assets/church-logo.png';
 		/>
 	</div>
 </section>
-
 <style>
 	@keyframes animatedBackground {
 		from {
