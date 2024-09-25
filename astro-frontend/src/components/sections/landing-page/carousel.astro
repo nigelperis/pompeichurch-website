@@ -1,0 +1,33 @@
+---
+import { Image } from 'astro:assets';
+import EmblaCarosuel from '~/components/ui/embla-carousel.astro';
+import EmblaCarosuelItem from '~/components/ui/embla-carousel-item.astro';
+
+import ciboriumImage from '~/assets/ciborium.jpg';
+import sacramentImage from '~/assets/sacrament.jpg';
+import maryGrottoImage from '~/assets/mary-grotto.jpg';
+---
+
+<EmblaCarosuel>
+	<EmblaCarosuelItem>
+		<Image
+			src={ciboriumImage}
+			alt="Ciborium"
+			class="h-full w-full object-cover"
+		/>
+	</EmblaCarosuelItem>
+	<EmblaCarosuelItem>
+		<Image
+			src={sacramentImage}
+			alt="Sacrament"
+			class="h-full w-full object-cover"
+		/>
+	</EmblaCarosuelItem>
+	<EmblaCarosuelItem>
+		<Image
+			src={maryGrottoImage}
+			alt="Mary Grotto"
+			class="h-auto w-full object-cover"
+		/>
+	</EmblaCarosuelItem>
+</EmblaCarosuel>

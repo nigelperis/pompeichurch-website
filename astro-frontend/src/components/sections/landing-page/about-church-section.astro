@@ -13,7 +13,7 @@ import HoverableLink from '~/components/ui/hoverable-link.astro';
 import { cn } from '~/helpers/cn';
 
 import YoutubeVideo from './youtube-video.astro';
-import { parishHistoryExcerpt } from '~/constants/parish-history-excerpt';
+import { churchHistory } from '~/constants/church-history';
 ---
 
 <section
@@ -27,7 +27,7 @@ import { parishHistoryExcerpt } from '~/constants/parish-history-excerpt';
 			data-aos="fade-right"
 			class={cn(
 				'relative mb-2 font-poppins text-5xl font-black leading-tight  ',
-				{ 'font-noto-sans-kannada': lang === 'kok' },
+				{ 'font-noto-sans-kannada': lang === 'kok' }
 			)}
 		>
 			{t('landing.about-church')}
@@ -40,17 +40,14 @@ import { parishHistoryExcerpt } from '~/constants/parish-history-excerpt';
 		<p
 			class="relative max-w-2xl text-justify font-poppins leading-relaxed drop-shadow-xl"
 		>
-			{parishHistoryExcerpt}
+			{churchHistory}
 		</p>
 	</div>
 
 	<YoutubeVideo />
 
 	<div class="flex justify-center">
-		<HoverableLink
-			href={lang === 'kok' ? '/kok/parish-history' : '/parish-history'}
-			class="m-3"
-		>
+		<HoverableLink href="/parish-history/" class="m-3">
 			{t('ui.more-button-know')}
 		</HoverableLink>
 	</div>

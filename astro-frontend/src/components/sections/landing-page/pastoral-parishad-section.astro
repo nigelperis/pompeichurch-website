@@ -11,7 +11,7 @@ import ayogPresident from '~/assets/ayog-president.jpg';
 import { Icon } from 'astro-icon/components';
 ---
 
-<section class="mb-8 mt-7">
+<section class="mb-6 mt-6 scrollbar-none">
 	<h2
 		class="mx-5 mb-4 border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold"
 		data-aos="fade-right"
@@ -20,7 +20,7 @@ import { Icon } from 'astro-icon/components';
 	</h2>
 
 	<ul
-		class="my-4 flex w-full max-w-full scroll-ml-6 space-x-8 overflow-x-auto overflow-y-hidden py-1.5 pl-3 pr-2"
+		class="my-4 flex w-full max-w-full scroll-ml-6 space-x-8 overflow-x-auto overflow-y-hidden py-1.5 pl-4 pr-4 scrollbar-none"
 	>
 		<Card
 			imageUrl={priestImage}
@@ -44,7 +44,7 @@ import { Icon } from 'astro-icon/components';
 		/>
 
 		<div
-			class="flex w-64 max-w-xs flex-shrink-0 transform snap-start items-center justify-center overflow-hidden rounded-lg border transition-all duration-500 ease-in-out first:snap-align-none hover:scale-[1.03] hover:shadow-lg sm:w-64"
+			class="sm:w-64 flex w-64 max-w-xs flex-shrink-0 transform snap-start items-center justify-center overflow-hidden rounded-lg border shadow-md transition-all duration-200 ease-in-out first:snap-align-none hover:scale-[1.01]"
 		>
 			<a
 				href="/parish-pastoral-parishad/"
@@ -56,35 +56,3 @@ import { Icon } from 'astro-icon/components';
 		</div>
 	</ul>
 </section>
-
-<style>
-	ul {
-		scrollbar-width: none;
-		-ms-overflow-style: none;
-	}
-
-	ul::-webkit-scrollbar {
-		display: none;
-	}
-
-	@media (min-width: 768px) {
-		ul {
-			scrollbar-width: thin;
-			scrollbar-color: grey transparent;
-		}
-
-		ul::-webkit-scrollbar {
-			display: block;
-			height: 6px;
-		}
-
-		ul::-webkit-scrollbar-thumb {
-			background-color: grey;
-			border-radius: 10px;
-		}
-
-		ul::-webkit-scrollbar-track {
-			background: transparent;
-		}
-	}
-</style>

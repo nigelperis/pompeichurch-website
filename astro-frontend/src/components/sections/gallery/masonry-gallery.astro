@@ -1,8 +1,8 @@
 ---
-import { Image, getImage } from 'astro:assets';
+import { Image } from 'astro:assets';
 
 import imageOne from '~/assets/mary-grotto.jpg';
-import imageTwo from '~/assets/church-hero.jpg';
+import imageTwo from '~/assets/church-hero-image.webp';
 import imageThree from '~/assets/ciborium.jpg';
 import imageFour from '~/assets/mother-mary.jpg';
 import imageFive from '~/assets/sacrament.jpg';
@@ -14,7 +14,7 @@ import imageTen from '~/assets/pompei-convent.jpg';
 import imageEleven from '~/assets/pompei-sabha-bhavan.jpg';
 import imageTwelve from '~/assets/centenary-hall.jpg';
 
-const imgArr = [
+const images = [
 	imageOne,
 	imageTwo,
 	imageThree,
@@ -30,34 +30,73 @@ const imgArr = [
 ] as const;
 ---
 
-<section class="masonry-grid m-4 mx-auto flex w-screen">
+<section
+	class="masonry-grid relative m-4 mx-auto min-h-screen w-screen"
+	style={{ minWidth: '100vw' }}
+>
 	{
-		imgArr.map((itm) => (
-			<Image
-				src={itm}
-				class="masonry-grid-item w-1/2 overflow-hidden rounded-2xl object-cover p-1 px-1 lg:w-1/4"
-				alt="masaonry grid item"
-			/>
-		))
-	}
-	{
-		imgArr.map((itm) => (
-			<Image
-				src={itm}
-				class="masonry-grid-item w-1/2 overflow-hidden rounded-2xl object-cover p-1 lg:w-1/4"
-				alt="masaonry grid item"
-			/>
+		images.map((image) => (
+			<a
+				href="javascript:void(0);"
+				data-pswp-src={image.src}
+				data-pswp-width={image.width}
+				data-pswp-height={image.height}
+				class="masonry-grid-item-link masonry-grid-item lg:w-1/4 inline-block w-1/2"
+			>
+				<Image
+					src={image}
+					class="overflow-hidden rounded-lg object-cover p-1 px-1"
+					alt={'Gallery image'}
+				/>
+			</a>
 		))
 	}
 </section>
 
 <script>
 	import Masonry from 'masonry-layout';
+	import 'photoswipe/style.css';
+	import PhotoSwipeLightbox from 'photoswipe/lightbox';
+	import imagesLoaded from 'imagesloaded';
 
 	const masonryGrid = document.querySelector<HTMLDivElement>('.masonry-grid')!;
 
-	const _ = new Masonry(masonryGrid, {
+	const masonry = new Masonry(masonryGrid, {
 		itemSelector: '.masonry-grid-item',
 		resize: true,
+		percentPosition: true,
+		transitionDuration: 300,
 	});
+
+	imagesLoaded(masonryGrid).on('progress', () => {
+		masonry?.layout?.();
+	});
+
+	const lightbox = new PhotoSwipeLightbox({
+		mainClass: 'pswp--custom-icon-colors',
+		gallery: '.masonry-grid',
+		children: 'a',
+		pswpModule: () => import('photoswipe'),
+	});
+
+	lightbox.on('uiRegister', function () {
+		lightbox?.pswp?.ui?.registerElement({
+			name: 'download-button',
+			order: 8,
+			isButton: true,
+			tagName: 'a',
+			html: {
+				isCustomSVG: true,
+				inner:
+					'<path d="M20.5 14.3 17.1 18V10h-2.2v7.9l-3.4-3.6L10 16l6 6.1 6-6.1ZM23 23H9v2h14Z" id="pswp__icn-download"/>',
+				outlineID: 'pswp__icn-download',
+			},
+			onInit: (el, pswp) => {
+				el.setAttribute('download', '');
+				el.setAttribute('target', '_blank');
+			},
+		});
+	});
+
+	lightbox.init();
 </script>

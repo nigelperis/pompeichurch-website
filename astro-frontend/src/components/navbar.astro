@@ -44,7 +44,7 @@ const t = useTranslations(lang);
 	<ul class="flex flex-col gap-y-5">
 		{
 			navLinks.map((link) => (
-				<li key={link.href}>
+				<li>
 					<a
 						data-expandable-links={
 							link.type === 'expandable' ? 'true' : 'false'
@@ -57,7 +57,7 @@ const t = useTranslations(lang);
 						<span
 							class={cn(
 								'border-b-4 border-b-transparent font-poppins transition-all duration-150 group-hover:border-natgeo-yellow',
-								{ 'font-noto-sans-kannada': lang === 'kok' },
+								{ 'font-noto-sans-kannada': lang === 'kok' }
 							)}
 						>
 							{t(link.title)}
@@ -73,7 +73,7 @@ const t = useTranslations(lang);
 					{link.type === 'expandable' ? (
 						<ul class="expandable-links max-h-0 overflow-hidden transition-all duration-500 ease-out">
 							{link.expandedLinks.map((sublinks) => (
-								<li key={sublinks.href}>
+								<li>
 									<a
 										href={getRelativeLocaleUrl(lang, sublinks.href)}
 										class="group mb-4 flex items-center justify-between font-merriweather text-xl font-bold text-black"
@@ -81,7 +81,7 @@ const t = useTranslations(lang);
 										<span
 											class={cn(
 												'border-b-4 border-b-transparent font-poppins transition-all duration-150 group-hover:border-natgeo-yellow',
-												{ 'font-noto-sans-kannada': lang === 'kok' },
+												{ 'font-noto-sans-kannada': lang === 'kok' }
 											)}
 										>
 											{t(sublinks.title)}
@@ -104,9 +104,6 @@ const t = useTranslations(lang);
 	}
 	#navbar.open {
 		transform: translateX(0);
-	}
-	#navbar.slide-out {
-		transform: translateX(100%);
 	}
 
 	a[data-expandable-links='true'] + ul.expandable-links {
@@ -132,54 +129,55 @@ const t = useTranslations(lang);
 	const hamburgerClose = document.querySelector('#hamburger-close');
 	const navbar = document.querySelector('#navbar');
 	const expandableLinks = document.querySelectorAll(
-		'[data-expandable-links=true]',
+		'[data-expandable-links=true]'
 	);
-	const allNavigationLinks = document.querySelectorAll(
-		'a:not([data-expandable-links=true])',
+	const allNavigationLinks = document.querySelectorAll<HTMLAnchorElement>(
+		'nav a:not([data-expandable-links=true])'
 	);
 
 	hamburgerMenu?.addEventListener('click', () => {
 		navbar?.classList.add('open');
-		navbar?.classList.remove('slide-out');
-		document.body.style.overflow = 'hidden';
 	});
 
 	hamburgerClose?.addEventListener('click', () => {
 		expandableLinks.forEach((element) => {
-			const expandableContent = element.nextElementSibling;
-			expandableContent.style.transition = 'none';
-			expandableContent.style.maxHeight = '0';
+			const expandableContent =
+				element.parentElement?.querySelector<HTMLUListElement>('a + ul');
+			expandableContent?.style?.setProperty('max-height', '0');
 			element.setAttribute('data-is-submenu-expanded', 'false');
-			setTimeout(() => (expandableContent.style.transition = ''), 0);
 		});
 
-		navbar?.classList.add('slide-out');
 		navbar?.classList.remove('open');
-		document.body.style.overflow = '';
-
-		setTimeout(() => navbar?.classList.remove('slide-out'), 500);
 	});
 
 	expandableLinks.forEach((element) => {
 		element.addEventListener('click', (e) => {
 			e.preventDefault();
-
 			const subMenuStatus = element.getAttribute('data-is-submenu-expanded');
-			const expandableContent = element.nextElementSibling;
+			//typesafe way of selecting sibling element
+			const expandableContent =
+				element?.parentElement?.querySelector<HTMLUListElement>('a + ul');
 
+			//toggle collpse state for all other elemnets execpt currrently clicked elemnt
 			expandableLinks.forEach((otherElement) => {
 				if (otherElement !== element) {
 					otherElement.setAttribute('data-is-submenu-expanded', 'false');
-					otherElement.nextElementSibling.style.maxHeight = '0';
+					//typesafe of selecting and styling  sibling element
+					otherElement.parentElement
+						?.querySelector<HTMLUListElement>('a + ul')
+						?.style.setProperty('max-height', '0');
 				}
 			});
 
 			if (subMenuStatus === 'true') {
 				element.setAttribute('data-is-submenu-expanded', 'false');
-				expandableContent.style.maxHeight = '0';
+				expandableContent?.style?.setProperty('max-height', '0');
 			} else {
 				element.setAttribute('data-is-submenu-expanded', 'true');
-				expandableContent.style.maxHeight = `${expandableContent.scrollHeight}px`;
+				expandableContent?.style?.setProperty(
+					'max-height',
+					`${expandableContent.scrollHeight}px`
+				);
 			}
 		});
 	});
@@ -189,21 +187,19 @@ const t = useTranslations(lang);
 			e.preventDefault();
 
 			expandableLinks.forEach((element) => {
-				const expandableContent = element.nextElementSibling;
-				expandableContent.style.transition = 'none';
-				expandableContent.style.maxHeight = '0';
+				const expandableContent =
+					element.parentElement?.querySelector<HTMLUListElement>('a + ul');
+
+				expandableContent?.style.setProperty('max-height', '0');
+
 				element.setAttribute('data-is-submenu-expanded', 'false');
-				setTimeout(() => (expandableContent.style.transition = ''), 0);
 			});
 
-			navbar?.classList.add('slide-out');
-			navbar?.classList.remove('open');
-			document.body.style.overflow = '';
+			navbar?.classList?.remove('open');
 
-			setTimeout(() => {
-				navbar?.classList.remove('slide-out');
+			link.addEventListener('transitionend', () => {
 				window.location.href = link.href;
-			}, 500);
+			});
 		});
 	});
 </script>
