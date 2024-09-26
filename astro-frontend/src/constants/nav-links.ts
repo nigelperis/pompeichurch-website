@@ -34,12 +34,12 @@ export const navLinks = [
 				href: '/parish-priests',
 			},
 			{
-				title: 'nav.parish-pastoral-parishad',
-				href: '/parish-pastoral-parishad',
+				title: 'nav.parish-pastoral-council',
+				href: '/parish-pastoral-council',
 			},
 			{
-				title: 'nav.parish-pastoral-commission',
-				href: '/parish-pastoral-commission',
+				title: 'nav.parish-pastoral-21-commissions',
+				href: '/parish-pastoral-21-commissions',
 			},
 		],
 	},
@@ -98,8 +98,8 @@ export const navLinks = [
 				href: '/associations/small-christian-community',
 			},
 			{
-				title: 'nav.gurpur-gayan-mandali',
-				href: '/associations/gurpur-gayan-mandali',
+				title: 'nav.gurpur-choir',
+				href: '/associations/gurpur-choir',
 			},
 			{
 				title: 'nav.womens-forum',
