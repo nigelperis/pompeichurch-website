@@ -5,54 +5,29 @@ import { getLangFromUrl, useTranslations } from '../i18n/utils';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
-
-<footer
-	class="border-t-2 border-natgeo-yellow-400 bg-gray-900 p-6 text-sm text-slate-200"
->
-	<div class="flex items-start justify-between">
-		<section class="space-y-3">
-			<h2 class="mb-2 text-xl font-medium">{t('footer.contact-us')}</h2>
-
-			<div class="flex items-center gap-x-2">
-				<p>Email:</p>
-				<a href="mailto:pompeichurch100@gmail.com">pompeichurch100@gmail.com</a>
-			</div>
-			<div class="flex gap-x-2">
-				<p>Phone:</p>
-				<a href="tel:+916969696969">+91 6969696969</a>
-			</div>
-		</section>
-
-		<section class="ml-5">
-			<h2 class="mb-2 text-xl font-medium">{t('footer.follow-us')}</h2>
-			<div class="flex space-x-4">
-				<a
-					href="https://www.facebook.com/ladyofpompeichurch.gurpur/"
-					target="_blank"
-				>
-					<Icon name="facebook" class="text-xl" />
-				</a>
-				<a
-					href="https://www.instagram.com/our_lady_of_pompei_church/"
-					target="_blank"
-				>
-					<Icon name="instagram" class="text-xl" />
-				</a>
-				<a
-					href="https://www.youtube.com/@pompeichurchmedia8386"
-					target="_blank"
-				>
-					<Icon name="youtube" class="text-xl" />
-				</a>
-			</div>
-		</section>
-	</div>
-
-	<div class="mt-3">
-		<hr class="inline-block h-[0.5px] w-full border-gray-500 outline-none" />
-		<p class="mt-4 text-sm text-gray-400">
-			&copy; 2024 Pompei Church | <strong>Powered by:</strong> Commission for Social
-			Communication, Gurpur Kaikamba
-		</p>
+<footer class="border-t-2 border-natgeo-yellow-400 bg-gray-900  pb-6 text-sm text-black-200">
+	<div class="flex flex-col-reverse md:flex-row justify-between items-center">
+		<div class="mt-6 md:mt-0 md:order-1">
+			<p class="text-sm text-gray-100 text-center">
+				&copy; 2024 Pompei Church | <strong>Powered by:</strong> Commission for Social Communication
+			</p>
+		</div>
+		<div class="flex space-x-4 items-center mt-6 md:mt-0 md:order-0">
+			<a href="/" target="_blank">
+				<Icon name="mail" class="text-xl" />
+			</a>
+			<a href="https://www.facebook.com/ladyofpompeichurch.gurpur/" target="_blank">
+				<Icon name="facebook" class="text-xl" />
+			</a>
+			<a href="https://www.instagram.com/our_lady_of_pompei_church/" target="_blank">
+				<Icon name="instagram" class="text-xl" />
+			</a>
+			<a href="https://www.youtube.com/@pompeichurchmedia8386" target="_blank">
+				<Icon name="youtube" class="text-xl" />
+			</a>
+			<a href="/" target="_blank">
+				<Icon name="phone" class="text-xl" />
+			</a>
+		</div>
 	</div>
 </footer>
