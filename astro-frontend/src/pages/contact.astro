@@ -3,78 +3,135 @@ import { Icon } from 'astro-icon/components';
 import Layout from '~/layouts/layout.astro';
 ---
 
-<Layout title="Pompei Church | Contact Us">
-	<section class="p-6 font-poppins text-slate-100">
-		<h1
-			class="mb-6 border-l-4 border-yellow-400 pl-3 text-3xl font-extrabold text-black"
-		>
-			CONTACT US
-		</h1>
-		<div class="flex flex-col space-y-8">
-			<div class="rounded-lg bg-slate-800 p-6 shadow-lg">
-				<div class="space-y-4">
-					<div class="flex items-center space-x-2">
-						<Icon
-							name="map-pin"
-							class="text-natgeo-yellow-500"
-							size={24}
-							aria-label="Location Icon"
-						/>
-						<p class="text-lg">Gurupur, Kinnikambla</p>
-					</div>
+<Layout title="Pompei Church | Contact">
+  <section class="p-6 font-poppins text-slate-100">
+    <h1
+      class="mb-6 border-l-4 border-yellow-400 pl-3 text-3xl font-extrabold text-black"
+    >
+      CONTACT US
+    </h1>
+    <div class="flex flex-col space-y-8 items-center">
+      <div class="rounded-lg bg-slate-800 p-6 shadow-lg w-full max-w-4xl">
+        <div class="space-y-4">
+          <div class="flex items-center space-x-2">
+            <Icon
+              name="map-pin"
+              class="text-natgeo-yellow-500"
+              size={24}
+              aria-label="Location Icon"
+            />
+            <p class="text-lg">Gurupur, Kinnikambla</p>
+          </div>
 
-					<div class="flex items-center space-x-2">
-						<Icon
-							name="phone"
-							class="text-natgeo-yellow-500"
-							size={24}
-							aria-label="Phone Icon"
-						/>
-						<p class="text-lg">
-							<a href="tel:+917899999665" class="hover:text-natgeo-yellow-400"
-								>+91 7899999665</a
-							>
-						</p>
-					</div>
+          <div class="flex items-center space-x-2">
+            <Icon
+              name="phone"
+              class="text-natgeo-yellow-500"
+              size={24}
+              aria-label="Phone Icon"
+            />
+            <p class="text-lg">
+              <a href="tel:+917899999665" class="hover:text-natgeo-yellow-400">
+                +91 7899999665
+              </a>
+            </p>
+          </div>
 
-					<div class="flex items-center space-x-2">
-						<Icon
-							name="mail"
-							class="text-natgeo-yellow-500"
-							size={24}
-							aria-label="Email Icon"
-						/>
-						<a
-							href="mailto:pompeichurch100@gmail.com"
-							class="text-lg underline hover:text-natgeo-yellow-400"
-							>pompeichurch100@gmail.com</a
-						>
-					</div>
-				</div>
+          <div class="flex items-center space-x-2">
+            <Icon
+              name="mail"
+              class="text-natgeo-yellow-500"
+              size={24}
+              aria-label="Email Icon"
+            />
+            <a
+              href="mailto:pompeichurch100@gmail.com"
+              class="text-lg underline hover:text-natgeo-yellow-400"
+            >
+              pompeichurch100@gmail.com
+            </a>
+          </div>
+        </div>
 
-				<div class="mt-8 space-y-2 text-center">
-					<h3 class="text-xl font-semibold">Office Hours:</h3>
-					<p>Monday - Saturday: 9 AM to 1 PM | 2 PM - 5 PM</p>
-					<p>Sunday: Closed</p>
-				</div>
+        <div class="mt-8 space-y-2 text-center">
+          <h3 class="text-xl font-semibold">Office Hours:</h3>
+          <p>Monday - Saturday: 9 AM to 1 PM | 2 PM - 5 PM</p>
+          <p>Sunday: Closed</p>
+        </div>
 
-				<div class="mt-4 space-y-2 text-center">
-					<h3 class="text-xl font-semibold">Office Clerk:</h3>
-					<p>John Cena</p>
-				</div>
-			</div>
+        <div class="mt-4 space-y-2 text-center">
+          <h3 class="text-xl font-semibold">Office Clerk:</h3>
+          <p>John Cena</p>
+        </div>
+      </div>
 
-			<div class="overflow-hidden rounded-lg shadow-lg">
-				<iframe
-					src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13260.49078439848!2d74.9254980873684!3d12.961133328525621!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba357ac5f2a68cf%3A0x3976db3d34963470!2sOur%20Lady%20Of%20Pompei%20Church!5e0!3m2!1sen!2sin!4v1724241128491!5m2!1sen!2sin"
-					width="100%"
-					height="450"
-					style="border:0;"
-					allowfullscreen=""
-					loading="lazy"
-					referrerpolicy="no-referrer-when-downgrade"
-					class="h-72 w-full rounded-lg"></iframe>
-			</div>
-		</div>
-	</section>
+      <div class="p-6 w-full max-w-4xl">
+        <h3 class="text-xl text-black font-semibold mb-4 text-center">Send us a message</h3>
+        <form
+          action="https://formcarry.com/s/vLAD1FJnIJh"
+          method="POST"
+          enctype="multipart/form-data"
+          class="space-y-4"
+        >
+          <div>
+            <label for="name" class="block mb-2 text-sm text-white">Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              required
+              class="w-full px-3 py-2 border border-gray-300 bg-gray-100 rounded-sm text-black focus:outline-none focus:bg-white"
+              placeholder="Name*"
+            />
+          </div>
+
+          <div>
+            <label for="phone" class="block mb-2 text-sm text-white">Phone Number</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              required
+              class="w-full px-3 py-2 border border-gray-300 bg-gray-100 rounded-sm text-black focus:outline-none focus:bg-white"
+              placeholder="Phone Number*"
+            />
+          </div>
+
+          <div>
+            <label for="message" class="block mb-2 text-sm text-white">Message</label>
+            <textarea
+              id="message"
+              name="message"
+              required
+              rows="4"
+              class="w-full px-3 py-2 border border-gray-300 bg-gray-100 rounded-sm text-black focus:outline-none focus:bg-white"
+              placeholder="Message"
+            ></textarea>
+          </div>
+
+          <div class="text-center">
+            <button
+              type="submit"
+              class="bg-yellow-500 text-white px-6 py-2 rounded-sm hover:bg-yellow-400"
+            >
+              Send Message
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <div class="overflow-hidden rounded-md shadow-sm w-full max-w-4xl">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13260.49078439848!2d74.9254980873684!3d12.961133328525621!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba357ac5f2a68cf%3A0x3976db3d34963470!2sOur%20Lady%20Of%20Pompei%20Church!5e0!3m2!1sen!2sin!4v1724241128491!5m2!1sen!2sin"
+          width="100%"
+          height="450"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          class="h-72 w-full rounded-lg"
+        ></iframe>
+      </div>
+    </div>
+  </section>
 </Layout>
