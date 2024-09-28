@@ -1,43 +1,99 @@
 ---
 import Layout from '~/layouts/layout.astro';
-import dummyImage from '~/assets/dummy-image.png';
+import fraaecolaco from '~/assets/FrAAEColaco.jpeg';
+import frfxnazreth from '~/assets/FrFXNazreth.jpg';
+import frarebello from '~/assets/FrARebello.jpg';
+import blankp from '~/assets/blankp.png';
+import frjohnc from '~/assets/FrJohnC.jpg';
+import frbernard from '~/assets/FrBernard.jpg';
+import frstany from '~/assets/FrStany.jpeg';
+import frleo from '~/assets/FrLeo.jpeg';
+import frcyprian from '~/assets/FrCyprian.jpeg';
+import frpaulrego from '~/assets/FrPaulRego.jpeg';
+import frgregory from '~/assets/FrGregory.jpg';
+import frpaulp from '~/assets/FrPaulPinto.jpg';
 import ProfileCard from '~/components/profile-card.astro';
 
 const parishPriests = [
 	{
-		imageUrl: dummyImage,
+		imageUrl: fraaecolaco,
 		name: 'Rev. Fr. A.A.E Colaco',
 		date: '1921-22',
 	},
 	{
-		imageUrl: dummyImage,
+		imageUrl: frfxnazreth,
 		name: 'Rev. Fr. F.X. Nazreth',
 		date: '1922-30',
 	},
 	{
-		imageUrl: dummyImage,
+		imageUrl: frleo,
 		name: 'Rev. Fr. Raphael Pinto',
 		date: '1930-33',
 	},
 	{
-		imageUrl: dummyImage,
+		imageUrl: frarebello,
 		name: 'Rev. Fr. Aveline Rebello',
 		date: '1933-40',
 	},
 	{
-		imageUrl: dummyImage,
+		imageUrl: blankp,
 		name: 'Rev. Fr. A.J. Nazreth',
 		date: '1940-48',
 	},
 	{
-		imageUrl: dummyImage,
+		imageUrl: frjohnc,
 		name: 'Rev. Fr. John Castelino',
 		date: '1948-55',
 	},
 	{
-		imageUrl: dummyImage,
+		imageUrl: frleo,
 		name: 'Rev. Fr. J.S.T Rodrigues',
 		date: '1955-71',
+	},
+	{
+		imageUrl: frbernard,
+		name: 'Rev. Fr. Bernard DSouza',
+		date: '1971-72',
+	},
+	{
+		imageUrl: frleo,
+		name: 'Rev. Fr. Gracian DSouza',
+		date: '1972-83',
+	},
+	{
+		imageUrl: frstany,
+		name: 'Rev. Fr. Stany Pereira ',
+		date: '1983-91',
+	},
+	{
+		imageUrl: frleo,
+		name: 'Rev. Fr.  Leo Veigas  ',
+		date: '1991-98',
+	},
+	{
+		imageUrl: frcyprian,
+		name: 'Rev. Fr. Cyprian Pinto  ',
+		date: '1998-05',
+	},
+	{
+		imageUrl: frpaulrego,
+		name: 'Rev. Fr.  Paul Rego  ',
+		date: '2005-13',
+	},
+	{
+		imageUrl: frgregory,
+		name: 'Rev. Fr. Gregory Serrao ',
+		date: '2013-15',
+	},
+	{
+		imageUrl: frpaulp,
+		name: 'Rev. Fr.  Paul Pinto ',
+		date: '2015-16',
+	},
+	{
+		imageUrl: frleo,
+		name: 'Rev. Fr. Anthony Lobo ',
+		date: '2016-22',
 	},
 ];
 ---
@@ -50,6 +106,9 @@ const parishPriests = [
 		>
 			PARISH PRIESTS
 		</h2>
+		<p class="mt-4 text-justify text-lg text-slate-700">
+			Here is a glimpse of the esteemed former parish priests who have nurtured our faith, enriched our community and individual lives, and upheld the cherished legacy of our church throughout these years.
+		</p>
 		<ul
 			class="mx-auto grid w-full grid-cols-2 gap-4 gap-y-5 p-4 sm:w-[90%] sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
 		>
