@@ -34,11 +34,11 @@ export const navLinks = [
 				href: '/parish-priests',
 			},
 			{
-				title: 'nav.parish-pastoral-parishad',
+				title: 'nav.parish-pastoral-council',
 				href: '/parish-pastoral-parishad',
 			},
 			{
-				title: 'nav.parish-pastoral-commission',
+				title: 'nav.parish-pastoral-commissions',
 				href: '/parish-pastoral-commission',
 			},
 		],
