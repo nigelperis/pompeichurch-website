@@ -1,6 +1,7 @@
 ---
 import { Icon } from 'astro-icon/components';
 import Layout from '~/layouts/layout.astro';
+import HoverableLink from '~/components/ui/hoverable-link.astro';
 ---
 
 <Layout title="Pompei Church | Contact">
@@ -80,7 +81,7 @@ import Layout from '~/layouts/layout.astro';
               id="name"
               name="name"
               required
-              class="w-full px-3 py-2 border rounded-2xl border-gray-300 bg-white  text-black focus:outline-none focus:bg-white"
+              class="w-full px-3 py-2 border border-gray-300 bg-white  text-black focus:outline-none focus:bg-white"
               placeholder="Name"
             />
           </div>
@@ -92,7 +93,7 @@ import Layout from '~/layouts/layout.astro';
               id="phone"
               name="phone"
               required
-              class="w-full px-3 py-2 border border-gray-300 bg-white rounded-2xl text-black focus:outline-none focus:bg-white"
+              class="w-full px-3 py-2 border border-gray-300 bg-white   text-black focus:outline-none focus:bg-white"
               placeholder="Phone Number"
             />
           </div>
@@ -104,18 +105,18 @@ import Layout from '~/layouts/layout.astro';
             id="email"
             name="email"
             required
-            class="w-full px-3 py-2 border border-gray-300 bg-white rounded-2xl text-black focus:outline-none focus:bg-white"
+            class="w-full px-3 py-2 border border-gray-300 bg-white  text-black focus:outline-none focus:bg-white"
             placeholder="Email"
           />
         </div>
           <div>
-            <label for="message" class="block  text-sm text-white">Message</label>
+            <label for="message" class="block  text-lg text-white">Message</label>
             <textarea
               id="message"
               name="message"
               required
               rows="4"
-              class="w-full px-3 py-2 border border-gray-300 bg-white rounded-2xl text-black focus:outline-none focus:bg-white"
+              class="w-full px-3 py-2 border border-gray-300 bg-white  text-black focus:outline-none focus:bg-white"
               placeholder="Message"
             ></textarea>
           </div>
@@ -123,9 +124,11 @@ import Layout from '~/layouts/layout.astro';
           <div class="text-center pb-4 ">
             <button
               type="submit"
-              class="bg-yellow-500 text-white px-6 py-2 rounded-lg hover:bg-yellow-400"
+
             >
-              SEND MESSAGE
+            <HoverableLink class="mb-2 mt-2 inline-block text-black">
+             SEND MESSAGE
+            </HoverableLink>
             </button>
           </div>
         </form>
