@@ -1,96 +1,56 @@
 ---
+// Imports
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import { Icon } from 'astro-icon/components';
 import { cn } from '~/helpers/cn';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+import { navLinks } from '~/constants/nav-links.ts';
+import ScrollProgress from './ui/scroll-progress.astro';
+
+
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-import { navLinks } from '~/constants/nav-links.ts';
 ---
-
-<header class="sticky top-0 z-10 w-full bg-white/90 p-5 shadow-sm">
+<ScrollProgress/>
+<header class="sticky top-0 z-10 w-full backdrop-blur-lg bg-white/80 p-5 shadow-md">
 	<section class="flex items-center justify-between">
-		<a
-			href="/"
-			class={cn('font-poppins-semibold text-lg font-semibold', {
-				'font-noto-sans-kannada-semibold': lang === 'kok',
-			})}>{t('landing.church-name')}</a
-		>
-		<div
-			id="hamburger"
-			class="ml-auto flex w-fit cursor-pointer flex-col items-end"
-		>
+		<a href="/" class={cn('font-poppins-semibold text-lg font-semibold', { 'font-noto-sans-kannada-semibold': lang === 'kok' })}>
+			{t('landing.church-name')}
+		</a>
+		<div id="hamburger" class="ml-auto flex w-fit cursor-pointer flex-col items-end">
 			<Icon name="menu" size={26} />
 		</div>
 	</section>
-
-	<nav
-		class="fixed inset-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 transition-transform duration-500 ease-out"
-		id="navbar"
-	>
-		<Icon
-			name="cancel"
-			id="hamburger-close"
-			class="sticky top-5 mb-5 ml-auto cursor-pointer rounded-full text-4xl"
-		/>
-		<ul class="flex flex-col gap-y-5">
-			{
-				navLinks.map((link) => (
-					<li key={link.href}>
-						<a
-							data-expandable-links={
-								link.type === 'expandable' ? 'true' : 'false'
-							}
-							href={
-								link.type === 'link'
-									? getRelativeLocaleUrl(lang, link.href)
-									: '#'
-							}
-							class="font-popppins group flex items-center justify-between text-3xl font-extrabold text-black"
-						>
-							<span
-								class={cn(
-									'border-b-4 border-b-transparent font-poppins transition-all duration-150 group-hover:border-natgeo-yellow',
-									{ 'font-noto-sans-kannada': lang === 'kok' },
-								)}
-							>
-								{t(link.title)}
-							</span>
-							{link.type === 'expandable' ? (
-								<Icon
-									name="chevron-right"
-									class="text-3xl"
-									data-icon-name="chevron-right"
-								/>
-							) : null}
-						</a>
-						{link.type === 'expandable' ? (
-							<ul class="expandable-links max-h-0 overflow-hidden transition-all duration-500 ease-out">
-								{link.expandedLinks.map((sublinks) => (
-									<li key={sublinks.href}>
-										<a
-											href={getRelativeLocaleUrl(lang, sublinks.href)}
-											class="group mb-4 flex items-center justify-between font-merriweather text-xl font-bold text-black"
-										>
-											<span
-												class={cn(
-													'border-b-4 border-b-transparent font-poppins transition-all duration-150 group-hover:border-natgeo-yellow',
-													{ 'font-noto-sans-kannada': lang === 'kok' },
-												)}
-											>
-												{t(sublinks.title)}
-											</span>
-										</a>
-									</li>
-								))}
-							</ul>
-						) : null}
-					</li>
-				))
-			}
-		</ul>
-	</nav>
 </header>
+
+<nav class="fixed inset-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 transition-transform duration-500 ease-out" id="navbar">
+	<Icon name="cancel" id="hamburger-close" class="relative top-5 mb-5 ml-auto cursor-pointer rounded-full text-4xl" />
+	<ul class="flex flex-col gap-y-5">
+		{navLinks.map((link) => (
+			<li key={link.href}>
+				<a data-expandable-links={link.type === 'expandable' ? 'true' : 'false'} href={link.type === 'link' ? getRelativeLocaleUrl(lang, link.href) : '#'} class="font-popppins group flex items-center justify-between text-3xl font-extrabold text-black">
+					<span class={cn('border-b-4 border-b-transparent font-poppins transition-all duration-150 group-hover:border-natgeo-yellow', { 'font-noto-sans-kannada': lang === 'kok' })}>
+						{t(link.title)}
+					</span>
+					{link.type === 'expandable' ? <Icon name="chevron-right" class="text-3xl" data-icon-name="chevron-right" /> : null}
+				</a>
+				{link.type === 'expandable' ? (
+					<ul class="expandable-links max-h-0 overflow-hidden transition-all duration-500 ease-out">
+						{link.expandedLinks.map((sublinks) => (
+							<li key={sublinks.href}>
+								<a href={getRelativeLocaleUrl(lang, sublinks.href)} class="group mb-4 flex items-center justify-between font-merriweather text-xl font-bold text-black">
+									<span class={cn('border-b-4 border-b-transparent font-poppins transition-all duration-150 group-hover:border-natgeo-yellow', { 'font-noto-sans-kannada': lang === 'kok' })}>
+										{t(sublinks.title)}
+									</span>
+								</a>
+							</li>
+						))}
+					</ul>
+				) : null}
+			</li>
+		))}
+	</ul>
+</nav>
 
 <style>
 	#navbar {
@@ -126,12 +86,8 @@ import { navLinks } from '~/constants/nav-links.ts';
 	const hamburgerMenu = document.querySelector('#hamburger');
 	const hamburgerClose = document.querySelector('#hamburger-close');
 	const navbar = document.querySelector('#navbar');
-	const expandableLinks = document.querySelectorAll(
-		'[data-expandable-links=true]',
-	);
-	const allNavigationLinks = document.querySelectorAll(
-		'a:not([data-expandable-links=true])',
-	);
+	const expandableLinks = document.querySelectorAll('[data-expandable-links=true]');
+	const allNavigationLinks = document.querySelectorAll('a:not([data-expandable-links=true])');
 
 	hamburgerMenu?.addEventListener('click', () => {
 		navbar?.classList.add('open');
@@ -141,54 +97,56 @@ import { navLinks } from '~/constants/nav-links.ts';
 
 	hamburgerClose?.addEventListener('click', () => {
 		expandableLinks.forEach((element) => {
-			const expandableContent = element.nextElementSibling as HTMLElement;
+			const expandableContent = element.nextElementSibling;
 			expandableContent.style.transition = 'none';
 			expandableContent.style.maxHeight = '0';
 			element.setAttribute('data-is-submenu-expanded', 'false');
-
-			setTimeout(() => {
-				expandableContent.style.transition = '';
-			}, 0);
+			setTimeout(() => expandableContent.style.transition = '', 0);
 		});
 
 		navbar?.classList.add('slide-out');
 		navbar?.classList.remove('open');
 		document.body.style.overflow = '';
 
-		setTimeout(() => {
-			navbar?.classList.remove('slide-out');
-		}, 500);
+		setTimeout(() => navbar?.classList.remove('slide-out'), 500);
 	});
 
 	expandableLinks.forEach((element) => {
-		element.addEventListener('click', (e) => {
-			e.preventDefault();
-			const subMenuStatus = element.getAttribute('data-is-submenu-expanded');
-			const expandableContent = element.nextElementSibling as HTMLElement;
+	element.addEventListener('click', (e) => {
+		e.preventDefault();
 
-			if (subMenuStatus === 'true') {
-				element.setAttribute('data-is-submenu-expanded', 'false');
-				expandableContent.style.maxHeight = '0';
-			} else {
-				element.setAttribute('data-is-submenu-expanded', 'true');
-				expandableContent.style.maxHeight = `${expandableContent.scrollHeight}px`;
+		const subMenuStatus = element.getAttribute('data-is-submenu-expanded');
+		const expandableContent = element.nextElementSibling;
+
+
+		expandableLinks.forEach((otherElement) => {
+			if (otherElement !== element) {
+				otherElement.setAttribute('data-is-submenu-expanded', 'false');
+				otherElement.nextElementSibling.style.maxHeight = '0';
 			}
 		});
+
+		if (subMenuStatus === 'true') {
+			element.setAttribute('data-is-submenu-expanded', 'false');
+			expandableContent.style.maxHeight = '0';
+		} else {
+			element.setAttribute('data-is-submenu-expanded', 'true');
+			expandableContent.style.maxHeight = `${expandableContent.scrollHeight}px`;
+		}
 	});
+});
+
 
 	allNavigationLinks.forEach((link) => {
 		link.addEventListener('click', (e) => {
 			e.preventDefault();
 
 			expandableLinks.forEach((element) => {
-				const expandableContent = element.nextElementSibling as HTMLElement;
+				const expandableContent = element.nextElementSibling;
 				expandableContent.style.transition = 'none';
 				expandableContent.style.maxHeight = '0';
 				element.setAttribute('data-is-submenu-expanded', 'false');
-
-				setTimeout(() => {
-					expandableContent.style.transition = '';
-				}, 0);
+				setTimeout(() => expandableContent.style.transition = '', 0);
 			});
 
 			navbar?.classList.add('slide-out');
