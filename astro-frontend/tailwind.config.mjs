@@ -68,7 +68,7 @@ export default {
 			'lg-sm': '1024px', // Small laptops / larger tablets
 			'lg-md': '1152px', // Medium-sized laptops
 			lg: '1280px', // Medium to large laptops
-			'xl-sm': '1440px', // Large laptops / small desktops
+			'xl-sm': '1440px', // Large laptops / small desktop screens
 			xl: '1536px', // Large desktops / high-resolution screens
 		},
 	},
