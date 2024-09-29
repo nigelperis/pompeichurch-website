@@ -76,7 +76,9 @@ export const ui = {
 		'ui.more-button-know': 'KNOW MORE',
 		'ui.more-button-show': 'SHOW MORE',
 		'contact.title': 'CONTACT US',
-		'history.title': 'Our History'
+		'history.title': 'Our History',
+		'gallery.title': 'GALLERY',
+		'gallery.subtitle': 'Capturing moments of grace'
 
 	},
 	kok: {
@@ -150,6 +152,8 @@ export const ui = {
 		'ui.more-button-know': 'ಚಡಿತ್ ಮಾಹೆತ್',
 		'ui.more-button-show': 'ಚಡಿತ್ ಮಾಹೆತ್',
 		'contact.title': 'ಸಂಪರ್ಕ್ ಕರಾ',
-		'history.title': 'ಆಮ್ಚಿಂ ಚರಿತ್ರಾ'
+		'history.title': 'ಆಮ್ಚಿಂ ಚರಿತ್ರಾ',
+		'gallery.title': 'ಗ್ಯಾಲರಿ',
+		'gallery.subtitle': 'Capturing moments of grace'
 	},
 } as const;

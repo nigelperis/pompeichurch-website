@@ -10,16 +10,14 @@ const t = useTranslations(lang);
 
 <Layout title="Pompei Church | Parish History">
 	<main class="overflow-hidden bg-white">
-		<section id="our-institutions" class="my-8 bg-white">
-			<div class="px-6">
-				<h2
-					class="text-slate-1000 mb-2 border-l-4 border-yellow-400 pl-3 font-poppins text-3xl font-extrabold"
+		<section id="parish-history" class="flex flex-col p-6 lg:items-center font-geist">
+				<h1
+					class="mb-6 border-l-4 border-l-natgeo-yellow pl-3 text-3xl font-extrabold text-black"
 				>
 					{t('history.title')}
-				</h2>
-			</div>
-			<ParishDetails />
-			<HistoryCarousel/>
+				</h1>
+			<ParishDetails/>
+			<!-- <HistoryCarousel/> -->
 		</section>
 	</main>
 </Layout>

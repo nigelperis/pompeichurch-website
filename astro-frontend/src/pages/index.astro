@@ -1,8 +1,6 @@
 ---
 import Layout from '~/layouts/layout.astro';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
 import HeroSection from '~/components/sections/landing-page/hero-section.astro';
 import ParishPriestSpeaks from '~/components/sections/landing-page/parish-priest-speaks-section.astro';
 import AboutChurch from '~/components/sections/landing-page/about-church-section.astro';
@@ -11,6 +9,9 @@ import MassTimingsSection from '~/components/sections/landing-page/mass-timings-
 import SocialGrid from '~/components/sections/landing-page/social-grid.astro';
 import ChurchEventsSection from '~/components/sections/landing-page/church-events-section.astro';
 import LandingCarousel from '~/components/sections/landing-page/landing-carousel.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <Layout title={`${t('landing.church-name')} | ${t('landing.town-name')}`}>

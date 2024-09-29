@@ -3,7 +3,7 @@ import Layout from '~/layouts/layout.astro';
 import dummyImage from '~/assets/dummy-image.png';
 import ProfileCard from '~/components/profile-card.astro';
 
-const pastoralParishad = [
+const councilMembers = [
 	{
 		imageUrl: dummyImage,
 		name: "Rev. Fr. Rudolph Ravi D'Sa",
@@ -54,12 +54,12 @@ const pastoralParishad = [
 			class="mx-auto grid w-full grid-cols-2 gap-4 gap-y-5 p-4 sm:w-[90%] sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
 		>
 			{
-				pastoralParishad.map((parishadMember) => (
+				councilMembers.map((councilMember) => (
 					<ProfileCard
 						class="m-auto w-40"
-						imageUrl={parishadMember.imageUrl}
-						name={parishadMember.name}
-						subtitle={parishadMember.subtitle}
+						imageUrl={councilMember.imageUrl}
+						name={councilMember.name}
+						subtitle={councilMember.subtitle}
 					/>
 				))
 			}
