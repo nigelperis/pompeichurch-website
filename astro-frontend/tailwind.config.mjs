@@ -57,7 +57,19 @@ export default {
 			slidein: 'slidein 1s ease-out var(--slidein-delay, 0) forwards',
 		},
 		screens: {
-			xs: '380',
+			xs: '320px', // Extra small devices (small phones)
+			'sm-xs': '370px', // Small to medium phones
+			'sm-md': '430px', // Medium phones (portrait)
+			'sm-lg': '480px', // Medium phones (landscape)
+			'md-xs': '550px', // Large phones / small tablets
+			sm: '640px', // Standard small devices (phones)
+			md: '768px', // Tablets or large phones
+			'md-lg': '900px', // Small tablets in landscape / large phones
+			'lg-sm': '1024px', // Small laptops / larger tablets
+			'lg-md': '1152px', // Medium-sized laptops
+			lg: '1280px', // Medium to large laptops
+			'xl-sm': '1440px', // Large laptops / small desktops
+			xl: '1536px', // Large desktops / high-resolution screens
 		},
 	},
 
