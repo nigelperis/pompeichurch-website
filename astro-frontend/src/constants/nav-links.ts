@@ -23,7 +23,7 @@ export const navLinks = [
 	},
 	{
 		type: 'expandable',
-		title: 'nav.our-church',
+		title: 'nav.our-parish',
 		expandedLinks: [
 			{
 				title: 'nav.parish-history',
@@ -52,7 +52,7 @@ export const navLinks = [
 				href: '/our-institutions',
 			},
 			{
-				title: 'nav.convents',
+				title: 'nav.our-convents',
 				href: '/convents',
 			},
 			{
@@ -98,7 +98,7 @@ export const navLinks = [
 				href: '/associations/small-christian-community',
 			},
 			{
-				title: 'nav.gurpur-gayan-mandali',
+				title: 'nav.gurpur-choir',
 				href: '/associations/gurpur-gayan-mandali',
 			},
 			{
