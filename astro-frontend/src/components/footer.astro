@@ -5,14 +5,14 @@ import { getLangFromUrl, useTranslations } from '../i18n/utils';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
-<footer class="border-t-2 border-natgeo-yellow-400 bg-gray-900  pb-6 text-sm text-black-200">
-	<div class="flex flex-col-reverse md:flex-row justify-between items-center">
-		<div class="mt-6 md:mt-0 md:order-1">
+<footer class="border-t-2 border-natgeo-yellow-400 bg-gray-900 text-sm pb-6 text-black-200">
+	<div class="flex flex-col-reverse justify-between items-center">
+		<div class="mt-6 ">
 			<p class="text-sm text-gray-100 text-center">
 				&copy;2024, Our Lady of Pompei Church. All Rights Reserved. <strong>Powered by:</strong> Commission for Social Communication, Gurpur Kaikamba
 			</p>
 		</div>
-		<div class="flex space-x-4 items-center mt-6 md:mt-0 md:order-0">
+		<div class="flex space-x-4 items-center mt-6 ">
 			<a href="mailto:pompeichurch100@gmail.com" target="_blank" class="transition-transform hover:scale-110">
 				<Icon name="mail" class="text-xl" />
 			</a>
