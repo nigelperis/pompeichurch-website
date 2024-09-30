@@ -5,28 +5,53 @@ import { getLangFromUrl, useTranslations } from '../i18n/utils';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
-<footer class="border-t-2 border-natgeo-yellow-400 bg-gray-900  pb-6 text-sm text-black-200">
-	<div class="flex flex-col-reverse md:flex-row justify-between items-center">
-		<div class="mt-6 md:mt-0 md:order-1">
-			<p class="text-sm text-gray-100 text-center">
-				&copy;2024, Our Lady of Pompei Church. All Rights Reserved. <strong>Powered by:</strong> Commission for Social Communication, Gurpur Kaikamba
+
+<footer
+	class="text-black-200 border-t-2 border-natgeo-yellow-400 bg-gray-900 pb-6 text-sm"
+>
+	<div class="flex flex-col-reverse items-center justify-between">
+		<div class="mt-6">
+			<p class="text-center text-sm text-gray-100">
+				&copy;2024, Our Lady of Pompei Church. All Rights Reserved. <strong
+					>Powered by:</strong
+				> Commission for Social Communication, Gurpur Kaikamba
 			</p>
 		</div>
-		<div class="flex space-x-4 items-center mt-6 md:mt-0 md:order-0">
-			<a href="mailto:pompeichurch100@gmail.com" target="_blank" class="transition-transform hover:scale-110">
-				<Icon name="mail" class="text-xl" />
+		<div class="mt-6 flex items-center space-x-4">
+			<a
+				href="mailto:pompeichurch100@gmail.com"
+				target="_blank"
+				class="transition-transform hover:scale-110"
+			>
+				<Icon name="mail" size={24} class="text-xl text-white" />
 			</a>
-			<a href="https://www.facebook.com/ladyofpompeichurch.gurpur/" target="_blank" class="transition-transform hover:scale-110">
-				<Icon name="facebook" class="text-xl" />
+			<a
+				href="https://www.facebook.com/ladyofpompeichurch.gurpur/"
+				target="_blank"
+				class="transition-transform hover:scale-110"
+			>
+				<Icon name="facebook" size={24} class="text-xl text-white" />
 			</a>
-			<a href="https://www.instagram.com/our_lady_of_pompei_church/" target="_blank" class="transition-transform hover:scale-110">
-				<Icon name="instagram" class="text-xl" />
+			<a
+				href="https://www.instagram.com/our_lady_of_pompei_church/"
+				target="_blank"
+				class="transition-transform hover:scale-110"
+			>
+				<Icon name="instagram" size={24} class="text-xl text-white" />
 			</a>
-			<a href="https://www.youtube.com/@pompeichurchmedia8386" target="_blank" class="transition-transform hover:scale-110">
-				<Icon name="youtube" class="text-xl" />
+			<a
+				href="https://www.youtube.com/@pompeichurchmedia8386"
+				target="_blank"
+				class="transition-transform hover:scale-110"
+			>
+				<Icon name="youtube" size={24} class="text-xl text-white" />
 			</a>
-			<a href="tel:+916969696969" target="_blank" class="transition-transform hover:scale-110">
-				<Icon name="phone" class="text-xl" />
+			<a
+				href="tel:+916969696969"
+				target="_blank"
+				class="transition-transform hover:scale-110"
+			>
+				<Icon name="phone" size={24} class="text-xl text-white" />
 			</a>
 		</div>
 	</div>

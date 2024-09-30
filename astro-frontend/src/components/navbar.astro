@@ -57,7 +57,7 @@ const t = useTranslations(lang);
 						<span
 							class={cn(
 								'border-b-4 border-b-transparent font-poppins transition-all duration-150 group-hover:border-natgeo-yellow',
-								{ 'font-noto-sans-kannada': lang === 'kok' }
+								{ 'font-noto-sans-kannada': lang === 'kok' },
 							)}
 						>
 							{t(link.title)}
@@ -81,7 +81,7 @@ const t = useTranslations(lang);
 										<span
 											class={cn(
 												'border-b-4 border-b-transparent font-poppins transition-all duration-150 group-hover:border-natgeo-yellow',
-												{ 'font-noto-sans-kannada': lang === 'kok' }
+												{ 'font-noto-sans-kannada': lang === 'kok' },
 											)}
 										>
 											{t(sublinks.title)}
@@ -129,10 +129,10 @@ const t = useTranslations(lang);
 	const hamburgerClose = document.querySelector('#hamburger-close');
 	const navbar = document.querySelector('#navbar');
 	const expandableLinks = document.querySelectorAll(
-		'[data-expandable-links=true]'
+		'[data-expandable-links=true]',
 	);
 	const allNavigationLinks = document.querySelectorAll<HTMLAnchorElement>(
-		'nav a:not([data-expandable-links=true])'
+		'nav a:not([data-expandable-links=true])',
 	);
 
 	hamburgerMenu?.addEventListener('click', () => {
@@ -176,7 +176,7 @@ const t = useTranslations(lang);
 				element.setAttribute('data-is-submenu-expanded', 'true');
 				expandableContent?.style?.setProperty(
 					'max-height',
-					`${expandableContent.scrollHeight}px`
+					`${expandableContent.scrollHeight}px`,
 				);
 			}
 		});

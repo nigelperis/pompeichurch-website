@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 
 import imageOne from '~/assets/mary-grotto.jpg';
-import imageTwo from '~/assets/church-hero-image.webp';
+import imageTwo from '~/assets/church-hero.jpg';
 import imageThree from '~/assets/ciborium.jpg';
 import imageFour from '~/assets/mother-mary.jpg';
 import imageFive from '~/assets/sacrament.jpg';
@@ -41,7 +41,7 @@ const images = [
 				data-pswp-src={image.src}
 				data-pswp-width={image.width}
 				data-pswp-height={image.height}
-				class="masonry-grid-item-link masonry-grid-item lg:w-1/4 inline-block w-1/2"
+				class="masonry-grid-item-link masonry-grid-item inline-block w-1/2 lg:w-1/4"
 			>
 				<Image
 					src={image}

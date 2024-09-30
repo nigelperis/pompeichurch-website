@@ -8,18 +8,18 @@ import ParishPriestSpeaks from '~/components/sections/landing-page/parish-priest
 import AboutChurch from '~/components/sections/landing-page/about-church-section.astro';
 import PastoralParishadSection from '~/components/sections/landing-page/pastoral-parishad-section.astro';
 import MassTimingsSection from '~/components/sections/landing-page/mass-timings-section.astro';
-import Carousel from '~/components/sections/landing-page/carousel.astro';
 import SocialGrid from '~/components/sections/landing-page/social-grid.astro';
 import ChurchEventsSection from '~/components/sections/landing-page/church-events-section.astro';
+import LandingCarousel from '~/components/sections/landing-page/landing-carousel.astro';
 ---
 
 <Layout title={`${t('landing.church-name')} | ${t('landing.town-name')}`}>
 	<main>
 		<HeroSection />
 
-		<ParishPriestSpeaks />
+		<LandingCarousel />
 
-		<Carousel />
+		<ParishPriestSpeaks />
 
 		<AboutChurch />
 
