@@ -75,6 +75,7 @@ export const ui = {
 		'landing.novena-note': 'Saturday and Sunday after Mass',
 		'ui.more-button-know': 'KNOW MORE',
 		'ui.more-button-show': 'SHOW MORE',
+		'contact.title': 'CONTACT US',
 	},
 	kok: {
 		'nav.home': 'ಹೋಮ್',
@@ -146,5 +147,6 @@ export const ui = {
 		'landing.novena-note': 'ಸನ್ವಾರಾ ಸಾಂಜೆರ್ ಆನಿ ಆಯ್ತಾರಾ ಸಕಾಳಿಂ ಮಿಸಾ ಉಪ್ರಾಂತ್',
 		'ui.more-button-know': 'ಚಡಿತ್ ಮಾಹೆತ್',
 		'ui.more-button-show': 'ಚಡಿತ್ ಮಾಹೆತ್',
+		'contact.title': 'ಸಂಪರ್ಕ್ ಕರಾ',
 	},
 } as const;
