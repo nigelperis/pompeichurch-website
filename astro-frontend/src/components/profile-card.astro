@@ -16,7 +16,7 @@ const { name, date, subtitle, class: className, imageUrl } = Astro.props;
 <li
 	class={cn(
 		'hover:scale-[1.03] hover:shadow-lg snap-start first:snap-align-none max-w-xs flex-shrink-0 transform overflow-hidden rounded-lg border shadow transition-all duration-500 ease-in-out sm:w-64',
-		className
+		className,
 	)}
 >
 	<div class="card-image flex-none">
@@ -30,21 +30,21 @@ const { name, date, subtitle, class: className, imageUrl } = Astro.props;
 
 	<div class="card-content mt-3 flex flex-1 flex-col justify-end space-y-1 p-3">
 		<h3
-			class="card-title sm:text-lg line-clamp-1 text-xs font-bold leading-snug text-slate-900"
+			class="card-title line-clamp-1 text-xs font-bold leading-snug text-slate-900 sm:text-lg"
 			title={name}
 		>
 			{name}
 		</h3>
 		{
 			date && (
-				<p class="card-date sm:text-sm line-clamp-3 text-[8px] text-slate-600">
+				<p class="card-date line-clamp-3 text-[8px] text-slate-600 sm:text-sm">
 					Service Period: <span class="font-semibold">{date}</span>
 				</p>
 			)
 		}
 		{
 			subtitle && (
-				<p class="card-subtitle sm:text-sm line-clamp-3 text-[8px] text-slate-600">
+				<p class="card-subtitle line-clamp-3 text-[8px] text-slate-600 sm:text-sm">
 					{subtitle}
 				</p>
 			)

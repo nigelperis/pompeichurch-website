@@ -101,7 +101,7 @@ const uniqueId = Math.random().toString(36).substring(2, 9);
 		toggle.addEventListener('click', function () {
 			const dropdownId = this.getAttribute('data-dropdown-id');
 			const dropdownContent = document.querySelector(
-				`.dropdown-content[data-dropdown-id="${dropdownId}"]`
+				`.dropdown-content[data-dropdown-id="${dropdownId}"]`,
 			);
 			const arrow = this.querySelector('.arrow');
 			const isOpen = dropdownContent.classList.contains('open');

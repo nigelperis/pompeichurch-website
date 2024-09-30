@@ -6,7 +6,7 @@ const t = useTranslations(lang);
 import { cn } from '~/helpers/cn';
 import skyImage from '~/assets/sky-bg.jpg';
 const optimizedSkyImage = await getImage({ src: skyImage });
-import churchHeroImage from '~/assets/church-hero-image.webp';
+import churchHeroImage from '~/assets/church-hero.jpg';
 const optimizedChurchHeroImage = await getImage({ src: churchHeroImage });
 import churchLogo from '~/assets/church-logo.png';
 ---
@@ -17,7 +17,8 @@ import churchLogo from '~/assets/church-logo.png';
 		backgroundImage: `url(${optimizedSkyImage.src})`,
 	}}
 >
-	<div class="absolute inset-0 bg-white opacity-70 shadow-lg bg-blend-darken"></div>
+	<div class="absolute inset-0 bg-white opacity-70 bg-blend-darken shadow-lg">
+	</div>
 
 	<div
 		class="relative mx-auto h-80 w-80 overflow-hidden rounded-b-[12rem] bg-yellow-50 xs:w-96"
@@ -44,7 +45,7 @@ import churchLogo from '~/assets/church-logo.png';
 			'mx-2 mt-3  text-center font-montserrat font-normal text-2xl opacity-0',
 			{
 				'font-noto-sans-kannada font-normal': lang === 'kok',
-			}
+			},
 		)}
 	>
 		{t('landing.town-name')}

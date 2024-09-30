@@ -23,24 +23,26 @@ const events = [
 ---
 
 <Layout title="Pompei Church | Events">
-	<section class="p-6 font-poppins text-slate-100">
-		<h1
-			class="text-slate-1000 mb-6 border-l-4 border-yellow-400 pl-3 font-poppins text-3xl font-extrabold text-black"
-		>
-			Events
-		</h1>
+	<main class="overflow-hidden bg-white">
+		<section class="p-6 font-poppins text-slate-100">
+			<h1
+				class="text-slate-1000 mb-6 border-l-4 border-yellow-400 pl-3 font-poppins text-3xl font-extrabold text-black"
+			>
+				Events
+			</h1>
 
-		<div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-			{
-				events.map((event) => (
-					<EventCard
-						eventName={event.eventName}
-						imageUrl={event.imageUrl}
-						description={event.description}
-						facebookLink={event.facebookLink}
-					/>
-				))
-			}
-		</div>
-	</section>
+			<div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+				{
+					events.map((event) => (
+						<EventCard
+							eventName={event.eventName}
+							imageUrl={event.imageUrl}
+							description={event.description}
+							facebookLink={event.facebookLink}
+						/>
+					))
+				}
+			</div>
+		</section>
+	</main>
 </Layout>
