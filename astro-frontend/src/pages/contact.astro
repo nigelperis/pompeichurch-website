@@ -1,131 +1,69 @@
 ---
+import { Icon } from 'astro-icon/components';
 import Layout from '~/layouts/layout.astro';
-import HoverableLink from '~/components/ui/hoverable-link.astro';
 ---
 
 <Layout title="Pompei Church | Contact">
   <section class="p-6 font-poppins flex flex-col lg:items-center text-slate-100">
     <h1
-      class="mb-10 border-l-4 border-l-natgeo-yellow pl-3 text-3xl font-extrabold text-black"
+      class="mb-6 border-l-4 border-l-natgeo-yellow pl-3 text-3xl font-extrabold text-black"
     >
       CONTACT US
     </h1>
-    <h1 class="text-gray-900 font-normal text-center text-lg self-center">Contact us for more information about our church activities, hall bookings, and other inquiries</h1>
+    <h1 class="text-gray-900 font-normal text-center text-lg">Contact us for more information about our church activities, hall bookings, and other details</h1>
 
-    <div class="flex flex-col lg:flex-row items-center m-0 md:mx-56">
-      <div class="mx-auto mt-10 lg:px-32 py-2 bg-white max-w-4xl">
-        <div class="mb-6 border-b-2 pb-4">
-          <div class="flex items-center">
-            <span class="ml-2 font-bold text-black">Address :</span>
-          </div>
-          <p class="ml-8 mt-2 text-gray-800 text-nowrap">Gurpur, Kinnikambla, Mangaluru 575001</p>
-        </div>
-        <div class="mb-6 border-b-2 pb-4">
-          <div class="flex items-center">
-            <span class="ml-2 font-bold text-black">Phone :</span>
-          </div>
-          <p class="ml-8 mt-2 text-gray-800">6969696969</p>
+    <div class="flex flex-col lg:flex-row items-center md:mx-56">
+      <div class="mx-auto mt-8 lg:px-4 py-2 bg-white max-w-4xl">
+        <div class="mb-6 border-b-2 pb-4 flex items-center">
+				<Icon name="map-pin" size={22} class="text-gray-900"/>
+          <p class="ml-4 text-gray-800 font-semibold">Gurpur, Kinnikambla, Mangaluru</p>
         </div>
 
-        <div class="mb-6 border-b-2 pb-4">
-          <div class="flex items-center">
-            <span class="ml-2 font-bold text-black">Office Hours :</span>
-          </div>
-          <p class="ml-8 mt-2 text-gray-800"> Mon-Sat: 9AM - 1PM | 2PM-5PM </p>
+        <div class="mb-6 border-b-2 pb-4 flex items-center">
+				  <Icon name="contact-phone" size={22} class="text-gray-900"/>
+          <p class="ml-4 text-gray-800 font-semibold">6969696969</p>
         </div>
 
-        <div class="mb-6 border-b-2 pb-4">
-          <div class="flex items-center">
-            <span class="ml-2 font-bold text-black">Office Clerk:</span>
-          </div>
-          <p class="ml-8 mt-2 text-gray-800">John cena</p>
+        <div class="mb-6 border-b-2 pb-4 flex items-center">
+          <Icon name="user" size={22} class="text-gray-900"/>
+          <p class="ml-4 text-gray-800 font-semibold"> Mon-Sat: 9AM - 1PM | 2PM-5PM </p>
         </div>
-        <div class="mb-6">
-          <div class="flex items-center">
-            <span class="ml-2 font-bold text-black">Email :</span>
-          </div>
-          <p class="ml-8 mt-2 text-gray-800">pompeichurch100@gmail.com</p>
+
+        <div class="mb-6 border-b-2 pb-4 flex items-center">
+          <Icon name="clock" size={22} class="text-gray-900"/>
+          <p class="ml-4 text-gray-800 font-semibold">John cena</p>
+        </div>
+
+        <div class="mb-6 pb-4 flex items-center">
+          <Icon name="contact-mail" size={22} class="text-gray-900"/>
+          <p class="ml-4 text-gray-800 font-semibold">pompeichurch100@gmail.com</p>
         </div>
       </div>
-      <div class="lg:border-2 lg:border-gray-300  ml-10 h-full "></div>
-      <div class="px-6 w-full max-w-5xl rounded-2xl  ">
-        <form
-          action="https://formcarry.com/s/vLAD1FJnIJh"
-          method="POST"
-          enctype="multipart/form-data"
-          class="space-y-4"
-        >
-         <div class="flex flex-row  justify-evenly items-center ">
-          <div class="mr-2">
-            <label for="name" class="block  text-sm text-white">Name</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              required
-              class="w-full px-3 py-2 border border-gray-300 bg-white  text-black focus:outline-none focus:bg-white"
-              placeholder="Name"
-            />
-          </div>
 
-          <div>
-            <label for="phone" class="block  text-sm text-white">Phone Number</label>
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              required
-              class="w-full px-3 py-2 border border-gray-300 bg-white text-black focus:outline-none focus:bg-white"
-              placeholder="Phone Number"
-            />
-          </div>
-        </div>
-        <div>
-          <label for="phone" class="block  text-sm text-white">Email</label>
-          <input
-            type="text"
-            id="email"
-            name="email"
-            required
-            class="w-full px-3 py-2 border border-gray-300 bg-white  text-black focus:outline-none focus:bg-white"
-            placeholder="Email"
-          />
-        </div>
-          <div>
-            <label for="message" class="block  text-lg text-white">Message</label>
-            <textarea
-              id="message"
-              name="message"
-              required
-              rows="4"
-              class="w-full px-3 py-2 border border-gray-300 bg-white  text-black focus:outline-none focus:bg-white"
-              placeholder="Message"
-            ></textarea>
-          </div>
-
-          <div class="text-center pb-4 ">
-            <button
-              type="submit"
-
-            >
-            <HoverableLink class="mb-2 mt-2 inline-block text-black">
-             SEND MESSAGE
-            </HoverableLink>
-            </button>
-          </div>
-        </form>
+ <div class="lg:ml-10 lg:border-gray-300 lg:max-w-md">
+        <iframe data-tally-src="https://tally.so/embed/me7q7O?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="276" frameborder="0" marginheight="0" marginwidth="0" title="Contact form"></iframe>
       </div>
-
     </div>
-    <div class="w-full">
+
+  <div class="max-w-4xl w-full">
     <iframe
       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13260.49078439848!2d74.9254980873684!3d12.961133328525621!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba357ac5f2a68cf%3A0x3976db3d34963470!2sOur%20Lady%20Of%20Pompei%20Church!5e0!3m2!1sen!2sin!4v1724241128491!5m2!1sen!2sin"
       width="100%"
+      height="300"
       allowfullscreen
       loading="lazy"
       referrerpolicy="no-referrer-when-downgrade"
-      class="h-80 w-full rounded-md"
+      class="rounded-md"
     ></iframe>
+
   </div>
   </section>
+  <script>
+    var d=document,w="https://tally.so/widgets/embed.js",v=function(){
+      "undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))
+    };
+    if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){
+      var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);
+    }
+  </script>
 </Layout>
