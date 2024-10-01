@@ -7,25 +7,25 @@ import churchBanner from '~/assets/church-banner.jpg';
 import churchHeroImage from '~/assets/church-hero.jpg';
 ---
 <EmblaCarosuel>
-  <EmblaCarosuelItem>
+  <EmblaCarosuelItem class="aspect-square">
     <Image
       src={churchBanner}
       alt="Banner Image"
-      class=" md:h-[95vh] w-full object-fill aspect-[1:1]"
+      class="w-full object-cover"
     />
   </EmblaCarosuelItem>
-  <EmblaCarosuelItem>
+  <EmblaCarosuelItem class="aspect-square">
     <Image
       src={churchHeroImage}
       alt="Church Image"
-      class=" md:h-[95vh] w-full object-fill aspect-[1:1]"
+      class="w-full object-cover"
     />
   </EmblaCarosuelItem>
-  <EmblaCarosuelItem>
+  <EmblaCarosuelItem class="aspect-square">
     <Image
       src={churchBanner}
       alt="Church Banner"
-      class=" md:h-[95vh] w-full object-fill aspect-[1:1]"
+      class="w-full object-cover"
     />
   </EmblaCarosuelItem>
 </EmblaCarosuel>

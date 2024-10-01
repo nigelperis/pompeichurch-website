@@ -15,6 +15,7 @@
 	"dependencies": {
 		"@astrojs/react": "^3.6.2",
 		"@fontsource/bona-nova-sc": "5.0.2",
+		"@fontsource/geist-sans": "5.1.0",
 		"@fontsource/lora": "5.0.18",
 		"@fontsource/merriweather": "5.0.14",
 		"@fontsource/montserrat": "5.0.19",

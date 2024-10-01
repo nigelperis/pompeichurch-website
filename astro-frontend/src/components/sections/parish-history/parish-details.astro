@@ -4,14 +4,14 @@ import { parishHistory } from '~/constants/parish-history';
 import { Image } from 'astro:assets';
 ---
 
-<div class="lg:mx-64">
-  <div class="mb-2 mt-6 px-6">
-    <div class="md:float-right md:w-1/3 lg:w-1/2 md:ml-6 md:mb-6">
+<div class="mx-auto max-w-4xl bg-white">
+  <div class="mt-2">
+    <div class="md:float-right md:ml-5">
       <Image src={churchBannerImage} alt="Church Banner Image" />
     </div>
     {
       parishHistory.intro.map((paragraph, index) => (
-        <p key={index} class="mt-4 text-justify lg:text-left font-poppins text-md leading-7 text-slate-700">
+        <p key={index} class="mt-4 text-justify lg:text-left text-md leading-7 text-slate-700">
           {paragraph}
         </p>
       ))
@@ -22,7 +22,7 @@ import { Image } from 'astro:assets';
           <h3 class="text-lg font-bold text-slate-900">
             {priest.name} ({priest.years})
           </h3>
-          <p class="mt-2 text-justify lg:text-left text-md text-slate-700">
+          <p class="mt-2 text-justify lg:text-left text-md leading-7 text-slate-700">
             {priest.description}
           </p>
         </div>
