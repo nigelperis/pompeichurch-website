@@ -76,6 +76,8 @@ export const ui = {
 		'ui.more-button-know': 'KNOW MORE',
 		'ui.more-button-show': 'SHOW MORE',
 		'contact.title': 'CONTACT US',
+		'history.title': 'Our History'
+
 	},
 	kok: {
 		'nav.home': 'ಹೋಮ್',
@@ -148,5 +150,6 @@ export const ui = {
 		'ui.more-button-know': 'ಚಡಿತ್ ಮಾಹೆತ್',
 		'ui.more-button-show': 'ಚಡಿತ್ ಮಾಹೆತ್',
 		'contact.title': 'ಸಂಪರ್ಕ್ ಕರಾ',
+		'history.title': 'ಆಮ್ಚಿಂ ಚರಿತ್ರಾ'
 	},
 } as const;

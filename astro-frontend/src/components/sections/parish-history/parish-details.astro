@@ -4,27 +4,31 @@ import { parishHistory } from '~/constants/parish-history';
 import { Image } from 'astro:assets';
 ---
 
-<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-	<div class="mb-2 mt-6 rounded-lg bg-white px-6">
-		<Image src={churchBannerImage} alt="Church Banner Image" />
-		{
-			parishHistory.intro.map((paragraph) => (
-				<p class="mt-4 text-justify font-poppins text-lg text-slate-700">
-					{paragraph}
-				</p>
-			))
-		}
-		{
-			parishHistory.priests.map((priest) => (
-				<div class="mt-6">
-					<h3 class="text-lg font-bold text-slate-900">
-						{priest.name} ({priest.years})
-					</h3>
-					<p class="mt-2 text-justify text-lg text-slate-700">
-						{priest.description}
-					</p>
-				</div>
-			))
-		}
-	</div>
+<div class="mx-auto max-w-4xl bg-white">
+  <div class="mt-2">
+    <div class="md:float-right md:ml-5">
+      <Image src={churchBannerImage} alt="Church Banner Image" />
+    </div>
+    {
+      parishHistory.intro.map((paragraph, index) => (
+        <p key={index} class="mt-4 text-justify lg:text-left text-md leading-7 text-slate-700">
+          {paragraph}
+        </p>
+      ))
+    }
+    {
+      parishHistory.priests.map((priest, index) => (
+        <div key={index} class="mt-6">
+          <h3 class="text-lg font-bold text-slate-900">
+            {priest.name} ({priest.years})
+          </h3>
+          <p class="mt-2 text-justify lg:text-left text-md leading-7 text-slate-700">
+            {priest.description}
+          </p>
+        </div>
+      ))
+    }
+  </div>
 </div>
+
+
