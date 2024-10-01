@@ -1,0 +1,67 @@
+---
+import Layout from '~/layouts/layout.astro';
+import centenaryHallImage from '~/assets/centenary-hall.jpg';
+import pompeiSabhaBhavanImage from '~/assets/pompei-sabha-bhavan.jpg';
+import institutionDummyImage from '~/assets/institution-dummy.jpg';
+import { loremIpsum } from '~/constants/lorem-ipsum';
+import { getImage } from 'astro:assets';
+import { Image } from 'astro:assets';
+
+const optimizedInfrastructureImage = await getImage({
+	src: institutionDummyImage,
+});
+---
+
+<Layout title="Pompei Church | Infrastructure">
+	<main class="overflow-hidden bg-white">
+		<section
+			style={`background-image: url(${optimizedInfrastructureImage.src});`}
+			class="relative flex h-[250px] w-full items-center justify-center bg-black/50 bg-cover bg-center px-10 text-white bg-blend-darken"
+		>
+			<div class="text-center">
+				<h1 class="font-poppins text-4xl font-extrabold sm:text-6xl">
+					INFRASTRUCTURE
+				</h1>
+				<p class="text-roboto mt-4 text-lg text-white">
+					Explore our mission and the institutions that help make it possible.
+				</p>
+			</div>
+		</section>
+
+		<section id="our-institutions" class="my-8 bg-white">
+			<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+				<div class="mb-2 bg-white px-6">
+					<h2
+						class="text-slate-1000 mb-5 border-l-4 border-yellow-400 pl-3 font-poppins text-2xl font-extrabold"
+					>
+						Pompei Sabha Bhavan
+					</h2>
+					<Image
+						src={pompeiSabhaBhavanImage}
+						alt="Pompei Sabha Bhavan Image"
+						class="rounded-sm"
+					/>
+
+					<p class="mt-4 text-justify text-lg text-slate-700">{loremIpsum}</p>
+				</div>
+
+				<div class="mx-10 border-t-2 border-yellow-300"></div>
+
+				<div class="mb-6 bg-white px-6">
+					<h2
+						class="text-slate-1000 mb-5 border-l-4 border-yellow-400 pl-3 font-poppins text-2xl font-extrabold"
+					>
+						Centenary Hall
+					</h2>
+					<Image
+						src={centenaryHallImage}
+						alt="Centenary Hall Image"
+						class="rounded-sm"
+					/>
+
+					<p class="mt-4 text-justify text-lg text-slate-700">{loremIpsum}</p>
+				</div>
+			</div>
+		</section>
+	</main>
+</Layout>

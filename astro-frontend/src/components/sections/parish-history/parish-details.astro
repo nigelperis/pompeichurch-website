@@ -1,0 +1,34 @@
+---
+import churchBannerImage from '~/assets/church-banner.jpg';
+import { parishHistory } from '~/constants/parish-history';
+import { Image } from 'astro:assets';
+---
+
+<div class="mx-auto max-w-4xl bg-white">
+  <div class="mt-2">
+    <div class="md:float-right md:ml-5">
+      <Image src={churchBannerImage} alt="Church Banner Image" />
+    </div>
+    {
+      parishHistory.intro.map((paragraph, index) => (
+        <p key={index} class="mt-4 text-justify lg:text-left text-md leading-7 text-slate-700">
+          {paragraph}
+        </p>
+      ))
+    }
+    {
+      parishHistory.priests.map((priest, index) => (
+        <div key={index} class="mt-6">
+          <h3 class="text-lg font-bold text-slate-900">
+            {priest.name} ({priest.years})
+          </h3>
+          <p class="mt-2 text-justify lg:text-left text-md leading-7 text-slate-700">
+            {priest.description}
+          </p>
+        </div>
+      ))
+    }
+  </div>
+</div>
+
+

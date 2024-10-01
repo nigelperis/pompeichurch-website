@@ -1,0 +1,54 @@
+---
+import { getImage } from 'astro:assets';
+
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+import maryGrotto from '~/assets/mary-grotto.jpg';
+const optimizedGrottoImage = await getImage({ src: maryGrotto });
+
+import HoverableLink from '~/components/ui/hoverable-link.astro';
+
+import { cn } from '~/helpers/cn';
+
+import YoutubeVideo from './youtube-video.astro';
+import { churchHistory } from '~/constants/church-history';
+---
+
+<section
+	style={{ backgroundImage: `url(${optimizedGrottoImage.src})` }}
+	class="relative mb-6 mt-5 bg-black/70 bg-cover bg-center pb-4 text-white bg-blend-darken"
+>
+	<div
+		class="relative flex w-full flex-col items-center justify-center bg-cover bg-center p-7 pb-2"
+	>
+		<h1
+			data-aos="fade-right"
+			class={cn(
+				'relative mb-2 font-poppins text-5xl font-black leading-tight  ',
+				{ 'font-noto-sans-kannada': lang === 'kok' },
+			)}
+		>
+			{t('landing.about-church')}
+		</h1>
+		<div
+			class="relative mb-6 mr-auto h-1 w-20 bg-natgeo-yellow opacity-0"
+			data-aos="fade-left"
+		>
+		</div>
+		<p
+			class="relative max-w-2xl text-justify font-poppins leading-relaxed drop-shadow-xl"
+		>
+			{churchHistory}
+		</p>
+	</div>
+
+	<YoutubeVideo />
+
+	<div class="flex justify-center">
+		<HoverableLink href="/parish-history/" class="m-3">
+			{t('ui.more-button-know')}
+		</HoverableLink>
+	</div>
+</section>

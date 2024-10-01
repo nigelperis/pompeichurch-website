@@ -1,0 +1,32 @@
+---
+const currentLocale = Astro.currentLocale;
+const currentPath = new URL(Astro.request.url).pathname;
+const pathWithLocaleStripped = currentPath.replace(/^\/kok\//, '/');
+const localeToSwitchTo = currentLocale === 'en' ? 'kok' : 'en';
+---
+
+<aside>
+	<a
+		class="fixed bottom-[70px] right-4 flex items-center justify-center rounded-full"
+		data-astro-prefetch="load"
+		href={localeToSwitchTo === 'kok'
+			? `/${localeToSwitchTo}${pathWithLocaleStripped}`
+			: `${pathWithLocaleStripped}`}
+		aria-label={`Switch to ${localeToSwitchTo === 'kok' ? 'English' : 'Kannada'}`}
+	>
+		<div class="relative inline-flex cursor-pointer items-center">
+			<div
+				class="group h-8 w-16 rounded-full bg-transparent bg-yellow-200 ring-0 transition-transform duration-700"
+			>
+				<span
+					class={`absolute top-1 flex items-center justify-center text-black rounded-full h-6 w-6 bg-natgeo-yellow font-bold transition-transform duration-300 ${
+						currentLocale === 'en' ? 'left-1' : 'right-1'
+					}`}
+					aria-hidden="true"
+				>
+					{currentLocale === 'en' ? 'ಕ' : 'E'}
+				</span>
+			</div>
+		</div>
+	</a>
+</aside>

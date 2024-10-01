@@ -1,0 +1,24 @@
+---
+import Layout from '~/layouts/layout.astro';
+import MasonryGallery from '~/components/sections/gallery/masonry-gallery.astro';
+---
+
+<Layout title="Pompei Church | Gallery">
+	<main class="overflow-hidden bg-white">
+		<section
+			class="relative flex h-[225px] w-full items-center justify-center bg-slate-100 px-10"
+		>
+			<div class="text-center">
+				<h1
+					class="text-slate-1000 mb-6 font-poppins text-3xl font-extrabold text-black"
+				>
+					Gallery
+				</h1>
+				<p class="text-md font-poppins text-slate-400">
+					Capturing moments of grace
+				</p>
+			</div>
+		</section>
+		<MasonryGallery />
+	</main>
+</Layout>

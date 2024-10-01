@@ -1,0 +1,76 @@
+---
+import { Image, getImage } from 'astro:assets';
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+import { cn } from '~/helpers/cn';
+import skyImage from '~/assets/sky-bg.jpg';
+const optimizedSkyImage = await getImage({ src: skyImage });
+import churchHeroImage from '~/assets/church-hero.jpg';
+const optimizedChurchHeroImage = await getImage({ src: churchHeroImage });
+import churchLogo from '~/assets/church-logo.png';
+---
+
+<section
+	class="relative h-screen w-screen bg-black/20 bg-cover bg-blend-darken"
+	style={{
+		backgroundImage: `url(${optimizedSkyImage.src})`,
+	}}
+>
+	<div class="absolute inset-0 bg-white opacity-70 bg-blend-darken shadow-lg">
+	</div>
+
+	<div
+		class="relative mx-auto h-80 w-80 overflow-hidden rounded-b-[12rem] bg-yellow-50 xs:w-96"
+	>
+		<div
+			class="animated-background mx-auto h-full w-full bg-cover bg-center bg-no-repeat shadow-2xl"
+			style={{ backgroundImage: `url(${optimizedChurchHeroImage.src})` }}
+		>
+		</div>
+	</div>
+	<h1
+		data-aos="fade-up"
+		data-aos-delay="700"
+		class={cn('mx-2 mt-5  text-center font-montserrat text-4xl font-bold', {
+			'font-noto-sans-kannada': lang === 'kok',
+		})}
+	>
+		{t('landing.church-name')}
+	</h1>
+	<p
+		data-aos="fade-up"
+		data-aos-delay="900"
+		class={cn(
+			'mx-2 mt-3  text-center font-montserrat font-normal text-2xl opacity-0',
+			{
+				'font-noto-sans-kannada font-normal': lang === 'kok',
+			},
+		)}
+	>
+		{t('landing.town-name')}
+	</p>
+	<div class="mx-auto">
+		<Image
+			src={churchLogo}
+			alt="church logo"
+			width={180}
+			data-aos="fade-up"
+			data-aos-delay="1100"
+			class="mx-auto my-4 opacity-0"
+		/>
+	</div>
+</section>
+<style>
+	@keyframes animatedBackground {
+		from {
+			transform: scale(1.2);
+		}
+		to {
+			transform: scale(1);
+		}
+	}
+	.animated-background {
+		animation: animatedBackground 2s ease-out forwards;
+	}
+</style>

@@ -1,0 +1,47 @@
+---
+import { Image } from 'astro:assets';
+
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+import priestImage from '~/assets/pp1.png';
+
+import { loremIpsum } from '~/constants/lorem-ipsum';
+---
+
+<section class="mx-6 mt-6">
+	<h2
+		data-aos="fade-right"
+		class="relative mb-4 border-l-4 border-natgeo-yellow pl-3 text-left font-poppins text-3xl font-extrabold"
+	>
+		{t('landing.priest-speaks')}
+	</h2>
+
+	<div
+		data-aos="zoom-in-up"
+		class="relative mx-auto flex w-fit flex-col items-center"
+	>
+		<div
+			class="absolute top-full -z-10 h-[43%] w-[103%] -translate-y-full rounded bg-gradient-to-r from-natgeo-yellow-200 via-natgeo-yellow-300 to-natgeo-yellow-400"
+		>
+		</div>
+		<Image src={priestImage} alt="priest image" width={300} />
+	</div>
+
+	<figcaption class="mt-2 text-center font-lora text-lg italic text-slate-600">
+		{t('landing.priest-name')}
+	</figcaption>
+
+	<p
+		class="text-justify font-poppins text-base first-letter:font-serif first-letter:text-3xl"
+	>
+		{loremIpsum}
+	</p>
+
+	<div class="relative mb-8 ml-auto overflow-hidden text-lg font-semibold">
+		<p data-aos="fade-left" class="text-right">
+			Signature of Fr. Rudolf DSa(image)
+		</p>
+	</div>
+</section>

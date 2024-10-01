@@ -1,0 +1,58 @@
+---
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+import Card from './pastoral-parishad-info-card.astro';
+import dummyImage from '~/assets/dummy-image.png';
+import priestImage from '~/assets/fr-image.jpg';
+import vicepresident from '~/assets/vp-image.jpg';
+import ayogPresident from '~/assets/ayog-president.jpg';
+import { Icon } from 'astro-icon/components';
+---
+
+<section class="mb-6 mt-6 scrollbar-none">
+	<h2
+		class="mx-5 mb-4 border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold"
+		data-aos="fade-right"
+	>
+		{t('landing.pastoral-parishad')}
+	</h2>
+
+	<ul
+		class="my-4 flex w-full max-w-full scroll-ml-6 space-x-8 overflow-x-auto overflow-y-hidden py-1.5 pl-4 pr-4 scrollbar-none"
+	>
+		<Card
+			imageUrl={priestImage}
+			subtitle={t('landing.priest')}
+			title={t('landing.priest-name')}
+		/>
+		<Card
+			imageUrl={vicepresident}
+			subtitle={t('landing.vice-president')}
+			title={t('landing.vp-name')}
+		/>
+		<Card
+			imageUrl={dummyImage}
+			subtitle={t('landing.secretary')}
+			title={t('landing.secretary-name')}
+		/>
+		<Card
+			imageUrl={ayogPresident}
+			subtitle={t('landing.pastoral-commission-coordinator')}
+			title={t('landing.pastoral-commission-coordinator-name')}
+		/>
+
+		<div
+			class="flex w-64 max-w-xs flex-shrink-0 transform snap-start items-center justify-center overflow-hidden rounded-lg border shadow-md transition-all duration-200 ease-in-out first:snap-align-none hover:scale-[1.01] sm:w-64"
+		>
+			<a
+				href="/parish-pastoral-parishad/"
+				class="flex h-40 w-40 flex-row items-center justify-center space-x-2 rounded-full bg-yellow-200"
+			>
+				<h1 class="text-xl font-bold">View All</h1>
+				<Icon name="viewall" size={30} />
+			</a>
+		</div>
+	</ul>
+</section>

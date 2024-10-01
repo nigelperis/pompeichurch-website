@@ -1,0 +1,105 @@
+[33m572b85d[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mfeat/social-grid[m[33m, [m[1;31morigin/feat/social-grid[m[33m)[m Merge branch 'feat/social-grid' of https://github.com/nigelperis/pompeichurch-website into feat/social-grid
+[33m3fbda1d[m feat : svg changes
+[33md3f16cd[m style(ui): add header and minor fix
+[33m6128fac[m Merge branch 'master' of https://github.com/nigelperis/pompeichurch-website into feat/social-grid
+[33m346c342[m feat:social-grid styling
+[33m6c724b2[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m Merge pull request #13 from nigelperis/feat/embla
+[33maeffd10[m  fix: responsive of social-grid
+[33m874a822[m  fix: responsive of social-grid
+[33m3e76ea2[m  feat: facebook grid
+[33mc8e707c[m style(ui): colors
+[33m8b05aac[m[33m ([m[1;31morigin/feat/embla[m[33m, [m[1;32mfeat/embla[m[33m)[m Fix: hamburger menu , style of commisio page
+[33mc9ef7e8[m refactor: alignment issue
+[33m128193c[m Merge branch 'master' of https://github.com/nigelperis/pompeichurch-website into feat/embla
+[33mc53647a[m fix: style fix
+[33mb04e98f[m feat: new drop down for parsih commission
+[33mc6343d3[m[33m ([m[1;32mmaster[m[33m)[m fix: minor improvements
+[33me8df91a[m Merge pull request #12 from nigelperis/feat/event-page
+[33m16554ee[m[33m ([m[1;31morigin/feat/event-page[m[33m)[m fix: code reorganization
+[33m8984deb[m[33m ([m[1;32mfeat/event-page[m[33m)[m  feat: events in home page
+[33m86ec7b8[m fix: color scheme
+[33m364b37c[m fix: add YT video inside about-us section
+[33m7245738[m Merge pull request #11 from nigelperis/feat/card
+[33m8c0a3bb[m[33m ([m[1;31morigin/feat/card[m[33m)[m fix: card fix
+[33meff71f4[m Merge branch 'master' of https://github.com/nigelperis/pompeichurch-website into feat/card
+[33mc1fda12[m Merge branch 'feat/card' of https://github.com/nigelperis/pompeichurch-website into feat/card
+[33m88d5905[m[33m ([m[1;32mfeat/card[m[33m)[m fix: view all card and mobile view fix
+[33m5eee78e[m fix: prettier format and masonry layout
+[33m3866a3f[m Merge pull request #7 from nigelperis/navbar-animation
+[33m89e3160[m fix: animation speed
+[33m40cc038[m Merge branch 'master' of https://github.com/nigelperis/pompeichurch-website into navbar-animation
+[33md16c8c5[m Merge pull request #10 from nigelperis/feat/top-button
+[33m67ed4e1[m Merge branch 'master' of https://github.com/nigelperis/pompeichurch-website into feat/top-button
+[33m1d55d7c[m Merge pull request #9 from nigelperis/fix/toggle-switch
+[33mf82714c[m Merge branch 'master' of https://github.com/nigelperis/pompeichurch-website into fix/toggle-switch
+[33ma7b9d7b[m[33m ([m[1;32mfix/toggle-switch[m[33m)[m fix: toggle switch
+[33ma4f98f7[m Merge branch 'master' of https://github.com/nigelperis/pompeichurch-website into feat/card
+[33m8bd0a23[m fix: style of view all
+[33m2df70d2[m feat: view all feature
+[33m15fc9c0[m fix: make switcher text bold
+[33m4d02280[m fix: svg format
+[33mec8689b[m feat: change in svg of scroll_top
+[33md7171de[m Merge branch 'feat/top-button' of https://github.com/nigelperis/pompeichurch-website into feat/top-button
+[33m543be29[m feat: function scrolltop button
+[33ma2c18fb[m feat: function scrolltop button
+[33m3441033[m Merge pull request #8 from nigelperis/feat/toggle-switch
+[33m81c21db[m[33m ([m[1;32mnavbar-animation[m[33m)[m fix: resolve animation of sublinks while clicking
+[33m432639c[m fix: resolve animation of sublinks while closing
+[33m7d8739e[m fix: disable main scrolling in nav-bar
+[33mc3a02a0[m fix: sublink animation and scroll position
+[33m5d08594[m fix: resolve animation
+[33mc4745b8[m fix: animation resolved
+[33mef39f2c[m fix: sublinks bug
+[33mb0fe746[m feat: add animation for nav-bar
+[33md2a8902[m feat: add toggle switch
+[33m3543bfc[m feat: navbar animation added
+[33m01d78cb[m style: improve contact us section
+[33m2631644[m style: format code with pnpm run format
+[33mbcc0edb[m feat: add news section and minor improvements
+[33mec1bed2[m fix: layout in associations page
+[33m5689763[m Merge pull request #6 from nigelperis/feat/news
+[33med25d1f[m feat: add news section page
+[33mfbe78cc[m Merge branch 'master' of https://github.com/nigelperis/pompeichurch-website
+[33m0ec063d[m chore: migrate from swiper to embla for carousel
+[33m84d95d6[m chore: add improvements in pages
+[33m57db58f[m feat: add aos config
+[33m76dcb8b[m chore: improvements in components
+[33mfc8b1bd[m chore: improvements in landing page
+[33ma443a81[m feat: add more assets
+[33m1461ce7[m feat:add support for fonts and aos
+[33ma321c59[m feat: add support for fonts and AOS
+[33m7e45148[m Merge branch 'master' of github.com:nigelperis/pompeichurch-website
+[33m39c7dea[m feat: add netlify support for temporary hosting
+[33mc4904ad[m feat: add netlify support for temporary hosting
+[33m3fc4683[m Merge pull request #5 from nigelperis/feat/mobile-view-v2
+[33mfd6aef4[m feat: add language switcher
+[33m2609ed9[m feat: implement i18n setup
+[33m21a8070[m Merge pull request #4 from nigelperis/feat/initial-mobile-view
+[33m1ded925[m feat: develop landing page for mobile view
+[33m1faba2a[m feat: add assets
+[33ma26efae[m feat: develop mobile-first view
+[33m0bb3f55[m chore: separation of concerns
+[33ma80d6d3[m feat: add assets
+[33m8760218[m Merge pull request #3 from nigelperis/feat/initial-implementation
+[33m465bbb8[m feat: add more sections
+[33m0759f04[m feat: add initial sections
+[33m915339c[m chore: update iconify package
+[33m87adb47[m Merge pull request #1 from nigelperis/feat/strapi-models
+[33m468d30a[m[33m ([m[1;31morigin/feat/strapi-models[m[33m)[m feat: add single type models
+[33madf9add[m feat: add more model relations
+[33m214f485[m feat: add model relations
+[33mc913aa4[m feat: add few more models
+[33m42a3d63[m feat: add more models
+[33m41ea273[m feat: add parish history model
+[33m4bc1323[m chore: remove unwanted db connections
+[33mfc84833[m feat: temporary header
+[33m55e7a51[m fix: update tailwind config
+[33m1d59fdf[m fix: update astro config
+[33m4249a8e[m fix: update index page
+[33m6838718[m feat: add svg for localization
+[33m67b48a8[m feat: modify layout
+[33mceb403b[m chore: update preference
+[33m01934af[m feat: add navbar component
+[33m1a2a4f4[m feat: add header component
+[33m76f199f[m chore: remove card component
+[33m7c6e01a[m feat: set up project structure

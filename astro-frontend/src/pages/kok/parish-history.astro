@@ -1,0 +1,25 @@
+---
+import ParishDetails from '~/components/sections/parish-history/parish-details.astro';
+import Layout from '~/layouts/layout.astro';
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+import HistoryCarousel from '~/components/sections/parish-history/history-carousel.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Layout title="Pompei Church | Parish History">
+	<main class="overflow-hidden bg-white">
+		<section id="our-institutions" class="my-8 bg-white">
+			<div class="px-6">
+				<h2
+					class="text-slate-1000 mb-2 border-l-4 border-yellow-400 pl-3 font-poppins text-3xl font-extrabold"
+				>
+					{t('history.title')}
+				</h2>
+			</div>
+			<ParishDetails />
+			<HistoryCarousel/>
+		</section>
+	</main>
+</Layout>

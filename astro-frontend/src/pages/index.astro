@@ -1,9 +1,34 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Header from '../components/header.astro';
+import Layout from '~/layouts/layout.astro';
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+import HeroSection from '~/components/sections/landing-page/hero-section.astro';
+import ParishPriestSpeaks from '~/components/sections/landing-page/parish-priest-speaks-section.astro';
+import AboutChurch from '~/components/sections/landing-page/about-church-section.astro';
+import PastoralParishadSection from '~/components/sections/landing-page/pastoral-parishad-section.astro';
+import MassTimingsSection from '~/components/sections/landing-page/mass-timings-section.astro';
+import SocialGrid from '~/components/sections/landing-page/social-grid.astro';
+import ChurchEventsSection from '~/components/sections/landing-page/church-events-section.astro';
+import LandingCarousel from '~/components/sections/landing-page/landing-carousel.astro';
 ---
 
-<Layout title="Home | Pompei Church.">
-	<Header />
-	<main class="h-screen bg-yellow-50"></main>
+<Layout title={`${t('landing.church-name')} | ${t('landing.town-name')}`}>
+	<main>
+		<HeroSection />
+
+		<LandingCarousel />
+
+		<ParishPriestSpeaks />
+
+		<AboutChurch />
+
+		<PastoralParishadSection />
+
+		<ChurchEventsSection />
+
+		<SocialGrid />
+
+		<MassTimingsSection />
+	</main>
 </Layout>
