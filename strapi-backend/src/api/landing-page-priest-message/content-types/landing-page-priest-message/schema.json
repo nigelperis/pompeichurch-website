@@ -1,10 +1,10 @@
 {
-  "kind": "collectionType",
-  "collectionName": "obituaries",
+  "kind": "singleType",
+  "collectionName": "landing_page_priest_messages",
   "info": {
-    "singularName": "obituary",
-    "pluralName": "obituaries",
-    "displayName": "Obituary",
+    "singularName": "landing-page-priest-message",
+    "pluralName": "landing-page-priest-messages",
+    "displayName": "Landing Page Priest Message",
     "description": ""
   },
   "options": {
@@ -16,19 +16,24 @@
     }
   },
   "attributes": {
-    "name": {
+    "parish_priest": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::parish-priest.parish-priest"
+    },
+    "message": {
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       },
-      "type": "string",
+      "type": "blocks",
       "required": true
     },
-    "image": {
+    "signature": {
       "type": "media",
       "multiple": false,
-      "required": false,
+      "required": true,
       "allowedTypes": [
         "images"
       ],
@@ -38,19 +43,18 @@
         }
       }
     },
-    "age": {
+    "coverImage": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
       "pluginOptions": {
         "i18n": {
           "localized": false
         }
       },
-      "type": "integer",
       "required": true
-    },
-    "ward": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::ward.ward"
     }
   }
 }

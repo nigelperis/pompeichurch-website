@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "wards",
+  "collectionName": "pompeichem_falkems",
   "info": {
-    "singularName": "ward",
-    "pluralName": "wards",
-    "displayName": "Ward"
+    "singularName": "pompeichem-falkem",
+    "pluralName": "pompeichem-falkems",
+    "displayName": "Pompeichem Falkem"
   },
   "options": {
     "draftAndPublish": true
@@ -15,7 +15,7 @@
     }
   },
   "attributes": {
-    "name": {
+    "title": {
       "pluginOptions": {
         "i18n": {
           "localized": true
@@ -24,7 +24,7 @@
       "type": "string",
       "required": true
     },
-    "patronImage": {
+    "coverImage": {
       "allowedTypes": [
         "images"
       ],
@@ -34,34 +34,27 @@
         "i18n": {
           "localized": false
         }
-      }
+      },
+      "required": true
     },
-    "description": {
+    "publishedDate": {
       "pluginOptions": {
         "i18n": {
           "localized": false
         }
       },
-      "type": "blocks",
+      "type": "date",
       "required": true
     },
-    "gurkar": {
+    "bookLink": {
       "pluginOptions": {
         "i18n": {
-          "localized": true
+          "localized": false
         }
       },
       "type": "string",
-      "required": true
-    },
-    "secretary": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "string",
-      "required": true
+      "required": true,
+      "unique": false
     }
   }
 }

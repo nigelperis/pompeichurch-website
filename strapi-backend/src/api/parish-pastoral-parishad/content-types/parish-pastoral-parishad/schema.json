@@ -1,10 +1,11 @@
 {
   "kind": "collectionType",
-  "collectionName": "wards",
+  "collectionName": "parish_pastoral_parishads",
   "info": {
-    "singularName": "ward",
-    "pluralName": "wards",
-    "displayName": "Ward"
+    "singularName": "parish-pastoral-parishad",
+    "pluralName": "parish-pastoral-parishads",
+    "displayName": "Parish Pastoral Parishad",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -24,43 +25,36 @@
       "type": "string",
       "required": true
     },
-    "patronImage": {
+    "designation": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string",
+      "required": true
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
       "allowedTypes": [
         "images"
       ],
-      "type": "media",
-      "multiple": false,
       "pluginOptions": {
         "i18n": {
           "localized": false
         }
       }
     },
-    "description": {
+    "showInLandingPage": {
       "pluginOptions": {
         "i18n": {
           "localized": false
         }
       },
-      "type": "blocks",
-      "required": true
-    },
-    "gurkar": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "string",
-      "required": true
-    },
-    "secretary": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "string",
+      "type": "boolean",
+      "default": false,
       "required": true
     }
   }

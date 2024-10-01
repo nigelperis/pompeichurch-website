@@ -1,10 +1,11 @@
 {
   "kind": "collectionType",
-  "collectionName": "wards",
+  "collectionName": "parish_priests",
   "info": {
-    "singularName": "ward",
-    "pluralName": "wards",
-    "displayName": "Ward"
+    "singularName": "parish-priest",
+    "pluralName": "parish-priests",
+    "displayName": "Parish Priest",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -24,7 +25,28 @@
       "type": "string",
       "required": true
     },
-    "patronImage": {
+    "servicePeriodStart": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "type": "string",
+      "required": true,
+      "maxLength": 4,
+      "minLength": 4
+    },
+    "servicePeriodEnd": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "type": "string",
+      "maxLength": 4,
+      "minLength": 4
+    },
+    "image": {
       "allowedTypes": [
         "images"
       ],
@@ -34,34 +56,8 @@
         "i18n": {
           "localized": false
         }
-      }
-    },
-    "description": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
       },
-      "type": "blocks",
-      "required": true
-    },
-    "gurkar": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "string",
-      "required": true
-    },
-    "secretary": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "string",
-      "required": true
+      "required": false
     }
   }
 }
