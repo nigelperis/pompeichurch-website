@@ -590,6 +590,53 @@ export interface PluginContentReleasesReleaseAction
   };
 }
 
+export interface PluginI18NLocale extends Schema.CollectionType {
+  collectionName: 'i18n_locale';
+  info: {
+    singularName: 'locale';
+    pluralName: 'locales';
+    collectionName: 'locales';
+    displayName: 'Locale';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+  };
+  attributes: {
+    name: Attribute.String &
+      Attribute.SetMinMax<
+        {
+          min: 1;
+          max: 50;
+        },
+        number
+      >;
+    code: Attribute.String & Attribute.Unique;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::i18n.locale',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'plugin::i18n.locale',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface PluginUsersPermissionsPermission
   extends Schema.CollectionType {
   collectionName: 'up_permissions';
@@ -741,83 +788,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
-export interface PluginI18NLocale extends Schema.CollectionType {
-  collectionName: 'i18n_locale';
-  info: {
-    singularName: 'locale';
-    pluralName: 'locales';
-    collectionName: 'locales';
-    displayName: 'Locale';
-    description: '';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  pluginOptions: {
-    'content-manager': {
-      visible: false;
-    };
-    'content-type-builder': {
-      visible: false;
-    };
-  };
-  attributes: {
-    name: Attribute.String &
-      Attribute.SetMinMax<
-        {
-          min: 1;
-          max: 50;
-        },
-        number
-      >;
-    code: Attribute.String & Attribute.Unique;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::i18n.locale',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'plugin::i18n.locale',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiAboutParishAboutParish extends Schema.SingleType {
-  collectionName: 'about_parishes';
-  info: {
-    singularName: 'about-parish';
-    pluralName: 'about-parishes';
-    displayName: 'AboutParish';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    description: Attribute.Blocks;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::about-parish.about-parish',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::about-parish.about-parish',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface ApiAssociationAssociation extends Schema.CollectionType {
   collectionName: 'associations';
   info: {
@@ -828,10 +798,58 @@ export interface ApiAssociationAssociation extends Schema.CollectionType {
   options: {
     draftAndPublish: true;
   };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
   attributes: {
-    associationName: Attribute.String;
-    associationImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    associationDescription: Attribute.Blocks;
+    name: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    description: Attribute.Blocks &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    logo: Attribute.Media<'images'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    patronName: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    patronImage: Attribute.Media<'images'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    president: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    secretary: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -847,41 +865,12 @@ export interface ApiAssociationAssociation extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
-  };
-}
-
-export interface ApiConventConvent extends Schema.CollectionType {
-  collectionName: 'convents';
-  info: {
-    singularName: 'convent';
-    pluralName: 'convents';
-    displayName: 'Convent';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    conventName: Attribute.String;
-    conventImage: Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios',
-      true
+    localizations: Attribute.Relation<
+      'api::association.association',
+      'oneToMany',
+      'api::association.association'
     >;
-    description: Attribute.Blocks;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::convent.convent',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::convent.convent',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
+    locale: Attribute.String;
   };
 }
 
@@ -891,126 +880,160 @@ export interface ApiEventEvent extends Schema.CollectionType {
     singularName: 'event';
     pluralName: 'events';
     displayName: 'Event';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    eventName: Attribute.String;
-    eventPictures: Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios',
-      true
+    title: Attribute.String & Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
+    eventImage: Attribute.Media<'images'> & Attribute.Required;
+    eventURL: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::event.event',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::event.event',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiGalleryImageGalleryImage extends Schema.SingleType {
+  collectionName: 'gallery_images';
+  info: {
+    singularName: 'gallery-image';
+    pluralName: 'gallery-images';
+    displayName: 'Gallery Image';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    images: Attribute.Media<'images', true> & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::gallery-image.gallery-image',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::gallery-image.gallery-image',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiLandingPageCarouselLandingPageCarousel
+  extends Schema.SingleType {
+  collectionName: 'landing_page_carousels';
+  info: {
+    singularName: 'landing-page-carousel';
+    pluralName: 'landing-page-carousels';
+    displayName: 'Landing Page Carousel';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    carouselImage: Attribute.Media<'images', true> & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::landing-page-carousel.landing-page-carousel',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::landing-page-carousel.landing-page-carousel',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiLandingPagePriestMessageLandingPagePriestMessage
+  extends Schema.SingleType {
+  collectionName: 'landing_page_priest_messages';
+  info: {
+    singularName: 'landing-page-priest-message';
+    pluralName: 'landing-page-priest-messages';
+    displayName: 'Landing Page Priest Message';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    parish_priest: Attribute.Relation<
+      'api::landing-page-priest-message.landing-page-priest-message',
+      'oneToOne',
+      'api::parish-priest.parish-priest'
     >;
-    eventDescription: Attribute.Blocks;
+    message: Attribute.Blocks &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    signature: Attribute.Media<'images'> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    coverImage: Attribute.Media<'images'> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::event.event',
+      'api::landing-page-priest-message.landing-page-priest-message',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'api::event.event',
+      'api::landing-page-priest-message.landing-page-priest-message',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
-  };
-}
-
-export interface ApiGalleryGallery extends Schema.CollectionType {
-  collectionName: 'galleries';
-  info: {
-    singularName: 'gallery';
-    pluralName: 'galleries';
-    displayName: 'Gallery';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    images: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::gallery.gallery',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::gallery.gallery',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiInfrastructureInfrastructure extends Schema.CollectionType {
-  collectionName: 'infrastructures';
-  info: {
-    singularName: 'infrastructure';
-    pluralName: 'infrastructures';
-    displayName: 'Infrastructure';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    name: Attribute.String;
-    images: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
-    description: Attribute.Blocks;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::infrastructure.infrastructure',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::infrastructure.infrastructure',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiInstitutionInstitution extends Schema.CollectionType {
-  collectionName: 'institutions';
-  info: {
-    singularName: 'institution';
-    pluralName: 'institutions';
-    displayName: 'Institution';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    institutionName: Attribute.String;
-    institutionImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    description: Attribute.Blocks;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::institution.institution',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::institution.institution',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::landing-page-priest-message.landing-page-priest-message',
+      'oneToMany',
+      'api::landing-page-priest-message.landing-page-priest-message'
+    >;
+    locale: Attribute.String;
   };
 }
 
@@ -1020,15 +1043,42 @@ export interface ApiObituaryObituary extends Schema.CollectionType {
     singularName: 'obituary';
     pluralName: 'obituaries';
     displayName: 'Obituary';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
   attributes: {
-    name: Attribute.String;
-    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    description: Attribute.Blocks;
-    DoD: Attribute.Date;
+    name: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    image: Attribute.Media<'images'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    age: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    ward: Attribute.Relation<
+      'api::obituary.obituary',
+      'oneToOne',
+      'api::ward.ward'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1044,155 +1094,227 @@ export interface ApiObituaryObituary extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
-  };
-}
-
-export interface ApiParishCouncilMemberParishCouncilMember
-  extends Schema.SingleType {
-  collectionName: 'parish_council_members';
-  info: {
-    singularName: 'parish-council-member';
-    pluralName: 'parish-council-members';
-    displayName: 'ParishCouncilMember';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    memberName: Attribute.String;
-    memberImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    description: Attribute.Blocks;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::parish-council-member.parish-council-member',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::parish-council-member.parish-council-member',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiParishInstitutionParishInstitution
-  extends Schema.CollectionType {
-  collectionName: 'parish_institutions';
-  info: {
-    singularName: 'parish-institution';
-    pluralName: 'parish-institutions';
-    displayName: 'ParishInstitution';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    institutions: Attribute.Relation<
-      'api::parish-institution.parish-institution',
-      'oneToMany',
-      'api::institution.institution'
-    >;
-    infrastructures: Attribute.Relation<
-      'api::parish-institution.parish-institution',
-      'oneToMany',
-      'api::infrastructure.infrastructure'
-    >;
-    convents: Attribute.Relation<
-      'api::parish-institution.parish-institution',
-      'oneToMany',
-      'api::convent.convent'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::parish-institution.parish-institution',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::parish-institution.parish-institution',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiParishNewsParishNews extends Schema.CollectionType {
-  collectionName: 'parish_newss';
-  info: {
-    singularName: 'parish-news';
-    pluralName: 'parish-newss';
-    displayName: 'ParishNews';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    obituaries: Attribute.Relation<
-      'api::parish-news.parish-news',
+    localizations: Attribute.Relation<
+      'api::obituary.obituary',
       'oneToMany',
       'api::obituary.obituary'
     >;
-    events: Attribute.Relation<
-      'api::parish-news.parish-news',
-      'oneToMany',
-      'api::event.event'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::parish-news.parish-news',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::parish-news.parish-news',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
+    locale: Attribute.String;
   };
 }
 
-export interface ApiPriestDetailPriestDetail extends Schema.SingleType {
-  collectionName: 'priest_details';
+export interface ApiParishPastoralParishadParishPastoralParishad
+  extends Schema.CollectionType {
+  collectionName: 'parish_pastoral_parishads';
   info: {
-    singularName: 'priest-detail';
-    pluralName: 'priest-details';
-    displayName: 'PriestDetail';
+    singularName: 'parish-pastoral-parishad';
+    pluralName: 'parish-pastoral-parishads';
+    displayName: 'Parish Pastoral Parishad';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
   attributes: {
-    priestName: Attribute.String;
-    priestImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    description: Attribute.Blocks;
+    name: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    designation: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    image: Attribute.Media<'images'> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    showInLandingPage: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.DefaultTo<false>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::priest-detail.priest-detail',
+      'api::parish-pastoral-parishad.parish-pastoral-parishad',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'api::priest-detail.priest-detail',
+      'api::parish-pastoral-parishad.parish-pastoral-parishad',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::parish-pastoral-parishad.parish-pastoral-parishad',
+      'oneToMany',
+      'api::parish-pastoral-parishad.parish-pastoral-parishad'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiParishPriestParishPriest extends Schema.CollectionType {
+  collectionName: 'parish_priests';
+  info: {
+    singularName: 'parish-priest';
+    pluralName: 'parish-priests';
+    displayName: 'Parish Priest';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    name: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    servicePeriodStart: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.SetMinMaxLength<{
+        minLength: 4;
+        maxLength: 4;
+      }>;
+    servicePeriodEnd: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.SetMinMaxLength<{
+        minLength: 4;
+        maxLength: 4;
+      }>;
+    image: Attribute.Media<'images'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::parish-priest.parish-priest',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::parish-priest.parish-priest',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::parish-priest.parish-priest',
+      'oneToMany',
+      'api::parish-priest.parish-priest'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiPompeichemFalkemPompeichemFalkem
+  extends Schema.CollectionType {
+  collectionName: 'pompeichem_falkems';
+  info: {
+    singularName: 'pompeichem-falkem';
+    pluralName: 'pompeichem-falkems';
+    displayName: 'Pompeichem Falkem';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    title: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    coverImage: Attribute.Media<'images'> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    publishedDate: Attribute.Date &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    bookLink: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::pompeichem-falkem.pompeichem-falkem',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::pompeichem-falkem.pompeichem-falkem',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::pompeichem-falkem.pompeichem-falkem',
+      'oneToMany',
+      'api::pompeichem-falkem.pompeichem-falkem'
+    >;
+    locale: Attribute.String;
   };
 }
 
@@ -1206,11 +1328,46 @@ export interface ApiWardWard extends Schema.CollectionType {
   options: {
     draftAndPublish: true;
   };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
   attributes: {
-    wardName: Attribute.String;
-    gurkaarName: Attribute.String;
-    wardImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
-    description: Attribute.Blocks;
+    name: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    patronImage: Attribute.Media<'images'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    description: Attribute.Blocks &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    gurkar: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    secretary: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1218,6 +1375,12 @@ export interface ApiWardWard extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<'api::ward.ward', 'oneToOne', 'admin::user'> &
       Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::ward.ward',
+      'oneToMany',
+      'api::ward.ward'
+    >;
+    locale: Attribute.String;
   };
 }
 
@@ -1235,22 +1398,19 @@ declare module '@strapi/types' {
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
+      'plugin::i18n.locale': PluginI18NLocale;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
-      'plugin::i18n.locale': PluginI18NLocale;
-      'api::about-parish.about-parish': ApiAboutParishAboutParish;
       'api::association.association': ApiAssociationAssociation;
-      'api::convent.convent': ApiConventConvent;
       'api::event.event': ApiEventEvent;
-      'api::gallery.gallery': ApiGalleryGallery;
-      'api::infrastructure.infrastructure': ApiInfrastructureInfrastructure;
-      'api::institution.institution': ApiInstitutionInstitution;
+      'api::gallery-image.gallery-image': ApiGalleryImageGalleryImage;
+      'api::landing-page-carousel.landing-page-carousel': ApiLandingPageCarouselLandingPageCarousel;
+      'api::landing-page-priest-message.landing-page-priest-message': ApiLandingPagePriestMessageLandingPagePriestMessage;
       'api::obituary.obituary': ApiObituaryObituary;
-      'api::parish-council-member.parish-council-member': ApiParishCouncilMemberParishCouncilMember;
-      'api::parish-institution.parish-institution': ApiParishInstitutionParishInstitution;
-      'api::parish-news.parish-news': ApiParishNewsParishNews;
-      'api::priest-detail.priest-detail': ApiPriestDetailPriestDetail;
+      'api::parish-pastoral-parishad.parish-pastoral-parishad': ApiParishPastoralParishadParishPastoralParishad;
+      'api::parish-priest.parish-priest': ApiParishPriestParishPriest;
+      'api::pompeichem-falkem.pompeichem-falkem': ApiPompeichemFalkemPompeichemFalkem;
       'api::ward.ward': ApiWardWard;
     }
   }
