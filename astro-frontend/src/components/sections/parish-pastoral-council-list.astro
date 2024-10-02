@@ -1,0 +1,67 @@
+---
+import dummyImage from '~/assets/dummy-image.png';
+import priestImage from '~/assets/fr-image.jpg';
+import vicepresident from '~/assets/vp-image.jpg';
+import ayogPresident from '~/assets/ayog-president.jpg';
+import ProfileCard from '~/components/profile-card.astro';
+
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const pastoralParishad = [
+	{
+		imageUrl: priestImage,
+		name: t('landing.priest-name'),
+		subtitle: t('landing.priest'),
+	},
+	{
+		imageUrl: vicepresident,
+		name: t('landing.vp-name'),
+		subtitle: t('landing.vice-president'),
+	},
+	{
+		imageUrl: dummyImage,
+		name: t('landing.secretary-name'),
+		subtitle: t('landing.secretary'),
+	},
+	{
+		imageUrl: ayogPresident,
+		name: t('landing.pastoral-commission-coordinator-name'),
+		subtitle: t('landing.pastoral-commission-coordinator'),
+	},
+	{
+		imageUrl: dummyImage,
+		name: 'Mr. Johnson Lobo',
+		subtitle: 'Secretary',
+	},
+	{
+		imageUrl: dummyImage,
+		name: 'Mr. Johnson Lobo',
+		subtitle: 'Secretary',
+	},
+	{
+		imageUrl: dummyImage,
+		name: 'Mr. Johnson Lobo',
+		subtitle: 'Secretary',
+	},
+];
+---
+
+	<section class="mx-6 mt-5">
+		<ul
+			class="mx-auto grid w-full grid-cols-2 gap-4 gap-y-5 p-4 sm:w-[90%] sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+		>
+			{
+				pastoralParishad.map((parishadMember) => (
+					<ProfileCard
+						class="m-auto w-40"
+						imageUrl={parishadMember.imageUrl}
+						name={parishadMember.name}
+						subtitle={parishadMember.subtitle}
+					/>
+				))
+			}
+		</ul>
+	</section>
+</Layout>

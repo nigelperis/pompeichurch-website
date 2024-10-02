@@ -1,0 +1,123 @@
+---
+import ProfileCard from '../profile-card.astro';
+import dummyImage from '~/assets/dummy-image.png';
+import fraaecolaco from '~/assets/fr-aae-colaco.jpeg';
+import frfxnazreth from '~/assets/fr-fx-nazreth.jpg';
+import fravelinerebello from '~/assets/fr-aveline-rebello.jpg';
+import frjohncastelino from '~/assets/fr-john-castelino.jpg';
+import frbernarddsouza from '~/assets/fr-bernard-dsouza.jpg';
+import frstanlyperiera from '~/assets/fr-stany-periera.jpeg';
+import frleoveigas from '~/assets/fr-leo-veigas.jpeg';
+import frcyprianpinto from '~/assets/fr-cyprian-pinto.jpeg';
+import frpaulrego from '~/assets/fr-paul-rego.jpeg';
+import frgregoryserrao from '~/assets/fr-gregory-serrao.jpg';
+import frpaulpinto from '~/assets/fr-paul-pinto.jpg';
+
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+
+const parishPriests = [
+	{
+		imageUrl: fraaecolaco,
+		name: 'aaecolaco',
+		date: '1921-22',
+	},
+	{
+		imageUrl: frfxnazreth,
+		name: 'fxnazreth',
+		date: '1922-30',
+	},
+	{
+		imageUrl: dummyImage,
+		name: 'raphaelpinto',
+		date: '1930-33',
+	},
+	{
+		imageUrl: fravelinerebello,
+		name: 'avelinerebello',
+		date: '1933-40',
+	},
+	{
+		imageUrl: dummyImage,
+		name: 'ajnazreth',
+		date: '1940-48',
+	},
+	{
+		imageUrl: frjohncastelino,
+		name: 'johncastelino',
+		date: '1948-55',
+	},
+	{
+		imageUrl: dummyImage,
+		name: 'jstrodrigues',
+		date: '1955-71',
+	},
+	{
+		imageUrl: frbernarddsouza,
+		name: 'bernarddsouza',
+		date: '1971-72',
+	},
+	{
+		imageUrl: dummyImage,
+		name: 'graciandsouza',
+		date: '1972-83',
+	},
+	{
+		imageUrl: frstanlyperiera,
+		name: 'stanlypereira',
+		date: '1983-91',
+	},
+	{
+		imageUrl: frleoveigas,
+		name: 'leoveigas',
+		date: '1991-98',
+	},
+	{
+		imageUrl: frcyprianpinto,
+		name: 'cyprianpinto',
+		date: '1998-05',
+	},
+	{
+		imageUrl: frpaulrego,
+		name: 'paulrego',
+		date: '2005-13',
+	},
+	{
+		imageUrl: frgregoryserrao,
+		name: 'gregoryserrao',
+		date: '2013-15',
+	},
+	{
+		imageUrl: frpaulpinto,
+		name: 'paulpinto',
+		date: '2015-16',
+	},
+	{
+		imageUrl: dummyImage,
+		name: 'anthonylobo',
+		date: '2016-22',
+	},
+
+
+];
+---
+
+	<section class="mx-auto mt-5">
+		<ul
+		class="mx-auto grid  w-[350px] grid-cols-2 gap-5 gap-y-5 p-4  sm:w-[90%] sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+	>
+		{
+			parishPriests.map((priest) => (
+				<ProfileCard
+					class="m-auto w-40"
+					imageUrl={priest.imageUrl}
+					name={t(`priest.${priest.name}`)}
+					date={priest.date}
+				/>
+			))
+		}
+	</ul>
+	</section>
+

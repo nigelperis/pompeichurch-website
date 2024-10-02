@@ -1,6 +1,9 @@
 ---
 import { Image } from 'astro:assets';
 import { cn } from '~/helpers/cn';
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 interface Props {
 	name: string;
@@ -24,13 +27,13 @@ const { name, date, subtitle, class: className, imageUrl } = Astro.props;
 			src={imageUrl}
 			alt="Image"
 			width={200}
-			class="h-auto w-full rounded-md object-cover transition-transform duration-700 ease-in-out"
+			class="h-[200px] w-[200px] rounded-md object-cover transition-transform duration-700 ease-in-out"
 		/>
 	</div>
 
 	<div class="card-content mt-3 flex flex-1 flex-col justify-end space-y-1 p-3">
 		<h3
-			class="card-title line-clamp-1 text-xs font-bold leading-snug text-slate-900 sm:text-lg"
+			class="card-title text-xs font-bold leading-snug text-slate-900 sm:text-lg"
 			title={name}
 		>
 			{name}
@@ -38,7 +41,7 @@ const { name, date, subtitle, class: className, imageUrl } = Astro.props;
 		{
 			date && (
 				<p class="card-date line-clamp-3 text-[8px] text-slate-600 sm:text-sm">
-					Service Period: <span class="font-semibold">{date}</span>
+					{t('priest.service-period')}: <span class="font-semibold">{date}</span>
 				</p>
 			)
 		}
