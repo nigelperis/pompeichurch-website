@@ -96,4 +96,3 @@ const parishPriests = [
 ];
 
 export { parishPriests };
-

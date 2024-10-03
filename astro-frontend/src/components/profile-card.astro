@@ -42,7 +42,8 @@ const { name, date, subtitle, class: className, imageUrl } = Astro.props;
 		{
 			date && (
 				<p class="card-date line-clamp-3 text-[8px] text-slate-700 sm:text-sm">
-					{t('priest.service-period')}: <span class="font-semibold">{date}</span>
+					{t('priest.service-period')}:{' '}
+					<span class="font-semibold">{date}</span>
 				</p>
 			)
 		}

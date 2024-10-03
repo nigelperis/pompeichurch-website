@@ -5,17 +5,16 @@ import ParishPastoralCouncilList from '~/components/sections/parish-pastoral-cou
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-
 ---
 
 <Layout title="Pompei Church | Parish Pastoral Parishad">
 	<section class="mx-6 mt-5">
 		<h1
-			class="font-poppins relative mb-4 border-l-4 border-natgeo-yellow pl-3 text-3xl font-extrabold"
+			class="relative mb-4 border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold"
 		>
 			{t('landing.pastoral-parishad')}
 		</h1>
 		<p class="font-geist">some subtitle</p>
-	  <ParishPastoralCouncilList />
+		<ParishPastoralCouncilList />
 	</section>
 </Layout>
