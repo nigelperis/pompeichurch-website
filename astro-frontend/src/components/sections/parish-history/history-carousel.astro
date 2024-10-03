@@ -6,26 +6,19 @@ import EmblaCarosuelItem from '~/components/ui/embla-carousel-item.astro';
 import churchBanner from '~/assets/church-banner.jpg';
 import churchHeroImage from '~/assets/church-hero.jpg';
 ---
+
 <EmblaCarosuel>
-  <EmblaCarosuelItem class="aspect-square">
-    <Image
-      src={churchBanner}
-      alt="Banner Image"
-      class="w-full object-cover"
-    />
-  </EmblaCarosuelItem>
-  <EmblaCarosuelItem class="aspect-square">
-    <Image
-      src={churchHeroImage}
-      alt="Church Image"
-      class="w-full object-cover"
-    />
-  </EmblaCarosuelItem>
-  <EmblaCarosuelItem class="aspect-square">
-    <Image
-      src={churchBanner}
-      alt="Church Banner"
-      class="w-full object-cover"
-    />
-  </EmblaCarosuelItem>
+	<EmblaCarosuelItem class="aspect-square">
+		<Image src={churchBanner} alt="Banner Image" class="w-full object-cover" />
+	</EmblaCarosuelItem>
+	<EmblaCarosuelItem class="aspect-square">
+		<Image
+			src={churchHeroImage}
+			alt="Church Image"
+			class="w-full object-cover"
+		/>
+	</EmblaCarosuelItem>
+	<EmblaCarosuelItem class="aspect-square">
+		<Image src={churchBanner} alt="Church Banner" class="w-full object-cover" />
+	</EmblaCarosuelItem>
 </EmblaCarosuel>
