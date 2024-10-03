@@ -93,8 +93,8 @@ export const ui = {
 		'priest.paulrego':'Rev. Fr. Paul Rego',
 		'priest.gregoryserrao':'Rev. Fr. Gregory Serrao',
 		'priest.paulpinto':'Rev. Fr. Paul Pinto',
-		'priest.anthonylobo':'Rev. Fr. Anthony Lobo'
-
+		'priest.anthonylobo':'Rev. Fr. Anthony Lobo',
+		'history.title': 'Our History',
 	},
 	kok: {
 		'nav.home': 'ಹೋಮ್',
@@ -184,7 +184,7 @@ export const ui = {
 		'priest.paulrego':'ಮಾ| ಬಾ| ಪಾವ್ಲ್ ರೇಗೊ',
 		'priest.gregoryserrao':'ಮಾ| ಬಾ| ಗ್ರೆಗರಿ ಸೆರಾವೊ',
 		'priest.paulpinto':'ಮಾ| ಬಾ| ಪಾವ್ಲ್ ಪಿಂಟೊ',
-		'priest.anthonylobo':'ಮಾ| ಬಾ| ಆ್ಯಂಟನಿ ಲೋಬೊ'
-
+		'priest.anthonylobo':'ಮಾ| ಬಾ| ಆ್ಯಂಟನಿ ಲೋಬೊ',
+		'history.title': 'ಆಮ್ಚಿಂ ಚರಿತ್ರಾ',
 	},
 } as const;
