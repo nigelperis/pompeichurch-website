@@ -10,18 +10,15 @@ import { Image } from 'astro:assets';
 			<Image src={churchBannerImage} alt="Church Banner Image" />
 		</div>
 		{
-			parishHistory.intro.map((paragraph, index) => (
-				<p
-					key={index}
-					class="text-md mt-4 text-justify leading-7 text-slate-700 lg:text-left"
-				>
+			parishHistory.intro.map((paragraph) => (
+				<p class="text-md mt-4 text-justify leading-7 text-slate-700 lg:text-left">
 					{paragraph}
 				</p>
 			))
 		}
 		{
-			parishHistory.priests.map((priest, index) => (
-				<div key={index} class="mt-6">
+			parishHistory.priests.map((priest) => (
+				<div class="mt-6">
 					<h3 class="text-lg font-bold text-slate-900">
 						{priest.name} ({priest.years})
 					</h3>

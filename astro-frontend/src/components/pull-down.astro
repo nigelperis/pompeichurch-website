@@ -56,7 +56,7 @@ const uniqueId = Math.random().toString(36).substring(2, 9);
 			<tbody>
 				{
 					subtitles?.map((subtitle) => (
-						<tr key={subtitle.commission}>
+						<tr>
 							<td class="py-2 text-sm">
 								<strong>{subtitle.commission}</strong>
 							</td>
@@ -98,25 +98,33 @@ const uniqueId = Math.random().toString(36).substring(2, 9);
 
 <script>
 	document.querySelectorAll('.dropdown-toggle').forEach((toggle) => {
-		toggle.addEventListener('click', function () {
-			const dropdownId = this.getAttribute('data-dropdown-id');
-			const dropdownContent = document.querySelector(
-				`.dropdown-content[data-dropdown-id="${dropdownId}"]`,
-			);
-			const arrow = this.querySelector('.arrow');
-			const isOpen = dropdownContent.classList.contains('open');
+		(toggle as HTMLButtonElement).addEventListener(
+			'click',
+			function (this: HTMLButtonElement) {
+				const dropdownId = this.getAttribute('data-dropdown-id');
+				const dropdownContent = document.querySelector(
+					`.dropdown-content[data-dropdown-id="${dropdownId}"]`,
+				);
 
-			if (isOpen) {
-				dropdownContent.style.maxHeight = dropdownContent.scrollHeight + 'px';
-				dropdownContent.offsetHeight;
-				dropdownContent.style.maxHeight = '0';
-				dropdownContent.classList.remove('open');
-				arrow.classList.remove('rotate');
-			} else {
-				dropdownContent.style.maxHeight = dropdownContent.scrollHeight + 'px';
-				dropdownContent.classList.add('open');
-				arrow.classList.add('rotate');
-			}
-		});
+				if (dropdownContent instanceof HTMLElement) {
+					const arrow = this.querySelector('.arrow');
+					const isOpen = dropdownContent.classList.contains('open');
+
+					if (isOpen) {
+						dropdownContent.style.maxHeight =
+							dropdownContent.scrollHeight + 'px';
+						dropdownContent.offsetHeight;
+						dropdownContent.style.maxHeight = '0';
+						dropdownContent.classList.remove('open');
+						if (arrow) arrow.classList.remove('rotate');
+					} else {
+						dropdownContent.style.maxHeight =
+							dropdownContent.scrollHeight + 'px';
+						dropdownContent.classList.add('open');
+						if (arrow) arrow.classList.add('rotate');
+					}
+				}
+			},
+		);
 	});
 </script>
