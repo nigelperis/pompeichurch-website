@@ -1,12 +1,16 @@
 ---
 import { Icon } from 'astro-icon/components';
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
 ---
 
 <h1
 	data-aos="fade-right"
 	class="mx-5 mb-4 mt-3 border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold"
 >
-	Follow <span class="text-3xl font-semibold">our journey</span>
+	 <span class="text-3xl font-semibold">{t('landing.follow-our-journey')}</span>
 </h1>
 
 <section class="mb-8 mt-6 flex justify-center">

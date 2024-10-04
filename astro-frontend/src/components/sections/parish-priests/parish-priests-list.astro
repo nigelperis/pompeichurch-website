@@ -1,0 +1,23 @@
+---
+import { parishPriests } from '~/constants/parish-priests';
+import ProfileCard from '../../profile-card.astro';
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+---
+<div
+	class="mx-auto grid w-full max-w-4xl grid-cols-2 gap-4 p-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+		{
+			parishPriests.map((priest) => (
+				<ProfileCard
+					class="m-auto"
+					imageUrl={priest.imageUrl}
+					name={t(`priest.${priest.name}`)}
+					date={priest.date}
+				/>
+			))
+		}
+</div>
+
