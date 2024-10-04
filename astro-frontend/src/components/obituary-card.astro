@@ -15,7 +15,7 @@ const { name, description, ward, class: className, imageUrl } = Astro.props;
 
 <li
 	class={cn(
-		'hover:scale-[1.02] hover:shadow-sm snap-start first:snap-align-none transform overflow-hidden rounded-lg border shadow transition-all duration-500 ease-in-out sm:w-full',
+		'hover:scale-[1.02] hover:shadow-sm snap-start first:snap-align-none transform overflow-hidden rounded-md border shadow transition-all duration-500 ease-in-out sm:w-full',
 		className,
 	)}
 >
@@ -24,7 +24,7 @@ const { name, description, ward, class: className, imageUrl } = Astro.props;
 			src={imageUrl}
 			alt="Image"
 			width={300}
-			class="h-auto w-full rounded-md object-cover transition-transform duration-700 ease-in-out"
+			class="h-auto w-full rounded-md object-cover"
 		/>
 	</div>
 

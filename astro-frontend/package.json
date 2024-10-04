@@ -33,7 +33,6 @@
 		"photoswipe": "5.4.4",
 		"react": "18.3.1",
 		"react-dom": "18.3.1",
-		"sharp": "0.33.4",
 		"tailwind-merge": "2.5.2"
 	},
 	"packageManager": "pnpm@8.10.2+sha1.e0b68270e89c817ff88b7be62466a2128c53af02",
@@ -47,7 +46,7 @@
 		"@types/photoswipe": "4.1.6",
 		"@types/react": "^18.3.5",
 		"@types/react-dom": "^18.3.0",
-		"@typescript-eslint/parser": "7.16.0",
+		"@typescript-eslint/parser": "8.8.0",
 		"eslint": "9.7.0",
 		"eslint-config-prettier": "9.1.0",
 		"eslint-plugin-astro": "1.2.3",
