@@ -16,9 +16,9 @@ interface Props {
 const { name, date, subtitle, class: className, imageUrl } = Astro.props;
 ---
 
-<li
+<div
 	class={cn(
-		'hover:scale-[1.01] hover:shadow-md snap-start first:snap-align-none max-w-xs flex-shrink-0 transform overflow-hidden rounded-md border shadow transition-all duration-500 ease-in-out sm:w-64',
+		'hover:scale-[1.01] hover:shadow-md snap-start first:snap-align-none max-w-xs flex-shrink-0 rounded-md border shadow sm:w-64',
 		className,
 	)}
 >
@@ -27,7 +27,8 @@ const { name, date, subtitle, class: className, imageUrl } = Astro.props;
 			src={imageUrl}
 			alt="Image"
 			width={200}
-			class="h-auto w-full rounded-md object-cover"
+			height={200}
+			class="w-full rounded-md object-cover"
 		/>
 	</div>
 
@@ -40,7 +41,7 @@ const { name, date, subtitle, class: className, imageUrl } = Astro.props;
 		</h3>
 		{
 			date && (
-				<p class="card-date line-clamp-3 text-[8px] text-slate-600 sm:text-sm">
+				<p class="card-date line-clamp-3 text-[8px] text-slate-700 sm:text-sm">
 					{t('priest.service-period')}: <span class="font-semibold">{date}</span>
 				</p>
 			)
@@ -53,4 +54,4 @@ const { name, date, subtitle, class: className, imageUrl } = Astro.props;
 			)
 		}
 	</div>
-</li>
+</div>

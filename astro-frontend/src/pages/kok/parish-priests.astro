@@ -1,20 +1,20 @@
 ---
 import Layout from '~/layouts/layout.astro';
-import ParishPriests from '~/components/sections/parish-priests-list.astro';
+import ParishPriestsList from '~/components/sections/parish-priests/parish-priests-list.astro';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
 <Layout title="Pompei Church | Parish Priests">
 	<section class="mx-6 mt-5">
-		<h2
-			data-animate-on-view="animate-slidein-left"
-			class="font-roboto relative mb-4 border-l-4 border-natgeo-yellow pl-3 text-left text-3xl font-extrabold transition-opacity duration-700"
+		<h1
+			class="font-poppins relative mb-4 border-l-4 border-natgeo-yellow pl-3 text-3xl font-extrabold"
 		>
 			{t('nav.parish-priests')}
-		</h2>
-		<h3>Here is a glimpse of the esteemed former parish priests who have nurtured our faith, enriched our community and individual lives, and upheld the cherished legacy of our church throughout these years.</h3>
-		<ParishPriests />
+		</h1>
+		<p>Here is a glimpse of the esteemed former parish priests who have nurtured our faith, enriched our community and individual lives, and upheld the cherished legacy of our church throughout these years.</p>
+		<ParishPriestsList />
 	</section>
 </Layout>

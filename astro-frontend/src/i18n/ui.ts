@@ -78,7 +78,7 @@ export const ui = {
 		'ui.more-button-show': 'SHOW MORE',
 		'contact.title': 'CONTACT US',
 		'priest.service-period':'Service Period',
-		'priest.aaecolaco':'Rev. Fr. A. A. Colaco',
+		'priest.aaecolaco':'Rev. Fr. A. A. E. Colaco',
 		'priest.fxnazreth':'Rev. Fr. F. X. Nazreth',
 		'priest.raphaelpinto':'Rev. Fr. Raphel Pinto',
 		'priest.avelinerebello':'Rev. Fr. Aveline Rebello',
@@ -93,7 +93,7 @@ export const ui = {
 		'priest.paulrego':'Rev. Fr. Paul Rego',
 		'priest.gregoryserrao':'Rev. Fr. Gregory Serrao',
 		'priest.paulpinto':'Rev. Fr. Paul Pinto',
-		'priest.anthonylobo':'Rev. Fr. Anthony Lobo',
+		'priest.antonylobo':'Rev. Fr. Anthony Lobo',
 		'history.title': 'Our History',
 	},
 	kok: {

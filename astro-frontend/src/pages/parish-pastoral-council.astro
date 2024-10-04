@@ -1,20 +1,21 @@
 ---
 import Layout from '~/layouts/layout.astro';
-import ParishPastoralCouncil from '~/components/sections/parish-pastoral-council-list.astro';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+import ParishPastoralCouncilList from '~/components/sections/parish-pastoral-council/parish-pastoral-council-list.astro';
+
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 ---
 
 <Layout title="Pompei Church | Parish Pastoral Parishad">
-	<section class="mx-auto mt-5">
-		<h2
-			data-animate-on-view="animate-slidein-left"
-			class="font-roboto relative mb-4 border-l-4 border-natgeo-yellow pl-3 text-left text-3xl font-extrabold transition-opacity duration-700"
+	<section class="mx-6 mt-5">
+		<h1
+			class="font-poppins relative mb-4 border-l-4 border-natgeo-yellow pl-3 text-3xl font-extrabold"
 		>
 			{t('landing.pastoral-parishad')}
-		</h2>
-	  <ParishPastoralCouncil />
+		</h1>
+		<p class="font-geist">some subtitle</p>
+	  <ParishPastoralCouncilList />
 	</section>
 </Layout>
