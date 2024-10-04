@@ -1,0 +1,16 @@
+---
+import PullDown from '~/components/pull-down.astro';
+import { commissions } from '~/constants/commissions';
+---
+
+<div class="mx-auto mb-2 max-w-4xl font-geist">
+	{
+		commissions.map((commission) => (
+			<PullDown
+				title={commission.title}
+				subtitles={commission.subtitles}
+				convenor={commission.convenor}
+			/>
+		))
+	}
+</div>
