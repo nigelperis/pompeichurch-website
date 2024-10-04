@@ -3,6 +3,9 @@ import EventCard from '~/components/event-card.astro';
 import eventImage from '~/assets/mass-interior.jpg';
 import eventImage1 from '~/assets/centenary-hall.jpg';
 import HoverableLink from '~/components/ui/hoverable-link.astro';
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 const events = [
 	{
@@ -27,7 +30,7 @@ const events = [
 		data-aos="fade-right"
 		class="mb-4 border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold"
 	>
-		Events
+		{t('nav.events')}
 	</h1>
 
 	<div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">

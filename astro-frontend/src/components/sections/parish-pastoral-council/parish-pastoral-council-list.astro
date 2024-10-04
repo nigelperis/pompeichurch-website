@@ -1,0 +1,23 @@
+---
+import ProfileCard from '~/components/profile-card.astro';
+import { pastoralCouncil } from '~/constants/pastoral-council-members';
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+<div
+	class="mx-auto grid w-full max-w-4xl grid-cols-2 gap-4 p-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+			{
+				pastoralCouncil.map((councilMember) => (
+					<ProfileCard
+						class="m-auto"
+						imageUrl={councilMember.imageUrl}
+						name={t(`landing.${councilMember.name}`)}
+						subtitle={t(`landing.${councilMember.subtitle}`)}
+					/>
+				))
+			}
+</div>
+
+

@@ -20,7 +20,7 @@ import { Icon } from 'astro-icon/components';
 <script>
 	const scrollToTopButton = document.querySelector('#scrollToTop');
 
-	scrollToTopButton.addEventListener('click', () => {
+	scrollToTopButton?.addEventListener('click', () => {
 		window.scrollTo({
 			top: 0,
 			behavior: 'smooth',

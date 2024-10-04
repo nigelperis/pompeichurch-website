@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import { cn } from '~/helpers/cn';
 import HoverableLink from './ui/hoverable-link.astro';
 
+
 interface Props {
 	eventName: string;
 	imageUrl: ImageMetadata;
@@ -11,13 +12,7 @@ interface Props {
 	class?: string;
 }
 
-const {
-	eventName,
-	imageUrl,
-	description,
-	facebookLink,
-	class: className,
-} = Astro.props;
+const { eventName, imageUrl, description, class: className } = Astro.props;
 ---
 
 <div
