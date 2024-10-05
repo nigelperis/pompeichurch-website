@@ -7,14 +7,21 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<Layout title="Pompei Church | Parish Pastoral Parishad">
-	<section class="mx-6 mt-5">
-		<h1
-			class="relative mb-4 border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold"
+<Layout title="Pompei Church | Parish Pastoral Council">
+	<main class="overflow-hidden bg-white">
+		<section
+			id="pastoral-council"
+			class="mx-6 mt-5 flex flex-col p-2 pb-4 lg:items-center"
 		>
-			{t('landing.pastoral-parishad')}
-		</h1>
-		<p class="font-geist">some subtitle</p>
-		<ParishPastoralCouncilList />
-	</section>
+			<h1
+				class="relative mb-4 border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold"
+			>
+				{t('landing.pastoral-parishad')}
+			</h1>
+			<p class="max-w-4xl pb-5 font-geist text-lg md:text-center">
+				some subtitle
+			</p>
+			<ParishPastoralCouncilList />
+		</section>
+	</main>
 </Layout>
