@@ -8,17 +8,22 @@ const t = useTranslations(lang);
 ---
 
 <Layout title="Pompei Church | Parish Priests">
-	<section class="mx-6 mt-5">
-		<h1
-			class="relative mb-4 border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold"
+	<main class="overflow-hidden bg-white">
+		<section
+			id="parish-priests"
+			class="mx-6 mt-5 flex flex-col p-2 pb-4 lg:items-center"
 		>
-			{t('nav.parish-priests')}
-		</h1>
-		<p class="font-geist">
-			Here is a glimpse of the esteemed former parish priests who have nurtured
-			our faith, enriched our community and individual lives, and upheld the
-			cherished legacy of our church throughout these years.
-		</p>
-		<ParishPriestsList />
-	</section>
+			<h1
+				class="relative mb-4 border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold"
+			>
+				{t('nav.parish-priests')}
+			</h1>
+			<p class="max-w-4xl font-geist text-lg md:text-center">
+				Here is a glimpse of the esteemed former parish priests who have
+				nurtured our faith, enriched our community and individual lives, and
+				upheld the cherished legacy of our church throughout these years.
+			</p>
+			<ParishPriestsList />
+		</section>
+	</main>
 </Layout>
