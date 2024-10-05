@@ -20,14 +20,14 @@ const { name, date, subtitle, class: className, imageUrl } = Astro.props;
 	class={cn(
 		'hover:scale-[1.01] hover:shadow-md snap-start first:snap-align-none max-w-xs flex-shrink-0 rounded-md border shadow sm:w-64',
 		className,
+		"h-[274px]"
 	)}
 >
 	<div class="card-image flex-none">
 		<Image
 			src={imageUrl}
 			alt="Image"
-			width={200}
-			height={200}
+			style={{objectFit:"cover",height:"164px",width:"200px"}}
 			class="w-full rounded-md object-cover"
 		/>
 	</div>
