@@ -27,3 +27,6 @@ pnpm-debug.log*
 
 # Local Netlify folder
 .netlify
+
+db
+db-data

@@ -33,5 +33,5 @@ EXPOSE 80
 # Start the nginx server
 CMD ["nginx", "-g", "daemon off;"]
 
-# Build locally: docker build -it appname .
-# Run build: docker run 80:80 appname
+# Build locally: docker build -t appname .
+# Run build: docker run -p 80:80 appname
