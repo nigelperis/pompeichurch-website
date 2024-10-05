@@ -13,11 +13,11 @@ const { title, imageUrl, class: className } = Astro.props;
 
 <div
 	class={cn(
-		'hover:scale-[1.01] hover:shadow-md transform overflow-hidden rounded-md border shadow transition-all duration-500 ease-in-out max-w-xs mx-auto',
+		'hover:scale-[1.01] hover:shadow-md transform snap-start first:snap-align-none max-w-xs rounded-md border shadow',
 		className,
 	)}
 >
-	<div class="magazine-image">
+	<div class="magazine-image flex-none">
 		<Image
 			src={imageUrl}
 			alt={title}
@@ -25,7 +25,7 @@ const { title, imageUrl, class: className } = Astro.props;
 		/>
 	</div>
 
-	<div class="magazine-content mt-4 p-4 text-center">
+	<div class="magazine-content mt-3 p-4 text-center">
 		<h3
 			class="magazine-title text-lg font-bold leading-snug text-slate-900 sm:text-xl"
 		>

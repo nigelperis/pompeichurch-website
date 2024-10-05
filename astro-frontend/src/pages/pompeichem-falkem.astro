@@ -1,41 +1,24 @@
 ---
+import PompeichemFalkemList from '~/components/sections/pompeichem-falkem/pompeichem-falkem-list.astro';
 import Layout from '~/layouts/layout.astro';
-import MagazineCard from '~/components/magazine-card.astro';
-import maryImage from '~/assets/mother-mary.jpg';
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 
-const magazines = [
-	{
-		title: 'Pompeichem Falkem - August Edition',
-		imageUrl: maryImage,
-		downloadUrl:
-			'https://drive.google.com/drive/u/4/folders/1uIX6q5fgetnyaE9tJVeq6Yi2qNNlq7YR',
-	},
-	{
-		title: 'Pompeichem Falkem - July Edition',
-		imageUrl: maryImage,
-		downloadUrl:
-			'https://drive.google.com/drive/u/4/folders/1uIX6q5fgetnyaE9tJVeq6Yi2qNNlq7YR',
-	},
-	// Add more editions as needed
-];
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <Layout title="Pompei Church | Pompeichem Falkem">
-	<section class="p-6 font-poppins">
-		<h1
-			class="text-slate-1000 mb-6 border-l-4 border-yellow-400 pl-3 font-poppins text-3xl font-extrabold text-black"
+	<main class="overflow-hidden bg-white">
+		<section
+			id="pompeichem-falkem"
+			class="mx-6 mt-5 flex flex-col p-2 lg:items-center"
 		>
-			Pompeichem Falkem
-		</h1>
-
-		<div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-			{
-				magazines.map((magazine) => (
-					<a href={magazine.downloadUrl} download>
-						<MagazineCard title={magazine.title} imageUrl={magazine.imageUrl} />
-					</a>
-				))
-			}
-		</div>
-	</section>
+			<h1
+				class="relative mb-4 border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold"
+			>
+				Pompeichem Falkem
+			</h1>
+			<PompeichemFalkemList />
+		</section>
+	</main>
 </Layout>
