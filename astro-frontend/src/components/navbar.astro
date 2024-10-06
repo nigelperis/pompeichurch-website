@@ -12,13 +12,13 @@ const t = useTranslations(lang);
 
 <ScrollProgress />
 <header
-	class="sticky top-0 z-10 w-full bg-white/80 p-5 drop-shadow-md backdrop-blur-md"
+	class="sticky top-0 z-10 w-full bg-white/80 p-5 shadow-md backdrop-blur-lg"
 >
 	<section class="flex items-center justify-between">
 		<a
 			href={lang === 'kok' ? '/kok/' : '/'}
-			class={cn('font-poppins-semibold text-lg font-semibold', {
-				'font-noto-sans-kannada-semibold': lang === 'kok',
+			class={cn('font-geist font-semibold text-lg', {
+				'font-noto-sans-kannada-semibold text-lg': lang === 'kok',
 			})}
 		>
 			{t('landing.church-name')}
@@ -52,7 +52,7 @@ const t = useTranslations(lang);
 						href={
 							link.type === 'link' ? getRelativeLocaleUrl(lang, link.href) : '#'
 						}
-						class="font-popppins group flex items-center justify-between text-3xl font-extrabold text-black"
+						class="font-popppins group flex items-center justify-between text-xl font-extrabold text-black"
 					>
 						<span
 							class={cn(
@@ -76,11 +76,11 @@ const t = useTranslations(lang);
 								<li>
 									<a
 										href={getRelativeLocaleUrl(lang, sublinks.href)}
-										class="group mb-4 flex items-center justify-between font-merriweather text-xl font-bold text-black"
+										class="group mb-4 flex items-center justify-between font-merriweather text-2xl font-bold"
 									>
 										<span
 											class={cn(
-												'border-b-4 border-b-transparent font-poppins transition-all duration-150 group-hover:border-natgeo-yellow',
+												'border-b-4 border-b-transparent font-poppins text-lg font-bold transition-all duration-150 group-hover:border-natgeo-yellow',
 												{ 'font-noto-sans-kannada': lang === 'kok' },
 											)}
 										>
