@@ -12,9 +12,9 @@ interface Props {
 const { title, subtitle, class: className, imageUrl } = Astro.props;
 ---
 
-<li
+<div
 	class={cn(
-		'hover:scale-[1.01] w-64 snap-start first:snap-align-none max-w-xs flex-shrink-0 transform overflow-hidden rounded-lg border shadow-md transition-all duration-200 ease-in-out sm:w-64',
+		'hover:scale-[1.01] w-64 snap-start first:snap-align-none max-w-xs flex-shrink-0 transform overflow-hidden border transition-all duration-200 ease-in-out sm:w-64',
 		className,
 	)}
 >
@@ -23,7 +23,7 @@ const { title, subtitle, class: className, imageUrl } = Astro.props;
 			src={imageUrl}
 			alt=""
 			width={200}
-			class="object-fit aspect-[1.5/1.9] h-auto w-full rounded-md transition-transform duration-700 ease-in-out"
+			class="object-fit aspect-[1.5/1.9] h-auto w-full transition-transform duration-700 ease-in-out"
 		/>
 	</div>
 
@@ -37,4 +37,4 @@ const { title, subtitle, class: className, imageUrl } = Astro.props;
 			{subtitle}
 		</p>
 	</div>
-</li>
+</div>

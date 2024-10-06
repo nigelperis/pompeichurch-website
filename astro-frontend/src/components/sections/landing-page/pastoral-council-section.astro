@@ -2,13 +2,12 @@
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-
-import Card from './pastoral-council-info-card.astro';
+import HoverableLink from '~/components/ui/hoverable-link.astro';
+import Card from '../../pastoral-council-card.astro';
 import dummyImage from '~/assets/dummy-image.png';
 import priestImage from '~/assets/fr-rudolf-dsa.jpg';
 import vicepresident from '~/assets/vp-image.jpg';
 import ayogPresident from '~/assets/ayog-president.jpg';
-import { Icon } from 'astro-icon/components';
 ---
 
 <section class="mb-6 mt-6 scrollbar-none">
@@ -19,7 +18,7 @@ import { Icon } from 'astro-icon/components';
 		{t('landing.pastoral-parishad')}
 	</h2>
 
-	<ul
+	<div
 		class="my-4 flex w-full max-w-full scroll-ml-6 space-x-8 overflow-x-auto overflow-y-hidden py-1.5 pl-4 pr-4 scrollbar-none"
 	>
 		<Card
@@ -43,16 +42,20 @@ import { Icon } from 'astro-icon/components';
 			title={t('landing.pastoral-commission-coordinator-name')}
 		/>
 
-		<div
-			class="flex w-64 max-w-xs flex-shrink-0 transform snap-start items-center justify-center overflow-hidden rounded-lg border shadow-md transition-all duration-200 ease-in-out first:snap-align-none hover:scale-[1.01] sm:w-64"
-		>
-			<a
-				href="/parish-pastoral-parishad/"
-				class="flex h-40 w-40 flex-row items-center justify-center space-x-2 rounded-full bg-yellow-200"
-			>
-				<h1 class="text-xl font-bold">View All</h1>
-				<Icon name="viewall" size={30} />
-			</a>
+		<div class="flex-shrink-0 snap-start transform border shadow-sm transition-all duration-200 ease-in-out hover:scale-[1.01]">
+			<div class="blur-md opacity-50">
+				<Card
+					imageUrl={ayogPresident}
+					subtitle={t('landing.pastoral-commission-coordinator')}
+					title={t('landing.pastoral-commission-coordinator-name')}
+				/>
+			</div>
+
+			<div class="absolute inset-0 flex items-center justify-center">
+				<HoverableLink class="mb-2 mt-2 inline-block text-black font-bold text-xl">
+					View All
+				</HoverableLink>
+			</div>
 		</div>
-	</ul>
+	</div>
 </section>
