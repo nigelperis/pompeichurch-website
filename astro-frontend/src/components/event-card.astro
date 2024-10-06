@@ -16,7 +16,7 @@ const { eventName, imageUrl, description, class: className } = Astro.props;
 
 <div
 	class={cn(
-		'hover:scale-[1.01] transform overflow-hidden rounded-lg border shadow transition-all duration-300 ease-in-out max-w-xs mx-auto',
+		'hover:scale-[1.01] transform overflow-hidden rounded-md border shadow transition-all max-w-md duration-300 ease-in-out mx-auto',
 		className,
 	)}
 >
@@ -24,9 +24,8 @@ const { eventName, imageUrl, description, class: className } = Astro.props;
 		<Image
 			src={imageUrl}
 			alt={eventName}
-			width={450}
-			height={450}
-			class="object-fit aspect-[1.2/0.7] h-auto w-auto rounded-t-lg duration-700 ease-in-out"
+			height={500}
+			className="h-[200px] object-cover duration-700 ease-in-out md:h-[300px]"
 		/>
 	</div>
 
