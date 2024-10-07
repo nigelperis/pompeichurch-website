@@ -18,37 +18,40 @@ import { churchHistory } from '~/constants/church-history';
 
 <section
 	style={{ backgroundImage: `url(${optimizedGrottoImage.src})` }}
-	class="relative mb-6 mt-5 bg-black/70 bg-cover bg-center pb-4 text-white bg-blend-darken"
+	class="relative flex flex-col gap-y-8 bg-black/70 bg-cover bg-center p-8 md:p-24 text-white bg-blend-darken"
 >
-	<div
-		class="relative flex w-full flex-col items-center justify-center bg-cover bg-center p-7 pb-2"
+	<h1
+		data-aos="fade-right"
+		class={cn(
+			'relative font-poppins text-5xl inline font-black leading-tight',
+			{ 'font-noto-sans-kannada': lang === 'kok' }
+		)}
 	>
-		<h1
-			data-aos="fade-right"
-			class={cn(
-				'relative mb-2 font-poppins text-5xl font-black leading-tight  ',
-				{ 'font-noto-sans-kannada': lang === 'kok' },
-			)}
-		>
-			{t('landing.about-church')}
-		</h1>
-		<div
-			class="relative mb-6 mr-auto h-1 w-20 bg-natgeo-yellow opacity-0"
-			data-aos="fade-left"
-		>
-		</div>
+		{t('landing.about-church')}
+	</h1>
+	<div class="flex items-center flex-col gap-x-10 md:flex-row-reverse">
+
+	<div class="relative flex w-full flex-col  xl:gap-20 lg:gap-18 gap-12 bg-cover bg-center pb-2">
+		<!-- <div
+				class="relative mb-6 mr-auto h-1 w-20 bg-natgeo-yellow opacity-0"
+				data-aos="fade-left"
+			>
+			</div> -->
 		<p
-			class="relative max-w-2xl text-justify font-poppins leading-relaxed drop-shadow-xl"
+			class="relative max-w-2xl text-justify font-poppins leading-relaxed drop-shadow-xl lg:max-w-fit"
 		>
 			{churchHistory}
 		</p>
+
+		<div class="flex justify-end">
+			<HoverableLink href="/parish-history/" class="m-3">
+				{t('ui.more-button-know')}
+			</HoverableLink>
+		</div>
 	</div>
 
-	<YoutubeVideo />
-
-	<div class="flex justify-center">
-		<HoverableLink href="/parish-history/" class="m-3">
-			{t('ui.more-button-know')}
-		</HoverableLink>
+	<div class="flex md:w-[90rem] flex-col">
+		<YoutubeVideo />
 	</div>
+</div>
 </section>

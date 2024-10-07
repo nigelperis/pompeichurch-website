@@ -11,34 +11,44 @@ interface Props {
 	class?: string;
 }
 
-const { eventName, imageUrl, description, class: className } = Astro.props;
+const {
+	eventName,
+	imageUrl,
+	description,
+	facebookLink,
+	class: className,
+} = Astro.props;
 ---
 
 <div
 	class={cn(
-		'hover:scale-[1.01] transform overflow-hidden rounded-md border shadow transition-all max-w-md duration-300 ease-in-out mx-auto',
+		'hover:scale-[1.01] flex flex-col md:flex-row transform overflow-hidden rounded-lg border shadow transition-all duration-300 ease-in-out md:max-w-2xl max-w-xs mx-auto',
 		className,
 	)}
 >
-	<div class="event-image">
+	<div class="event-image md:w-1/2">
 		<Image
 			src={imageUrl}
 			alt={eventName}
-			height={500}
-			className="h-[200px] object-cover duration-700 ease-in-out md:h-[300px]"
+			width={450}
+			height={450}
+			class="object-fit aspect-[1.2/0.7] h-auto w-auto rounded-t-lg md:rounded-t-none md:rounded-l-lg duration-700 ease-in-out"
 		/>
 	</div>
 
-	<div class="event-content p-4">
-		<h3 class="event-title text-left text-xl font-bold text-slate-900">
-			{eventName}
-		</h3>
-		<p
-			class="event-description justify mt-2 text-left text-base text-slate-700"
-		>
+	<div class="event-content flex justify-between flex-col p-4 md:w-1/2">
+		<div class="flex flex-col gap-2">
+
+			<h3 class="event-title text-left text-xl font-bold text-slate-900">
+				{eventName}
+			</h3>
+			<p
+			class="event-description justify text-left text-base text-slate-700"
+			>
 			{description}
 		</p>
-		<HoverableLink class="mb-2 mt-2 inline-block text-black">
+	</div>
+		<HoverableLink class="inline w-fit place-self-end text-black">
 			Know More
 		</HoverableLink>
 	</div>

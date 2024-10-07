@@ -10,16 +10,16 @@ import vicepresident from '~/assets/vp-image.jpg';
 import ayogPresident from '~/assets/ayog-president.jpg';
 ---
 
-<section class="mb-6 mt-6 scrollbar-none">
-	<h2
-		class="mx-5 mb-4 border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold"
+<section class="mt-6 flex flex-col lg:justify-evenly lg:mx-28 lg:min-h-[70svh]">
+	<h1
 		data-aos="fade-right"
+		class="mx-6 mb-4 border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl lg:text-4xl font-extrabold"
 	>
 		{t('landing.pastoral-parishad')}
-	</h2>
+	</h1>
 
 	<div
-		class="my-4 flex w-full max-w-full scroll-ml-6 space-x-8 overflow-x-auto overflow-y-hidden py-1.5 pl-4 pr-4 scrollbar-none"
+		class="my-4 pl-3 flex w-full max-w-full scroll-ml-6 xl:space-x-10 space-x-8 overflow-x-auto overflow-y-hidden scrollbar-none"
 	>
 		<Card
 			imageUrl={priestImage}
