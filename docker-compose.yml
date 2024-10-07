@@ -3,7 +3,7 @@ version: "3"
 services:
   strapi:
     container_name: strapi
-    image: strapi-app1 #Localimage name
+    image: strapi-app11 #Localimage name
     # build: ast
     environment:
       - DATABASE_CLIENT=postgres
@@ -22,6 +22,7 @@ services:
       - 1337:1337
     volumes:
       - ./app:/srv/app
+      - ./_docker_volumes/public/uploads:/opt/app/public/uploads
     depends_on:
       - db
 

@@ -30,3 +30,4 @@ pnpm-debug.log*
 
 db
 db-data
+_docker_volumes
