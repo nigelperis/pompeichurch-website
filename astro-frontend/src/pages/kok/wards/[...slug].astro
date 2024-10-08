@@ -5,7 +5,7 @@ import { Image } from 'astro:assets';
 import { loremIpsum } from '~/constants/lorem-ipsum';
 
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
-import churchLogo from '~/assets/church-logo.png'
+import churchLogo from '~/assets/church-logo.png';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
@@ -44,7 +44,7 @@ export async function getStaticPaths() {
 		{
 			slug: 'pompei-b',
 			title: 'Pompei B',
-			patronImage:churchLogo,
+			patronImage: churchLogo,
 			wardImage: churchLogo,
 			officeBearers: [
 				{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
@@ -113,18 +113,19 @@ export async function getStaticPaths() {
 		},
 	];
 
-
-  return pages.map(({ slug, title, patronImage, wardGroupImageSrc, officeBearers }) => {
-    return {
-      params: { slug },
-      props: {
-        title,
-        patronImage,
-        wardGroupImageSrc,
-        officeBearers,
-      },
-    };
-  });
+	return pages.map(
+		({ slug, title, patronImage, wardGroupImageSrc, officeBearers }) => {
+			return {
+				params: { slug },
+				props: {
+					title,
+					patronImage,
+					wardGroupImageSrc,
+					officeBearers,
+				},
+			};
+		},
+	);
 }
 
 const { title, patronImage, wardGroupImageSrc, officeBearers } = Astro.props;
@@ -161,14 +162,14 @@ const { title, patronImage, wardGroupImageSrc, officeBearers } = Astro.props;
 				</h2>
 				<div class="mt-4 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
 					<Image
-					  src={wardGroupImageSrc ?? churchLogo}
+						src={wardGroupImageSrc ?? churchLogo}
 						alt="Ward Group Image"
 						width={400}
 						class="h-54 mb-4 rounded-md object-cover"
 					/>
 
 					<Image
-					  src={wardGroupImageSrc ?? churchLogo}
+						src={wardGroupImageSrc ?? churchLogo}
 						alt="Ward Activity Image"
 						class="h-54 mb-4 w-full rounded-md object-cover"
 					/>

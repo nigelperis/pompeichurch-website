@@ -17,7 +17,7 @@ const optimizedmassInteriorImage = await getImage({ src: massInteriorImage });
 	<div class="flex items-center justify-start p-6 md:p-36 xl:px-36">
 		<div>
 			<h2
-				class="border-l-4 mb-2 border-natgeo-yellow pl-2 font-poppins text-2xl lg:text-4xl font-extrabold leading-tight"
+				class="mb-2 border-l-4 border-natgeo-yellow pl-2 font-poppins text-2xl font-extrabold leading-tight lg:text-4xl"
 				data-aos="fade-right"
 			>
 				{t('landing.mass-timings')}
@@ -25,9 +25,12 @@ const optimizedmassInteriorImage = await getImage({ src: massInteriorImage });
 
 			<div class="p-3">
 				<ul
-					class={cn('space-y-3 lg:space-y-4 font-poppins text-sm lg:text-xl text-white leading-relaxed', {
-						'font-noto-sans-kannada': lang === 'kok',
-					})}
+					class={cn(
+						'space-y-3 lg:space-y-4 font-poppins text-sm lg:text-xl text-white leading-relaxed',
+						{
+							'font-noto-sans-kannada': lang === 'kok',
+						},
+					)}
 				>
 					<li>
 						<strong>{t('landing.mon-sat')}</strong> 6:45 AM ({
