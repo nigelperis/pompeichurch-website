@@ -1,13 +1,17 @@
 ---
 import { Image } from 'astro:assets';
 import rosaMysticaConvent from '~/assets/rosa-mystica-convent.jpg';
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <div class="mx-auto max-w-4xl">
-	<h2 class="mt-4 font-poppins text-2xl font-bold">Rosa Mystica Convent</h2>
+	<h2 class="mt-4 font-poppins text-2xl font-bold">{t('rosamysticaconvent.title')}</h2>
 	<Image
 		src={rosaMysticaConvent}
-		alt="Rosa Mystica Convent Image"
+		alt="Image of Rosa Mystica Convent, Gurpur Kaikamba"
 		class="rounded-sm"
 	/>
 	<div class="mb-2 mt-6 font-geist">

@@ -1,0 +1,56 @@
+---
+import Layout from '~/layouts/layout.astro';
+import ObituaryCard from '~/components/obituary-card.astro';
+import dummyImage from '~/assets/dummy-image.png';
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+
+const obituaryData = [
+	{
+		name: 'John Doe (69 Years)',
+		imageUrl: dummyImage,
+		description: 'xyz',
+		ward: 'St. Joseph',
+	},
+	{
+		name: 'Jane Smith (69 Years)',
+		imageUrl: dummyImage,
+		description: 'xyz',
+		ward: 'St. Mary',
+	},
+	// Add more obituary data as needed
+];
+
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+---
+
+<Layout title="Pompei Church | Obituary">
+	<section class="p-6 font-poppins text-slate-100">
+		<h1
+			class="text-slate-1000 mb-6 border-l-4 border-yellow-400 pl-3 font-poppins text-3xl font-extrabold text-black"
+		>
+		{t('nav.parish-priests')}
+		</h1>
+		<h2 class="p-3 font-poppins text-2xl font-bold italic text-red-600">
+			{t('nav.parish-priests')}
+		</h2>
+
+		<ul
+			class="grid grid-cols-1 justify-center gap-6 p-4 md:grid-cols-2 lg:grid-cols-3"
+		>
+			{
+				obituaryData.map((item) => (
+					<ObituaryCard
+						name={item.name}
+						imageUrl={item.imageUrl}
+						description={item.description}
+						ward={item.ward}
+						class="mx-auto w-full max-w-sm"
+					/>
+				))
+			}
+		</ul>
+	</section>
+</Layout>

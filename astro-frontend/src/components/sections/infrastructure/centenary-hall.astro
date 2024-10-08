@@ -1,0 +1,25 @@
+---
+import { Image } from 'astro:assets';
+import centenaryHallImage from '~/assets/centenary-hall.jpg';
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+import { loremIpsum } from '~/constants/lorem-ipsum';
+
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<div class="mb-6 bg-white px-6">
+	<h2
+		class="text-slate-1000 mb-5 border-l-4 border-yellow-400 pl-3 font-poppins text-2xl font-extrabold"
+	>
+	{t('centenaryhall.title')}
+	</h2>
+	<Image
+		src={centenaryHallImage}
+		alt="Exterior view of Centenary Hall at Our Lady of Pomepi Church"
+		class="rounded-sm"
+	/>
+
+	<p class="mt-4 text-justify text-lg text-slate-700">{loremIpsum}</p>
+</div>

@@ -31,7 +31,7 @@ const commissions = [
 			},
 			{
 				commission: 'Commission for Justice and Peace Apostolate',
-				name: 'Michael Johnson',
+				name: 'Mr. Michael Johnson',
 			},
 			{
 				commission: 'Commission for Formation of the Priests and the Religious',
@@ -42,7 +42,7 @@ const commissions = [
 				name: 'Mr. Charles Sequeira',
 			},
 		],
-		convenor: 'Roshan DChuna',
+		convenor: 'Mr. Roshan DCunha',
 	},
 	{
 		title: 'Service',
@@ -60,7 +60,7 @@ const commissions = [
 				name: 'Mrs. Laveena Rosario',
 			},
 			{
-				commission: "Commission for Migrants' Aposolate",
+				commission: "Commission for Migrants' Apostolate",
 				name: 'Sr. Leena Pereira',
 			},
 			{
@@ -85,7 +85,9 @@ const commissions = [
 				commission: 'Commission for Laity Apostolate',
 				name: 'Mr. Alwyn Pinto',
 			},
-			{ commission: 'Commission for Women', name: 'Mrs. Juliet Serrao' },
+			{ commission: 'Commission for Women',
+			  name: 'Mrs. Juliet Serrao'
+			},
 			{
 				commission: 'Commission for Youth Apostolate',
 				name: 'Mr. Godwin Tauro',

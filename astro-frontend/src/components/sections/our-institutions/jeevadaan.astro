@@ -1,11 +1,16 @@
 ---
 import { Image } from 'astro:assets';
 import jeevadaan from '~/assets/jeevadaan.jpg';
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <div class="mx-auto max-w-4xl">
-	<h2 class="mt-4 pb-4 font-poppins text-2xl font-bold">Jeevadaan</h2>
-	<Image src={jeevadaan} alt="Jeevadaan Image" class="rounded-sm" />
+	<h2 class="mt-4 pb-4 font-poppins text-2xl font-bold">	{t('jeevadaan.title')} 	</h2>
+	<Image src={jeevadaan} alt="Image of Jeevadaan institute at Gurpur Kaikamba" class="rounded-sm" />
 	<div class="mb-2 mt-6 font-geist">
 		<p class="mt-4 text-justify text-lg text-slate-700">
 			'Jeevadaan' is their only ray of hope. They know that their life is short

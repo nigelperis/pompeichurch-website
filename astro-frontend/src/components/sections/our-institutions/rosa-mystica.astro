@@ -2,15 +2,20 @@
 import rosaMysticaHs from '~/assets/rosa-mystica-hs.jpg';
 import rosaMysticaHrps from '~/assets/rosa-mystica-hrps.jpg';
 import { Image } from 'astro:assets';
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <div class="mx-auto max-w-4xl">
 	<h2 class="mt-4 pb-4 font-poppins text-2xl font-bold">
-		Rosa Mystica Educational Institutions
+		{t('rosamystica.title')}
 	</h2>
 	<Image
 		src={rosaMysticaHs}
-		alt="Rosa Mystica High School"
+		alt="Image of Rosa Mystica High School, Gurpur Kaikamba"
 		class="rounded-sm"
 	/>
 	<div class="mb-2 mt-6 font-geist">
@@ -50,7 +55,7 @@ import { Image } from 'astro:assets';
 		<br />
 		<Image
 			src={rosaMysticaHrps}
-			alt="Rosa Mystica Higher Primary School"
+			alt="Image of Rosa Mystica Higher Primary School, Gurpur Kaikamba"
 			class="rounded-sm"
 		/>
 		<h2 class="text-slate mt-2 text-lg font-bold">

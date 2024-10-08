@@ -152,7 +152,7 @@ const logoImage =
 					Ward Patron
 				</h2>
 				<div class="flex items-center">
-					<Image src={logoImage.default} alt="Ward Patron Image" class="mr-4" />
+					<Image src={logoImage.default} alt={`${t(`${title}.patron`)} Patron of ${t(`nav.${title}`)}`}  class="mr-4" />
 				</div>
 
 				<h2 class="font-poppins text-2xl font-bold text-slate-900">
@@ -168,7 +168,7 @@ const logoImage =
 				<div class="mt-4 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
 					<Image
 						src={logoImage.default}
-						alt="Ward Group Image"
+						alt={`${t(`nav.${title}`)} Ward`}
 						width={400}
 						class="h-54 mb-4 rounded-md object-cover"
 					/>

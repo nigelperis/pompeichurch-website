@@ -96,7 +96,16 @@ export const ui = {
 		'priest.paulrego': 'Rev. Fr. Paul Rego',
 		'priest.gregoryserrao': 'Rev. Fr. Gregory Serrao',
 		'priest.paulpinto': 'Rev. Fr. Paul Pinto',
-		'priest.antonylobo': 'Rev. Fr. Anthony Lobo',
+		'priest.anthonylobo': 'Rev. Fr. Anthony Lobo',
+		'bethany.title':'Bethany School (CBSE)',
+		'rosamystica.title':'Rosa Mystica Educational Institutions',
+		'jeevadaan.title': 'Jeevadaan',
+		'snehasadan.title':'Snehasadan',
+		'pompeiconvent.title':'Pompei Convent',
+		'rosamysticaconvent.title':'Rosa Mystica Convent',
+		'hall.title':'Pompei Sabha Bhavan',
+		'centenaryhall.title':'Centenary Hall',
+		'church.patron':'Vailankani Mai'
 	},
 	kok: {
 		'nav.home': 'ಹೋಮ್',
@@ -190,5 +199,14 @@ export const ui = {
 		'priest.gregoryserrao': 'ಮಾ| ಬಾ| ಗ್ರೆಗರಿ ಸೆರಾವೊ',
 		'priest.paulpinto': 'ಮಾ| ಬಾ| ಪಾವ್ಲ್ ಪಿಂಟೊ',
 		'priest.anthonylobo': 'ಮಾ| ಬಾ| ಆ್ಯಂಟನಿ ಲೋಬೊ',
+		'bethany.title':'ಬೆಥನಿ ಸ್ಕೂಲ್ (ಸಿ.ಬಿ.ಸ್.ಸಿ)',
+		'jeevadaan.title':'ಜೀವದಾನ',
+		'rosamystica.title':'ರೋಸಾ ಮಿಸ್ತಿಕಾ ಶಿಕ್ಪಾ',
+		'snehasadan.title':'ಸ್ನೇಹಾಸದನ',
+		'pompeiconvent.title':'ಪೊಂಪೈ ಕೊವೆಂತ್ ',
+		'rosamysticaconvent.title':'ರೋಸಾ ಮಿಸ್ತಿಕಾ ಕೊವೆಂತ್',
+		'hall.title':'ಪೊಂಪೈ ಸಭಾ ಭವನ್ ',
+		'centenaryhall.title':'ಶತಾಬ್ದಿ ಸಾಲ್',
+		'church.patron':'ವೈಲಂಕಣಿ ಮಾಯ್'
 	},
 } as const;

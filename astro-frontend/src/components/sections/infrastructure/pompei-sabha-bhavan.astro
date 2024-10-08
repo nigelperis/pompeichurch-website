@@ -1,0 +1,26 @@
+---
+import { Image } from 'astro:assets';
+import pompeiSabhaBhavanImage from '~/assets/pompei-sabha-bhavan.jpg';
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+import { loremIpsum } from '~/constants/lorem-ipsum';
+
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+	<div class="mb-2 bg-white px-6">
+		<h2
+			class="text-slate-1000 mb-5 border-l-4 border-yellow-400 pl-3 font-poppins text-2xl font-extrabold"
+		>
+		{t('hall.title')}
+		</h2>
+		<Image
+			src={pompeiSabhaBhavanImage}
+			alt=" Exterior view of Pompei Sabha Bhavan at Our Lady of Pomepi Church"
+			class="rounded-sm"
+		/>
+
+		<p class="mt-4 text-justify text-lg text-slate-700">{loremIpsum}</p>
+	</div>
