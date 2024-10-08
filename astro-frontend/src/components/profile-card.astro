@@ -13,7 +13,14 @@ interface Props {
 	class?: string;
 }
 
-const { name, date, subtitle, class: className, imageUrl } = Astro.props;
+const {
+	name,
+	date,
+	subtitle,
+	class: className,
+	imageUrl,
+	...rest
+} = Astro.props;
 ---
 
 <div
@@ -22,6 +29,7 @@ const { name, date, subtitle, class: className, imageUrl } = Astro.props;
 		className,
 		'w-[230px] h-[340px]',
 	)}
+	{...rest}
 >
 	<div class="card-image flex-none">
 		<Image

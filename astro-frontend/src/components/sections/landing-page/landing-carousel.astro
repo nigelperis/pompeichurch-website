@@ -2,13 +2,32 @@
 import { Image } from 'astro:assets';
 import EmblaCarosuel from '~/components/ui/embla-carousel.astro';
 import EmblaCarosuelItem from '~/components/ui/embla-carousel-item.astro';
+import NetworkImage from '~/components/ui/network-image.astro';
 
 import ciboriumImage from '~/assets/ciborium.jpg';
 import sacramentImage from '~/assets/sacrament.jpg';
 import maryGrottoImage from '~/assets/mary-grotto.jpg';
+
+import { fetchLandingPageCarouselImages } from '~/services/landing-page-carousel-image';
+const carouselData = await fetchLandingPageCarouselImages();
 ---
 
 <EmblaCarosuel>
+	{
+		carouselData.attributes.carouselImage.data.map((image) => {
+			return (
+				<EmblaCarosuelItem>
+					<NetworkImage
+						src={`${image.attributes.url}`}
+						alt={image.attributes.alternativeText ?? 'carousel image'}
+						width={image.attributes.width}
+						height={image.attributes.height}
+						class="h-full w-full object-cover"
+					/>
+				</EmblaCarosuelItem>
+			);
+		})
+	}
 	<EmblaCarosuelItem>
 		<Image
 			src={ciboriumImage}

@@ -10,7 +10,14 @@ interface Props {
 	class?: string;
 }
 
-const { name, description, ward, class: className, imageUrl } = Astro.props;
+const {
+	name,
+	description,
+	ward,
+	class: className,
+	imageUrl,
+	...rest
+} = Astro.props;
 ---
 
 <div
@@ -18,6 +25,7 @@ const { name, description, ward, class: className, imageUrl } = Astro.props;
 		'hover:scale-[1.01] hover:shadow-sm snap-start first:snap-align-none border duration-500 ease-in-out shadow sm:w-full',
 		className,
 	)}
+	{...rest}
 >
 	<div class="card-image flex-none">
 		<Image
