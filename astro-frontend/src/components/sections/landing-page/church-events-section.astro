@@ -3,12 +3,13 @@ import EventCard from '~/components/event-card.astro';
 import HoverableLink from '~/components/ui/hoverable-link.astro';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import { events } from '~/constants/events';
+
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
 <section
-	class="mx-6 mt-6 flex flex-col lg:mx-28 lg:min-h-[70svh] lg:justify-evenly"
+	class="mx-6 mt-4 flex flex-col lg:mx-28 lg:min-h-[70svh] lg:justify-evenly"
 >
 	<h1
 		data-aos="fade-right"

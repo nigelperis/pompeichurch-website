@@ -1,19 +1,15 @@
 ---
 import { getImage } from 'astro:assets';
-
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
-
 import maryGrotto from '~/assets/mary-grotto.jpg';
-const optimizedGrottoImage = await getImage({ src: maryGrotto });
-
 import HoverableLink from '~/components/ui/hoverable-link.astro';
-
 import { cn } from '~/helpers/cn';
-
 import YoutubeVideo from './youtube-video.astro';
 import { churchHistory } from '~/constants/church-history';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const optimizedGrottoImage = await getImage({ src: maryGrotto });
 ---
 
 <section
@@ -22,10 +18,9 @@ import { churchHistory } from '~/constants/church-history';
 >
 	<h1
 		data-aos="fade-right"
-		class={cn(
-			'relative font-poppins text-5xl inline font-black leading-tight',
-			{ 'font-noto-sans-kannada': lang === 'kok' },
-		)}
+		class={cn('font-poppins text-5xl font-black leading-tight', {
+			'font-noto-sans-kannada	': lang === 'kok',
+		})}
 	>
 		{t('landing.about-church')}
 	</h1>
@@ -33,13 +28,8 @@ import { churchHistory } from '~/constants/church-history';
 		<div
 			class="lg:gap-18 relative flex w-full flex-col gap-12 bg-cover bg-center pb-2 xl:gap-20"
 		>
-			<!-- <div
-				class="relative mb-6 mr-auto h-1 w-20 bg-natgeo-yellow opacity-0"
-				data-aos="fade-left"
-			>
-			</div> -->
 			<p
-				class="relative max-w-2xl text-justify font-poppins leading-relaxed drop-shadow-xl lg:max-w-fit"
+				class="max-w-2xl text-justify font-geist text-base leading-7 drop-shadow-xl lg:max-w-fit"
 			>
 				{churchHistory}
 			</p>
@@ -51,7 +41,7 @@ import { churchHistory } from '~/constants/church-history';
 			</div>
 		</div>
 
-		<div class="flex flex-col md:w-[90rem]">
+		<div class="md:w-[90rem]">
 			<YoutubeVideo />
 		</div>
 	</div>

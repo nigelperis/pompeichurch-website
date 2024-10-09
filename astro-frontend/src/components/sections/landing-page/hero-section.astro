@@ -1,14 +1,15 @@
 ---
 import { Image, getImage } from 'astro:assets';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+import skyImage from '~/assets/sky-bg.jpg';
+import churchHeroImage from '~/assets/church-hero.jpg';
+import churchLogo from '~/assets/church-logo.png';
+
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 import { cn } from '~/helpers/cn';
-import skyImage from '~/assets/sky-bg.jpg';
 const optimizedSkyImage = await getImage({ src: skyImage });
-import churchHeroImage from '~/assets/church-hero.jpg';
 const optimizedChurchHeroImage = await getImage({ src: churchHeroImage });
-import churchLogo from '~/assets/church-logo.png';
 ---
 
 <section

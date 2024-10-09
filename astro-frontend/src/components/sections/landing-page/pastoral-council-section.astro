@@ -1,19 +1,19 @@
 ---
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
 import HoverableLink from '~/components/ui/hoverable-link.astro';
-import Card from '../../pastoral-council-card.astro';
+import Card from '~/pastoral-council-card.astro';
 import dummyImage from '~/assets/dummy-image.png';
 import priestImage from '~/assets/fr-rudolf-dsa.jpg';
 import vicepresident from '~/assets/vp-image.jpg';
 import ayogPresident from '~/assets/ayog-president.jpg';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <section class="mt-6 flex flex-col lg:mx-28 lg:min-h-[70svh] lg:justify-evenly">
 	<h1
 		data-aos="fade-right"
-		class="mx-6 mb-4 border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold lg:text-4xl"
+		class="mx-6 border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold md:mx-0 md:mb-4 lg:mx-0 lg:text-4xl"
 	>
 		{t('landing.pastoral-parishad')}
 	</h1>

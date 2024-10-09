@@ -167,7 +167,7 @@ import dummyConventImage from '~/assets/convent-dummy.jpg';
 
 <script>
 	const animatedElements = document.querySelectorAll(
-		'.animate-slidein, .animate-zoom-in',
+		'.animate-slidein, .animate-zoom-in'
 	);
 
 	const observer = new IntersectionObserver(
@@ -183,7 +183,7 @@ import dummyConventImage from '~/assets/convent-dummy.jpg';
 				}
 			});
 		},
-		{ threshold: 0.1 },
+		{ threshold: 0.1 }
 	);
 
 	animatedElements.forEach((element) => observer.observe(element));

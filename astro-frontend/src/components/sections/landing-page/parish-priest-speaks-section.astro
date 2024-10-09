@@ -1,21 +1,19 @@
 ---
 import { Image } from 'astro:assets';
-
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+import priestImage from '~/assets/pp1.png';
+import { loremIpsum } from '~/constants/lorem-ipsum';
+
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-
-import priestImage from '~/assets/pp1.png';
-
-import { loremIpsum } from '~/constants/lorem-ipsum';
 ---
 
 <section
-	class="mx-6 mt-6 flex flex-col justify-evenly lg:mx-32 lg:mt-0 lg:min-h-[70svh]"
+	class="mx-6 mt-6 flex flex-col lg:mx-28 lg:mb-3 lg:mt-0 lg:min-h-[70svh] lg:justify-evenly"
 >
 	<h2
 		data-aos="fade-right"
-		class="relative mb-4 border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold lg:text-4xl"
+		class="mb-4 border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold lg:text-4xl"
 	>
 		{t('landing.priest-speaks')}
 	</h2>
@@ -42,12 +40,12 @@ import { loremIpsum } from '~/constants/lorem-ipsum';
 
 		<div class="lg:self-center">
 			<p
-				class="text-justify font-poppins text-base first-letter:font-serif first-letter:text-3xl"
+				class="text-justify font-geist text-base leading-7 first-letter:font-serif first-letter:text-3xl"
 			>
 				{loremIpsum}
 			</p>
 
-			<div class="relative mb-8 ml-auto overflow-hidden text-lg font-semibold">
+			<div class="mb-8 ml-auto text-lg font-semibold">
 				<p data-aos="fade-left" class="text-right">
 					Signature of Fr. Rudolf DSa(image)
 				</p>
