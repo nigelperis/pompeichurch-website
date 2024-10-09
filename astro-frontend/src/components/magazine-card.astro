@@ -8,7 +8,7 @@ interface Props {
 	class?: string;
 }
 
-const { title, imageUrl, class: className } = Astro.props;
+const { title, imageUrl, class: className, ...rest } = Astro.props;
 ---
 
 <div
@@ -16,6 +16,7 @@ const { title, imageUrl, class: className } = Astro.props;
 		'hover:scale-[1.01] transform overflow-hidden rounded-md border duration-300 ease-in-out transition-all max-w-md mx-auto',
 		className,
 	)}
+	{...rest}
 >
 	<div class="magazine-image">
 		<Image
