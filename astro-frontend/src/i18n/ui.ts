@@ -46,6 +46,7 @@ export const ui = {
 		'nav.obituary': 'Obituary',
 		'nav.events': 'Events',
 		'nav.pompeichem-falkem': 'Pompeichem Falkem',
+		'nav.prayer-corner': 'Prayer Corner🙏',
 		'landing.church-name': 'Our Lady of Pompei Church',
 		'landing.town-name': 'Gurpur Kaikamba',
 		'landing.priest': 'Parish Priest',
@@ -97,6 +98,8 @@ export const ui = {
 		'priest.gregoryserrao': 'Rev. Fr. Gregory Serrao',
 		'priest.paulpinto': 'Rev. Fr. Paul Pinto',
 		'priest.antonylobo': 'Rev. Fr. Anthony Lobo',
+		'prayer.title': 'NOVENA',
+		'prayer.subtitle': "Let's pray",
 	},
 	kok: {
 		'nav.home': 'ಹೋಮ್',
@@ -138,6 +141,7 @@ export const ui = {
 		'nav.obituary': 'ಫಿರ್ಗಜೆಂತ್ ಮರಣ್',
 		'nav.events': 'ಘಡಿತಾಂ',
 		'nav.pompeichem-falkem': 'ಪೊಂಪೈಚೆೆಂ ಫಾಲ್ಕೆಂ ಫಿರ್ಗಜ್ ಪತ್ರ್',
+		'nav.prayer-corner': 'ಮಾಗ್ಣ್ಯಾ ಕೊನ್ಸೊ🙏',
 		'landing.church-name': 'ಪೊಂಪೈ ಮಾಯೆಚಿ ಫಿರ್ಗಜ್',
 		'landing.town-name': 'ಗುರ್ಪುರ್ ಕೈಕಂಬ​',
 		'landing.priest': 'ಫಿರ್ಗಜ್ ವಿಗಾರ್',
@@ -190,5 +194,7 @@ export const ui = {
 		'priest.gregoryserrao': 'ಮಾ| ಬಾ| ಗ್ರೆಗರಿ ಸೆರಾವೊ',
 		'priest.paulpinto': 'ಮಾ| ಬಾ| ಪಾವ್ಲ್ ಪಿಂಟೊ',
 		'priest.anthonylobo': 'ಮಾ| ಬಾ| ಆ್ಯಂಟನಿ ಲೋಬೊ',
+		'prayer.title': 'ನೊವೆನ್',
+		'prayer.subtitle': "Let's pray",
 	},
 } as const;

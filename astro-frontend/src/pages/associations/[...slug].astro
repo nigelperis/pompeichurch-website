@@ -12,7 +12,7 @@ export async function getStaticPaths() {
 		({ slug, title, associationImage, officeBearers }) => ({
 			params: { slug },
 			props: { title, associationImage, officeBearers },
-		})
+		}),
 	);
 }
 

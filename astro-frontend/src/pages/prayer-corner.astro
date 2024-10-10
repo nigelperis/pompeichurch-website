@@ -1,0 +1,33 @@
+---
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+import Layout from '~/layouts/layout.astro';
+import { Image } from 'astro:assets';
+//TODO: to replace this image with actual novena image
+import motherMary from '~/assets/mother-mary.jpg';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Layout title="Pompei Church | Prayer Corner">
+	<main class="mx-auto max-w-4xl overflow-hidden bg-white">
+		<section id="parish-history" class="flex flex-col p-6 pb-4">
+			<h1
+				class="mb-4 border-l-4 border-natgeo-yellow pl-3 text-3xl font-extrabold lg:text-4xl"
+			>
+				{t('prayer.title')}
+			</h1>
+			<p class="text-md pb-6 font-poppins text-slate-400">
+				<!-- {t('prayer.subtitle')} -->
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+				incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+				nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+				Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+				eu fugiat nulla pariatur.
+			</p>
+			<div class="flex justify-center lg:items-center">
+				<Image src={motherMary} alt="" />
+			</div>
+		</section>
+	</main>
+</Layout>

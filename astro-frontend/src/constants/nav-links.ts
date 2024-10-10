@@ -177,6 +177,11 @@ export const navLinks = [
 	},
 	{
 		type: 'link',
+		title: 'nav.prayer-corner',
+		href: '/prayer-corner',
+	},
+	{
+		type: 'link',
 		title: 'nav.gallery',
 		href: '/gallery',
 	},
