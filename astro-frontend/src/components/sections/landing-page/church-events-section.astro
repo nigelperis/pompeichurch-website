@@ -1,7 +1,7 @@
 ---
-import EventCard from '~/components/event-card.astro';
 import HoverableLink from '~/components/ui/hoverable-link.astro';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+import EventCard from '~/components/event-card.astro';
 import { events } from '~/constants/events';
 
 const lang = getLangFromUrl(Astro.url);
@@ -17,20 +17,17 @@ const t = useTranslations(lang);
 	>
 		{t('nav.events')}
 	</h1>
-
-	<div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
-		{
-			events.map((event) => (
-				<EventCard
-					eventName={event.eventName}
-					imageUrl={event.imageUrl}
-					description={event.description}
-					facebookLink={event.facebookLink}
-				/>
-			))
-		}
-	</div>
-	<div class="flex justify-center">
+	<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 md:grid-cols-3 md:gap-4">
+		{events.slice(0,3).map((event) => (
+		<EventCard
+			eventName={event.eventName}
+			imageUrl={event.imageUrl}
+			description={event.description}
+			facebookLink={event.facebookLink}
+		/>
+	))}
+</div>
+<div class="flex justify-center">
 		<HoverableLink href="/events" class="m-5"> Show More Events </HoverableLink>
 	</div>
 </section>
