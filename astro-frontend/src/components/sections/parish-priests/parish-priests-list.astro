@@ -1,6 +1,6 @@
 ---
 import { parishPriests } from '~/constants/parish-priests';
-import ProfileCard from '~/profile-card.astro';
+import ProfileCard from '~/components/profile-card.astro';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
@@ -15,7 +15,7 @@ const t = useTranslations(lang);
 			<ProfileCard
 				class="m-auto"
 				imageUrl={priest.imageUrl}
-				name={t(`priest.${priest.name}`)}
+				name={t(`priest.${priest.name}` as any)}
 				date={priest.date}
 			/>
 		))

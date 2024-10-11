@@ -1,0 +1,43 @@
+---
+import { Image } from 'astro:assets';
+import { wards } from '~/constants/wards';
+import fallbackImage from '~/assets/church-logo.png';
+
+const { slug } = Astro.params;
+const ward = wards.find((ward) => ward.slug === slug);
+const {
+	patronImage = fallbackImage,
+	wardGroupImageSrc = fallbackImage,
+	description,
+	officeBearers = [],
+} = ward || {};
+---
+
+<div class="mx-auto">
+	<div class="mt-2">
+			<div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+			<Image src={patronImage} alt="" class="w-full sm:w-1/2 max-w-md" />
+			<Image src={wardGroupImageSrc} alt="" class="w-full sm:w-1/2 max-w-md" />
+		</div>
+		<h2 class="mt-6 text-left font-poppins text-2xl font-bold text-slate-900">
+			About the Ward
+		</h2>
+		<p
+			class="text-md mt-4 text-justify font-geist leading-7 text-slate-700 lg:text-left"
+		>
+			{description}
+		</p>
+		<h2 class="mt-6 text-left font-poppins text-2xl font-bold text-slate-900">
+			Office Bearers
+		</h2>
+		<ul class="my-4 list-inside list-disc text-base text-slate-700">
+			{
+				officeBearers.map((bearer) => (
+					<li class="text-left">
+						<strong>{bearer.position}:</strong> {bearer.name}
+					</li>
+				))
+			}
+		</ul>
+	</div>
+</div>
