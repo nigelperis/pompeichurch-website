@@ -30,7 +30,6 @@ const {
 		<Image
 			src={imageUrl}
 			alt={eventName}
-
 			class="object-fit aspect-[1.2/0.7] rounded-t-sm duration-700 ease-in-out"
 		/>
 	</div>
@@ -40,12 +39,12 @@ const {
 			<h3 class="event-title text-xl font-bold text-slate-900">
 				{eventName}
 			</h3>
-			<p class="event-description justify text-left text-base text-slate-700 pb-4">
+			<p
+				class="event-description justify pb-4 text-left text-base text-slate-700"
+			>
 				{description}
 			</p>
 		</div>
-		<HoverableLink>
-			Know More
-		</HoverableLink>
+		<HoverableLink> Know More </HoverableLink>
 	</div>
 </div>

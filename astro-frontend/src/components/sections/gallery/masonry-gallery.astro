@@ -30,9 +30,7 @@ const images = [
 ] as const;
 ---
 
-<div
-	class="masonry-grid relative m-4 mx-auto min-h-screen w-full"
->
+<div class="masonry-grid relative m-4 mx-auto min-h-screen w-full">
 	{
 		images.map((image) => (
 			<a
@@ -41,7 +39,6 @@ const images = [
 				data-pswp-width={image.width}
 				data-pswp-height={image.height}
 				class="masonry-grid-item-link masonry-grid-item inline-block w-1/2 lg:w-1/3"
-
 			>
 				<Image
 					src={image}

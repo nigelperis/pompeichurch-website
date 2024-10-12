@@ -4,10 +4,10 @@ import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import skyImage from '~/assets/sky-bg.jpg';
 import churchHeroImage from '~/assets/church-hero.jpg';
 import churchLogo from '~/assets/church-logo.png';
+import { cn } from '~/helpers/cn';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-import { cn } from '~/helpers/cn';
 const optimizedSkyImage = await getImage({ src: skyImage });
 const optimizedChurchHeroImage = await getImage({ src: churchHeroImage });
 ---
