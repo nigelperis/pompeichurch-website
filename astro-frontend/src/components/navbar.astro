@@ -10,9 +10,9 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<ScrollProgress/>
+<ScrollProgress />
 <header
-	class="sticky top-0 z-10 w-full bg-white/90 p-5 xl:px-28 shadow-md backdrop-blur-lg"
+	class="sticky top-0 z-10 w-full bg-white/90 p-5 shadow-md backdrop-blur-lg xl:px-28"
 >
 	<section class="flex items-center justify-between">
 		<a
@@ -21,7 +21,7 @@ const t = useTranslations(lang);
 				'font-noto-sans-kannada-semibold text-lg': lang === 'kok',
 			})}
 		>
-		{t('landing.church-name')}
+			{t('landing.church-name')}
 		</a>
 		<div
 			id="hamburger"

@@ -6,13 +6,13 @@ import imageTwo from '~/assets/church-hero.jpg';
 import imageThree from '~/assets/ciborium.jpg';
 import imageFour from '~/assets/mother-mary.jpg';
 import imageFive from '~/assets/sacrament.jpg';
-import imageSix from '~/assets/mass-interior.jpg';
-import imageSeven from '~/assets/snehasadan.jpg';
-import imageEight from '~/assets/jeevadaan.jpg';
-import imageNine from '~/assets/sky-bg.jpg';
-import imageTen from '~/assets/pompei-convent.jpg';
-import imageEleven from '~/assets/pompei-sabha-bhavan.jpg';
-import imageTwelve from '~/assets/centenary-hall.jpg';
+import imageSix from '~/assets/sacrament1.jpg';
+import imageSeven from '~/assets/charel.jpg';
+import imageEight from '~/assets/mary-inside.jpg';
+import imageNine from '~/assets/monthi-festh.jpg';
+import imageTen from '~/assets/monthi-festh1.jpg';
+import imageEleven from '~/assets/adoration1.jpg';
+import imageTwelve from '~/assets/adoration2.jpg';
 
 const images = [
 	imageOne,
@@ -30,10 +30,7 @@ const images = [
 ] as const;
 ---
 
-<section
-	class="masonry-grid relative m-4 mx-auto min-h-screen w-screen"
-	style={{ minWidth: '100vw' }}
->
+<div class="masonry-grid relative m-4 mx-auto min-h-screen w-full">
 	{
 		images.map((image) => (
 			<a
@@ -41,17 +38,17 @@ const images = [
 				data-pswp-src={image.src}
 				data-pswp-width={image.width}
 				data-pswp-height={image.height}
-				class="masonry-grid-item-link masonry-grid-item inline-block w-1/2 lg:w-1/4"
+				class="masonry-grid-item-link masonry-grid-item inline-block w-1/2 lg:w-1/3"
 			>
 				<Image
 					src={image}
-					class="overflow-hidden rounded-lg object-cover p-1 px-1"
+					class="overflow-hidden rounded-md object-cover p-1"
 					alt={'Gallery image'}
 				/>
 			</a>
 		))
 	}
-</section>
+</div>
 
 <script>
 	import Masonry from 'masonry-layout';

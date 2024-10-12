@@ -1,202 +1,33 @@
 ---
 import Layout from '~/layouts/layout.astro';
-
-import { Image } from 'astro:assets';
-import { loremIpsum } from '~/constants/lorem-ipsum';
-
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
-import churchLogo from '~/assets/church-logo.png'
+import { wards } from '~/constants/wards';
+import WardDetails from '~/components/sections/wards/ward-details.astro';
+
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 export async function getStaticPaths() {
-	const pages = [
-		{
-			slug: 'kowdoor-a',
-			title: 'Kowdoor A',
-			patronName: 'John Doe',
-			patronImage: churchLogo,
-			wardGroupImageSrc: churchLogo,
-			officeBearers: [
-				{ name: 'John Doe', position: 'Ward Gurkaar' },
-				{ name: 'Jane Smith', position: 'Ward Secretary' },
-			],
-		},
-		{
-			slug: 'kowdoor-b',
-			title: 'Kowdoor B',
-			patronName: 'John Doe',
-			patronImage: churchLogo,
-			wardGroupImageSrc: churchLogo,
-			officeBearers: [
-				{ name: 'Alice Johnson', position: 'Ward Gurkaar' },
-				{ name: 'Bob Williams', position: 'Ward Secretary' },
-			],
-		},
-		{
-			slug: 'pompei-a',
-			title: 'Pompei A',
-			patronName: 'John Doe',
-			patronImage: churchLogo,
-			wardGroupImageSrc: churchLogo,
-			officeBearers: [
-				{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
-				{ name: 'Emily Davis', position: 'Ward Secretary' },
-			],
-		},
-		{
-			slug: 'pompei-b',
-			title: 'Pompei B',
-			patronName: 'John Doe',
-			patronImage:churchLogo,
-			wardImage: churchLogo,
-			officeBearers: [
-				{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
-				{ name: 'Emily Davis', position: 'Ward Secretary' },
-			],
-		},
-		{
-			slug: 'kandar-a',
-			title: 'Kandar A',
-			patronName: 'John Doe',
-			patronImage: churchLogo,
-			wardImage: churchLogo,
-			officeBearers: [
-				{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
-				{ name: 'Emily Davis', position: 'Ward Secretary' },
-			],
-		},
-		{
-			slug: 'kandar-b',
-			title: 'Kandar B',
-			patronName: 'John Doe',
-			patronImage: churchLogo,
-			wardImage: churchLogo,
-			officeBearers: [
-				{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
-				{ name: 'Emily Davis', position: 'Ward Secretary' },
-			],
-		},
-		{
-			slug: 'monel',
-			title: 'Monel',
-			patronName: 'John Doe',
-			patronImage: churchLogo,
-			wardImage: churchLogo,
-			officeBearers: [
-				{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
-				{ name: 'Emily Davis', position: 'Ward Secretary' },
-			],
-		},
-		{
-			slug: 'gurpur',
-			title: 'Gurpur',
-			patronName: 'John Doe',
-			patronImage: churchLogo,
-			wardImage: churchLogo,
-			officeBearers: [
-				{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
-				{ name: 'Emily Davis', position: 'Ward Secretary' },
-			],
-		},
-		{
-			slug: 'church',
-			title: 'Church',
-			patronName: 'John Doe',
-			patronImage: churchLogo,
-			wardImage: churchLogo,
-			officeBearers: [
-				{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
-				{ name: 'Emily Davis', position: 'Ward Secretary' },
-			],
-		},
-		{
-			slug: 'addoor',
-			title: 'Addoor',
-			patronName: 'John Doe',
-			patronImage: churchLogo,
-			wardImage: churchLogo,
-			officeBearers: [
-				{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
-				{ name: 'Emily Davis', position: 'Ward Secretary' },
-			],
-		},
-	];
-
-
-  return pages.map(({ slug, title, patronImage, patronName, wardGroupImageSrc, officeBearers }) => {
-    return {
-      params: { slug },
-      props: {
-				slug,
-        title,
-        patronImage,
-				patronName,
-        wardGroupImageSrc,
-        officeBearers,
-      },
-    };
-  });
+	return wards.map(
+		({ slug, title, patronImage, wardGroupImageSrc, officeBearers }) => ({
+			params: { slug },
+			props: { title, patronImage, wardGroupImageSrc, officeBearers },
+		}),
+	);
 }
 
-const { slug, title, patronImage, patronName, wardGroupImageSrc, officeBearers } = Astro.props;
+const { title } = Astro.props;
 ---
 
 <Layout title={`Wards | ${title}`}>
-	<main>
-		<section id="wards" class="my-5">
-			<div class="mx-6 flex flex-col items-start text-left">
-				<h1
-					class="border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold sm:text-4xl lg:text-6xl"
-				>
-				{t(`nav.${slug}-ward`)}
-				</h1>
-			</div>
-
-			<section class="mx-6 mt-6">
-				<h2 class="mt-8 pb-4 font-poppins text-2xl font-bold text-slate-900">
-					Ward Patron
-				</h2>
-				<div class="flex items-center">
-					<Image src={patronImage} alt={patronName} class="mr-4" />
-				</div>
-
-				<h2 class="font-poppins text-2xl font-bold text-slate-900">
-					About the Ward
-				</h2>
-				<p class="my-4 font-giest text-justify text-base text-slate-700">
-					{loremIpsum}
-				</p>
-
-				<h2 class="mt-8 font-poppins text-2xl font-bold text-slate-900">
-					Ward Images
-				</h2>
-				<div class="mt-4 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-					<Image
-					  src={wardGroupImageSrc ?? churchLogo}
-						alt="Ward Activity Image"
-						width={400}
-						class="h-54 mb-4 rounded-md object-cover"
-					/>
-
-					<Image
-					  src={wardGroupImageSrc ?? churchLogo}
-						alt="Ward Activity Image"
-						class="h-54 mb-4 w-full rounded-md object-cover"
-					/>
-				</div>
-
-				<h2 class="mt-8 font-poppins text-2xl font-bold">Office Bearers</h2>
-				<ul class="my-4 font- font-geist list-inside list-disc text-base text-slate-700">
-					{
-						officeBearers.map((bearer) => (
-							<li>
-								<strong>{bearer.position}:</strong> {bearer.name}
-							</li>
-						))
-					}
-				</ul>
-			</section>
+	<main class="mx-auto max-w-4xl overflow-hidden bg-white">
+		<section id="wards" class="flex flex-col p-6 pb-4">
+			<h1
+				class="border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold sm:text-4xl lg:text-4xl"
+			>
+				{title}
+			</h1>
+			<WardDetails />
 		</section>
 	</main>
 </Layout>

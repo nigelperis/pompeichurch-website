@@ -1,3 +1,127 @@
+import dummyImage from '~/assets/church-logo.png';
+import { loremIpsum } from './lorem-ipsum';
+
+export interface Association {
+	slug: string;
+	title: string;
+	associationImage: ImageMetadata;
+	description: string;
+	officeBearers: { name: string; position: string }[];
+}
+
+const associations: Association[] = [
+	{
+		slug: 'svp',
+		title: 'SVP',
+		associationImage: dummyImage,
+		description: loremIpsum,
+		officeBearers: [
+			{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
+			{ name: 'Emily Davis', position: 'Ward Secretary' },
+		],
+	},
+	{
+		slug: 'icym-pyc',
+		title: 'ICYM (PYC)',
+		associationImage: dummyImage,
+		description: loremIpsum,
+		officeBearers: [
+			{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
+			{ name: 'Emily Davis', position: 'Ward Secretary' },
+		],
+	},
+	{
+		slug: 'altar-servers',
+		title: 'Altar Servers',
+		associationImage: dummyImage,
+		description: loremIpsum,
+		officeBearers: [
+			{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
+			{ name: 'Emily Davis', position: 'Ward Secretary' },
+		],
+	},
+	{
+		slug: 'catholic-sabha',
+		title: 'Catholic Sabha',
+		associationImage: dummyImage,
+		description: loremIpsum,
+		officeBearers: [
+			{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
+			{ name: 'Emily Davis', position: 'Ward Secretary' },
+		],
+	},
+	{
+		slug: 'ycs',
+		title: 'Young catholic students',
+		associationImage: dummyImage,
+		description: loremIpsum,
+		officeBearers: [
+			{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
+			{ name: 'Emily Davis', position: 'Ward Secretary' },
+		],
+	},
+	{
+		slug: 'secular-franciscan',
+		title: 'Secular Franciscan',
+		associationImage: dummyImage,
+		description: loremIpsum,
+		officeBearers: [
+			{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
+			{ name: 'Emily Davis', position: 'Ward Secretary' },
+		],
+	},
+	{
+		slug: 'catechism',
+		title: 'Catechism',
+		associationImage: dummyImage,
+		description: loremIpsum,
+		officeBearers: [
+			{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
+			{ name: 'Emily Davis', position: 'Ward Secretary' },
+		],
+	},
+	{
+		slug: 'small-christian-community',
+		title: 'Small Christian Community',
+		associationImage: dummyImage,
+		description: loremIpsum,
+		officeBearers: [
+			{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
+			{ name: 'Emily Davis', position: 'Ward Secretary' },
+		],
+	},
+	{
+		slug: 'gurpur-choir',
+		title: 'Gurpur Choir',
+		associationImage: dummyImage,
+		description: loremIpsum,
+		officeBearers: [
+			{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
+			{ name: 'Emily Davis', position: 'Ward Secretary' },
+		],
+	},
+	{
+		slug: 'womens-forum',
+		title: 'Womens Forum',
+		associationImage: dummyImage,
+		description: loremIpsum,
+		officeBearers: [
+			{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
+			{ name: 'Emily Davis', position: 'Ward Secretary' },
+		],
+	},
+	{
+		slug: 'legion-of-mary',
+		title: 'Legion Of Mary',
+		associationImage: dummyImage,
+		description: loremIpsum,
+		officeBearers: [
+			{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
+			{ name: 'Emily Davis', position: 'Ward Secretary' },
+		],
+	},
+];
+
 const associations ={
   'secular-franciscan':[ 'ಮಾ| ಬಾ| ಜೊನ್ ಕಾಸ್ತೆಲಿನೊ, ಹಾಂಚ್ಯಾ ಕಾಳಾರ್, ೧೯೫೩ ಇಸ್ವೆಂತ್ ಸಪ್ಟೆಂಬರ್ ೧೮ ತಾರಿಕೆರ್ ೩೮ ಸಾಂದ್ಯಾA ಸಂಗಿA ಸ್ಥಾಪನ್ ಜಾಲಿ. ಸ್ಥಾಪಕ್ ಅಧ್ಯಕ್ಷ್ ಜಾವ್ನ್ ದೆ| ಭಾವ್ ಬಾವ್ತಿಸ್ ರಸ್ಕೀನ್ಹಾ ಆನಿ ಕಾರ್ಯದರ್ಶಿ ಜಾವ್ನ್ ದೆ| ಭಾವ್ ಮೌರಿಸ್ ಪೆರಿಸ್ ಹಾಣಿಂ ಸೆವಾ ದಿಲ್ಯಾ. ಪಯ್ಲೆಂ ಹ್ಯಾ ಸಂಘಟನಾಕ್ ತಿಸ್ರಿ ಓಡ್ದ್ ಮ್ಹಣ್ ಆಪಯ್ತಾಲೆ. ಪ್ರಸ್ತುತ್ ಸೆಕುಲಾರ್ ಫ್ರಾನ್ಸಿಸ್ಕನ್ ಓಡ್ದ್ ಮ್ಹಣ್ತಾತ್.',
   '೫೬ ವರ್ಸಾಂ ಮಂಗ್ಳುರ್ ಪ್ರಾಂತ್ಯಾAತ್ ತಿಸ್ರೆ ಒಡ್ದಿಂತ್ ಪೆಜಾರ್ ವಾರಾಡ್ಯಾ ಥಾವ್ನ್ ಆಮ್ಚಿ ಪೊಂಪೈ ಮಾಯೆಚಿ ಏಕ್ ಮಾತ್ರ್ ಫಿರ್ಗಜ್ ಆಸ್‌ಲ್ಲಿ. ಪ್ರಸ್ತುತ್ ಪೆಜಾರ್ ವಾರಾಡ್ಯಾಂತ್ ೬ ಫಿರ್ಗಜೆಂತ್ ಆಸೊನ್ ತಿಸ್ರಿ ಒಡ್ದ್ ಆಮ್ಕಾಂ ಬಜ್ಪೆ ಪ್ರಾಂತ್ಯ್ ಜಾಲಾಂ. ಸ್ಥಾಪಕ್ ಸಾಂದೆ - ಭಾವ್ ಲಿಗೋರಿ ತಾವ್ರೊ, ಭಾವ್ ಆಲ್ಬರ್ಟ್ ನಜರೆತ್ ಗೌರವ್ ಸಾಂದೆ ಜಾವ್ನಾಸ್‌ಲ್ಲೆ. ೩೦ ಸಾಂದೆ ಜಮಾತೆಕ್ ಹಾಜರ್ ಜಾತಾತ್ ತರ್, ಥೊಡ್ಯಾ ಸಾಂದ್ಯಾAಕ್ ಪ್ರಾಯ್ ಆನಿ ಪಿಡೆ ನಿಮ್ತಿಂ ಹಾಜರ್ ಜಾಂವ್ಕ್ ಸಾಧ್ಯ್ ಜಾಯ್ನಾಂ.',
@@ -92,4 +216,4 @@ const associations ={
 
 };
 
-export {associations} ;
+export { associations };

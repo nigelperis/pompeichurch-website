@@ -1,25 +1,26 @@
 ---
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
 import HoverableLink from '~/components/ui/hoverable-link.astro';
-import Card from '../../pastoral-council-card.astro';
+import Card from '~/components/pastoral-council-card.astro';
 import dummyImage from '~/assets/dummy-image.png';
 import priestImage from '~/assets/fr-rudolf-dsa.jpg';
 import vicepresident from '~/assets/vp-image.jpg';
 import ayogPresident from '~/assets/ayog-president.jpg';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
-<section class="mt-6 flex flex-col lg:justify-evenly lg:mx-28 lg:min-h-[70svh]">
+<section class="mt-6 flex flex-col lg:mx-28 lg:min-h-[70svh] lg:justify-evenly">
 	<h1
 		data-aos="fade-right"
-		class="mx-6 mb-4 border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl lg:text-4xl font-extrabold"
+		class="mx-6 border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold md:mx-0 md:mb-4 lg:mx-0 lg:text-4xl"
 	>
 		{t('landing.pastoral-parishad')}
 	</h1>
 
 	<div
-		class="my-4 pl-3 flex w-full max-w-full scroll-ml-6 xl:space-x-10 space-x-8 overflow-x-auto overflow-y-hidden scrollbar-none"
+		class="my-4 flex w-full max-w-full scroll-ml-6 space-x-8 overflow-x-auto overflow-y-hidden pl-3 scrollbar-none xl:space-x-10"
 	>
 		<Card
 			imageUrl={priestImage}
@@ -42,8 +43,10 @@ import ayogPresident from '~/assets/ayog-president.jpg';
 			title={t('landing.pastoral-commission-coordinator-name')}
 		/>
 
-		<div class="flex-shrink-0 snap-start transform border shadow-sm transition-all duration-200 ease-in-out hover:scale-[1.01]">
-			<div class="blur-md opacity-50">
+		<div
+			class="flex-shrink-0 transform snap-start border shadow-sm transition-all duration-200 ease-in-out hover:scale-[1.01]"
+		>
+			<div class="opacity-50 blur-md">
 				<Card
 					imageUrl={ayogPresident}
 					subtitle={t('landing.pastoral-commission-coordinator')}
@@ -52,7 +55,9 @@ import ayogPresident from '~/assets/ayog-president.jpg';
 			</div>
 
 			<div class="absolute inset-0 flex items-center justify-center">
-				<HoverableLink class="mb-2 mt-2 inline-block text-black font-bold text-xl">
+				<HoverableLink
+					class="mb-2 mt-2 inline-block text-xl font-bold text-black"
+				>
 					View All
 				</HoverableLink>
 			</div>
