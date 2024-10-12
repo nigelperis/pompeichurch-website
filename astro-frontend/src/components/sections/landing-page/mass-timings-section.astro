@@ -14,18 +14,18 @@ const optimizedmassInteriorImage = await getImage({ src: massInteriorImage });
 	style={{ backgroundImage: `url(${optimizedmassInteriorImage.src})` }}
 	class="relative bg-black/60 bg-cover bg-center text-white bg-blend-darken"
 >
-	<div class="relative flex items-center justify-center p-5">
-		<div class="max-w-sm">
+	<div class="flex items-center justify-start p-6 md:p-36 xl:px-36">
+		<div>
 			<h2
-				class="border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold"
+				class="border-l-4 mb-2 border-natgeo-yellow pl-2 font-poppins text-2xl lg:text-4xl font-extrabold leading-tight"
 				data-aos="fade-right"
 			>
 				{t('landing.mass-timings')}
 			</h2>
 
-			<div class="p-5 pb-3">
+			<div class="p-3">
 				<ul
-					class={cn('space-y-2 font-poppins text-sm text-white', {
+					class={cn('space-y-3 lg:space-y-4 font-poppins text-sm lg:text-xl text-white leading-relaxed', {
 						'font-noto-sans-kannada': lang === 'kok',
 					})}
 				>

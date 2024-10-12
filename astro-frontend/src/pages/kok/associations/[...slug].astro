@@ -10,6 +10,8 @@ import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
+import { associations } from '~/constants/associations.ts';
+
 export async function getStaticPaths() {
 	const pages = [
 		{
@@ -23,7 +25,7 @@ export async function getStaticPaths() {
 		},
 		{
 			slug: 'icym-pyc',
-			title: 'ICYM (PYC)',
+			title: 'ICYM - PYC',
 			associationImage: '../../assets/svp.jpg',
 			officeBearers: [
 				{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
@@ -115,7 +117,7 @@ export async function getStaticPaths() {
 	return pages.map(({ slug, title, associationImage, officeBearers }) => {
 		return {
 			params: { slug },
-			props: { title,slug, associationImage, officeBearers },
+			props: { title, slug, associationImage, officeBearers },
 		};
 	});
 }
@@ -145,15 +147,8 @@ const { title, slug, associationImage, officeBearers } = Astro.props;
 					</div>
 				</div>
 
-				<h2
-					class="mt-6 text-left font-poppins text-2xl font-bold text-slate-900"
-				>
-					About the Association
 				</h2>
-				<p class="my-4 text-justify text-base text-slate-700">
-					{loremIpsum}
-				</p>
-
+           {associations[slug].map((para) => <p class="my-4 text-justify text-base text-slate-700">{para}</p>)}
 				<h2
 					class="mt-8 text-left font-poppins text-2xl font-bold text-slate-900"
 				>

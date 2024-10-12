@@ -18,22 +18,19 @@ const t = useTranslations(lang);
 ---
 
 <Layout title="Pompei Church | Infrastructure">
-	<main class="overflow-hidden bg-white">
-		<section
-			style={`background-image: url(${optimizedInfrastructureImage.src});`}
-			class="relative flex h-[250px] w-full items-center justify-center bg-black/50 bg-cover bg-center px-10 text-white bg-blend-darken"
-		>
-			<div class="text-center">
-				<h1 class="font-poppins text-4xl font-extrabold sm:text-6xl">
-					{t('nav.infrastructure')}
-				</h1>
-				<p class="text-roboto mt-4 text-lg text-white">
+	<main class=" mx-auto max-w-4xl overflow-hidden bg-white">
+			<div  class="flex flex-col p-6">
+				<h1
+				class="mb-4 border-l-4 border-natgeo-yellow pl-3 text-3xl font-extrabold lg:text-4xl"
+			>
+			{t('nav.infrastructure')}
+			</h1>
+				<p class="text-roboto mt-4 text-lg text-black">
 					some subtitle
 				</p>
 			</div>
 		</section>
-
-		<section id="our-institutions" class="my-8 bg-white">
+		<section id="our-institutions" class="my-2 bg-white">
 			<PompeiSabhaBhavan />
 			<div class="mx-10 border-t-2 border-yellow-300"></div>
 			<CentenaryHall />

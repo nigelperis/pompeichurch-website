@@ -23,7 +23,7 @@ export async function getStaticPaths() {
 		},
 		{
 			slug: 'icym-pyc',
-			title: 'ICYM (PYC)',
+			title: 'ICYM - PYC',
 			associationImage: '../../assets/svp.jpg',
 			officeBearers: [
 				{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
@@ -115,11 +115,11 @@ export async function getStaticPaths() {
 	return pages.map(({ slug, title, associationImage, officeBearers }) => {
 		return {
 			params: { slug },
-			props: { title, associationImage, officeBearers },
+			props: { title,slug, associationImage, officeBearers },
 		};
 	});
 }
-const { title, associationImage, officeBearers } = Astro.props;
+const { title, slug, associationImage, officeBearers } = Astro.props;
 ---
 
 <Layout title={`Associations | ${title}`}>
@@ -129,7 +129,8 @@ const { title, associationImage, officeBearers } = Astro.props;
 				<h1
 					class="border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold sm:text-4xl lg:text-6xl"
 				>
-					{title}
+				{t(`nav.${slug}`)}
+
 				</h1>
 			</div>
 

@@ -1,26 +1,54 @@
 ---
-import ParishDetails from '~/components/sections/parish-history/parish-details.astro';
 import Layout from '~/layouts/layout.astro';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import HistoryCarousel from '~/components/sections/parish-history/history-carousel.astro';
-
+import { parishHistory } from '~/constants/parish-history-kok';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+import { Image } from 'astro:assets';
+import churchBannerImage from '~/assets/church-banner.jpg';
+
 ---
 
 <Layout title="Pompei Church | Parish History">
-	<main class="overflow-hidden bg-white">
-		<section
-			id="parish-history"
-			class="flex flex-col p-6 font-geist lg:items-center"
-		>
+	<main class="mx-auto max-w-4xl overflow-hidden bg-white">
+		<section id="parish-history" class="flex flex-col p-6 pb-4">
 			<h1
-				class="mb-6 border-l-4 border-l-natgeo-yellow pl-3 text-3xl font-extrabold text-black"
+				class="mb-4 border-l-4 border-natgeo-yellow pl-3 text-3xl font-extrabold lg:text-4xl"
 			>
 				{t('history.title')}
 			</h1>
-			<ParishDetails />
-			<!-- <HistoryCarousel/> -->
+			<h2 class="p-3 pb-6 font-giest text-2xl font-bold italic text-black-400">
+				{t('history.subtitle')}
+			</h2>
+
+			<div class="mx-auto">
+				<div class="mt-2">
+					<div class="md:float-right md:ml-5">
+						<Image src={churchBannerImage} alt="Church Banner Image" />
+					</div>
+					{
+						parishHistory.intro.map((paragraph) => (
+							<p class="text-md mt-4 text-justify font-geist leading-7 text-slate-700 lg:text-left">
+								{paragraph}
+							</p>
+						))
+					}
+					{
+						parishHistory.priests.map((priest) => (
+							<div class="mt-6">
+								<h3 class="text-lg font-bold text-slate-900">
+									{priest.name} {priest.years}
+								</h3>
+								<p class="text-md mt-2 text-justify font-geist leading-7 text-slate-700 lg:text-left">
+									{priest.description}
+
+								</p>
+							</div>
+						))
+					}
+				</div>
+			</div>
 		</section>
 	</main>
 </Layout>

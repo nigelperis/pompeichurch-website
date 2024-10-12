@@ -7,14 +7,20 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<Layout title="Pompei Church | Parish Pastoral Parishad">
-	<section class="mx-6 mt-5">
-		<h1
-			class="relative mb-4 border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold"
-		>
-			{t('landing.pastoral-parishad')}
-		</h1>
-		<p>some subtitle</p>
-		<ParishPastoralCouncilList />
-	</section>
+<Layout title="Pompei Church | Parish Pastoral Council">
+	<main class="mx-auto max-w-4xl overflow-hidden bg-white">
+		<section id="pastoral-council" class="flex flex-col p-6 pb-4">
+			<h1
+				class="mb-4 border-l-4 border-natgeo-yellow pl-3 text-3xl font-extrabold lg:text-4xl"
+			>
+				{t('landing.pastoral-parishad')}
+			</h1>
+			<!-- <p class="pb-5 font-geist text-justify text-lg ">
+				Here is a glimpse of the esteemed former parish priests who have
+				nurtured our faith, enriched our community and individual lives, and
+				upheld the cherished legacy of our church throughout these years.
+			</p> -->
+			<ParishPastoralCouncilList />
+		</section>
+	</main>
 </Layout>

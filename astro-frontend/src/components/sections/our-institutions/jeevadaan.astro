@@ -8,10 +8,14 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<div class="mx-auto max-w-4xl">
-	<h2 class="mt-4 pb-4 font-poppins text-2xl font-bold">	{t('jeevadaan.title')} 	</h2>
-	<Image src={jeevadaan} alt="Image of Jeevadaan institute at Gurpur Kaikamba" class="rounded-sm" />
-	<div class="mb-2 mt-6 font-geist">
+<div class="mx-auto">
+	<h2 class="mt-4 pb-4 font-poppins text-2xl font-bold">{t('jeevadaan.title')}</h2>
+	<Image
+		src={jeevadaan}
+		alt="Image of Jeevadaan institute at Gurpur Kaikamba"
+		class="mt-6 rounded-sm md:float-left md:mr-5 md:w-1/2"
+	/>
+	<div class="mb-2 mt-6 pb-4 font-geist">
 		<p class="mt-4 text-justify text-lg text-slate-700">
 			'Jeevadaan' is their only ray of hope. They know that their life is short
 			and society will not accept them as they are infected by the dreaded

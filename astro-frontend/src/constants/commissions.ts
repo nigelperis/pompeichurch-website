@@ -7,14 +7,16 @@ const commissions = [
 				name: 'Mr. Henry Sequeira',
 			},
 			{
-				commission: 'Commission for Catechetics Apostolate',
-				name: 'Mrs. Jacintha Peris',
-			},
-			{
 				commission: 'Commission for Proclamation Apostolate',
 				name: 'Mrs. Gretta Lobo',
 			},
-			{ commission: 'Commission for Liturgy', name: 'Mrs. Praveena DSilva' },
+			{
+				commission: 'Commission for Catechetics Apostolate',
+				name: 'Mrs. Jacintha Peris',
+			},
+			{ commission: 'Commission for Liturgy',
+			  name: 'Mrs. Praveena DSilva'
+			},
 		],
 		convenor: 'Mrs. Linet Monteiro',
 	},
@@ -60,7 +62,7 @@ const commissions = [
 				name: 'Mrs. Laveena Rosario',
 			},
 			{
-				commission: "Commission for Migrants' Apostolate",
+				commission: "Commission for Migrants Apostolate",
 				name: 'Sr. Leena Pereira',
 			},
 			{
@@ -68,13 +70,13 @@ const commissions = [
 				name: 'Mr. Melwin Saldanha',
 			},
 		],
-		convenor: 'Sr. Sadhana',
+		convenor: 'Sr.Dr. Sadhana',
 	},
 	{
 		title: 'Unity',
 		subtitles: [
 			{
-				commission: 'Commission for Small Christian Community',
+				commission: 'Commission for Basic Ecclesial Communities',
 				name: 'Mrs. Delcy Rodrigues',
 			},
 			{

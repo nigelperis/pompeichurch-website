@@ -1,51 +1,28 @@
 ---
+import EventsList from '~/components/sections/events/events-list.astro';
 import Layout from '~/layouts/layout.astro';
 import EventCard from '~/components/event-card.astro';
-import eventImage from '~/assets/mass-interior.jpg';
-import eventImage1 from '~/assets/centenary-hall.jpg';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const events = [
-	{
-		eventName: 'Community Gathering',
-		imageUrl: eventImage,
-		description:
-			'Join us for a community gathering filled with fun, food, and fellowship.',
-		facebookLink: 'https://facebook.com/event-link', // Replace with actual Facebook event link
-	},
-	{
-		eventName: 'Charity Drive',
-		imageUrl: eventImage1,
-		description:
-			'Help us support those in need by participating in our charity drive.',
-		facebookLink: 'https://facebook.com/event-link', // Replace with actual Facebook event link
-	},
-];
+
 ---
 
 <Layout title="Pompei Church | Events">
-	<main class="overflow-hidden bg-white">
-		<section class="p-6 font-poppins text-slate-100">
+	<main class="mx-auto max-w-4xl overflow-hidden bg-white">
+		<section id="infrastructure" class="flex flex-col p-6">
 			<h1
-				class="text-slate-1000 mb-6 border-l-4 border-yellow-400 pl-3 font-poppins text-3xl font-extrabold text-black"
+				class="mb-4 border-l-4 border-natgeo-yellow pl-3 text-3xl font-extrabold lg:text-4xl"
 			>
 			{t('nav.events')}
 			</h1>
-
-			<div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-				{
-					events.map((event) => (
-						<EventCard
-							eventName={event.eventName}
-							imageUrl={event.imageUrl}
-							description={event.description}
-							facebookLink={event.facebookLink}
-						/>
-					))
-				}
-			</div>
+			<p class="pb-3 text-justify font-geist text-lg">
+				Here is a glimpse of the esteemed former parish priests who have
+				nurtured our faith, enriched our community and individual lives, and
+				upheld the cherished legacy of our church throughout these years.
+			</p>
+			<EventsList />
 		</section>
 	</main>
 </Layout>

@@ -1,36 +1,37 @@
 const parishHistory = {
-	intro: [
-		'The Gurpur Parish is situated at a distance of 19 K.M. from Mangalore on Mangalore-Moodbidri road. The parish is locally known as Kowdur. The Church land structure is located at a village called ‘Kandavar’. Apart from Kowdur, Mulur, Badaga, Ulipadi, Paduperar, Mooduperar, Kolambe, Gurpur, Addur villages are covered under the area of Gurpur Parish. To describe the parish geographically, the area of the parish is covered with a number of fields and hills. To the south of the parish flows the Gurpur River.',
-		'Before the existence of the Gurpur parish, the families living in this locality belonged to Fezar parish. After Ferar became a parish in 1912, the people from Gurpur went to Ferar Church for the Eucharistic celebration and also for the spiritual benefits. The number of people was doubling every year and there was an urgent need for new parishes to take care of such rapid growth in population.',
+paragraph:[
+`Our church is the only one in the Mangalore Diocese dedicated to Our Lady of Pompei. We the parishioners celebrated the centenary on 7th November 2021. Our church is located 18kms from Mangalore on Moodbidri road and is under the Kandavar gram panchayat in Gurpur, Kaikamba.
+Apart from Kandavar, its borders stretch out to neighbouring villages such as Muloor , Badagaulipady, Paduperar, Kolambe, Gurpur and Addoor. Our Church is located on a hilly tract surrounded by lush greenery and captures the attention of all. People of this parish cultivate rice, coconut, arecanut, cashew, vegetables and flowers. People of this engaged in Business, poultry, cattle-rearing, self-employment and many parishioners work in different countries. There are 420 families and 1700 people living under the parish. We are fortunate to witness the centenary celebration of this church which was established 100 years ago by our ancestors due to their devout faith, dedication and commitment.`,
 
-		'On 7th October 1915, Parish Priest of Ferar Rev. Fr. Reginald Pinto laid a foundation for a chapel. The building of the chapel was said to be completed by Fr. Joseph M. Menezes and blessed by Rt. Rev. Bishop Paul Ferini S.J. on October 29, 1918. In the Diocese of Mangalore, only this parish was dedicated to Our Lady of Pompei. A holy picture of the image of Our Lady of Pompei was brought from a city called Pompei in Italy, and is being honored in this parish. Because of the number of miracles and goodness of Our Lady of Pompei, the barren Kowdur has blossomed like a beautiful garden in God’s vineyard.',
-	],
-	priests: [
-		{
-			name: 'Rev. Fr. Antony A. Colaco',
-			years: '1921-22',
-			description:
-				'Gurpur became an independent parish on May 8, 1921. Fr. Anthony A. Colaco was appointed as the first parish priest of the newly constituted parish of Our Lady of Pompei. During his time, he opened a primary school for the poor and needy people of the parish in 1922.',
-		},
-		{
-			name: 'Rev. Fr. F.X. Nazreth',
-			years: '1922-30',
-			description:
-				'He was a convincing preacher of God’s word. During his time, he built a church façade using Goan design. In 1925, the church compound wall was built, and in 1929, a church bell was placed on the façade, which was brought from Goa.',
-		},
-		{
-			name: 'Rev. Fr. Raphel Pinto',
-			years: '1930-33',
-			description:
-				'Rev. Fr. Nazreth was succeeded by Rev. Fr. Raphel Pinto. In 1931, he constructed a parochial house. In 1933, Rev. Fr. Antony F. Covelho and Rev. Fr. Denis Mathias served the church.',
-		},
-		{
-			name: 'Rev. Fr. Aveline Rebello',
-			years: '1933-40',
-			description:
-				'Fr. Aveline Rebello instituted a wooden artistic altar of the Blessed Mother, which was donated by Hospet Church and carved in the Goan style. It was erected in the center of the church in October 1933. On April 2, 1934, he erected a huge cross on the hill in remembrance of the 150 years of Tipu’s captivity of the Christians. This cross is said to be visible from a long distance even today, reflecting the Christian symbol. In 1937, a portico was added to the parish building.',
-		},
-	],
+`100 years ago, people of this parish used to commute for 12 Kms to Pezar church on foot. In 1912 , a new church was built in Ferar, after which the worshippers started to go to this parish. Due to the increase in the number of families and the problems faced by them, thought of building a new church. Fr. Reginald Pinto the then, parish priest of Ferar laid the foundation for the chapel on October 7, 1915. Prior to this, people used to gather in a thatched house for prayers. Later, Rev. J.M Menezes completed the work of the chapel and on October 29, 1918 was blessed by the then Bishop Rev. Fr. Paul Perini . On 8th May1921, it became an independent church after it parted from the Ferar church. Rev.Fr. A.A.E Colaco served as the first parish priest followed by Rev.Fr. F.S Nazareth, Rev. Fr. Raphael Pinto, Rev. Fr. Anthony.F Coelho, Rev. Fr. Dennis Mathias, Rev. Fr. Avelyn Rebello, Rev. Fr. A.G Nazareth, Rev. Fr. John Castelino, Rev. Fr. J.S.T Rodrigues, Rev.Fr. Bernard Dsouza, Rev. Fr. G.L Dsouza, Rev. Fr. Stanley Pereira, Rev. Fr. Leo Veigas, Rev. Fr. Cyprian Pinto, Rev.Fr. Paul Rego, Rev. Fr. Gregory Serrao, Rev. Fr. Paul Pinto served this parish and worked for the spiritual development of the people and progress of this church. Along with the parish priest, the people of the parish worked as Administrators, Vice President, Secretary, Ward Heads, Representatives and Heads of various associations and worked for the overall development of the church. Currently, along with Rev. Fr. Anthony Lobo, Parish Council Vice- President Mr. Jerald Lobo, Secretary Mr. Praveen Lobo and other members are serving selflessly.`,
+
+`In 1921, a Portrait named ‘ROSARY’ resembling Queen of Rosary brought from Pompei city in Italy and is kept on the left side of the altar. In 1934, a wooden altar carved in Goan style was brought from Hospet which was installed at the center of the prayer hall. Now, it has been safely kept at the back on the left side of the present church building. In 1936 a victory Cross erected on a big Rock to commemorate 150 years of imprisonment of christians of coastal area by Tippu Sultan. In 1929, the bellfry was brought from Goa and was hung on the bell tower which was built in goan style and in 1950 the bell was shifted to a new tower.`,
+
+`As the days passed by and depending on the situation and requirements of the diocese under the guidance of the priests and co-operation of the people, many developmental works have been undertaken such as renovation of church, lightings, new benches, new altar, compound wall of the church, compound wall for the cemetery, new school building, new road etc. In 1998 a new spaciously designed church building was constructed under the leadership of Rev. Fr. Leo viegas and with the cooperation of devotees and with the help of donors. A new house was constructed for the church priests in the same year. PYC office, PYC stage was constructed. Near main road of Kaikamba a arch named ‘Pompei’, Pompei sabha bhavan, entrance arch to church, Interlocks were laid near the concrete road around the church and beautiful flower garden has been constructed. There is an open stage in front of the church.
+The people of our parish are blessed with numerous talents and have excelled in religious, social, cultural, academic, political and sports fields and participated in various competitions and have brought laurels to our church. Sports and games ,drama, musical nights etc. programs have been held in our church. Many people of our church are involved in Business , politics, music and government jobs and have excelled in their respective fields. There have been many religious vocations in our church and have been in service of God in India and other countries.
+Thousands of Children irrespective of religion studied in Pompei church school which was started in 1922 have excelled in studies and settled well in life.
+Since 1965, Bethany sisters of Pompei and Rosa Mystica Convents have been rendering their service. These sisters have been imparting education through Primary, Secondary, Pre-University, B.Ed. and also St. Joseph’s Ashram.`,
+
+`Camellias priests and nuns have been rendering service through organizations such as Sneha Sadana and Jeevadana, where patients with AIDS are treated and have been taking care of orphans, the aged and the destitutes.`,
+
+`By the grace of Lady of Pompei, several miracles have taken place in this church and people have been praying here irrespective of religion and have been blessed.`,
+
+`Currently there are 10 wards in the church and through small christian community, people have been actively participating in all the activities of the church, thereby rendering their service for the betterment of the church. Parish Council of the church has been rendering assistance to the parish priest in all religious and other activities.`,
+
+`Legion of Mary and Secular Franciscan Congregation have been participating in the prayer with enthusiasm and devotion. YCS Organisation has been rendering suitable education for PU students to lead a valuable life. Youngsters of ICYM (PYC) organization has been participating in religious programs, thereby render their service to the society. Altar serving children assist the preist during mass with devotion. St. Vincent de Paul society helping poor as per their needs. Catholic Sabha organisation has been creating awareness about politics and human rights. Women organization is creating awareness about rights of women. The choir group is assisting by singing devotional hymns during mass.`,
+
+`The Church’s magazine “Pompeichem Falkhem” has been providing news of the church to the people.`,
+
+`Every Sunday, catechism classes are being held for the children studying in I std to Xth Standard.`,
+
+`The inauguration of the Centenary year was held on November 4, 2020 with the holy mass @ 10 am .the main celebrant was Most Rev. Dr. Francis Serrao Bishop of Shimoga Diocese. After the holy mass flag hoisting and centenary logo was released and gave a nod for various centenary projects.`,
+
+`To commemorate the centenary year under the guidance of Fr. Antony Lobo and with co-operation and assistance of parish council, centenary committe, and with the help of donors renovation of church building, renovation of sabha bhavan, laying of interlock , renovation of historical holy cross, centenary Hall, renovation of priest House, play ground, construction of House for the poor, health fund for poor etc have been successfully implemented.`,
+
+`On November 7th 2021, at 10 am the valedictory function was held which was presided over by the Bishop of Mangalore Most. Rev. Dr. Peter Paul Saldanha with the Holy mass followed by stage programme and fellowship meal.`,
+
+`With the blessings of Lady of Pompei, may all of us live unitedly and the memories of the centenary live in our heart and mind forever.`,
+]
 };
 
 export { parishHistory };

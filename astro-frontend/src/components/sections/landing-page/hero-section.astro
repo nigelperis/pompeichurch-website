@@ -17,14 +17,13 @@ import churchLogo from '~/assets/church-logo.png';
 		backgroundImage: `url(${optimizedSkyImage.src})`,
 	}}
 >
-	<div class="absolute inset-0 bg-white opacity-70 bg-blend-darken shadow-lg">
-	</div>
+	<div class="absolute inset-0 bg-white opacity-70 bg-blend-darken"/>
 
 	<div
-		class="relative mx-auto h-80 w-80 overflow-hidden rounded-b-[12rem] bg-yellow-50 xs:w-96"
+		class="relative mx-4 sm:mx-auto sm:w-[80vw] sm:h-[40vh] h-[30vh] md:h-80 md:w-96 xl:w-5/12 xl:h-96 overflow-hidden rounded-b-full bg-yellow-50"
 	>
 		<div
-			class="animated-background mx-auto h-full w-full bg-cover bg-center bg-no-repeat shadow-2xl"
+			class="animated-background mx-auto h-full w-full bg-cover bg-center bg-no-repeat"
 			style={{ backgroundImage: `url(${optimizedChurchHeroImage.src})` }}
 		>
 		</div>
@@ -32,7 +31,7 @@ import churchLogo from '~/assets/church-logo.png';
 	<h1
 		data-aos="fade-up"
 		data-aos-delay="700"
-		class={cn('mx-2 mt-5  text-center font-montserrat text-4xl font-bold', {
+		class={cn('mt-3 text-center font-montserrat text-4xl  lg:text-5xl font-semibold', {
 			'font-noto-sans-kannada': lang === 'kok',
 		})}
 	>
@@ -42,9 +41,9 @@ import churchLogo from '~/assets/church-logo.png';
 		data-aos="fade-up"
 		data-aos-delay="900"
 		class={cn(
-			'mx-2 mt-3  text-center font-montserrat font-normal text-2xl opacity-0',
+			'mt-2 text-center font-montserrat font-normal text-3xl',
 			{
-				'font-noto-sans-kannada font-normal': lang === 'kok',
+				'font-noto-sans-kannada': lang === 'kok',
 			},
 		)}
 	>

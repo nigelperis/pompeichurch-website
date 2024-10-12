@@ -1,11 +1,11 @@
 ---
 import Layout from '~/layouts/layout.astro';
-import type { ImageMetadata } from 'astro';
 
 import { Image } from 'astro:assets';
 import { loremIpsum } from '~/constants/lorem-ipsum';
 
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+import churchLogo from '~/assets/church-logo.png'
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
@@ -14,8 +14,9 @@ export async function getStaticPaths() {
 		{
 			slug: 'kowdoor-a',
 			title: 'Kowdoor A',
-			patronImage: '../../assets/church-logo.png',
-			wardGroupImageSrc: '../../assets/kowdoor-a-group.jpg',
+			patronName: 'John Doe',
+			patronImage: churchLogo,
+			wardGroupImageSrc: churchLogo,
 			officeBearers: [
 				{ name: 'John Doe', position: 'Ward Gurkaar' },
 				{ name: 'Jane Smith', position: 'Ward Secretary' },
@@ -24,8 +25,9 @@ export async function getStaticPaths() {
 		{
 			slug: 'kowdoor-b',
 			title: 'Kowdoor B',
-			patronImage: '../../assets/church-logo.png',
-			wardGroupImageSrc: '../../assets/kowdoor-b-group.jpg',
+			patronName: 'John Doe',
+			patronImage: churchLogo,
+			wardGroupImageSrc: churchLogo,
 			officeBearers: [
 				{ name: 'Alice Johnson', position: 'Ward Gurkaar' },
 				{ name: 'Bob Williams', position: 'Ward Secretary' },
@@ -34,8 +36,9 @@ export async function getStaticPaths() {
 		{
 			slug: 'pompei-a',
 			title: 'Pompei A',
-			patronImage: '../../assets/church-logo.png',
-			wardGroupImageSrc: '../../assets/pompei-a-group.jpg',
+			patronName: 'John Doe',
+			patronImage: churchLogo,
+			wardGroupImageSrc: churchLogo,
 			officeBearers: [
 				{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
 				{ name: 'Emily Davis', position: 'Ward Secretary' },
@@ -44,8 +47,9 @@ export async function getStaticPaths() {
 		{
 			slug: 'pompei-b',
 			title: 'Pompei B',
-			patronImage: '../../assets/church-logo.png',
-			wardImage: '../../assets/pompei-a-group.jpg',
+			patronName: 'John Doe',
+			patronImage:churchLogo,
+			wardImage: churchLogo,
 			officeBearers: [
 				{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
 				{ name: 'Emily Davis', position: 'Ward Secretary' },
@@ -54,8 +58,9 @@ export async function getStaticPaths() {
 		{
 			slug: 'kandar-a',
 			title: 'Kandar A',
-			patronImage: '../../assets/church-logo.png',
-			wardImage: '../../assets/pompei-a-group.jpg',
+			patronName: 'John Doe',
+			patronImage: churchLogo,
+			wardImage: churchLogo,
 			officeBearers: [
 				{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
 				{ name: 'Emily Davis', position: 'Ward Secretary' },
@@ -64,8 +69,9 @@ export async function getStaticPaths() {
 		{
 			slug: 'kandar-b',
 			title: 'Kandar B',
-			patronImage: '../../assets/church-logo.png',
-			wardImage: '../../assets/pompei-a-group.jpg',
+			patronName: 'John Doe',
+			patronImage: churchLogo,
+			wardImage: churchLogo,
 			officeBearers: [
 				{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
 				{ name: 'Emily Davis', position: 'Ward Secretary' },
@@ -74,8 +80,9 @@ export async function getStaticPaths() {
 		{
 			slug: 'monel',
 			title: 'Monel',
-			patronImage: '../../assets/church-logo.png',
-			wardImage: '../../assets/pompei-a-group.jpg',
+			patronName: 'John Doe',
+			patronImage: churchLogo,
+			wardImage: churchLogo,
 			officeBearers: [
 				{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
 				{ name: 'Emily Davis', position: 'Ward Secretary' },
@@ -84,8 +91,9 @@ export async function getStaticPaths() {
 		{
 			slug: 'gurpur',
 			title: 'Gurpur',
-			patronImage: '../../assets/church-logo.png',
-			wardImage: '../../assets/pompei-a-group.jpg',
+			patronName: 'John Doe',
+			patronImage: churchLogo,
+			wardImage: churchLogo,
 			officeBearers: [
 				{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
 				{ name: 'Emily Davis', position: 'Ward Secretary' },
@@ -94,8 +102,9 @@ export async function getStaticPaths() {
 		{
 			slug: 'church',
 			title: 'Church',
-			patronImage: '../../assets/church-logo.png',
-			wardImage: '../../assets/pompei-a-group.jpg',
+			patronName: 'John Doe',
+			patronImage: churchLogo,
+			wardImage: churchLogo,
 			officeBearers: [
 				{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
 				{ name: 'Emily Davis', position: 'Ward Secretary' },
@@ -104,8 +113,9 @@ export async function getStaticPaths() {
 		{
 			slug: 'addoor',
 			title: 'Addoor',
-			patronImage: '../../assets/church-logo.png',
-			wardImage: '../../assets/pompei-a-group.jpg',
+			patronName: 'John Doe',
+			patronImage: churchLogo,
+			wardImage: churchLogo,
 			officeBearers: [
 				{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
 				{ name: 'Emily Davis', position: 'Ward Secretary' },
@@ -113,27 +123,23 @@ export async function getStaticPaths() {
 		},
 	];
 
-	return pages.map(({ slug, title, patronImage, wardImage, officeBearers }) => {
-		return {
-			params: { slug },
-			props: {
-				title,
-				patronImage,
-				wardImage,
-				officeBearers,
-			},
-		};
-	});
+
+  return pages.map(({ slug, title, patronImage, patronName, wardGroupImageSrc, officeBearers }) => {
+    return {
+      params: { slug },
+      props: {
+				slug,
+        title,
+        patronImage,
+				patronName,
+        wardGroupImageSrc,
+        officeBearers,
+      },
+    };
+  });
 }
 
-const { title, patronImage, officeBearers } = Astro.props;
-
-const images = import.meta.glob<{ default: ImageMetadata }>(
-	'../../assets/*.{jpeg,jpg,png,gif}',
-);
-const logoImage =
-	(await images[patronImage]?.()) ||
-	(await images['../../assets/default-logo.png']());
+const { slug, title, patronImage, patronName, wardGroupImageSrc, officeBearers } = Astro.props;
 ---
 
 <Layout title={`Wards | ${title}`}>
@@ -143,7 +149,7 @@ const logoImage =
 				<h1
 					class="border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold sm:text-4xl lg:text-6xl"
 				>
-					{title}
+				{t(`nav.${slug}-ward`)}
 				</h1>
 			</div>
 
@@ -152,13 +158,13 @@ const logoImage =
 					Ward Patron
 				</h2>
 				<div class="flex items-center">
-					<Image src={logoImage.default} alt={`${t(`${title}.patron`)} Patron of ${t(`nav.${title}`)}`}  class="mr-4" />
+					<Image src={patronImage} alt={patronName} class="mr-4" />
 				</div>
 
 				<h2 class="font-poppins text-2xl font-bold text-slate-900">
 					About the Ward
 				</h2>
-				<p class="my-4 text-justify text-base text-slate-700">
+				<p class="my-4 font-giest text-justify text-base text-slate-700">
 					{loremIpsum}
 				</p>
 
@@ -167,21 +173,21 @@ const logoImage =
 				</h2>
 				<div class="mt-4 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
 					<Image
-						src={logoImage.default}
-						alt={`${t(`nav.${title}`)} Ward`}
+					  src={wardGroupImageSrc ?? churchLogo}
+						alt="Ward Activity Image"
 						width={400}
 						class="h-54 mb-4 rounded-md object-cover"
 					/>
 
 					<Image
-						src={logoImage.default}
+					  src={wardGroupImageSrc ?? churchLogo}
 						alt="Ward Activity Image"
 						class="h-54 mb-4 w-full rounded-md object-cover"
 					/>
 				</div>
 
 				<h2 class="mt-8 font-poppins text-2xl font-bold">Office Bearers</h2>
-				<ul class="my-4 list-inside list-disc text-base text-slate-700">
+				<ul class="my-4 font- font-geist list-inside list-disc text-base text-slate-700">
 					{
 						officeBearers.map((bearer) => (
 							<li>

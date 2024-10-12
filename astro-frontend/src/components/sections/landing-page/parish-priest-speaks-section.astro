@@ -10,38 +10,46 @@ import priestImage from '~/assets/pp1.png';
 import { loremIpsum } from '~/constants/lorem-ipsum';
 ---
 
-<section class="mx-6 mt-6">
+<section class="mx-6 mt-6 lg:mt-0 flex flex-col justify-evenly lg:mx-32 lg:min-h-[70svh]">
 	<h2
 		data-aos="fade-right"
-		class="relative mb-4 border-l-4 border-natgeo-yellow pl-3 text-left font-poppins text-3xl font-extrabold"
+		class="relative mb-4 border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl lg:text-4xl font-extrabold"
 	>
 		{t('landing.priest-speaks')}
 	</h2>
 
-	<div
-		data-aos="zoom-in-up"
-		class="relative mx-auto flex w-fit flex-col items-center"
-	>
-		<div
-			class="absolute top-full -z-10 h-[43%] w-[103%] -translate-y-full rounded bg-gradient-to-r from-natgeo-yellow-200 via-natgeo-yellow-300 to-natgeo-yellow-400"
-		>
+	<div class="flex flex-col lg:flex-row gap-x-10">
+		<div class="xl:min-w-96 lg:min-w-72">
+			<div
+				data-aos="zoom-in-up"
+				class="relative mx-auto flex w-fit flex-col items-center"
+			>
+				<div
+					class="absolute top-full -z-10 h-[43%] w-[103%] -translate-y-full rounded bg-gradient-to-r from-natgeo-yellow-200 via-natgeo-yellow-300 to-natgeo-yellow-400"
+				>
+				</div>
+				<Image src={priestImage} alt="priest image" width={300} />
+			</div>
+
+			<figcaption
+				class="mt-2 text-center font-lora text-lg italic text-slate-600"
+			>
+				{t('landing.priest-name')}
+			</figcaption>
+		
+
+		<div class="lg:self-center">
+			<p
+				class="text-justify font-poppins text-base first-letter:font-serif first-letter:text-3xl"
+			>
+				{loremIpsum}
+			</p>
+
+			<div class="relative mb-8 ml-auto overflow-hidden text-lg font-semibold">
+				<p data-aos="fade-left" class="text-right">
+					Signature of Fr. Rudolf DSa(image)
+				</p>
+			</div>
 		</div>
-		<Image src={priestImage} alt={`Image of Pompei Church Parish Priest ${t('landing.priest-name')}`}  width={300} class="font-giest"/>
-	</div>
-
-	<figcaption class="mt-2 text-center font-lora text-lg italic text-slate-600">
-		{t('landing.priest-name')}
-	</figcaption>
-
-	<p
-		class="text-justify font-poppins text-base first-letter:font-serif first-letter:text-3xl"
-	>
-		{loremIpsum}
-	</p>
-
-	<div class="relative mb-8 ml-auto overflow-hidden text-lg font-semibold">
-		<p data-aos="fade-left" class="text-right">
-			Signature of Fr. Rudolf DSa(image)
-		</p>
 	</div>
 </section>

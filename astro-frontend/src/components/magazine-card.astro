@@ -13,7 +13,7 @@ const { title, imageUrl, class: className } = Astro.props;
 
 <div
 	class={cn(
-		'hover:scale-[1.01] hover:shadow-md transform overflow-hidden rounded-md border shadow transition-all duration-500 ease-in-out max-w-xs mx-auto',
+		'hover:scale-[1.01] transform overflow-hidden rounded-md border duration-300 ease-in-out transition-all max-w-md mx-auto',
 		className,
 	)}
 >
@@ -21,11 +21,11 @@ const { title, imageUrl, class: className } = Astro.props;
 		<Image
 			src={imageUrl}
 			alt={title}
-			class="h-auto w-full rounded-md object-cover"
+			class="w-full object-cover lg:h-[480px]"
 		/>
 	</div>
 
-	<div class="magazine-content mt-4 p-4 text-center">
+	<div class="magazine-content mt-3 pb-5 pt-3 text-center">
 		<h3
 			class="magazine-title text-lg font-bold leading-snug text-slate-900 sm:text-xl"
 		>

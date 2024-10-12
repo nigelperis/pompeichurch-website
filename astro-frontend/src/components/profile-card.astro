@@ -20,28 +20,27 @@ const { name, date, subtitle, class: className, imageUrl } = Astro.props;
 	class={cn(
 		'hover:scale-[1.01] hover:shadow-md snap-start first:snap-align-none max-w-xs flex-shrink-0 rounded-md border shadow sm:w-64',
 		className,
+		'w-[230px] h-[340px]',
 	)}
 >
 	<div class="card-image flex-none">
 		<Image
 			src={imageUrl}
 			alt={`Image of ${name}`}
-			width={200}
-			height={200}
-			class="w-full rounded-md object-cover"
+			class="h-[230px] w-full rounded-md object-fill"
 		/>
 	</div>
 
 	<div class="card-content mt-3 flex flex-1 flex-col justify-end space-y-1 p-3">
 		<h3
-			class="card-title text-xs font-bold leading-snug text-slate-900 sm:text-lg"
+			class="card-title font-bold leading-snug text-slate-900 sm:text-lg"
 			title={name}
 		>
 			{name}
 		</h3>
 		{
 			date && (
-				<p class="card-date line-clamp-3 text-[8px] text-slate-700 sm:text-sm">
+				<p class="card-date line-clamp-3 text-slate-700 sm:text-sm">
 					{t('priest.service-period')}:{' '}
 					<span class="font-semibold">{date}</span>
 				</p>
@@ -49,7 +48,7 @@ const { name, date, subtitle, class: className, imageUrl } = Astro.props;
 		}
 		{
 			subtitle && (
-				<p class="card-subtitle line-clamp-3 text-[8px] text-slate-600 sm:text-sm">
+				<p class="card-subtitle line-clamp-3 text-slate-600 sm:text-sm">
 					{subtitle}
 				</p>
 			)
