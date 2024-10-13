@@ -23,9 +23,43 @@ const t = useTranslations(lang);
 		>
 			{t('landing.church-name')}
 		</a>
+		<div class="ml-auto hidden items-center gap-5 md:flex ">
+			<ul class="flex items-center gap-6">
+				{
+					navLinks.map((link) => (
+						<li class="group relative">
+							<a
+								href={
+									link.type === 'link'
+										? getRelativeLocaleUrl(lang, link.href)
+										: '#'
+								}
+								class="hover:text-natgeo-pink font-poppins text-lg font-semibold text-black transition-colors "
+							>
+								{t(link.title)}
+							</a>
+							{link.type === 'expandable' && (
+								<ul class="absolute left-0 top-full mt-2 hidden rounded-md bg-white p-3 shadow-lg group-hover:block md:flex w-64 ">
+									{link.expandedLinks.map((sublink) => (
+										<li class="w-150">
+											<a
+												href={getRelativeLocaleUrl(lang, sublink.href)}
+												class="block rounded-md px-4 py-2 text-black transition-all hover:bg-natgeo-yellow"
+											>
+												{t(sublink.title)}
+											</a>
+										</li>
+									))}
+								</ul>
+							)}
+						</li>
+					))
+				}
+			</ul>
+		</div>
 		<div
 			id="hamburger"
-			class="ml-auto flex w-fit cursor-pointer flex-col items-end"
+			class="ml-auto flex w-fit cursor-pointer flex-col items-end md:hidden"
 		>
 			<Icon name="menu" size={26} />
 		</div>
@@ -72,10 +106,10 @@ const t = useTranslations(lang);
 					</a>
 					{link.type === 'expandable' ? (
 						<ul class="expandable-links max-h-0 overflow-hidden transition-all duration-500 ease-out">
-							{link.expandedLinks.map((sublinks) => (
+							{link.expandedLinks.map((sublink) => (
 								<li>
 									<a
-										href={getRelativeLocaleUrl(lang, sublinks.href)}
+										href={getRelativeLocaleUrl(lang, sublink.href)}
 										class="group mb-4 flex items-center justify-between font-merriweather text-2xl font-bold"
 									>
 										<span
@@ -87,7 +121,7 @@ const t = useTranslations(lang);
 												},
 											)}
 										>
-											{t(sublinks.title)}
+											{t(sublink.title)}
 										</span>
 									</a>
 								</li>
@@ -125,6 +159,42 @@ const t = useTranslations(lang);
 	a[data-is-submenu-expanded='true'] > svg[data-icon-name='chevron-right'] {
 		transform: rotate(90deg);
 	}
+
+	@media (min-width: 768px) {
+		ul > li.group {
+			position: relative;
+		}
+
+		ul > li.group > ul {
+			display: none;
+			position: absolute;
+			left: 0;
+			top: 100%;
+			margin-top: 2px;
+			background-color: white;
+			border-radius: 4px;
+			padding: 10px;
+			box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+			transition: all 0.3s ease;
+		}
+
+		ul > li.group:hover > ul,
+		ul > li.group:focus-within > ul {
+			display: block;
+		}
+
+		/* Ensures the dropdown stays open when hovering between parent and child elements */
+		ul > li.group:hover,
+		ul > li.group:focus-within {
+			background-color: rgba(255, 255, 255, 0.1);
+		}
+
+		ul > li.group:hover > ul,
+		ul > li.group:focus-within > ul {
+			opacity: 1;
+			visibility: visible;
+		}
+	}
 </style>
 
 <script>
@@ -134,7 +204,7 @@ const t = useTranslations(lang);
 	const expandableLinks = document.querySelectorAll(
 		'[data-expandable-links=true]',
 	);
-	const allNavigationLinks = document.querySelectorAll<HTMLAnchorElement>(
+	const allNavigationLinks = document.querySelectorAll(
 		'nav a:not([data-expandable-links=true])',
 	);
 
@@ -144,8 +214,7 @@ const t = useTranslations(lang);
 
 	hamburgerClose?.addEventListener('click', () => {
 		expandableLinks.forEach((element) => {
-			const expandableContent =
-				element.parentElement?.querySelector<HTMLUListElement>('a + ul');
+			const expandableContent = element.parentElement?.querySelector('a + ul');
 			expandableContent?.style?.setProperty('max-height', '0');
 			element.setAttribute('data-is-submenu-expanded', 'false');
 		});
@@ -157,17 +226,13 @@ const t = useTranslations(lang);
 		element.addEventListener('click', (e) => {
 			e.preventDefault();
 			const subMenuStatus = element.getAttribute('data-is-submenu-expanded');
-			//typesafe way of selecting sibling element
-			const expandableContent =
-				element?.parentElement?.querySelector<HTMLUListElement>('a + ul');
+			const expandableContent = element?.parentElement?.querySelector('a + ul');
 
-			//toggle collpse state for all other elemnets execpt currrently clicked elemnt
 			expandableLinks.forEach((otherElement) => {
 				if (otherElement !== element) {
 					otherElement.setAttribute('data-is-submenu-expanded', 'false');
-					//typesafe of selecting and styling  sibling element
 					otherElement.parentElement
-						?.querySelector<HTMLUListElement>('a + ul')
+						?.querySelector('a + ul')
 						?.style.setProperty('max-height', '0');
 				}
 			});
@@ -191,7 +256,7 @@ const t = useTranslations(lang);
 
 			expandableLinks.forEach((element) => {
 				const expandableContent =
-					element.parentElement?.querySelector<HTMLUListElement>('a + ul');
+					element.parentElement?.querySelector('a + ul');
 
 				expandableContent?.style.setProperty('max-height', '0');
 
