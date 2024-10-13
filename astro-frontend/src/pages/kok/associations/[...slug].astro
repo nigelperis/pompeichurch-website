@@ -1,6 +1,5 @@
 ---
 import Layout from '~/layouts/layout.astro';
-import type { ImageMetadata } from 'astro';
 
 import { Image } from 'astro:assets';
 import churchHeroImage from '~/assets/mary-grotto.jpg';
@@ -143,8 +142,9 @@ const { title, slug, associationImage, officeBearers } = Astro.props;
 					</div>
 				</div>
 
-				{associations[slug].map((para) => <p class="my-4 text-justify text-base text-slate-700"> {para}</p>)}
-
+			{associations[slug as keyof typeof associations].map((para: string) => (
+			<p class="my-4 text-justify text-base text-slate-700">{para}</p>
+			))}
 				<h2
 					class="mt-8 text-left font-poppins text-2xl font-bold text-slate-900"
 				>
