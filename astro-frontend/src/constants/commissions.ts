@@ -1,109 +1,109 @@
 const commissions = [
 	{
-		title: 'Liturgy-Word-Proclamation',
+		title: 'liturgy-word-proclamation',
 		subtitles: [
 			{
-				commission: 'Commission for Bible Apostolate',
-				name: 'Mr. Henry Sequeira',
+				commission: 'commission-for-bible-apostolate',
+				name: 'mr-henry-sequeira',
 			},
 			{
-				commission: 'Commission for Proclamation Apostolate',
-				name: 'Mrs. Gretta Lobo',
+				commission: 'commission-for-proclamation-apostolate',
+				name: 'mrs-gretta-lobo',
 			},
 			{
-				commission: 'Commission for Catechetics Apostolate',
-				name: 'Mrs. Jacintha Peris',
+				commission: 'commission-for-catechetics-apostolate',
+				name: 'mrs-jacintha-peris',
 			},
-			{ commission: 'Commission for Liturgy',
-			  name: 'Mrs. Praveena DSilva'
+			{ commission: 'commission-for-liturgy',
+			  name: 'mrs-praveena-dsilva'
 			},
 		],
-		convenor: 'Mrs. Linet Monteiro',
+		convenor: 'mrs-linet-monteiro',
 	},
 	{
-		title: 'Witness',
+		title: 'witness',
 		subtitles: [
 			{
-				commission: 'Commission for Social Development Apostolate',
-				name: 'Mrs. Vijaya DCosta',
+				commission: 'commission-for-social-development-apostolate',
+				name: 'mrs-vijaya-dcosta',
 			},
 			{
-				commission: 'Commission for Social Communication',
-				name: 'Mrs. Laveena Andrade',
+				commission: 'commission-for-social-communication',
+				name: 'mrs-laveena-andrade',
 			},
 			{
-				commission: 'Commission for Justice and Peace Apostolate',
-				name: 'Mr. Michael Johnson',
+				commission: 'commission-for-justice-and-peace-apostolate',
+				name: 'mr-michael-johnson',
 			},
 			{
-				commission: 'Commission for Formation of the Priests and the Religious',
-				name: 'Sr. Jaya',
+				commission: 'commission-for-formation-of-the-priests-and-the-religious',
+				name: 'sr-jaya',
 			},
 			{
-				commission: 'Commission for Environment Apostolate',
-				name: 'Mr. Charles Sequeira',
+				commission: 'commission-for-environment-apostolate',
+				name: 'mr-charles-sequeira',
 			},
 		],
-		convenor: 'Mr. Roshan DCunha',
+		convenor: 'mr-roshan-dcunha',
 	},
 	{
-		title: 'Service',
+		title: 'service',
 		subtitles: [
 			{
-				commission: 'Commission for Education Apostolate',
-				name: 'Mrs. Gretta Nazareth',
+				commission: 'commission-for-education-apostolate',
+				name: 'mrs-gretta-nazareth',
 			},
 			{
-				commission: 'Commission for Health Apostolate',
-				name: 'Mrs. Wilma Crasta',
+				commission: 'commission-for-health-apostolate',
+				name: 'mrs-wilma-crasta',
 			},
 			{
-				commission: 'Commission for Labour Apostolate',
-				name: 'Mrs. Laveena Rosario',
+				commission: 'commission-for-labour-apostolate',
+				name: 'mrs-laveena-rosario',
 			},
 			{
-				commission: "Commission for Migrants Apostolate",
-				name: 'Sr. Leena Pereira',
+				commission: "commission-for-migrants-apostolate",
+				name: 'sr-leena-pereira',
 			},
 			{
-				commission: 'Commission for Apostolate to Specially Abled',
-				name: 'Mr. Melwin Saldanha',
+				commission: 'commission-for-apostolate-to-specially-abled',
+				name: 'mr-melwin-saldanha',
 			},
 		],
-		convenor: 'Sr.Dr. Sadhana',
+		convenor: 'sr-dr-sadhana',
 	},
 	{
-		title: 'Unity',
+		title: 'unity',
 		subtitles: [
 			{
-				commission: 'Commission for Basic Ecclesial Communities',
-				name: 'Mrs. Delcy Rodrigues',
+				commission: 'commission-for-basic-ecclesial-communities',
+				name: 'mrs-delcy-rodrigues',
 			},
 			{
-				commission: 'Commission for Family Apostolate',
-				name: 'Mr. Ivan DSouza',
+				commission: 'commission-for-family-apostolate',
+				name: 'mr-ivan-dsouza',
 			},
 			{
-				commission: 'Commission for Laity Apostolate',
-				name: 'Mr. Alwyn Pinto',
+				commission: 'commission-for-laity-apostolate',
+				name: 'mr-alwyn-pinto',
 			},
-			{ commission: 'Commission for Women',
-			  name: 'Mrs. Juliet Serrao'
-			},
-			{
-				commission: 'Commission for Youth Apostolate',
-				name: 'Mr. Godwin Tauro',
+			{ commission: 'commission-for-women',
+			  name: 'mrs-juliet-serrao'
 			},
 			{
-				commission: 'Commission for Ecumenism Apostolate',
-				name: 'Mrs. Margarette Andrade',
+				commission: 'commission-for-youth-apostolate',
+				name: 'mr-godwin-tauro',
 			},
 			{
-				commission: 'Commission for Inter-Religious Dialogue Apostolate',
-				name: 'Mr. Rajesh Noronha',
+				commission: 'commission-for-ecumenism-apostolate',
+				name: 'mrs-margarette-andrade',
+			},
+			{
+				commission: 'commission-for-inter-religious-dialogue-apostolate',
+				name: 'mr-rajesh-noronha',
 			},
 		],
-		convenor: 'Mrs. Violet Peris',
+		convenor: 'mrs-violet-peris',
 	},
 ];
 
