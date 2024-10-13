@@ -2,12 +2,10 @@
 import Layout from '~/layouts/layout.astro';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import HistoryCarousel from '~/components/sections/parish-history/history-carousel.astro';
-import { parishHistory } from '~/constants/parish-history';
+import ParishDetails from '~/components/sections/parish-history/parish-details.astro';
+
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-import { Image } from 'astro:assets';
-import churchBannerImage from '~/assets/church-banner.jpg';
-
 ---
 
 <Layout title="Pompei Church | Parish History">
@@ -21,16 +19,7 @@ import churchBannerImage from '~/assets/church-banner.jpg';
 			<h2 class="p-3 pb-6 font-giest text-2xl font-bold italic text-black-400">
 				{t('history.subtitle')}
 			</h2>
-
-			<div class="mx-auto">
-				<div class="mt-2">
-					<div class="md:float-right md:ml-5">
-						<Image src={churchBannerImage} alt="Church Banner Image" />
-					</div>
-					{parishHistory.paragraph.map(paragraph => (
-						<p class=" text-md mt-4 text-justify font-geist leading-7 text-slate-700 lg:text-left ">{paragraph}</p>))}
-				</div>
-			</div>
+			<ParishDetails/>
 		</section>
 	</main>
 </Layout>
