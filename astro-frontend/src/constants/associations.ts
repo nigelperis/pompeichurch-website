@@ -122,5 +122,4 @@ const associations: Association[] = [
 	},
 ];
 
-
 export { associations };

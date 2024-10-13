@@ -115,7 +115,7 @@ export async function getStaticPaths() {
 	return pages.map(({ slug, title, associationImage, officeBearers }) => {
 		return {
 			params: { slug },
-			props: { title,slug, associationImage, officeBearers },
+			props: { title, slug, associationImage, officeBearers },
 		};
 	});
 }
@@ -125,11 +125,11 @@ const { title, slug, associationImage, officeBearers } = Astro.props;
 <Layout title={`Associations | ${title}`}>
 	<main class="mx-auto max-w-4xl overflow-hidden bg-white">
 		<section id="associations" class="flex flex-col p-6 pb-4">
-				<h1
-					class="mb-4 border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold sm:text-4xl lg:text-6xl"
-				>
+			<h1
+				class="mb-4 border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold sm:text-4xl lg:text-6xl"
+			>
 				{t(`nav.${slug}`)}
-				</h1>
+			</h1>
 
 			<section class="mx-6 mt-6">
 				<div class="flex justify-center">
@@ -142,9 +142,13 @@ const { title, slug, associationImage, officeBearers } = Astro.props;
 					</div>
 				</div>
 
-			{associations[slug as keyof typeof associations].map((para: string) => (
-			<p class="my-4 text-justify text-base text-slate-700">{para}</p>
-			))}
+				{
+					associations[slug as keyof typeof associations].map(
+						(para: string) => (
+							<p class="my-4 text-justify text-base text-slate-700">{para}</p>
+						),
+					)
+				}
 				<h2
 					class="mt-8 text-left font-poppins text-2xl font-bold text-slate-900"
 				>
