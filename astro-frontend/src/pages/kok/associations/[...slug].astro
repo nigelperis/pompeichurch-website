@@ -124,16 +124,13 @@ const { title, slug, associationImage, officeBearers } = Astro.props;
 ---
 
 <Layout title={`Associations | ${title}`}>
-	<main>
-		<section id="associations" class="my-5">
-			<div class="mx-6 flex flex-col items-start text-left">
+	<main class="mx-auto max-w-4xl overflow-hidden bg-white">
+		<section id="associations" class="flex flex-col p-6 pb-4">
 				<h1
-					class="border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold sm:text-4xl lg:text-6xl"
+					class="mb-4 border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold sm:text-4xl lg:text-6xl"
 				>
 				{t(`nav.${slug}`)}
-
 				</h1>
-			</div>
 
 			<section class="mx-6 mt-6">
 				<div class="flex justify-center">
