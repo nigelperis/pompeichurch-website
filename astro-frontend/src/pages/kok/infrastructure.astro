@@ -2,35 +2,23 @@
 import Layout from '~/layouts/layout.astro';
 import PompeiSabhaBhavan from '~/components/sections/infrastructure/pompei-sabha-bhavan.astro';
 import CentenaryHall from '~/components/sections/infrastructure/centenary-hall.astro';
-import institutionDummyImage from '~/assets/institution-dummy.jpg';
-import { loremIpsum } from '~/constants/lorem-ipsum';
-import { getImage } from 'astro:assets';
-import { Image } from 'astro:assets';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
-
-
-const optimizedInfrastructureImage = await getImage({
-	src: institutionDummyImage,
-});
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
 <Layout title="Pompei Church | Infrastructure">
-	<main class=" mx-auto max-w-4xl overflow-hidden bg-white">
-			<div  class="flex flex-col p-6">
-				<h1
+	<main class="mx-auto max-w-4xl overflow-hidden bg-white">
+		<section id="infrastructure" class="flex flex-col p-6">
+			<h1
 				class="mb-4 border-l-4 border-natgeo-yellow pl-3 text-3xl font-extrabold lg:text-4xl"
 			>
-			{t('nav.infrastructure')}
+				{t('nav.infrastructure')}
 			</h1>
-				<p class="text-roboto mt-4 text-lg text-black">
-					some subtitle
-				</p>
-			</div>
-		</section>
-		<section id="our-institutions" class="my-2 bg-white">
+			<p class="text-justify font-geist text-lg">
+				Explore our mission and the institutions that help make it possible.
+			</p>
 			<PompeiSabhaBhavan />
 			<div class="mx-10 border-t-2 border-yellow-300"></div>
 			<CentenaryHall />

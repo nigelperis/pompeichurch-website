@@ -20,7 +20,6 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-
 <div class="mx-auto my-11 w-full rounded-md border border-yellow-300 shadow-sm">
 	<div
 		class="dropdown-toggle flex cursor-pointer items-center justify-between rounded-md bg-yellow-100 p-4"
@@ -41,7 +40,9 @@ const t = useTranslations(lang);
 		<div class="mt-2">
 			<p class="text-xl text-gray-700">
 				<strong>{t('commissions.convenor')} : </strong>
-				<span class=" whitespace-nowrap text-gray-500">{t(`commissions.${convenor}`)}</span>
+				<span class="whitespace-nowrap text-gray-500"
+					>{t(`commissions.${convenor}`)}</span
+				>
 			</p>
 		</div>
 		<table class="mb-4 mt-4 w-full table-auto">
@@ -64,7 +65,9 @@ const t = useTranslations(lang);
 							<td class="py-2 text-sm">
 								<strong>{t(`commissions.${subtitle.commission}`)}</strong>
 							</td>
-							<td class="py-2 text-sm text-gray-600">{t(`commissions.${subtitle.name}`)}</td>
+							<td class="py-2 text-sm text-gray-600">
+								{t(`commissions.${subtitle.name}`)}
+							</td>
 						</tr>
 					))
 				}

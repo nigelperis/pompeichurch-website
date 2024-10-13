@@ -6,8 +6,10 @@ import { getLangFromUrl } from '~/i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
 
-const historyData = lang === 'kok' ? parishHistory.kok.history : parishHistory.en.history;
-const priestsData = lang === 'kok' ? parishHistory.kok.priests : parishHistory.en.priests;
+const historyData =
+	lang === 'kok' ? parishHistory.kok.history : parishHistory.en.history;
+const priestsData =
+	lang === 'kok' ? parishHistory.kok.priests : parishHistory.en.priests;
 const fontClass = lang === 'kok' ? 'font-noto-sans-kannada' : 'font-geist';
 ---
 

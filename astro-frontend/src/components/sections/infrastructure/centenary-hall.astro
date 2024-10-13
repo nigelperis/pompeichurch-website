@@ -4,12 +4,13 @@ import centenaryHallImage from '~/assets/centenary-hall.jpg';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import { loremIpsum } from '~/constants/lorem-ipsum';
 
-
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
-<div class="mx-2.5">
-	<h2 class="mt-4 pb-3 font-poppins text-2xl font-bold">	{t('centenaryhall.title')}
+
+<div class="mx-auto">
+	<h2 class="mt-4 pb-3 font-poppins text-2xl font-bold">
+		{t('centenaryhall.title')}
 	</h2>
 	<Image
 		src={centenaryHallImage}
@@ -17,6 +18,8 @@ const t = useTranslations(lang);
 		class="mt-6 rounded-sm md:float-left md:mr-5 md:w-1/2"
 	/>
 	<div class="mb-2 mt-6 pb-4 font-geist">
-		<p class="mt-4 font-geist text-justify text-lg text-slate-700">{loremIpsum}</p>
+		<p class="mt-4 text-justify text-lg text-slate-700">
+			{loremIpsum}
+		</p>
 	</div>
 </div>

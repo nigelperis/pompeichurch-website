@@ -1,7 +1,6 @@
 import magazine1 from '~/assets/magazine1.jpg';
 import magazine2 from '~/assets/magazine2.jpg';
 
-
 const magazines = [
 	{
 		title: 'Pompeichem Falkem - September Edition',

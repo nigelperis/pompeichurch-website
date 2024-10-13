@@ -7,11 +7,18 @@ interface Props {
 	imageUrl: ImageMetadata;
 	description: string;
 	ward: string;
-	date:string;
+	date: string;
 	class?: string;
 }
 
-const { name, description, ward, date, class: className, imageUrl } = Astro.props;
+const {
+	name,
+	description,
+	ward,
+	date,
+	class: className,
+	imageUrl,
+} = Astro.props;
 ---
 
 <div
