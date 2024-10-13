@@ -31,11 +31,14 @@ const optimizedGrottoImage = await getImage({ src: maryGrotto });
 			<p
 				class="max-w-2xl text-justify font-geist text-base leading-7 drop-shadow-xl lg:max-w-fit"
 			>
-        {lang === 'kok' ? historyExcerpt.kok : historyExcerpt.en}
+				{lang === 'kok' ? historyExcerpt.kok : historyExcerpt.en}
 			</p>
 
 			<div class="flex justify-end">
-				<HoverableLink href={lang === 'kok' ? '/kok/parish-history' : '/parish-history/'} class="m-3">
+				<HoverableLink
+					href={lang === 'kok' ? '/kok/parish-history' : '/parish-history/'}
+					class="m-3"
+				>
 					{t('ui.more-button-know')}
 				</HoverableLink>
 			</div>

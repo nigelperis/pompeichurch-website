@@ -7,7 +7,6 @@ import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
----
 
 <Layout title="Pompei Church | Our Convents">
 	<main class="mx-auto max-w-4xl overflow-hidden bg-white">
@@ -15,7 +14,7 @@ const t = useTranslations(lang);
 			<h1
 				class="mb-2 border-l-4 border-l-natgeo-yellow pl-3 text-3xl font-extrabold lg:text-4xl"
 			>
-			{t('nav.our-convents')}
+				{t('nav.our-convents')}
 			</h1>
 			<!-- <p class="font-roboto mt-4 text-lg text-white">
 					Explore our mission and the institutions that help make it possible.

@@ -3,7 +3,6 @@ import ObituaryList from '~/components/sections/obituary/obituary-list.astro';
 import Layout from '~/layouts/layout.astro';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 
-
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
@@ -14,7 +13,7 @@ const t = useTranslations(lang);
 			<h1
 				class="mb-4 border-l-4 border-natgeo-yellow pl-3 text-3xl font-extrabold lg:text-4xl"
 			>
-			{t('nav.obituary')}
+				{t('nav.obituary')}
 			</h1>
 			<h2 class="p-3 pb-6 font-poppins text-2xl font-bold italic text-red-600">
 				{t('obituary.subtitle')}

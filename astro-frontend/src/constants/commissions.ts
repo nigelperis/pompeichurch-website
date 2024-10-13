@@ -14,9 +14,7 @@ const commissions = [
 				commission: 'commission-for-catechetics-apostolate',
 				name: 'mrs-jacintha-peris',
 			},
-			{ commission: 'commission-for-liturgy',
-			  name: 'mrs-praveena-dsilva'
-			},
+			{ commission: 'commission-for-liturgy', name: 'mrs-praveena-dsilva' },
 		],
 		convenor: 'mrs-linet-monteiro',
 	},
@@ -62,7 +60,7 @@ const commissions = [
 				name: 'mrs-laveena-rosario',
 			},
 			{
-				commission: "commission-for-migrants-apostolate",
+				commission: 'commission-for-migrants-apostolate',
 				name: 'sr-leena-pereira',
 			},
 			{
@@ -87,9 +85,7 @@ const commissions = [
 				commission: 'commission-for-laity-apostolate',
 				name: 'mr-alwyn-pinto',
 			},
-			{ commission: 'commission-for-women',
-			  name: 'mrs-juliet-serrao'
-			},
+			{ commission: 'commission-for-women', name: 'mrs-juliet-serrao' },
 			{
 				commission: 'commission-for-youth-apostolate',
 				name: 'mr-godwin-tauro',
