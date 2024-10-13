@@ -11,10 +11,10 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<section class="mt-6 flex flex-col lg:mx-28 lg:min-h-[70svh] lg:justify-evenly">
+<section class="mx-6 mt-6 flex flex-col lg:mx-28 lg:mb-3 lg:min-h-[70svh] lg:justify-evenly">
 	<h1
 		data-aos="fade-right"
-		class="mx-6 border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold md:mx-0 md:mb-4 lg:mx-0 lg:text-4xl"
+		class="inline-block mb-4 border-l-4 border-natgeo-yellow pl-3 font-poppins text-[27px] xs:text-2xl font-extrabold lg:text-4xl"
 	>
 		{t('landing.pastoral-parishad')}
 	</h1>
@@ -27,7 +27,7 @@ const t = useTranslations(lang);
 			subtitle={t('landing.priest')}
 			title={t('landing.priest-name')}
 		/>
-		<Card	
+		<Card
 			imageUrl={vicepresident}
 			subtitle={t('landing.vice-president')}
 			title={t('landing.vp-name')}

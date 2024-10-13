@@ -5,16 +5,17 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<h1
-	data-aos="fade-right"
-	class="mx-5 mt-3 border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold md:mx-28 lg:text-4xl"
->
-	{t('landing.follow-our-journey')}
-</h1>
+<section
+	class="mx-6 mt-4 lg:mx-28 md:mb-10 xs:mb-10 lg:justify-center">
+	<h1
+		data-aos="fade-right"
+		class="inline-block border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl xs:text-2xl font-extrabold mb-4 lg:mb-10 lg:text-4xl"
+	>
+		{t('landing.follow-our-journey')}
+	</h1>
 
-<section class="mb-6 mt-6 flex justify-center md:my-12">
 	<div
-		class="flex w-full max-w-2xl flex-col items-center justify-between gap-4 md:flex-row"
+		class="flex w-full max-w-2xl flex-col items-center justify-between gap-4 md:flex-row md:items-center md:mx-auto lg:mx-auto"
 	>
 		<div
 			class="flex w-full max-w-xs flex-1 flex-col justify-center overflow-hidden rounded-lg"
@@ -42,10 +43,9 @@ const t = useTranslations(lang);
 						cite="https://www.facebook.com/ladyofpompeichurch.gurpur?ref=embed_page"
 						class="fb-xfbml-parse-ignore"
 					>
-						<a
-							href="https://www.facebook.com/ladyofpompeichurch.gurpur?ref=embed_page"
-							>Our Lady of Pompei Church, Gurpur Kaikamba</a
-						>
+						<a href="https://www.facebook.com/ladyofpompeichurch.gurpur?ref=embed_page">
+							Our Lady of Pompei Church, Gurpur Kaikamba
+						</a>
 					</blockquote>
 				</div>
 			</div>
@@ -66,14 +66,16 @@ const t = useTranslations(lang);
 					seamless="seamless"
 					style="border:none; overflow: auto;"
 				>
-				</iframe>
+			</iframe>
 			</div>
 		</div>
 	</div>
 </section>
+
 <script
 	async
 	defer
 	crossorigin="anonymous"
 	src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v20.0"
-	nonce="sTNs2jJW"></script>
+	nonce="sTNs2jJW">
+</script>
