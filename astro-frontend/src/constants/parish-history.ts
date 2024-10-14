@@ -1,43 +1,107 @@
 const parishHistory = {
 	en: {
 		history: [
-			`Our church is the only one in the Mangalore Diocese dedicated to Our Lady of Pompei. We the parishioners celebrated the centenary on 7th November 2021. Our church is located 18kms from Mangalore on Moodbidri road and is under the Kandavar gram panchayat in Gurpur, Kaikamba. Apart from Kandavar, its borders stretch out to neighbouring villages such as Muloor, Badagaulipady, Paduperar, Kolambe, Gurpur and Addoor. Our Church is located on a hilly tract surrounded by lush greenery and captures the attention of all. People of this parish cultivate rice, coconut, arecanut, cashew, vegetables and flowers. People of this engaged in Business, poultry, cattle-rearing, self-employment and many parishioners work in different countries. There are 420 families and 1700 people living under the parish. We are fortunate to witness the centenary celebration of this church which was established 100 years ago by our ancestors due to their devout faith, dedication and commitment.`,
+			`The Gurpur Parish is situated at a distance of 19 K.M. from Mangalore on Mangalore - Moodbidri road.  The other name given to this parish is Kowdur but is denoted in the registered Diocesan Directory as Gurpur parish.  The parish is commonly called as Kowdur because in the Kowdur ward of the parish there is a place called ‘Kodi’, wherein spring of water was found to flow in all seasons.  Hence the location was named as Kodi-ooru or Kowdur.  It is said that since this location of Kowdur was near to the present Church.  This Church was named as Kowdur Parish.
+			`,
 
-			`100 years ago, people of this parish used to commute for 12 Kms to Pezar church on foot. In 1912 , a new church was built in Ferar, after which the worshippers started to go to this parish. Due to the increase in the number of families and the problems faced by them, thought of building a new church. Fr. Reginald Pinto the then, parish priest of Ferar laid the foundation for the chapel on October 7, 1915. Prior to this, people used to gather in a thatched house for prayers. Later, Rev. J.M Menezes completed the work of the chapel and on October 29, 1918 was blessed by the then Bishop Rev. Fr. Paul Perini . On 8th May1921, it became an independent church after it parted from the Ferar church. Rev.Fr. A.A.E Colaco served as the first parish priest followed by Rev.Fr. F.S Nazareth, Rev. Fr. Raphael Pinto, Rev. Fr. Anthony.F Coelho, Rev. Fr. Dennis Mathias, Rev. Fr. Avelyn Rebello, Rev. Fr. A.G Nazareth, Rev. Fr. John Castelino, Rev. Fr. J.S.T Rodrigues, Rev.Fr. Bernard Dsouza, Rev. Fr. G.L Dsouza, Rev. Fr. Stanley Pereira, Rev. Fr. Leo Veigas, Rev. Fr. Cyprian Pinto, Rev.Fr. Paul Rego, Rev. Fr. Gregory Serrao, Rev. Fr. Paul Pinto served this parish and worked for the spiritual development of the people and progress of this church. Along with the parish priest, the people of the parish worked as Administrators, Vice President, Secretary, Ward Heads, Representatives and Heads of various associations and worked for the overall development of the church. Currently, along with Rev. Fr. Anthony Lobo, Parish Council Vice- President Mr. Jerald Lobo, Secretary Mr. Praveen Lobo and other members are serving selflessly.`,
+			`As per the revenue department classification, the parish belongs to Gurpur zone; most of the parishioners reside at Gurpur zone hence, this parish is recognized under the name Gurpur.
+			`,
 
-			`In 1921, a Portrait named ‘ROSARY’ resembling Queen of Rosary brought from Pompei city in Italy and is kept on the left side of the altar. In 1934, a wooden altar carved in Goan style was brought from Hospet which was installed at the center of the prayer hall. Now, it has been safely kept at the back on the left side of the present church building. In 1936 a victory Cross erected on a big Rock to commemorate 150 years of imprisonment of christians of coastal area by Tippu Sultan. In 1929, the bellfry was brought from Goa and was hung on the bell tower which was built in goan style and in 1950 the bell was shifted to a new tower.`,
+			`The Church land structure located at a village called ‘Kandavar’.  Apart from Kowdur, Mulur, Badaga, Ulipadi, Paduperar, Mooduperar, Kolambe, Gurpur, Addur villages are covered under the area of Gurpur Parish.
+			`,
 
-			`As the days passed by and depending on the situation and requirements of the diocese under the guidance of the priests and co-operation of the people, many developmental works have been undertaken such as renovation of church, lightings, new benches, new altar, compound wall of the church, compound wall for the cemetery, new school building, new road etc. In 1998 a new spaciously designed church building was constructed under the leadership of Rev. Fr. Leo viegas and with the cooperation of devotees and with the help of donors. A new house was constructed for the church priests in the same year. PYC office, PYC stage was constructed. Near main road of Kaikamba a arch named ‘Pompei’, Pompei sabha bhavan, entrance arch to church, Interlocks were laid near the concrete road around the church and beautiful flower garden has been constructed. There is an open stage in front of the church.
+			`To describe the parish Geographically the area of the parish is covered with a number of fields and hills.  To the south of the parish flows the Gurpur River.  The sand of this river is famous in the Mangalore city.  A part of the parish area is covered with stony area. 
+			`,
 
-      The people of our parish are blessed with numerous talents and have excelled in religious, social, cultural, academic, political and sports fields and participated in various competitions and have brought laurels to our church. Sports and games ,drama, musical nights etc. programs have been held in our church. Many people of our church are involved in Business , politics, music and government jobs and have excelled in their respective fields. There have been many religious vocations in our church and have been in service of God in India and other countries.Thousands of Children irrespective of religion studied in Pompei church school which was started in 1922 have excelled in studies and settled well in life. Since 1965, Bethany sisters of Pompei and Rosa Mystica Convents have been rendering their service. These sisters have been imparting education through Primary, Secondary, Pre-University, B.Ed. and also St. Joseph’s Ashram.`,
+			`The most common occupation of the people of this area includes agriculture of cashews, arc nuts, and Flower cultivation. Apart from this many people are engaged in large scale and small-scale industries.  A large number of families of this parish are employed in foreign countries and metropolitan city of the nation. Because of this the economic condition of the parish is satisfactorily improved.
+			`,
 
-			`Camellias priests and nuns have been rendering service through organizations such as Sneha Sadana and Jeevadana, where patients with AIDS are treated and have been taking care of orphans, the aged and the destitutes.`,
+			`Before the existence of the Gurpur parish the families living in this locality are belong to Fezar parish.  The people from Gurpur went to Ferar Church for the Eucharistic celebration and also for the spiritual benefits.  The number of people was doubling every year and there was urgent need for new parishes to take care of such rapid growth in population. 
+			`,
 
-			`By the grace of Lady of Pompei, several miracles have taken place in this church and people have been praying here irrespective of religion and have been blessed.`,
-
-			`Currently there are 10 wards in the church and through small christian community, people have been actively participating in all the activities of the church, thereby rendering their service for the betterment of the church. Parish Council of the church has been rendering assistance to the parish priest in all religious and other activities.`,
-
-			`Legion of Mary and Secular Franciscan Congregation have been participating in the prayer with enthusiasm and devotion. YCS Organisation has been rendering suitable education for PU students to lead a valuable life. Youngsters of ICYM (PYC) organization has been participating in religious programs, thereby render their service to the society. Altar serving children assist the preist during mass with devotion. St. Vincent de Paul society helping poor as per their needs. Catholic Sabha organisation has been creating awareness about politics and human rights. Women organization is creating awareness about rights of women. The choir group is assisting by singing devotional hymns during mass.`,
-
-			`The Church’s magazine “Pompeichem Falkhem” has been providing news of the church to the people.`,
-
-			`Every Sunday, catechism classes are being held for the children studying in I std to Xth Standard.`,
-
-			`The inauguration of the Centenary year was held on November 4, 2020 with the holy mass at 10 am. The main celebrant was Most Rev. Dr. Francis Serrao, Bishop of Shimoga Diocese. After the holy mass, flag hoisting and centenary logo was released and gave a nod for various centenary projects.`,
-
-			`To commemorate the centenary year under the guidance of Fr. Antony Lobo and with co-operation and assistance of parish council, centenary committe, and with the help of donors renovation of church building, renovation of sabha bhavan, laying of interlock , renovation of historical holy cross, Centenary Hall, renovation of Priest House, play ground, construction of House for the poor, health fund for poor etc have been successfully implemented.`,
-
-			`On November 7th 2021, at 10 am the valedictory function was held which was presided over by the Bishop of Mangalore Most. Rev. Dr. Peter Paul Saldanha with the Holy mass followed by stage programme and fellowship meal.`,
-
-			`With the blessings of Lady of Pompei, may all of us live unitedly and the memories of the centenary live in our heart and mind forever.`,
+			`On 7th October 1915, Parish Priest Rev. Fr. Reginald pinto laid a Foundation.  The building of the Chapel was said to be completed by Fr. J.M. Menezes and blessed by Rt. Rev. Bishop Paul Ferini S.J. on October 29th 1918.  In the Diocese of Mangalore, only this Parish was dedicated to our "Lady of Pompei".   A holy picture of the image of a Lady of Pompei was brought from a city called ‘Pompei’ in Italy, and was honord in this Parish. Because of the number of miracles and goodness of our Lady of Pompei, the barren Kowdur has blossomed like a beautiful garden in God’s vineyard.
+			`,
 		],
 		priests: [
 			{
-				name: 'Rev. Reginald Pinto',
+				name: 'Rev. Fr. Reginald Pinto',
 				years: '',
 				description:
 					'Father Reginald Pinto served as the first parish priest and laid the foundation for the church. The cornerstone was blessed and placed by Bishop Perrin on October 7, 1915. The parishioners gathered in large numbers for the event, making it a memorable occasion.',
 			},
+			{
+				name: 'Rev. Fr. A.A.E. Colaco',
+				years: '(1921-22)',
+				description:
+					'Fr. A.A.E. Colaco was appointed as the first pastor of the newly constituted parish of our "Lady of Pompei". During his time he opened a Primary school for the poor and the needed people of the Parish. ',
+			},
+			{
+				name: 'Rev. Fr. F.X. Nazreth',
+				years: '(1922-30)',
+				description:
+					'He was convincing preacher of God’s word.  During his time he built a church Façade using Goan design.  In 1925 the church compound wall was built and 1929 church bell was placed on the façade, which was brought from Goa.					',
+			},
+			{
+				name: 'Rev. Fr. Raphel Pinto ',
+				years: ' (1930-33)',
+				description:
+					'Rev. Fr. Nazreth was succeeded by Rev. Fr. Raphel pinto.  In 1931 he constructed a parochial house.  In 1933, Rev. Fr. Antony F. Covelho and Rev. Fr. Denis Mathias have served the Church .',
+			},
+			{
+				name: 'Rev. Fr. Aveline Rebello',
+				years: ' (1933-40)',
+				description:
+					' He instituted a wooden artistic alter of the Blessed Mother which was donated by Hospet Church carved and designed in the Goan style which was erected in the center of the church. To commemorate 150 years of Tippu’s bondage on Canara Christians, 1934 near the Church in a top location cross was placed. This cross is said to be visible from a long distance even today it reflects the Christian symbol. In 1937, a portico was added to the Parish building.  ',
+			},
+			{
+				name: 'Rev. Fr. A.J. Nazreth ',
+				years: '(1940-48)',
+				description:
+					'He was like the leaven in the bread or hidden catalyst, whose presence inspired many persons to devote their lives to the Lord. He constructed the road leading to the Church.  ',
+			},
+			{
+				name: 'Rev. Fr. John Castelino',
+				years: '(1948-55)',
+				description:
+					'With deep faith in God and filial trust in our Blessed Mother, he had plunged into the work of crating a Parish. He repaired the structure of the Church. ',
+			},
+			{
+				name: 'Rev. Fr. J.S.T. Rodrigues ',
+				years: '(1955-71)',
+				description:
+					' He was a man of vision and deeply rooted in prayer.  His dedicated services were remarkable.  He constructed a new building for the Primary School, renovated the Façade for the Church bell, and built a Grotto of “Lady of Lourdes".  He invited "The sisters of the Little Flower of Bethany", Mangalore’ to serve parish.  As he was a lover of "Karnatic Music" he has sown the seed of music in the people of the parish. He trained the children to take part in the competitions held in the Diocesan level for many years and secured the first place. He took keen interest in promoting vocations for Religious and priesthood. The good example he set by his own priestly life, the vigilant eye he kept and the timely advice he gave to many young men must have, no doubt, brought many vocations to the priesthood among the men of the parish in which he was working.',
+			},
+			{
+				name: 'Rev. Fr. Bernard D’Souza ',
+				years: '(1971-72)',
+				description:
+					'During the B.Ed. study, for a year he was appointed as a parish priest. With his democratic personality and inspiring sermons he became a loving priest to the prisoners.  Even as a young priest, he was sought out as a preacher and homilist on very important occasions. ',
+			},
+			{
+				name: 'Rev. Fr. Stanly Pereira',
+				years: '(1983-91)',
+				description:
+					'He was a God-fearing priest. Devotion to the Blessed Virgin Mary was another special characteristic of Father Pereira.  He was deeply committed to making Mary known and loved.  The Marian Year of 1954 was a special year for him.  He wanted to do something to make this year known and loved, particularly by his own parishioners.  During this year, he organized processions and conducted ward meetings at the ward level.',
+			},
+			{
+				name: 'Rev. Fr. Leo Veigas',
+				years: '(1991-98)',
+				description:
+					'An active parish priest was transferred from the Bidar Mission station to this parish.  The depth of his interior life was reflected in his attitude towards prayer and various actives of the parish.  His zeal was amazing, and his efforts extended far beyond the confines of his parish.  He had the interests of the entire parish at heart, making him a beloved priest to the parishioners.  He worked to combat alcoholism in families through his counseling and guidance. He created an atmosphere of spiritual awareness through retreats and B.C.C. meetings.  Under his able and dynamic leadership, in remembrance of the Platinum Jubilee of the parish, an attractive and spacious temple of God was built.  He also worked for the downtrodden, the sick, and victims of natural disasters. 					',
+			},
+			{
+				name: 'Rev. Fr. Leo Veigas',
+				years: '(1991-98)',
+				description:
+					'An active parish priest was transferred from the Bidar Mission station to this parish.  The depth of his interior life was reflected in his attitude towards prayer and various actives of the parish.  His zeal was amazing, and his efforts extended far beyond the confines of his parish.  He had the interests of the entire parish at heart, making him a beloved priest to the parishioners.  He worked to combat alcoholism in families through his counseling and guidance. He created an atmosphere of spiritual awareness through retreats and B.C.C. meetings.  Under his able and dynamic leadership, in remembrance of the Platinum Jubilee of the parish, an attractive and spacious temple of God was built.  He also worked for the downtrodden, the sick, and victims of natural disasters. 					',
+			},
+			{
+				name: 'Rev. Fr. Cyprian Pinto ',
+				years: '(1998-05)',
+				description:
+					'He was a young and energetic became the parish priest in the year 1998.  As an energetic and active young priest, he won the hearts of the children, young and the old.   After his entry to this Parish the buildings and the institutions with a dynamic life in them, give evidence that not only have the dry bones been covered with sinews and filled with life, but this parish stands out decked like a beautiful, young bride”.  His achievements are marvelous to the Parish.  As a shepherd of the flock entrusted to him, his concern for the spiritual welfare led to plan regular retreat, sermons and spiritual guidance, without considering the price he had to pay in terms of time and energy.  His hidden charity for the sick and the poor was always at the cost of some sacrifice, to his own self and of his own needs.  He is known for his meaningful sermons and commonly known as ‘Retreat preacher’.  He preached more than 100 retreats to different parishes.  He is soft spoken, God fearing, loving and revolts against injustice.  To uplift the poor and the marginalized people he took keen interest in building the infrastructure of the Hr.Pry. School through computer education, and midday meals.  The credit goes for building the "Pompei Sabha Bhavana" and the church "Dwara". All the achievements of our zealous priest, the parishioners concluded: “It is impossible to enumerate all that you have done for this parish. To name but a few of the things: The Altar servers’ sodality, sodalities for men, women, boys, girls and St.Vincent de Paul Society…etc., 			',
+			},
+
 			//TODO (Aroma): Add other priests info
 		],
 	},
