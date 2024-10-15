@@ -6,7 +6,7 @@ import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import { navLinks } from '~/constants/nav-links.ts';
 import ScrollProgress from './ui/scroll-progress.astro';
 import { Image } from 'astro:assets';
-import ImageLogo from "../assets/church-logo.png"
+import churchLogo from '../assets/church-logo.png';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
@@ -16,14 +16,9 @@ const t = useTranslations(lang);
 	class="sticky top-0 z-10 w-full bg-white/90 p-3 shadow-md backdrop-blur-lg xl:px-28"
 >
 	<section class="flex items-center justify-between">
-		<a href="/">
-		<Image
-			src={ImageLogo}
-			alt=""
-			width={50}
-			class=""
-		/>
-	</a>
+		<a href={lang === 'kok' ? '/kok/' : '/'}>
+			<Image src={churchLogo} alt="" width={50} />
+		</a>
 		<div
 			id="hamburger"
 			class="ml-auto flex w-fit cursor-pointer flex-col items-end"
@@ -83,8 +78,7 @@ const t = useTranslations(lang);
 											class={cn(
 												'border-b-4 border-b-transparent font-poppins text-lg font-semibold transition-all duration-150 group-hover:border-natgeo-yellow',
 												{
-													'font-noto-sans-kannada font-normal':
-														lang === 'kok',
+													'font-noto-sans-kannada font-normal': lang === 'kok',
 												},
 											)}
 										>

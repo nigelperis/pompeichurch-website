@@ -12,17 +12,17 @@ const t = useTranslations(lang);
 ---
 
 <section
-	class=" mt-6 flex flex-col lg:mx-28 lg:mb-3 lg:min-h-[70svh] lg:justify-evenly"
+	class="mt-6 flex flex-col lg:mx-28 lg:mb-3 lg:min-h-[70svh] lg:justify-evenly"
 >
 	<h1
 		data-aos="fade-right"
-		class="mb-4 inline-block mx-6 lg:mx-0 border-l-4 border-natgeo-yellow pl-3 font-poppins text-[27px] font-extrabold xs:text-2xl lg:text-4xl"
+		class="mx-6 mb-4 inline-block border-l-4 border-natgeo-yellow pl-3 font-poppins text-[27px] font-extrabold xs:text-2xl lg:mx-0 lg:text-4xl"
 	>
 		{t('landing.pastoral-parishad')}
 	</h1>
 
 	<div
-		class="my-4 flex lg:justify-center w-full pr-3  scroll-ml-6 space-x-8 overflow-x-auto overflow-y-hidden pl-3 scrollbar-none xl:space-x-10"
+		class="my-4 flex w-full scroll-ml-6 space-x-8 overflow-x-auto overflow-y-hidden pl-3 pr-3 scrollbar-none lg:justify-center xl:space-x-10"
 	>
 		<Card
 			imageUrl={priestImage}
@@ -48,7 +48,7 @@ const t = useTranslations(lang);
 		<div
 			class="flex-shrink-0 transform snap-start border shadow-sm transition-all duration-200 ease-in-out hover:scale-[1.01] lg:hidden"
 		>
-			<div class="opacity-50 blur-md  ">
+			<div class="opacity-50 blur-md">
 				<Card
 					imageUrl={ayogPresident}
 					subtitle={t('landing.pastoral-commission-coordinator')}
@@ -57,21 +57,18 @@ const t = useTranslations(lang);
 			</div>
 			<div class="absolute inset-0 flex items-center justify-center">
 				<HoverableLink
-				href="/parish-pastoral-council"  class="mb-2 mt-2 inline-block text-xl font-bold text-black"
+					href="/parish-pastoral-council"
+					class="mb-2 mt-2 inline-block text-xl font-bold text-black"
 				>
 					View All
 				</HoverableLink>
 			</div>
-
 		</div>
-
 	</div>
 
-<div class="lg:flex hidden justify-center">
-	<HoverableLink href="/parish-pastoral-council" class=""> View All</HoverableLink>
-</div>
-
-
+	<div class="hidden justify-center lg:flex">
+		<HoverableLink href="/parish-pastoral-council" class="">
+			View All</HoverableLink
+		>
+	</div>
 </section>
-
-
