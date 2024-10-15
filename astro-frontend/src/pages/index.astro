@@ -9,12 +9,15 @@ import MassTimingsSection from '~/components/sections/landing-page/mass-timings-
 import SocialGrid from '~/components/sections/landing-page/social-grid.astro';
 import ChurchEventsSection from '~/components/sections/landing-page/church-events-section.astro';
 import LandingCarousel from '~/components/sections/landing-page/landing-carousel.astro';
+import WelcomeAnimation from '~/components/welcome-animation.astro';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
 <Layout title={`${t('landing.church-name')} | ${t('landing.town-name')}`}>
+    <WelcomeAnimation />
+		<div class="main-content">
 	<main>
 		<HeroSection />
 
@@ -32,4 +35,5 @@ const t = useTranslations(lang);
 
 		<MassTimingsSection />
 	</main>
+	</div>
 </Layout>
