@@ -1,5 +1,4 @@
 ---
-// Importing necessary modules and assets
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import { Icon } from 'astro-icon/components';
 import { cn } from '~/helpers/cn';
@@ -14,7 +13,7 @@ const t = useTranslations(lang);
 ---
 
 <ScrollProgress />
-<header class="sticky top-0 z-10 w-full bg-white p-3 xl:px-28 border-b border-gray-200">
+<header class="sticky top-0 z-10 w-full bg-white p-3 xl:px-28 border-b border-gray-300">
 	<section class="flex items-center justify-between">
 		<a href={lang === 'kok' ? '/kok/' : '/'}>
 			<img src={churchLogo.src} alt="" width={45} />
@@ -26,7 +25,11 @@ const t = useTranslations(lang);
 						<li key={link.title} class="group relative">
 							<a
 								href={link.type === 'link' ? getRelativeLocaleUrl(lang, link.href) : '#'}
-								class={`font-poppins text-lg font-semibold text-black transition-colors ${link.title === 'nav.home' ? 'nav-home' : ''}`}
+								class={cn(
+  'font-poppins font-medium',
+  link.title === 'nav.home' && 'nav-home',
+  lang === 'kok' ? 'text-lg font-noto-sans-kannada' : 'text-md'
+)}
 							>
 								{t(link.title)}
 							</a>
@@ -36,7 +39,7 @@ const t = useTranslations(lang);
 										<li key={sublink.title} class="w-150 ">
 											<a
 												href={getRelativeLocaleUrl(lang, sublink.href)}
-												class="block rounded-md px-4 py-2 text-black transition-all hover:bg-natgeo-yellow"
+												class="block rounded-md px-4 py-2 transition-all hover:bg-natgeo-yellow"
 											>
 												{t(sublink.title)}
 											</a>
@@ -51,7 +54,7 @@ const t = useTranslations(lang);
 		</div>
 		<div class="flex flex-row-reverse">
 			<div id="hamburger" class="flex cursor-pointer flex-col items-end lg:hidden ml-3">
-				<Icon name="menu" size={45} />
+				<Icon name="menu" class="mt-1" size={35} />
 			</div>
 			<div class="ml-5">
 				<LanguageSwitcher />
@@ -60,34 +63,60 @@ const t = useTranslations(lang);
 	</section>
 </header>
 
-<nav class="fixed inset-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 transition-transform duration-500 ease-out" id="navbar">
-	<Icon name="cancel" id="hamburger-close" class="sticky top-3 mb-5 ml-auto cursor-pointer rounded-full text-4xl" />
+<nav
+class="fixed inset-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 transition-transform duration-500 ease-out"
+id="navbar">
+	<Icon
+	name="cancel"
+	id="hamburger-close"
+	class="sticky top-5 mb-5 ml-auto cursor-pointer rounded-full text-4xl" />
 	<ul class="flex flex-col gap-y-5">
-		{
+{
 			navLinks.map((link) => (
-				<li key={link.title}>
+				<li>
 					<a
-						data-expandable-links={link.type === 'expandable' ? 'true' : 'false'}
-						href={link.type === 'link' ? getRelativeLocaleUrl(lang, link.href) : '#'}
+						data-expandable-links={
+							link.type === 'expandable' ? 'true' : 'false'
+						}
+						href={
+							link.type === 'link' ? getRelativeLocaleUrl(lang, link.href) : '#'
+						}
 						class="font-popppins group flex items-center justify-between text-xl font-extrabold text-black"
 					>
-						<span class={cn('border-b-4 border-b-transparent font-poppins transition-all duration-150 group-hover:border-natgeo-yellow', { 'font-noto-sans-kannada': lang === 'kok' })}>
+						<span
+							class={cn(
+								'border-b-4 border-b-transparent font-poppins transition-all duration-150 group-hover:border-natgeo-yellow',
+								{ 'font-noto-sans-kannada': lang === 'kok' },
+							)}
+						>
 							{t(link.title)}
 						</span>
 						{link.type === 'expandable' ? (
-							<Icon name="chevron-right" class="text-3xl" data-icon-name="chevron-right" />
+							<Icon
+								name="chevron-right"
+								class="text-3xl"
+								data-icon-name="chevron-right"
+							/>
 						) : null}
 					</a>
 					{link.type === 'expandable' ? (
 						<ul class="expandable-links max-h-0 overflow-hidden transition-all duration-500 ease-out">
-							{link.expandedLinks.map((sublink) => (
-								<li key={sublink.title}>
+							{link.expandedLinks.map((sublinks) => (
+								<li>
 									<a
-										href={getRelativeLocaleUrl(lang, sublink.href)}
+										href={getRelativeLocaleUrl(lang, sublinks.href)}
 										class="group mb-4 flex items-center justify-between font-merriweather text-2xl font-bold"
 									>
-										<span class={cn('border-b-4 border-b-transparent font-poppins text-lg font-semibold transition-all duration-150 group-hover:border-natgeo-yellow', { 'font-noto-sans-kannada font-normal': lang === 'kok' })}>
-											{t(sublink.title)}
+										<span
+											class={cn(
+												'border-b-4 border-b-transparent font-poppins text-lg font-semibold transition-all duration-150 group-hover:border-natgeo-yellow',
+												{
+													'font-noto-sans-kannada font-extrabold':
+														lang === 'kok',
+												},
+											)}
+										>
+											{t(sublinks.title)}
 										</span>
 									</a>
 								</li>
@@ -101,22 +130,6 @@ const t = useTranslations(lang);
 </nav>
 
 <style>
-	.nav-home {
-		display: none;
-	}
-
-	@media (max-width: 768px) {
-		.nav-home {
-			display: block;
-		}
-	}
-
-	@media (min-width: 769px) {
-		.nav-home {
-			display: none;
-		}
-	}
-
 	#navbar {
 		transform: translateX(100%);
 		transition: transform 200ms ease-out;
@@ -165,7 +178,6 @@ const t = useTranslations(lang);
 			display: block;
 		}
 
-		/* Ensures the dropdown stays open when hovering between parent and child elements */
 		ul > li.group:hover,
 		ul > li.group:focus-within {
 			background-color: rgba(255, 255, 255, 0.1);
@@ -192,7 +204,8 @@ const t = useTranslations(lang);
 
 	hamburgerClose?.addEventListener('click', () => {
 		expandableLinks.forEach((element) => {
-			const expandableContent = element.parentElement?.querySelector('a + ul');
+			const expandableContent =
+				element.parentElement?.querySelector<HTMLUListElement>('a + ul');
 			expandableContent?.style?.setProperty('max-height', '0');
 			element.setAttribute('data-is-submenu-expanded', 'false');
 		});
@@ -204,12 +217,15 @@ const t = useTranslations(lang);
 		element.addEventListener('click', (e) => {
 			e.preventDefault();
 			const subMenuStatus = element.getAttribute('data-is-submenu-expanded');
-			const expandableContent = element?.parentElement?.querySelector('a + ul');
+			const expandableContent =
+				element?.parentElement?.querySelector<HTMLUListElement>('a + ul');
 
 			expandableLinks.forEach((otherElement) => {
 				if (otherElement !== element) {
 					otherElement.setAttribute('data-is-submenu-expanded', 'false');
-					otherElement.parentElement?.querySelector('a + ul')?.style.setProperty('max-height', '0');
+					otherElement.parentElement
+						?.querySelector<HTMLUListElement>('a + ul')
+						?.style.setProperty('max-height', '0');
 				}
 			});
 
@@ -224,8 +240,23 @@ const t = useTranslations(lang);
 	});
 
 	allNavigationLinks.forEach((link) => {
-		link.addEventListener('click', () => {
-			navbar.classList.remove('open');
+		link.addEventListener('click', (e) => {
+			e.preventDefault();
+
+			expandableLinks.forEach((element) => {
+				const expandableContent =
+					element.parentElement?.querySelector<HTMLUListElement>('a + ul');
+
+				expandableContent?.style.setProperty('max-height', '0');
+
+				element.setAttribute('data-is-submenu-expanded', 'false');
+			});
+
+			navbar?.classList?.remove('open');
+
+			link.addEventListener('transitionend', () => {
+				window.location.href = link.href;
+			});
 		});
 	});
 </script>

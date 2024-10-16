@@ -2,7 +2,11 @@
 const languages = ['English', 'ಕೊಂಕಣಿ'];
 const currentLocale = Astro.currentLocale;
 import { cn } from '~/helpers/cn';
+import { getLangFromUrl } from '~/i18n/utils';
+
 const selectedLanguage = currentLocale === 'kok' ? 'ಕೊಂಕಣಿ' : 'English';
+const lang = getLangFromUrl(Astro.url);
+
 ---
 
 <div class="relative inline-block  text-left">
@@ -10,12 +14,12 @@ const selectedLanguage = currentLocale === 'kok' ? 'ಕೊಂಕಣಿ' : 'Engli
     <button
       type="button"
       id="lang-button"
-      class={cn('inline-flex text-black font-poppins justify-center w-25 rounded-md border border-gray-400 px-2 py-2 text-base lg:text-[18px] font-semibold',
-        {
-			'font-noto-sans-kannada	': selectedLanguage,
-      })}
+      class={cn('inline-flex font-poppins font-medium justify-center w-25 mt-1 rounded-md border border-gray-500 px-2 py-1 text-base lg:text-medium ',
+      lang === 'kok' ? 'text-lg mt-0 font-noto-sans-kannada' : 'sm:text-medium'
+      )}
     >
       {selectedLanguage}
+      <!-- //TODO (Santhsim): Move this svg to assets -->
       <svg
         id="lang-arrow"
         class="-mr-1 h-7 w-5 transition-transform duration-200 ease-in-out"
@@ -34,7 +38,7 @@ const selectedLanguage = currentLocale === 'kok' ? 'ಕೊಂಕಣಿ' : 'Engli
   </div>
   <div
     id="lang-dropdown"
-    class="opacity-0 invisible transition-all ease-in-out duration-300 origin-top-right absolute -right-2 mt-2 px-2 rounded-md bg-white"
+    class="block rounded-md absolute mt-2 px-2 py-1  bg-white"
     role="menu"
     aria-orientation="vertical"
     aria-labelledby="options-menu"
