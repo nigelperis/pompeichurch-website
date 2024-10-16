@@ -5,7 +5,7 @@ import { cn } from '~/helpers/cn';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import { navLinks } from '~/constants/nav-links.ts';
 import ScrollProgress from './ui/scroll-progress.astro';
-
+import HoverableLink from './ui/hoverable-link.astro';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
@@ -23,10 +23,11 @@ const t = useTranslations(lang);
 		>
 			{t('landing.church-name')}
 		</a>
-		<div class="ml-auto hidden items-center gap-5 md:flex ">
+		<div class="ml-auto hidden items-center gap-5 lg:flex ">
 			<ul class="flex items-center gap-6">
 				{
 					navLinks.map((link) => (
+
 						<li class="group relative">
 							<a
 								href={
@@ -41,7 +42,7 @@ const t = useTranslations(lang);
 							{link.type === 'expandable' && (
 								<ul class="absolute left-0 top-full mt-2 hidden rounded-md bg-white p-3 shadow-lg group-hover:block md:flex w-64 ">
 									{link.expandedLinks.map((sublink) => (
-										<li class="w-150">
+										<li class="w-150 ">
 											<a
 												href={getRelativeLocaleUrl(lang, sublink.href)}
 												class="block rounded-md px-4 py-2 text-black transition-all hover:bg-natgeo-yellow"
@@ -59,7 +60,7 @@ const t = useTranslations(lang);
 		</div>
 		<div
 			id="hamburger"
-			class="ml-auto flex w-fit cursor-pointer flex-col items-end md:hidden"
+			class="ml-auto flex w-fit cursor-pointer flex-col items-end lg:hidden"
 		>
 			<Icon name="menu" size={26} />
 		</div>
@@ -176,6 +177,7 @@ const t = useTranslations(lang);
 			padding: 10px;
 			box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 			transition: all 0.3s ease;
+
 		}
 
 		ul > li.group:hover > ul,

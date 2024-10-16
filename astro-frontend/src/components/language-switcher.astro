@@ -1,32 +1,103 @@
 ---
-const currentLocale = Astro.currentLocale;
+// Astro component variables
+const languages = ['EN', 'KA'];
+const currentLocale = Astro.currentLocale;  // Assume Astro provides the current locale
 const currentPath = new URL(Astro.request.url).pathname;
 const pathWithLocaleStripped = currentPath.replace(/^\/kok\//, '/');
-const localeToSwitchTo = currentLocale === 'en' ? 'kok' : 'en';
+let selectedLanguage = currentLocale === 'kok' ? 'KA' : 'EN'; // EN default, KA if locale is 'kok'
 ---
 
-<aside>
-	<a
-		class="fixed bottom-[70px] right-4 flex items-center justify-center rounded-full"
-		data-astro-prefetch="load"
-		href={localeToSwitchTo === 'kok'
-			? `/${localeToSwitchTo}${pathWithLocaleStripped}`
-			: `${pathWithLocaleStripped}`}
-		aria-label={`Switch to ${localeToSwitchTo === 'kok' ? 'English' : 'Kannada'}`}
-	>
-		<div class="relative inline-flex cursor-pointer items-center">
-			<div
-				class="group h-8 w-16 rounded-full bg-transparent bg-yellow-200 ring-0 transition-transform duration-700"
-			>
-				<span
-					class={`absolute top-1 flex items-center justify-center text-black rounded-full h-6 w-6 bg-natgeo-yellow font-bold transition-transform duration-300 ${
-						currentLocale === 'en' ? 'left-1' : 'right-1'
-					}`}
-					aria-hidden="true"
-				>
-					{currentLocale === 'en' ? 'ಕ' : 'E'}
-				</span>
-			</div>
-		</div>
-	</a>
-</aside>
+<div class="fixed bottom-[170px] left-32 inline-block text-left">
+  <div>
+    <!-- Button for language selection with fixed width -->
+    <button
+      type="button"
+      id="lang-button"
+      class="inline-flex justify-center w-20 rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+      disabled
+    >
+      {selectedLanguage}
+      <svg
+        class="-mr-1 ml-2 h-5 w-5"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        aria-hidden="true"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+          clip-rule="evenodd"
+        />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Dropdown panel -->
+  <div
+    id="lang-dropdown"
+    class="hidden origin-top-right absolute right-0 mt-2 px-4 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+    role="menu"
+    aria-orientation="vertical"
+    aria-labelledby="options-menu"
+  >
+    <div class="py-1" role="none">
+      {languages.map((lang) => (
+        <button
+          type="button"
+          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+          onClick={() => handleLanguageChange(lang)}
+        >
+          {lang}
+        </button>
+      ))}
+    </div>
+  </div>
+</div>
+
+<!-- Client-side script to handle the language switching -->
+<script client:load>
+  document.addEventListener('DOMContentLoaded', () => {
+    const button = document.getElementById('lang-button');
+    const dropdown = document.getElementById('lang-dropdown');
+    let isOpen = false;
+
+    // Enable the button when the page is fully loaded
+    window.addEventListener('load', () => {
+      button.removeAttribute('disabled');
+    });
+
+    // Toggle dropdown visibility on button click
+    button.addEventListener('click', () => {
+      isOpen = !isOpen;
+      dropdown.classList.toggle('hidden', !isOpen);
+    });
+
+    // Handle language change and switch locale
+    function handleLanguageChange(lang) {
+      // Add a loading state to prevent further clicks and signal change
+      button.innerHTML = 'Loading...';
+      button.setAttribute('disabled', true);
+
+      // Determine the new locale based on the selected language
+      const currentPath = window.location.pathname;
+      const pathWithLocaleStripped = currentPath.replace(/^\/kok\//, '/');
+      const localeToSwitchTo = lang === 'KA' ? 'kok' : 'en';  // KA maps to 'kok', EN to 'en'
+
+      // Switch language and update the URL
+      const newPath = localeToSwitchTo === 'kok'
+        ? `/${localeToSwitchTo}${pathWithLocaleStripped}`
+        : `${pathWithLocaleStripped}`;
+
+      // Redirect to the new path
+      window.location.href = newPath;
+    }
+
+    // Attach event listeners to the language buttons
+    document.querySelectorAll('#lang-dropdown button').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        handleLanguageChange(e.target.innerText);
+      });
+    });
+  });
+</script>
