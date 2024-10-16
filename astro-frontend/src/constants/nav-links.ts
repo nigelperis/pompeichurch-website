@@ -17,11 +17,6 @@ export type NavItem = Expandable | Link;
 
 export const navLinks = [
 	{
-		type: 'link',
-		title: 'nav.home',
-		href: '/',
-	},
-	{
 		type: 'expandable',
 		title: 'nav.our-church',
 		expandedLinks: [
