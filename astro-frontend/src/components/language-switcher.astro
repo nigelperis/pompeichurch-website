@@ -7,13 +7,12 @@ const pathWithLocaleStripped = currentPath.replace(/^\/kok\//, '/');
 let selectedLanguage = currentLocale === 'kok' ? 'ಕೊಂಕಣಿ' : 'English'; // English default, ಕೊಂಕಣಿ if locale is 'kok'
 ---
 
-<div class="relative inline-block text-left">
+<div class="relative inline-block  text-left">
   <div>
-    <!-- Button for language selection with fixed width -->
     <button
       type="button"
       id="lang-button"
-      class="inline-flex justify-center w-25 rounded-md border border-gray-300 shadow-sm px-2 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 "
+      class="inline-flex justify-center w-25 rounded-md border border-gray-300 shadow-sm px-2 py-2 bg-white text-sm font-bold  text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 "
       disabled
     >
       {selectedLanguage}
@@ -33,11 +32,9 @@ let selectedLanguage = currentLocale === 'kok' ? 'ಕೊಂಕಣಿ' : 'English
       </svg>
     </button>
   </div>
-
-  <!-- Dropdown panel with transition -->
   <div
     id="lang-dropdown"
-    class="opacity-0 invisible transition-all ease-in-out duration-300 origin-top-right absolute right-0 mt-2 lg:mt-0 px-2 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+    class="opacity-0 invisible transition-all ease-in-out duration-300 origin-top-right absolute -right-2 mt-2  px-2 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
     role="menu"
     aria-orientation="vertical"
     aria-labelledby="options-menu"
@@ -56,90 +53,73 @@ let selectedLanguage = currentLocale === 'kok' ? 'ಕೊಂಕಣಿ' : 'English
   </div>
 </div>
 
-<!-- Client-side script to handle the language switching -->
 <script client:load>
   document.addEventListener('DOMContentLoaded', () => {
     const button = document.getElementById('lang-button');
     const dropdown = document.getElementById('lang-dropdown');
     const arrow = document.getElementById('lang-arrow');
-
-    // Enable the button when the page is fully loaded
     window.addEventListener('load', () => {
       button.removeAttribute('disabled');
     });
 
-    // Handle language change and switch locale
     function handleLanguageChange(lang) {
-      // Add a loading state to prevent further clicks and signal change
       button.innerHTML = 'Loading...';
       button.setAttribute('disabled', true);
-
-      // Determine the new locale based on the selected language
       const currentPath = window.location.pathname;
       const pathWithLocaleStripped = currentPath.replace(/^\/kok\//, '/');
-      const localeToSwitchTo = lang === 'ಕೊಂಕಣಿ' ? 'kok' : 'en';  // ಕೊಂಕಣಿ maps to 'kok', English to 'en'
-
-      // Switch language and update the URL
+      const localeToSwitchTo = lang === 'ಕೊಂಕಣಿ' ? 'kok' : 'en';
       const newPath = localeToSwitchTo === 'kok'
         ? `/${localeToSwitchTo}${pathWithLocaleStripped}`
         : `${pathWithLocaleStripped}`;
-
-      // Redirect to the new path
       window.location.href = newPath;
     }
-
-    // Toggle dropdown visibility
     function toggleDropdown() {
       const isVisible = dropdown.classList.contains('visible');
       dropdown.classList.toggle('visible', !isVisible);
-      dropdown.style.opacity = isVisible ? '0' : '1'; // Control opacity
-      dropdown.style.visibility = isVisible ? 'hidden' : 'visible'; // Control visibility
-      arrow.classList.toggle('rotate-180', !isVisible); // Rotate arrow based on visibility
+      dropdown.style.opacity = isVisible ? '0' : '1';
+      dropdown.style.visibility = isVisible ? 'hidden' : 'visible';
+      arrow.classList.toggle('rotate-180', !isVisible);
     }
 
-    // Attach click event to the language button (for mobile/tablet)
+
     button.addEventListener('click', (e) => {
-      e.stopPropagation(); // Prevent event bubbling
+      e.stopPropagation();
       toggleDropdown();
     });
 
-    // Close the dropdown if clicking outside
     document.addEventListener('click', () => {
       dropdown.classList.remove('visible');
-      dropdown.style.opacity = '0'; // Control opacity
-      dropdown.style.visibility = 'hidden'; // Control visibility
-      arrow.classList.remove('rotate-180'); // Rotate arrow back
+      dropdown.style.opacity = '0';
+      dropdown.style.visibility = 'hidden';
+      arrow.classList.remove('rotate-180');
     });
-
-    // Show dropdown on hover for desktop
     button.addEventListener('mouseenter', () => {
-      if (window.innerWidth > 768) { // Check if it's desktop
+      if (window.innerWidth > 768) {
         dropdown.classList.add('visible');
         dropdown.style.opacity = '1';
         dropdown.style.visibility = 'visible';
-        arrow.classList.add('rotate-180'); // Rotate arrow when visible
+        arrow.classList.add('rotate-180');
       }
     });
 
-    // Keep the dropdown open when mouse enters
     dropdown.addEventListener('mouseenter', () => {
       dropdown.classList.add('visible');
       dropdown.style.opacity = '1';
       dropdown.style.visibility = 'visible';
-      arrow.classList.add('rotate-180'); // Keep the arrow rotated
+      arrow.classList.add('rotate-180');
     });
 
-    // Close the dropdown on mouse leave from both button and dropdown
+
     button.addEventListener('mouseleave', () => {
-      if (window.innerWidth > 768) { // Check if it's desktop
+      if (window.innerWidth > 768) {
         setTimeout(() => {
           if (!dropdown.matches(':hover')) {
             dropdown.classList.remove('visible');
             dropdown.style.opacity = '0';
             dropdown.style.visibility = 'hidden';
-            arrow.classList.remove('rotate-180'); // Rotate arrow back
+            arrow.classList.remove('rotate-180');
           }
-        }, 100); // Short delay to allow mouse movement to dropdown
+        }, 100);
       }
     });
 
@@ -147,10 +127,10 @@ let selectedLanguage = currentLocale === 'kok' ? 'ಕೊಂಕಣಿ' : 'English
       dropdown.classList.remove('visible');
       dropdown.style.opacity = '0';
       dropdown.style.visibility = 'hidden';
-      arrow.classList.remove('rotate-180'); // Rotate arrow back
+      arrow.classList.remove('rotate-180');
     });
 
-    // Attach event listeners to the language buttons
+
     document.querySelectorAll('#lang-dropdown button').forEach((btn) => {
       btn.addEventListener('click', (e) => {
         handleLanguageChange(e.target.innerText);
@@ -158,27 +138,23 @@ let selectedLanguage = currentLocale === 'kok' ? 'ಕೊಂಕಣಿ' : 'English
     });
   });
 </script>
-
-<!-- Updated CSS for smooth hover effect -->
 <style>
   .relative:hover #lang-dropdown {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0); /* Slide down smoothly */
+    transform: translateY(0);
   }
 
   #lang-dropdown {
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out; /* Smooth transition */
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
   }
 
   .visible {
     opacity: 1;
     visibility: visible;
   }
-
-  /* CSS for rotation */
   .rotate-180 {
     transform: rotate(180deg);
   }

@@ -1,4 +1,5 @@
 ---
+// Importing necessary modules and assets
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import { Icon } from 'astro-icon/components';
 import { cn } from '~/helpers/cn';
@@ -8,39 +9,32 @@ import ScrollProgress from './ui/scroll-progress.astro';
 import { Image } from 'astro:assets';
 import churchLogo from '../assets/church-logo.png';
 import LanguageSwitcher from './language-switcher.astro';
+
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
 <ScrollProgress />
-<header
-	class="sticky top-0 z-10 w-full bg-white/90 p-3 shadow-md backdrop-blur-lg xl:px-28"
->
+<header class="sticky top-0 z-10 w-full bg-white/90 p-3 shadow-md backdrop-blur-lg xl:px-28">
 	<section class="flex items-center justify-between">
-		<a
-			href={lang === 'kok' ? '/kok/' : '/'}>
-		<Image src={churchLogo} alt="" width={50} />
+		<a href={lang === 'kok' ? '/kok/' : '/'}>
+			<Image src={churchLogo} alt="" width={50} />
 		</a>
 		<div class="ml-auto hidden items-center gap-5 lg:flex ">
 			<ul class="flex items-center gap-6">
 				{
 					navLinks.map((link) => (
-
-						<li class="group relative">
+						<li key={link.title} class="group relative">
 							<a
-								href={
-									link.type === 'link'
-										? getRelativeLocaleUrl(lang, link.href)
-										: '#'
-								}
-								class="hover:text-natgeo-pink font-poppins text-lg font-semibold text-black transition-colors "
+								href={link.type === 'link' ? getRelativeLocaleUrl(lang, link.href) : '#'}
+								class={`hover:text-natgeo-pink font-poppins text-lg font-semibold text-black transition-colors ${link.title === 'nav.home' ? 'nav-home' : ''}`}
 							>
 								{t(link.title)}
 							</a>
 							{link.type === 'expandable' && (
 								<ul class="absolute left-0 top-full mt-2 hidden rounded-md bg-white p-3 shadow-lg group-hover:block md:flex w-64 ">
 									{link.expandedLinks.map((sublink) => (
-										<li class="w-150 ">
+										<li key={sublink.title} class="w-150 ">
 											<a
 												href={getRelativeLocaleUrl(lang, sublink.href)}
 												class="block rounded-md px-4 py-2 text-black transition-all hover:bg-natgeo-yellow"
@@ -57,74 +51,43 @@ const t = useTranslations(lang);
 			</ul>
 		</div>
 		<div class="flex flex-row-reverse">
-		<div
-			id="hamburger"
-			class=" flex w-fit cursor-pointer flex-col items-end lg:hidden ml-5"
-		>
-			<Icon name="menu" size={35} />
-
+			<div id="hamburger" class="flex w-fit cursor-pointer flex-col items-end lg:hidden ml-5">
+				<Icon name="menu" size={35} />
+			</div>
+			<div class="ml-5">
+				<LanguageSwitcher />
+			</div>
 		</div>
-		<div class="ml-5">
-		<LanguageSwitcher/>
-	</div>
-	</div>
 	</section>
 </header>
 
-<nav
-	class="fixed inset-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 transition-transform duration-500 ease-out"
-	id="navbar"
->
-	<Icon
-		name="cancel"
-		id="hamburger-close"
-		class="sticky top-3 mb-5 ml-auto cursor-pointer rounded-full text-4xl"
-	/>
+<nav class="fixed inset-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 transition-transform duration-500 ease-out" id="navbar">
+	<Icon name="cancel" id="hamburger-close" class="sticky top-3 mb-5 ml-auto cursor-pointer rounded-full text-4xl" />
 	<ul class="flex flex-col gap-y-5">
 		{
 			navLinks.map((link) => (
-				<li>
+				<li key={link.title}>
 					<a
-						data-expandable-links={
-							link.type === 'expandable' ? 'true' : 'false'
-						}
-						href={
-							link.type === 'link' ? getRelativeLocaleUrl(lang, link.href) : '#'
-						}
+						data-expandable-links={link.type === 'expandable' ? 'true' : 'false'}
+						href={link.type === 'link' ? getRelativeLocaleUrl(lang, link.href) : '#'}
 						class="font-popppins group flex items-center justify-between text-xl font-extrabold text-black"
 					>
-						<span
-							class={cn(
-								'border-b-4 border-b-transparent font-poppins transition-all duration-150 group-hover:border-natgeo-yellow',
-								{ 'font-noto-sans-kannada': lang === 'kok' },
-							)}
-						>
+						<span class={cn('border-b-4 border-b-transparent font-poppins transition-all duration-150 group-hover:border-natgeo-yellow', { 'font-noto-sans-kannada': lang === 'kok' })}>
 							{t(link.title)}
 						</span>
 						{link.type === 'expandable' ? (
-							<Icon
-								name="chevron-right"
-								class="text-3xl"
-								data-icon-name="chevron-right"
-							/>
+							<Icon name="chevron-right" class="text-3xl" data-icon-name="chevron-right" />
 						) : null}
 					</a>
 					{link.type === 'expandable' ? (
 						<ul class="expandable-links max-h-0 overflow-hidden transition-all duration-500 ease-out">
 							{link.expandedLinks.map((sublink) => (
-								<li>
+								<li key={sublink.title}>
 									<a
 										href={getRelativeLocaleUrl(lang, sublink.href)}
 										class="group mb-4 flex items-center justify-between font-merriweather text-2xl font-bold"
 									>
-										<span
-											class={cn(
-												'border-b-4 border-b-transparent font-poppins text-lg font-semibold transition-all duration-150 group-hover:border-natgeo-yellow',
-												{
-													'font-noto-sans-kannada font-normal': lang === 'kok',
-												},
-											)}
-										>
+										<span class={cn('border-b-4 border-b-transparent font-poppins text-lg font-semibold transition-all duration-150 group-hover:border-natgeo-yellow', { 'font-noto-sans-kannada font-normal': lang === 'kok' })}>
 											{t(sublink.title)}
 										</span>
 									</a>
@@ -139,6 +102,22 @@ const t = useTranslations(lang);
 </nav>
 
 <style>
+	.nav-home {
+		display: none; /* Hide by default */
+	}
+
+	@media (max-width: 768px) { /* Adjust this breakpoint as needed */
+		.nav-home {
+			display: block; /* Show on mobile */
+		}
+	}
+
+	@media (min-width: 769px) {
+		.nav-home {
+			display: none;
+		}
+	}
+
 	#navbar {
 		transform: translateX(100%);
 		transition: transform 200ms ease-out;
@@ -180,7 +159,6 @@ const t = useTranslations(lang);
 			padding: 10px;
 			box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 			transition: all 0.3s ease;
-
 		}
 
 		ul > li.group:hover > ul,
@@ -206,12 +184,8 @@ const t = useTranslations(lang);
 	const hamburgerMenu = document.querySelector('#hamburger');
 	const hamburgerClose = document.querySelector('#hamburger-close');
 	const navbar = document.querySelector('#navbar');
-	const expandableLinks = document.querySelectorAll(
-		'[data-expandable-links=true]',
-	);
-	const allNavigationLinks = document.querySelectorAll(
-		'nav a:not([data-expandable-links=true])',
-	);
+	const expandableLinks = document.querySelectorAll('[data-expandable-links=true]');
+	const allNavigationLinks = document.querySelectorAll('nav a:not([data-expandable-links=true])');
 
 	hamburgerMenu?.addEventListener('click', () => {
 		navbar?.classList.add('open');
@@ -236,9 +210,7 @@ const t = useTranslations(lang);
 			expandableLinks.forEach((otherElement) => {
 				if (otherElement !== element) {
 					otherElement.setAttribute('data-is-submenu-expanded', 'false');
-					otherElement.parentElement
-						?.querySelector('a + ul')
-						?.style.setProperty('max-height', '0');
+					otherElement.parentElement?.querySelector('a + ul')?.style.setProperty('max-height', '0');
 				}
 			});
 
@@ -247,32 +219,14 @@ const t = useTranslations(lang);
 				expandableContent?.style?.setProperty('max-height', '0');
 			} else {
 				element.setAttribute('data-is-submenu-expanded', 'true');
-				expandableContent?.style?.setProperty(
-					'max-height',
-					`${expandableContent.scrollHeight}px`,
-				);
+				expandableContent?.style?.setProperty('max-height', '500px');
 			}
 		});
 	});
 
 	allNavigationLinks.forEach((link) => {
-		link.addEventListener('click', (e) => {
-			e.preventDefault();
-
-			expandableLinks.forEach((element) => {
-				const expandableContent =
-					element.parentElement?.querySelector('a + ul');
-
-				expandableContent?.style.setProperty('max-height', '0');
-
-				element.setAttribute('data-is-submenu-expanded', 'false');
-			});
-
-			navbar?.classList?.remove('open');
-
-			link.addEventListener('transitionend', () => {
-				window.location.href = link.href;
-			});
+		link.addEventListener('click', () => {
+			navbar.classList.remove('open');
 		});
 	});
 </script>
