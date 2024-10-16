@@ -7,6 +7,7 @@ import { navLinks } from '~/constants/nav-links.ts';
 import ScrollProgress from './ui/scroll-progress.astro';
 import { Image } from 'astro:assets';
 import churchLogo from '../assets/church-logo.png';
+import LanguageSwitcher from './language-switcher.astro';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
@@ -55,12 +56,18 @@ const t = useTranslations(lang);
 				}
 			</ul>
 		</div>
+		<div class="flex flex-row-reverse">
 		<div
 			id="hamburger"
-			class="ml-auto flex w-fit cursor-pointer flex-col items-end lg:hidden"
+			class=" flex w-fit cursor-pointer flex-col items-end lg:hidden ml-5"
 		>
 			<Icon name="menu" size={35} />
+
 		</div>
+		<div class="ml-5">
+		<LanguageSwitcher/>
+	</div>
+	</div>
 	</section>
 </header>
 
