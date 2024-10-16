@@ -1,22 +1,29 @@
 ---
 import Layout from '~/layouts/layout.astro';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
-import { associations } from '~/constants/associations';
 import AssociationDetails from '~/components/sections/associations/association-details.astro';
+import { associations } from '~/constants/associations';
+import { associationsKok } from '~/constants/associations-kok';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 export async function getStaticPaths() {
-	return associations.map(
-		({ slug, title, associationImage, officeBearers }) => ({
+	const paths = [
+		...associations.map(({ slug, title, associationImage, officeBearers }) => ({
 			params: { slug },
-			props: { title, associationImage, officeBearers },
-		}),
-	);
+			props: { slug, title, associationImage, officeBearers }, 
+		})),
+		...associationsKok.map(({ slug, title, associationImage, officeBearers }) => ({
+			params: { slug },
+			props: { slug, title, associationImage, officeBearers },
+		})),
+	];
+
+	return paths;
 }
 
-const { title } = Astro.props;
+const { slug, title } = Astro.props as { slug: string; title: string };
 ---
 
 <Layout title={`Associations | ${title}`}>
@@ -25,7 +32,7 @@ const { title } = Astro.props;
 			<h1
 				class="mb-4 border-l-4 border-natgeo-yellow pl-3 text-3xl font-extrabold lg:text-4xl"
 			>
-				{title}
+				{t(`nav.${slug}`)}
 			</h1>
 			<AssociationDetails />
 		</section>

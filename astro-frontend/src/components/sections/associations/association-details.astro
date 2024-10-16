@@ -1,10 +1,17 @@
 ---
 import { Image } from 'astro:assets';
+import { getLangFromUrl } from '~/i18n/utils';
 import { associations } from '~/constants/associations';
+import { associationsKok } from '~/constants/associations-kok';
 import fallbackImage from '~/assets/church-logo.png';
 
+const lang = getLangFromUrl(Astro.url);
 const { slug } = Astro.params;
-const association = associations.find((assoc) => assoc.slug === slug);
+
+const associationData = lang === 'kok' ? associationsKok : associations;
+
+const association = associationData.find((assoc) => assoc.slug === slug);
+
 const {
 	associationImage = fallbackImage,
 	description,
