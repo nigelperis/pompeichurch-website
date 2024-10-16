@@ -9,6 +9,7 @@ import ayogPresident from '~/assets/ayog-president.jpg';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+const councilUrl = lang === 'en' ? '/parish-pastoral-council' : '/kok/parish-pastoral-council';
 ---
 
 <section
@@ -57,18 +58,18 @@ const t = useTranslations(lang);
 			</div>
 			<div class="absolute inset-0 flex items-center justify-center">
 				<HoverableLink
-					href="/parish-pastoral-council"
+					href={councilUrl}
 					class="mb-2 mt-2 inline-block text-xl font-bold text-black"
 				>
-					View All
+					{t('ui.view-all')}
 				</HoverableLink>
 			</div>
 		</div>
 	</div>
 
 	<div class="hidden justify-center lg:flex">
-		<HoverableLink href="/parish-pastoral-council" class="">
-			View All</HoverableLink
-		>
+		<HoverableLink href={councilUrl}>
+			{t('ui.view-all')}
+		</HoverableLink>
 	</div>
 </section>

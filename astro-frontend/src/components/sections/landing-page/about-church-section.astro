@@ -10,6 +10,7 @@ import { historyExcerpt } from '~/constants/parish-history-excerpt';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const optimizedGrottoImage = await getImage({ src: maryGrotto });
+const historyUrl = lang === 'en' ? '/parish-history' : '/kok/parish-history';
 ---
 
 <section
@@ -36,7 +37,7 @@ const optimizedGrottoImage = await getImage({ src: maryGrotto });
 
 			<div class="flex justify-end">
 				<HoverableLink
-					href={lang === 'kok' ? '/kok/parish-history' : '/parish-history/'}
+					href={historyUrl}
 					class="m-3"
 				>
 					{t('ui.more-button-know')}
