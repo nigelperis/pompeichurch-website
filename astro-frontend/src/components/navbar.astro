@@ -5,23 +5,20 @@ import { cn } from '~/helpers/cn';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import { navLinks } from '~/constants/nav-links.ts';
 import ScrollProgress from './ui/scroll-progress.astro';
-
+import { Image } from 'astro:assets';
+import churchLogo from '../assets/church-logo.png';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
 <ScrollProgress />
 <header
-	class="sticky top-0 z-10 w-full bg-white/90 p-5 shadow-md backdrop-blur-lg xl:px-28"
+	class="sticky top-0 z-10 w-full bg-white/90 p-3 shadow-md backdrop-blur-lg xl:px-28"
 >
 	<section class="flex items-center justify-between">
 		<a
-			href={lang === 'kok' ? '/kok/' : '/'}
-			class={cn('font-geist font-semibold text-lg', {
-				'font-noto-sans-kannada-semibold text-lg': lang === 'kok',
-			})}
-		>
-			{t('landing.church-name')}
+			href={lang === 'kok' ? '/kok/' : '/'}>
+		<Image src={churchLogo} alt="" width={50} />
 		</a>
 		<div class="ml-auto hidden items-center gap-5 md:flex ">
 			<ul class="flex items-center gap-6">
@@ -61,7 +58,7 @@ const t = useTranslations(lang);
 			id="hamburger"
 			class="ml-auto flex w-fit cursor-pointer flex-col items-end md:hidden"
 		>
-			<Icon name="menu" size={26} />
+			<Icon name="menu" size={35} />
 		</div>
 	</section>
 </header>
@@ -116,8 +113,7 @@ const t = useTranslations(lang);
 											class={cn(
 												'border-b-4 border-b-transparent font-poppins text-lg font-semibold transition-all duration-150 group-hover:border-natgeo-yellow',
 												{
-													'font-noto-sans-kannada font-extrabold':
-														lang === 'kok',
+													'font-noto-sans-kannada font-normal': lang === 'kok',
 												},
 											)}
 										>
