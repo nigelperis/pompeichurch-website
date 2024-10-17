@@ -6,7 +6,6 @@ import { cn } from '~/helpers/cn';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import { navLinks } from '~/constants/nav-links.ts';
 import ScrollProgress from './ui/scroll-progress.astro';
-import { Image } from 'astro:assets';
 import churchLogo from '../assets/church-logo.png';
 import LanguageSwitcher from './language-switcher.astro';
 
@@ -15,10 +14,10 @@ const t = useTranslations(lang);
 ---
 
 <ScrollProgress />
-<header class="sticky top-0 z-10 w-full bg-white/90 p-3 shadow-md backdrop-blur-lg xl:px-28">
+<header class="sticky top-0 z-10 w-full bg-white p-3 xl:px-28 border-b border-gray-200">
 	<section class="flex items-center justify-between">
 		<a href={lang === 'kok' ? '/kok/' : '/'}>
-			<Image src={churchLogo} alt="" width={50} />
+			<img src={churchLogo.src} alt="" width={45} />
 		</a>
 		<div class="ml-auto hidden items-center gap-5 lg:flex ">
 			<ul class="flex items-center gap-6">
@@ -27,7 +26,7 @@ const t = useTranslations(lang);
 						<li key={link.title} class="group relative">
 							<a
 								href={link.type === 'link' ? getRelativeLocaleUrl(lang, link.href) : '#'}
-								class={`hover:text-natgeo-pink font-poppins text-lg font-semibold text-black transition-colors ${link.title === 'nav.home' ? 'nav-home' : ''}`}
+								class={`font-poppins text-lg font-semibold text-black transition-colors ${link.title === 'nav.home' ? 'nav-home' : ''}`}
 							>
 								{t(link.title)}
 							</a>
@@ -103,12 +102,12 @@ const t = useTranslations(lang);
 
 <style>
 	.nav-home {
-		display: none; /* Hide by default */
+		display: none;
 	}
 
-	@media (max-width: 768px) { /* Adjust this breakpoint as needed */
+	@media (max-width: 768px) {
 		.nav-home {
-			display: block; /* Show on mobile */
+			display: block;
 		}
 	}
 

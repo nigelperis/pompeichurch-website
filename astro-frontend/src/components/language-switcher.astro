@@ -1,10 +1,7 @@
 ---
-// Astro component variables
 const languages = ['English', 'ಕೊಂಕಣಿ'];
-const currentLocale = Astro.currentLocale;  // Assume Astro provides the current locale
-const currentPath = new URL(Astro.request.url).pathname;
-const pathWithLocaleStripped = currentPath.replace(/^\/kok\//, '/');
-let selectedLanguage = currentLocale === 'kok' ? 'ಕೊಂಕಣಿ' : 'English'; // English default, ಕೊಂಕಣಿ if locale is 'kok'
+const currentLocale = Astro.currentLocale;
+const selectedLanguage = currentLocale === 'kok' ? 'ಕೊಂಕಣಿ' : 'English';
 ---
 
 <div class="relative inline-block  text-left">
@@ -44,7 +41,6 @@ let selectedLanguage = currentLocale === 'kok' ? 'ಕೊಂಕಣಿ' : 'English
         <button
           type="button"
           class="block px-4 py-2 text-sm text-gray-700 rounded-md hover:bg-natgeo-yellow"
-          onClick={() => handleLanguageChange(lang)}
         >
           {lang}
         </button>
@@ -53,91 +49,93 @@ let selectedLanguage = currentLocale === 'kok' ? 'ಕೊಂಕಣಿ' : 'English
   </div>
 </div>
 
-<script client:load>
+<script>
   document.addEventListener('DOMContentLoaded', () => {
-    const button = document.getElementById('lang-button');
-    const dropdown = document.getElementById('lang-dropdown');
-    const arrow = document.getElementById('lang-arrow');
-    window.addEventListener('load', () => {
-      button.removeAttribute('disabled');
-    });
+  const button = document.getElementById('lang-button') as HTMLButtonElement | null;
+  const dropdown = document.getElementById('lang-dropdown') as HTMLElement | null;
+  const arrow = document.getElementById('lang-arrow') as HTMLElement | null;
 
-    function handleLanguageChange(lang) {
-      button.innerHTML = 'Loading...';
-      button.setAttribute('disabled', true);
-      const currentPath = window.location.pathname;
-      const pathWithLocaleStripped = currentPath.replace(/^\/kok\//, '/');
-      const localeToSwitchTo = lang === 'ಕೊಂಕಣಿ' ? 'kok' : 'en';
-      const newPath = localeToSwitchTo === 'kok'
-        ? `/${localeToSwitchTo}${pathWithLocaleStripped}`
-        : `${pathWithLocaleStripped}`;
-      window.location.href = newPath;
-    }
-    function toggleDropdown() {
-      const isVisible = dropdown.classList.contains('visible');
-      dropdown.classList.toggle('visible', !isVisible);
-      dropdown.style.opacity = isVisible ? '0' : '1';
-      dropdown.style.visibility = isVisible ? 'hidden' : 'visible';
-      arrow.classList.toggle('rotate-180', !isVisible);
-    }
+  if (!button || !dropdown || !arrow) return;
 
+  window.addEventListener('load', () => {
+    button.removeAttribute('disabled');
+  });
 
-    button.addEventListener('click', (e) => {
-      e.stopPropagation();
-      toggleDropdown();
-    });
+  const handleLanguageChange = (lang: string): void => {
+    button.innerHTML = 'Loading...';
+    button.setAttribute('disabled', 'true');
 
-    document.addEventListener('click', () => {
-      dropdown.classList.remove('visible');
-      dropdown.style.opacity = '0';
-      dropdown.style.visibility = 'hidden';
-      arrow.classList.remove('rotate-180');
-    });
-    button.addEventListener('mouseenter', () => {
-      if (window.innerWidth > 768) {
-        dropdown.classList.add('visible');
-        dropdown.style.opacity = '1';
-        dropdown.style.visibility = 'visible';
-        arrow.classList.add('rotate-180');
-      }
-    });
+    const currentPath = window.location.pathname;
+    const pathWithLocaleStripped = currentPath.replace(/^\/kok\//, '/');
+    const localeToSwitchTo = lang === 'ಕೊಂಕಣಿ' ? 'kok' : 'en';
+    const newPath = localeToSwitchTo === 'kok'
+      ? `/${localeToSwitchTo}${pathWithLocaleStripped}`
+      : `${pathWithLocaleStripped}`;
 
-    dropdown.addEventListener('mouseenter', () => {
+    window.location.href = newPath;
+  };
+
+  const toggleDropdown = (): void => {
+    const isVisible = dropdown.classList.contains('visible');
+    dropdown.classList.toggle('visible', !isVisible);
+    dropdown.style.opacity = isVisible ? '0' : '1';
+    dropdown.style.visibility = isVisible ? 'hidden' : 'visible';
+    arrow.classList.toggle('rotate-180', !isVisible);
+  };
+
+  button.addEventListener('click', (e: MouseEvent) => {
+    e.stopPropagation();
+    toggleDropdown();
+  });
+
+  document.addEventListener('click', () => {
+    dropdown.classList.remove('visible');
+    dropdown.style.opacity = '0';
+    dropdown.style.visibility = 'hidden';
+    arrow.classList.remove('rotate-180');
+  });
+
+  button.addEventListener('mouseenter', () => {
+    if (window.innerWidth > 768) {
       dropdown.classList.add('visible');
       dropdown.style.opacity = '1';
       dropdown.style.visibility = 'visible';
       arrow.classList.add('rotate-180');
-    });
+    }
+  });
 
+  dropdown.addEventListener('mouseenter', () => {
+    dropdown.classList.add('visible');
+    dropdown.style.opacity = '1';
+    dropdown.style.visibility = 'visible';
+    arrow.classList.add('rotate-180');
+  });
 
-    button.addEventListener('mouseleave', () => {
-      if (window.innerWidth > 768) {
-        setTimeout(() => {
-          if (!dropdown.matches(':hover')) {
-            dropdown.classList.remove('visible');
-            dropdown.style.opacity = '0';
-            dropdown.style.visibility = 'hidden';
-            arrow.classList.remove('rotate-180');
-          }
-        }, 100);
-      }
-    });
+  const hideDropdownWithDelay = (): void => {
+    if (window.innerWidth > 768) {
+      setTimeout(() => {
+        if (!dropdown?.matches(':hover')) {
+          dropdown.classList.remove('visible');
+          dropdown.style.opacity = '0';
+          dropdown.style.visibility = 'hidden';
+          arrow.classList.remove('rotate-180');
+        }
+      }, 100);
+    }
+  };
 
-    dropdown.addEventListener('mouseleave', () => {
-      dropdown.classList.remove('visible');
-      dropdown.style.opacity = '0';
-      dropdown.style.visibility = 'hidden';
-      arrow.classList.remove('rotate-180');
-    });
+  button.addEventListener('mouseleave', hideDropdownWithDelay);
+  dropdown.addEventListener('mouseleave', hideDropdownWithDelay);
 
-
-    document.querySelectorAll('#lang-dropdown button').forEach((btn) => {
-      btn.addEventListener('click', (e) => {
-        handleLanguageChange(e.target.innerText);
-      });
+  document.querySelectorAll<HTMLButtonElement>('#lang-dropdown button').forEach((btn) => {
+    btn.addEventListener('click', (e: MouseEvent) => {
+      const target = e.target as HTMLButtonElement;
+      handleLanguageChange(target.innerText);
     });
   });
+});
 </script>
+
 <style>
   .relative:hover #lang-dropdown {
     opacity: 1;
