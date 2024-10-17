@@ -19,7 +19,7 @@ const t = useTranslations(lang);
 		<a href={lang === 'kok' ? '/kok/' : '/'}>
 			<img src={churchLogo.src} alt="" width={45} />
 		</a>
-		<div class="ml-auto hidden items-center gap-5 lg:flex ">
+		<div class="ml-auto hidden items-center lg:flex">
 			<ul class="flex items-center gap-6">
 				{
 					navLinks.map((link) => (
@@ -50,7 +50,7 @@ const t = useTranslations(lang);
 			</ul>
 		</div>
 		<div class="flex flex-row-reverse">
-			<div id="hamburger" class="flex w-fit cursor-pointer flex-col items-end lg:hidden ml-5">
+			<div id="hamburger" class="flex cursor-pointer flex-col items-end lg:hidden ml-3">
 				<Icon name="menu" size={35} />
 			</div>
 			<div class="ml-5">

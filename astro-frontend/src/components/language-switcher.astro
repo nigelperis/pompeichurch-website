@@ -1,6 +1,7 @@
 ---
 const languages = ['English', 'ಕೊಂಕಣಿ'];
 const currentLocale = Astro.currentLocale;
+import { cn } from '~/helpers/cn';
 const selectedLanguage = currentLocale === 'kok' ? 'ಕೊಂಕಣಿ' : 'English';
 ---
 
@@ -9,13 +10,15 @@ const selectedLanguage = currentLocale === 'kok' ? 'ಕೊಂಕಣಿ' : 'Engli
     <button
       type="button"
       id="lang-button"
-      class="inline-flex justify-center w-25 rounded-md border border-gray-300 shadow-sm px-2 py-2 bg-white text-sm font-bold  text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 "
-      disabled
+      class={cn('inline-flex text-black font-poppins justify-center w-25 rounded-md border border-gray-400 px-2 py-2 bg-white text-[18px] font-semibold',
+        {
+			'font-noto-sans-kannada	': selectedLanguage,
+      })}
     >
       {selectedLanguage}
       <svg
         id="lang-arrow"
-        class="-mr-1 h-5 w-5 transition-transform duration-200 ease-in-out"
+        class="-mr-1 h-7 w-5 transition-transform duration-200 ease-in-out"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"
         fill="currentColor"
@@ -31,20 +34,23 @@ const selectedLanguage = currentLocale === 'kok' ? 'ಕೊಂಕಣಿ' : 'Engli
   </div>
   <div
     id="lang-dropdown"
-    class="opacity-0 invisible transition-all ease-in-out duration-300 origin-top-right absolute -right-2 mt-2  px-2 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+    class="opacity-0 invisible transition-all ease-in-out duration-300 origin-top-right absolute -right-2 mt-2 px-2 rounded-md bg-white"
     role="menu"
     aria-orientation="vertical"
     aria-labelledby="options-menu"
   >
     <div class="py-1" role="none">
-      {languages.map((lang) => (
-        <button
-          type="button"
-          class="block px-4 py-2 text-sm text-gray-700 rounded-md hover:bg-natgeo-yellow"
-        >
-          {lang}
-        </button>
-      ))}
+     {languages.map((lang) => (
+  <button
+    type="button"
+    class={cn(
+      'block px-4 py-2 text-sm font-poppins text-gray-800 rounded-md hover:bg-natgeo-yellow',
+      selectedLanguage === lang && 'font-noto-sans-kannada'
+    )}
+  >
+    {lang}
+  </button>
+))}
     </div>
   </div>
 </div>
