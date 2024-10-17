@@ -1,26 +1,15 @@
 const parishHistory = {
 	en: {
 		history: [
-			`The Gurpur Parish is situated at a distance of 19 K.M. from Mangalore on Mangalore - Moodbidri road.  The other name given to this parish is Kowdur but is denoted in the registered Diocesan Directory as Gurpur parish.  The parish is commonly called as Kowdur because in the Kowdur ward of the parish there is a place called ‘Kodi’, wherein spring of water was found to flow in all seasons.  Hence the location was named as Kodi-ooru or Kowdur.  It is said that since this location of Kowdur was near to the present Church.  This Church was named as Kowdur Parish.
-			`,
+			`The Gurpur Parish is situated at a distance of 19 K.M. from Mangalore on Mangalore - Moodbidri road.  The other name given to this parish is Kowdur but is denoted in the registered Diocesan Directory as Gurpur parish.  The parish is commonly called as Kowdur because in the Kowdur ward of the parish there is a place called ‘Kodi’, wherein spring of water was found to flow in all seasons. Hence the location was named as Kodi-ooru or Kowdur.  It is said that since this location of Kowdur was near to the present Church. This Church was named as Kowdur Parish. As per the revenue department classification, the parish belongs to Gurpur zone; most of the parishioners reside at Gurpur zone hence, this parish is recognized under the name Gurpur.`,
 
-			`As per the revenue department classification, the parish belongs to Gurpur zone; most of the parishioners reside at Gurpur zone hence, this parish is recognized under the name Gurpur.
-			`,
+			`The Church land structure located at a village called ‘Kandavar’. Apart from Kowdur, Mulur, Badaga, Ulipadi, Paduperar, Mooduperar, Kolambe, Gurpur, Addur villages are covered under the area of Gurpur Parish. To describe the parish Geographically the area of the parish is covered with a number of fields and hills.  To the south of the parish flows the Gurpur River.  The sand of this river is famous in the Mangalore city.  A part of the parish area is covered with stony area.`,
 
-			`The Church land structure located at a village called ‘Kandavar’.  Apart from Kowdur, Mulur, Badaga, Ulipadi, Paduperar, Mooduperar, Kolambe, Gurpur, Addur villages are covered under the area of Gurpur Parish.
-			`,
+			`The most common occupation of the people of this area includes agriculture of cashews, arc nuts, and Flower cultivation. Apart from this many people are engaged in large scale and small-scale industries. A large number of families of this parish are employed in foreign countries and metropolitan city of the nation. Because of this the economic condition of the parish is satisfactorily improved.`,
 
-			`To describe the parish Geographically the area of the parish is covered with a number of fields and hills.  To the south of the parish flows the Gurpur River.  The sand of this river is famous in the Mangalore city.  A part of the parish area is covered with stony area. 
-			`,
+			`Before the existence of the Gurpur parish the families living in this locality are belong to Fezar parish. The people from Gurpur went to Ferar Church for the Eucharistic celebration and also for the spiritual benefits.  The number of people was doubling every year and there was urgent need for new parishes to take care of such rapid growth in population.`,
 
-			`The most common occupation of the people of this area includes agriculture of cashews, arc nuts, and Flower cultivation. Apart from this many people are engaged in large scale and small-scale industries.  A large number of families of this parish are employed in foreign countries and metropolitan city of the nation. Because of this the economic condition of the parish is satisfactorily improved.
-			`,
-
-			`Before the existence of the Gurpur parish the families living in this locality are belong to Fezar parish.  The people from Gurpur went to Ferar Church for the Eucharistic celebration and also for the spiritual benefits.  The number of people was doubling every year and there was urgent need for new parishes to take care of such rapid growth in population. 
-			`,
-
-			`On 7th October 1915, Parish Priest Rev. Fr. Reginald pinto laid a Foundation.  The building of the Chapel was said to be completed by Fr. J.M. Menezes and blessed by Rt. Rev. Bishop Paul Ferini S.J. on October 29th 1918.  In the Diocese of Mangalore, only this Parish was dedicated to our "Lady of Pompei".   A holy picture of the image of a Lady of Pompei was brought from a city called ‘Pompei’ in Italy, and was honord in this Parish. Because of the number of miracles and goodness of our Lady of Pompei, the barren Kowdur has blossomed like a beautiful garden in God’s vineyard.
-			`,
+			`On 7th October 1915, Parish Priest Rev. Fr. Reginald pinto laid a Foundation. The building of the Chapel was said to be completed by Fr. J.M. Menezes and blessed by Rt. Rev. Bishop Paul Ferini S.J. on October 29th 1918.  In the Diocese of Mangalore, only this Parish was dedicated to our "Lady of Pompei". A holy picture of the image of a Lady of Pompei was brought from a city called ‘Pompei’ in Italy, and was honord in this Parish. Because of the number of miracles and goodness of our Lady of Pompei, the barren Kowdur has blossomed like a beautiful garden in God’s vineyard.`,
 		],
 		priests: [
 			{
@@ -69,19 +58,19 @@ const parishHistory = {
 				name: 'Rev. Fr. J.S.T. Rodrigues ',
 				years: '(1955-71)',
 				description:
-					' He was a man of vision and deeply rooted in prayer.  His dedicated services were remarkable.  He constructed a new building for the Primary School, renovated the Façade for the Church bell, and built a Grotto of “Lady of Lourdes".  He invited "The sisters of the Little Flower of Bethany", Mangalore’ to serve parish.  As he was a lover of "Karnatic Music" he has sown the seed of music in the people of the parish. He trained the children to take part in the competitions held in the Diocesan level for many years and secured the first place. He took keen interest in promoting vocations for Religious and priesthood. The good example he set by his own priestly life, the vigilant eye he kept and the timely advice he gave to many young men must have, no doubt, brought many vocations to the priesthood among the men of the parish in which he was working.',
+					'He was a man of vision and deeply rooted in prayer.  His dedicated services were remarkable.  He constructed a new building for the Primary School, renovated the Façade for the Church bell, and built a Grotto of “Lady of Lourdes".  He invited "The sisters of the Little Flower of Bethany", Mangalore’ to serve parish. As he was a lover of "Karnatic Music" he has sown the seed of music in the people of the parish. He trained the children to take part in the competitions held in the Diocesan level for many years and secured the first place. He took keen interest in promoting vocations for Religious and priesthood. The good example he set by his own priestly life, the vigilant eye he kept and the timely advice he gave to many young men must have, no doubt, brought many vocations to the priesthood among the men of the parish in which he was working.',
 			},
 			{
 				name: 'Rev. Fr. Bernard D’Souza ',
 				years: '(1971-72)',
 				description:
-					'During the B.Ed. study, for a year he was appointed as a parish priest. With his democratic personality and inspiring sermons he became a loving priest to the prisoners.  Even as a young priest, he was sought out as a preacher and homilist on very important occasions. ',
+					'During the B.Ed. study, for a year he was appointed as a parish priest. With his democratic personality and inspiring sermons he became a loving priest to the prisoners. Even as a young priest, he was sought out as a preacher and homilist on very important occasions. ',
 			},
 			{
 				name: 'Rev. Fr. Stanly Pereira',
 				years: '(1983-91)',
 				description:
-					'He was a God-fearing priest. Devotion to the Blessed Virgin Mary was another special characteristic of Father Pereira.  He was deeply committed to making Mary known and loved.  The Marian Year of 1954 was a special year for him.  He wanted to do something to make this year known and loved, particularly by his own parishioners.  During this year, he organized processions and conducted ward meetings at the ward level.',
+					'He was a God-fearing priest. Devotion to the Blessed Virgin Mary was another special characteristic of Father Pereira. He was deeply committed to making Mary known and loved. The Marian Year of 1954 was a special year for him. He wanted to do something to make this year known and loved, particularly by his own parishioners.  During this year, he organized processions and conducted ward meetings at the ward level.',
 			},
 			{
 				name: 'Rev. Fr. Leo Veigas',
@@ -107,16 +96,17 @@ const parishHistory = {
 	},
 	kok: {
 		history: [
-			'ತೆನ್ಕಾ ಕುಶಿನ್ ಸೊಭಿತ್ ಫಲ್ಗುಣಿ ನಂಯ್ಚಿ ಮನ್ ಪಿಸ್ವೊಂಚಿ ಸೊಭಾಯ್. ಅಸ್ತಮ್ತೆಂತ್ ಭಂವ್ತಣಿ ಸೊಭಿತ್ ಪಾಚ್ವ್ಯಾ ಸೃಷ್ಠೆಚಿ ಅಪುರ್ಬಾಯ್. ಬೌಗೋಳಿಕ್ ಥರಾನ್ ಉಬಾರ್-ತಪ್ಕಟ್, ಪದವ್ ಆನಿ ಬಯ್ಲಾ ಸುವಾತ್ಯಾಂನಿ ನೈಸರ್ಗಿಕ್ ಪರಿಸರಾಂತ್ ಸೊಭೊನ್ ಆಸಾ ಚಾರಿತ್ರಿಕ್, ಸಾಂಸ್ಕೃತಿಕ್ ಆನಿ ಧಾರ್ಮಿಕ್ ವಿಶೇಷತಾಂನಿ ಭರೊನ್ ಸೊಭ್ಚೊ  ದಾಕ್ಟುಲೊ ಗಾಂವ್ ಕೌಡೂರ್ (ಗುರ್ಪುರ್-ಕೈಕಂಬ). ಪುರಾತನ್ ಕಾಳಾ ಥಾವ್ನ್ ಬಯ್ಲಾ ಸುವಾತ್ಯಾಂನಿ ಭಾತಾಚೆಂ, ಮಾಡ್-ಮಾಡಿಯಾಂಚೆಂ ಬೆಳೆಂ ಪ್ರಧಾನ್ ಜಾಲ್ಯಾರ್, ಪದವ್ ಸುವಾತೆರ್ ಕಾಜುಚಿ-ಕುಮೆರಿಚಿ ಆನಿ ಫುಲಾಂಚಿ ಕೃಷಿ. ಹ್ಯಾ ಶಿವಾಯ್ ವ್ಯಾಪಾರ್, ಲ್ಹಾನ್-ವ್ಹಡ್ ಸ್ವ-ಉದ್ಯಮಾಂನಿ ಭರ್ಲಲೊ ಹೊ ಗಾಂವ್ ಆಜ್ ಕೌಡೂರ್ (ಗುರ್ಪುರ್-ಕೈಕಂಬ) ಮ್ಹಣ್ ನಾಂವಾಡ್ದಿಕ್ ಜಾಲಾ.',
+			'ತೆನ್ಕಾ ಕುಶಿನ್ ಸೊಭಿತ್ ಫಲ್ಗುಣಿ ನಂಯ್ಚಿ ಮನ್ ಪಿಸ್ವೊಂಚಿ ಸೊಭಾಯ್. ಅಸ್ತಮ್ತೆಂತ್ ಭಂವ್ತಣಿ ಸೊಭಿತ್ ಪಾಚ್ವ್ಯಾ ಸೃಷ್ಠೆಚಿ ಅಪುರ್ಬಾಯ್. ಬೌಗೋಳಿಕ್ ಥರಾನ್ ಉಬಾರ್-ತಪ್ಕಟ್, ಪದವ್ ಆನಿ ಬಯ್ಲಾ ಸುವಾತ್ಯಾಂನಿ ನೈಸರ್ಗಿಕ್ ಪರಿಸರಾಂತ್ ಸೊಭೊನ್ ಆಸಾ ಚಾರಿತ್ರಿಕ್, ಸಾಂಸ್ಕೃತಿಕ್ ಆನಿ ಧಾರ್ಮಿಕ್ ವಿಶೇಷತಾಂನಿ ಭರೊನ್ ಸೊಭ್ಚೊ ದಾಕ್ಟುಲೊ ಗಾಂವ್ ಕೌಡೂರ್ (ಗುರ್ಪುರ್-ಕೈಕಂಬ). ಪುರಾತನ್ ಕಾಳಾ ಥಾವ್ನ್ ಬಯ್ಲಾ ಸುವಾತ್ಯಾಂನಿ ಭಾತಾಚೆಂ, ಮಾಡ್-ಮಾಡಿಯಾಂಚೆಂ ಬೆಳೆಂ ಪ್ರಧಾನ್ ಜಾಲ್ಯಾರ್, ಪದವ್ ಸುವಾತೆರ್ ಕಾಜುಚಿ-ಕುಮೆರಿಚಿ ಆನಿ ಫುಲಾಂಚಿ ಕೃಷಿ. ಹ್ಯಾ ಶಿವಾಯ್ ವ್ಯಾಪಾರ್, ಲ್ಹಾನ್-ವ್ಹಡ್ ಸ್ವ-ಉದ್ಯಮಾಂನಿ ಭರ್ಲಲೊ ಹೊ ಗಾಂವ್ ಆಜ್ ಕೌಡೂರ್ (ಗುರ್ಪುರ್-ಕೈಕಂಬ) ಮ್ಹಣ್ ನಾಂವಾಡ್ದಿಕ್ ಜಾಲಾ.',
 
 			'ಹಿಂದು-ಮುಸ್ಲಿಂ ಆನಿ ಕ್ರೀಸ್ತಿ ಸಮುದಾಯ್ ವಸ್ತಿ ಕರ್ನ್ ಆಸ್ಚ್ಯಾ ಕೌಡೂರ್ (ಗುರ್ಪುರ್-ಕೈಕಂಬ)oತ್ ಸುಮಾರ್ ಏಕ್ ಶತಮಾನಾಚಿ ಚರಿತ್ರಾ ಆಟಾಪ್ಲೆಲಿ ಪೊಂಪೈ ಮಾಯೆಚಿ ಫಿರ್ಗಜ್ ಹಾಂಗಾಸರ್ ಕಿರ್ಲೊನ್, ಫಾಂಟೆವ್ನ್, ಜಯ್ತ್ ರೂಕ್ ಜಾವ್ನ್ ಸೊಭ್ಚ್ಯಾ ಕ್ರೀಸ್ತಿ ಭಾವಾರ್ಥಾಚಿ ರುಜ್ವಾತ್ ಜಾವ್ನಾಸ್ಚಿ ಆಮ್ಚಿ ಫಿರ್ಗಜ್, ತಶೆಂಚ್ಚ್ ನವೆಂ ರೂಪ್ ಆನಿ ನವಿ ಸೊಭಾಯ್ ಘೆವ್ನ್ ಸೊಭೊನ್ ಆಸ್ಚೆಂ ಪೊಂಪೈ ಮಾಯೆಚೆಂ ದೇವ್ ಮಂದಿರ್ ದೆಖ್ತಾನಾ ಪೊಂಪೈ ಮಾಯೆಚಿ ಭಕ್ತ್ ಉಮಾಳುನ್ ಯೆತಾ.',
 
-			'ಪುರ್ವಿಲಿ ಚರಿತ್ರಾ : ',
+			'ಪುರ್ವಿಲಿ ಚರಿತ್ರಾ: ',
 			'ಗುರ್ಪುರ್ ಇಗರ್ಜ್ ಮಂಗ್ಳುರ್-ಮೂಡಬಿದ್ರಿ ರಸ್ತ್ಯಾರ್, ಮಂಗ್ಳುರ್ ಶಹರಾ ಥಾವ್ನ್ ಸುಮಾರ್ ೧೮ ಕಿ.ಮೀ. ಪಯ್ಸ್, ದೋನ್ ಫರ್ಲಾಂಗಾಂ ದಾವ್ಯಾಕ್, ಕಂದಾವರ ಗ್ರಾಮಾಂತ್ ಆಸಾ. ಇಗರ್ಜೆಚೊ ಜಾಗೊ ಆನಿ ಬಾಂದ್ಪಾO ಕಂದಾವರ ಗ್ರಾಮಾಂತ್ ಆಸಾತ್ ತರ್‌ಯೀ ಮೂಳೂರ್, ಬಡಗ ಉಳಿಪಾಡಿ, ಪಡುಫೆರಾರ್, ಮೂಡುಫೆರಾರ್, ಕೊಳಂಬೆ, ಗುರ್ಪುರ್, ಅಡ್ಡೂರ್ ಗ್ರಾಮಾಂನಿ ಗುರ್ಪುರ್ ಫಿರ್ಗಜೆಚ್ಯೊ ಗಡಿ ವಿಸ್ತಾರ್ಲ್ಯಾತ್.',
 
 			'ಗುರ್ಪುರ್ ಫಿರ್ಗಜೆಕ್ ತೊಂಡ್ಪಾಶಿO ಕೌಡೂರ್ ಮ್ಹಣ್ ಆಪಯ್ತಾತ್ ತರ್‌ಯೀ, ದಿಯೆಸೆಜಿಚ್ಯಾ ಅಧಿಕೃತ್ ಡೈರೆಕ್ಟರಿಂತ್ ಗುರ್ಪುರ್ ಫಿರ್ಗಜ್ ಮ್ಹಣ್ ಕಾಣ್ಸಿಲಾಂ. ಫಿರ್ಗಜೆಚ್ಯಾ ಕೌಡೂರ್ ವಾಡ್ಯಾಂತ್ ‘ಕೋಡಿ‘ ಮ್ಹಳ್ಳಿ ಸುವಾತ್ ಆಸಾ. ಹಾಂಗಾ ಥಾವ್ನ್ ಪಾವ್ಸ್-ಗೀಮ್ ಉದ್ಕಾ ಝರ್ ವಾಳ್ತಾಲಿ. ತಶೆಂ ಜಾಲ್ಲ್ಯಾನ್  ಆಸ್ಪಾಸ್ಚ್ಯಾ ಸುವಾತ್ಯಾಂನಿ ‘ಕೋಡಿ ಊರು’ ಕೌಡೂರ್ ಮ್ಹಣ್ ನಾಂವ್ ಪಡ್ಲೆಂ ಮ್ಹಣ್ತಾತ್. ಇಗರ್ಜ್ ಆಸ್ಚಿ ಸುವಾತ್ ಕೌಡೂರು ಲಾಗಿಂ ಆಸ್ಲೆಲ್ಯಾನ್ ಕೌಡೂರ್‌ಚಿ ಫಿರ್ಗಜ್ ಮ್ಹಳ್ಳೆಂ ನಾಂವ್ ಆಯ್ಲೆಂ ಮ್ಹಣ್ ಸಾಂಗ್ತಾತ್.',
-			' ಗುರ್ಪುರ್ ಫಿರ್ಗಜ್ ಅಸ್ತಿತ್ವಾಕ್ ಯೆಂವ್ಚ್ಯಾ ಪಯ್ಲೆಂ, ಹಾಂಗಾಸರ್ ವಸ್ತಿ ಕರ್ನ್ ಆಸ್ಚ್ಯಾ ಕುಟ್ಮಾಂಕ್ ಪೆಜಾರ್ ಫಿರ್ಗಜ್ ಮೂಳ್ ಜಾವ್ನ್ ಆಸ್‌ಲ್ಲಿ. ಫೆರಾರ್ ಇಗರ್ಜ್ ಜಾಲ್ಯಾ ಉಪ್ರಾಂತ್, ಹಾಂಗಾಚೊ ಲೋಕ್ ಫೆರಾರ್ ಫಿರ್ಗಜೆಕ್ ಸೆರ್ವಾಲೊ. ಆತಾಂ ಇಗರ್ಜ್ ಆಸ್ಚ್ಯಾ ಜಾಗ್ಯಾರ್ ಕೊಲ್ವಾಚೊ ಗೊಂವೊಳ್ ಘಾಲುನ್ ಹಾಂಗಾಚೊ ಲೋಕ್ ಮಾಗ್ಣ್ಯಾಕ್ ತವಳ್ ತವಳ್ ಸಾಂಗಾತಾ ಮೆಳ್ತಾಲೊ. ಹಾಂಗಾಚ್ಯಾ ಲೊಕಾಕ್, ವಾಡೊನ್ ಯೆಂವ್ಚ್ಯಾ ಕುಟ್ಮಾಂಚೊ ಸಂಖೊ ಪಳೆವ್ನ್ ಆನಿ ತಾಂಚಿ ಅತ್ಮೀಕ್ ಗರ್ಜ್ ಸಮ್ಜೊನ್ ಹಾಂಗಾಸರ್‌ಚ್ಚ್ ಏಕ್ ಇಗರ್ಜ್ ಸುರ್ವಾತುಂಚಿ ಆಲೋಚನ್ ಉದೆಲಿ.		',
-			'ಇಗರ್ಜ್ ಬಾಂದುನ್ ಹಾಡ್ಚ್ಯಾ ವಿವಿಧ್ ಯೋಜನಾಂತ್ ಮ್ಹಣಿಯರ‍್ಯಾOಚೊ ಪಾತ್ರ್ :',
+
+			' ಗುರ್ಪುರ್ ಫಿರ್ಗಜ್ ಅಸ್ತಿತ್ವಾಕ್ ಯೆಂವ್ಚ್ಯಾ ಪಯ್ಲೆಂ, ಹಾಂಗಾಸರ್ ವಸ್ತಿ ಕರ್ನ್ ಆಸ್ಚ್ಯಾ ಕುಟ್ಮಾಂಕ್ ಪೆಜಾರ್ ಫಿರ್ಗಜ್ ಮೂಳ್ ಜಾವ್ನ್ ಆಸ್‌ಲ್ಲಿ. ಫೆರಾರ್ ಇಗರ್ಜ್ ಜಾಲ್ಯಾ ಉಪ್ರಾಂತ್, ಹಾಂಗಾಚೊ ಲೋಕ್ ಫೆರಾರ್ ಫಿರ್ಗಜೆಕ್ ಸೆರ್ವಾಲೊ. ಆತಾಂ ಇಗರ್ಜ್ ಆಸ್ಚ್ಯಾ ಜಾಗ್ಯಾರ್ ಕೊಲ್ವಾಚೊ ಗೊಂವೊಳ್ ಘಾಲುನ್ ಹಾಂಗಾಚೊ ಲೋಕ್ ಮಾಗ್ಣ್ಯಾಕ್ ತವಳ್ ತವಳ್ ಸಾಂಗಾತಾ ಮೆಳ್ತಾಲೊ. ಹಾಂಗಾಚ್ಯಾ ಲೊಕಾಕ್, ವಾಡೊನ್ ಯೆಂವ್ಚ್ಯಾ ಕುಟ್ಮಾಂಚೊ ಸಂಖೊ ಪಳೆವ್ನ್ ಆನಿ ತಾಂಚಿ ಅತ್ಮೀಕ್ ಗರ್ಜ್ ಸಮ್ಜೊನ್ ಹಾಂಗಾಸರ್‌ಚ್ಚ್ ಏಕ್ ಇಗರ್ಜ್ ಸುರ್ವಾತುಂಚಿ ಆಲೋಚನ್ ಉದೆಲಿ.',
+			'ಇಗರ್ಜ್ ಬಾಂದುನ್ ಹಾಡ್ಚ್ಯಾ ವಿವಿಧ್ ಯೋಜನಾಂತ್ ಮ್ಹಣಿಯರ‍್ಯಾOಚೊ ಪಾತ್ರ್:',
 		],
 		priests: [
 			//TODO (Aroma): Reduce descriptions and update years
