@@ -3,8 +3,8 @@ html {
 	margin: 0;
 	padding: 0;
 	height: 100%;
-	/* overflow: hidden; */
 }
+
 .content {
 	position: fixed;
 	top: 0;
@@ -26,14 +26,12 @@ html {
 	z-index: 1000;
 	transition: opacity 1s ease-in-out;
 }
-.main-content {
-	position: relative;
-	z-index: 1;
-}
+
 .curtain-container.open {
 	pointer-events: none;
 	opacity: 0;
 }
+
 .curtain {
 	position: fixed;
 	top: 0;
@@ -56,6 +54,7 @@ html {
 		);
 	box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5);
 }
+
 .curtain::before {
 	content: '';
 	position: absolute;
@@ -70,40 +69,50 @@ html {
 		rgba(0, 0, 0, 0.1) 80px
 	);
 }
+
 .curtain-left,
 .curtain-left-inner {
 	left: 0;
 }
+
 .curtain-right,
 .curtain-right-inner {
 	right: 0;
 }
+
 .curtain-left-inner,
 .curtain-right-inner {
 	background-color: rgba(255, 255, 0, 0.7);
 }
+
 .open .curtain-left {
 	transform: translateX(-100%);
 }
+
 .open .curtain-right {
 	transform: translateX(100%);
 }
+
 .open .curtain-left-inner {
 	transform: translateX(-100%);
 	transition-delay: 0.2s;
 }
+
 .open .curtain-right-inner {
 	transform: translateX(100%);
 	transition-delay: 0.2s;
 }
+
 .closed .curtain-left,
 .closed .curtain-left-inner {
 	transform: translateX(0);
 }
+
 .closed .curtain-right,
 .closed .curtain-right-inner {
 	transform: translateX(0);
 }
+
 .curtain-container.closed .curtain-left,
 .curtain-container.closed .curtain-left-inner {
 	transform: translateX(0);
@@ -112,6 +121,7 @@ html {
 .curtain-container.open .curtain-left {
 	transform: translateX(-100%);
 }
+
 #toggleCurtain {
 	position: fixed;
 	top: 50%;
@@ -129,6 +139,7 @@ html {
 	border-radius: 10px; /* Increased from 5px */
 	transition: background-color 0.3s ease;
 }
+
 #toggleCurtain:hover {
 	background-color: #45a049;
 }
@@ -149,12 +160,14 @@ html {
 	pointer-events: none;
 	z-index: 1006;
 }
+
 .balloon {
 	height: 125px;
 	width: 105px;
 	border-radius: 75% 75% 70% 70%;
 	position: relative;
 }
+
 .balloon:before {
 	content: '';
 	height: 75px;
@@ -168,6 +181,7 @@ html {
 	right: 0;
 	margin: auto;
 }
+
 .balloon:after {
 	content: '▲';
 	text-align: center;
@@ -179,6 +193,7 @@ html {
 	right: 0;
 	margin: auto;
 }
+
 @keyframes float {
 	from {
 		transform: translateY(100vh);
@@ -212,11 +227,13 @@ html {
 	width: 400px; /* Increased from 300px */
 	height: 400px; /* Increased from 300px */
 }
+
 .timer-circle {
 	fill: transparent;
 	stroke: #e5ebe5;
 	stroke-width: 8; /* Increased from 6 */
 }
+
 .timer-path {
 	fill: transparent;
 	stroke: #23c714;
@@ -224,6 +241,7 @@ html {
 	stroke-linecap: round;
 	transition: stroke-dasharray 1s linear;
 }
+
 .timer-text {
 	position: absolute;
 	top: 50%;
