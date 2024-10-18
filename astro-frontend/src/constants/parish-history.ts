@@ -22,7 +22,7 @@ const parishHistory = {
 				name: 'Rev. Fr. A.A.E. Colaco',
 				years: '(1921-22)',
 				description:
-					'Fr. A.A.E. Colaco was appointed as the first pastor of the newly constituted parish of our "Lady of Pompei". During his time he opened a Primary school for the poor and the needed people of the Parish. ',
+					'Fr. A.A.E. Colaco was appointed as the first pastor of the newly constituted parish of our "Lady of Pompei". During his time he opened a Primary school for the poor and the needed people of the Parish.',
 			},
 			{
 				name: 'Rev. Fr. F.X. Nazreth',
@@ -34,7 +34,7 @@ const parishHistory = {
 				name: 'Rev. Fr. Raphel Pinto ',
 				years: ' (1930-33)',
 				description:
-					'Rev. Fr. Nazreth was succeeded by Rev. Fr. Raphel pinto.  In 1931 he constructed a parochial house.  In 1933, Rev. Fr. Antony F. Covelho and Rev. Fr. Denis Mathias have served the Church .',
+					'Rev. Fr. Nazreth was succeeded by Rev. Fr. Raphel pinto.  In 1931 he constructed a parochial house.  In 1933, Rev. Fr. Antony F. Covelho and Rev. Fr. Denis Mathias have served the Church.',
 			},
 			{
 				name: 'Rev. Fr. Aveline Rebello',
@@ -46,25 +46,25 @@ const parishHistory = {
 				name: 'Rev. Fr. A.J. Nazreth ',
 				years: '(1940-48)',
 				description:
-					'He was like the leaven in the bread or hidden catalyst, whose presence inspired many persons to devote their lives to the Lord. He constructed the road leading to the Church.  ',
+					'He was like the leaven in the bread or hidden catalyst, whose presence inspired many persons to devote their lives to the Lord. He constructed the road leading to the Church.',
 			},
 			{
 				name: 'Rev. Fr. John Castelino',
 				years: '(1948-55)',
 				description:
-					'With deep faith in God and filial trust in our Blessed Mother, he had plunged into the work of crating a Parish. He repaired the structure of the Church. ',
+					'With deep faith in God and filial trust in our Blessed Mother, he had plunged into the work of crating a Parish. He repaired the structure of the Church.',
 			},
 			{
 				name: 'Rev. Fr. J.S.T. Rodrigues ',
 				years: '(1955-71)',
 				description:
-					'He was a man of vision and deeply rooted in prayer.  His dedicated services were remarkable.  He constructed a new building for the Primary School, renovated the Façade for the Church bell, and built a Grotto of “Lady of Lourdes".  He invited "The sisters of the Little Flower of Bethany", Mangalore’ to serve parish. As he was a lover of "Karnatic Music" he has sown the seed of music in the people of the parish. He trained the children to take part in the competitions held in the Diocesan level for many years and secured the first place. He took keen interest in promoting vocations for Religious and priesthood. The good example he set by his own priestly life, the vigilant eye he kept and the timely advice he gave to many young men must have, no doubt, brought many vocations to the priesthood among the men of the parish in which he was working.',
+					'He was a man of vision and deeply rooted in prayer. His dedicated services were remarkable.  He constructed a new building for the Primary School, renovated the Façade for the Church bell, and built a Grotto of “Lady of Lourdes".  He invited "The sisters of the Little Flower of Bethany", Mangalore’ to serve parish. As he was a lover of "Karnatic Music" he has sown the seed of music in the people of the parish. He trained the children to take part in the competitions held in the Diocesan level for many years and secured the first place. He took keen interest in promoting vocations for Religious and priesthood. The good example he set by his own priestly life, the vigilant eye he kept and the timely advice he gave to many young men must have, no doubt, brought many vocations to the priesthood among the men of the parish in which he was working.',
 			},
 			{
 				name: 'Rev. Fr. Bernard D’Souza ',
 				years: '(1971-72)',
 				description:
-					'During the B.Ed. study, for a year he was appointed as a parish priest. With his democratic personality and inspiring sermons he became a loving priest to the prisoners. Even as a young priest, he was sought out as a preacher and homilist on very important occasions. ',
+					'During the B.Ed. study, for a year he was appointed as a parish priest. With his democratic personality and inspiring sermons he became a loving priest to the prisoners. Even as a young priest, he was sought out as a preacher and homilist on very important occasions.',
 			},
 			{
 				name: 'Rev. Fr. Stanly Pereira',
@@ -76,19 +76,19 @@ const parishHistory = {
 				name: 'Rev. Fr. Leo Veigas',
 				years: '(1991-98)',
 				description:
-					'An active parish priest was transferred from the Bidar Mission station to this parish.  The depth of his interior life was reflected in his attitude towards prayer and various actives of the parish.  His zeal was amazing, and his efforts extended far beyond the confines of his parish.  He had the interests of the entire parish at heart, making him a beloved priest to the parishioners.  He worked to combat alcoholism in families through his counseling and guidance. He created an atmosphere of spiritual awareness through retreats and B.C.C. meetings.  Under his able and dynamic leadership, in remembrance of the Platinum Jubilee of the parish, an attractive and spacious temple of God was built.  He also worked for the downtrodden, the sick, and victims of natural disasters. 					',
+					'An active parish priest was transferred from the Bidar Mission station to this parish. The depth of his interior life was reflected in his attitude towards prayer and various actives of the parish. His zeal was amazing, and his efforts extended far beyond the confines of his parish. He had the interests of the entire parish at heart, making him a beloved priest to the parishioners. He worked to combat alcoholism in families through his counseling and guidance. He created an atmosphere of spiritual awareness through retreats and B.C.C. meetings.  Under his able and dynamic leadership, in remembrance of the Platinum Jubilee of the parish, an attractive and spacious temple of God was built. He also worked for the downtrodden, the sick, and victims of natural disasters.',
 			},
 			{
 				name: 'Rev. Fr. Leo Veigas',
 				years: '(1991-98)',
 				description:
-					'An active parish priest was transferred from the Bidar Mission station to this parish.  The depth of his interior life was reflected in his attitude towards prayer and various actives of the parish.  His zeal was amazing, and his efforts extended far beyond the confines of his parish.  He had the interests of the entire parish at heart, making him a beloved priest to the parishioners.  He worked to combat alcoholism in families through his counseling and guidance. He created an atmosphere of spiritual awareness through retreats and B.C.C. meetings.  Under his able and dynamic leadership, in remembrance of the Platinum Jubilee of the parish, an attractive and spacious temple of God was built.  He also worked for the downtrodden, the sick, and victims of natural disasters. 					',
+					'An active parish priest was transferred from the Bidar Mission station to this parish. The depth of his interior life was reflected in his attitude towards prayer and various actives of the parish. His zeal was amazing, and his efforts extended far beyond the confines of his parish.  He had the interests of the entire parish at heart, making him a beloved priest to the parishioners. He worked to combat alcoholism in families through his counseling and guidance. He created an atmosphere of spiritual awareness through retreats and B.C.C. meetings. Under his able and dynamic leadership, in remembrance of the Platinum Jubilee of the parish, an attractive and spacious temple of God was built. He also worked for the downtrodden, the sick, and victims of natural disasters.',
 			},
 			{
 				name: 'Rev. Fr. Cyprian Pinto ',
 				years: '(1998-05)',
 				description:
-					'He was a young and energetic became the parish priest in the year 1998.  As an energetic and active young priest, he won the hearts of the children, young and the old.   After his entry to this Parish the buildings and the institutions with a dynamic life in them, give evidence that not only have the dry bones been covered with sinews and filled with life, but this parish stands out decked like a beautiful, young bride”.  His achievements are marvelous to the Parish.  As a shepherd of the flock entrusted to him, his concern for the spiritual welfare led to plan regular retreat, sermons and spiritual guidance, without considering the price he had to pay in terms of time and energy.  His hidden charity for the sick and the poor was always at the cost of some sacrifice, to his own self and of his own needs.  He is known for his meaningful sermons and commonly known as ‘Retreat preacher’.  He preached more than 100 retreats to different parishes.  He is soft spoken, God fearing, loving and revolts against injustice.  To uplift the poor and the marginalized people he took keen interest in building the infrastructure of the Hr.Pry. School through computer education, and midday meals.  The credit goes for building the "Pompei Sabha Bhavana" and the church "Dwara". All the achievements of our zealous priest, the parishioners concluded: “It is impossible to enumerate all that you have done for this parish. To name but a few of the things: The Altar servers’ sodality, sodalities for men, women, boys, girls and St.Vincent de Paul Society…etc., 			',
+					'He was a young and energetic became the parish priest in the year 1998. As an energetic and active young priest, he won the hearts of the children, young and the old. After his entry to this Parish the buildings and the institutions with a dynamic life in them, give evidence that not only have the dry bones been covered with sinews and filled with life, but this parish stands out decked like a beautiful, young bride”. His achievements are marvelous to the Parish. As a shepherd of the flock entrusted to him, his concern for the spiritual welfare led to plan regular retreat, sermons and spiritual guidance, without considering the price he had to pay in terms of time and energy.  His hidden charity for the sick and the poor was always at the cost of some sacrifice, to his own self and of his own needs. He is known for his meaningful sermons and commonly known as ‘Retreat preacher’. He preached more than 100 retreats to different parishes. He is soft spoken, God fearing, loving and revolts against injustice.  To uplift the poor and the marginalized people he took keen interest in building the infrastructure of the Hr.Pry. School through computer education, and midday meals. The credit goes for building the "Pompei Sabha Bhavana" and the church "Dwara". All the achievements of our zealous priest, the parishioners concluded: “It is impossible to enumerate all that you have done for this parish. To name but a few of the things: The Altar servers’ sodality, sodalities for men, women, boys, girls and St.Vincent de Paul Society…etc.',
 			},
 
 			//TODO (Aroma): Add other priests info
