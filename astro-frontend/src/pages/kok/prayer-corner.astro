@@ -2,7 +2,7 @@
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import Layout from '~/layouts/layout.astro';
 import { Image } from 'astro:assets';
-//TODO: to replace this image with actual novena image
+//TODO (Aroma): to replace this image with actual novena image
 import motherMary from '~/assets/mother-mary.jpg';
 
 const lang = getLangFromUrl(Astro.url);
@@ -15,7 +15,7 @@ const t = useTranslations(lang);
 			<h1
 				class="mb-4 border-l-4 border-natgeo-yellow pl-3 text-3xl font-extrabold lg:text-4xl"
 			>
-				{t('prayer.title')}
+				{t('nav.prayer-corner')}
 			</h1>
 			<p class="text-md pb-6 font-poppins text-slate-400">
 				<!-- {t('prayer.subtitle')} -->

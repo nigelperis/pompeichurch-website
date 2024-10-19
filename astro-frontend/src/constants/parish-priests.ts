@@ -1,6 +1,6 @@
 import dummyImage from '~/assets/dummy-image.png';
 import frAaeColaco from '~/assets/fr-aae-colaco.jpeg';
-import frAntonyLobo from '~/assets/fr-antony-lobo.jpg';
+import frAnthonyLobo from '~/assets/fr-anthony-lobo.jpg';
 import frAvelineRebello from '~/assets/fr-aveline-rebello.jpg';
 import frBernardDsouza from '~/assets/fr-bernard-dsouza.jpg';
 import frCyprianPinto from '~/assets/fr-cyprian-pinto.jpeg';
@@ -89,8 +89,8 @@ const parishPriests = [
 		date: '2015-16',
 	},
 	{
-		imageUrl: frAntonyLobo,
-		name: 'antonylobo',
+		imageUrl: frAnthonyLobo,
+		name: 'anthonylobo',
 		date: '2016-22',
 	},
 ];

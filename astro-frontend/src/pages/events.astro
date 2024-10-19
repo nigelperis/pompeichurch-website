@@ -1,6 +1,10 @@
 ---
 import EventsList from '~/components/sections/events/events-list.astro';
 import Layout from '~/layouts/layout.astro';
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <Layout title="Pompei Church | Events">
@@ -9,7 +13,7 @@ import Layout from '~/layouts/layout.astro';
 			<h1
 				class="mb-4 border-l-4 border-natgeo-yellow pl-3 text-3xl font-extrabold lg:text-4xl"
 			>
-				EVENTS
+				{t('nav.events')}
 			</h1>
 			<p class="pb-4 text-justify font-geist text-lg">
 				Here is a glimpse of the esteemed former parish priests who have

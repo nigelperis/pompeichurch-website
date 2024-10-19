@@ -2,6 +2,10 @@
 import Layout from '~/layouts/layout.astro';
 import PompeiSabhaBhavan from '~/components/sections/infrastructure/pompei-sabha-bhavan.astro';
 import CentenaryHall from '~/components/sections/infrastructure/centenary-hall.astro';
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <Layout title="Pompei Church | Infrastructure">
@@ -10,7 +14,7 @@ import CentenaryHall from '~/components/sections/infrastructure/centenary-hall.a
 			<h1
 				class="mb-4 border-l-4 border-natgeo-yellow pl-3 text-3xl font-extrabold lg:text-4xl"
 			>
-				INFRASTRUCTURE
+				{t('nav.infrastructure')}
 			</h1>
 			<p class="text-justify font-geist text-lg">
 				Explore our mission and the institutions that help make it possible.

@@ -1,23 +1,26 @@
 ---
-import { Image } from 'astro:assets';
 import { cn } from '~/helpers/cn';
 import HoverableLink from './ui/hoverable-link.astro';
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 interface Props {
 	eventName: string;
 	imageUrl: ImageMetadata;
 	description: string;
 	facebookLink: string;
+	slug: string;
 	class?: string;
 }
 
-const {
-	eventName,
-	imageUrl,
-	description,
-	facebookLink,
-	class: className,
-} = Astro.props;
+const { eventName, imageUrl, description, slug, class: className } = Astro.props;
+
+const eventUrl = lang === 'en' ? `/events/${slug}` : `/kok/events/${slug}`;
+
 ---
 
 <div
@@ -39,12 +42,12 @@ const {
 			<h3 class="event-title text-xl font-bold text-slate-900">
 				{eventName}
 			</h3>
-			<p
-				class="event-description justify pb-4 text-left text-base text-slate-700"
-			>
+			<p class="event-description justify pb-4 text-left text-base text-slate-700">
 				{description}
 			</p>
 		</div>
-		<HoverableLink> Know More </HoverableLink>
+		<HoverableLink href={eventUrl}>
+			{t('ui.more-button-read')}
+		</HoverableLink>
 	</div>
 </div>

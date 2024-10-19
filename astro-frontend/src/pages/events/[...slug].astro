@@ -1,0 +1,43 @@
+---
+import HoverableLink from '~/components/ui/hoverable-link.astro';
+import { events } from '~/constants/events';
+import Layout from '~/layouts/layout.astro';
+import { Image } from 'astro:assets';
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+
+export async function getStaticPaths() {
+  return events.map((event) => ({
+    params: { slug: event.slug },
+  }));
+}
+
+const { slug } = Astro.params;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const event = events.find((event) => event.slug === slug);
+
+if (!event) {
+  throw new Error(`Event not found for slug: ${slug}`);
+}
+---
+
+<Layout title={`Event - ${event.eventName}`}>
+  <main class="mx-auto max-w-4xl overflow-hidden bg-white">
+    <section class="flex flex-col p-6">
+      <h1 class="mb-4 border-l-4 border-natgeo-yellow pl-3 text-3xl font-extrabold lg:text-4xl">
+        {event.eventName}
+      </h1>
+      <Image
+          src={event.imageUrl}
+          alt={event.eventName}
+          class="rounded-sm md:float-left md:ml-3 mt-1 md:w-1/2"
+      />
+      <p class="text-justify mt-4 text-lg">{event.description}</p>
+      <div class="flex mt-3">
+      <HoverableLink href={event.facebookLink}>
+        {t('ui.facebook-link')}
+      </HoverableLink>
+      </div>
+    </section>
+  </main>
+</Layout>

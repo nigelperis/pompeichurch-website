@@ -77,8 +77,14 @@ export const ui = {
 		'landing.follow-our-journey': 'Follow Our Journey',
 		'ui.more-button-know': 'KNOW MORE',
 		'ui.more-button-show': 'SHOW MORE',
+		'ui.more-button-read': 'Read More',
+		'ui.facebook-link': 'Facebook Link',
+		'ui.show-more-events': 'Show More Events',
+		'ui.view-all': 'View All',
 		'contact.title': 'CONTACT US',
 		'history.title': 'Our History',
+		'history.subtitle':
+			'A Glimpse on the history of Our Lady of Pompei Church Gurpur',
 		'gallery.title': 'GALLERY',
 		'gallery.subtitle': 'Capturing moments of grace',
 		'priest.service-period': 'Service Period',
@@ -97,9 +103,89 @@ export const ui = {
 		'priest.paulrego': 'Rev. Fr. Paul Rego',
 		'priest.gregoryserrao': 'Rev. Fr. Gregory Serrao',
 		'priest.paulpinto': 'Rev. Fr. Paul Pinto',
-		'priest.antonylobo': 'Rev. Fr. Anthony Lobo',
-		'prayer.title': 'NOVENA',
-		'prayer.subtitle': "Let's pray",
+		'priest.anthonylobo': 'Rev. Fr. Anthony Lobo',
+		'bethany.title': 'Bethany School (CBSE)',
+		'rosamystica.title': 'Rosa Mystica Educational Institutions',
+		'jeevadaan.title': 'Jeevadaan',
+		'snehasadan.title': 'Snehasadan',
+		'pompeiconvent.title': 'Pompei Convent',
+		'rosamysticaconvent.title': 'Rosa Mystica Convent',
+		'hall.title': 'Pompei Sabha Bhavan',
+		'centenaryhall.title': 'Centenary Hall',
+		'church.patron': 'Vailankani Mai',
+		'obituary.subtitle': 'Tribute of love ',
+		'commissions.convenor': 'Convenor ',
+		'commissions.heading': 'Commission',
+		'commissions.secretary': 'Secretary',
+		'commissions.liturgy-word-proclamation': ' Liturgy-Word-Proclamation',
+		'commissions.witness': 'Witness (Martyira)',
+		'commissions.service': 'Service(Diakonia) ',
+		'commissions.unity': 'Unity (Koinonia)',
+		'commissions.commission-for-bible-apostolate':
+			'Commission for Bible Apostolate',
+		'commissions.commission-for-catechetics-apostolate':
+			'Commission for Catechetics Apostolate',
+		'commissions.commission-for-proclamation-apostolate':
+			'Commission for Proclamation Apostolate',
+		'commissions.commission-for-liturgy': 'Commission for Liturgy',
+		'commissions.commission-for-social-development-apostolate':
+			'Commission for Social Development Apostolate',
+		'commissions.commission-for-social-communication':
+			'Commission for Social Communication',
+		'commissions.commission-for-justice-and-peace-apostolate':
+			'Commission for Justice and Peace Apostolate',
+		'commissions.commission-for-formation-of-the-priests-and-the-religious':
+			' Commission for Formation of the Priests and the Religious',
+		'commissions.commission-for-environment-apostolate':
+			'Commission for Environment Apostolate',
+		'commissions.commission-for-education-apostolate':
+			'Commission for Education Apostolate',
+		'commissions.commission-for-health-apostolate':
+			'Commission for Health Apostolate',
+		'commissions.commission-for-labour-apostolate':
+			'Commission for Labour Apostolate',
+		'commissions.commission-for-family-apostolate':
+			'Commission for Family Apostolate',
+		'commissions.commission-for-migrants-apostolate':
+			' Commission for Migrants Apostolate',
+		'commissions.commission-for-apostolate-to-specially-abled':
+			'Commission for Apostolate to Specially Abled',
+		'commissions.commission-for-basic-ecclesial-communities':
+			'Commission for Basic Ecclesial Communities',
+		'commissions.commission-for-laity-apostolate':
+			'Commission for Laity Apostolate',
+		'commissions.commission-for-women': 'Commission for Women',
+		'commissions.commission-for-youth-apostolate':
+			' Commission for Youth Apostolate ',
+		'commissions.commission-for-ecumenism-apostolate':
+			'Commission for Ecumenism Apostolate',
+		'commissions.commission-for-inter-religious-dialogue-apostolate':
+			'Commission for Inter-Religious Dialogue Apostolate',
+		'commissions.mrs-linet-monteiro': 'Mrs. Linet Monteiro ',
+		'commissions.mr-roshan-dcunha': 'Mr. Roshan DCunha',
+		'commissions.sr-dr-sadhana': 'Sr. Dr. Sadhana',
+		'commissions.mrs-violet-peris': 'Mrs. Violet Peris',
+		'commissions.mr-henry-sequeira': ' Mr. Henry Sequeira',
+		'commissions.mrs-jacintha-peris': ' Mrs. Jacintha Peris',
+		'commissions.mrs-gretta-lobo': ' Mrs. Gretta Lobo',
+		'commissions.mrs-praveena-dsilva': ' Mrs. Praveena DSilva',
+		'commissions.mrs-vijaya-dcosta': 'Mrs. Vijaya DCosta',
+		'commissions.mrs-laveena-andrade': 'Mrs. Laveena Andrade	',
+		'commissions.mr-michael-johnson': ' Mr. Michael Johnson  ',
+		'commissions.sr-jaya': 'Sr. Jaya	',
+		'commissions.mr-charles-sequeira': 'Mr. Charles Sequeira	',
+		'commissions.mrs-gretta-nazareth': 'Mrs. Gretta Nazareth',
+		'commissions.mrs-wilma-crasta': ' Mrs. Wilma Crasta',
+		'commissions.mrs-laveena-rosario': ' Mrs. Laveena Rosario ',
+		'commissions.sr-leena-pereira': 'Sr. Leena Pereira ',
+		'commissions.mr-melwin-saldanha': 'Mr. Melwin Saldanha ',
+		'commissions.mrs-delcy-rodrigues': 'Mrs. Delcy Rodrigues',
+		'commissions.mr-ivan-dsouza': 'Mr. Ivan DSouza',
+		'commissions.mr-alwyn-pinto': 'Mr. Alwyn Pinto',
+		'commissions.mrs-juliet-serrao': 'Mrs. Juliet Serrao		',
+		'commissions.mr-godwin-tauro': 'Mr. Godwin Tauro',
+		'commissions.mrs-margarette-andrade': 'Mrs. Margarette Andrade	',
+		'commissions.mr-rajesh-noronha': 'Mr. Rajesh Noronha',
 	},
 	kok: {
 		'nav.home': 'ಹೋಮ್',
@@ -173,8 +259,13 @@ export const ui = {
 		'landing.follow-our-journey': 'ಮಾಧ್ಯಮನಿಂ ಆಮ್ಚಿಂ ಪಾವ್ಲಾಂ',
 		'ui.more-button-know': 'ಚಡಿತ್ ಮಾಹೆತ್',
 		'ui.more-button-show': 'ಚಡಿತ್ ಮಾಹೆತ್',
+		'ui.more-button-read': 'ಚಡಿತ್ ಮಾಹೆತ್',
+		'ui.facebook-link':'ಫೇಸ್ಬುಕ್ ಲಿಂಕ್',
+		'ui.show-more-events': 'ಚಡಿತ್ ಘಡಿತಾಂ',
+		'ui.view-all':'ಚಡಿತ್ ಮಾಹೆತ್',
 		'contact.title': 'ಸಂಪರ್ಕ್ ಕರಾ',
-		'history.title': 'ಆಮ್ಚಿಂ ಚರಿತ್ರಾ',
+		'history.title': 'ಆಮ್ಚಿ ಚರಿತ್ರಾ',
+		'history.subtitle': 'ಫಿರ್ಗಜ್ ಆದಿಂ ಆನಿ ಆತಾಂ . . .',
 		'gallery.title': 'ಗ್ಯಾಲರಿ',
 		'gallery.subtitle': 'Capturing moments of grace',
 		'priest.service-period': 'ಅವ್ದಿ',
@@ -194,6 +285,84 @@ export const ui = {
 		'priest.gregoryserrao': 'ಮಾ| ಬಾ| ಗ್ರೆಗರಿ ಸೆರಾವೊ',
 		'priest.paulpinto': 'ಮಾ| ಬಾ| ಪಾವ್ಲ್ ಪಿಂಟೊ',
 		'priest.anthonylobo': 'ಮಾ| ಬಾ| ಆ್ಯಂಟನಿ ಲೋಬೊ',
-		'prayer.title': 'ನೊವೆನ್',
+		'bethany.title': 'ಬೆಥನಿ ಸ್ಕೂಲ್ (ಸಿ.ಬಿ.ಸ್.ಸಿ)',
+		'jeevadaan.title': 'ಜೀವದಾನ',
+		'rosamystica.title': 'ರೋಸಾ ಮಿಸ್ತಿಕಾ ಶಿಕ್ಪಾ ಸಂಸ್ಥೆ',
+		'snehasadan.title': 'ಸ್ನೇಹಾಸದನ',
+		'pompeiconvent.title': 'ಪೊಂಪೈ ಕೊವೆಂತ್ ',
+		'rosamysticaconvent.title': 'ರೋಸಾ ಮಿಸ್ತಿಕಾ ಕೊವೆಂತ್',
+		'hall.title': 'ಪೊಂಪೈ ಸಭಾ ಭವನ್ ',
+		'centenaryhall.title': 'ಶತಾಬ್ದಿ ಸಾಲ್',
+		'church.patron': 'ವೈಲಂಕಣಿ ಮಾಯ್',
+		'obituary.subtitle': 'ಮೊಗಾಚೊ ಉಡಾಸ್',
+		'commissions.convenor': ' ಸಂಚಾಲಕಿ/ಕ್ ',
+		'commissions.heading': 'ಆಯೋಗ್',
+		'commissions.secretary': 'ಕಾರ್ಯದರ್ಶಿ',
+		'commissions.liturgy-word-proclamation': ' ದೇವ್ ಸ್ತುತಿ -ಸುವರ್ತಾ-ಪರ್ಗಟ್ಣಿ ',
+		'commissions.witness': 'ಸಾಕ್ಸ್ ',
+		'commissions.service': 'ಸೆವಾ ',
+		'commissions.unity': 'ಎಕ್ತಾರ್ ',
+		'commissions.commission-for-bible-apostolate':
+			'ಪವಿತ್ರ್ ಪುಸ್ತಕಚಾ ಅಪಸ್ತಾಲಾದಿಚೊ ಆಯೋಗ್',
+		'commissions.commission-for-catechetics-apostolate':
+			'ಕ್ರಿಸ್ತಿ ಶಿಕ್ಷಣ್ ಆಯೋಗ್',
+		'commissions.commission-for-proclamation-apostolate':
+			'ಪರ್ಗಟ್ಣಿ ಆನಿ ಸುವಾರ್ತಾ ಪ್ರಸಾರ್ ಅಪಸ್ತಾಲಾದಿಚೊ ಆಯೋಗ್',
+		'commissions.commission-for-liturgy': 'ದೇವ್ ಸ್ತುತಿ  ಅಪಸ್ತಲಾದಿಚೊ ಆಯೋಗ್',
+		'commissions.commission-for-social-development-apostolate':
+			'ಸಮಾಜ್  ಅಭಿವೃದ್ಧಿ ಅಪಸ್ತಲಾದಿಚೊ ಆಯೋಗ್',
+		'commissions.commission-for-social-communication':
+			'ಸಾಮಾಜಿಕ್ ಸಂವಹನ್ ಅಪಸ್ತಾಲಾದಿಚೊ ಆಯೋಗ್ ',
+		'commissions.commission-for-justice-and-peace-apostolate':
+			'ನೀತ್ ಆನಿ ಶಾಂತಿಚಾ ಅಪಸ್ತಾಲಾದಿಚೊ ಆಯೋಗ್',
+		'commissions.commission-for-formation-of-the-priests-and-the-religious':
+			'ದೇವ್ ಆಪವ್ಣೆಂ ಆನಿ ಯಾಜಕೀ ತರ್ಭೆತಿ ಅಪಸ್ತಲಾದಿಚೊ ಆಯೋಗ್ ',
+		'commissions.commission-for-environment-apostolate':
+			'ಪರಿಸರ್  ಆಯೋಗ್(ಅಪಸ್ತಲಾದಿಚೊ ಆಯೋಗ್) ',
+		'commissions.commission-for-education-apostolate':
+			'ಶಿಕ್ಪಾ ಅಪಸ್ತಲಾದಿಚೊ ಆಯೋಗ್ ',
+		'commissions.commission-for-health-apostolate': 'ಭಲಾಯ್ಕೆ ಅಪಸ್ತಲಾದಿಚೊ ಆಯೋಗ್',
+		'commissions.commission-for-labour-apostolate':
+			'ವಾವ್ರಾಡ್ಯಾಂಚಾ ಅಪಸ್ತಲಾದಿಚೊ ಆಯೋಗ್',
+		'commissions.commission-for-family-apostolate': 'ಕುಟ್ಮಾ ಆಪಸ್ತಲಾದಿಚೊ ಆಯೋಗ್',
+		'commissions.commission-for-migrants-apostolate':
+			'ಥಳಾಂತಾರ್ಕಾಂಚಾ ‌ಅಪಸ್ತಲಾದಿಚೊ ಆಯೋಗ್ ',
+		'commissions.commission-for-apostolate-to-specially-abled':
+			'ವಿಶೇಸ್ -ಸಕ್ತೆ ಅಪಸ್ತಲಾದಿಚೊ ಆಯೋಗ್ ',
+		'commissions.commission-for-basic-ecclesial-communities':
+			'ಮುಳಾವ್ಯಾ ಕ್ರಿಸ್ತಾಂವ್ ಸಮುದಾಯಾಂಚಾ ಅಪಸ್ತಲಾದಿಚೊ ಆಯೋಗ್ ',
+		'commissions.commission-for-laity-apostolate': 'ಲಾಯಿಕ್ ಅಪಸ್ತಲಾದಿಚೊ ಆಯೋಗ್ ',
+		'commissions.commission-for-women': 'ಸ್ತ್ರೀ ಅಭಿವೃದ್ಧಿ ಅಪಸ್ತಲಾದಿಚೊ ಆಯೋಗ್',
+		'commissions.commission-for-youth-apostolate':
+			' ಯುವಜಣಾಂಚಾ ಅಪಸ್ತಲಾದಿಚೊ ಆಯೋಗ್',
+		'commissions.commission-for-ecumenism-apostolate':
+			'ಕ್ರಿಸ್ತಿ ಎಕ್ವಟಾಚಾ ಅಪಸ್ತಲಾದಿಚೊ ಆಯೋಗ್',
+		'commissions.commission-for-inter-religious-dialogue-apostolate':
+			'ಅಂತರ್ ಧರ್ಮೀಯ್ ಅಪಸ್ತಲಾದಿಚೊ ಆಯೋಗ್',
+		'commissions.mrs-linet-monteiro': 'ಶ್ರೀಮತಿ ಲಿನೆಟ್ ಮೊಂತೆರೊ ',
+		'commissions.mr-roshan-dcunha': 'ಶ್ರೀಮಾನ್ ರೋಶನ್ ಡಿಕುನ್ಹಾ ',
+		'commissions.sr-dr-sadhana': ' ಸಿ.ದೊ ಸಾದನ',
+		'commissions.mrs-violet-peris': ' ಶ್ರೀಮತಿ ವಯಲೆಟ್ ಪೆರಿಸ್',
+		'commissions.mr-henry-sequeira': '  ಶ್ರೀಮಾನ್ ಹೆನ್ರಿ ಸಿಕ್ವೆರಾ',
+		'commissions.mrs-jacintha-peris': '  ಶ್ರೀಮತಿ ಜೆಸಿಂತ ಪೆರಿಸ್',
+		'commissions.mrs-gretta-lobo': ' ಶ್ರೀಮತಿ ಗ್ರೆಟ್ಟಾ ಲೋಬೊ',
+		'commissions.mrs-praveena-dsilva': ' ಶ್ರೀಮತಿ ಪ್ರವೀಣ ಡಿಸಿಲ್ವ		',
+		'commissions.mrs-vijaya-dcosta': ' ಶ್ರೀಮತಿ ವಿಜಯ ಡಿಕೋಸ್ತ ',
+		'commissions.mrs-laveena-andrade': ' ಶ್ರೀಮತಿ ಲವೀನಾ ಅಂದ್ರಾದೆ		',
+		'commissions.mr-michael-johnson': ' ಶ್ರೀಮಾನ್ ಮೈಕಲ್ ಜಾನ್ಸನ್  ',
+		'commissions.sr-jaya': ' ಸಿ . ಜಯ		',
+		'commissions.mr-charles-sequeira': ' ಶ್ರೀಮಾನ್ ಚಾರ್ಲ್ಸ್  ಸಿಕ್ವೆರಾ		',
+		'commissions.mrs-gretta-nazareth': '  ಶ್ರೀಮತಿ  ಗ್ರೆಟ್ಟಾ ನಜ್ರೆತ್',
+		'commissions.mrs-wilma-crasta': ' ಶ್ರೀಮತಿ ವಿಲ್ಮಾ ಕ್ರಾಸ್ತಾ',
+		'commissions.mrs-laveena-rosario': ' ಶ್ರೀಮತಿ ಲವೀನಾ ರೊಸಾರಿಯೊ ',
+		'commissions.sr-leena-pereira': ' ಸಿ. ಲೀನಾ ಪಿರೆರ್ ',
+		'commissions.mr-melwin-saldanha': 'ಶ್ರೀಮಾನ್ ಮೆಲ್ವಿನ್ ಸಲ್ಡಾನ್ಹಾ ',
+		'commissions.mrs-delcy-rodrigues': 'ಶ್ರೀಮತಿ ಡೇಲಸಿ ರೊಡ್ರಿಗೆಸ್',
+		'commissions.mr-ivan-dsouza': 'ಶ್ರೀಮಾನ್ ಐವನ್ ಡಿಸೋಜ',
+		'commissions.mr-alwyn-pinto': 'ಶ್ರೀಮಾನ್ ಅಲ್ವಿನ್ ಪಿಂಟೊ',
+		'commissions.mrs-juliet-serrao': 'ಶ್ರೀಮತಿ ಜೂಲಿಯೇಟ್ ಸೆರ್ರಾವೋ		',
+		'commissions.mr-godwin-tauro': 'ಶ್ರೀಮಾನ್ ಗಾಡ್ವಿನ್  ತಾವ್ರೋ',
+		'commissions.mrs-margarette-andrade': ' ಶ್ರೀಮತಿ ಮಾರ್ಗರೇಟ ಅಂದ್ರಾದೆ		',
+		'commissions.mr-rajesh-noronha': 'ಶ್ರೀಮಾನ್ ರಾಜೇಶ್ ನೊರೊನ್ಹಾ',
 	},
 } as const;

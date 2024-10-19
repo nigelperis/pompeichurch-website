@@ -1,34 +1,23 @@
-import eventImage1 from '~/assets/centenary-hall.jpg';
-import eventImage from '~/assets/mass-interior.jpg';
+import event1 from '~/assets/event1.jpg';
+import event2 from '~/assets/event2.jpg';
 
+// TODO (Aroma): update facebook links
 const events = [
 	{
-		eventName: 'Community Gathering',
-		imageUrl: eventImage,
+		eventName: 'A Day with the Lord',
+		slug:"a-day-with-the-lord",
+		imageUrl: event2,
 		description:
-			'Join us for a community gathering filled with fun, food, and fellowship. Help us support those in need by participating in our charity drive.',
-		facebookLink: 'https://facebook.com/event-link', // Replace with actual Facebook event link
+			'A day of adoration, gratitude, forgiveness, and heartfelt intentions in the presence of the Lord',
+		facebookLink: 'https://facebook.com/event-link',
 	},
 	{
-		eventName: 'Charity Drive',
-		imageUrl: eventImage1,
+		eventName: 'PYC League 2024',
+		slug:"pyc-league-2024",
+		imageUrl: event1,
 		description:
-			'Help us support those in need by participating in our charity drive. Help us support those in need by participating in our charity drive.',
-		facebookLink: 'https://facebook.com/event-link', // Replace with actual Facebook event link
-	},
-	{
-		eventName: 'Community Gathering',
-		imageUrl: eventImage,
-		description:
-			'Join us for a community gathering filled with fun, food, and fellowship. Help us support those in need by participating in our charity drive.',
-		facebookLink: 'https://facebook.com/event-link', // Replace with actual Facebook event link
-	},
-	{
-		eventName: 'Charity Drive',
-		imageUrl: eventImage1,
-		description:
-			'Help us support those in need by participating in our charity drive. Help us support those in need by participating in our charity drive.',
-		facebookLink: 'https://facebook.com/event-link', // Replace with actual Facebook event link
+			'Enthusiatic Football and Cricket League hosted by ICYM - PYC for Gurpur Parishoners',
+		facebookLink: 'https://facebook.com/event-link',
 	},
 ];
 

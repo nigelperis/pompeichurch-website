@@ -1,10 +1,18 @@
 ---
 import { Image } from 'astro:assets';
+import { getLangFromUrl } from '~/i18n/utils';
 import { associations } from '~/constants/associations';
+import { associationsKok } from '~/constants/associations-kok';
 import fallbackImage from '~/assets/church-logo.png';
+import { cn } from '~/helpers/cn';
 
+const lang = getLangFromUrl(Astro.url);
 const { slug } = Astro.params;
-const association = associations.find((assoc) => assoc.slug === slug);
+
+const associationData = lang === 'kok' ? associationsKok : associations;
+
+const association = associationData.find((assoc) => assoc.slug === slug);
+
 const {
 	associationImage = fallbackImage,
 	description,
@@ -21,10 +29,12 @@ const {
 			About the Association
 		</h2>
 		<p
-			class="text-md mt-4 text-justify font-geist leading-7 text-slate-700 lg:text-left"
-		>
-			{description}
-		</p>
+		class={cn(
+		'text-md mt-4 text-justify font-geist leading-7 text-slate-700 lg:text-left',
+		{ 'font-noto-sans-kannada': lang === 'kok' }
+	)}
+		set:html={description}
+		></p>
 		<h2 class="mt-6 text-left font-poppins text-2xl font-bold text-slate-900">
 			Office Bearers
 		</h2>

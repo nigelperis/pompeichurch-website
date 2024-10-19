@@ -1,10 +1,16 @@
 ---
 import { Image } from 'astro:assets';
 import pompeiConvent from '~/assets/pompei-convent.jpg';
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
-<div class="mx-auto">
-	<h2 class="mt-4 pb-3 font-poppins text-2xl font-bold">Pompei Convent</h2>
+<div class="mx-auto max-w-4xl">
+	<h2 class="mt-4 pb-4 font-poppins text-2xl font-bold">
+		{t('pompeiconvent.title')}
+	</h2>
 	<Image
 		src={pompeiConvent}
 		alt="Pompei Convent Image"
