@@ -191,43 +191,43 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 
 	function toggleCurtainAndAnimations() {
-    curtainContainer.classList.toggle('closed');
-    curtainContainer.classList.toggle('open');
+		curtainContainer.classList.toggle('closed');
+		curtainContainer.classList.toggle('open');
 
-    if (curtainContainer.classList.contains('open')) {
-        toggleButton.style.display = 'none';
-        setTimeout(() => {
-            balloonContainer.style.opacity = 1;
-            createBalloons(30);
-            toggleConfetti(true);
-            animationTimeout = setTimeout(() => {
-                removeBalloons();
-                toggleConfetti(false);
-                // Optionally, you can add a transition here to fade out the curtain container
-                curtainContainer.style.transition = 'opacity 1s ease-out';
-                curtainContainer.style.opacity = '0';
-                // After the transition, you can hide the curtain container completely
-                setTimeout(() => {
-                    curtainContainer.style.display = 'none';
-                }, 1000);
-            }, 5000);
-        }, 1000); // Delay to match curtain opening animation
-    } else {
-        removeBalloons();
-        toggleConfetti(false);
-        if (animationTimeout) {
-            clearTimeout(animationTimeout);
-            animationTimeout = null;
-        }
-        toggleButton.style.display = 'block';
-        toggleButton.textContent = 'Start Timer';
-        resetTimer();
-        // Reset the curtain container
-        curtainContainer.style.transition = '';
-        curtainContainer.style.opacity = '1';
-        curtainContainer.style.display = 'block';
-    }
-}
+		if (curtainContainer.classList.contains('open')) {
+			toggleButton.style.display = 'none';
+			setTimeout(() => {
+				balloonContainer.style.opacity = 1;
+				createBalloons(30);
+				toggleConfetti(true);
+				animationTimeout = setTimeout(() => {
+					removeBalloons();
+					toggleConfetti(false);
+					// Optionally, you can add a transition here to fade out the curtain container
+					curtainContainer.style.transition = 'opacity 1s ease-out';
+					curtainContainer.style.opacity = '0';
+					// After the transition, you can hide the curtain container completely
+					setTimeout(() => {
+						curtainContainer.style.display = 'none';
+					}, 1000);
+				}, 5000);
+			}, 1000); // Delay to match curtain opening animation
+		} else {
+			removeBalloons();
+			toggleConfetti(false);
+			if (animationTimeout) {
+				clearTimeout(animationTimeout);
+				animationTimeout = null;
+			}
+			toggleButton.style.display = 'block';
+			toggleButton.textContent = 'Start Timer';
+			resetTimer();
+			// Reset the curtain container
+			curtainContainer.style.transition = '';
+			curtainContainer.style.opacity = '1';
+			curtainContainer.style.display = 'block';
+		}
+	}
 
 	toggleButton.addEventListener('click', () => {
 		if (curtainContainer.classList.contains('closed')) {
