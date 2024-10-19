@@ -4,47 +4,60 @@ import '../styles/styles.css';
 ---
 
 <div class="curtain-container closed">
-    <div class="curtain curtain-left"></div>
-    <div class="curtain curtain-right"></div>
-    <div class="curtain curtain-left-inner"></div>
-    <div class="curtain curtain-right-inner"></div>
-    <div id="balloon-container"></div>
-    <canvas id="confetti-canvas"></canvas>
-    <div class="content">
-        <button id="toggleCurtain">Click Here to Launch</button>
-    </div>
-    <div class="timer-container" style="display: none;">
-        <svg viewBox="0 0 100 100">
-            <circle class="timer-circle" cx="50" cy="50" r="45" transform="rotate(-90 50 50)"></circle>
-            <circle class="timer-path" cx="50" cy="50" r="45" transform="rotate(-90 50 50)"></circle>
-        </svg>
-        <span class="timer-text">5</span>
-    </div>
+	<div class="curtain curtain-left"></div>
+	<div class="curtain curtain-right"></div>
+	<div class="curtain curtain-left-inner"></div>
+	<div class="curtain curtain-right-inner"></div>
+	<div id="balloon-container"></div>
+	<canvas id="confetti-canvas"></canvas>
+	<div class="content">
+		<button id="toggleCurtain">Click Here to Launch</button>
+	</div>
+	<div class="timer-container" style="display: none;">
+		<svg viewBox="0 0 100 100">
+			<circle
+				class="timer-circle"
+				cx="50"
+				cy="50"
+				r="45"
+				transform="rotate(-90 50 50)"></circle>
+			<circle
+				class="timer-path"
+				cx="50"
+				cy="50"
+				r="45"
+				transform="rotate(-90 50 50)"></circle>
+		</svg>
+		<span class="timer-text">5</span>
+	</div>
 </div>
 
 <script>
-    import '../utils/helper.js';
+	import '../utils/helper.js';
 
-    // Add this script to ensure proper z-index and visibility
-    document.addEventListener('DOMContentLoaded', () => {
-        const balloonContainer = document.getElementById('balloon-container');
-        const confettiCanvas = document.getElementById('confetti-canvas');
-        const curtainContainer = document.querySelector('.curtain-container');
+	// Add this script to ensure proper z-index and visibility
+	document.addEventListener('DOMContentLoaded', () => {
+		const balloonContainer = document.getElementById('balloon-container');
+		const confettiCanvas = document.getElementById('confetti-canvas');
+		const curtainContainer = document.querySelector('.curtain-container');
 
-        // Ensure balloon container and confetti canvas are above the curtain
-        balloonContainer.style.zIndex = '1006';
-        confettiCanvas.style.zIndex = '1005';
+		// Ensure balloon container and confetti canvas are above the curtain
+		balloonContainer.style.zIndex = '1006';
+		confettiCanvas.style.zIndex = '1005';
 
-        // Make sure the curtain container is visible
-        curtainContainer.style.opacity = '1';
+		// Make sure the curtain container is visible
+		curtainContainer.style.opacity = '1';
 
-        // Trigger balloon and confetti creation after curtain opens
-        curtainContainer.addEventListener('transitionend', (e) => {
-            if (e.propertyName === 'opacity' && curtainContainer.classList.contains('open')) {
-                // Create balloons and start confetti here
-                window.createBalloons(30);
-                window.toggleConfetti(true);
-            }
-        });
-    });
+		// Trigger balloon and confetti creation after curtain opens
+		curtainContainer.addEventListener('transitionend', (e) => {
+			if (
+				e.propertyName === 'opacity' &&
+				curtainContainer.classList.contains('open')
+			) {
+				// Create balloons and start confetti here
+				window.createBalloons(30);
+				window.toggleConfetti(true);
+			}
+		});
+	});
 </script>

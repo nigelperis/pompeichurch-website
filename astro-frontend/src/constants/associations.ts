@@ -138,7 +138,7 @@ const associations = [
 	},
 	{
 		slug: 'legion-of-mary',
-		title: 'Legion Of Mary',
+		title: 'Legion of Mary',
 		associationImage: dummyImage,
 		description: `On 5th July 1959, under the guidance of Fr. J.S.T. Rodrigues, this organization was established. This organization is dedicated to serving the families of both men and women. It also aims to respond to the needs of families in the area.`,
 		officeBearers: [
