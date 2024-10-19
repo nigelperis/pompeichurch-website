@@ -5,25 +5,69 @@ import { cn } from '~/helpers/cn';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import { navLinks } from '~/constants/nav-links.ts';
 import ScrollProgress from './ui/scroll-progress.astro';
-import { Image } from 'astro:assets';
 import churchLogo from '../assets/church-logo.png';
+import LanguageSwitcher from './language-switcher.astro';
+
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
 <ScrollProgress />
 <header
-	class="sticky top-0 z-10 w-full bg-white/90 p-3 shadow-md backdrop-blur-lg xl:px-28"
+	class="sticky top-0 z-10 w-full border-b border-gray-300 bg-white p-3 xl:px-28"
 >
 	<section class="flex items-center justify-between">
 		<a href={lang === 'kok' ? '/kok/' : '/'}>
-			<Image src={churchLogo} alt="" width={50} />
+			<img src={churchLogo.src} alt="" width={45} />
 		</a>
-		<div
-			id="hamburger"
-			class="ml-auto flex w-fit cursor-pointer flex-col items-end"
-		>
-			<Icon name="menu" size={35} />
+		<div class="ml-auto hidden items-center lg:flex">
+			<ul class="flex items-center gap-6">
+				{
+					navLinks.map((link) => (
+						<li key={link.title} class="group relative">
+							<a
+								href={
+									link.type === 'link'
+										? getRelativeLocaleUrl(lang, link.href)
+										: '#'
+								}
+								class={cn(
+									'font-poppins font-semibold',
+									link.title === 'nav.home' && 'nav-home',
+									lang === 'kok' ? 'font-noto-sans-kannada text-lg' : 'text-md',
+								)}
+							>
+								{t(link.title)}
+							</a>
+							{link.type === 'expandable' && (
+								<ul class="absolute left-0 top-full mt-2 hidden w-64 rounded-md p-2 shadow-md group-hover:block md:flex">
+									{link.expandedLinks.map((sublink) => (
+										<li key={sublink.title} class="w-150">
+											<a
+												href={getRelativeLocaleUrl(lang, sublink.href)}
+												class="block rounded-md px-4 py-2 text-sm font-poppins transition-all hover:bg-natgeo-yellow"
+											>
+												{t(sublink.title)}
+											</a>
+										</li>
+									))}
+								</ul>
+							)}
+						</li>
+					))
+				}
+			</ul>
+		</div>
+		<div class="flex flex-row-reverse">
+			<div
+				id="hamburger"
+				class="ml-3 flex cursor-pointer flex-col items-end lg:hidden"
+			>
+				<Icon name="menu" class="mt-1" size={35} />
+			</div>
+			<div class="ml-5">
+				<LanguageSwitcher />
+			</div>
 		</div>
 	</section>
 </header>
@@ -35,7 +79,7 @@ const t = useTranslations(lang);
 	<Icon
 		name="cancel"
 		id="hamburger-close"
-		class="sticky top-5 mb-5 ml-auto cursor-pointer rounded-full text-4xl"
+		class="relative ml-auto cursor-pointer rounded-full text-3xl"
 	/>
 	<ul class="flex flex-col gap-y-5">
 		{
@@ -52,7 +96,7 @@ const t = useTranslations(lang);
 					>
 						<span
 							class={cn(
-								'border-b-4 border-b-transparent font-poppins transition-all duration-150 group-hover:border-natgeo-yellow',
+								'border-b-4 border-b-transparent font-poppins font-black transition-all duration-150 group-hover:border-natgeo-yellow',
 								{ 'font-noto-sans-kannada': lang === 'kok' },
 							)}
 						>
@@ -72,7 +116,7 @@ const t = useTranslations(lang);
 								<li>
 									<a
 										href={getRelativeLocaleUrl(lang, sublinks.href)}
-										class="group mb-4 flex items-center justify-between text-2xl font-bold"
+										class="group mb-4 flex items-center justify-between text-2xl"
 									>
 										<span
 											class={cn(
@@ -110,8 +154,7 @@ const t = useTranslations(lang);
 		margin: 0;
 	}
 	a[data-is-submenu-expanded='true'] + ul.expandable-links {
-		max-height: 500px;
-		padding: 10px 0;
+		padding: 10px 0 0;
 		margin: 0;
 	}
 	svg[data-icon-name='chevron-right'] {
@@ -119,6 +162,41 @@ const t = useTranslations(lang);
 	}
 	a[data-is-submenu-expanded='true'] > svg[data-icon-name='chevron-right'] {
 		transform: rotate(90deg);
+	}
+
+	@media (min-width: 768px) {
+		ul > li.group {
+			position: relative;
+		}
+
+		ul > li.group > ul {
+			display: none;
+			position: absolute;
+			left: 0;
+			top: 100%;
+			margin-top: 2px;
+			background-color: white;
+			border-radius: 4px;
+			padding: 10px;
+			box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+			transition: all 0.3s ease;
+		}
+
+		ul > li.group:hover > ul,
+		ul > li.group:focus-within > ul {
+			display: block;
+		}
+
+		ul > li.group:hover,
+		ul > li.group:focus-within {
+			background-color: rgba(255, 255, 255, 0.1);
+		}
+
+		ul > li.group:hover > ul,
+		ul > li.group:focus-within > ul {
+			opacity: 1;
+			visibility: visible;
+		}
 	}
 </style>
 
@@ -129,7 +207,7 @@ const t = useTranslations(lang);
 	const expandableLinks = document.querySelectorAll(
 		'[data-expandable-links=true]',
 	);
-	const allNavigationLinks = document.querySelectorAll<HTMLAnchorElement>(
+	const allNavigationLinks = document.querySelectorAll(
 		'nav a:not([data-expandable-links=true])',
 	);
 
@@ -152,15 +230,12 @@ const t = useTranslations(lang);
 		element.addEventListener('click', (e) => {
 			e.preventDefault();
 			const subMenuStatus = element.getAttribute('data-is-submenu-expanded');
-			//typesafe way of selecting sibling element
 			const expandableContent =
 				element?.parentElement?.querySelector<HTMLUListElement>('a + ul');
 
-			//toggle collpse state for all other elemnets execpt currrently clicked elemnt
 			expandableLinks.forEach((otherElement) => {
 				if (otherElement !== element) {
 					otherElement.setAttribute('data-is-submenu-expanded', 'false');
-					//typesafe of selecting and styling  sibling element
 					otherElement.parentElement
 						?.querySelector<HTMLUListElement>('a + ul')
 						?.style.setProperty('max-height', '0');
@@ -172,10 +247,7 @@ const t = useTranslations(lang);
 				expandableContent?.style?.setProperty('max-height', '0');
 			} else {
 				element.setAttribute('data-is-submenu-expanded', 'true');
-				expandableContent?.style?.setProperty(
-					'max-height',
-					`${expandableContent.scrollHeight}px`,
-				);
+				expandableContent?.style?.setProperty('max-height', '550px');
 			}
 		});
 	});

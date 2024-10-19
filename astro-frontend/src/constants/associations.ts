@@ -112,7 +112,7 @@ const associations: Association[] = [
 	},
 	{
 		slug: 'legion-of-mary',
-		title: 'Legion Of Mary',
+		title: 'Legion of Mary',
 		associationImage: dummyImage,
 		description: loremIpsum,
 		officeBearers: [
