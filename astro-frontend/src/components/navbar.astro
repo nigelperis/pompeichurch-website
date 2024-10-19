@@ -69,7 +69,7 @@ id="navbar">
 	<Icon
 	name="cancel"
 	id="hamburger-close"
-	class="sticky top-5 mb-5 ml-auto cursor-pointer rounded-full text-4xl" />
+	class="relative top-5 mb-5 ml-auto cursor-pointer rounded-full text-4xl" />
 	<ul class="flex flex-col gap-y-5">
 {
 			navLinks.map((link) => (
@@ -144,7 +144,6 @@ id="navbar">
 		margin: 0;
 	}
 	a[data-is-submenu-expanded='true'] + ul.expandable-links {
-		max-height: 500px;
 		padding: 10px 0;
 		margin: 0;
 	}
@@ -234,7 +233,7 @@ id="navbar">
 				expandableContent?.style?.setProperty('max-height', '0');
 			} else {
 				element.setAttribute('data-is-submenu-expanded', 'true');
-				expandableContent?.style?.setProperty('max-height', '500px');
+				expandableContent?.style?.setProperty('max-height', '600px');
 			}
 		});
 	});
