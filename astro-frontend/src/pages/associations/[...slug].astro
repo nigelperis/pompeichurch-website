@@ -12,12 +12,14 @@ export async function getStaticPaths() {
 	const paths = [
 		...associations.map(({ slug, title, associationImage, officeBearers }) => ({
 			params: { slug },
-			props: { slug, title, associationImage, officeBearers }, 
-		})),
-		...associationsKok.map(({ slug, title, associationImage, officeBearers }) => ({
-			params: { slug },
 			props: { slug, title, associationImage, officeBearers },
 		})),
+		...associationsKok.map(
+			({ slug, title, associationImage, officeBearers }) => ({
+				params: { slug },
+				props: { slug, title, associationImage, officeBearers },
+			}),
+		),
 	];
 
 	return paths;

@@ -9,7 +9,8 @@ import ayogPresident from '~/assets/ayog-president.jpg';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const councilUrl = lang === 'en' ? '/parish-pastoral-council' : '/kok/parish-pastoral-council';
+const councilUrl =
+	lang === 'en' ? '/parish-pastoral-council' : '/kok/parish-pastoral-council';
 ---
 
 <section

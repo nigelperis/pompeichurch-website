@@ -24,11 +24,11 @@ const t = useTranslations(lang);
 			<ul class="flex items-center gap-6">
 				{
 					navLinks.map((link) => (
-						<li key={link.title} class="group relative">
+						<li class="group relative">
 							<a
 								href={
 									link.type === 'link'
-										? getRelativeLocaleUrl(lang, link.href)
+										? getRelativeLocaleUrl(lang, link.href || '')
 										: '#'
 								}
 								class={cn(
@@ -39,13 +39,13 @@ const t = useTranslations(lang);
 							>
 								{t(link.title)}
 							</a>
-							{link.type === 'expandable' && (
+							{link.type === 'expandable' && link.expandedLinks && (
 								<ul class="absolute left-0 top-full mt-2 hidden w-64 rounded-md p-2 shadow-md group-hover:block md:flex">
 									{link.expandedLinks.map((sublink) => (
-										<li key={sublink.title} class="w-150">
+										<li class="w-150">
 											<a
 												href={getRelativeLocaleUrl(lang, sublink.href)}
-												class="block rounded-md px-4 py-2 text-sm font-poppins transition-all hover:bg-natgeo-yellow"
+												class="block rounded-md px-4 py-2 font-poppins text-sm transition-all hover:bg-natgeo-yellow"
 											>
 												{t(sublink.title)}
 											</a>
@@ -267,8 +267,12 @@ const t = useTranslations(lang);
 
 			navbar?.classList?.remove('open');
 
-			link.addEventListener('transitionend', () => {
-				window.location.href = link.href;
+			link.addEventListener('click', (e) => {
+				e.preventDefault();
+				const anchorElement = link as HTMLAnchorElement;
+				if (anchorElement.href) {
+					window.location.href = anchorElement.href;
+				}
 			});
 		});
 	});

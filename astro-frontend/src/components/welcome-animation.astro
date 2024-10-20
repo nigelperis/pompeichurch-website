@@ -35,29 +35,33 @@ import '../styles/styles.css';
 <script>
 	import '../utils/helper.js';
 
-	// Add this script to ensure proper z-index and visibility
 	document.addEventListener('DOMContentLoaded', () => {
 		const balloonContainer = document.getElementById('balloon-container');
 		const confettiCanvas = document.getElementById('confetti-canvas');
 		const curtainContainer = document.querySelector('.curtain-container');
 
-		// Ensure balloon container and confetti canvas are above the curtain
-		balloonContainer.style.zIndex = '1006';
-		confettiCanvas.style.zIndex = '1005';
+		if (balloonContainer instanceof HTMLElement) {
+			balloonContainer.style.zIndex = '1006';
+		}
+		if (confettiCanvas instanceof HTMLCanvasElement) {
+			confettiCanvas.style.zIndex = '1005';
+		}
+		if (curtainContainer instanceof HTMLElement) {
+			curtainContainer.style.opacity = '1';
 
-		// Make sure the curtain container is visible
-		curtainContainer.style.opacity = '1';
-
-		// Trigger balloon and confetti creation after curtain opens
-		curtainContainer.addEventListener('transitionend', (e) => {
-			if (
-				e.propertyName === 'opacity' &&
-				curtainContainer.classList.contains('open')
-			) {
-				// Create balloons and start confetti here
-				window.createBalloons(30);
-				window.toggleConfetti(true);
-			}
-		});
+			curtainContainer.addEventListener('transitionend', (e) => {
+				if (
+					e.propertyName === 'opacity' &&
+					curtainContainer.classList.contains('open')
+				) {
+					if (typeof (window as any).createBalloons === 'function') {
+						(window as any).createBalloons(30);
+					}
+					if (typeof (window as any).toggleConfetti === 'function') {
+						(window as any).toggleConfetti(true);
+					}
+				}
+			});
+		}
 	});
 </script>
