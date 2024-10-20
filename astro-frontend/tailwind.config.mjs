@@ -39,10 +39,7 @@ export default {
 					'noto-sans-kannada-latin-600-normal',
 					defaultTheme.fontFamily.sans,
 				],
-				'geist':[
-					'geist-sans',
-					defaultTheme.fontFamily.sans
-				]
+				geist: ['geist-sans', defaultTheme.fontFamily.sans],
 			},
 			keyframes: {
 				slidein: {

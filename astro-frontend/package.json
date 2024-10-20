@@ -13,7 +13,8 @@
 		"lint:fix": "eslint ./src --fix"
 	},
 	"dependencies": {
-		"@astrojs/react": "^3.6.2",
+		"@astrojs/node": "^8.3.4",
+		"@astrojs/react": "3.6.2",
 		"@fontsource/bona-nova-sc": "5.0.2",
 		"@fontsource/geist-sans": "5.1.0",
 		"@fontsource/lora": "5.0.18",
@@ -21,9 +22,10 @@
 		"@fontsource/montserrat": "5.0.19",
 		"@fontsource/noto-sans-kannada": "5.0.14",
 		"@fontsource/poppins": "5.0.15",
+		"@strapi/blocks-react-renderer": "1.0.1",
 		"aos": "2.3.4",
 		"astro": "4.15.9",
-		"astro-icon": "^1.1.1",
+		"astro-icon": "1.1.1",
 		"clsx": "2.1.1",
 		"embla-carousel": "8.2.0",
 		"embla-carousel-autoplay": "8.2.0",
@@ -37,8 +39,12 @@
 		"tailwind-merge": "2.5.2"
 	},
 	"packageManager": "pnpm@8.10.2+sha1.e0b68270e89c817ff88b7be62466a2128c53af02",
+	"engines": {
+		"node": ">=18.0.0 <=20.x.x",
+		"pnpm": ">=8.x.x"
+	},
 	"devDependencies": {
-		"@astrojs/check": "0.9.3",
+		"@astrojs/check": "0.9.4",
 		"@astrojs/tailwind": "5.1.1",
 		"@types/aos": "3.0.7",
 		"@types/eslint__js": "8.42.3",
@@ -47,17 +53,17 @@
 		"@types/photoswipe": "4.1.6",
 		"@types/react": "^18.3.5",
 		"@types/react-dom": "^18.3.0",
-		"@typescript-eslint/parser": "8.8.0",
-		"eslint": "9.7.0",
+		"@typescript-eslint/parser": "8.8.1",
+		"eslint": "9.12.0",
 		"eslint-config-prettier": "9.1.0",
 		"eslint-plugin-astro": "1.2.3",
-		"prettier": "3.3.2",
+		"prettier": "3.3.3",
 		"prettier-plugin-astro": "0.14.0",
 		"prettier-plugin-organize-imports": "4.0.0",
 		"prettier-plugin-tailwindcss": "0.6.5",
 		"tailwind-scrollbar": "3.1.0",
 		"tailwindcss": "3.4.4",
 		"typescript": "5.5.3",
-		"typescript-eslint": "7.16.0"
+		"typescript-eslint": "8.8.1"
 	}
 }
