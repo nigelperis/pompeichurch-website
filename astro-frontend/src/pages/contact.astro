@@ -10,23 +10,24 @@ const t = useTranslations(lang);
 ---
 
 <Layout title="Pompei Church | Contact">
-	<main class="overflow-hidden bg-white">
-		<section
-			id="contact"
-			class="flex flex-col p-6 font-poppins lg:items-center"
-		>
+	<main class="mx-auto max-w-4xl overflow-hidden bg-white">
+		<section id="contact" class="flex flex-col p-6 pb-4">
 			<h1
-				class="mb-6 border-l-4 border-l-natgeo-yellow pl-3 text-3xl font-extrabold text-black"
+				class="mb-4 border-l-4 border-l-natgeo-yellow pl-3 text-3xl font-extrabold lg:text-4xl"
 			>
 				{t('contact.title')}
 			</h1>
-			<h2 class="text-center font-geist text-lg font-normal text-gray-900">
+			<h2 class="font-geist text-lg font-normal text-gray-700">
 				Contact us for more information about our church activities, hall
 				bookings, and other details
 			</h2>
-			<div class="flex flex-col items-center md:mx-72 lg:flex-row">
-				<ContactInfo />
-				<ContactForm />
+			<div class="flex flex-col lg:flex-row lg:space-x-3">
+				<div class="w-full lg:w-1/2">
+					<ContactInfo />
+				</div>
+				<div class="w-full lg:w-1/2">
+					<ContactForm />
+				</div>
 			</div>
 			<ContactMap />
 		</section>
