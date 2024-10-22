@@ -31,7 +31,7 @@ const commissions = [
 			},
 			{
 				commission: 'commission-for-justice-and-peace-apostolate',
-				name: 'mr-michael-johnson',
+				name: 'mr-jerald-lobo',
 			},
 			{
 				commission: 'commission-for-formation-of-the-priests-and-the-religious',
@@ -92,7 +92,7 @@ const commissions = [
 			},
 			{
 				commission: 'commission-for-ecumenism-apostolate',
-				name: 'mrs-margarette-andrade',
+				name: 'mrs-margaret-andrade',
 			},
 			{
 				commission: 'commission-for-inter-religious-dialogue-apostolate',
