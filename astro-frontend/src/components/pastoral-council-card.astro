@@ -21,16 +21,14 @@ const { title, subtitle, class: className, imageUrl } = Astro.props;
 	<div class="card-image flex-none">
 		<Image
 			src={imageUrl}
-			alt=""
+			alt={`${title} ${subtitle} of Our Lady of Pompei Church`}
 			width={200}
 			class="object-fit aspect-[1.5/1.9] h-auto w-full transition-transform duration-700 ease-in-out"
 		/>
 	</div>
 
 	<div class="card-content mt-3 flex flex-1 flex-col justify-end space-y-1 p-3">
-		<h3
-			class="card-title line-clamp-1 text-lg font-bold leading-snug text-slate-900"
-		>
+		<h3 class="card-title text-lg font-bold leading-snug text-slate-900">
 			{title}
 		</h3>
 		<p class="card-subtitle line-clamp-3 text-sm text-slate-600">

@@ -26,7 +26,7 @@ const { name, date, subtitle, class: className, imageUrl } = Astro.props;
 	<div class="card-image flex-none">
 		<Image
 			src={imageUrl}
-			alt="Image"
+			alt={`Image of ${name}`}
 			class="h-[230px] w-full rounded-md object-fill"
 		/>
 	</div>

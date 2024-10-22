@@ -7,10 +7,18 @@ interface Props {
 	imageUrl: ImageMetadata;
 	description: string;
 	ward: string;
+	date: string;
 	class?: string;
 }
 
-const { name, description, ward, class: className, imageUrl } = Astro.props;
+const {
+	name,
+	description,
+	ward,
+	date,
+	class: className,
+	imageUrl,
+} = Astro.props;
 ---
 
 <div
@@ -22,13 +30,15 @@ const { name, description, ward, class: className, imageUrl } = Astro.props;
 	<div class="card-image">
 		<Image
 			src={imageUrl}
-			alt="Image"
+			alt={`Image of ${name}`}
 			width={300}
 			class="h-auto w-full rounded-md object-cover"
 		/>
 	</div>
 
-	<div class="card-content mt-2 flex flex-1 flex-col justify-end space-y-1 p-4">
+	<div
+		class="card-content mt-2 flex flex-1 flex-col justify-end space-y-1 p-4 font-poppins"
+	>
 		<h3
 			class="card-title line-clamp-1 text-lg font-extrabold text-slate-900 sm:text-lg"
 			title={name}
@@ -44,8 +54,15 @@ const { name, description, ward, class: className, imageUrl } = Astro.props;
 		}
 		{
 			ward && (
-				<p class="card-ward line-clamp-3 text-sm font-semibold text-slate-600 sm:text-base">
+				<p class="card-ward line-clamp-3 text-base text-slate-700 sm:text-lg">
 					Ward: {ward}
+				</p>
+			)
+		}
+		{
+			date && (
+				<p class="card-ward line-clamp-3 text-base text-slate-700 sm:text-lg">
+					Date of demise: {date}
 				</p>
 			)
 		}

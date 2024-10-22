@@ -1,32 +1,181 @@
 ---
+const languages = ['English', 'ಕೊಂಕಣಿ'];
 const currentLocale = Astro.currentLocale;
-const currentPath = new URL(Astro.request.url).pathname;
-const pathWithLocaleStripped = currentPath.replace(/^\/kok\//, '/');
-const localeToSwitchTo = currentLocale === 'en' ? 'kok' : 'en';
+import { cn } from '~/helpers/cn';
+import { getLangFromUrl } from '~/i18n/utils';
+
+const selectedLanguage = currentLocale === 'kok' ? 'ಕೊಂಕಣಿ' : 'English';
+const lang = getLangFromUrl(Astro.url);
 ---
 
-<aside>
-	<a
-		class="fixed bottom-[70px] right-4 flex items-center justify-center rounded-full"
-		data-astro-prefetch="load"
-		href={localeToSwitchTo === 'kok'
-			? `/${localeToSwitchTo}${pathWithLocaleStripped}`
-			: `${pathWithLocaleStripped}`}
-		aria-label={`Switch to ${localeToSwitchTo === 'kok' ? 'English' : 'Kannada'}`}
-	>
-		<div class="relative inline-flex cursor-pointer items-center">
-			<div
-				class="group h-8 w-16 rounded-full bg-transparent bg-yellow-200 ring-0 transition-transform duration-700"
+<div class="relative inline-block text-left">
+	<div>
+		<button
+			type="button"
+			id="lang-button"
+			class={cn(
+				'inline-flex font-poppins font-medium justify-center w-25 mt-1 rounded-md border border-gray-500 px-2 py-1 text-base lg:text-medium ',
+				lang === 'kok'
+					? 'text-lg mt-0 font-semibold font-noto-sans-kannada'
+					: 'sm:text-medium',
+			)}
+		>
+			{selectedLanguage}
+			<!-- //TODO (Santhsim): Move this svg to assets -->
+			<svg
+				id="lang-arrow"
+				class="-mr-1 h-7 w-5 transition-transform duration-200 ease-in-out"
+				xmlns="http://www.w3.org/2000/svg"
+				viewBox="0 0 20 20"
+				fill="currentColor"
+				aria-hidden="true"
 			>
-				<span
-					class={`absolute top-1 flex items-center justify-center text-black rounded-full h-6 w-6 bg-natgeo-yellow font-bold transition-transform duration-300 ${
-						currentLocale === 'en' ? 'left-1' : 'right-1'
-					}`}
-					aria-hidden="true"
-				>
-					{currentLocale === 'en' ? 'ಕ' : 'E'}
-				</span>
-			</div>
+				<path
+					fill-rule="evenodd"
+					d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+					clip-rule="evenodd"></path>
+			</svg>
+		</button>
+	</div>
+	<div
+		id="lang-dropdown"
+		class="absolute mt-2 block rounded-md bg-white px-2 py-1"
+		role="menu"
+		aria-orientation="vertical"
+		aria-labelledby="options-menu"
+	>
+		<div class="py-1" role="none">
+			{
+				languages.map((lang) => (
+					<button
+						type="button"
+						class={cn(
+							'block rounded-md px-4 py-2 font-poppins text-sm text-gray-800 hover:bg-natgeo-yellow',
+							selectedLanguage === lang && 'font-noto-sans-kannada',
+						)}
+					>
+						{lang}
+					</button>
+				))
+			}
 		</div>
-	</a>
-</aside>
+	</div>
+</div>
+
+<script>
+	document.addEventListener('DOMContentLoaded', () => {
+		const button = document.getElementById(
+			'lang-button',
+		) as HTMLButtonElement | null;
+		const dropdown = document.getElementById(
+			'lang-dropdown',
+		) as HTMLElement | null;
+		const arrow = document.getElementById('lang-arrow') as HTMLElement | null;
+
+		if (!button || !dropdown || !arrow) return;
+
+		window.addEventListener('load', () => {
+			button.removeAttribute('disabled');
+		});
+
+		const handleLanguageChange = (lang: string): void => {
+			button.innerHTML = 'Loading...';
+			button.setAttribute('disabled', 'true');
+
+			const currentPath = window.location.pathname;
+			const pathWithLocaleStripped = currentPath.replace(/^\/kok\//, '/');
+			const localeToSwitchTo = lang === 'ಕೊಂಕಣಿ' ? 'kok' : 'en';
+			const newPath =
+				localeToSwitchTo === 'kok'
+					? `/${localeToSwitchTo}${pathWithLocaleStripped}`
+					: `${pathWithLocaleStripped}`;
+
+			window.location.href = newPath;
+		};
+
+		const toggleDropdown = (): void => {
+			const isVisible = dropdown.classList.contains('visible');
+			dropdown.classList.toggle('visible', !isVisible);
+			dropdown.style.opacity = isVisible ? '0' : '1';
+			dropdown.style.visibility = isVisible ? 'hidden' : 'visible';
+			arrow.classList.toggle('rotate-180', !isVisible);
+		};
+
+		button.addEventListener('click', (e: MouseEvent) => {
+			e.stopPropagation();
+			toggleDropdown();
+		});
+
+		document.addEventListener('click', () => {
+			dropdown.classList.remove('visible');
+			dropdown.style.opacity = '0';
+			dropdown.style.visibility = 'hidden';
+			arrow.classList.remove('rotate-180');
+		});
+
+		button.addEventListener('mouseenter', () => {
+			if (window.innerWidth > 768) {
+				dropdown.classList.add('visible');
+				dropdown.style.opacity = '1';
+				dropdown.style.visibility = 'visible';
+				arrow.classList.add('rotate-180');
+			}
+		});
+
+		dropdown.addEventListener('mouseenter', () => {
+			dropdown.classList.add('visible');
+			dropdown.style.opacity = '1';
+			dropdown.style.visibility = 'visible';
+			arrow.classList.add('rotate-180');
+		});
+
+		const hideDropdownWithDelay = (): void => {
+			if (window.innerWidth > 768) {
+				setTimeout(() => {
+					if (!dropdown?.matches(':hover')) {
+						dropdown.classList.remove('visible');
+						dropdown.style.opacity = '0';
+						dropdown.style.visibility = 'hidden';
+						arrow.classList.remove('rotate-180');
+					}
+				}, 100);
+			}
+		};
+
+		button.addEventListener('mouseleave', hideDropdownWithDelay);
+		dropdown.addEventListener('mouseleave', hideDropdownWithDelay);
+
+		document
+			.querySelectorAll<HTMLButtonElement>('#lang-dropdown button')
+			.forEach((btn) => {
+				btn.addEventListener('click', (e: MouseEvent) => {
+					const target = e.target as HTMLButtonElement;
+					handleLanguageChange(target.innerText);
+				});
+			});
+	});
+</script>
+
+<style>
+	.relative:hover #lang-dropdown {
+		opacity: 1;
+		visibility: visible;
+		transform: translateY(0);
+	}
+
+	#lang-dropdown {
+		opacity: 0;
+		visibility: hidden;
+		transition:
+			opacity 0.3s ease-in-out,
+			visibility 0.3s ease-in-out;
+	}
+
+	.visible {
+		opacity: 1;
+		visibility: visible;
+	}
+	.rotate-180 {
+		transform: rotate(180deg);
+	}
+</style>

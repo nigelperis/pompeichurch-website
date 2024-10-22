@@ -1,8 +1,8 @@
 ---
-import ParishDetails from '~/components/sections/parish-history/parish-details.astro';
 import Layout from '~/layouts/layout.astro';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import HistoryCarousel from '~/components/sections/parish-history/history-carousel.astro';
+import ParishDetails from '~/components/sections/parish-history/parish-details.astro';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -16,8 +16,10 @@ const t = useTranslations(lang);
 			>
 				{t('history.title')}
 			</h1>
+			<h2 class="text-black-400 p-3 pb-6 font-geist text-2xl font-bold italic">
+				{t('history.subtitle')}
+			</h2>
 			<ParishDetails />
-			<!-- <HistoryCarousel/> -->
 		</section>
 	</main>
 </Layout>

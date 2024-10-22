@@ -1,13 +1,17 @@
 ---
 import { Image } from 'astro:assets';
 import snehasadan from '~/assets/snehasadan.jpg';
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <div class="mx-auto">
-	<h2 class="mt-4 font-poppins text-2xl font-bold">Snehasadan</h2>
+	<h2 class="mt-4 font-poppins text-2xl font-bold">{t('snehasadan.title')}</h2>
 	<Image
 		src={snehasadan}
-		alt="Snehasadan Image"
+		alt="Snehasadan institute at Gurpur Kaikamba "
 		class="mt-6 rounded-sm md:float-right md:ml-5 md:w-1/2"
 	/>
 	<div class="mb-2 mt-6 font-geist">

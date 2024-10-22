@@ -9,18 +9,22 @@ import ayogPresident from '~/assets/ayog-president.jpg';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+const councilUrl =
+	lang === 'en' ? '/parish-pastoral-council' : '/kok/parish-pastoral-council';
 ---
 
-<section class="mx-6 mt-6 flex flex-col lg:mx-28 lg:mb-3 lg:min-h-[70svh] lg:justify-evenly">
+<section
+	class="mt-6 flex flex-col lg:mx-28 lg:mb-3 lg:min-h-[70svh] lg:justify-evenly"
+>
 	<h1
 		data-aos="fade-right"
-		class="inline-block mb-4 border-l-4 border-natgeo-yellow pl-3 font-poppins text-[27px] xs:text-2xl font-extrabold lg:text-4xl"
+		class="mx-6 mb-4 inline-block border-l-4 border-natgeo-yellow pl-3 font-poppins text-[27px] font-extrabold xs:text-2xl lg:mx-0 lg:text-4xl"
 	>
 		{t('landing.pastoral-parishad')}
 	</h1>
 
 	<div
-		class="my-4 flex w-full max-w-full scroll-ml-6 space-x-8 overflow-x-auto overflow-y-hidden pl-3 scrollbar-none xl:space-x-10"
+		class="my-4 flex w-full scroll-ml-6 space-x-8 overflow-x-auto overflow-y-hidden pl-3 pr-3 scrollbar-none lg:justify-center xl:space-x-10"
 	>
 		<Card
 			imageUrl={priestImage}
@@ -53,14 +57,20 @@ const t = useTranslations(lang);
 					title={t('landing.pastoral-commission-coordinator-name')}
 				/>
 			</div>
-
 			<div class="absolute inset-0 flex items-center justify-center">
 				<HoverableLink
+					href={councilUrl}
 					class="mb-2 mt-2 inline-block text-xl font-bold text-black"
 				>
-					View All
+					{t('ui.view-all')}
 				</HoverableLink>
 			</div>
 		</div>
+	</div>
+
+	<div class="hidden justify-center lg:flex">
+		<HoverableLink href={councilUrl}>
+			{t('ui.view-all')}
+		</HoverableLink>
 	</div>
 </section>

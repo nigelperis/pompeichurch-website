@@ -1,0 +1,67 @@
+---
+// File: src/components/WelcomeAnimation.astro
+import '../styles/styles.css';
+---
+
+<div class="curtain-container closed">
+	<div class="curtain curtain-left"></div>
+	<div class="curtain curtain-right"></div>
+	<div class="curtain curtain-left-inner"></div>
+	<div class="curtain curtain-right-inner"></div>
+	<div id="balloon-container"></div>
+	<canvas id="confetti-canvas"></canvas>
+	<div class="content">
+		<button id="toggleCurtain">Click Here to Launch</button>
+	</div>
+	<div class="timer-container" style="display: none;">
+		<svg viewBox="0 0 100 100">
+			<circle
+				class="timer-circle"
+				cx="50"
+				cy="50"
+				r="45"
+				transform="rotate(-90 50 50)"></circle>
+			<circle
+				class="timer-path"
+				cx="50"
+				cy="50"
+				r="45"
+				transform="rotate(-90 50 50)"></circle>
+		</svg>
+		<span class="timer-text">5</span>
+	</div>
+</div>
+
+<script>
+	import '../utils/helper.js';
+
+	document.addEventListener('DOMContentLoaded', () => {
+		const balloonContainer = document.getElementById('balloon-container');
+		const confettiCanvas = document.getElementById('confetti-canvas');
+		const curtainContainer = document.querySelector('.curtain-container');
+
+		if (balloonContainer instanceof HTMLElement) {
+			balloonContainer.style.zIndex = '1006';
+		}
+		if (confettiCanvas instanceof HTMLCanvasElement) {
+			confettiCanvas.style.zIndex = '1005';
+		}
+		if (curtainContainer instanceof HTMLElement) {
+			curtainContainer.style.opacity = '1';
+
+			curtainContainer.addEventListener('transitionend', (e) => {
+				if (
+					e.propertyName === 'opacity' &&
+					curtainContainer.classList.contains('open')
+				) {
+					if (typeof (window as any).createBalloons === 'function') {
+						(window as any).createBalloons(30);
+					}
+					if (typeof (window as any).toggleConfetti === 'function') {
+						(window as any).toggleConfetti(true);
+					}
+				}
+			});
+		}
+	});
+</script>

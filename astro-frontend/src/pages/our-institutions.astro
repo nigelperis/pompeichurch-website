@@ -4,6 +4,10 @@ import RosaMystica from '~/components/sections/our-institutions/rosa-mystica.ast
 import BethanySchool from '~/components/sections/our-institutions/bethany-school.astro';
 import Jeevadan from '~/components/sections/our-institutions/jeevadaan.astro';
 import Snehasadan from '~/components/sections/our-institutions/snehasadan.astro';
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <Layout title="Pompei Church | Our Institutions">
@@ -12,7 +16,7 @@ import Snehasadan from '~/components/sections/our-institutions/snehasadan.astro'
 			<h1
 				class="mb-4 border-l-4 border-natgeo-yellow pl-3 text-3xl font-extrabold lg:text-4xl"
 			>
-				INSTITUTIONS
+				{t('nav.our-institutions')}
 			</h1>
 			<!-- <p class="font-geist text-lg">
 				Explore our mission and the institutions that help make it possible.

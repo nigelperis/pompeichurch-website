@@ -1,5 +1,7 @@
 ---
 import { Icon } from 'astro-icon/components';
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+
 interface Subtitle {
 	commission: string;
 	name: string;
@@ -13,6 +15,9 @@ interface Props {
 
 const { convenor, title, subtitles } = Astro.props;
 const uniqueId = Math.random().toString(36).substring(2, 9);
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <div class="mx-auto my-11 w-full rounded-md border border-yellow-300 shadow-sm">
@@ -20,7 +25,7 @@ const uniqueId = Math.random().toString(36).substring(2, 9);
 		class="dropdown-toggle flex cursor-pointer items-center justify-between rounded-md bg-yellow-100 p-4"
 		data-dropdown-id={uniqueId}
 	>
-		<h3 class="text-xl font-extrabold">{title}</h3>
+		<h3 class="text-xl font-extrabold">{t(`commissions.${title}`)}</h3>
 		<Icon
 			name="chevron-right"
 			class="arrow h-6 w-6 transform text-yellow-600 transition-transform"
@@ -34,8 +39,10 @@ const uniqueId = Math.random().toString(36).substring(2, 9);
 	>
 		<div class="mt-2">
 			<p class="text-xl text-gray-700">
-				<strong>Convenor:</strong>
-				<span class="text-xl text-gray-500">{convenor}</span>
+				<strong>{t('commissions.convenor')} : </strong>
+				<span class="whitespace-nowrap text-gray-500"
+					>{t(`commissions.${convenor}`)}</span
+				>
 			</p>
 		</div>
 		<table class="mb-4 mt-4 w-full table-auto">
@@ -43,11 +50,11 @@ const uniqueId = Math.random().toString(36).substring(2, 9);
 				<tr>
 					<th
 						class="border-b-2 pb-2 text-left text-xl font-bold text-yellow-500"
-						>Commission</th
+						>{t('commissions.heading')}</th
 					>
 					<th
 						class="border-b-2 pb-2 text-left text-xl font-bold text-yellow-500"
-						>Secretary</th
+						>{t('commissions.secretary')}</th
 					>
 				</tr>
 			</thead>
@@ -56,9 +63,11 @@ const uniqueId = Math.random().toString(36).substring(2, 9);
 					subtitles?.map((subtitle) => (
 						<tr>
 							<td class="py-2 text-sm">
-								<strong>{subtitle.commission}</strong>
+								<strong>{t(`commissions.${subtitle.commission}`)}</strong>
 							</td>
-							<td class="py-2 text-sm text-gray-600">{subtitle.name}</td>
+							<td class="py-2 text-sm text-gray-600">
+								{t(`commissions.${subtitle.name}`)}
+							</td>
 						</tr>
 					))
 				}

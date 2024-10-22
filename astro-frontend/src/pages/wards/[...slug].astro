@@ -11,12 +11,12 @@ export async function getStaticPaths() {
 	return wards.map(
 		({ slug, title, patronImage, wardGroupImageSrc, officeBearers }) => ({
 			params: { slug },
-			props: { title, patronImage, wardGroupImageSrc, officeBearers },
+			props: { slug, title, patronImage, wardGroupImageSrc, officeBearers },
 		}),
 	);
 }
 
-const { title } = Astro.props;
+const { slug, title } = Astro.props;
 ---
 
 <Layout title={`Wards | ${title}`}>
@@ -25,7 +25,7 @@ const { title } = Astro.props;
 			<h1
 				class="mb-4 border-l-4 border-natgeo-yellow pl-3 text-3xl font-extrabold lg:text-4xl"
 			>
-				{title}
+				{t(`nav.${slug}-ward`)}
 			</h1>
 			<WardDetails />
 		</section>
