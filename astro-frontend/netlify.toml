@@ -1,7 +1,3 @@
 [build]
   publish = "dist"
   command = "pnpm run build"
-
-[context.production.environment]
-  NETLIFY_SITE_ID = "d95866b0-e823-4267-afee-2aa43ba821eb"
-  NETLIFY_AUTH_TOKEN = "nfp_GRX5eonjpFUYGCpHBDyenFJJuZzxCHYb8a41"
