@@ -16,8 +16,9 @@ const t = useTranslations(lang);
 	<div
 		class="flex w-full max-w-2xl flex-col items-center justify-between gap-4 md:mx-auto md:flex-row md:items-center lg:mx-auto"
 	>
+	<!-- TODO: Temporary removal of FB grid in small devices -->
 		<div
-			class="flex w-full max-w-xs flex-1 flex-col justify-center overflow-hidden rounded-lg"
+			class="hidden md:flex w-full max-w-xs flex-1 flex-col  justify-center overflow-hidden rounded-lg"
 		>
 			<h2 class="mb-3 flex items-center text-base font-thin">
 				<Icon name="facebook1" class="ml-2 mr-1 text-2xl text-blue-500" />
