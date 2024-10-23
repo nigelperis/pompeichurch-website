@@ -298,7 +298,8 @@ export const ui = {
 		'commissions.convenor': ' ಸಂಚಾಲಕಿ/ಕ್ ',
 		'commissions.heading': 'ಆಯೋಗ್',
 		'commissions.secretary': 'ಕಾರ್ಯದರ್ಶಿ',
-		'commissions.liturgy-word-proclamation': ' ದೇವ್‌ಸ್ತುತಿ - ಸುವರ್ತಾ - ಪರ್ಗಟ್ಣಿ ',
+		'commissions.liturgy-word-proclamation':
+			' ದೇವ್‌ಸ್ತುತಿ - ಸುವರ್ತಾ - ಪರ್ಗಟ್ಣಿ ',
 		'commissions.witness': 'ಸಾಕ್ಸ್ ',
 		'commissions.service': 'ಸೆವಾ ',
 		'commissions.unity': 'ಎಕ್ತಾರ್ ',
