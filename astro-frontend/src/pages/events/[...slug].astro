@@ -22,7 +22,9 @@ if (!event) {
 ---
 
 <Layout title={`Event - ${event.eventName}`}>
-	<main class="mx-auto max-w-4xl overflow-hidden bg-white">
+	<main
+		class="mx-auto max-w-4xl overflow-hidden bg-white text-justify font-noto-sans-kannada"
+	>
 		<section class="flex flex-col p-6">
 			<h1
 				class="mb-4 border-l-4 border-natgeo-yellow pl-3 text-3xl font-extrabold lg:text-4xl"
@@ -32,9 +34,13 @@ if (!event) {
 			<Image
 				src={event.imageUrl}
 				alt={event.eventName}
-				class="mt-1 rounded-sm mx-auto md:w-1/2 "
+				class="mx-auto mt-1 rounded-sm md:w-3/4"
 			/>
-			<p class="mt-4 text-justify text-lg">{event.description}</p>
+			<p
+				class="text-md mt-4 leading-7 text-slate-700"
+				set:html={event.description}
+			/>
+
 			<div class="mt-3 flex">
 				<HoverableLink href={event.facebookLink}>
 					{t('ui.facebook-link')}
