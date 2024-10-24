@@ -18,22 +18,22 @@ const { name, date, subtitle, class: className, imageUrl } = Astro.props;
 
 <div
 	class={cn(
-		'hover:scale-[1.01] hover:shadow-md snap-start first:snap-align-none max-w-xs flex-shrink-0 rounded-md border shadow sm:w-64',
+		'hover:scale-[1.01] snap-start first:snap-align-none max-w-xs flex-shrink-0 rounded-md border sm:w-64',
 		className,
-		'w-[230px] h-[340px]',
+		'w-[230px] h-[400px]',
 	)}
 >
 	<div class="card-image flex-none">
 		<Image
 			src={imageUrl}
 			alt={`Image of ${name}`}
-			class="h-[230px] w-full rounded-md object-fill"
+			class="h-[300px] w-full rounded-md object-cover"
 		/>
 	</div>
 
-	<div class="card-content mt-3 flex flex-1 flex-col justify-end space-y-1 p-3">
+	<div class="card-content flex flex-1 flex-col justify-end space-y-1 p-3">
 		<h3
-			class="card-title font-bold leading-snug text-slate-900 sm:text-lg"
+			class="card-title pt-1 font-bold leading-snug text-slate-900 sm:text-lg"
 			title={name}
 		>
 			{name}
