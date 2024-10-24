@@ -17,7 +17,7 @@ const parishHistory = [
 
 		<strong>Rev. Fr. J. M. Menezes</strong><br><br>
 
-		<strong>Role of Missionaries in building a spiritual community</strong><br>
+		<b><i>Role of Missionaries in building a spiritual community:</i></b><br>
 
 		<strong>Rev. Fr. A. A. E. Colaco (1921 - 1922)</strong><br>
 		Fr. A. A. E. Colaco was appointed as the first pastor of the newly constituted parish of Our Lady of Pompei. During his tenure, he established a primary school for the poor and those in need within the parish. <br><br>

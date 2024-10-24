@@ -265,7 +265,7 @@ export const ui = {
 		'ui.view-all': 'ಚಡಿತ್ ಮಾಹೆತ್',
 		'contact.title': 'ಸಂಪರ್ಕ್ ಕರಾ',
 		'history.title': 'ಆಮ್ಚಿ ಚರಿತ್ರಾ',
-		'history.subtitle': 'ಫಿರ್ಗಜ್ ಆದಿಂ ಆನಿ ಆತಾಂ . . .',
+		'history.subtitle': 'ಪೊಂಪೈ ಮಾಯೆಚಿ ಫಿರ್ಗಜ್, ಗುರ್ಪುರ್ - ಚರಿತ್ರೆಚೆರ್ ಏಕ್ ನದರ್',
 		'gallery.title': 'ಗ್ಯಾಲರಿ',
 		'gallery.subtitle': 'Capturing moments of grace',
 		'priest.service-period': 'ಅವ್ದಿ',
