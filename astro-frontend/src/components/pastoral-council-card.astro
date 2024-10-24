@@ -14,7 +14,7 @@ const { title, subtitle, class: className, imageUrl } = Astro.props;
 
 <div
 	class={cn(
-		'hover:scale-[1.01] w-64 snap-start first:snap-align-none max-w-xs flex-shrink-0 transform overflow-hidden border transition-all duration-200 ease-in-out sm:w-64',
+		'hover:scale-[1.01] w-64 snap-start first:snap-align-none max-w-xs flex-shrink-0 border duration-200 ease-in-out sm:w-64',
 		className,
 	)}
 >
@@ -22,16 +22,15 @@ const { title, subtitle, class: className, imageUrl } = Astro.props;
 		<Image
 			src={imageUrl}
 			alt={`${title} ${subtitle} of Our Lady of Pompei Church`}
-			width={200}
-			class="object-fit aspect-[1.5/1.9] h-auto w-full transition-transform duration-700 ease-in-out"
+			class="h-[300px] object-cover w-full"
 		/>
 	</div>
 
-	<div class="card-content mt-3 flex flex-1 flex-col justify-end space-y-1 p-3">
+	<div class="card-content flex flex-1 flex-col justify-end space-y-1 p-3">
 		<h3 class="card-title text-lg font-bold leading-snug text-slate-900">
 			{title}
 		</h3>
-		<p class="card-subtitle line-clamp-3 text-sm text-slate-600">
+		<p class="card-subtitle text-md text-slate-600">
 			{subtitle}
 		</p>
 	</div>
