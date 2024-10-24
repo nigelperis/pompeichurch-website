@@ -4,7 +4,8 @@ import Layout from '~/layouts/layout.astro';
 import { Image } from 'astro:assets';
 //TODO (Aroma): Replace this image with actual novena image
 import motherMary from '~/assets/mother-mary.jpg';
-
+import Card from '~/components/sections/prayer-card.astro';
+import Bible from '~/components/sections/bible-readings.astro';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
@@ -18,16 +19,23 @@ const t = useTranslations(lang);
 				{t('nav.prayer-corner')}
 			</h1>
 			<p class="text-md pb-6 font-poppins text-slate-400">
-				<!-- {t('prayer.subtitle')} -->
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+				Why pray?
+				<br>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
 				incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
 				nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 				Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
 				eu fugiat nulla pariatur.
 			</p>
-			<div class="flex justify-center lg:items-center">
-				<Image src={motherMary} alt="" />
-			</div>
+			<h2
+				class="mb-5 pl-4 text-3xl font-bold lg:text-2xl">
+				Let's join hands in prayer
+			</h2>
+      <Card/>
+			<h2
+				class=" mt-10 pl-4 text-3xl font-bold lg:text-2xl">
+        Find guidance and peace by turning to the Bible’s verses.
+			</h2>
+			<Bible/>
 		</section>
 	</main>
 </Layout>

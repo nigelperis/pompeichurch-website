@@ -1,0 +1,54 @@
+---
+import { cn } from '~/helpers/cn';
+import {prayer} from '~/constants/prayer1';
+---
+
+<div class ="flex flex-row mx-auto gap-x-3">
+<div
+	class={cn(
+		'hover:scale-[1.01] snap-start first:snap-align-none max-w-xs flex-shrink-0 rounded-md border sm:w-64',
+		'w-[230px] h-[300px] mt-2',
+	)}
+>
+  <div class="card-content flex flex-1 flex-col justify-end space-y-1 p-3">
+    <h3
+      class="card-title mx-auto pt-0.5 font-bold leading-snug text-slate-900 sm:text-lg"
+    >
+    Our Father
+    </h3>
+    {prayer}
+  </div>
+</div>
+
+<div
+	class={cn(
+		'hover:scale-[1.01] snap-start first:snap-align-none max-w-xs flex-shrink-0 rounded-md border sm:w-64',
+		'w-[230px] h-[300px] mt-2',
+	)}
+>
+  <div class="card-content flex flex-1 flex-col justify-end space-y-1 p-3">
+    <h3
+      class="card-title mx-auto pt-0.5 font-bold leading-snug text-slate-900 sm:text-lg"
+    >
+     Hail Mary
+    </h3>
+    {prayer}
+  </div>
+</div>
+
+<div
+	class={cn(
+		'hover:scale-[1.01] snap-start first:snap-align-none max-w-xs flex-shrink-0 rounded-md border sm:w-64',
+		'w-[230px] h-[300px] mt-2',
+	)}
+>
+  <div class="card-content flex flex-1 flex-col justify-end space-y-1 p-3">
+    <h3
+      class="card-title mx-auto pt-0.5 font-bold leading-snug text-slate-900 sm:text-lg"
+    >
+    Glory Be
+    </h3>
+    {prayer}
+  </div>
+</div>
+</div>
