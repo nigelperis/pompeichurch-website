@@ -14,9 +14,9 @@ const lang = getLangFromUrl(Astro.url);
 			type="button"
 			id="lang-button"
 			class={cn(
-				'inline-flex font-poppins font-medium justify-center w-25 mt-1 rounded-md border border-gray-500 px-2 py-1 text-base lg:text-medium ',
+				'inline-flex font-poppins font-semibold justify-center w-25 mt-1 rounded-md border border-gray-500 px-2 py-1 text-base lg:text-base ',
 				lang === 'kok'
-					? 'text-lg mt-0 font-semibold font-noto-sans-kannada'
+					? 'text-base px-1 mt-1 font-semibold font-noto-sans-kannada'
 					: 'sm:text-medium',
 			)}
 		>
