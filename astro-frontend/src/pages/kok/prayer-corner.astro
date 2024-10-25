@@ -2,9 +2,10 @@
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import Layout from '~/layouts/layout.astro';
 import { Image } from 'astro:assets';
-//TODO (Aroma): to replace this image with actual novena image
-import motherMary from '~/assets/mother-mary.jpg';
-
+//TODO (Aroma): Replace this image with actual novena image
+import novena from '~/assets/novena.jpg';
+import Card from '~/components/sections/prayer-card.astro';
+import Bible from '~/components/sections/bible-readings.astro';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
@@ -17,17 +18,34 @@ const t = useTranslations(lang);
 			>
 				{t('nav.prayer-corner')}
 			</h1>
-			<p class="text-md pb-6 font-poppins text-slate-400">
-				<!-- {t('prayer.subtitle')} -->
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+			<p class="text-md pb-6 font-poppins text-lg text-slate-400">
+				Why pray?
+				<br>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
 				incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
 				nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 				Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
 				eu fugiat nulla pariatur.
 			</p>
-			<div class="flex justify-center lg:items-center">
-				<Image src={motherMary} alt="" />
-			</div>
+			<h2
+				class="text-center my-5 border-b-4 border-natgeo-yellow pl-4 text-3xl font-bold lg:text-2xl">
+				Let's join hands in prayer
+			</h2>
+      <Card/>
+			<h2
+			class="text-center mt-8 mb-5 border-b-4 border-natgeo-yellow pl-4 text-3xl font-bold lg:text-2xl">
+				Novena of Our Lady of Pompei
+			</h2>
+			<p
+			class="text-center pb-6 font-giest text-lg text-slate-800">
+				Our lady of Pompei, Pray for us<br>
+				<span class="font-noto-sans-kannada">ಪೊಂಪೈ ಮಾಯೆ ಆಮಾ ಪಾಸುನ್ ವಿನತಿ ಕರ್</span>
+			</p>
+			<Image src={novena} alt="" />
+			<h2
+				class="text-center my-6 border-b-4 border-natgeo-yellow pl-4 text-3xl font-bold lg:text-2xl">
+        Find guidance and peace by turning to the Bible’s verses.
+			</h2>
+			<Bible/>
 		</section>
 	</main>
 </Layout>
