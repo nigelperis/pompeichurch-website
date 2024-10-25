@@ -21,6 +21,7 @@ const t = useTranslations(lang);
 			<img src={churchLogo.src} alt="" width={45} />
 		</a>
 		<div class="ml-auto hidden items-center lg:flex">
+			<!-- Navbar for Web -->
 			<ul class="flex items-center gap-6">
 				{
 					navLinks
@@ -35,18 +36,18 @@ const t = useTranslations(lang);
 									}
 									class={cn(
 										'font-poppins font-semibold',
-										lang === 'kok' ? 'font-noto-sans-kannada text-lg' : 'text-md',
+										lang === 'kok' ? 'font-noto-sans-kannada text-md' : 'text-md',
 									)}
 								>
 									{t(link.title)}
 								</a>
 								{link.type === 'expandable' && link.expandedLinks && (
-									<ul class="absolute left-0 top-full mt-2 hidden w-64 rounded-md p-2 shadow-md group-hover:block md:flex">
+									<ul class="absolute top-full mt-2 hidden w-60 rounded-md p-2 shadow-md group-hover:block md:flex">
 										{link.expandedLinks.map((sublink) => (
 											<li class="w-150">
 												<a
 													href={getRelativeLocaleUrl(lang, sublink.href)}
-													class="block rounded-md px-4 py-2 font-poppins text-sm transition-all hover:bg-natgeo-yellow"
+													class="block rounded-md px-2 py-2 font-poppins text-sm transition-all hover:bg-natgeo-yellow"
 												>
 													{t(sublink.title)}
 												</a>
@@ -82,6 +83,7 @@ const t = useTranslations(lang);
 		id="hamburger-close"
 		class="relative ml-auto cursor-pointer rounded-full text-3xl"
 	/>
+	<!-- Navbar for mobile -->
 	<ul class="flex flex-col gap-y-5">
 		{
 			navLinks.map((link) => (
