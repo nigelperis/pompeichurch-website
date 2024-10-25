@@ -6,6 +6,7 @@ import ParishDetails from '~/components/sections/parish-history/parish-details.a
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+//TODO : Update the history carousel with images
 ---
 
 <Layout title="Pompei Church | Parish History">
@@ -16,7 +17,7 @@ const t = useTranslations(lang);
 			>
 				{t('history.title')}
 			</h1>
-			<h2 class="text-black-400 p-3 pb-6 font-geist text-2xl font-bold italic">
+			<h2 class="text-black-400 pt-2 pb-6 font-geist text-2xl font-bold italic">
 				{t('history.subtitle')}
 			</h2>
 			<ParishDetails />

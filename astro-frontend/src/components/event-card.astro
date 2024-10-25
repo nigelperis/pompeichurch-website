@@ -11,7 +11,7 @@ const t = useTranslations(lang);
 interface Props {
 	eventName: string;
 	imageUrl: ImageMetadata;
-	description: string;
+	shortDescription: string;
 	facebookLink: string;
 	slug: string;
 	class?: string;
@@ -20,7 +20,7 @@ interface Props {
 const {
 	eventName,
 	imageUrl,
-	description,
+	shortDescription,
 	slug,
 	class: className,
 } = Astro.props;
@@ -47,10 +47,8 @@ const eventUrl = lang === 'en' ? `/events/${slug}` : `/kok/events/${slug}`;
 			<h3 class="event-title text-xl font-bold text-slate-900">
 				{eventName}
 			</h3>
-			<p
-				class="event-description justify pb-4 text-left text-base text-slate-700"
-			>
-				{description}
+			<p class="event-description pb-4 text-justify text-base text-slate-700">
+				{shortDescription}
 			</p>
 		</div>
 		<HoverableLink href={eventUrl}>

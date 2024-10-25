@@ -1,5 +1,6 @@
 ---
 import churchBannerImage from '~/assets/church-banner.jpg';
+import { parishHistoryKok } from '~/constants/parish-history-kok';
 import { parishHistory } from '~/constants/parish-history';
 import { Image } from 'astro:assets';
 import { getLangFromUrl } from '~/i18n/utils';
@@ -7,36 +8,27 @@ import { getLangFromUrl } from '~/i18n/utils';
 const lang = getLangFromUrl(Astro.url);
 
 const historyData =
-	lang === 'kok' ? parishHistory.kok.history : parishHistory.en.history;
+	lang === 'kok' ? parishHistoryKok[0].history : parishHistory[0].history;
+
 const priestsData =
-	lang === 'kok' ? parishHistory.kok.priests : parishHistory.en.priests;
+	lang === 'kok' ? parishHistoryKok[1].priestInfo : parishHistory[1].priestInfo;
+
 const fontClass = lang === 'kok' ? 'font-noto-sans-kannada' : 'font-geist';
 ---
 
 <div class="mx-auto">
-	<div class={`mt-2 ${fontClass}`}>
+	<div class={fontClass}>
 		<div class="md:float-right md:ml-5">
 			<Image src={churchBannerImage} alt="Church Banner Image" />
 		</div>
-		{
-			historyData.map((history) => (
-				<p class="text-md mt-4 text-justify leading-7 text-slate-700 lg:text-left">
-					{history}
-				</p>
-			))
-		}
-		{
-			priestsData.map((priest) => (
-				<div class="mt-6">
-					<h3 class="text-lg font-bold text-slate-900">
-						{priest.name}
-						{priest.years}
-					</h3>
-					<p class="text-md mt-2 text-justify leading-7 text-slate-700 lg:text-left">
-						{priest.description}
-					</p>
-				</div>
-			))
-		}
+		<p
+			class="text-md mt-3 text-justify leading-7 text-slate-700"
+			set:html={historyData}
+		>
+			<p
+				class="text-md pb-4 text-justify leading-7 text-slate-700"
+				set:html={priestsData}
+			/>
+		</p>
 	</div>
 </div>
