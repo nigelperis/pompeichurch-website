@@ -36,7 +36,9 @@ const t = useTranslations(lang);
 									}
 									class={cn(
 										'font-poppins font-semibold',
-										lang === 'kok' ? 'font-noto-sans-kannada text-md' : 'text-md',
+										lang === 'kok'
+											? 'text-md font-noto-sans-kannada'
+											: 'text-md',
 									)}
 								>
 									{t(link.title)}
@@ -256,25 +258,25 @@ const t = useTranslations(lang);
 	});
 
 	allNavigationLinks.forEach((link) => {
-	link.addEventListener('click', (e) => {
-		e.preventDefault(); // Prevent the default behavior
+		link.addEventListener('click', (e) => {
+			e.preventDefault(); // Prevent the default behavior
 
-		// Close all expandable submenus
-		expandableLinks.forEach((element) => {
-			const expandableContent = element.parentElement?.querySelector('a + ul');
-			expandableContent?.style.setProperty('max-height', '0');
-			element.setAttribute('data-is-submenu-expanded', 'false');
+			// Close all expandable submenus
+			expandableLinks.forEach((element) => {
+				const expandableContent =
+					element.parentElement?.querySelector('a + ul');
+				expandableContent?.style.setProperty('max-height', '0');
+				element.setAttribute('data-is-submenu-expanded', 'false');
+			});
+
+			// Close the navbar menu on mobile
+			navbar?.classList?.remove('open');
+
+			// Redirect to the link's href
+			const anchorElement = link as HTMLAnchorElement;
+			if (anchorElement.href) {
+				window.location.href = anchorElement.href; // Trigger the redirect
+			}
 		});
-
-		// Close the navbar menu on mobile
-		navbar?.classList?.remove('open');
-
-		// Redirect to the link's href
-		const anchorElement = link as HTMLAnchorElement;
-		if (anchorElement.href) {
-			window.location.href = anchorElement.href; // Trigger the redirect
-		}
 	});
-});
-
 </script>

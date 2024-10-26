@@ -39,7 +39,7 @@ const lang = getLangFromUrl(Astro.url);
 	</div>
 	<div
 		id="lang-dropdown"
-		class="absolute mt-2 p-2 w-full shadow-md rounded-md bg-white"
+		class="absolute mt-2 w-full rounded-md bg-white p-2 shadow-md"
 		role="menu"
 		aria-orientation="vertical"
 		aria-labelledby="options-menu"
@@ -50,7 +50,7 @@ const lang = getLangFromUrl(Astro.url);
 					<button
 						type="button"
 						class={cn(
-							'w-full rounded-md py-2 font-poppins font-normal text-md transition-all hover:bg-natgeo-yellow',
+							'text-md w-full rounded-md py-2 font-poppins font-normal transition-all hover:bg-natgeo-yellow',
 							selectedLanguage === lang && 'font-noto-sans-kannada',
 						)}
 					>
