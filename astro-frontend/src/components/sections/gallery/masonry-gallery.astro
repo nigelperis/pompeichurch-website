@@ -77,7 +77,7 @@ const images = [
 	});
 
 	lightbox.on('uiRegister', function () {
-		lightbox.pswp.ui.registerElement({
+		lightbox.pswp?.ui?.registerElement({
 			name: 'download-button',
 			order: 8,
 			isButton: true,
@@ -90,12 +90,16 @@ const images = [
 				outlineID: 'pswp__icn-download',
 			},
 			onInit: (el, pswp) => {
-				el.setAttribute('download', '');
-				el.setAttribute('target', '_blank');
-				el.setAttribute('rel', 'noopener');
+				const anchorEl = el as HTMLAnchorElement;
+
+				anchorEl.setAttribute('download', '');
+				anchorEl.setAttribute('target', '_blank');
+				anchorEl.setAttribute('rel', 'noopener');
 
 				pswp.on('change', () => {
-					el.href = pswp.currSlide.data.src;
+					if (pswp.currSlide?.data?.src) {
+						anchorEl.href = pswp.currSlide.data.src;
+					}
 				});
 			},
 		});
