@@ -263,8 +263,9 @@ const t = useTranslations(lang);
 
 			// Close all expandable submenus
 			expandableLinks.forEach((element) => {
-				const expandableContent =
-					element.parentElement?.querySelector('a + ul');
+				const expandableContent = element.parentElement?.querySelector(
+					'a + ul',
+				) as HTMLElement;
 				expandableContent?.style.setProperty('max-height', '0');
 				element.setAttribute('data-is-submenu-expanded', 'false');
 			});
