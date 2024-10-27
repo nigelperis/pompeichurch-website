@@ -2,7 +2,8 @@
 import { Image } from 'astro:assets';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import priestImage from '~/assets/pp1.png';
-import { loremIpsum } from '~/constants/lorem-ipsum';
+import { priestMessage } from '~/constants/parish-priest-message';
+import { cn } from '~/helpers/cn';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -40,12 +41,13 @@ const t = useTranslations(lang);
 
 		<div class="lg:self-center">
 			<p
-				class="text-justify font-geist text-base leading-7 first-letter:font-serif first-letter:text-3xl"
+				class={cn(`text-justify font-geist pt-2 text-base leading-7`,
+				{ 'font-noto-sans-kannada': lang === 'kok' })}
 			>
-				{loremIpsum}
+				{lang ==='kok'? priestMessage.kok: priestMessage.en}
 			</p>
 
-			<div class="mb-8 ml-auto text-lg font-semibold">
+			<div class="mb-8 pt-4 ml-auto text-lg font-semibold">
 				<p data-aos="fade-left" class="text-right">
 					Signature of Fr. Rudolf DSa(image)
 				</p>

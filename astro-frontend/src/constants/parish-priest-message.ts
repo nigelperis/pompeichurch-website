@@ -1,0 +1,9 @@
+const priestMessage ={
+  kok:`ಪೊಂಪೈ ಮಾಯೆಕ್ ಸಮರ್ಪಿಲ್ಲ್ಯಾ ಗುರ್ಪುರ್ ಫಿರ್ಗಜೆಚ್ಯಾ ಅಧಿಕೃತ್ ವೆಬ್‌ಸಾಯ್ಟಾಕ್ ತುಮ್ಕಾಂ ಸ್ವಾಗತ್. ಗಾವಾಂತ್ ತಶೆಂಚ್ ಪರ್ಗಾವಾಂತ್ ಆಸ್ಚ್ಯಾ ಫಿರ್ಗಜ್‌ಗಾರಾಂಕ್ ತಶೆಂಚ್ ಪೊಂಪೈ ಮಾಯೆಚ್ಯಾ ಭಕ್ತಿಕಾಂಕ್ ಸಾಂಗಾತಾ  ದವ್ರುಂಕ್ ಆನಿ ಫಿರ್ಗಜೆಚಿ ಮಾಹೆತ್ ಸರ್ವಾಂ ಸಂಗಿಂ ವಾಂಟುಂಕ್ ಡಿಜಿಟಲ್ ವೆದಿ ಕುಮೊಕ್ ಜಾತೆಲಿ ಮ್ಹಳ್ಳೊ ಆಮ್ಚೊ ಭರ್ವಸೊ. ಹ್ಯಾ  ವೆಬ್‌ಸಾಯ್ಟಾದ್ವಾರಿಂ ಫಿರ್ಗಜೆಚಿ ಚರಿತ್ರಾ, ಫಿರ್ಗಜೆಚ್ಯಾ ಸಂಘ್ - ಸಂಸ್ಥ್ಯಾಂಚಿ, ಆಯೋಗಾಂಚಿ ಮಾಹೆತ್, ಹೆರ್ ಚಟುವಟಿಕೆಂಚೊ ವಿವರ್ ಮಿಸಾಂಚೊ ವೇಳ್, ಭಕ್ತಿಕ್ ಕಾರ್ಯಿಂ, ಫುಡೆಂ ಜಾಂವ್ಕ್ ಆಸ್ಚ್ಯಾ ಕಾರ್ಯಾಕ್ರಮಾಂಚೊ ವಿವರ್ ಅನಿ ಭಾವಾಡ್ತಿ ಜಿವಿತಾಕ್ ಲಗ್ತಿ ಜಾಲ್ಲ್ಯಾ ಸಂಗ್ತಿಂ ವಿಶಿಂ ಮಾಹೆತ್ ಲಾಬ್ತೆಲಿ. ಹಾಂಗಾಸರ್, ಫಿರ್ಗಜ್ ವೆಬ್‌ಸಾಯ್ಟಾಚೊ ವಾವ್ರ್ ಹಾತಿಂ ಘೆವ್ನ್ ಆಪ್ಲೊ ವೇಳ್, ತಾಲೆಂತಾ ಆನಿ ಪ್ರವೀಣಾತಾ ವಾಪಾರುನ್ ಹಿ ವೆಬ್‌ಸಾಯ್ಟ್ ಉಜ್ವಾಡಾಕ್ ಹಾಡುಂಕ್ ದೆಣ್ಗಿ ದಿಲ್ಲ್ಯಾ ಸರ್ವ್ ಫಿರ್ಗಜ್ ವೆಬ್‌ಸಾಯ್ಟ್ ಕಮಿಟಿ ಸಾಂದ್ಯಾಂಕ್ ದಿನ್ವಾಸ್ ಪಾಠೈಯ್ತಾಂ. ಹ್ಯಾ ವೆಬ್ಬ್ಸಾಯ್ಟಾ ದ್ವಾರಿಂ ಆಮ್ಚೊ ಮೋಗ್ ವಾಡೊಂದಿ, ಎಕ್ವಟ್ ಚಡೊಂದಿ, ಸಮುದಾಯೆಚೊ ಸ್ಪಿರಿತ್ ಬಳ್ವಂತ್ ಜಾಂವ್ದಿ ಮ್ಹಳ್ಳಿ ಮ್ಹಜಿ ಆಶಾ. ಆಮ್ಚಿ ಶಾರೊತಿಣ್ ಪೊಂಪೈ ಮಾಂಯ್ ಆಮ್ಕಾಂ ಸಮೇಸ್ತಾಂಕ್ ರಾಕೊಂದಿ ಆನಿ ಬೆಸಾಂವ್ ದೀವ್ನ್ ಸಾಂಬಾಳುಂದಿ.`,
+
+  en:`Prayerful wishes and greetings to all visitors of the official Parish website of Our Lady of Pompei Church, Gurpur. We are happy to offer this digital forum for all those who wish to stay connected to our parish, especially all our parishioners. Here, you will find the history of the Parish, information about various Parish Associations, Pastoral Commissions, and their activities, as well as the Mass schedule, Religious Services, Upcoming Events, and other services that support the faith life of our parish community.
+
+  I am grateful to the Parish website team members for their initiative and dedicated efforts in creating this official website, contributing their time, talent, resources, and expertise to make this vision a reality. As a parish under the loving care of Our Lady of Pompei, may she continue to protect and bless us all. We hope this website will be a source of inspiration, connection, and support as we journey together in faith.`
+}
+
+export { priestMessage }
