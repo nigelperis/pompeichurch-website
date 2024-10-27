@@ -45,6 +45,10 @@ export const navLinks = [
 				title: 'nav.parish-pastoral-21-commissions',
 				href: '/parish-pastoral-21-commissions',
 			},
+			{
+				title:'nav.wards',
+				href:'/wards'
+			}
 		],
 	},
 	{
@@ -112,52 +116,6 @@ export const navLinks = [
 			{
 				title: 'nav.legion-of-mary',
 				href: '/associations/legion-of-mary',
-			},
-		],
-	},
-	{
-		type: 'expandable',
-		title: 'nav.wards',
-		expandedLinks: [
-			{
-				title: 'nav.kowdoor-a-ward',
-				href: '/wards/kowdoor-a',
-			},
-			{
-				title: 'nav.kowdoor-b-ward',
-				href: '/wards/kowdoor-b',
-			},
-			{
-				title: 'nav.pompei-a-ward',
-				href: '/wards/pompei-a',
-			},
-			{
-				title: 'nav.pompei-b-ward',
-				href: '/wards/pompei-b',
-			},
-			{
-				title: 'nav.kandar-a-ward',
-				href: '/wards/kandar-a',
-			},
-			{
-				title: 'nav.kandar-b-ward',
-				href: '/wards/kandar-b',
-			},
-			{
-				title: 'nav.monel-ward',
-				href: '/wards/monel',
-			},
-			{
-				title: 'nav.gurpur-ward',
-				href: '/wards/gurpur',
-			},
-			{
-				title: 'nav.church-ward',
-				href: '/wards/church',
-			},
-			{
-				title: 'nav.addoor-ward',
-				href: '/wards/addoor',
 			},
 		],
 	},

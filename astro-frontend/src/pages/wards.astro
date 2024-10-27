@@ -1,33 +1,21 @@
 ---
 import Layout from '~/layouts/layout.astro';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
-import { wards } from '~/constants/wards';
 import WardDetails from '~/components/sections/wards/ward-details.astro';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-
-export async function getStaticPaths() {
-	return wards.map(
-		({ slug, title, patronImage, wardGroupImageSrc, officeBearers }) => ({
-			params: { slug },
-			props: { slug, title, patronImage, wardGroupImageSrc, officeBearers },
-		}),
-	);
-}
-
-const { slug, title } = Astro.props;
 ---
 
-<Layout title={`Wards | ${title}`}>
+<Layout title="Pompei Church | Wards">
 	<main class="mx-auto max-w-4xl overflow-hidden bg-white">
-		<section id="wards" class="flex flex-col p-6 pb-4">
+		<section id="wards" class="flex flex-col p-6">
 			<h1
 				class="mb-4 border-l-4 border-natgeo-yellow pl-3 text-3xl font-extrabold lg:text-4xl"
 			>
-				{t(`nav.${slug}-ward`)}
+				{t('nav.wards')}
 			</h1>
-			<WardDetails />
+			<WardDetails>
 		</section>
 	</main>
 </Layout>

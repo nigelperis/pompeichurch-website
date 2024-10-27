@@ -1,125 +1,86 @@
 import dummyImage from '~/assets/church-logo.png';
 import { loremIpsum } from './lorem-ipsum';
 
-export interface Ward {
-	slug: string;
-	title: string;
-	patronImage: ImageMetadata;
-	wardGroupImageSrc: ImageMetadata;
-	description: string;
-	officeBearers: { name: string; position: string }[];
-}
-
-const wards: Ward[] = [
+const wards = [
 	{
-		slug: 'kowdoor-a',
-		title: 'Kowdoor A',
+		name: 'kowdoor-a-ward',
 		patronImage: dummyImage,
-		wardGroupImageSrc: dummyImage,
+		gurkarImage: dummyImage,
 		description: loremIpsum,
-		officeBearers: [
-			{ name: 'John Doe', position: 'Ward Gurkaar' },
-			{ name: 'Jane Smith', position: 'Ward Secretary' },
-		],
+		gurkarName: 'john doe',
+		pratinidiName: 'jhony doe'
 	},
 	{
-		slug: 'kowdoor-b',
-		title: 'Kowdoor B',
+		name: 'kowdoor-b-ward',
 		patronImage: dummyImage,
-		wardGroupImageSrc: dummyImage,
+		gurkarImage: dummyImage,
 		description: loremIpsum,
-		officeBearers: [
-			{ name: 'Alice Johnson', position: 'Ward Gurkaar' },
-			{ name: 'Bob Williams', position: 'Ward Secretary' },
-		],
+		gurkarName: 'john doe',
+		pratinidiName: 'jhony doe'
 	},
 	{
-		slug: 'pompei-a',
-		title: 'Pompei A',
+		name: 'pompei-a-ward',
 		patronImage: dummyImage,
-		wardGroupImageSrc: dummyImage,
+		gurkarImage: dummyImage,
 		description: loremIpsum,
-		officeBearers: [
-			{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
-			{ name: 'Emily Davis', position: 'Ward Secretary' },
-		],
+		gurkarName: 'john doe',
+		pratinidiName: 'jhony doe'
 	},
 	{
-		slug: 'pompei-b',
-		title: 'Pompei B',
+		name: 'pompei-b-ward',
 		patronImage: dummyImage,
-		wardGroupImageSrc: dummyImage,
+		gurkarImage: dummyImage,
 		description: loremIpsum,
-		officeBearers: [
-			{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
-			{ name: 'Emily Davis', position: 'Ward Secretary' },
-		],
+		gurkarName: 'john doe',
+		pratinidiName: 'jhony doe'
 	},
 	{
-		slug: 'kandar-a',
-		title: 'Kandar A',
+		name: 'kandar-a-ward',
 		patronImage: dummyImage,
-		wardGroupImageSrc: dummyImage,
+		gurkarImage: dummyImage,
 		description: loremIpsum,
-		officeBearers: [
-			{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
-			{ name: 'Emily Davis', position: 'Ward Secretary' },
-		],
+		gurkarName: 'john doe',
+		pratinidiName: 'jhony doe'
 	},
 	{
-		slug: 'kandar-b',
-		title: 'Kandar B',
+		name: 'kandar-b-ward',
 		patronImage: dummyImage,
-		wardGroupImageSrc: dummyImage,
+		gurkarImage: dummyImage,
 		description: loremIpsum,
-		officeBearers: [
-			{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
-			{ name: 'Emily Davis', position: 'Ward Secretary' },
-		],
+		gurkarName: 'john doe',
+		pratinidiName: 'jhony doe'
 	},
 	{
-		slug: 'monel',
-		title: 'Monel',
+		name: 'monel-ward',
 		patronImage: dummyImage,
-		wardGroupImageSrc: dummyImage,
+		gurkarImage: dummyImage,
 		description: loremIpsum,
-		officeBearers: [
-			{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
-			{ name: 'Emily Davis', position: 'Ward Secretary' },
-		],
+		gurkarName: 'john doe',
+		pratinidiName: 'jhony doe'
 	},
 	{
-		slug: 'gurpur',
-		title: 'Gurpur',
+		name: 'gurpur-ward',
 		patronImage: dummyImage,
-		wardGroupImageSrc: dummyImage,
+		gurkarImage: dummyImage,
 		description: loremIpsum,
-		officeBearers: [
-			{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
-			{ name: 'Emily Davis', position: 'Ward Secretary' },
-		],
+		gurkarName: 'john doe',
+		pratinidiName: 'jhony doe'
 	},
 	{
-		slug: 'church',
-		title: 'Church',
+		name: 'church-ward',
 		patronImage: dummyImage,
-		wardGroupImageSrc: dummyImage,
+		gurkarImage: dummyImage,
 		description: loremIpsum,
-		officeBearers: [
-			{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
-			{ name: 'Emily Davis', position: 'Ward Secretary' },
-		],
+		gurkarName: 'john doe',
+		pratinidiName: 'jhony doe'
 	},
 	{
-		slug: 'addoor',
-		title: 'Addoor',
+		name: 'addoor-ward',
 		patronImage: dummyImage,
-		wardGroupImageSrc: dummyImage,
+		gurkarImage: dummyImage,
 		description: loremIpsum,
-		officeBearers: [
-			{ name: 'Charlie Brown', position: 'Ward Gurkaar' },
-			{ name: 'Emily Davis', position: 'Ward Secretary' },
-		],
+		gurkarName: 'john doe',
+		pratinidiName: 'jhony doe'
 	},
 ];
 
