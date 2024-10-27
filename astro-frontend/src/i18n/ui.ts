@@ -242,7 +242,7 @@ export const ui = {
 		'landing.secretary': 'ಗೊವ್ಳಿಕ್ ಪರಿಷಧ್ ಕಾರ್ಯದರ್ಶಿ',
 		'landing.pastoral-commission-coordinator': '21 ಆಯೋಗಾಂಚಿ ಸಂಯೋಜಕಿ',
 		'landing.priest-speaks': 'ಫಿರ್ಗಜ್ ವಿಗಾರ್ ಉಲಯ್ತಾ',
-		'landing.priest-name': 'ಭೊ|ಮಾ|ಬಾ| ರುಡೋಲ್ಫ್ ರವಿ ಡೆಸಾ',
+		'landing.priest-name': 'ಭೊ| ಮಾ| ಬಾ| ರುಡೋಲ್ಫ್ ರವಿ ಡೆಸಾ',
 		'landing.vp-name': 'ಶ್ರೀಮಾನ್ ರೋಮನ್ಸ್ ಲೋಬೊ',
 		'landing.secretary-name': 'ಶ್ರೀಮಾನ್ ಜೊನ್ಸನ್ ಲೋಬೊ',
 		'landing.pastoral-commission-coordinator-name': 'ಶ್ರೀಮತಿ ಹಿಲ್ಡಾ ಮಿನೇಜಸ್',

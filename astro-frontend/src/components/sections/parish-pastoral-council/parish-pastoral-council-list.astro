@@ -1,23 +1,28 @@
 ---
-import ProfileCard from '~/components/profile-card.astro';
 import { pastoralCouncil } from '~/constants/pastoral-council-members';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+import { Image } from 'astro:assets';
+import pastoralCouncilImage from '~/assets/pastoral-council.jpg'
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
+<div>
+<Image src={pastoralCouncilImage} alt=""
+class="w-full object-contain rounded-sm pb-4 pt-4"
 
-<div
-	class="mx-auto grid w-full max-w-4xl grid-cols-2 gap-x-20 gap-y-10 xs:grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+/>
+<table
+	class="mx-auto w-full max-w-4xl border border-gray-200"
 >
-	{
-		pastoralCouncil.map((councilMember) => (
-			<ProfileCard
-				class="m-auto"
-				imageUrl={councilMember.imageUrl}
-				name={t(`landing.${councilMember.name}`)}
-				subtitle={t(`landing.${councilMember.subtitle}`)}
-			/>
-		))
-	}
+  <tbody>
+    {pastoralCouncil.map((member) => (
+      <tr class="hover:bg-gray-50">
+        <td class="px-4 py-2 text-sm lg:text-lg lg:text-gray-800 border-b border-gray-200">{t(`landing.${member.name}`)}</td>
+        <td class="px-4 py-2 text-sm lg:text-lg lg:text-gray-800 border-b border-gray-200">{member.org}</td>
+        <td class="px-4 py-2 text-sm lg:text-lg lg:text-gray-800 border-b border-gray-200">{member.position}</td>
+      </tr>
+    ))}
+  </tbody>
+</table>
 </div>

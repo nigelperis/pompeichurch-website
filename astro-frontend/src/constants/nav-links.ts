@@ -131,16 +131,17 @@ export const navLinks = [
 				title: 'nav.events',
 				href: '/events',
 			},
-			{
-				title: 'nav.pompeichem-falkem',
-				href: '/pompeichem-falkem',
-			},
 		],
 	},
 	{
 		type: 'link',
 		title: 'nav.prayer-corner',
 		href: '/prayer-corner',
+	},
+	{
+		type:'link',
+		title: 'nav.pompeichem-falkem',
+		href: '/pompeichem-falkem',
 	},
 	{
 		type: 'link',
