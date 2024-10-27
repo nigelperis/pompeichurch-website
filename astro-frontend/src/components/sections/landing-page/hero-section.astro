@@ -13,64 +13,113 @@ const optimizedChurchHeroImage = await getImage({ src: churchHeroImage });
 ---
 
 <section
-	class="relative h-screen w-screen bg-black/20 bg-cover bg-blend-darken"
-	style={{
-		backgroundImage: `url(${optimizedSkyImage.src})`,
-	}}
+    class="relative h-screen w-screen bg-black/20 bg-cover bg-blend-darken"
+    style={{
+        backgroundImage: `url(${optimizedSkyImage.src})`,
+    }}
 >
-	<div class="absolute inset-0 bg-white opacity-70 bg-blend-darken"></div>
+    <div class="absolute inset-0 bg-white opacity-70 bg-blend-darken"></div>
 
-	<div
-		class="relative mx-4 h-[30vh] overflow-hidden rounded-b-full bg-yellow-50 sm:mx-auto sm:h-[40vh] sm:w-[80vw] md:h-80 md:w-96 xl:h-96 xl:w-5/12"
-	>
-		<div
-			class="animated-background mx-auto h-full w-full bg-cover bg-center bg-no-repeat"
-			style={{ backgroundImage: `url(${optimizedChurchHeroImage.src})` }}
-		>
-		</div>
-	</div>
-	<h1
-		data-aos="fade-up"
-		data-aos-delay="700"
-		class={cn(
-			'mt-3 text-center font-montserrat text-4xl  lg:text-5xl font-semibold',
-			{
-				'font-noto-sans-kannada': lang === 'kok',
-			},
-		)}
-	>
-		{t('landing.church-name')}
-	</h1>
-	<p
-		data-aos="fade-up"
-		data-aos-delay="900"
-		class={cn('mt-2 text-center font-montserrat font-normal text-3xl', {
-			'font-noto-sans-kannada': lang === 'kok',
-		})}
-	>
-		{t('landing.town-name')}
-	</p>
-	<div class="mx-auto">
-		<img
-			src={churchLogo.src}
-			alt="Our Lady of Pompei Church logo"
-			width={180}
-			data-aos="fade-up"
-			data-aos-delay="1100"
-			class="mx-auto my-4 font-geist opacity-0"
-		/>
-	</div>
+    <div
+        id="churchContainer"
+        class="opacity-0 transition-opacity duration-500 relative mx-4 h-[30vh] overflow-hidden rounded-b-full bg-yellow-50 sm:mx-auto sm:h-[40vh] sm:w-[80vw] md:h-80 md:w-96 xl:h-96 xl:w-5/12"
+    >
+        <div
+            id="churchHero"
+            class="h-full w-full bg-cover bg-center bg-no-repeat"
+            style={{ backgroundImage: `url(${optimizedChurchHeroImage.src})` }}
+        >
+        </div>
+    </div>
+    <h1
+        id="churchName"
+        class={cn(
+            'relative opacity-0 transition-opacity duration-500 mt-3 text-center font-montserrat text-4xl lg:text-5xl font-semibold',
+            {
+                'font-noto-sans-kannada': lang === 'kok',
+            },
+        )}
+    >
+        {t('landing.church-name')}
+    </h1>
+    <p
+        id="townName"
+        class={cn('relative opacity-0 transition-opacity duration-500 mt-2 text-center font-montserrat font-normal text-3xl', {
+            'font-noto-sans-kannada': lang === 'kok',
+        })}
+    >
+        {t('landing.town-name')}
+    </p>
+    <div class="mx-auto">
+        <Image
+            id="churchLogo"
+            src={churchLogo}
+            alt="church logo"
+            width={180}
+            class="relative mx-auto my-4 opacity-0 transition-opacity duration-500"
+        />
+    </div>
 </section>
+
 <style>
-	@keyframes animatedBackground {
-		from {
-			transform: scale(1.2);
-		}
-		to {
-			transform: scale(1);
-		}
-	}
-	.animated-background {
-		animation: animatedBackground 2s ease-out forwards;
-	}
+    @keyframes animatedBackground {
+        from {
+            transform: scale(1.2);
+        }
+        to {
+            transform: scale(1);
+        }
+    }
+    .animate-background {
+        animation: animatedBackground 2s ease-out forwards;
+    }
 </style>
+
+<script>
+    // Get all the elements we need to animate
+    const churchContainer = document.getElementById('churchContainer');
+    const churchHero = document.getElementById('churchHero');
+    const churchName = document.getElementById('churchName');
+    const townName = document.getElementById('townName');
+    const churchLogo = document.getElementById('churchLogo');
+
+    // Function to start the animation sequence
+    function startAnimation() {
+
+        // Show the church container and start the scale animation
+        if (churchContainer) {
+            churchContainer.style.opacity = '1';
+            if (churchHero) {
+                churchHero.classList.add('animate-background');
+            }
+        }
+
+        // Delay the text animations
+        setTimeout(() => {
+            if (churchName) {
+                churchName.style.opacity = '1';
+                churchName.classList.add('opacity-visible');
+            }
+        }, 1000);
+
+        setTimeout(() => {
+            if (townName) {
+                townName.style.opacity = '1';
+                townName.classList.add('opacity-visible');
+            }
+        }, 1300);
+
+        setTimeout(() => {
+            if (churchLogo) {
+                churchLogo.style.opacity = '1';
+                churchLogo.classList.add('opacity-visible');
+            }
+        }, 1500);
+    }
+
+    // Listen for the timer end event
+    document.addEventListener('timerEnded', () => {
+        setTimeout(startAnimation, 1000);
+    });
+
+</script>

@@ -16,6 +16,8 @@ const t = useTranslations(lang);
 ---
 
 <Layout title={`${t('landing.church-name')} | ${t('landing.town-name')}`}>
+<WelcomeAnimation />
+		<div class="main-content">
 	<main>
 		<!-- <WelcomeAnimation /> -->
 
@@ -35,4 +37,5 @@ const t = useTranslations(lang);
 
 		<MassTimingsSection />
 	</main>
+		</div>
 </Layout>

@@ -1,4 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
+	const isMobileDevice = () => {
+		return (
+			window.innerWidth < 768 ||
+			/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+				navigator.userAgent,
+			)
+		);
+	};
+
 	// const body = document.body;
 	const curtainContainer = document.querySelector('.curtain-container');
 	const toggleButton = document.getElementById('toggleCurtain');
@@ -32,10 +41,43 @@ document.addEventListener('DOMContentLoaded', () => {
 	let animationFrameId = null;
 	let animationTimeout = null;
 	let timerInterval = null;
+
+	if (isMobileDevice()) {
+		// Hide the animation elements if they exist
+		if (curtainContainer) curtainContainer.style.display = 'none';
+		if (timerContainer) timerContainer.style.display = 'none';
+		if (toggleButton) toggleButton.style.display = 'none';
+		if (balloonContainer) balloonContainer.style.display = 'none';
+		if (canvas) canvas.style.display = 'none';
+
+		// Trigger the timerEnded event after a short delay
+		setTimeout(() => {
+			const timerEndEvent = new CustomEvent('timerEnded');
+			document.dispatchEvent(timerEndEvent);
+		}, 500); // Small delay to ensure other components are loaded
+		return;
+	}
+
 	const FULL_DASH_ARRAY = 283; // 2 * π * r, where r = 45 (SVG circle radius)
 	const TIME_LIMIT = 5;
+	const WARNING_THRESHOLD = 3; // Show orange when 3 seconds remain
+	const ALERT_THRESHOLD = 2; // Show red when 2 seconds remain
 	let timePassed = 0;
 	let timeLeft = TIME_LIMIT;
+
+	const COLOR_CODES = {
+		info: {
+			color: '#23c714', // Green
+		},
+		warning: {
+			color: '#ff9800', // Orange
+			threshold: WARNING_THRESHOLD,
+		},
+		alert: {
+			color: '#ff0000', // Red
+			threshold: ALERT_THRESHOLD,
+		},
+	};
 
 	function randomFromTo(from, to) {
 		return Math.floor(Math.random() * (to - from + 1) + from);
@@ -158,20 +200,47 @@ document.addEventListener('DOMContentLoaded', () => {
 		}, 500);
 	}
 
+	function setRemainingPathColor(timeLeft) {
+		const { alert, warning, info } = COLOR_CODES;
+
+		// Remove any previous colors
+		timerPath.classList.remove('green', 'orange', 'red');
+
+		if (timeLeft <= alert.threshold) {
+			timerPath.style.stroke = alert.color;
+		} else if (timeLeft <= warning.threshold) {
+			timerPath.style.stroke = warning.color;
+		} else {
+			timerPath.style.stroke = info.color;
+		}
+	}
+
 	function startTimer() {
-		timerInterval = setInterval(() => {
-			timePassed += 1;
-			timeLeft = TIME_LIMIT - timePassed;
-			timerText.textContent = timeLeft;
+		// Set initial state
+		setCircleDasharray();
+		setRemainingPathColor(timeLeft);
 
-			setCircleDasharray();
+		// Small delay to allow initial render
+		setTimeout(() => {
+			// Start the countdown
+			timerInterval = setInterval(() => {
+				timePassed += 1;
+				timeLeft = TIME_LIMIT - timePassed;
+				timerText.textContent = timeLeft;
 
-			if (timeLeft === 0) {
-				clearInterval(timerInterval);
-				timerContainer.style.display = 'none';
-				toggleCurtainAndAnimations();
-			}
-		}, 1000);
+				setCircleDasharray();
+				setRemainingPathColor(timeLeft);
+
+				if (timeLeft === 0) {
+					clearInterval(timerInterval);
+					timerContainer.style.display = 'none';
+					toggleCurtainAndAnimations();
+
+					const timerEndEvent = new CustomEvent('timerEnded');
+					document.dispatchEvent(timerEndEvent);
+				}
+			}, 1000);
+		}, 50); // Small delay for initial render
 	}
 
 	function setCircleDasharray() {
@@ -187,7 +256,10 @@ document.addEventListener('DOMContentLoaded', () => {
 		timePassed = 0;
 		timeLeft = TIME_LIMIT;
 		timerText.textContent = timeLeft;
-		setCircleDasharray();
+		requestAnimationFrame(() => {
+			setCircleDasharray();
+			setRemainingPathColor(TIME_LIMIT);
+		});
 	}
 
 	function toggleCurtainAndAnimations() {
@@ -233,7 +305,9 @@ document.addEventListener('DOMContentLoaded', () => {
 		if (curtainContainer.classList.contains('closed')) {
 			timerContainer.style.display = 'block';
 			toggleButton.style.display = 'none';
-			startTimer();
+			requestAnimationFrame(() => {
+				startTimer();
+			});
 		} else {
 			toggleCurtainAndAnimations();
 		}

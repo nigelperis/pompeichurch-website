@@ -239,7 +239,7 @@ html {
 	stroke: #23c714;
 	stroke-width: 8; /* Increased from 6 */
 	stroke-linecap: round;
-	transition: stroke-dasharray 1s linear;
+	transition: stroke-dasharray 1s linear, stroke 0.5s linear;
 }
 
 .timer-text {
@@ -250,4 +250,15 @@ html {
 	font-size: 240px; /* Increased from 192px */
 	font-weight: bold;
 	color: #ffffff;
+}
+
+.curtain-container {
+	display: none; /* Hide by default on mobile */
+}
+
+/* Show animation only on devices larger than mobile */
+@media screen and (min-width: 768px) {
+	.curtain-container {
+			display: block;
+	}
 }
