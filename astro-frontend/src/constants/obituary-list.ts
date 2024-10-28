@@ -1,7 +1,7 @@
+import alwnynDsouza from '~/assets/ob-alwin-dsouza.jpg';
 import felixWalder from '~/assets/ob-felix-walder.jpg';
 import gracianDSouza from '~/assets/ob-gracian-dsouza.jpg';
 import jeevithPinto from '~/assets/ob-jeevith-pinto.jpg';
-import alwnynDsouza from '~/assets/ob-alwin-dsouza.jpg'
 
 const obituaryData = [
 	{

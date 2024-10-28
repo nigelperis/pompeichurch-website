@@ -8,8 +8,7 @@ export const defaultLang: keyof typeof languages = 'en';
 export const ui = {
 	en: {
 		'nav.home': 'Home',
-		'nav.our-church': 'Our Parish',
-		'nav.institutions': 'Institutions',
+		'nav.our-church': 'About Us',
 		'nav.associations': 'Associations',
 		'nav.wards': 'Wards',
 		'nav.news': 'News',
@@ -22,7 +21,7 @@ export const ui = {
 		'nav.pompei-sabha-bhavan': 'Pompei Sabha Bhavan',
 		'nav.centenary-hall': 'Centenary Hall',
 		'nav.parish-pastoral-21-commissions': 'Parish Pastoral 21 Commissions',
-		'nav.educational-institutions': 'Educational Institutions',
+		'nav.institutions': 'Institutions',
 		'nav.convents': 'Convents',
 		'nav.infrastructure': 'Halls',
 		'nav.svp': 'SVP',
@@ -209,7 +208,6 @@ export const ui = {
 		'nav.parish-pastoral-council': 'ಫಿರ್ಗಜ್ ಗೊವ್ಳಿಕ್ ಪರಿಷಧ್',
 		'nav.parish-finance-committee': 'ಫಿರ್ಗಜ್ ಆರ್ಥಿಕ್ ಸಮಿತಿ',
 		'nav.parish-pastoral-21-commissions': '21 ಆಯೋಗ್',
-		'nav.educational-institutions': 'ವಿದ್ಯಾ ಸಂಸ್ಥೆ',
 		'nav.convents': 'ಕೊವೆಂತಾಂ',
 		'nav.infrastructure': 'ಸಭಾ ಸಾಲಾಂ',
 		'nav.svp': 'ಸಾಂ. ವಿಶೆಂತ್ ಪಾವ್ಲ್ ಸಭಾ',

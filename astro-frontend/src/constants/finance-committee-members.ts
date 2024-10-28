@@ -2,8 +2,8 @@ import ayogPresident from '~/assets/ayog-president.jpg';
 import dummyImage from '~/assets/dummy-image.png';
 import priestImage from '~/assets/fr-rudolf-dsa.jpg';
 import jamesMenda from '~/assets/mr-james-menda.jpg';
+import praveenLobo from '~/assets/mr-praveen-lobo.jpg';
 import vijayaDcosta from '~/assets/mrs-vijaya-dcosta.jpg';
-import praveenLobo from '~/assets/mr-praveen-lobo.jpg'
 import vicepresident from '~/assets/vp-image.jpg';
 
 const financeCommittee = [
@@ -28,12 +28,12 @@ const financeCommittee = [
 		subtitle: 'pastoral-commission-coordinator',
 	},
 	{
-    imageUrl: vijayaDcosta,
+		imageUrl: vijayaDcosta,
 		name: 'mrs-vijaya-dcosta',
 		subtitle: 'elected-member',
 	},
 	{
-    imageUrl: praveenLobo,
+		imageUrl: praveenLobo,
 		name: 'mr-praveen-lobo',
 		subtitle: 'nominated-member',
 	},
