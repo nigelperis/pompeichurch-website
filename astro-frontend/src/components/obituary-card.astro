@@ -22,22 +22,21 @@ const {
 ---
 
 <div
-	class={cn(
-		'hover:scale-[1.01] snap-start first:snap-align-none border duration-500 ease-in-out sm:w-full',
-		className,
-	)}
+  class={cn(
+    'hover:scale-[1.01] snap-start first:snap-align-none border duration-500 ease-in-out sm:w-full',
+    className,
+  )}
 >
-	<div class="card-image">
-		<Image
-			src={imageUrl}
-			alt={`Image of ${name}`}
-			width={300}
-			class="h-auto w-full rounded-md object-cover"
-		/>
-	</div>
-
+  <div class="card-image">
+    <Image
+      src={imageUrl}
+      alt={`Image of ${name}`}
+      width={300}
+      class="h-auto w-full object-cover aspect-auto"
+    />
+  </div>
 	<div
-		class="card-content mt-2 flex flex-1 flex-col justify-end space-y-1 p-4 font-poppins"
+		class="card-content mt-2 flex flex-1 flex-col justify-end space-y-1 p-4 font-noto-sans-kannada"
 	>
 		<h3
 			class="card-title line-clamp-1 text-lg font-extrabold text-slate-900 sm:text-lg"
@@ -55,14 +54,14 @@ const {
 		{
 			ward && (
 				<p class="card-ward line-clamp-3 text-base text-slate-700 sm:text-lg">
-					Ward: {ward}
+					ವಾಡೊ: {ward}
 				</p>
 			)
 		}
 		{
 			date && (
 				<p class="card-ward line-clamp-3 text-base text-slate-700 sm:text-lg">
-					Date of demise: {date}
+					Date of Demise: {date}
 				</p>
 			)
 		}
