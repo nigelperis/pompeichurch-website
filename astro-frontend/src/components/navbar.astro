@@ -36,7 +36,9 @@ const t = useTranslations(lang);
 									}
 									class={cn(
 										'font-poppins font-semibold',
-										lang === 'kok' ? 'font-noto-sans-kannada text-md' : 'text-md',
+										lang === 'kok'
+											? 'text-md font-noto-sans-kannada'
+											: 'text-md',
 									)}
 								>
 									{t(link.title)}
@@ -47,7 +49,7 @@ const t = useTranslations(lang);
 											<li class="w-150">
 												<a
 													href={getRelativeLocaleUrl(lang, sublink.href)}
-													class="block rounded-md px-2 py-2 font-poppins text-sm transition-all hover:bg-natgeo-yellow"
+													class="block rounded-md px-2 py-2 text-sm transition-all hover:bg-natgeo-yellow"
 												>
 													{t(sublink.title)}
 												</a>
@@ -257,26 +259,25 @@ const t = useTranslations(lang);
 
 	allNavigationLinks.forEach((link) => {
 		link.addEventListener('click', (e) => {
-			e.preventDefault();
+			e.preventDefault(); // Prevent the default behavior
 
+			// Close all expandable submenus
 			expandableLinks.forEach((element) => {
-				const expandableContent =
-					element.parentElement?.querySelector<HTMLUListElement>('a + ul');
-
+				const expandableContent = element.parentElement?.querySelector(
+					'a + ul',
+				) as HTMLElement;
 				expandableContent?.style.setProperty('max-height', '0');
-
 				element.setAttribute('data-is-submenu-expanded', 'false');
 			});
 
+			// Close the navbar menu on mobile
 			navbar?.classList?.remove('open');
 
-			link.addEventListener('click', (e) => {
-				e.preventDefault();
-				const anchorElement = link as HTMLAnchorElement;
-				if (anchorElement.href) {
-					window.location.href = anchorElement.href;
-				}
-			});
+			// Redirect to the link's href
+			const anchorElement = link as HTMLAnchorElement;
+			if (anchorElement.href) {
+				window.location.href = anchorElement.href; // Trigger the redirect
+			}
 		});
 	});
 </script>

@@ -1,25 +1,33 @@
-import FelixWalder from '~/assets/ob-felix-walder.jpg';
-import GracianDSouza from '~/assets/ob-gracian-dsouza.jpg';
-import JeevithPinto from '~/assets/ob-jeevith-pinto.jpg';
+import felixWalder from '~/assets/ob-felix-walder.jpg';
+import gracianDSouza from '~/assets/ob-gracian-dsouza.jpg';
+import jeevithPinto from '~/assets/ob-jeevith-pinto.jpg';
+import alwnynDsouza from '~/assets/ob-alwin-dsouza.jpg'
 
 const obituaryData = [
 	{
+		name: 'ಆಲ್ವಿನ್ ಡಿಸೋಜ (55 Years)',
+		imageUrl: alwnynDsouza,
+		description: 'ಪೂತ್: ದೆವಾದಿನ್ ಗ್ರೇಶನ್ ಡಿನೋಜ',
+		ward: 'ಅಡ್ಡೂರ್',
+		date: '28-10-2024',
+	},
+	{
 		name: 'Felix Walder (75 Years)',
-		imageUrl: FelixWalder,
-		description: 'H/O : Judy Walder',
+		imageUrl: felixWalder,
+		description: 'H/O: Judy Walder',
 		ward: 'Kowdoor B',
 		date: '12-08-2024',
 	},
 	{
 		name: 'Gracian DSouza (87 Years)',
-		imageUrl: GracianDSouza,
+		imageUrl: gracianDSouza,
 		description: 'H/O: Late Veronica Ferrao',
 		ward: 'Addoor',
 		date: '05-08-2024',
 	},
 	{
 		name: 'Jeevith Pinto (69 Years)',
-		imageUrl: JeevithPinto,
+		imageUrl: jeevithPinto,
 		description: 'W/O: Late George John Pinto',
 		ward: 'Kowdoor A',
 		date: '31-07-2024',

@@ -1,44 +1,51 @@
-import ayogPresident from '~/assets/ayog-president.jpg';
-import dummyImage from '~/assets/dummy-image.png';
-import priestImage from '~/assets/fr-rudolf-dsa.jpg';
-import vicepresident from '~/assets/vp-image.jpg';
-
+//key and value names for now doesnt make sense
 const pastoralCouncil = [
 	{
-		imageUrl: priestImage,
 		name: 'priest-name',
-		subtitle: 'priest',
+		org: 'ವಿಗಾರ್',
+		position: 'ಅಧ್ಯಕ್ಷ್',
 	},
 	{
-		imageUrl: vicepresident,
 		name: 'vp-name',
-		subtitle: 'vice-president',
+		org: 'ಉಪಾದ್ಯಕ್ಷ್',
+		position: "ಪೊಂಪೈ 'ಎ' ವಾಡೊ",
 	},
 	{
-		imageUrl: dummyImage,
 		name: 'secretary-name',
-		subtitle: 'secretary',
+		org: 'ಕಾರ್ಯದರ್ಶಿ',
+		position: "ಕೌಡೂರ್ 'ಎ' ವಾಡೊ",
 	},
 	{
-		imageUrl: ayogPresident,
-		name: 'pastoral-commission-coordinator-name',
-		subtitle: 'pastoral-commission-coordinator',
+		name: 'priest-name',
+		org: 'ವಿಗಾರ್',
+		position: 'ಅಧ್ಯಕ್ಷ್',
 	},
 	{
-		imageUrl: dummyImage,
 		name: 'vp-name',
-		subtitle: 'vice-president',
+		org: 'ಉಪಾದ್ಯಕ್ಷ್',
+		position: "ಪೊಂಪೈ 'ಎ' ವಾಡೊ",
 	},
 	{
-		imageUrl: dummyImage,
-		name: 'vp-name',
-		subtitle: 'vice-president',
+		name: 'secretary-name',
+		org: 'ಕಾರ್ಯದರ್ಶಿ',
+		position: "ಕೌಡೂರ್ 'ಎ' ವಾಡೊ",
 	},
 	{
-		imageUrl: dummyImage,
-		name: 'vp-name',
-		subtitle: 'vice-president',
+		name: 'priest-name',
+		org: 'ವಿಗಾರ್',
+		position: 'ಅಧ್ಯಕ್ಷ್',
 	},
+	{
+		name: 'vp-name',
+		org: 'ಉಪಾದ್ಯಕ್ಷ್',
+		position: "ಪೊಂಪೈ 'ಎ' ವಾಡೊ",
+	},
+	{
+		name: 'secretary-name',
+		org: 'ಕಾರ್ಯದರ್ಶಿ',
+		position: "ಕೌಡೂರ್ 'ಎ' ವಾಡೊ",
+	},
+	//TODO (Aroma): to add all pending info
 ];
 
 export { pastoralCouncil };

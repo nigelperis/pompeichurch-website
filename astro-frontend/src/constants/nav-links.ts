@@ -34,12 +34,20 @@ export const navLinks = [
 				href: '/parish-priests',
 			},
 			{
+				title: 'nav.parish-finance-committee',
+				href: '/parish-finance-committee',
+			},
+			{
 				title: 'nav.parish-pastoral-council',
 				href: '/parish-pastoral-council',
 			},
 			{
 				title: 'nav.parish-pastoral-21-commissions',
 				href: '/parish-pastoral-21-commissions',
+			},
+			{
+				title: 'nav.wards',
+				href: '/wards',
 			},
 		],
 	},
@@ -54,10 +62,6 @@ export const navLinks = [
 			{
 				title: 'nav.our-convents',
 				href: '/our-convents',
-			},
-			{
-				title: 'nav.infrastructure',
-				href: '/infrastructure',
 			},
 		],
 	},
@@ -113,47 +117,15 @@ export const navLinks = [
 	},
 	{
 		type: 'expandable',
-		title: 'nav.wards',
+		title: 'nav.infrastructure',
 		expandedLinks: [
 			{
-				title: 'nav.kowdoor-a-ward',
-				href: '/wards/kowdoor-a',
+				title: 'nav.pompei-sabha-bhavan',
+				href: '/pompei-sabha-bhavan',
 			},
 			{
-				title: 'nav.kowdoor-b-ward',
-				href: '/wards/kowdoor-b',
-			},
-			{
-				title: 'nav.pompei-a-ward',
-				href: '/wards/pompei-a',
-			},
-			{
-				title: 'nav.pompei-b-ward',
-				href: '/wards/pompei-b',
-			},
-			{
-				title: 'nav.kandar-a-ward',
-				href: '/wards/kandar-a',
-			},
-			{
-				title: 'nav.kandar-b-ward',
-				href: '/wards/kandar-b',
-			},
-			{
-				title: 'nav.monel-ward',
-				href: '/wards/monel',
-			},
-			{
-				title: 'nav.gurpur-ward',
-				href: '/wards/gurpur',
-			},
-			{
-				title: 'nav.church-ward',
-				href: '/wards/church',
-			},
-			{
-				title: 'nav.addoor-ward',
-				href: '/wards/addoor',
+				title: 'nav.centenary-hall',
+				href: '/centenary-hall',
 			},
 		],
 	},
@@ -169,16 +141,17 @@ export const navLinks = [
 				title: 'nav.events',
 				href: '/events',
 			},
-			{
-				title: 'nav.pompeichem-falkem',
-				href: '/pompeichem-falkem',
-			},
 		],
 	},
 	{
 		type: 'link',
 		title: 'nav.prayer-corner',
 		href: '/prayer-corner',
+	},
+	{
+		type: 'link',
+		title: 'nav.pompeichem-falkem',
+		href: '/pompeichem-falkem',
 	},
 	{
 		type: 'link',
