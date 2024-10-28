@@ -49,19 +49,13 @@ export const navLinks = [
 				title: 'nav.wards',
 				href: '/wards',
 			},
-		],
-	},
-	{
-		type: 'expandable',
-		title: 'nav.institutions',
-		expandedLinks: [
 			{
-				title: 'nav.our-institutions',
-				href: '/our-institutions',
+				title: 'nav.convents',
+				href: '/convents',
 			},
 			{
-				title: 'nav.our-convents',
-				href: '/our-convents',
+				title: 'nav.institutions',
+				href: '/institutions',
 			},
 		],
 	},
