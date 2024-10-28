@@ -8,7 +8,7 @@ const wards = [
 		gurkarImage: dummyImage,
 		description: loremIpsum,
 		gurkarName: 'john doe',
-		pratinidiName: 'jhony doe'
+		pratinidiName: 'jhony doe',
 	},
 	{
 		name: 'kowdoor-b-ward',
@@ -16,7 +16,7 @@ const wards = [
 		gurkarImage: dummyImage,
 		description: loremIpsum,
 		gurkarName: 'john doe',
-		pratinidiName: 'jhony doe'
+		pratinidiName: 'jhony doe',
 	},
 	{
 		name: 'pompei-a-ward',
@@ -24,7 +24,7 @@ const wards = [
 		gurkarImage: dummyImage,
 		description: loremIpsum,
 		gurkarName: 'john doe',
-		pratinidiName: 'jhony doe'
+		pratinidiName: 'jhony doe',
 	},
 	{
 		name: 'pompei-b-ward',
@@ -32,7 +32,7 @@ const wards = [
 		gurkarImage: dummyImage,
 		description: loremIpsum,
 		gurkarName: 'john doe',
-		pratinidiName: 'jhony doe'
+		pratinidiName: 'jhony doe',
 	},
 	{
 		name: 'kandar-a-ward',
@@ -40,7 +40,7 @@ const wards = [
 		gurkarImage: dummyImage,
 		description: loremIpsum,
 		gurkarName: 'john doe',
-		pratinidiName: 'jhony doe'
+		pratinidiName: 'jhony doe',
 	},
 	{
 		name: 'kandar-b-ward',
@@ -48,7 +48,7 @@ const wards = [
 		gurkarImage: dummyImage,
 		description: loremIpsum,
 		gurkarName: 'john doe',
-		pratinidiName: 'jhony doe'
+		pratinidiName: 'jhony doe',
 	},
 	{
 		name: 'monel-ward',
@@ -56,7 +56,7 @@ const wards = [
 		gurkarImage: dummyImage,
 		description: loremIpsum,
 		gurkarName: 'john doe',
-		pratinidiName: 'jhony doe'
+		pratinidiName: 'jhony doe',
 	},
 	{
 		name: 'gurpur-ward',
@@ -64,7 +64,7 @@ const wards = [
 		gurkarImage: dummyImage,
 		description: loremIpsum,
 		gurkarName: 'john doe',
-		pratinidiName: 'jhony doe'
+		pratinidiName: 'jhony doe',
 	},
 	{
 		name: 'church-ward',
@@ -72,7 +72,7 @@ const wards = [
 		gurkarImage: dummyImage,
 		description: loremIpsum,
 		gurkarName: 'john doe',
-		pratinidiName: 'jhony doe'
+		pratinidiName: 'jhony doe',
 	},
 	{
 		name: 'addoor-ward',
@@ -80,7 +80,7 @@ const wards = [
 		gurkarImage: dummyImage,
 		description: loremIpsum,
 		gurkarName: 'john doe',
-		pratinidiName: 'jhony doe'
+		pratinidiName: 'jhony doe',
 	},
 ];
 

@@ -46,9 +46,9 @@ export const navLinks = [
 				href: '/parish-pastoral-21-commissions',
 			},
 			{
-				title:'nav.wards',
-				href:'/wards'
-			}
+				title: 'nav.wards',
+				href: '/wards',
+			},
 		],
 	},
 	{
@@ -62,10 +62,6 @@ export const navLinks = [
 			{
 				title: 'nav.our-convents',
 				href: '/our-convents',
-			},
-			{
-				title: 'nav.infrastructure',
-				href: '/infrastructure',
 			},
 		],
 	},
@@ -121,6 +117,20 @@ export const navLinks = [
 	},
 	{
 		type: 'expandable',
+		title: 'nav.infrastructure',
+		expandedLinks: [
+			{
+				title: 'nav.pompei-sabha-bhavan',
+				href: '/pompei-sabha-bhavan',
+			},
+			{
+				title: 'nav.centenary-hall',
+				href: '/centenary-hall',
+			},
+		],
+	},
+	{
+		type: 'expandable',
 		title: 'nav.news',
 		expandedLinks: [
 			{
@@ -139,7 +149,7 @@ export const navLinks = [
 		href: '/prayer-corner',
 	},
 	{
-		type:'link',
+		type: 'link',
 		title: 'nav.pompeichem-falkem',
 		href: '/pompeichem-falkem',
 	},

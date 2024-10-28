@@ -1,0 +1,32 @@
+---
+import { Image } from 'astro:assets';
+import centenaryHallImage from '~/assets/centenary-hall.jpg';
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+import { loremIpsum } from '~/constants/lorem-ipsum';
+import Layout from '~/layouts/layout.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Layout title="Pompei Church | Centenary Hall">
+	<main class="mx-auto max-w-4xl overflow-hidden bg-white">
+		<section id="infrastructure" class="flex flex-col p-6">
+			<h1
+				class="mb-4 border-l-4 border-natgeo-yellow pl-3 text-3xl font-extrabold lg:text-4xl"
+			>
+				{t('centenaryhall.title')}
+			</h1>
+			<Image
+				src={centenaryHallImage}
+				alt="Exterior view of Centenary Hall at Our Lady of Pomepi Church"
+				class="mt-2 rounded-sm md:float-left md:mr-5 md:w-1/2"
+			/>
+			<div class="pb-4 font-geist">
+				<p class="text-md text-justify leading-7 text-slate-700">
+					{loremIpsum}
+				</p>
+			</div>
+		</section>
+	</main></Layout
+>

@@ -1,8 +1,8 @@
 import ayogPresident from '~/assets/ayog-president.jpg';
 import dummyImage from '~/assets/dummy-image.png';
 import priestImage from '~/assets/fr-rudolf-dsa.jpg';
+import jamesMenda from '~/assets/mr-james-menda.jpg';
 import vicepresident from '~/assets/vp-image.jpg';
-import jamesMenda from '~/assets/mr-james-menda.jpg'
 
 const financeCommittee = [
 	{
@@ -36,7 +36,7 @@ const financeCommittee = [
 		subtitle: 'nominated-member',
 	},
 	{
-    imageUrl: jamesMenda,
+		imageUrl: jamesMenda,
 		name: 'mr-james-menda',
 		subtitle: 'nominated-member',
 	},
