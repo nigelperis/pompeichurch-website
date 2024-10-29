@@ -1,0 +1,21 @@
+---
+import {prayers} from '~/constants/prayer1';
+---
+<div class="mx-auto grid w-full grid-cols-2 gap-x-6 gap-y-6 xs:grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2">
+  {prayers.map((prayer) =>(
+      <div
+      class="mx-auto grid w-full max-w-3xl grid-cols-2 gap-x-20 gap-y-10 xs:grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 border rounded-md"
+    >
+    <div class="card-content flex flex-1 flex-col justify-center items-center space-y-1 p-3 gap-2">
+      <h3
+
+        class="card-title w-full text-center font-bold leading-snug text-slate-900 sm:text-lg"
+      >
+        {prayer.title}
+      </h3>
+      <p class="text-center" set:html= {prayer.content}></p>
+    </div>
+    </div>
+    ))}
+</div>
+

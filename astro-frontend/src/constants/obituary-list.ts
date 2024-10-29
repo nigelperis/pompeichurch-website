@@ -1,7 +1,7 @@
+import alwnynDsouza from '~/assets/ob-alwin-dsouza.jpg';
 import felixWalder from '~/assets/ob-felix-walder.jpg';
 import gracianDSouza from '~/assets/ob-gracian-dsouza.jpg';
 import jeevithPinto from '~/assets/ob-jeevith-pinto.jpg';
-import alwnynDsouza from '~/assets/ob-alwin-dsouza.jpg'
 
 const obituaryData = [
 	{
@@ -12,24 +12,24 @@ const obituaryData = [
 		date: '28-10-2024',
 	},
 	{
-		name: 'Felix Walder (75 Years)',
+		name: 'ಫೆಲಿಕ್ಸ್ ವಾಲ್ಡರ್ (75 Years)',
 		imageUrl: felixWalder,
-		description: 'H/O: Judy Walder',
-		ward: 'Kowdoor B',
+		description: 'H/O	: ಜುಡಿ ವಾಲ್ಡರ್',
+		ward: 'ಕೌಡೂರ್ ಬಿ',
 		date: '12-08-2024',
 	},
 	{
-		name: 'Gracian DSouza (87 Years)',
+		name: 'ಗ್ರೇಶನ್ ಡಿಸೊಜಾ (87 Years)',
 		imageUrl: gracianDSouza,
-		description: 'H/O: Late Veronica Ferrao',
-		ward: 'Addoor',
+		description: 'W/O: ದೆವಾದಿನ್ ವೆರೊನಿಕಾ ಫೆರ್ರಾವೊ',
+		ward: 'ಅಡ್ಡೂರ್',
 		date: '05-08-2024',
 	},
 	{
-		name: 'Jeevith Pinto (69 Years)',
+		name: 'ಜೀವಿತ್ ಪಿಂಟೊ (69 Years)',
 		imageUrl: jeevithPinto,
-		description: 'W/O: Late George John Pinto',
-		ward: 'Kowdoor A',
+		description: 'W/O: ದೆವಾದಿನ್ ಜೋರ್ಜ್ ಜೊನ್ ಪಿಂಟೊ',
+		ward: 'ಕೌಡೂರ್ ಎ',
 		date: '31-07-2024',
 	},
 ];

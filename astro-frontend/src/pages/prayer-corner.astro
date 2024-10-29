@@ -4,8 +4,7 @@ import Layout from '~/layouts/layout.astro';
 import { Image } from 'astro:assets';
 //TODO (Aroma): Replace this image with actual novena image
 import novena from '~/assets/novena.jpg';
-import Card from '~/components/sections/prayer-card.astro';
-import Bible from '~/components/sections/bible-readings.astro';
+import Card from '~/components/sections/prayer-corner/prayer-card.astro';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
@@ -27,20 +26,28 @@ const t = useTranslations(lang);
 				eu fugiat nulla pariatur.
 			</p>
 			<h2
-				class="text-center my-5 border-b-4 border-natgeo-yellow pl-4 text-3xl font-bold lg:text-2xl">
+				class="my-5 border-b-4 border-natgeo-yellow pl-4 text-3xl font-bold lg:text-2xl">
 				Let's join hands in prayer
 			</h2>
       <Card/>
 			<h2
-			class="text-center mt-8 mb-5 border-b-4 border-natgeo-yellow pl-4 text-3xl font-bold lg:text-2xl">
+				class="mt-8 border-b-4 border-natgeo-yellow pl-4 text-3xl font-bold lg:text-2xl">
 				Novena of Our Lady of Pompei
 			</h2>
-			<p
-			class="text-center pb-6 font-giest text-lg text-slate-800">
-				Our lady of Pompei, Pray for us<br>
-				<span class="font-noto-sans-kannada">ಪೊಂಪೈ ಮಾಯೆ ಆಮಾ ಪಾಸುನ್ ವಿನತಿ ಕರ್</span>
-			</p>
+  <div class="card-content flex flex-1 flex-col justify-center items-center space-y-1 p-3 gap-2">
+    <h3
+      class="card-title w-full text-center font-bold leading-snug italic text-slate-900 sm:text-lg"
+    >
+      Our Lady of Pompei Pray for Us All
+    </h3>
+		</div>
+	</div>
 			<Image src={novena} alt="" />
+			<h2
+				class="mt-8 border-b-4 border-natgeo-yellow pl-4 text-3xl font-bold lg:text-2xl">
+
+			</h2>
+
 		</section>
 	</main>
 </Layout>

@@ -1,5 +1,4 @@
 const parishHistory = [
-	//TODO (Aroma): To fill missing priest info
 	{
 		history: `The Gurpur Parish is situated 19 km from Mangalore on the Mangalore-Moodbidri road. The parish is also known as Kowdur, but it is designated in the registered Diocesan Directory as Gurpur Parish. It is commonly referred to as Kowdur because, in the Kowdur ward of the parish, there is a place called ‘Kodi’, where a spring of water flows in all seasons. Hence, the location was named Kodi-ooru or Kowdur. It is said that since this location of Kowdur was near the present Church, it was named Kowdur Parish. According to the revenue department's classification, the parish belongs to the Gurpur zone, and most of the parishioners reside in this area; therefore, the parish is recognized under the name Gurpur. <br><br>
 
