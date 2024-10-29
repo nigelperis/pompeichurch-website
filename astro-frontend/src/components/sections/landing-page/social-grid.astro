@@ -1,6 +1,8 @@
 ---
 import { Icon } from 'astro-icon/components';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+import { cn } from '~/helpers/cn';
+
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
@@ -8,7 +10,12 @@ const t = useTranslations(lang);
 <section class="mx-6 mt-4 xs:mb-10 md:mb-10 lg:mx-28 lg:justify-center">
 	<h1
 		data-aos="fade-right"
-		class="mb-4 inline-block border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold xs:text-2xl lg:mb-10 lg:text-4xl"
+		class={cn(
+			'mb-4 inline-block border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold xs:text-2xl lg:mb-10 lg:text-4xl',
+			{
+				'font-noto-sans-kannada': lang === 'kok',
+			},
+		)}
 	>
 		{t('landing.follow-our-journey')}
 	</h1>
@@ -22,7 +29,7 @@ const t = useTranslations(lang);
 		>
 			<h2 class="mb-3 flex items-center text-base font-thin">
 				<Icon name="facebook1" class="ml-2 mr-1 text-2xl text-blue-500" />
-				<span class="font-semibold">OurLadyOfPompeiChurch</span>
+				<span class="font-poppins font-semibold">OurLadyOfPompeiChurch</span>
 			</h2>
 
 			<div class="relative rounded-lg bg-white">
@@ -58,7 +65,9 @@ const t = useTranslations(lang);
 		>
 			<h2 class="mb-3 flex items-center text-base font-thin">
 				<Icon name="instagram1" class="ml-2 mr-1 text-2xl text-pink-500" />
-				<span class="font-semibold">@our_lady_of_pompei_church</span>
+				<span class="font-poppins font-semibold"
+					>@our_lady_of_pompei_church</span
+				>
 			</h2>
 			<div class="relative rounded-md">
 				<iframe
@@ -79,4 +88,5 @@ const t = useTranslations(lang);
 	defer
 	crossorigin="anonymous"
 	src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v20.0"
-	nonce="sTNs2jJW"></script>
+	nonce="sTNs2jJW"
+></script>

@@ -3,6 +3,7 @@ import HoverableLink from '~/components/ui/hoverable-link.astro';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import EventCard from '~/components/event-card.astro';
 import { events } from '~/constants/events';
+import { cn } from '~/helpers/cn';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -14,7 +15,12 @@ const eventsUrl = lang === 'en' ? '/events' : '/kok/events';
 >
 	<h1
 		data-aos="fade-right"
-		class="mb-6 inline-block border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold xs:text-2xl lg:text-4xl"
+		class={cn(
+			'mb-6 inline-block border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold xs:text-2xl lg:text-4xl',
+			{
+				'font-noto-sans-kannada': lang === 'kok',
+			},
+		)}
 	>
 		{t('nav.events')}
 	</h1>

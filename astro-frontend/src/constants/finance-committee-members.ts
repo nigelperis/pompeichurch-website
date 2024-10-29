@@ -1,6 +1,6 @@
-import johnLobo from '~/assets/mr-john-lobo.jpg';
 import priestImage from '~/assets/fr-rudolf-dsa.jpg';
 import jamesMenda from '~/assets/mr-james-menda.jpg';
+import johnLobo from '~/assets/mr-john-lobo.jpg';
 import praveenLobo from '~/assets/mr-praveen-lobo.jpg';
 import vijayaDcosta from '~/assets/mrs-vijaya-dcosta.jpg';
 import vicepresident from '~/assets/vp-image.jpg';
