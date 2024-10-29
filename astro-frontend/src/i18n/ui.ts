@@ -233,7 +233,7 @@ export const ui = {
 		'nav.addoor-ward': 'ಅಡ್ಡೂರ್',
 		'nav.obituary': 'ಫಿರ್ಗಜೆಂತ್ ಮರಣ್',
 		'nav.events': 'ಘಡಿತಾಂ',
-		'nav.pompeichem-falkem': 'ಪೊಂಪೈಚೆಂ ಫಾಲ್ಕೆಂ ಫಿರ್ಗಜ್ ಪತ್ರ್',
+		'nav.pompeichem-falkem': 'ಪೊಂಪೈಚೆಂ ಫಾಲ್ಕೆಂ',
 		'nav.prayer-corner': 'ಮಾಗ್ಣ್ಯಾ ಕೊನ್ಸೊ',
 		'nav.pompei-sabha-bhavan': 'ಪೊಂಪೈ ಸಭಾ ಭವನ್',
 		'nav.centenary-hall': 'ಶತಾಬ್ದಿ ಸಾಲ್',
