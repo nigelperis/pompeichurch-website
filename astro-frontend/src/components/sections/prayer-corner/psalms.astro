@@ -1,0 +1,19 @@
+---
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+import {psalms} from '~/constants/psalms';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+  <h2
+    class="mt-8 border-b-4 border-natgeo-yellow pl-4 text-3xl font-poppins font-bold lg:text-2xl">
+    {t('prayer.psalms')}
+  </h2>
+  {psalms.map((psalm) =>(
+    <h3
+      class="card-title w-full mt-3  font-bold leading-snug text-slate-900 sm:text-lg"
+    >
+      {psalm.title}
+    </h3>
+    <p set:html= {psalm.content}></p>
+   ))
+  }

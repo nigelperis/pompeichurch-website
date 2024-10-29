@@ -2,9 +2,12 @@
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import Layout from '~/layouts/layout.astro';
 import { Image } from 'astro:assets';
-//TODO (Aroma): Replace this image with actual novena image
+import candles from '~/assets/candles.jpg';
 import novena from '~/assets/novena.jpg';
+import jublieeLogo from '~/assets/jubliee-logo.jpeg';
+import jublieePrayer from '~/assets/jubliee-prayer.jpeg';
 import Card from '~/components/sections/prayer-corner/prayer-card.astro';
+import Psalms from '~/components/sections/prayer-corner/psalms.astro';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
@@ -13,41 +16,39 @@ const t = useTranslations(lang);
 	<main class="mx-auto max-w-4xl overflow-hidden bg-white">
 		<section id="parish-history" class="flex flex-col p-6 pb-4">
 			<h1
-				class="mb-4 border-l-4 border-natgeo-yellow pl-3 text-3xl font-extrabold lg:text-4xl"
+				class="mb-4 border-l-4 border-natgeo-yellow pl-3 text-3xl font-poppins font-extrabold lg:text-4xl"
 			>
 				{t('nav.prayer-corner')}
 			</h1>
-			<p class="text-md pb-6 font-poppins text-lg text-slate-400">
-				Why pray?
-				<br>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-				incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-				nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-				Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
-				eu fugiat nulla pariatur.
-			</p>
+			<Image src={candles} alt="" class="w-full h-[250px]" />
 			<h2
-				class="my-5 border-b-4 border-natgeo-yellow pl-4 text-3xl font-bold lg:text-2xl">
-				Let's join hands in prayer
+				class="my-5 border-b-4 border-natgeo-yellow pl-4 text-3xl font-poppins font-bold lg:text-2xl">
+				{t('prayer.lets-join-hands-in-prayer')}
 			</h2>
       <Card/>
 			<h2
-				class="mt-8 border-b-4 border-natgeo-yellow pl-4 text-3xl font-bold lg:text-2xl">
-				Novena of Our Lady of Pompei
+				class="mt-8 border-b-4 border-natgeo-yellow pl-4 text-3xl font-poppins font-bold lg:text-2xl"
+			>
+				{t('prayer.novena-of-our-lady-of-pompei')}
 			</h2>
-  <div class="card-content flex flex-1 flex-col justify-center items-center space-y-1 p-3 gap-2">
-    <h3
-      class="card-title w-full text-center font-bold leading-snug italic text-slate-900 sm:text-lg"
-    >
-      Our Lady of Pompei Pray for Us All
-    </h3>
-		</div>
-	</div>
+ 			<div class="card-content flex flex-1 flex-col justify-center items-center space-y-1 p-3 gap-2">
+				<h3
+					class="card-title w-full text-center font-poppins font-bold leading-snug italic text-slate-900 sm:text-lg"
+				>
+					{t('prayer.pray-for-us')}
+				</h3>
+			</div>
 			<Image src={novena} alt="" />
+			<Psalms />
 			<h2
-				class="mt-8 border-b-4 border-natgeo-yellow pl-4 text-3xl font-bold lg:text-2xl">
-
+				class="mt-8 border-b-4 border-natgeo-yellow pl-4 text-3xl font-poppins font-bold lg:text-2xl"
+			>
+				{t('prayer.jubliee-2025')}
 			</h2>
-
+			<div class="grid mt-3 gap-x-4 gap-y-4 justify-center">
+				<Image src={jublieeLogo} alt="" class="w-full max-w-xs mx-auto" />
+				<Image src={jublieePrayer} alt="" class="w-full max-w-sm" />
+			</div>
 		</section>
 	</main>
 </Layout>

@@ -193,6 +193,11 @@ export const ui = {
 		'commissions.mr-godwin-tauro': 'Mr. Godwin Tauro',
 		'commissions.mrs-margaret-andrade': 'Mrs. Margaret Andrade	',
 		'commissions.mr-rajesh-noronha': 'Mr. Rajesh Noronha',
+		'prayer.lets-join-hands-in-prayer':'Let`s join hands in prayer',
+		'prayer.novena-of-our-lady-of-pompei':'Novena of Our Lady of Pompei',
+		'prayer.pray-for-us':'Our Lady of Pompei Pray for us all',
+		'prayer.psalms':'Psalms',
+		'prayer.jubliee-2025':'Jubliee 2025'
 	},
 	kok: {
 		'nav.home': 'ಹೋಮ್',
@@ -379,5 +384,10 @@ export const ui = {
 		'commissions.mr-godwin-tauro': 'ಶ್ರೀಮಾನ್ ಗೊಡ್ವಿನ್ ತಾವ್ರೊ',
 		'commissions.mrs-margaret-andrade': ' ಶ್ರೀಮತಿ ಮಾರ್ಗರೆಟ್ ಅಂದ್ರಾದೆ		',
 		'commissions.mr-rajesh-noronha': 'ಶ್ರೀಮಾನ್ ರಾಜೇಶ್ ನೊರೊನ್ಹಾ',
+		'prayer.lets-join-hands-in-prayer':'ಮಾಗ್ಣ್ಯಾoತ್ ಹಾತ್ ಜೊಡ್ಯಾಂ ',
+		'prayer.novena-of-our-lady-of-pompei':'ಪೊಂಪೈ ರೊಜಾರ್ ಸಾಯ್ಬಿಣಿಚೆಂ ನೊವೆನ್ ',
+		'prayer.pray-for-us':'ಪೊಂಪೈ ಮಾಯೆ ಆಮಾ ಪಾಸುನ್ ವಿನತಿ ಕರ್ ',
+		'prayer.psalms':'ಕೀರ್ತನಾ',
+		'prayer.jubliee-2025':'ಜುಬ್ಲೆವ್ 2025'
 	},
 } as const;

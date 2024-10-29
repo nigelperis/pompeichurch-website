@@ -130,5 +130,24 @@ const prayers =[
 
         <br>Pour forth, we beseech Thee, O Lord, Thy grace into our hearts; that we, to whom the incarnation of Christ, Thy Son, was made known by the message of an angel, may by His Passion and Cross be brought to the glory of His Resurrection, through the same Christ Our Lord.`
     },
+    {
+        title:`Queen of Heaven`,
+        content:`
+        <strong>Queen of Heaven, rejoice, alleluia. </strong>
+        <br> For He whom you did merit to bear, alleluia.
+
+
+        <br><strong>Has risen, as he said, alleluia. </strong>
+        <br> Pray for us to God, alleluia.
+
+
+        <br><strong>Rejoice and be glad, O Virgin Mary, alleluia. </strong>
+        <br>For the Lord has truly risen, alleluia.
+
+
+        <br><strong><center><i>Let us pray:</i></strong>
+
+        <br>O God, who gave joy to the world through the resurrection of Thy Son, our Lord Jesus Christ, grant we beseech Thee that through the intercession of the Virgin Mary, His Mother, we may obtain the joys of everlasting life. Through the same Christ our Lord. Amen.`
+    },
 ];
 export {prayers};
