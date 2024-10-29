@@ -1,5 +1,4 @@
-import ayogPresident from '~/assets/ayog-president.jpg';
-import dummyImage from '~/assets/dummy-image.png';
+import johnLobo from '~/assets/mr-john-lobo.jpg';
 import priestImage from '~/assets/fr-rudolf-dsa.jpg';
 import jamesMenda from '~/assets/mr-james-menda.jpg';
 import praveenLobo from '~/assets/mr-praveen-lobo.jpg';
@@ -18,14 +17,9 @@ const financeCommittee = [
 		subtitle: 'vice-president',
 	},
 	{
-		imageUrl: dummyImage,
+		imageUrl: johnLobo,
 		name: 'secretary-name',
 		subtitle: 'secretary',
-	},
-	{
-		imageUrl: ayogPresident,
-		name: 'pastoral-commission-coordinator-name',
-		subtitle: 'pastoral-commission-coordinator',
 	},
 	{
 		imageUrl: vijayaDcosta,
