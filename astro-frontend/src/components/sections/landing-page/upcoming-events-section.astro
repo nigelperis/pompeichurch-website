@@ -3,6 +3,7 @@ import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import { Image } from 'astro:assets';
 import pcl1 from '~/assets/pcl-poster-1.jpg';
 import pcl2 from '~/assets/pcl-poster-2.jpg';
+import { cn } from '~/helpers/cn';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -13,7 +14,12 @@ const t = useTranslations(lang);
 >
 	<h1
 		data-aos="fade-right"
-		class="mb-6 inline-block border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold xs:text-2xl lg:text-4xl"
+		class={cn(
+			'mb-6 inline-block border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold xs:text-2xl lg:text-4xl',
+			{
+				'font-noto-sans-kannada': lang === 'kok',
+			},
+		)}
 	>
 		{t('landing.upcoming-events')}
 	</h1>
