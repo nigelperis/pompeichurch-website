@@ -7,8 +7,8 @@ import pyc from '~/assets/pyc.jpg';
 import smallChristianCommunity from '~/assets/small-christian-community.jpg';
 import svp from '~/assets/svp.jpg';
 import thirdOrder from '~/assets/third-order.jpg';
+import womensForum from '~/assets/womens-forum.jpg';
 import ycs from '~/assets/ycs.jpg';
-import womensForum from '~/assets/womens-forum.jpg'
 
 //TODO (Aroma): Proof and update the description accordingly
 const associationsKok = [

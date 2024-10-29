@@ -18,18 +18,18 @@ const fontClass = lang === 'kok' ? 'font-noto-sans-kannada' : 'font-geist';
 
 <div class="mx-auto">
 	<div class={fontClass}>
-		<div class="md:float-right lg:mt-2 md:ml-5">
+		<div class="md:float-right md:ml-5 lg:mt-2">
 			<Image src={churchBannerImage} alt="Church Banner Image" />
 		</div>
 		<div
 			class="text-md mt-1 text-justify leading-7 text-slate-700"
-		<div
+			<div
 			class="text-md mt-1 text-justify leading-7 text-slate-700"
 			set:html={historyData}
-		></div>
+		/>
 		<div
 			class="text-md pb-4 text-justify leading-7 text-slate-700"
 			set:html={priestsData}
-		></div>
+		/>
 	</div>
 </div>
