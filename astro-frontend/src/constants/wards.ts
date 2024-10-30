@@ -1,10 +1,20 @@
-import dummyImage from '~/assets/church-logo.png';
+import monel from '~/assets/ward-patron-monel.jpg';
+import kowdoorA from '~/assets/ward-patron-kowdoor-a.jpg';
+import kowdoorB from '~/assets/ward-patron-kowdoor-b.jpg';
+import pompeiA from '~/assets/ward-patron-pompei-a.jpg';
+import pompeiB from '~/assets/ward-patron-pompei-b.jpg';
+import gurpur from '~/assets/ward-patron-gurpur.jpg';
+import kandarA from '~/assets/ward-patron-kandar-a.jpg';
+import kandarB from '~/assets/ward-patron-kandar-b.jpg';
+import addoor from '~/assets/ward-patron-addoor.jpg';
+import church from '~/assets/ward-patron-church.jpg';
+import dummyImage from '~/assets/church-logo.png'
 import { loremIpsum } from './lorem-ipsum';
 
 const wards = [
 	{
 		name: 'kowdoor-a-ward',
-		patronImage: dummyImage,
+		patronImage: kowdoorA,
 		gurkarImage: dummyImage,
 		description: loremIpsum,
 		gurkarName: 'john doe',
@@ -12,7 +22,7 @@ const wards = [
 	},
 	{
 		name: 'kowdoor-b-ward',
-		patronImage: dummyImage,
+		patronImage: kowdoorB,
 		gurkarImage: dummyImage,
 		description: loremIpsum,
 		gurkarName: 'john doe',
@@ -20,7 +30,7 @@ const wards = [
 	},
 	{
 		name: 'pompei-a-ward',
-		patronImage: dummyImage,
+		patronImage: pompeiA,
 		gurkarImage: dummyImage,
 		description: loremIpsum,
 		gurkarName: 'john doe',
@@ -28,7 +38,7 @@ const wards = [
 	},
 	{
 		name: 'pompei-b-ward',
-		patronImage: dummyImage,
+		patronImage: pompeiB,
 		gurkarImage: dummyImage,
 		description: loremIpsum,
 		gurkarName: 'john doe',
@@ -36,7 +46,7 @@ const wards = [
 	},
 	{
 		name: 'kandar-a-ward',
-		patronImage: dummyImage,
+		patronImage: kandarA,
 		gurkarImage: dummyImage,
 		description: loremIpsum,
 		gurkarName: 'john doe',
@@ -44,7 +54,7 @@ const wards = [
 	},
 	{
 		name: 'kandar-b-ward',
-		patronImage: dummyImage,
+		patronImage: kandarB,
 		gurkarImage: dummyImage,
 		description: loremIpsum,
 		gurkarName: 'john doe',
@@ -52,7 +62,7 @@ const wards = [
 	},
 	{
 		name: 'monel-ward',
-		patronImage: dummyImage,
+		patronImage: monel,
 		gurkarImage: dummyImage,
 		description: loremIpsum,
 		gurkarName: 'john doe',
@@ -60,7 +70,7 @@ const wards = [
 	},
 	{
 		name: 'gurpur-ward',
-		patronImage: dummyImage,
+		patronImage: gurpur,
 		gurkarImage: dummyImage,
 		description: loremIpsum,
 		gurkarName: 'john doe',
@@ -68,7 +78,7 @@ const wards = [
 	},
 	{
 		name: 'church-ward',
-		patronImage: dummyImage,
+		patronImage: church,
 		gurkarImage: dummyImage,
 		description: loremIpsum,
 		gurkarName: 'john doe',
@@ -76,7 +86,7 @@ const wards = [
 	},
 	{
 		name: 'addoor-ward',
-		patronImage: dummyImage,
+		patronImage: addoor,
 		gurkarImage: dummyImage,
 		description: loremIpsum,
 		gurkarName: 'john doe',
