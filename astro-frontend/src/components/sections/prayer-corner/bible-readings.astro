@@ -5,115 +5,117 @@ const nightId = Math.random().toString(36).substring(2, 9);
 ---
 
 <div class="mx-auto my-3 w-full rounded-md border border-yellow-300 shadow-sm">
-  <div
-    class="dropdown-toggle flex cursor-pointer items-center justify-between rounded-md bg-yellow-100 p-4"
-    data-dropdown-id={morningId}
-  >
-    <h3 class="text-xl font-extrabold">Morning Bible Verses</h3>
-    <Icon
-      name="chevron-right"
-      class="arrow h-6 w-6 transform text-yellow-600 transition-transform"
-      data-icon-name="chevron-right"
-    />
-  </div>
-  <div
-    class="dropdown-content overflow-hidden pl-4 pr-4 text-left"
-    data-dropdown-id={morningId}
-  >
-    <div class="mt-2">
-      <p class="text-xl text-gray-700">
-        <strong>Psalm 5:3</strong>
-        <span class="whitespace-normal break-words text-gray-500">
-          In the morning, Lord, You hear my voice; in the morning I lay my requests before You and wait expectantly.
-        </span>
-      </p>
-    </div>
-  </div>
+	<div
+		class="dropdown-toggle flex cursor-pointer items-center justify-between rounded-md bg-yellow-100 p-4"
+		data-dropdown-id={morningId}
+	>
+		<h3 class="text-xl font-extrabold">Morning Bible Verses</h3>
+		<Icon
+			name="chevron-right"
+			class="arrow h-6 w-6 transform text-yellow-600 transition-transform"
+			data-icon-name="chevron-right"
+		/>
+	</div>
+	<div
+		class="dropdown-content overflow-hidden pl-4 pr-4 text-left"
+		data-dropdown-id={morningId}
+	>
+		<div class="mt-2">
+			<p class="text-xl text-gray-700">
+				<strong>Psalm 5:3</strong>
+				<span class="whitespace-normal break-words text-gray-500">
+					In the morning, Lord, You hear my voice; in the morning I lay my
+					requests before You and wait expectantly.
+				</span>
+			</p>
+		</div>
+	</div>
 </div>
 
 <div class="mx-auto my-5 w-full rounded-md border border-yellow-300 shadow-sm">
-  <div
-    class="dropdown-toggle flex cursor-pointer items-center justify-between rounded-md bg-yellow-100 p-4"
-    data-dropdown-id={nightId}
-  >
-    <h3 class="text-xl font-extrabold">Night Bible Verses</h3>
-    <Icon
-      name="chevron-right"
-      class="arrow h-6 w-6 transform text-yellow-600 transition-transform"
-      data-icon-name="chevron-right"
-    />
-  </div>
-  <div
-    class="dropdown-content overflow-hidden pl-4 pr-4 text-left"
-    data-dropdown-id={nightId}
-  >
-    <div class="mt-2">
-      <p class="text-xl text-gray-700">
-        <strong>Psalm 4:8</strong>
-        <span class="whitespace-normal break-words text-gray-500">
-          In peace I will lie down and sleep; for you alone, O LORD, make me dwell in safety.
-        </span>
-      </p>
-    </div>
-  </div>
+	<div
+		class="dropdown-toggle flex cursor-pointer items-center justify-between rounded-md bg-yellow-100 p-4"
+		data-dropdown-id={nightId}
+	>
+		<h3 class="text-xl font-extrabold">Night Bible Verses</h3>
+		<Icon
+			name="chevron-right"
+			class="arrow h-6 w-6 transform text-yellow-600 transition-transform"
+			data-icon-name="chevron-right"
+		/>
+	</div>
+	<div
+		class="dropdown-content overflow-hidden pl-4 pr-4 text-left"
+		data-dropdown-id={nightId}
+	>
+		<div class="mt-2">
+			<p class="text-xl text-gray-700">
+				<strong>Psalm 4:8</strong>
+				<span class="whitespace-normal break-words text-gray-500">
+					In peace I will lie down and sleep; for you alone, O LORD, make me
+					dwell in safety.
+				</span>
+			</p>
+		</div>
+	</div>
 </div>
 
 <style>
-      .dropdown-content {
-        max-height: 0;
-        opacity: 0;
-        transition:
-          max-height 0.4s ease-in-out,
-          opacity 0.4s ease-in-out;
-        overflow: hidden;
-      }
-      .dropdown-content.open {
-        max-height: 1000px;
-        opacity: 1;
-      }
-      .arrow {
-        transition: transform 0.3s ease;
-        transform: rotate(90deg);
-      }
-      .arrow.rotate {
-        transform: rotate(-90deg);
-      }
-      @media (max-width: 768px) {
-        .text-lg {
-          font-size: 0.875rem;
-        }
-      }
+	.dropdown-content {
+		max-height: 0;
+		opacity: 0;
+		transition:
+			max-height 0.4s ease-in-out,
+			opacity 0.4s ease-in-out;
+		overflow: hidden;
+	}
+	.dropdown-content.open {
+		max-height: 1000px;
+		opacity: 1;
+	}
+	.arrow {
+		transition: transform 0.3s ease;
+		transform: rotate(90deg);
+	}
+	.arrow.rotate {
+		transform: rotate(-90deg);
+	}
+	@media (max-width: 768px) {
+		.text-lg {
+			font-size: 0.875rem;
+		}
+	}
 </style>
 
 <script>
-      document.querySelectorAll('.dropdown-toggle').forEach((toggle) => {
-        (toggle as HTMLButtonElement).addEventListener(
-          'click',
-          function (this: HTMLButtonElement) {
-            const dropdownId = this.getAttribute('data-dropdown-id');
-            const dropdownContent = document.querySelector(
-              `.dropdown-content[data-dropdown-id="${dropdownId}"]`,
-            );
+	document.querySelectorAll('.dropdown-toggle').forEach((toggle) => {
+		(toggle as HTMLButtonElement).addEventListener(
+			'click',
+			function (this: HTMLButtonElement) {
+				const dropdownId = this.getAttribute('data-dropdown-id');
+				const dropdownContent = document.querySelector(
+					`.dropdown-content[data-dropdown-id="${dropdownId}"]`,
+				);
 
-            if (dropdownContent instanceof HTMLElement) {
-              const arrow = this.querySelector('.arrow');
-              const isOpen = dropdownContent.classList.contains('open');
+				if (dropdownContent instanceof HTMLElement) {
+					const arrow = this.querySelector('.arrow');
+					const isOpen = dropdownContent.classList.contains('open');
 
-              if (isOpen) {
-                dropdownContent.style.maxHeight =
-                  dropdownContent.scrollHeight + 'px';
-                dropdownContent.offsetHeight;
-                dropdownContent.style.maxHeight = '0';
-                dropdownContent.classList.remove('open');
-                if (arrow) arrow.classList.remove('rotate');
-              } else {
-                dropdownContent.style.maxHeight =
-                  dropdownContent.scrollHeight + 'px';
-                dropdownContent.classList.add('open');
-                if (arrow) arrow.classList.add('rotate');
-              }
-            }
-          },
-        );
-      });
+					if (isOpen) {
+						dropdownContent.style.maxHeight =
+							dropdownContent.scrollHeight + 'px';
+						dropdownContent.offsetHeight;
+						dropdownContent.style.maxHeight = '0';
+						dropdownContent.classList.remove('open');
+						if (arrow) arrow.classList.remove('rotate');
+					} else {
+						dropdownContent.style.maxHeight =
+							dropdownContent.scrollHeight + 'px';
+						dropdownContent.classList.add('open');
+						if (arrow) arrow.classList.add('rotate');
+					}
+				}
+			},
+		);
+	});
 </script>

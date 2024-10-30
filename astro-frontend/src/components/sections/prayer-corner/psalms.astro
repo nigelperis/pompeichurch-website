@@ -1,19 +1,31 @@
 ---
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
-import {psalms} from '~/constants/psalms';
+import { psalms } from '~/constants/psalms';
+import psalmBg from '~/assets/psalm-bg.jpg';
+import { getImage } from 'astro:assets';
+
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+const optimizedBgImage = await getImage({ src: psalmBg });
 ---
-  <h2
-    class="mt-8 border-b-4 border-natgeo-yellow pl-4 text-3xl font-poppins font-bold lg:text-2xl">
-    {t('prayer.psalms')}
-  </h2>
-  {psalms.map((psalm) =>(
-    <h3
-      class="card-title w-full mt-3  font-bold leading-snug text-slate-900 sm:text-lg"
-    >
-      {psalm.title}
-    </h3>
-    <p set:html= {psalm.content}></p>
-   ))
-  }
+
+<!-- if konkani keep text-xl, use cn function -->
+<h2
+	class="mt-4 border-b-2 border-b-natgeo-yellow pb-2 font-poppins text-2xl font-bold lg:text-3xl"
+>
+	{t('prayer.psalms')}
+</h2>
+
+<div
+	class="mt-4 max-h-96 overflow-y-auto bg-opacity-90 bg-cover bg-center p-3"
+	style={{ backgroundImage: `url(${optimizedBgImage.src})` }}
+>
+	{
+		psalms.map((psalm) => (
+			<div class="bg-opacity-80">
+				<h3 class="text-center font-extrabold sm:text-xl">{psalm.title}</h3>
+				<p set:html={psalm.content} class="text-center" />
+			</div>
+		))
+	}
+</div>

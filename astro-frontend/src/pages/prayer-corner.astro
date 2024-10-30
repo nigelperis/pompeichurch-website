@@ -8,6 +8,7 @@ import jublieeLogo from '~/assets/jubliee-logo.jpeg';
 import jublieePrayer from '~/assets/jubliee-prayer.jpeg';
 import Card from '~/components/sections/prayer-corner/prayer-card.astro';
 import Psalms from '~/components/sections/prayer-corner/psalms.astro';
+
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
@@ -16,37 +17,36 @@ const t = useTranslations(lang);
 	<main class="mx-auto max-w-4xl overflow-hidden bg-white">
 		<section id="parish-history" class="flex flex-col p-6 pb-4">
 			<h1
-				class="mb-4 border-l-4 border-natgeo-yellow pl-3 text-3xl font-poppins font-extrabold lg:text-4xl"
+				class="mb-4 border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold lg:text-4xl"
 			>
 				{t('nav.prayer-corner')}
 			</h1>
-			<Image src={candles} alt="" class="w-full h-[250px]" />
+			<Image src={candles} alt="" class="w-full pb-4" />
 			<h2
-				class="my-5 border-b-4 border-natgeo-yellow pl-4 text-3xl font-poppins font-bold lg:text-2xl">
+				class="mb-4 border-b-2 border-b-natgeo-yellow pb-2 font-poppins text-2xl font-bold lg:text-3xl"
+			>
 				{t('prayer.lets-join-hands-in-prayer')}
 			</h2>
-      <Card/>
+			<Card />
 			<h2
-				class="mt-8 border-b-4 border-natgeo-yellow pl-4 text-3xl font-poppins font-bold lg:text-2xl"
+				class="border-b-2 border-b-natgeo-yellow pb-2 font-poppins text-2xl font-bold lg:text-3xl"
 			>
 				{t('prayer.novena-of-our-lady-of-pompei')}
 			</h2>
- 			<div class="card-content flex flex-1 flex-col justify-center items-center space-y-1 p-3 gap-2">
-				<h3
-					class="card-title w-full text-center font-poppins font-bold leading-snug italic text-slate-900 sm:text-lg"
-				>
-					{t('prayer.pray-for-us')}
-				</h3>
-			</div>
+			<h3
+				class="card-title w-full pb-4 pt-2 font-poppins font-bold italic text-slate-900 sm:text-lg"
+			>
+				{t('prayer.pray-for-us')}
+			</h3>
 			<Image src={novena} alt="" />
 			<Psalms />
 			<h2
-				class="mt-8 border-b-4 border-natgeo-yellow pl-4 text-3xl font-poppins font-bold lg:text-2xl"
+				class="mt-4 border-b-2 border-b-natgeo-yellow pb-2 font-poppins text-2xl font-bold lg:text-3xl"
 			>
 				{t('prayer.jubliee-2025')}
 			</h2>
-			<div class="grid mt-3 gap-x-4 gap-y-4 justify-center">
-				<Image src={jublieeLogo} alt="" class="w-full max-w-xs mx-auto" />
+			<div class="mt-3 grid justify-center gap-y-4">
+				<Image src={jublieeLogo} alt="" class="mx-auto w-full max-w-xs" />
 				<Image src={jublieePrayer} alt="" class="w-full max-w-sm" />
 			</div>
 		</section>
