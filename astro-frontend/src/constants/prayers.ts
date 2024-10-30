@@ -128,7 +128,9 @@ const prayers = [
 
         <br><strong><center><i>Let us pray:</i></strong>
 
-        <br>Pour forth, we beseech Thee, O Lord, Thy grace into our hearts; that we, to whom the incarnation of Christ, Thy Son, was made known by the message of an angel, may by His Passion and Cross be brought to the glory of His Resurrection, through the same Christ Our Lord.`,
+        <br>Pour forth, we beseech Thee, O Lord, Thy grace into our hearts; that we, to whom the incarnation of Christ, Thy Son, was made known by the message of an angel, may by His Passion and Cross be brought to the glory of His Resurrection, through the same Christ Our Lord.
+
+        <br><strong>Glory Be (3)</strong>`,
 	},
 	{
 		title: `Queen of Heaven`,
@@ -147,7 +149,9 @@ const prayers = [
 
         <br><strong><center><i>Let us pray:</i></strong>
 
-        <br>O God, who gave joy to the world through the resurrection of Thy Son, our Lord Jesus Christ, grant we beseech Thee that through the intercession of the Virgin Mary, His Mother, we may obtain the joys of everlasting life. Through the same Christ our Lord. Amen.`,
+        <br>O God, who gave joy to the world through the resurrection of Thy Son, our Lord Jesus Christ, grant we beseech Thee that through the intercession of the Virgin Mary, His Mother, we may obtain the joys of everlasting life. Through the same Christ our Lord. Amen.
+
+        <br><strong>Glory Be (3)</strong>`,
 	},
 ];
 export { prayers };

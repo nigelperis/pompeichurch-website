@@ -384,7 +384,7 @@ export const ui = {
 		'commissions.mr-godwin-tauro': 'ಶ್ರೀಮಾನ್ ಗೊಡ್ವಿನ್ ತಾವ್ರೊ',
 		'commissions.mrs-margaret-andrade': ' ಶ್ರೀಮತಿ ಮಾರ್ಗರೆಟ್ ಅಂದ್ರಾದೆ		',
 		'commissions.mr-rajesh-noronha': 'ಶ್ರೀಮಾನ್ ರಾಜೇಶ್ ನೊರೊನ್ಹಾ',
-		'prayer.lets-join-hands-in-prayer': 'ಮಾಗ್ಣ್ಯಾoತ್ ಹಾತ್ ಜೊಡ್ಯಾಂ ',
+		'prayer.lets-join-hands-in-prayer': 'ಮಾಗ್ಣ್ಯಾಕ್ ಆಮ್ಚೆ ಹಾತ್ ಜೊಡ್ಯಾಂ ',
 		'prayer.novena-of-our-lady-of-pompei': 'ಪೊಂಪೈ ರೊಜಾರ್ ಸಾಯ್ಬಿಣಿಚೆಂ ನೊವೆನ್ ',
 		'prayer.pray-for-us': 'ಪೊಂಪೈ ಮಾಯೆ ಆಮಾ ಪಾಸುನ್ ವಿನತಿ ಕರ್ ',
 		'prayer.psalms': 'ಕೀರ್ತನಾ',
