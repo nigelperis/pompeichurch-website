@@ -9,39 +9,61 @@ const t = useTranslations(lang);
 ---
 
 <div class="ward-details mx-auto">
-	{
-		wards.map((ward) => (
-			<div class="mb-8 text-left">
-				<h2
-					class={cn('mt-6 font-poppins text-3xl font-bold text-slate-900', {
-						'font-noto-sans-kannada': lang === 'kok',
-					})}
-				>
-					{t(`nav.${ward.name}`)}
-				</h2>
-				<div class="flex flex-col items-center justify-center gap-4 sm:flex-row">
-					<Image
-						src={ward.patronImage}
-						alt=""
-						class="w-full max-w-md sm:w-1/2"
-					/>
-					<Image
-						src={ward.gurkarImage}
-						alt=""
-						class="w-full max-w-md sm:w-1/2"
-					/>
-				</div>
+  {
+    wards.map((ward) => (
+      <div class="mb-8 text-left">
+        <h2
+          class={cn('mt-6 font-poppins text-3xl font-bold text-slate-900', {
+            'font-noto-sans-kannada': lang === 'kok',
+          })}
+        >
+          {t(`nav.${ward.name}`)}
+        </h2>
+        <p
+          class={cn(
+            'mt-4 mb-6 text-xm text-justify font-geist font-semibold leading-7 text-gray-800'
+          )}
+        >
+          {lang === 'kok'
+            ? `${t(`ward.${ward.patronName}`)} ${t('ward.patron')}`
+            : `${t('ward.patron')} ${t(`ward.${ward.patronName}`)}`}
+        </p>
+        <div class="flex flex-col items-center justify-center gap-4 mb-6">
+          <Image
+            src={ward.patronImage}
+            alt=""
+            class="w-full max-w-xl sm:w-1/2"
+          />
+        </div>
 
-				<p class="text-md mt-4 text-justify font-geist leading-7 text-slate-700">
-					{ward.description}
-				</p>
+        <div
+          class={cn(
+            'hover:scale-[1.01] snap-start first:snap-align-none mx-auto max-w-xs flex-shrink-0 rounded-md border sm:w-64',
+            'w-[230px] h-[450px]'
+          )}
+        >
+          <div class="card-image flex-none">
+            <Image
+              src={ward.gurkarImage}
+              alt={ward.gurkarName}
+              class="h-[350px] w-full rounded-md object-cover"
+            />
+          </div>
+          <p class="text-md mt-4 text-center font-geist leading-7 text-slate-700">
+            <span class="font-semibold">{t(`ward.${ward.gurkarTitle}`)}</span>: {t(`ward.${ward.gurkarName}`)}
+          </p>
+        </div>
 
-				<div class="mb-6 mt-2 font-noto-sans-kannada">
-					<p>ಗುರ್ಕಾರ್: {ward.gurkarName}</p>
-					<p>ಪ್ರತಿನಿಧಿ: {ward.pratinidiName}</p>
-				</div>
-				<div class="mx-10 border-t-2 border-yellow-300" />
-			</div>
-		))
-	}
+        <div class="text-md pt-2 font-geist leading-7 text-slate-700 gap-5">
+          <p>
+            <span class="font-semibold">{t('ward.pratinidi')}:</span>
+            <br>{t(`ward.${ward.pratinidiName1}`)}
+            <br>{t(`ward.${ward.pratinidiName2}`)}
+          </p>
+          <p class="font-semibold">{t('ward.family')}: {ward.family}</p>
+          <div class="mx-10 my-5 border-t-2 border-yellow-300" />
+        </div>
+      </div>
+    ))
+  }
 </div>
