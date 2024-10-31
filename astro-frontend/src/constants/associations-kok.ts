@@ -148,8 +148,8 @@ const associationsKok = [
 		],
 	},
 	{
-		slug: 'legion-of-mary',
-		title: 'Legion Of Mary',
+		slug: 'christian-life-community',
+		title: 'Christian Life Community',
 		associationImage: moriyalSodality,
 		description: `ಮಾ| ಬಾ| ಜೆ.ಎಸ್.ಟಿ. ರೊಡ್ರಿಗಾಸಾಚ್ಯಾ ಕಾಳಾರ್, ೦೫-೦೭-೧೯೫೯ ವೆರ್, ಹೊ ಸಂಘ್ ಆರಂಭ್ ಜಾಲೊ. ದಾದ್ಲೆ ಆನಿ ಸ್ತ್ರೀಯೋ ಹಾಂತುಂ ಸಾಂದೆ ಆಸ್‌ಲ್ಲೆ. ಮಾಗ್ಣೆಂ ಆನಿ ಕುಟ್ಮಾಂಚ್ಯಾ ಗರ್ಜಾಂಕ್ ತಿಂ ಸ್ಪಂದನ್ ಕರ್ನ್ ಆಧಾರ್ ದಿತಾಲಿಂ.`,
 		officeBearers: [
