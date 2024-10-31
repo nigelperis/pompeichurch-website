@@ -216,40 +216,46 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 
 	function startTimer() {
-		// Set initial state
-		setCircleDasharray();
-		setRemainingPathColor(timeLeft);
+    // Set initial state
+    setCircleDasharray();
+    setRemainingPathColor(timeLeft);
 
-		// Small delay to allow initial render
-		setTimeout(() => {
-			// Start the countdown
-			timerInterval = setInterval(() => {
-				timePassed += 1;
-				timeLeft = TIME_LIMIT - timePassed;
-				timerText.textContent = timeLeft;
+    // Small delay to allow initial render
+    setTimeout(() => {
+        // Start the countdown
+        timerInterval = setInterval(() => {
+            timePassed += 1;
+            timeLeft = TIME_LIMIT - timePassed;
+            timerText.textContent = timeLeft;
 
-				setCircleDasharray();
-				setRemainingPathColor(timeLeft);
+            setCircleDasharray();
+            setRemainingPathColor(timeLeft);
 
-				if (timeLeft === 0) {
-					clearInterval(timerInterval);
-					timerContainer.style.display = 'none';
-					toggleCurtainAndAnimations();
+            if (timeLeft === 0) {
+                // Don't clear the interval immediately
+                timerText.textContent = '0';
 
-					const timerEndEvent = new CustomEvent('timerEnded');
-					document.dispatchEvent(timerEndEvent);
-				}
-			}, 1000);
-		}, 50); // Small delay for initial render
-	}
+                // Add a small delay before hiding the timer and triggering animations
+                setTimeout(() => {
+                    clearInterval(timerInterval);
+                    timerContainer.style.display = 'none';
+                    toggleCurtainAndAnimations();
 
-	function setCircleDasharray() {
-		const circleDasharray = `${(
-			(timeLeft / TIME_LIMIT) *
+                    const timerEndEvent = new CustomEvent('timerEnded');
+                    document.dispatchEvent(timerEndEvent);
+                }, 1000); // Show "0" for 1 second before proceeding
+            }
+        }, 1000);
+    }, 50);
+}
+
+function setCircleDasharray() {
+	const circleDasharray = `${(
+			(Math.max(0, timeLeft) / TIME_LIMIT) *
 			FULL_DASH_ARRAY
-		).toFixed(0)} ${FULL_DASH_ARRAY}`;
-		timerPath.setAttribute('stroke-dasharray', circleDasharray);
-	}
+	).toFixed(0)} ${FULL_DASH_ARRAY}`;
+	timerPath.setAttribute('stroke-dasharray', circleDasharray);
+}
 
 	function resetTimer() {
 		clearInterval(timerInterval);
