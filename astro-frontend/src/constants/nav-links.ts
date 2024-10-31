@@ -104,8 +104,8 @@ export const navLinks = [
 				href: '/associations/womens-forum',
 			},
 			{
-				title: 'nav.legion-of-mary',
-				href: '/associations/legion-of-mary',
+				title: 'nav.christian-life-community',
+				href: '/associations/christian-life-community',
 			},
 		],
 	},

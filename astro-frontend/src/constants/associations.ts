@@ -136,8 +136,7 @@ const associations = [
 		slug: 'womens-forum',
 		title: 'Womens Forum',
 		associationImage: womensForum,
-		description: `
-		The Catholic Women's Forum should be established in the parish of Pompei Gurpur, according to the desire of the parish priest, Rev. Fr. Paul Rego. With this goal in mind, a training camp was organized for all the women of the parish, and many women participated in this camp. As a result of this training, on Sunday, October 29, 2006, in the presence of the parish community, the Women's Organization was established under the motto ‘Women to Live with Dignity and Respect.’ <br/><br/>
+		description: `The Catholic Women's Forum should be established in the parish of Pompei Gurpur, according to the desire of the parish priest, Rev. Fr. Paul Rego. With this goal in mind, a training camp was organized for all the women of the parish, and many women participated in this camp. As a result of this training, on Sunday, October 29, 2006, in the presence of the parish community, the Women's Organization was established under the motto ‘Women to Live with Dignity and Respect.’ <br/><br/>
 
 		The Women's Organization consists of approximately 20-25 members. On the fourth Sunday of every month, for an hour, all the women gather to plan and conduct camps, games, Women's Day celebrations, etc., for the benefit of all the women in the parish. Camps with topics like ‘Women and their Well-being,’ ‘Challenges and Solutions of Middle Age,’ ‘The Role of Women in Social and Political Fields,’ ‘Care of Children and Youth,’ and ‘Household Management’ are regularly organized by the Women's Forum. <br/><br/>
 
@@ -148,8 +147,8 @@ const associations = [
 		],
 	},
 	{
-		slug: 'legion-of-mary',
-		title: 'Legion of Mary',
+		slug: 'christian-life-community',
+		title: 'Christian Life Community',
 		associationImage: moriyalSodality,
 		description: `On 5th July 1959, under the guidance of Fr. J.S.T. Rodrigues, this organization was established. This organization is dedicated to serving the families of both men and women. It also aims to respond to the needs of families in the area.`,
 		officeBearers: [

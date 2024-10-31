@@ -1,0 +1,25 @@
+---
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+import jublieeLogo from '~/assets/jubliee-logo.jpeg';
+import jublieePrayer from '~/assets/jubliee-prayer.jpeg';
+import { Image } from 'astro:assets';
+import { cn } from '~/helpers/cn';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<h2
+	class={cn(
+		'mb-4 mt-4 border-b-2 border-b-natgeo-yellow pb-2 font-poppins text-2xl font-bold lg:text-3xl',
+		{
+			'font-noto-sans-kannada': lang === 'kok',
+		},
+	)}
+>
+	{t('prayer.jubliee-2025')}
+</h2>
+<div class="mt-2 grid justify-center gap-y-6 pb-4">
+	<Image src={jublieeLogo} alt="" class="mx-auto w-full max-w-xs" />
+	<Image src={jublieePrayer} alt="" class="w-full max-w-sm" />
+</div>

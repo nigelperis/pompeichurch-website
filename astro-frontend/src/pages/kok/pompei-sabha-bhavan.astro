@@ -1,52 +1,12 @@
 ---
-import pompeiSabhaBhavanImage from '~/assets/pompei-sabha-bhavan.jpg';
-import { loremIpsum } from '~/constants/lorem-ipsum';
-import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import Layout from '~/layouts/layout.astro';
-import { Image } from 'astro:assets';
-import pbs1 from '~/assets/psb-int-1.jpg';
-import pbs2 from '~/assets/psb-int-2.jpg';
-import pbs4 from '~/assets/psb-ext-2.jpg';
-import pbs6 from '~/assets/psb-ext-4.jpg';
-
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
+import PompeiSabhaBhavanHall from '~/components/sections/halls/pompei-sabha-bhavan-hall.astro';
 ---
 
-<Layout title="Pompei Church | Pompei Sabha Bhavan">
+<Layout title="Halls | Pompei Sabha Bhavan">
 	<main class="mx-auto max-w-4xl overflow-hidden bg-white">
 		<section id="infrastructure" class="flex flex-col p-6">
-			<h1
-				class="mb-4 border-l-4 border-natgeo-yellow pl-3 text-3xl font-extrabold lg:text-4xl"
-			>
-				{t('hall.title')}
-			</h1>
-			<div class="flex items-center justify-center">
-				<Image
-					src={pompeiSabhaBhavanImage}
-					alt="Exterior view of Pomei Sabha Bhavan at Our Lady of Pomepi Church"
-					class="pb-2 text-center"
-				/>
-			</div>
-			<div class="pb-4 font-geist">
-				<p class="text-md text-justify leading-7 text-slate-700">
-					{loremIpsum}
-				</p>
-			</div>
-			<h2 class="pb-4 text-lg font-bold text-slate-800">
-				Pompei Sabha Bhavan Interior
-			</h2>
-			<div class="flex flex-col gap-4 pb-4 md:flex-row">
-				<Image src={pbs1} alt="" class="w-full md:w-1/2" />
-				<Image src={pbs2} alt="" class="w-full md:w-1/2" />
-			</div>
-			<h2 class="pb-4 text-lg font-bold text-slate-800">
-				Pompei Sabha Bhavan Exterior
-			</h2>
-			<div class="flex flex-col gap-4 md:flex-row">
-				<Image src={pbs4} alt="" class="w-full md:w-1/2" />
-				<Image src={pbs6} alt="" class="w-full md:w-1/2" />
-			</div>
+			<PompeiSabhaBhavanHall />
 		</section>
 	</main>
 </Layout>
