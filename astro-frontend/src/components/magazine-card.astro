@@ -1,14 +1,16 @@
 ---
 import { Image } from 'astro:assets';
 import { cn } from '~/helpers/cn';
+import HoverableLink from './ui/hoverable-link.astro';
 
 interface Props {
 	title: string;
 	imageUrl: ImageMetadata;
+	downloadUrl: string; // Keep this to use for the download link
 	class?: string;
 }
 
-const { title, imageUrl, class: className } = Astro.props;
+const { title, imageUrl, downloadUrl, class: className } = Astro.props;
 ---
 
 <div
@@ -17,7 +19,7 @@ const { title, imageUrl, class: className } = Astro.props;
 		className,
 	)}
 >
-	<div class="magazine-image">
+	<div class="magazine-image relative">
 		<Image
 			src={imageUrl}
 			alt={title}
@@ -25,11 +27,11 @@ const { title, imageUrl, class: className } = Astro.props;
 		/>
 	</div>
 
-	<div class="magazine-content mt-3 pb-5 text-center">
-		<h3
-			class="magazine-title text-lg font-bold leading-snug text-slate-900 sm:text-xl"
-		>
-			{title}
-		</h3>
+	<div class="magazine-content mt-3 pb-5 text-center flex flex-row justify-center ">
+
+		<HoverableLink href={downloadUrl}>
+	    Download
+		</HoverableLink>
+
 	</div>
 </div>
