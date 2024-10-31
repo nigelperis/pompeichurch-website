@@ -1,8 +1,6 @@
 const prayers = [
 	{
-		title: `In the name of the Father,
-        and of the Son,
-        of the Holy Spirit`,
+		title: 'In the name of the Father, and of the Son, and of the Holy Spirit',
 		content: ``,
 	},
 	{
@@ -124,11 +122,11 @@ const prayers = [
 
         <br><i>Hail Mary . . .</i>
 
-        <br><strong>Pray for us, O Holy Mother of God, that we may be made worthy of the promises of Christ.</strong>
+        <br><strong>Pray for us, O Holy Mother of God, that we may be made worthy of the promises of Christ.</strong><br>
 
-        <br><strong><center><i>Let us pray:</i></strong>
+        <br><strong><i>Let us pray:</i></strong>
 
-        <br>Pour forth, we beseech Thee, O Lord, Thy grace into our hearts; that we, to whom the incarnation of Christ, Thy Son, was made known by the message of an angel, may by His Passion and Cross be brought to the glory of His Resurrection, through the same Christ Our Lord.
+        <br>Pour forth, we beseech Thee, O Lord, Thy grace into our hearts; that we, to whom the incarnation of Christ, Thy Son, was made known by the message of an angel, may by His Passion and Cross be brought to the glory of His Resurrection, through the same Christ Our Lord.<br>
 
         <br><strong>Glory Be (3)</strong>`,
 	},
@@ -144,12 +142,12 @@ const prayers = [
 
 
         <br><strong>Rejoice and be glad, O Virgin Mary, alleluia. </strong>
-        <br>For the Lord has truly risen, alleluia.
+        <br>For the Lord has truly risen, alleluia.<br>
 
 
-        <br><strong><center><i>Let us pray:</i></strong>
+        <br><strong><i>Let us pray:</i></strong>
 
-        <br>O God, who gave joy to the world through the resurrection of Thy Son, our Lord Jesus Christ, grant we beseech Thee that through the intercession of the Virgin Mary, His Mother, we may obtain the joys of everlasting life. Through the same Christ our Lord. Amen.
+        <br>O God, who gave joy to the world through the resurrection of Thy Son, our Lord Jesus Christ, grant we beseech Thee that through the intercession of the Virgin Mary, His Mother, we may obtain the joys of everlasting life. Through the same Christ our Lord. Amen.<br>
 
         <br><strong>Glory Be (3)</strong>`,
 	},

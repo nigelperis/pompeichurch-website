@@ -3,11 +3,11 @@ import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import Layout from '~/layouts/layout.astro';
 import { Image } from 'astro:assets';
 import candles from '~/assets/candles.jpg';
-import novena from '~/assets/novena.jpg';
-import jublieeLogo from '~/assets/jubliee-logo.jpeg';
-import jublieePrayer from '~/assets/jubliee-prayer.jpeg';
-import Card from '~/components/sections/prayer-corner/prayer-card.astro';
+import PrayerCard from '~/components/sections/prayer-corner/prayer-card.astro';
+import { cn } from '~/helpers/cn';
 import Psalms from '~/components/sections/prayer-corner/psalms.astro';
+import Novena from '~/components/sections/prayer-corner/novena.astro';
+import JubileeYear from '~/components/sections/prayer-corner/jubilee-year.astro';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -17,38 +17,20 @@ const t = useTranslations(lang);
 	<main class="mx-auto max-w-4xl overflow-hidden bg-white">
 		<section id="parish-history" class="flex flex-col p-6 pb-4">
 			<h1
-				class="mb-4 border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold lg:text-4xl"
+				class={cn(
+					'mb-4 border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold lg:text-4xl',
+					{
+						'font-noto-sans-kannada': lang === 'kok',
+					},
+				)}
 			>
 				{t('nav.prayer-corner')}
 			</h1>
-			<Image src={candles} alt="" class="w-full pb-4" />
-			<h2
-				class="mb-4 border-b-2 border-b-natgeo-yellow pb-2 font-poppins text-xl font-bold lg:text-3xl"
-			>
-				{t('prayer.lets-join-hands-in-prayer')}
-			</h2>
-			<Card />
-			<h2
-				class="border-b-2 border-b-natgeo-yellow pb-2 font-poppins text-xl font-bold lg:text-3xl"
-			>
-				{t('prayer.novena-of-our-lady-of-pompei')}
-			</h2>
-			<h3
-				class="card-title w-full pb-4 pt-2 font-poppins font-bold italic text-slate-900 sm:text-lg"
-			>
-				{t('prayer.pray-for-us')}
-			</h3>
-			<Image src={novena} alt="" />
+			<Image src={candles} alt="" class="w-full pb-4 pt-2" />
+			<PrayerCard />
+			<Novena />
 			<Psalms />
-			<h2
-				class="mt-4 border-b-2 border-b-natgeo-yellow pb-2 font-poppins text-xl font-bold lg:text-3xl"
-			>
-				{t('prayer.jubliee-2025')}
-			</h2>
-			<div class="mt-3 grid justify-center gap-y-4">
-				<Image src={jublieeLogo} alt="" class="mx-auto w-full max-w-xs" />
-				<Image src={jublieePrayer} alt="" class="w-full max-w-sm" />
-			</div>
+			<JubileeYear />
 		</section>
 	</main>
 </Layout>

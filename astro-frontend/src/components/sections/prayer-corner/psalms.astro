@@ -3,15 +3,20 @@ import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import { psalms } from '~/constants/psalms';
 import psalmBg from '~/assets/psalm-bg.jpg';
 import { getImage } from 'astro:assets';
+import { cn } from '~/helpers/cn';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const optimizedBgImage = await getImage({ src: psalmBg });
 ---
 
-<!-- if konkani keep text-xl, use cn function -->
 <h2
-	class="mt-4 border-b-2 border-b-natgeo-yellow pb-2 font-poppins text-xl font-bold lg:text-3xl"
+	class={cn(
+		'mt-4 border-b-2 border-b-natgeo-yellow pb-2 font-poppins text-2xl font-bold lg:text-3xl',
+		{
+			'font-noto-sans-kannada': lang === 'kok',
+		},
+	)}
 >
 	{t('prayer.psalms')}
 </h2>
@@ -21,10 +26,26 @@ const optimizedBgImage = await getImage({ src: psalmBg });
 	style={{ backgroundImage: `url(${optimizedBgImage.src})` }}
 >
 	{
-		psalms.map((psalm) => (
+		psalms[lang].map((psalm) => (
 			<div class="bg-opacity-80">
-				<h3 class="text-center font-extrabold sm:text-xl">{psalm.title}</h3>
-				<p set:html={psalm.content} class="text-center" />
+				<>
+					<h3
+						class={cn('text-center font-extrabold sm:text-xl', {
+							'font-noto-sans-kannada': lang === 'kok',
+							'font-geist': lang !== 'kok',
+						})}
+					>
+						{psalm.title}
+					</h3>
+					<br />
+				</>
+				<p
+					set:html={psalm.content}
+					class={cn('text-center leading-relaxed', {
+						'font-noto-sans-kannada': lang === 'kok',
+						'font-geist': lang !== 'kok',
+					})}
+				/>
 			</div>
 		))
 	}
