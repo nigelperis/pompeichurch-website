@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		setTimeout(() => {
 			const timerEndEvent = new CustomEvent('timerEnded');
 			document.dispatchEvent(timerEndEvent);
-		}, 500); // Small delay to ensure other components are loaded
+		}, 0); // Small delay to ensure other components are loaded
 		return;
 	}
 
