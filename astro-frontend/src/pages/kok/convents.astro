@@ -8,7 +8,7 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<Layout title="Pompei Church | Our Convents">
+<Layout title="Pompei Church | Convents">
 	<main class="mx-auto max-w-4xl overflow-hidden bg-white">
 		<section id="our-convents" class="flex flex-col p-6">
 			<h1
@@ -16,9 +16,6 @@ const t = useTranslations(lang);
 			>
 				{t('nav.convents')}
 			</h1>
-			<!-- <p class="font-roboto mt-4 text-lg text-white">
-					Explore our mission and the institutions that help make it possible.
-				</p> -->
 			<PompeiConvent />
 			<div class="mx-10 border-t-2 border-yellow-300"></div>
 			<RosaMysticaConvent />
