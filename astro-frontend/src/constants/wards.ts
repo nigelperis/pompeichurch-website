@@ -7,6 +7,7 @@ import gurpur from '~/assets/ward-patron-gurpur.jpg';
 import kandarA from '~/assets/ward-patron-kandar-a.jpg';
 import kandarB from '~/assets/ward-patron-kandar-b.jpg';
 import addoor from '~/assets/ward-patron-addoor.jpg';
+import church from '~/assets/ward-patron-church.jpg';
 import mrRoshan from '~/assets/mr-glen-roshan-dcunha.jpg';
 import mrRonald from '~/assets/mr-ronald-dsouza.jpg';
 import mrsGretta from '~/assets/mrs-gretta-lobo.jpg';
@@ -27,9 +28,9 @@ const wards = [
 		gurkarImage: mrRoshan,
 		gurkarTitle:'gurkar',
 		family: '35',
-		gurkarName: 'mr-glen-roshan-dcunha',
-		pratinidiName1: 'mr-johnson-lobo',
-		pratinidiName2: 'mrs-margarette-andrade',
+		gurkarName: 'kowdoor-a-gurkar',
+		pratinidiName1: 'kowdoor-a-pratinidi1',
+		pratinidiName2: 'kowdoor-a-pratinidi2',
 	},
 	{
 		name: 'kowdoor-b-ward',
@@ -38,9 +39,9 @@ const wards = [
 		gurkarImage: mrsGretta,
 		gurkarTitle:'gurkarn',
 		family: '35',
-		gurkarName: 'mrs-gretta-lobo',
-		pratinidiName1: 'mr-fredwin-dsouza',
-		pratinidiName2: 'mrs-wilma-crasta',
+		gurkarName: 'kowdoor-b-gurkar',
+		pratinidiName1: 'kowdoor-b-pratinidi1',
+		pratinidiName2: 'kowdoor-b-pratinidi2',
 	},
 	{
 		name: 'pompei-a-ward',
@@ -49,9 +50,9 @@ const wards = [
 		gurkarImage: mrIvan,
 		gurkarTitle:'gurkar',
 		family: '36',
-		gurkarName: 'mr-ivan-dsouza',
-		pratinidiName1: 'mr-romans-lobo',
-		pratinidiName2: 'mrs-gretta-nazreth',
+		gurkarName: 'pompei-a-gurkar',
+		pratinidiName1: 'pompei-a-pratinidi1',
+		pratinidiName2: 'pompei-a-pratinidi2',
 	},
 	{
 		name: 'pompei-b-ward',
@@ -59,10 +60,10 @@ const wards = [
 		patronName: 'patron-pompei-b',
 		gurkarImage: praveenLobo,
 		gurkarTitle:'gurkar',
-		family: 64,
-		gurkarName: 'mr-praveen-lobo',
-		pratinidiName1: 'mr-henry-sequiera',
-		pratinidiName2: 'mrs-violet-peris',
+		family: '64',
+		gurkarName: 'pompei-b-gurkar',
+		pratinidiName1: 'pompei-b-pratinidi1',
+		pratinidiName2: 'pompei-b-pratinidi2',
 
 	},
 	{
@@ -72,9 +73,9 @@ const wards = [
 		gurkarImage: mrRajesh,
 		gurkarTitle:'gurkar',
 		family: '48',
-		gurkarName: 'mr-rajesh-noronha',
-		pratinidiName1: 'mr-godwin-tauro',
-		pratinidiName2: 'mrs-laveena-andrade',
+		gurkarName: 'kandar-a-gurkar',
+		pratinidiName1: 'kandar-a-pratinidi1',
+		pratinidiName2: 'kandar-a-pratinidi2',
 	},
 	{
 		name: 'kandar-b-ward',
@@ -83,9 +84,9 @@ const wards = [
 		gurkarImage: mrsEveline,
 		gurkarTitle:'gurkarn',
 		family: '29',
-		gurkarName: 'mrs-eveline-sequiera',
-		pratinidiName1: 'mr-assisi-moras',
-		pratinidiName2: 'mrs-renita-lobo',
+		gurkarName: 'kandar-b-gurkar',
+		pratinidiName1: 'kandar-b-pratinidi1',
+		pratinidiName2: 'kandar-b-pratinidi2',
 	},
 	{
 		name: 'monel-ward',
@@ -94,9 +95,9 @@ const wards = [
 		gurkarImage: mrRonald,
 		gurkarTitle:'gurkar',
 		family: '50',
-		gurkarName: 'mr-ronald-dsouza' ,
-		pratinidiName1: 'mrs-hilda-menezes',
-		pratinidiName2: 'mrs-vijaya-dcosta',
+		gurkarName: 'monel-gurkar' ,
+		pratinidiName1: 'monel-pratinidi1',
+		pratinidiName2: 'monel-pratinidi2',
 	},
 	{
 		name: 'gurpur-ward',
@@ -105,9 +106,9 @@ const wards = [
 		gurkarImage: mrMelwyn,
 		gurkarTitle:'gurkar',
 		family: '38',
-		gurkarName: 'mr-melwyn-saldanha',
-		pratinidiName1: 'mr-bonifas-vijay-saldanha',
-		pratinidiName2: 'mrs-leena-saldanha',
+		gurkarName: 'gurpur-gurkar',
+		pratinidiName1: 'gurpur-pratinidi1',
+		pratinidiName2: 'gurpur-pratinidi2',
 	},
 	{
 		name: 'church-ward',
@@ -116,9 +117,9 @@ const wards = [
 		gurkarImage: mrsLinet,
 		gurkarTitle:'gurkarn',
 		family: '67',
-		gurkarName: 'mrs-linet-monteiro',
-		pratinidiName1: 'mr-alwyn-maxim-pinto',
-		pratinidiName2: 'mrs-laveena-rosario',
+		gurkarName: 'church-gurkar',
+		pratinidiName1: 'church-pratinidi1',
+		pratinidiName2: 'church-pratinidi2',
 	},
 	{
 		name: 'addoor-ward',
@@ -127,9 +128,8 @@ const wards = [
 		gurkarImage: mrsVeera,
 		gurkarTitle:'gurkarn',
 		family: '15',
-		gurkarName: 'mrs-veera-dsouza',
-		pratinidiName1: 'mr-vijay-praveen-dsouza',
-		pratinidiName2:'none',
+		gurkarName: 'addoor-gurkar',
+		pratinidiName1: 'addoor-pratinidi1',
 	},
 ];
 
