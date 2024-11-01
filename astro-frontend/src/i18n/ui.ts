@@ -292,6 +292,9 @@ export const ui = {
 		'prayer.pray-for-us': 'Our Lady of Pompei, Pray for us all',
 		'prayer.psalms': 'Psalms',
 		'prayer.jubliee-2025': 'Jubliee 2025',
+		'contact.address':'Gurpur, Kinnikambla, Mangaluru',
+		'contact.mon-sat':'Mon-Sat:',
+		'contact.clerk-name':'Ms. Violet Fernandes',
 	},
 	kok: {
 		'nav.home': 'ಹೋಮ್',
@@ -577,5 +580,8 @@ export const ui = {
 		'prayer.pray-for-us': 'ಪೊಂಪೈ ಮಾಯೆ ಆಮಾ ಪಾಸುನ್ ವಿನತಿ ಕರ್ ',
 		'prayer.psalms': 'ಕೀರ್ತನಾ',
 		'prayer.jubliee-2025': 'ಜುಬ್ಲೆವ್ 2025',
+		'contact.address':'ಗುರ್ಪುರ್, ಕಿನ್ನಿಕಂಬಳ, ಮಂಗಳೂರು ',
+		'contact.mon-sat':'ಸೊಮಾರಾ - ಸನ್ವಾರಾ:',
+		'contact.clerk-name':'ವಾಯ್ಲೆಟ್ ಫೆರ್ನಾಂಡಿಸ್',
 	},
 } as const;
