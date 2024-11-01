@@ -8,7 +8,7 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<div class="ward-details mx-auto">
+<div class="ward-details">
   {
     wards.map((ward) => (
       <div class={cn('mb-8 text-left', {
@@ -23,7 +23,7 @@ const t = useTranslations(lang);
         </h2>
         <p
           class={cn(
-            'mt-4 mb-6 text-xm text-justify font-geist font-semibold leading-7 text-gray-800'
+            'mt-1 mb-6 text-xm text-justify font-geist font-semibold leading-7 text-gray-800'
           )}
         >
           {lang === 'kok'

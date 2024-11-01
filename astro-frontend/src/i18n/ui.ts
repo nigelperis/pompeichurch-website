@@ -282,7 +282,7 @@ export const ui = {
 		'ward.pompei-a-pratinidi1': 'Mr. Romans Lobo',
 		'ward.pompei-a-pratinidi2': 'Mrs. Gretta Nazreth',
 		'ward.pompei-b-gurkar': 'Mr. Praveen Lobo',
-		'ward.pompie-b-pratinidi1': 'Mr. Henry Sequiera',
+		'ward.pompei-b-pratinidi1': 'Mr. Henry Sequiera',
 		'ward.pompei-b-pratinidi2': 'Mrs. Violet Peris',
 		'president':'President',
 		'president-female':'President',
