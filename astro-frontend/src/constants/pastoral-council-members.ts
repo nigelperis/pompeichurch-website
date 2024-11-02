@@ -42,7 +42,7 @@ const pastoralCouncil = [
 		position: 'president',
 	},
 	{
-		name: 'pastoral.pyc-president',
+		name: 'pastoral.icym-pyc-president',
 		org: 'nav.icym-pyc',
 		position: 'president',
 	},
