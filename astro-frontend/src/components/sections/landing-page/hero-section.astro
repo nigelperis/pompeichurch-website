@@ -1,5 +1,5 @@
 ---
-import { getImage } from 'astro:assets';
+import { getImage, Image } from 'astro:assets';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import skyImage from '~/assets/sky-bg.jpg';
 import churchHeroImage from '~/assets/church-hero.jpg';
@@ -51,8 +51,8 @@ const optimizedChurchHeroImage = await getImage({ src: churchHeroImage });
 		{t('landing.town-name')}
 	</p>
 	<div class="mx-auto">
-		<img
-			src={tempLogo.src}
+		<Image
+			src={tempLogo}
 			alt="Our Lady of Pompei Church logo"
 			width={190}
 			data-aos="fade-up"
@@ -119,6 +119,6 @@ const optimizedChurchHeroImage = await getImage({ src: churchHeroImage });
 
 	// Listen for the timer end event
 	document.addEventListener('timerEnded', () => {
-		setTimeout(startAnimation, 1000);
+		setTimeout(startAnimation, 0);
 	});
 </script>
