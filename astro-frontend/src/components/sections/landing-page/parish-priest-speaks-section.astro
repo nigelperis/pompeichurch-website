@@ -2,7 +2,8 @@
 import { Image } from 'astro:assets';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import priestImage from '~/assets/pp1.png';
-import { loremIpsum } from '~/constants/lorem-ipsum';
+import { priestMessage } from '~/constants/parish-priest-message';
+import { cn } from '~/helpers/cn';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -13,7 +14,12 @@ const t = useTranslations(lang);
 >
 	<h2
 		data-aos="fade-right"
-		class="mb-4 inline-block border-l-4 border-natgeo-yellow pl-3 font-poppins text-[27px] font-extrabold xs:text-2xl lg:text-4xl"
+		class={cn(
+			'mb-4 inline-block border-l-4 border-natgeo-yellow pl-3 font-poppins text-[27px] font-extrabold xs:text-2xl lg:text-4xl',
+			{
+				'font-noto-sans-kannada': lang === 'kok',
+			},
+		)}
 	>
 		{t('landing.priest-speaks')}
 	</h2>
@@ -40,12 +46,14 @@ const t = useTranslations(lang);
 
 		<div class="lg:self-center">
 			<p
-				class="text-justify font-geist text-base leading-7 first-letter:font-serif first-letter:text-3xl"
+				class={cn(`text-justify font-geist pt-2 text-base leading-7`, {
+					'font-noto-sans-kannada': lang === 'kok',
+				})}
 			>
-				{loremIpsum}
+				{lang === 'kok' ? priestMessage.kok : priestMessage.en}
 			</p>
 
-			<div class="mb-8 ml-auto text-lg font-semibold">
+			<div class="mb-8 ml-auto pt-4 text-lg font-semibold">
 				<p data-aos="fade-left" class="text-right">
 					Signature of Fr. Rudolf DSa(image)
 				</p>

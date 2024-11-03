@@ -1,0 +1,48 @@
+---
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+import { cn } from '~/helpers/cn';
+import { prayersKok } from '~/constants/prayers-kok';
+import { prayers } from '~/constants/prayers';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const prayer = lang === 'kok' ? prayersKok : prayers;
+---
+
+<h2
+	class={cn(
+		'mb-4 border-b-2 border-b-natgeo-yellow pb-2 font-poppins text-2xl font-bold lg:text-3xl',
+		{
+			'font-noto-sans-kannada': lang === 'kok',
+		},
+	)}
+>
+	{t('prayer.lets-join-hands-in-prayer')}
+</h2>
+<div
+	class="mx-auto grid w-full grid-cols-2 gap-x-6 gap-y-6 pb-6 xs:grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1"
+>
+	{
+		prayer.map((p) => (
+			<div class="mx-auto w-full max-w-3xl rounded-md border border-gray-300 bg-amber-100 p-3">
+				<div
+					class={cn(
+						'card-content text-sl flex flex-1 flex-col items-center space-y-4 p-5',
+						{
+							'font-noto-sans-kannada xs:font-normal': lang === 'kok',
+							'font-serif': lang !== 'kok',
+						},
+					)}
+				>
+					<h3 class="card-title text-center text-xl font-semibold tracking-wide">
+						{p.title}
+					</h3>
+					<p
+						class="text-md drop-cap text-justify leading-relaxed text-gray-700"
+						set:html={p.content}
+					/>
+				</div>
+			</div>
+		))
+	}
+</div>
