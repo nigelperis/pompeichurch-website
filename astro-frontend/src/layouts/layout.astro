@@ -73,7 +73,37 @@ const { title } = Astro.props;
 		<ScrollTop />
 	</body>
 	<script>
+		import { throttle } from '~/helpers/throttle';
 		import { aosInit } from '~/helpers/aos-config';
 		aosInit();
+
+		const currentPath = window.location.pathname;
+		const pathNameWithLocaleStripped = currentPath.replace(
+			/^\/(en|kok)\//,
+			'/',
+		);
+
+		const onScroll = throttle(() => {
+			const scrollPosition = document.documentElement.scrollTop;
+			sessionStorage.setItem(
+				`scrollPosition_${pathNameWithLocaleStripped}`,
+				String(scrollPosition ?? 0),
+			);
+		});
+
+		document.addEventListener('scroll', onScroll);
+
+		window.addEventListener('load', () => {
+			const scrollPositionKey = `scrollPosition_${pathNameWithLocaleStripped}`;
+			const savedScrollPosition = sessionStorage.getItem(scrollPositionKey);
+
+			if (!savedScrollPosition) return;
+
+			const parsedScrollPositon = Number(savedScrollPosition);
+			window.scrollTo(0, parsedScrollPositon);
+
+			//once scrolled ensure scroll state is cleared
+			sessionStorage.removeItem(scrollPositionKey);
+		});
 	</script>
 </html>

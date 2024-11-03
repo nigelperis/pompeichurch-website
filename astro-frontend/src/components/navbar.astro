@@ -4,9 +4,9 @@ import { Icon } from 'astro-icon/components';
 import { cn } from '~/helpers/cn';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import { navLinks } from '~/constants/nav-links.ts';
-import ScrollProgress from './ui/scroll-progress.astro';
-import churchLogo from '../assets/church-logo.png';
-import LanguageSwitcher from './language-switcher.astro';
+import ScrollProgress from '~/components/ui/scroll-progress.astro';
+import churchLogo from '~/assets/church-logo.png';
+import LanguageSwitcher from '~/components/language-switcher.astro';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -27,7 +27,11 @@ const t = useTranslations(lang);
 					navLinks
 						.filter((link) => link.title !== 'nav.home') // Exclude the 'Home' link
 						.map((link) => (
-							<li class="group relative">
+							<li
+								class={cn('group relative', {
+									'expandable-link': link.type === 'expandable',
+								})}
+							>
 								<a
 									href={
 										link.type === 'link'
@@ -172,6 +176,7 @@ const t = useTranslations(lang);
 	@media (min-width: 768px) {
 		ul > li.group {
 			position: relative;
+			border: 2px solid transparent;
 		}
 
 		ul > li.group > ul {
@@ -188,7 +193,8 @@ const t = useTranslations(lang);
 		}
 
 		ul > li.group:hover > ul,
-		ul > li.group:focus-within > ul {
+		ul > li.group:focus-within > ul,
+		ul > li.group > ul:hover {
 			display: block;
 		}
 
@@ -252,7 +258,11 @@ const t = useTranslations(lang);
 				expandableContent?.style?.setProperty('max-height', '0');
 			} else {
 				element.setAttribute('data-is-submenu-expanded', 'true');
-				expandableContent?.style?.setProperty('max-height', '550px');
+				const elementHeight = expandableContent?.scrollHeight;
+				expandableContent?.style?.setProperty(
+					'max-height',
+					`${elementHeight ?? 500}px`,
+				);
 			}
 		});
 	});
