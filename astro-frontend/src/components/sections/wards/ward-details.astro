@@ -8,10 +8,10 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<div class="ward-details mt-8">
+<div class="ward-details">
   {
     wards.map((ward) => (
-      <div class={cn('mb-8 text-left', {
+      <div class={cn('mb-6 text-left', {
             'font-noto-sans-kannada': lang === 'kok',
           })}>
         <h2
@@ -23,7 +23,7 @@ const t = useTranslations(lang);
         </h2>
         <p
           class={cn(
-            'mt-4 mb-6  text-xm text-justify font-geist font-semibold leading-7 text-gray-800'
+            'mt-4 mb-6 text-xm text-justify font-geist font-semibold leading-7 text-gray-800'
           )}
         >
           {lang === 'kok'
@@ -34,12 +34,11 @@ const t = useTranslations(lang);
           <Image
             src={ward.patronImage}
             alt=""
-            class="w-full max-w-xl rounded-md sm:w-1/2 md:h-[450px] lg:h-[450px]"~
-          />
+            class="w-full max-w-xl sm:w-1/2 md:h-[450px] lg:h-[450px]"/>
 
           <div
             class={cn(
-              'hover:scale-[1.01]  rounded-md snap-start first:snap-align-none max-w-xs flex-shrink-0 border sm:w-64',
+              'snap-start first:snap-align-none max-w-xs flex-shrink-0 border sm:w-64',
               'w-[250px] h-[450px]'
             )}
           >
@@ -47,7 +46,7 @@ const t = useTranslations(lang);
               <Image
                 src={ward.gurkarImage}
                 alt={ward.gurkarName}
-                class="h-[365px] w-full rounded-t-md object-cover"
+                class="h-[365px] w-full object-cover"
               />
             </div>
             <div class="card-content flex flex-1 flex-col justify-end space-y-1 p-3">
