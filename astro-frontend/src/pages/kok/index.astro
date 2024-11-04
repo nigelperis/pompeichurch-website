@@ -17,8 +17,8 @@ const t = useTranslations(lang);
 ---
 
 <Layout title={`${t('landing.church-name')} | ${t('landing.town-name')}`}>
+	<div class="main-content">
 	<main>
-		<!-- <WelcomeAnimation /> -->
 
 		<HeroSection />
 
@@ -38,4 +38,12 @@ const t = useTranslations(lang);
 
 		<MassTimingsSection />
 	</main>
+	</div>
 </Layout>
+
+<!-- TODO: Remove this after launch -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        document.dispatchEvent(new Event('timerEnded'));
+    });
+</script>

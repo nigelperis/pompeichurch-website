@@ -32,27 +32,28 @@ html {
 	opacity: 0;
 }
 
+
 .curtain {
-	position: fixed;
-	top: 0;
-	height: 100%;
-	width: 50%;
-	transition: transform 1s ease-in;
-	background-color: #ffd700;
-	background-image: linear-gradient(
-			90deg,
-			rgba(255, 215, 0, 0.9) 0%,
-			rgba(255, 255, 0, 0.9) 50%,
-			rgba(255, 215, 0, 0.9) 100%
-		),
-		repeating-linear-gradient(
-			0deg,
-			transparent,
-			transparent 20px,
-			rgba(0, 0, 0, 0.1) 20px,
-			rgba(0, 0, 0, 0.1) 40px
-		);
-	box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    height: 100%;
+    width: 50%;
+    transition: transform 1s ease-in;
+    background-color: #b22222;
+    background-image: linear-gradient(
+            90deg,
+            rgba(178, 34, 34, 0.95) 0%,
+            rgba(220, 20, 60, 0.9) 50%,
+            rgba(178, 34, 34, 0.95) 100%
+        ),
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 20px,
+            rgba(0, 0, 0, 0.1) 20px,
+            rgba(0, 0, 0, 0.1) 40px
+        );
+    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5);
 }
 
 .curtain::before {
@@ -82,7 +83,7 @@ html {
 
 .curtain-left-inner,
 .curtain-right-inner {
-	background-color: rgba(255, 255, 0, 0.7);
+    background-color: rgba(220, 20, 60, 0.7);
 }
 
 .open .curtain-left {
@@ -122,26 +123,26 @@ html {
 	transform: translateX(-100%);
 }
 
-#toggleCurtain {
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	/* z-index: 1000; */
-	z-index: 1002;
 
-	font-size: 36px; /* Increased from 24px */
-	padding: 20px 40px; /* Increased from 15px 30px */
-	cursor: pointer;
-	background-color: #4caf50;
-	color: white;
-	border: none;
-	border-radius: 10px; /* Increased from 5px */
-	transition: background-color 0.3s ease;
+#toggleCurtain {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1002;
+
+    font-size: 36px;
+    padding: 20px 40px;
+    cursor: pointer;
+    background-color: #b8860b;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
 }
 
 #toggleCurtain:hover {
-	background-color: #45a049;
+    background-color: #daa520;
 }
 
 /* Balloon Styles */
