@@ -364,7 +364,7 @@ export const ui = {
 		'nav.obituary': 'ಫಿರ್ಗಜೆಂತ್ ಮರಣ್',
 		'nav.events': 'ಘಡಿತಾಂ',
 		'nav.pompeichem-falkem': 'ಪೊಂಪೈಚೆಂ ಫಾಲ್ಕೆಂ',
-		'nav.prayer-corner': 'ಮಾಗ್ಣ್ಯಾ ಕೊನ್ಸೊ',
+		'nav.prayer-corner': 'ಮಾಗ್ಣ್ಯಾ ಪಾನ್',
 		'nav.pompei-sabha-bhavan': 'ಪೊಂಪೈ ಸಭಾ ಭವನ್',
 		'nav.centenary-hall': 'ಶತಾಬ್ದಿ ಸಾಲ್',
 		'landing.church-name': 'ಪೊಂಪೈ ಮಾಯೆಚಿ ಫಿರ್ಗಜ್',
