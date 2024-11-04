@@ -23,15 +23,17 @@ const {
 
 <div
 	class={cn(
-		'hover:scale-[1.01] snap-start first:snap-align-none border duration-500 ease-in-out rounded-md sm:w-full',
+		'hover:scale-[1.01] snap-start h-full first:snap-align-none border duration-500 ease-in-out rounded-sm sm:w-[95%] md:w-[85%] lg:w-[75%]',
 		className,
 	)}
+	style={{ maxWidth: '350px' }}
 >
-	<div class="card-image aspect-[2.2/3] overflow-hidden rounded-md">
+	<div class="card-image aspect-[2.3/3] overflow-hidden rounded-sm w-full">
 		<Image
 			src={imageUrl}
 			alt={`Image of ${name}`}
 			class="h-full w-full object-cover"
+			style={{ maxHeight: '500px' }}
 		/>
 	</div>
 	<div
