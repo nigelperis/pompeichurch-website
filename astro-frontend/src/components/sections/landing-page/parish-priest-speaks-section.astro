@@ -4,6 +4,7 @@ import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import priestImage from '~/assets/pp1.png';
 import { priestMessage } from '~/constants/parish-priest-message';
 import { cn } from '~/helpers/cn';
+import signature from '~/assets/father-signature.png';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -52,11 +53,8 @@ const t = useTranslations(lang);
 			>
 				{lang === 'kok' ? priestMessage.kok : priestMessage.en}
 			</p>
-
-			<div class="mb-8 ml-auto pt-4 text-lg font-semibold">
-				<p data-aos="fade-left" class="text-right">
-					Signature of Fr. Rudolf DSa(image)
-				</p>
+				<div data-aos="fade-left" class="text-right flex justify-end">
+					<Image src={signature} alt="priest signature" width={150} />
 			</div>
 		</div>
 	</div>
