@@ -1,9 +1,9 @@
 ---
-import { Image, getImage } from 'astro:assets';
+import { getImage } from 'astro:assets';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import skyImage from '~/assets/sky-bg.jpg';
 import churchHeroImage from '~/assets/church-hero.jpg';
-import churchLogo from '~/assets/church-logo.png';
+import tempLogo from '~/assets/temp-logo.png';
 import { cn } from '~/helpers/cn';
 
 const lang = getLangFromUrl(Astro.url);
@@ -51,11 +51,11 @@ const optimizedChurchHeroImage = await getImage({ src: churchHeroImage });
         {t('landing.town-name')}
     </p>
     <div class="mx-auto">
-        <Image
+        <img
             id="churchLogo"
-            src={churchLogo}
+            src={tempLogo.src}
             alt="church logo"
-            width={180}
+            width={190}
             class="relative mx-auto my-4 opacity-0 transition-opacity duration-500"
         />
     </div>

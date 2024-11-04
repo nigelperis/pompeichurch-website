@@ -14,17 +14,15 @@ const lang = getLangFromUrl(Astro.url);
 			type="button"
 			id="lang-button"
 			class={cn(
-				'inline-flex font-poppins lg:font-semibold font-bold justify-center w-25 mt-1 rounded-md border border-gray-500 px-1 py-1 lg:text-base ',
-				lang === 'kok'
-					? 'px-1 py-1 mt-1 font-noto-sans-kannada'
-					: 'sm:text-medium',
+				'inline-flex font-poppins font-semibold justify-center rounded-md border border-gray-500 px-2 py-1 text-md xs:mt-1',
+				lang === 'kok' && 'font-noto-sans-kannada text-sm xs:font-semibold',
 			)}
 		>
 			{selectedLanguage}
 			<!-- //TODO (Santhsim): Move this svg to assets -->
 			<svg
 				id="lang-arrow"
-				class="-mr-1 h-7 w-5 transition-transform duration-200 ease-in-out"
+				class="-mr-1 h-6 w-5 transition-transform duration-200 ease-in-out"
 				xmlns="http://www.w3.org/2000/svg"
 				viewBox="0 0 20 20"
 				fill="currentColor"
@@ -50,7 +48,7 @@ const lang = getLangFromUrl(Astro.url);
 					<button
 						type="button"
 						class={cn(
-							'text-md w-full rounded-md py-2 font-poppins font-normal transition-all hover:bg-natgeo-yellow',
+							'text-md w-full rounded-md py-2 font-poppins text-sm font-normal transition-all hover:bg-natgeo-yellow',
 							selectedLanguage === lang && 'font-noto-sans-kannada',
 						)}
 					>

@@ -1,0 +1,33 @@
+---
+import Layout from '~/layouts/layout.astro';
+import RosaMystica from '~/components/sections/institutions/rosa-mystica.astro';
+import BethanySchool from '~/components/sections/institutions/bethany-school.astro';
+import Jeevadan from '~/components/sections/institutions/jeevadaan.astro';
+import Snehasadan from '~/components/sections/institutions/snehasadan.astro';
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Layout title="Pompei Church | Institutions">
+	<main class="mx-auto max-w-4xl overflow-hidden bg-white">
+		<section id="institutions" class="flex flex-col p-6">
+			<h1
+				class="mb-4 border-l-4 border-natgeo-yellow pl-3 text-3xl font-extrabold lg:text-4xl"
+			>
+				{t('nav.institutions')}
+			</h1>
+			<!-- <p class="font-geist text-lg">
+				Explore educational mission and the institutions that help make it possible.
+			</p> -->
+			<RosaMystica />
+			<div class="mx-10 border-t-2 border-yellow-300"></div>
+			<BethanySchool />
+			<div class="mx-10 border-t-2 border-yellow-300"></div>
+			<Jeevadan />
+			<div class="mx-10 border-t-2 border-yellow-300"></div>
+			<Snehasadan />
+		</section>
+	</main>
+</Layout>

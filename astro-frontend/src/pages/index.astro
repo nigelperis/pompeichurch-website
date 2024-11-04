@@ -10,6 +10,7 @@ import SocialGrid from '~/components/sections/landing-page/social-grid.astro';
 import ChurchEventsSection from '~/components/sections/landing-page/church-events-section.astro';
 import LandingCarousel from '~/components/sections/landing-page/landing-carousel.astro';
 import WelcomeAnimation from '~/components/welcome-animation.astro';
+import UpcomingEventsSection from '~/components/sections/landing-page/upcoming-events-section.astro';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -32,6 +33,8 @@ const t = useTranslations(lang);
 		<PastoralParishadSection />
 
 		<ChurchEventsSection />
+
+		<UpcomingEventsSection />
 
 		<SocialGrid />
 
