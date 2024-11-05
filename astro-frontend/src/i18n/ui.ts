@@ -553,7 +553,7 @@ export const ui = {
 		'associations.svp-president': 'ಶ್ರೀಮಾನ್  ವಲೇರಿಯನ್ ಸಿಕ್ವೇರಾ',
 		'associations.svp-secretary': 'ಶ್ರೀಮಾನ್ ರಿಚಾರ್ಡ್ ಫೆರ್ನಾಂಡಿಸ್',
 		'associations.icym-pyc-president': 'ಲೆಸ್ಟರ್ ಮಿನೇಜಸ್',
-		'associations.icym-pyc-secretary': 'ಪ್ರಿಮಾ ಮಿನೇಜಸ್',
+		'associations.icym-pyc-secretary': 'ಪ್ರೀಮಾ ಮಿನೇಜಸ್',
 		'associations.small-christian-community-convenor':
 			'ಶ್ರೀಮತಿ ಡೆಲ್ಸಿ ರೊಡ್ರಿಗಸ್',
 		'associations.ycs-president': 'ಪ್ರಮಿತ್ ಪಿಂಟೊ',

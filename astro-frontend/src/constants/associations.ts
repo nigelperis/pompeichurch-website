@@ -1,7 +1,7 @@
 import altarServers from '~/assets/altar-servers.jpg';
 import catechism from '~/assets/catechism.jpg';
 import catholicSabha from '~/assets/catholic-sabha.jpg';
-import dummyImage from '~/assets/centenary-hall.jpg';
+import gurpurChoir from '~/assets/gurpur-choir.jpg';
 import moriyalSodality from '~/assets/moriyal-sodality.jpg';
 import pyc from '~/assets/pyc.jpg';
 import smallChristianCommunity from '~/assets/small-christian-community.jpg';
@@ -175,7 +175,7 @@ const associations = [
 	{
 		slug: 'gurpur-choir',
 		title: 'Gurpur Choir',
-		associationImage: dummyImage,
+		associationImage: gurpurChoir,
 		description: `During the time of Fr. Gracian D’Souza, to encourage and engage the youth, and to enhance their talents, a choir group was started under the leadership of Mr.Charles D’Cunha. Fr.J.S.T. Rodrigues inspired the youth to develop their interest in music and choir. Every Sunday, they practiced hymns and provided training to the children to prepare them to participate in Konkani hymn/song competitions in Mangalore. <br/><br/>
 
 		The leadership of the choir was initially taken up by Charles D’Cunha. Later, Valerian Rasquinha, as the choir master, carried the choir forward with dedication. Before the formation of the choir, the liturgical services received much enthusiasm and inspiration from the musical contributions.Some of the prominent members among them were Lt. Albert Nazareth, Paul Rodrigues, Lt. Richard Rodrigues, Lt. Maurice Peris, and Lt. Leo Fernandes. <br/><br/>

@@ -1,7 +1,7 @@
 import altarServers from '~/assets/altar-servers.jpg';
 import catechism from '~/assets/catechism.jpg';
 import catholicSabha from '~/assets/catholic-sabha.jpg';
-import dummyImage from '~/assets/centenary-hall.jpg';
+import gurpurChoir from '~/assets/gurpur-choir.jpg';
 import moriyalSodality from '~/assets/moriyal-sodality.jpg';
 import pyc from '~/assets/pyc.jpg';
 import smallChristianCommunity from '~/assets/small-christian-community.jpg';
@@ -50,7 +50,7 @@ const associationsKok = [
 		ಹ್ಯಾ ಶಿವಾಯ್, ಫಿರ್ಗಜೆಚ್ಯಾ ಸಕ್ಕಡ್ ಧಾರ್ಮಿಕ್ ಸಂಗ್ತಿಂನಿ, ದೇವ್‌ಸ್ತುತಿ ಮಾಂಡಾವಳಿಂತ್,   ಇಗರ್ಜೆ ವಠಾರಾಂತ್ಲ್ಯಾ ಲ್ಹಾನ್-ವ್ಹಡ್ ವಾವ್ರಾಂತ್ ಪಿ.ವೈ.ಸಿ ಸಾಂದೆ ಕ್ರಿಯಾಳ್ ಜಾವ್ನಾಸಾತ್. ಫಿರ್ಗಜೆಂತ್ ವನಮಹೋತ್ಸವ್, ಯುವಜಣಾಂಚೆಂ ಶಿಬಿರ್, ಸಾಂಸ್ಕೃತಿಕ್ ಸ್ಪರ್ಧೆ, ಕ್ರಿಸ್ಮಸ್ ನೈಟ್, ಕ್ಯಾರಲ್ಸ್, ವಾರ್ಷಿಕೋತ್ಸವ್, ಅಸಲ್ಯಾ ಸಾಂಪ್ರದಾಯಿಕ್ ಕಾರ್ಯಾಂ ಸಂಗಿಂ ವರ್ಸಾನ್ ವರಸ್ ಭಾಸ್- ಸಾಂಸ್ಕೃತಿಕ್ ಲಗ್ತಿ ಕಾರ್ಯಕ್ರಮಾಂ, ಅಂತರ್ ಜಾಳಾಚೊ ಪುರ್ತೊ ವ್ಯಾಪರ್ ತಶೆಂಚ್ಚ್ ಪರ್ನ್ಯಾ ಆನಿ ತರ್ನ್ಯಾಂಚಿ ಸಳಾವಳ್ - ಅಶೆಂ ಕಿತೆಂ ತರೀ ನವೆಂ ಕರ್ಚಿ ಹುಮೆದ್ ಜಿವಾಳ್ ಆಸಾ. ಆಯ್ಲೆವಾರ್ ಪಿ.ವೈ.ಸಿ. ಯುವಜಣಾಂನಿ ಶ್ರಮದಾನ್ ಕರ್ನ್, ತಾಂಚ್ಯಾಚ್ಚ್ ಖರ್ಚಾರ್ ನವೆಂ ಖೆಳಾ ಮೈದಾನ್ ಆಸಾ ಕೆಲಾಂ. ಪಿ.ಸಿ.ಎಲ್. ‘ಪೊಂಪೈ ಕ್ರಿಕೆಟ್ ಲೀಗ್’ ಖೆಳೊನ್ ಕ್ರಿಕೆಟಾಂತ್ ಸರ್ವಾಂಕ್ ಭಾಗ್ ಘೆಂವ್ಕ್ ಆವ್ಕಾಸ್ ಕರ್ನ್ ದಿಲಾ. ದಿರೆಕ್ತೊರ್, ಸಚೇತಕ್, ಅಧ್ಯಕ್ಷ್, ಕಾರ್ಯದರ್ಶಿ ತಶೆಂ ಸಾಂದೆ ಮಹಿನ್ಯಾoತ್ ಏಕ್ ಪಾವ್ಟಿಂ ಜಮಾತೆಕ್ ಸಾಂಗಾತಾ ಮೆಳ್ತಾತ್. ಫಿರ್ಗಜೆಂತ್ ಪಿ.ವೈ.ಸಿ ನಾಂವಾನ್ ತಶೆಂಚ್ ದಿಯೆಸೆಜಿಂತ್ ಐ.ಸಿ.ವೈ.ಎಮ್ ಗುರ್ಪುರ್ ನಾಂವಾನ್ ಹೆಂ ಸಂಘಟನ್ ಬಳಿಷ್ಟ್ ಜಾವ್ನ್ ಪಾವ್ಲಾಂ ಕಾಡುನ್ ಆಸಾ.
 `,
 		officeBearers: [
-			{ name: 'associations.icym-pyc.president', position: 'president' },
+			{ name: 'associations.icym-pyc-president', position: 'president' },
 			{ name: 'associations.icym-pyc-secretary', position: 'secretary' },
 		],
 	},
@@ -167,7 +167,7 @@ const associationsKok = [
 	{
 		slug: 'gurpur-choir',
 		title: 'Gurpur Choir',
-		associationImage: dummyImage,
+		associationImage: gurpurChoir,
 		description: `
 		<strong>ಜೊ ಗಾಯ್ತಾ, ತೊ ದೊಡ್ತ್ಯಾನ್ನ್ ಮಾಗ್ತಾ - ಗಾಯನ್ ಮಂಡಳಿ:</strong><br/>
 
