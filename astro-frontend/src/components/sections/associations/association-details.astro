@@ -1,12 +1,13 @@
 ---
 import { Image } from 'astro:assets';
-import { getLangFromUrl } from '~/i18n/utils';
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import { associations } from '~/constants/associations';
 import { associationsKok } from '~/constants/associations-kok';
 import fallbackImage from '~/assets/church-logo.png';
 import { cn } from '~/helpers/cn';
 
 const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 const { slug } = Astro.params;
 
 const associationData = lang === 'kok' ? associationsKok : associations;
@@ -28,7 +29,7 @@ const {
 		<h2
 			class="mt-6 text-justify font-poppins text-2xl font-bold text-slate-900"
 		>
-			About the Association
+			{t('associations.about-us')}
 		</h2>
 		<p
 			class={cn(
@@ -38,13 +39,13 @@ const {
 			set:html={description}
 		/>
 		<h2 class="mt-6 text-left font-poppins text-2xl font-bold text-slate-900">
-			Office Bearers
+			{t('associations.office-bearers')}
 		</h2>
 		<ul class="my-4 list-inside list-disc text-base text-slate-700">
 			{
 				officeBearers.map((bearer) => (
 					<li class="text-left">
-						<strong>{bearer.position}:</strong> {bearer.name}
+						<strong>{t(`${bearer.position}`)}: </strong>{t(`${bearer.name}`)}
 					</li>
 				))
 			}

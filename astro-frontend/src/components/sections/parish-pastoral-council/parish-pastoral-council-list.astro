@@ -20,13 +20,13 @@ const t = useTranslations(lang);
 				pastoralCouncil.map((member) => (
 					<tr class="hover:bg-gray-50">
 						<td class="border-b border-gray-200 px-4 py-2 text-sm lg:text-lg lg:text-gray-800">
-							{t(`landing.${member.name}`)}
+							{t(member.name)}
 						</td>
 						<td class="border-b border-gray-200 px-4 py-2 text-sm lg:text-lg lg:text-gray-800">
-							{member.org}
+							{t(member.org)}
 						</td>
 						<td class="border-b border-gray-200 px-4 py-2 text-sm lg:text-lg lg:text-gray-800">
-							{member.position}
+							{t(member.position)}
 						</td>
 					</tr>
 				))
