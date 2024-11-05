@@ -1,32 +1,61 @@
 ---
 import { Image } from 'astro:assets';
 
-import imageOne from '~/assets/mary-grotto.jpg';
-import imageTwo from '~/assets/church-hero.jpg';
-import imageThree from '~/assets/ciborium.jpg';
-import imageFour from '~/assets/mother-mary.jpg';
-import imageFive from '~/assets/sacrament.jpg';
-import imageSix from '~/assets/sacrament1.jpg';
-import imageSeven from '~/assets/charel.jpg';
-import imageEight from '~/assets/mary-inside.jpg';
-import imageNine from '~/assets/monthi-festh.jpg';
-import imageTen from '~/assets/monthi-festh1.jpg';
-import imageEleven from '~/assets/adoration1.jpg';
-import imageTwelve from '~/assets/adoration2.jpg';
+import image1 from '~/assets/g1.jpeg';
+import image2 from '~/assets/g2.jpg'
+import image3 from '~/assets/ciborium.jpg';
+import image4 from '~/assets/sacrament.jpg';
+import image5 from '~/assets/sacrament1.jpg';
+import image6 from '~/assets/charel.jpg';
+import image7 from '~/assets/mary-inside.jpg';
+import image8 from '~/assets/monthi-festh.jpg';
+import image9 from '~/assets/monthi-festh1.jpg';
+import image10 from '~/assets/g3.jpg';
+import image11 from '~/assets/g4.jpg';
+import image12 from '~/assets/g5.jpg';
+import image13 from '~/assets/g6.jpg';
+import image14 from '~/assets/g7.jpg';
+import image15 from '~/assets/g8.jpeg';
+import image16 from '~/assets/g9.jpg';
+import image17 from '~/assets/g10.jpg';
+import image18 from '~/assets/g11.jpg';
+import image19 from '~/assets/g12.jpg';
+import image20 from '~/assets/g13.jpg';
+import image21 from '~/assets/g14.jpg';
+import image22 from '~/assets/g15.jpg';
+import image23 from '~/assets/g16.jpg';
+import image24 from '~/assets/g17.jpg';
+import image25 from '~/assets/g18.jpg';
+import image26 from '~/assets/g19.jpg';
+
 
 const images = [
-	imageOne,
-	imageTwo,
-	imageThree,
-	imageFour,
-	imageFive,
-	imageSix,
-	imageSeven,
-	imageEight,
-	imageNine,
-	imageTen,
-	imageEleven,
-	imageTwelve,
+	image1,
+	image2,
+	image3,
+	image4,
+	image5,
+	image6,
+	image7,
+	image8,
+	image9,
+	image10,
+	image11,
+	image12,
+	image13,
+	image14,
+	image15,
+	image16,
+	image17,
+	image18,
+	image19,
+	image20,
+	image21,
+	image22,
+	image23,
+	image24,
+	image25,
+	image26
 ] as const;
 ---
 
@@ -74,35 +103,6 @@ const images = [
 		gallery: '.masonry-grid',
 		children: 'a',
 		pswpModule: () => import('photoswipe'),
-	});
-
-	lightbox.on('uiRegister', function () {
-		lightbox.pswp?.ui?.registerElement({
-			name: 'download-button',
-			order: 8,
-			isButton: true,
-			tagName: 'a',
-			//Download button SVG
-			html: {
-				isCustomSVG: true,
-				inner:
-					'<path d="M20.5 14.3 17.1 18V10h-2.2v7.9l-3.4-3.6L10 16l6 6.1 6-6.1ZM23 23H9v2h14Z" id="pswp__icn-download"/>',
-				outlineID: 'pswp__icn-download',
-			},
-			onInit: (el, pswp) => {
-				const anchorEl = el as HTMLAnchorElement;
-
-				anchorEl.setAttribute('download', '');
-				anchorEl.setAttribute('target', '_blank');
-				anchorEl.setAttribute('rel', 'noopener');
-
-				pswp.on('change', () => {
-					if (pswp.currSlide?.data?.src) {
-						anchorEl.href = pswp.currSlide.data.src;
-					}
-				});
-			},
-		});
 	});
 
 	lightbox.init();

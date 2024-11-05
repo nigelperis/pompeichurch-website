@@ -8,6 +8,7 @@ import { cn } from '~/helpers/cn';
 import Psalms from '~/components/sections/prayer-corner/psalms.astro';
 import Novena from '~/components/sections/prayer-corner/novena.astro';
 import JubileeYear from '~/components/sections/prayer-corner/jubilee-year.astro';
+import PopesIntention from '~/components/sections/prayer-corner/popes-intention.astro';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -30,6 +31,7 @@ const t = useTranslations(lang);
 			<PrayerCard />
 			<Novena />
 			<Psalms />
+			<PopesIntention />
 			<JubileeYear />
 		</section>
 	</main>

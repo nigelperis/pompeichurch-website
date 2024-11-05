@@ -1,0 +1,24 @@
+---
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+import { cn } from '~/helpers/cn';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<h2
+	class={cn(
+		'mb-4 mt-4 border-b-2 border-b-natgeo-yellow pb-2 font-poppins text-2xl font-bold lg:text-3xl',
+		{
+			'font-noto-sans-kannada': lang === 'kok',
+		},
+	)}
+>
+	Pope's Monthly Intention
+</h2>
+<div class="font-geist text-lg text-justify">
+<p class="font-bold">For anyone who has lost a child</p>
+<p class="mt-2">
+	We pray that all parents who mourn the loss of a son or daughter find support in their community and receive peace and consolation from the Holy Spirit.
+</p>
+</div>

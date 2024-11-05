@@ -57,8 +57,8 @@ export const ui = {
 		'landing.pastoral-commission-coordinator':
 			'21 Pastoral Commissions Coordinator',
 		'landing.priest-speaks': 'Parish Priest Speaks',
-		'landing.priest-name': 'V. Rev. Fr. Rudolf Ravi  DSa',
-		'landing.vp-name': 'Mr. Romans Lobo ',
+		'landing.priest-name': 'V. Rev. Fr. Rudolph Ravi  DSa',
+		'landing.vp-name': 'Mr. Romans Lobo',
 		'landing.secretary-name': 'Mr. Johnson Lobo',
 		'landing.pastoral-commission-coordinator-name': 'Mrs. Hilda Menezes',
 		'landing.about-church': 'ABOUT POMPEI CHURCH',
@@ -163,7 +163,7 @@ export const ui = {
 		'commissions.convenor': 'Convenor ',
 		'commissions.heading': 'Commission',
 		'commissions.secretary': 'Secretary',
-		'commissions.liturgy-word-proclamation': ' Liturgy-Word-Proclamation',
+		'commissions.liturgy-word-proclamation': 'Liturgy-Word-Proclamation',
 		'commissions.witness': 'Witness (Martyira)',
 		'commissions.service': 'Service (Diakonia) ',
 		'commissions.unity': 'Unity (Koinonia)',
@@ -323,7 +323,7 @@ export const ui = {
 		'prayer.jubliee-2025': 'Jubliee 2025',
 		'contact.address': 'Gurpur, Kinnikambla, Mangaluru',
 		'contact.mon-sat': 'Mon-Sat:',
-		'contact.clerk-name': 'Ms. Violet Fernandes',
+		'contact.clerk-name': 'Office Secretary: Ms. Violet Fernandes',
 	},
 	kok: {
 		'nav.home': 'ಹೋಮ್',
@@ -483,10 +483,10 @@ export const ui = {
 		'commissions.heading': 'ಆಯೋಗ್',
 		'commissions.secretary': 'ಕಾರ್ಯದರ್ಶಿ',
 		'commissions.liturgy-word-proclamation':
-			' ದೇವ್‌ಸ್ತುತಿ - ಸುವರ್ತಾ - ಪರ್ಗಟ್ಣಿ ',
-		'commissions.witness': 'ಸಾಕ್ಸ್ ',
-		'commissions.service': 'ಸೆವಾ ',
-		'commissions.unity': 'ಎಕ್ತಾರ್ ',
+			'ಆಯೋಗ್ ಪಂಗಡ್: ದೇವ್‌ಸ್ತುತಿ - ಸುವರ್ತಾ - ಪರ್ಗಟ್ಣಿ ',
+		'commissions.witness': 'ಆಯೋಗ್ ಪಂಗಡ್: ಸಾಕ್ಸ್ ',
+		'commissions.service': 'ಆಯೋಗ್ ಪಂಗಡ್: ಸೆವಾ ',
+		'commissions.unity': 'ಆಯೋಗ್ ಪಂಗಡ್: ಎಕ್ತಾರ್ ',
 		'commissions.commission-for-bible-apostolate':
 			'ಪವಿತ್ರ್ ಪುಸ್ತಕಾಚಾ ಅಪಸ್ತಲಾದಿಚೊ ಆಯೋಗ್',
 		'commissions.commission-for-catechetics-apostolate':
@@ -553,7 +553,7 @@ export const ui = {
 		'associations.svp-president': 'ಶ್ರೀಮಾನ್  ವಲೇರಿಯನ್ ಸಿಕ್ವೇರಾ',
 		'associations.svp-secretary': 'ಶ್ರೀಮಾನ್ ರಿಚಾರ್ಡ್ ಫೆರ್ನಾಂಡಿಸ್',
 		'associations.icym-pyc-president': 'ಲೆಸ್ಟರ್ ಮಿನೇಜಸ್',
-		'associations.icym-pyc-secretary': 'ಪ್ರಿಮಾ ಮಿನೇಜಸ್',
+		'associations.icym-pyc-secretary': 'ಪ್ರೀಮಾ ಮಿನೇಜಸ್',
 		'associations.small-christian-community-convenor':
 			'ಶ್ರೀಮತಿ ಡೆಲ್ಸಿ ರೊಡ್ರಿಗಸ್',
 		'associations.ycs-president': 'ಪ್ರಮಿತ್ ಪಿಂಟೊ',
@@ -643,6 +643,6 @@ export const ui = {
 		'prayer.jubliee-2025': 'ಜುಬ್ಲೆವ್ 2025',
 		'contact.address': 'ಗುರ್ಪುರ್, ಕಿನ್ನಿಕಂಬಳ, ಮಂಗಳೂರು ',
 		'contact.mon-sat': 'ಸೊಮಾರಾ - ಸನ್ವಾರಾ:',
-		'contact.clerk-name': 'ವಾಯ್ಲೆಟ್ ಫೆರ್ನಾಂಡಿಸ್',
+		'contact.clerk-name': 'ದಫ್ತರ್  ಸಿಬ್ಬಂದಿ: ವಾಯ್ಲೆಟ್ ಫೆರ್ನಾಂಡಿಸ್',
 	},
 } as const;
