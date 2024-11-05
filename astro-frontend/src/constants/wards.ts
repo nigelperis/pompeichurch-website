@@ -1,24 +1,23 @@
-import monel from '~/assets/ward-patron-monel.jpg';
-import kowdoorA from '~/assets/ward-patron-kowdoor-a.jpg';
-import kowdoorB from '~/assets/ward-patron-kowdoor-b.jpg';
-import pompeiA from '~/assets/ward-patron-pompei-a.jpg';
-import pompeiB from '~/assets/ward-patron-pompei-b.jpg';
+import mrRoshan from '~/assets/mr-glen-roshan-dcunha.jpg';
+import mrIvan from '~/assets/mr-ivan-dsouza.jpg';
+import mrMelwyn from '~/assets/mr-melwyn-saldanha.jpg';
+import praveenLobo from '~/assets/mr-praveen-lobo.jpg';
+import mrRajesh from '~/assets/mr-rajesh-noronha.jpg';
+import mrRonald from '~/assets/mr-ronald-dsouza.jpg';
+import mrsEveline from '~/assets/mrs-eveline-sequiera.jpg';
+import mrsGretta from '~/assets/mrs-gretta-lobo.jpg';
+import mrsLinet from '~/assets/mrs-linet-monteiro.jpg';
+import mrsVeera from '~/assets/mrs-veera-dsouza.jpg';
+import addoor from '~/assets/ward-patron-addoor.jpg';
+import church from '~/assets/ward-patron-church.jpg';
 import gurpur from '~/assets/ward-patron-gurpur.jpg';
 import kandarA from '~/assets/ward-patron-kandar-a.jpg';
 import kandarB from '~/assets/ward-patron-kandar-b.jpg';
-import addoor from '~/assets/ward-patron-addoor.jpg';
-import church from '~/assets/ward-patron-church.jpg';
-import mrRoshan from '~/assets/mr-glen-roshan-dcunha.jpg';
-import mrRonald from '~/assets/mr-ronald-dsouza.jpg';
-import mrsGretta from '~/assets/mrs-gretta-lobo.jpg';
-import mrIvan from '~/assets/mr-ivan-dsouza.jpg';
-import mrMelwyn from '~/assets/mr-melwyn-saldanha.jpg';
-import mrRajesh from '~/assets/mr-rajesh-noronha.jpg';
-import mrsEveline from '~/assets/mrs-eveline-sequiera.jpg';
-import mrsLinet from '~/assets/mrs-linet-monteiro.jpg';
-import mrsVeera from '~/assets/mrs-veera-dsouza.jpg';
-import praveenLobo from '~/assets/mr-praveen-lobo.jpg';
-
+import kowdoorA from '~/assets/ward-patron-kowdoor-a.jpg';
+import kowdoorB from '~/assets/ward-patron-kowdoor-b.jpg';
+import monel from '~/assets/ward-patron-monel.jpg';
+import pompeiA from '~/assets/ward-patron-pompei-a.jpg';
+import pompeiB from '~/assets/ward-patron-pompei-b.jpg';
 
 const wards = [
 	{
@@ -26,7 +25,7 @@ const wards = [
 		patronImage: kowdoorA,
 		patronName: 'patron-kowdoor-a',
 		gurkarImage: mrRoshan,
-		gurkarTitle:'gurkar',
+		gurkarTitle: 'gurkar',
 		family: '35',
 		gurkarName: 'kowdoor-a-gurkar',
 		pratinidiName1: 'kowdoor-a-pratinidi1',
@@ -37,7 +36,7 @@ const wards = [
 		patronImage: kowdoorB,
 		patronName: 'patron-kowdoor-b',
 		gurkarImage: mrsGretta,
-		gurkarTitle:'gurkarn',
+		gurkarTitle: 'gurkarn',
 		family: '35',
 		gurkarName: 'kowdoor-b-gurkar',
 		pratinidiName1: 'kowdoor-b-pratinidi1',
@@ -48,7 +47,7 @@ const wards = [
 		patronImage: pompeiA,
 		patronName: 'patron-pompei-a',
 		gurkarImage: mrIvan,
-		gurkarTitle:'gurkar',
+		gurkarTitle: 'gurkar',
 		family: '36',
 		gurkarName: 'pompei-a-gurkar',
 		pratinidiName1: 'pompei-a-pratinidi1',
@@ -59,19 +58,18 @@ const wards = [
 		patronImage: pompeiB,
 		patronName: 'patron-pompei-b',
 		gurkarImage: praveenLobo,
-		gurkarTitle:'gurkar',
+		gurkarTitle: 'gurkar',
 		family: '64',
 		gurkarName: 'pompei-b-gurkar',
 		pratinidiName1: 'pompei-b-pratinidi1',
 		pratinidiName2: 'pompei-b-pratinidi2',
-
 	},
 	{
 		name: 'kandar-a-ward',
 		patronImage: kandarA,
 		patronName: 'patron-kandar-a',
 		gurkarImage: mrRajesh,
-		gurkarTitle:'gurkar',
+		gurkarTitle: 'gurkar',
 		family: '48',
 		gurkarName: 'kandar-a-gurkar',
 		pratinidiName1: 'kandar-a-pratinidi1',
@@ -82,7 +80,7 @@ const wards = [
 		patronImage: kandarB,
 		patronName: 'patron-kandar-b',
 		gurkarImage: mrsEveline,
-		gurkarTitle:'gurkarn',
+		gurkarTitle: 'gurkarn',
 		family: '29',
 		gurkarName: 'kandar-b-gurkar',
 		pratinidiName1: 'kandar-b-pratinidi1',
@@ -93,9 +91,9 @@ const wards = [
 		patronImage: monel,
 		patronName: 'patron-monel',
 		gurkarImage: mrRonald,
-		gurkarTitle:'gurkar',
+		gurkarTitle: 'gurkar',
 		family: '50',
-		gurkarName: 'monel-gurkar' ,
+		gurkarName: 'monel-gurkar',
 		pratinidiName1: 'monel-pratinidi1',
 		pratinidiName2: 'monel-pratinidi2',
 	},
@@ -104,7 +102,7 @@ const wards = [
 		patronImage: gurpur,
 		patronName: 'patron-gurpur',
 		gurkarImage: mrMelwyn,
-		gurkarTitle:'gurkar',
+		gurkarTitle: 'gurkar',
 		family: '38',
 		gurkarName: 'gurpur-gurkar',
 		pratinidiName1: 'gurpur-pratinidi1',
@@ -115,7 +113,7 @@ const wards = [
 		patronImage: church,
 		patronName: 'patron-church',
 		gurkarImage: mrsLinet,
-		gurkarTitle:'gurkarn',
+		gurkarTitle: 'gurkarn',
 		family: '67',
 		gurkarName: 'church-gurkar',
 		pratinidiName1: 'church-pratinidi1',
@@ -126,7 +124,7 @@ const wards = [
 		patronImage: addoor,
 		patronName: 'patron-addoor',
 		gurkarImage: mrsVeera,
-		gurkarTitle:'gurkarn',
+		gurkarTitle: 'gurkarn',
 		family: '15',
 		gurkarName: 'addoor-gurkar',
 		pratinidiName1: 'addoor-pratinidi1',

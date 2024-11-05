@@ -1,12 +1,10 @@
 ---
 import Layout from '~/layouts/layout.astro';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
-import HistoryCarousel from '~/components/sections/parish-history/history-carousel.astro';
 import ParishDetails from '~/components/sections/parish-history/parish-details.astro';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-//TODO : Update the history carousel with images
 ---
 
 <Layout title="Pompei Church | Parish History">

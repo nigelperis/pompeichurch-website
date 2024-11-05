@@ -11,10 +11,12 @@ const t = useTranslations(lang);
 <Layout title="Pompei Church | Contact">
 	<main class="mx-auto max-w-4xl overflow-hidden bg-white">
 		<section id="contact" class="p-6 pb-4 lg:p-8">
-			<h1 class="mb-4 border-l-4 border-l-natgeo-yellow pl-3 text-3xl font-extrabold lg:text-4xl">
+			<h1
+				class="mb-4 border-l-4 border-l-natgeo-yellow pl-3 text-3xl font-extrabold lg:text-4xl"
+			>
 				{t('contact.title')}
 			</h1>
-			<h2 class="font-geist text-lg font-normal text-gray-700 mb-6">
+			<h2 class="mb-6 font-geist text-lg font-normal text-gray-700">
 				Contact us for more information about our church activities, hall
 				bookings, and other details
 			</h2>
@@ -22,9 +24,8 @@ const t = useTranslations(lang);
 				<ContactInfo />
 			</div>
 			<div class="mt-8">
-				<ContactMap class="w-full rounded-md shadow-md border" />
+				<ContactMap class="w-full rounded-md border shadow-md" />
 			</div>
 		</section>
 	</main>
 </Layout>
-
