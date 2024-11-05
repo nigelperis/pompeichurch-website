@@ -73,9 +73,6 @@ const { title } = Astro.props;
 		<ScrollTop />
 	</body>
 	<script>
-	  window.addEventListener('popstate', () => {
-				window.scrollTo(0, 0);
-		});
 		import { aosInit } from '~/helpers/aos-config';
 		aosInit();
 	</script>

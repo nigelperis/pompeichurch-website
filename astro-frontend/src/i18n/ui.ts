@@ -130,6 +130,7 @@ export const ui = {
 		'history.title': 'Our History',
 		'history.subtitle':
 			'A Glimpse on the history of Our Lady of Pompei Church Gurpur',
+		'history.sweet-memories': 'Sweet Memories',
 		'gallery.title': 'GALLERY',
 		'gallery.subtitle': 'Capturing moments of grace',
 		'priest.service-period': 'Service Period',
@@ -455,6 +456,7 @@ export const ui = {
 		'contact.title': 'ಸಂಪರ್ಕ್ ಕರಾ',
 		'history.title': 'ಆಮ್ಚಿ ಚರಿತ್ರಾ',
 		'history.subtitle': 'ಪೊಂಪೈ ಮಾಯೆಚಿ ಫಿರ್ಗಜ್, ಗುರ್ಪುರ್ - ಚರಿತ್ರೆಚೆರ್ ಏಕ್ ನದರ್',
+		'history.sweet-memories': 'ಮಧುರ್ ಉಗ್ಡಾಸ್',
 		'gallery.title': 'ಗ್ಯಾಲರಿ',
 		'gallery.subtitle': 'Capturing moments of grace',
 		'priest.service-period': 'ಅವ್ದಿ',
@@ -488,10 +490,10 @@ export const ui = {
 		'commissions.heading': 'ಆಯೋಗ್',
 		'commissions.secretary': 'ಕಾರ್ಯದರ್ಶಿ',
 		'commissions.liturgy-word-proclamation':
-			' ದೇವ್‌ಸ್ತುತಿ - ಸುವರ್ತಾ - ಪರ್ಗಟ್ಣಿ ',
-		'commissions.witness': 'ಸಾಕ್ಸ್ ',
-		'commissions.service': 'ಸೆವಾ ',
-		'commissions.unity': 'ಎಕ್ತಾರ್ ',
+			'ಆಯೋಗ್ ಪಂಗಡ್: ದೇವ್‌ಸ್ತುತಿ - ಸುವರ್ತಾ - ಪರ್ಗಟ್ಣಿ ',
+		'commissions.witness': 'ಆಯೋಗ್ ಪಂಗಡ್: ಸಾಕ್ಸ್ ',
+		'commissions.service': 'ಆಯೋಗ್ ಪಂಗಡ್: ಸೆವಾ ',
+		'commissions.unity': 'ಆಯೋಗ್ ಪಂಗಡ್: ಎಕ್ತಾರ್ ',
 		'commissions.commission-for-bible-apostolate':
 			'ಪವಿತ್ರ್ ಪುಸ್ತಕಾಚಾ ಅಪಸ್ತಲಾದಿಚೊ ಆಯೋಗ್',
 		'commissions.commission-for-catechetics-apostolate':
@@ -573,7 +575,7 @@ export const ui = {
 		'associations.catechism-coordinator': 'ಶ್ರೀಮತಿ ಜೆಸಿಂತಾ ಪೇರಿಸ್',
 		'associations.coordinator-male': 'ಸಂಯೋಜಕ್ ',
 		'associations.coordinator-female': 'ಸಂಯೋಜಕಿ',
-		'associations.secular-franciscan-secretary': 'ಶ್ರೀಮತಿ ಐರಿನ್ ಪಿಂಟೊ ',  		
+		'associations.secular-franciscan-secretary': 'ಶ್ರೀಮತಿ ಐರಿನ್ ಪಿಂಟೊ ',
 		'associations.gurpur-gayan-mandali-coordinator':
 			'ಶ್ರೀಮಾನ್ ರಿಚಾರ್ಡ್ ಫೆರ್ನಾಂಡಿಸ್',
 		'associations.gurpur-gayan-mandali-choir-master':
