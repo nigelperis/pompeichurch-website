@@ -57,8 +57,8 @@ export const ui = {
 		'landing.pastoral-commission-coordinator':
 			'21 Pastoral Commissions Coordinator',
 		'landing.priest-speaks': 'Parish Priest Speaks',
-		'landing.priest-name': 'V. Rev. Fr. Rudolf Ravi  DSa',
-		'landing.vp-name': 'Mr. Romans Lobo ',
+		'landing.priest-name': 'V. Rev. Fr. Rudolph Ravi  DSa',
+		'landing.vp-name': 'Mr. Romans Lobo',
 		'landing.secretary-name': 'Mr. Johnson Lobo',
 		'landing.pastoral-commission-coordinator-name': 'Mrs. Hilda Menezes',
 		'landing.about-church': 'ABOUT POMPEI CHURCH',
