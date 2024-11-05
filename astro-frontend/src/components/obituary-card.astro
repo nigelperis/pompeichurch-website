@@ -5,6 +5,7 @@ import { cn } from '~/helpers/cn';
 interface Props {
 	name: string;
 	imageUrl: ImageMetadata;
+	age:string,
 	description: string;
 	ward: string;
 	date: string;
@@ -14,6 +15,7 @@ interface Props {
 const {
 	name,
 	description,
+	age,
 	ward,
 	date,
 	class: className,
@@ -53,16 +55,23 @@ const {
 			)
 		}
 		{
+			age && (
+				<p class="card-age line-clamp-3 text-base text-slate-700 sm:text-lg">
+				ಪ್ರಾಯ್ :	{age}
+				</p>
+			)
+		}
+		{
 			ward && (
 				<p class="card-ward line-clamp-3 text-base text-slate-700 sm:text-lg">
-					ವಾಡೊ: {ward}
+					ವಾಡೊ : {ward}
 				</p>
 			)
 		}
 		{
 			date && (
 				<p class="card-ward line-clamp-3 text-base text-slate-700 sm:text-lg">
-					ಮರಣ್: {date}
+					ಮರಣ್ : {date}
 				</p>
 			)
 		}

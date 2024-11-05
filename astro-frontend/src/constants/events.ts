@@ -5,8 +5,26 @@ import event4 from '~/assets/event4.jpg';
 import event5 from '~/assets/event5.jpg';
 import event6 from '~/assets/event6.jpg';
 import event7 from '~/assets/event7.jpg';
+import event8 from '~/assets/event8.jpg';
+import event9 from '~/assets/event9.jpg';
 
 const events = [
+	{
+		eventName: 'ಬೆಸ್ಪಾಚೊ ಸಂಭ್ರಮ್',
+		slug: 'vespers-sunday',
+		imageUrl: event9,
+		shortDescription: `ಕ್ರಿಸ್ತಿ ಭಾವಾಡ್ತ್ ಜಿಯೆಂವ್ಕ್  ಆನಿ ಪರ್ಗಟುಂಕ್ ದೆವಾಚೆಂ ಉತರ್ ಪ್ರೇರಣ್`,
+		description: ``,
+		facebookLink: '',
+	},
+	{
+		eventName: 'ಕೊಂಪ್ರಿಚ್ಯಾ ಆಯ್ತಾರಾಚೊ ಸಂಭ್ರಮ್',
+		slug: 'confraternity-sunday',
+		imageUrl: event8,
+		shortDescription: `ಇಗರ್ಜೆ ಥಾವ್ನ್ ಕೈಕಂಬ ಪೆಂಟೆ ಪರ್ಯಾಂತ್ ಸಾಕ್ರಮೆಂತಾಚೊ ಪುರ್ಶಾಂವ್`,
+		description: ``,
+		facebookLink: 'https://www.facebook.com/share/p/Ux5bBDZ4GGF2HF57/',
+	},
 	{
 		eventName: 'ಪಾಪಾಲ್ ಬಾವ್ಟೊ ಉಬಾರ್ಚೆ ಕಾರ್ಯೆಂ',
 		slug: 'papal-flag-hoisting',
