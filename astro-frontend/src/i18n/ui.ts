@@ -57,7 +57,7 @@ export const ui = {
 		'landing.pastoral-commission-coordinator':
 			'21 Pastoral Commissions Coordinator',
 		'landing.priest-speaks': 'Parish Priest Speaks',
-		'landing.priest-name': 'V. Rev. Fr. Rudolf Ravi  DSa',
+		'landing.priest-name': 'V. Rev. Fr. Rudolph Ravi  DSa',
 		'landing.vp-name': 'Mr. Romans Lobo ',
 		'landing.secretary-name': 'Mr. Johnson Lobo',
 		'landing.pastoral-commission-coordinator-name': 'Mrs. Hilda Menezes',
@@ -239,7 +239,7 @@ export const ui = {
 		'associations.icym-pyc-president': 'Lester Menezes',
 		'associations.icym-pyc-secretary': 'Preema Menezes',
 		'associations.small-christian-community-convenor': 'Mrs. Delcy Rodrigues',
-		'associations.ycs-animator': 'Mrs. Shanti Coelho and Sr. Dr.  Sadana',
+		'associations.ycs-animator': 'Mrs. Shanti Coelho & Sr. Dr. Sadhana',
 		'associations.ycs-president': 'Pramith Pinto',
 		'associations.ycs-secretary': 'Vivita Lobo',
 		'associations.altar-servers-animator': 'Priston Sequiera and Sr. Jaya',
@@ -329,7 +329,7 @@ export const ui = {
 		'prayer.jubliee-2025': 'Jubliee 2025',
 		'contact.address': 'Gurpur, Kinnikambla, Mangaluru',
 		'contact.mon-sat': 'Mon-Sat:',
-		'contact.clerk-name': 'Ms. Violet Fernandes',
+		'contact.clerk-name': 'Office Secretary: Ms. Violet Fernandes',
 	},
 	kok: {
 		'nav.home': 'ಹೋಮ್',
@@ -560,7 +560,7 @@ export const ui = {
 		'associations.svp-secretary': 'ಶ್ರೀಮಾನ್ ರಿಚಾರ್ಡ್ ಫೆರ್ನಾಂಡಿಸ್',
 		'associations.icym-pyc-animator': 'ಶ್ರೀಮಾನ್ ಗೊಡ್ವಿನ್ ತಾವ್ರೊ',
 		'associations.icym-pyc-president': 'ಲೆಸ್ಟರ್ ಮಿನೇಜಸ್',
-		'associations.icym-pyc-secretary': 'ಪ್ರಿಮಾ ಮಿನೇಜಸ್',
+		'associations.icym-pyc-secretary': 'ಪ್ರೀಮಾ ಮಿನೇಜಸ್',
 		'associations.small-christian-community-convenor': 'ಶ್ರೀಮತಿ ಡೆಲ್ಸಿ ರೊಡ್ರಿಗಸ್',
 		'associations.ycs-animator': 'ಶ್ರೀಮತಿ  ಶಾಂತಿ ಕುವೆಲ್ಲೊ ಆನಿಂ ಸಿ.ದೊ ಸಾದನ ',
 		'associations.ycs-president': 'ಪ್ರಮಿತ್ ಪಿಂಟೊ',
@@ -573,11 +573,11 @@ export const ui = {
 		'associations.catechism-coordinator': 'ಶ್ರೀಮತಿ ಜೆಸಿಂತಾ ಪೇರಿಸ್',
 		'associations.coordinator-male': 'ಸಂಯೋಜಕ್ ',
 		'associations.coordinator-female': 'ಸಂಯೋಜಕಿ',
-		'associations.secular-fransican-secretary': 'ಶ್ರೀಮತಿ ಐರಿನ್ ಪಿಂಟೊ ',
+		'associations.secular-franciscan-secretary': 'ಶ್ರೀಮತಿ ಐರಿನ್ ಪಿಂಟೊ ',  		
 		'associations.gurpur-gayan-mandali-coordinator':
 			'ಶ್ರೀಮಾನ್ ರಿಚಾರ್ಡ್ ಫೆರ್ನಾಂಡಿಸ್',
 		'associations.gurpur-gayan-mandali-choir-master':
-			'ಶ್ರೀಮಾನ್ ವಿಜಯ್ ರಸ್ಕೀನ್ಹಾ  ',
+			'ಶ್ರೀಮಾನ್ ವಿಜಯ್ ರಸ್ಕೀನ್ಹಾ ',
 		'associations.choir-master': 'ಕೊಯರ್ ಮೇಸ್ತ್ರಿ',
 		'associations.womens-forum-president': 'ಶ್ರೀಮತಿ ಜ್ಯುಲಿಯೆಟ್ ಸೆರಾವೊ',
 		'associations.womens-forum-secretary': 'ಶ್ರೀಮತಿ ವಿಜಯಾ ಡಿಕೋಸ್ತಾ',
@@ -654,6 +654,6 @@ export const ui = {
 		'prayer.jubliee-2025': 'ಜುಬ್ಲೆವ್ 2025',
 		'contact.address': 'ಗುರ್ಪುರ್, ಕಿನ್ನಿಕಂಬಳ, ಮಂಗಳೂರು ',
 		'contact.mon-sat': 'ಸೊಮಾರಾ - ಸನ್ವಾರಾ:',
-		'contact.clerk-name': 'ವಾಯ್ಲೆಟ್ ಫೆರ್ನಾಂಡಿಸ್',
+		'contact.clerk-name': 'ದಫ್ತರ್  ಸಿಬ್ಬಂದಿ: ವಾಯ್ಲೆಟ್ ಫೆರ್ನಾಂಡಿಸ್',
 	},
 } as const;

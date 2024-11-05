@@ -1,6 +1,5 @@
 ---
 import pompeiSabhaBhavanImage from '~/assets/pompei-sabha-bhavan.jpg';
-import { loremIpsum } from '~/constants/lorem-ipsum';
 import { Image } from 'astro:assets';
 import pbs1 from '~/assets/psb-int-1.jpg';
 import pbs2 from '~/assets/psb-int-2.jpg';
@@ -25,9 +24,23 @@ const t = useTranslations(lang);
 	/>
 </div>
 <div class="pb-4 font-geist">
-	<p class="text-md text-justify leading-7 text-slate-700">
-		{loremIpsum}
-	</p>
+	<p class="mb-4 text-lg font-bold">Capacity: 500</p>
+
+	<h4 class="mb-2 text-lg font-bold">Timings:</h4>
+
+	<div class="text-gray-700">
+		<p class="mb-1 font-semibold">Day:</p>
+		<ul class="mb-4 list-inside list-disc">
+			<li>Music Stop: 3:00 PM</li>
+			<li>Vacate: 3:30 PM</li>
+		</ul>
+
+		<p class="mb-1 font-semibold">Night:</p>
+		<ul class="list-inside list-disc">
+			<li>Music Stop: 10:15 PM</li>
+			<li>Vacate: 10:45 PM</li>
+		</ul>
+	</div>
 </div>
 <h2 class="pb-4 text-lg font-bold text-slate-800">
 	Pompei Sabha Bhavan Interior

@@ -1,4 +1,4 @@
-import priestImage from '~/assets/fr-rudolf-dsa.jpg';
+import priestImage from '~/assets/fr-rudolph-dsa.jpg';
 import jamesMenda from '~/assets/mr-james-menda.jpg';
 import johnLobo from '~/assets/mr-john-lobo.jpg';
 import praveenLobo from '~/assets/mr-praveen-lobo.jpg';

@@ -27,11 +27,9 @@ const { title, imageUrl, downloadUrl, class: className } = Astro.props;
 		/>
 	</div>
 
-	<div class="magazine-content mt-3 pb-5 text-center flex flex-row justify-center ">
-
-		<HoverableLink href={downloadUrl}>
-	    Download
-		</HoverableLink>
-
+	<div
+		class="magazine-content mt-3 flex flex-row justify-center pb-5 text-center"
+	>
+		<HoverableLink href={downloadUrl}> Download </HoverableLink>
 	</div>
 </div>

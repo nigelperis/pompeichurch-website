@@ -68,7 +68,7 @@ const commissions = [
 				name: 'mr-melwin-saldanha',
 			},
 		],
-		convenor: 'sr-dr-sadana',
+		convenor: 'sr-dr-sadhana',
 	},
 	{
 		title: 'unity',

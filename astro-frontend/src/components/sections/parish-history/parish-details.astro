@@ -3,9 +3,16 @@ import churchBannerImage from '~/assets/church-banner.jpg';
 import { parishHistoryKok } from '~/constants/parish-history-kok';
 import { parishHistory } from '~/constants/parish-history';
 import { Image } from 'astro:assets';
-import { getLangFromUrl } from '~/i18n/utils';
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+import history1 from '~/assets/history-1.jpg';
+import history2 from '~/assets/history-2.jpg';
+import history3 from '~/assets/history-3.jpg';
+import history4 from '~/assets/history-4.jpg';
+import history5 from '~/assets/history-5.jpg';
+import history6 from '~/assets/history-6.jpg';
 
 const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 const historyData =
 	lang === 'kok' ? parishHistoryKok[0].history : parishHistory[0].history;
@@ -23,13 +30,22 @@ const fontClass = lang === 'kok' ? 'font-noto-sans-kannada' : 'font-geist';
 		</div>
 		<div
 			class="text-md mt-1 text-justify leading-7 text-slate-700"
-			<div
-			class="text-md mt-1 text-justify leading-7 text-slate-700"
 			set:html={historyData}
 		/>
 		<div
 			class="text-md pb-4 text-justify leading-7 text-slate-700"
 			set:html={priestsData}
 		/>
+		<h1 class="mb-4 mt-2 text-2xl font-extrabold lg:text-3xl">
+			{t('history.sweet-memories')}
+		</h1>
+		<div class="mt-4 grid grid-cols-1 gap-4 pb-4 md:grid-cols-2">
+			<Image src={history1} alt="" class="w-full" />
+			<Image src={history2} alt="" class="w-full" />
+			<Image src={history3} alt="" class="w-full" />
+			<Image src={history4} alt="" class="w-full" />
+			<Image src={history5} alt="" class="w-full" />
+			<Image src={history6} alt="" class="w-full" />
+		</div>
 	</div>
 </div>

@@ -4,6 +4,7 @@ import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import priestImage from '~/assets/pp1.png';
 import { priestMessage } from '~/constants/parish-priest-message';
 import { cn } from '~/helpers/cn';
+import signature from '~/assets/father-signature.png';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -30,10 +31,7 @@ const t = useTranslations(lang);
 				data-aos="zoom-in-up"
 				class="relative mx-auto flex w-fit flex-col items-center"
 			>
-				<div
-					class="absolute top-full -z-10 h-[43%] w-[103%] -translate-y-full rounded bg-gradient-to-r from-natgeo-yellow-200 via-natgeo-yellow-300 to-natgeo-yellow-400"
-				>
-				</div>
+				<div class="absolute top-full -z-10 h-[43%] w-[103%]"></div>
 				<Image src={priestImage} alt="priest image" width={300} />
 			</div>
 
@@ -52,11 +50,9 @@ const t = useTranslations(lang);
 			>
 				{lang === 'kok' ? priestMessage.kok : priestMessage.en}
 			</p>
-
-			<div class="mb-8 ml-auto pt-4 text-lg font-semibold">
-				<p data-aos="fade-left" class="text-right">
-					Signature of Fr. Rudolf DSa(image)
-				</p>
+			<div data-aos="fade-left" class="flex flex-col items-end pb-4 text-right">
+				<Image src={signature} alt="priest signature" width={150} />
+				<span class="mr-4 mt-1 font-bold">{t('landing.priest')}</span>
 			</div>
 		</div>
 	</div>

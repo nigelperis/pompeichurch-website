@@ -2,9 +2,6 @@
 import { Image } from 'astro:assets';
 import rosaMysticaConvent from '~/assets/rosa-mystica-convent.jpg';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
-import srLeenaPererira from '~/assets/sr-leena-pereira.png';
-import srLillyPereira from '~/assets/sr-lilly-pereira.png';
-import srRoseCeline from '~/assets/sr-rose-celine.png';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -100,27 +97,5 @@ const t = useTranslations(lang);
 			community. The commitment to holistic development, spiritual growth and
 			compassionate service reflects the Charism and mission of the Church.
 		</p>
-		<!-- TODO (Aroma): crop the below pics to have same height and width -->
-		<div
-			class="mx-auto mt-4 flex flex-col items-center justify-center gap-4 sm:flex-row lg:gap-12"
-		>
-			<div class="flex flex-col items-center">
-				<Image src={srRoseCeline} alt="" class="my-4 w-[90%] sm:w-full" />
-				<p class="text-center font-semibold">Rev. Sr. Rose Celine BS</p>
-				<p class="text-center">Superior General</p>
-			</div>
-			<div class="flex flex-col items-center">
-				<Image src={srLillyPereira} alt="" class="my-4 w-[90%] sm:w-full" />
-				<p class="text-center font-semibold">Sr. Dr. Lilly Pereira BS</p>
-				<p class="text-center">Provincial Superior</p>
-				<p class="text-center">Mangalore Province</p>
-			</div>
-			<div class="flex flex-col items-center">
-				<Image src={srLeenaPererira} alt="" class="my-4 w-[90%] sm:w-full" />
-				<p class="text-center font-semibold">Sr. Leena Pereira</p>
-				<p class="text-center">Superior</p>
-				<p class="text-center">Rosa Mystica Convent</p>
-			</div>
-		</div>
 	</div>
 </div>

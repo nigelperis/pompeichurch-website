@@ -10,7 +10,6 @@ import thirdOrder from '~/assets/third-order.jpg';
 import womensForum from '~/assets/womens-forum.jpg';
 import ycs from '~/assets/ycs.jpg';
 
-
 const associations = [
 	{
 		slug: 'svp',
@@ -33,8 +32,7 @@ const associations = [
 
 		Meetings were held to discuss plans, and individuals took the opportunity to address community issues and share their experiences. The aim is to create an inclusive environment where all members can feel valued and supported. The meeting is a reflection of the dedication and spirit of service that characterizes our parish community.<br><br>
 
-		During Lent, the association visits the elderly in ashrams with a spirit of compassion. They spend time with priests and elders, making donations. Every week, the parish association gathers, and four times a year, they participate in spiritual retreats in Bajpe. On the feast day of their patron Saint Vincent de Paul, they come together with underprivileged families and supporters to celebrate with generosity. They also pray for the intercession of the society's founder, Blessed Frédéric Ozanam, honouring his legacy.`
-		,
+		During Lent, the association visits the elderly in ashrams with a spirit of compassion. They spend time with priests and elders, making donations. Every week, the parish association gathers, and four times a year, they participate in spiritual retreats in Bajpe. On the feast day of their patron Saint Vincent de Paul, they come together with underprivileged families and supporters to celebrate with generosity. They also pray for the intercession of the society's founder, Blessed Frédéric Ozanam, honouring his legacy.`,
 		officeBearers: [
 			{ name: 'associations.svp-president', position: 'president' },
 			{ name: 'associations.svp-secretary', position: 'secretary' },
@@ -121,7 +119,10 @@ const associations = [
 		Every year on October 2nd, members make a pilgrimage to the Capuchin monastery in Farangipet. The feast of St. Francis of Assisi is celebrated in our region, as well as in other parishes. The region also celebrates a "Day of Penance", during which members visit the sick, pray for them, and offer them help. On the first Sunday of the month, after the morning Mass, members conduct their monthly meetings, and occasionally a Capuchin friar attends.`,
 		officeBearers: [
 			{ name: 'pastoral.secular-franciscan-president', position: 'president' },
-			{ name: 'associations.secular-fransican-secretary', position: 'secretary' },
+			{
+				name: 'associations.secular-franciscan-secretary',
+				position: 'secretary',
+			},
 		],
 	},
 	{
@@ -134,7 +135,10 @@ const associations = [
 
 		Mrs. Irene Pinto served selflessly as the coordinator of Catechism for eight years. Mrs. Delcy Rodrigues has served as the coordinator for eight years. Every year, Catechism Day is celebrated with great enthusiasm at Pompei Sabha Bhavan. Various programs are organized after the classes, and the performances during Catechism Day capture everyone's hearts. On that day, dignitaries from the parish attend, give speeches, and motivate the students. Teachers are honored with gifts as a token of appreciation.`,
 		officeBearers: [
-			{ name: 'associations.catechism-coordinator', position: 'associations.coordinator-female' },
+			{
+				name: 'associations.catechism-coordinator',
+				position: 'associations.coordinator-female',
+			},
 		],
 	},
 	{
@@ -161,8 +165,11 @@ const associations = [
 		In social matters, we address public road repairs, government initiatives, environmental awareness, and agricultural development to serve the community.<br/><br/>
 
 		In organized efforts, we work towards repairing homes for the needy and helping those affected by illnesses like cancer through fundraising and support. We provide aid to those facing financial hardships and work collaboratively with social welfare organizations. Presently, every family in the community contributes actively to community life. Each month, the community celebrates its activities, reinforcing the spirit of unity and life within the community.<br/><br/>`,
-officeBearers: [
-	{ name: 'associations.small-christian-community-convenor', position: 'convenor' },
+		officeBearers: [
+			{
+				name: 'associations.small-christian-community-convenor',
+				position: 'convenor',
+			},
 		],
 	},
 	{
@@ -193,7 +200,10 @@ officeBearers: [
 
 		From 2006 to 2020, several women led womens forum as presidents and secretaries. These women included Mrs. Irene Sequeira, Mrs. Sylvia Crasta, Mrs. Vijaya D’Costa, Mrs. Ida Cutinha, Mrs. Anita Fernandes, Mrs. Rita D’Souza, Mrs. Gretta Nazareth, Mrs. Winnie Rodrigues, Mrs. Rina Pinto, Mrs. Lavina Andrade, and Mrs. Juliet Serrao.`,
 		officeBearers: [
-			{ name: 'associations.womens-forum-president', position: 'president-female' },
+			{
+				name: 'associations.womens-forum-president',
+				position: 'president-female',
+			},
 			{ name: 'associations.womens-forum-secretary', position: 'secretary' },
 		],
 	},
@@ -209,8 +219,14 @@ officeBearers: [
 
 		It is now renamed to Christian Life Community - CLC.`,
 		officeBearers: [
-			{ name: 'associations.christian-life-community-president', position: 'president' },
-			{ name: 'associations.christian-life-community-secretary', position: 'secretary' },
+			{
+				name: 'associations.christian-life-community-president',
+				position: 'president',
+			},
+			{
+				name: 'associations.christian-life-community-secretary',
+				position: 'secretary',
+			},
 		],
 	},
 ];

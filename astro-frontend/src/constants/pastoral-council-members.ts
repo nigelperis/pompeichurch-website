@@ -9,7 +9,7 @@ const pastoralCouncil = [
 	{
 		name: 'landing.vp-name',
 		org: 'pastoral.vp',
-		position:'pastoral.vp-ward' ,
+		position: 'pastoral.vp-ward',
 	},
 	{
 		name: 'landing.secretary-name',
@@ -18,7 +18,7 @@ const pastoralCouncil = [
 	},
 	{
 		name: 'landing.pastoral-commission-coordinator-name',
-		org:'pastoral.21-commissions-coordinator',
+		org: 'pastoral.21-commissions-coordinator',
 		position: 'pastoral.21-commmissions-coordinator-ward',
 	},
 	{
@@ -237,27 +237,27 @@ const pastoralCouncil = [
 		position: 'representative',
 	},
 	{
-		name: 'pastoral.nominated-member1'	,
+		name: 'pastoral.nominated-member1',
 		org: 'pastoral.nominated-member1-ward',
 		position: 'landing.nominated-member',
 	},
 	{
-		name: 'pastoral.nominated-member2'	,
+		name: 'pastoral.nominated-member2',
 		org: 'pastoral.nominated-member2-ward',
 		position: 'landing.nominated-member',
 	},
 	{
-		name: 'pastoral.honorary-member1'	,
+		name: 'pastoral.honorary-member1',
 		org: 'pastoral.honorary-member1-ward',
 		position: 'pastoral.honorary-member',
 	},
 	{
-		name: 'pastoral.honorary-member2'	,
+		name: 'pastoral.honorary-member2',
 		org: 'pastoral.honorary-member2-ward',
 		position: 'pastoral.honorary-member',
 	},
 	{
-		name: 'pastoral.deanery-rep-name'	,
+		name: 'pastoral.deanery-rep-name',
 		org: 'pastoral.deanery-rep-ward',
 		position: 'pastoral.deanery-rep-ward',
 	},
