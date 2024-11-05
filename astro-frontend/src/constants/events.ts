@@ -128,5 +128,3 @@ const events = [
 ];
 
 export { events };
-
-

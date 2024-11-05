@@ -10,7 +10,6 @@ import thirdOrder from '~/assets/third-order.jpg';
 import womensForum from '~/assets/womens-forum.jpg';
 import ycs from '~/assets/ycs.jpg';
 
-
 const associationsKok = [
 	{
 		slug: 'svp',
@@ -107,7 +106,10 @@ const associationsKok = [
 		ಹರ್ಯೆಕಾ ವರ್ಸಾ, ಅಕ್ಟೋಬರ್ ೨ ತಾರಿಕೆರ್ ಫರಂಗಿಪೇಟೆ ಕಾಪುಚಿನ್ ಫ್ರಾದಿಂಚ್ಯಾ ಕೊವೆಂತಾಕ್ ಯಾತ್ರಿಕ್ ಪಯ್ಣಾಕ್ ಚಡಾವತ್ ಸಾಂದೆ ಹಾಜರ್ ಜಾತಾತ್. ಸಾಂ. ಫ್ರಾನ್ಸಿ ಆಸಿಸಿಚೆಂ ಫೆಸ್ತ್ ಆಮ್ಚ್ಯಾ ಪ್ರಾಂತ್ಯಾಂತ್, ತಶೆಂಚ್ಚ್ ಫಿರ್ಗಜೆಂತ್ ಆಚರಣ್ ಕರ್ತಾತ್. ಪ್ರಾಂತ್ಯಾಂತ್ ಏಕ್ ದೀಸ್ ‘ಪ್ರಾಚಿತಾಚೊ ದೀಸ್’ ಆಚರಣ್ ಕರ್ನ್, ಪಿಡೆಸ್ತಾಂಚಿ ಭೆಟ್ ಕರ್ನ್, ತಾಂಕಿ ಪ್ರಮಾಣೆಂ ಕುಮೊಕ್ ದಿತಾತ್ ಆನಿ ತಾಂಚ್ಯೆ ಖಾತಿರ್ ಮಾಗ್ತಾತ್. ಮಹಿನ್ಯಾಚ್ಯಾ ಪಯ್ಲ್ಯಾ ಆಯ್ತಾರಾ ಸಕಾಳಿಂ ಮಿಸಾ ಉಪ್ರಾಂತ್ ಜಮಾತ್ ಚಲವ್ನ್ ರ‍್ತಾಸ್ತಾನಾ, ಥೊಡ್ಯಾ ಸಂದರ್ಭಾಂನಿ ಕಾಪುಚಿನ್ ಫ್ರಾದ್ ಹಾಜರ್ ಜಾತಾತ್.`,
 		officeBearers: [
 			{ name: 'pastoral.secular-franciscan-president', position: 'president' },
-			{ name: 'associations.secular-franciscan-secretary', position: 'secretary' },
+			{
+				name: 'associations.secular-franciscan-secretary',
+				position: 'secretary',
+			},
 		],
 	},
 	{
@@ -125,7 +127,10 @@ const associationsKok = [
 
 		ಹರ್ಯೆಕಾ ವರ್ಸಾ, ಭುರ್ಗ್ಯಾಂಕ್ ಸಂಬಂಧಿ ಕ್ವಿಜ್, ಪಿಂತುರಾಂ ಸೊಡಂವ್ಚಿಂ, ಮರ್ಯೆಚಿಂ ವಿವಿಧ್ ನಾಂವಾಂ, ಮರ್ಯೆಚಿಂ ಕಂತಾರಾಂ ಗಾಂವ್ಚಿಂ, ಪ್ರಬಂಧ್ ಬರಂವ್ಚೆ – ಅಶೆಂ ಸಬಾರ್ ಸ್ಪರ್ಧೆ ಮಾಂಡುನ್ ಹಾಡ್ನ್ ಭುರ್ಗ್ಯಾಂಚ್ಯಾ ತಾಲೆಂತಾಂಕ್ ಉತ್ತೇಜನ್ ದಿಲಾಂ. ಹರ್ಯೆಕಾ ವರ್ಸಾ ಫಿರ್ಗಜ್ ವಿಗಾರಾಂನಿ ಶಿಕ್ಷಕಾಂ ಬರಾಬರ್ ಎಕಾ ದಿಸಾಚೆಂ ಪಿಕ್ನಿಕ್ ಮಾಂಡುನ್ ಹಾಡ್ಲಾಂ. ದೊತೊರ್ನ್ ಶಿಕಂವ್ಚಿಂ ಶಿಕ್ಷಕಾಂ ವರ್ಸಾಕ್ ಏಕ್ ಪಾವ್ಟಿಂ ವಾರಾಡ್ಯಾವಾರ್ ಚಲ್ಚ್ಯಾ ಎಕಾ ದಿಸಾಚ್ಯಾ ಹಾಜರ್ ಜಾತಾತ್. ಕ್ರೀಸ್ತಿ ಶಿಕ್ಷಣ್ ಸಂಯೋಜಕಿನ್, ಮಂಗಳಜ್ಯೋತಿ ಹಾಣಿಂ ಮಾಂಡುನ್ ಹಾಡ್ಚ್ಯಾ ತರ್ಬೆತಿಕ್ ಹಾಜರ್ ಜಾವ್ನ್ ಮಾಹೆತ್ ಜೊಡ್ಲ್ಯಾ.`,
 		officeBearers: [
-			{ name: 'associations.catechism-coordinator', position: 'associations.coordinator-female' },
+			{
+				name: 'associations.catechism-coordinator',
+				position: 'associations.coordinator-female',
+			},
 		],
 	},
 	{
@@ -153,7 +158,10 @@ const associationsKok = [
 		ಸಂಘಟಿತ್ ವಾವ್ರ್ ಜಾವ್ನ್, ಗರ್ಜೆವಂತಾಂಕ್ ಘರ್, ಗೊಟೊ ತಶೆಂ ಘರಾಂಚಿ ದುರಸ್ತಿ ಕರುನ್ ದಿಲ್ಯಾ. ದಯಾಳಾಯೆಚ್ಯೊ ಕರ್ನ್ಯೊ ಜಾವ್ನ್, ಕ್ಯಾನ್ಸರ್ ತಶೆಂ ಹೆರ್ ಪಿಡೆಸ್ತಾಂಕ್ ಧಯ್ರ್ ದೀವ್ನ್, ಸರ್ತೆ ಪ್ರಕಾರ್ ಆಸ್ಪತ್ರೆಂತ್ ಪಿಡೆಸ್ತಾಂ ಸರ್ಶಿಂ ರಾವೊನ್, ತಶೆಂಚ್ಚ್ ಆರ್ಥಿಕ್ ಮಜತ್ ದೀವ್ನ್ ತಾಂಕಾಂ ಸಹಕಾರ್ ದಿಲಾ. ಆಶ್ರಮಾಂಕ್ ಭೆಟ್ ತಶೆಂ ಖಾಣಾವರ್ವಿ ದಾನ್, ಸಮಾಜೆಂತ್ಲ್ಯಾ ತಶೆಂ ಪರಿಸರಾಂತ್ಲ್ಯಾ ಸೆವಾ ಸಂಸ್ಥ್ಯಾಂಕ್ ಆರ್ಥಿಕ್ ಕುಮಕ್, ದುಬ್ಳ್ಯಾ ಗರ್ಜೆವಂತಾಂಕ್ ನವಿ ಮುಸ್ತಾಯ್ಕಿ, ವಕ್ತಾಂಕ್ ಆಧಾರ್, ಶಿಕ್ಪಾಕ್ ಕುಮಕ್ ಇತ್ಯಾದಿ ದಿಲ್ಯಾ.
 		ಪ್ರಸ್ತುತ್ ಫಿರ್ಗಜೆಂತ್ಲ್ಯಾ ಸರ್ವ್ ವಾಡ್ಯಾಂನಿ, ಸರ್ವ್ ಕುಟ್ಮಾಂ ಕ್ರೀಸ್ತಿ ಭಾವಾರ್ಥಾನ್ ಜಿಯೆತಾತ್ ಮ್ಹಳ್ಯಾರ್ ಚೂಕ್ ಜಾಂವ್ಚಿನಾ. ಹರ್ಯೆಕಾ ಮಹಿನ್ಯಾಂತ್ ವಾಡ್ಯಾ ಜಮಾತ್ಯೊ ಚಲವ್ನ್  ಸಮುದಾಯಾಚೊ ವಾವ್ರ್ ಜಿವಾಳ್ ಆಸಾ.<br/><br/>`,
 		officeBearers: [
-			{ name: 'associations.small-christian-community-convenor', position: 'convenor' },
+			{
+				name: 'associations.small-christian-community-convenor',
+				position: 'convenor',
+			},
 		],
 	},
 	{
@@ -170,8 +178,14 @@ const associationsKok = [
 
 		ಆಮ್ಚಿ ಗಾಯನ್ ಮಂಡಳಿ ಫೆಸ್ತಾಂ ಸಂದರ್ಭಿ, ವಿವಿಧ್ ಸಂಭ್ರಮಾಂ ವೆಳಿಂ ಮಿಸಾಚ್ಯಾ ಪವಿತ್ರ್ ಬಲಿದಾನಾಂ ಆನಿ ಲಿತುರ್ಜಿಕ್ ಕಾರ್ಯಾಂನಿ, ದೇವ್ ಪ್ರಜೆಕ್ ಉರ್ಭೆನ್ ಪಾತ್ರ್ ಘೆಂವ್ಚ್ಯಾಕ್ ಮುಖೇಲ್ಪಣ್ ವಹಿಸುನ್ ಆಸಾ. ಗಾಯನ್ ಮಂಡಳೆಂತ್ ಸಬಾರ್ ತಾಲೆಂತ್‌ವಂತ್ ಆನಿ ಉರ್ಭೆಸ್ತ್ ಯುವಜಣಾಂ ತಶೆಂಚ್ಚ್ ವ್ಹಡಾಂ ಸಾಂದೆ ಜಾವ್ನ್ ಆಸೊನ್, ತಾಂಚ್ಯಾ ಮಧುರ್ ತಾಳ್ಯಾನ್ ‘ಕೊಯರ್’ ಜಿವಾಳ್ ದವರುನ್ ಆಸಾತ್.ಆಮ್ಚ್ಯಾ ಗಾಯನ್ ಮಂಡಳಿಂತ್ ಆಸ್ಚ್ಯಾ ಸಬಾರ್ ಯುವಕ್-ಯುವತಿಂನಿ ಸಂಗೀತ್ ವಾಜಂತ್ರಾಂ ಖೆಳೊಂಕ್, ತಶೆಂಚ್ಚ್ ವಿವಿಧ್ ಗಾಯನ್ ಸ್ಪರ್ಧ್ಯಾಂನಿ ಭಾಗ್ ಘೆವ್ನ್ ತಾಂಚಿಂ ತಾಲೆಂತಾಂ ಪ್ರದರ್ಶಿತ್ ಕೆಲ್ಯಾಂತ್. ಜಯ್ತ್ಯಾಂನಿ ಗಾಯನ್ ಕ್ಷೇತ್ರಾಂತ್ ವರ್ತೆಂ ಸಾಧನ್ ಕರುನ್ ಫಿರ್ಗಜೆಕ್ ಕೀರ್ತ್ ಹಾಡ್ಲ್ಯಾ.`,
 		officeBearers: [
-			{ name: 'associations.gurpur-gayan-mandali-coordinator', position: 'associations.coordinator-male' },
-			{ name: 'associations.gurpur-gayan-mandali-choir-master', position: 'associations.choir-master' },
+			{
+				name: 'associations.gurpur-gayan-mandali-coordinator',
+				position: 'associations.coordinator-male',
+			},
+			{
+				name: 'associations.gurpur-gayan-mandali-choir-master',
+				position: 'associations.choir-master',
+			},
 		],
 	},
 	{
@@ -194,7 +208,10 @@ const associationsKok = [
 
 `,
 		officeBearers: [
-			{ name: 'associations.womens-forum-president', position: 'president-female' },
+			{
+				name: 'associations.womens-forum-president',
+				position: 'president-female',
+			},
 			{ name: 'associations.womens-forum-secretary', position: 'secretary' },
 		],
 	},
@@ -210,8 +227,14 @@ const associationsKok = [
 		ಜಮಾತೆಕ್ ಪೊಂಪೈ ಕೊವೆಂತಾಚಿಂ ಧರ್ಮ್ ಭಯ್ಣಿಂ ಹಾಜರ್ ಜಾವ್ನ್ ಮರಿಯೆ ವಿಷ್ಯಾಂತ್ ವಿವರ್/ಮಾಹೆತ್/ಜಾಣ್ವಾಯ್ ದಿತಾತ್.
 		`,
 		officeBearers: [
-			{ name: 'associations.christian-life-community-president', position: 'president' },
-			{ name: 'associations.christian-life-community-secretary', position: 'secretary' },
+			{
+				name: 'associations.christian-life-community-president',
+				position: 'president',
+			},
+			{
+				name: 'associations.christian-life-community-secretary',
+				position: 'secretary',
+			},
 		],
 	},
 ];

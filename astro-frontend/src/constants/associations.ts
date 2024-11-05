@@ -10,7 +10,6 @@ import thirdOrder from '~/assets/third-order.jpg';
 import womensForum from '~/assets/womens-forum.jpg';
 import ycs from '~/assets/ycs.jpg';
 
-
 const associations = [
 	{
 		slug: 'svp',
@@ -33,8 +32,7 @@ const associations = [
 
 		Meetings were held to discuss plans, and individuals took the opportunity to address community issues and share their experiences. The aim is to create an inclusive environment where all members can feel valued and supported. The meeting is a reflection of the dedication and spirit of service that characterizes our parish community.<br><br>
 
-		During Lent, the association visits the elderly in ashrams with a spirit of compassion. They spend time with priests and elders, making donations. Every week, the parish association gathers, and four times a year, they participate in spiritual retreats in Bajpe. On the feast day of their patron Saint Vincent de Paul, they come together with underprivileged families and supporters to celebrate with generosity. They also pray for the intercession of the society's founder, Blessed Frédéric Ozanam, honouring his legacy.`
-		,
+		During Lent, the association visits the elderly in ashrams with a spirit of compassion. They spend time with priests and elders, making donations. Every week, the parish association gathers, and four times a year, they participate in spiritual retreats in Bajpe. On the feast day of their patron Saint Vincent de Paul, they come together with underprivileged families and supporters to celebrate with generosity. They also pray for the intercession of the society's founder, Blessed Frédéric Ozanam, honouring his legacy.`,
 		officeBearers: [
 			{ name: 'associations.svp-president', position: 'president' },
 			{ name: 'associations.svp-secretary', position: 'secretary' },
@@ -118,7 +116,10 @@ const associations = [
 		Every year on October 2nd, members make a pilgrimage to the Capuchin monastery in Farangipet. The feast of St. Francis of Assisi is celebrated in our region, as well as in other parishes. The region also celebrates a "Day of Penance," during which members visit the sick, pray for them, and offer them help. On the first Sunday of the month, after the morning Mass, members conduct their monthly meetings, and occasionally a Capuchin friar attends.`,
 		officeBearers: [
 			{ name: 'pastoral.secular-franciscan-president', position: 'president' },
-			{ name: 'associations.secular-franciscan-secretary', position: 'secretary' },
+			{
+				name: 'associations.secular-franciscan-secretary',
+				position: 'secretary',
+			},
 		],
 	},
 	{
@@ -131,7 +132,10 @@ const associations = [
 
 		Mrs. Irene Pinto served selflessly as the coordinator of Christian education for eight years. Mrs. Delsy Rodrigues has served as the coordinator for eight years. Every year, Christian Education Day is celebrated with great enthusiasm at Pompei Sabha Bhavan. Various programs are organized after the classes, and the performances during Catechism Day capture everyone's hearts. On that day, dignitaries from the parish attend, give speeches, and motivate the students. Teachers are honored with gifts as a token of appreciation.`,
 		officeBearers: [
-			{ name: 'associations.catechism-coordinator', position: 'associations.coordinator-female' },
+			{
+				name: 'associations.catechism-coordinator',
+				position: 'associations.coordinator-female',
+			},
 		],
 	},
 	{
@@ -161,8 +165,11 @@ const associations = [
 		In social matters, we address public road repairs, government initiatives, environmental awareness, and agricultural development to serve the community.<br/><br/>
 
 		In organized efforts, we work towards repairing homes for the needy and helping those affected by illnesses like cancer through fundraising and support. We provide aid to those facing financial hardships and work collaboratively with social welfare organizations. Presently, every family in the community contributes actively to community life. Each month, the community celebrates its activities, reinforcing the spirit of unity and life within the community.<br/><br/>`,
-officeBearers: [
-	{ name: 'associations.small-christian-community-convenor', position: 'convenor' },
+		officeBearers: [
+			{
+				name: 'associations.small-christian-community-convenor',
+				position: 'convenor',
+			},
 		],
 	},
 	{
@@ -175,8 +182,14 @@ officeBearers: [
 
 		Our choir actively participates in the Holy Mass during festivals and other important celebrations, contributing significantly to the liturgical services and uplifting the congregation spiritually.The choir consists of many talented and enthusiastic young men and women, whose melodious voices bring life to the choir. Several young members of the choir not only play musical instruments but also participate in various singing competitions, showcasing their talents. Many have gone on to achieve excellence in the field of music, bringing glory to the parish.`,
 		officeBearers: [
-			{ name: 'associations.gurpur-gayan-mandali-coordinator', position: 'associations.coordinator-male' },
-			{ name: 'associations.gurpur-gayan-mandali-choir-master', position: 'associations.choir-master' },
+			{
+				name: 'associations.gurpur-gayan-mandali-coordinator',
+				position: 'associations.coordinator-male',
+			},
+			{
+				name: 'associations.gurpur-gayan-mandali-choir-master',
+				position: 'associations.choir-master',
+			},
 		],
 	},
 	{
@@ -189,7 +202,10 @@ officeBearers: [
 
 		On July 7, 2009, the members of the Women's Forum started a Self-Help Group. This year, there was a focus on understanding social responsibility, entrepreneurship, and the role of women in politics. The Women's Forum inspired the formation of two to three Self-Help Groups in the parish.`,
 		officeBearers: [
-			{ name: 'associations.womens-forum-president', position: 'president-female' },
+			{
+				name: 'associations.womens-forum-president',
+				position: 'president-female',
+			},
 			{ name: 'associations.womens-forum-secretary', position: 'secretary' },
 		],
 	},
@@ -206,8 +222,14 @@ officeBearers: [
 		It is now renamed to CLC - Christian Life Community.
 		`,
 		officeBearers: [
-			{ name: 'associations.christian-life-community-president', position: 'president' },
-			{ name: 'associations.christian-life-community-secretary', position: 'secretary' },
+			{
+				name: 'associations.christian-life-community-president',
+				position: 'president',
+			},
+			{
+				name: 'associations.christian-life-community-secretary',
+				position: 'secretary',
+			},
 		],
 	},
 ];
