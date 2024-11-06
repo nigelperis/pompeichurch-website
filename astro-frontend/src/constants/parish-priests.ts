@@ -2,6 +2,7 @@ import dummyImage from '~/assets/dummy-image.png';
 import frAaeColaco from '~/assets/fr-aae-colaco.jpeg';
 import frAnthonyLobo from '~/assets/fr-anthony-lobo.jpg';
 import frAvelineRebello from '~/assets/fr-aveline-rebello.jpg';
+import blank from '~/assets/blank.jpeg';
 import frBernardDsouza from '~/assets/fr-bernard-dsouza.jpg';
 import frCyprianPinto from '~/assets/fr-cyprian-pinto.jpeg';
 import frFxNazreth from '~/assets/fr-fx-nazreth.jpg';
@@ -37,7 +38,7 @@ const parishPriests = [
 		date: '1933-40',
 	},
 	{
-		imageUrl: dummyImage,
+		imageUrl: blank,
 		name: 'ajnazreth',
 		date: '1940-48',
 	},
