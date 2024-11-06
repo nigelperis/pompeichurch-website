@@ -1,9 +1,18 @@
 ---
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import { cn } from '~/helpers/cn';
+import {popeIntention} from '~/constants/pope-intention';
+import {popeIntentionKok} from '~/constants/pope-intention-kok';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+const title =
+				lang === 'kok' ? popeIntentionKok[0].title : popeIntention[0].title;
+
+const description =
+				lang === 'kok' ? popeIntentionKok[0].description : popeIntention[0].description;
+
 ---
 
 <h2
@@ -14,11 +23,10 @@ const t = useTranslations(lang);
 		},
 	)}
 >
-	Pope's Monthly Intention
+	{t('prayer.pope-intention')}
 </h2>
+
 <div class="font-geist text-lg text-justify">
-<p class="font-bold">For anyone who has lost a child</p>
-<p class="mt-2">
-	We pray that all parents who mourn the loss of a son or daughter find support in their community and receive peace and consolation from the Holy Spirit.
-</p>
+	<p class="font-bold" set:html={ title }></p>
+	<p class="mt-2" set:html={ description }></p>
 </div>

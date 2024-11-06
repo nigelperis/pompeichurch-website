@@ -259,7 +259,7 @@ const pastoralCouncil = [
 	{
 		name: 'pastoral.deanery-rep-name',
 		org: 'pastoral.deanery-rep-ward',
-		position: 'pastoral.deanery-rep-ward',
+		position: 'pastoral.deanery-rep',
 	},
 ];
 
