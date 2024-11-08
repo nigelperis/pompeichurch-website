@@ -1,8 +1,8 @@
 import tailwind from '@astrojs/tailwind';
 import icon from 'astro-icon';
 import { defineConfig } from 'astro/config';
-
 import react from '@astrojs/react';
+import partytown from '@astrojs/partytown'
 
 // https://astro.build/config
 export default defineConfig({
@@ -13,6 +13,11 @@ export default defineConfig({
             iconDir: 'src/assets/icons',
         }),
         react(),
+        partytown({
+            config: {
+              forward: ["dataLayer.push"],
+            },
+        }),
     ],
     i18n: {
         locales: ['en', 'kok'],
