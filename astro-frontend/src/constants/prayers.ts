@@ -107,22 +107,23 @@ const prayers = [
 	{
 		title: `The Angelus`,
 		content: `
-        <strong>The Angel of the Lord declared to Mary:</strong>
+        <strong>The Angel of the Lord declared to Mary.</strong>
         <br>And she conceived of the Holy Spirit.
 
         <br><i>Hail Mary . . .</i>
 
-        <br><strong>Behold the handmaid of the Lord:</strong>
+        <br><strong>Behold the handmaid of the Lord.</strong>
         <br>Be it done unto me according to Thy word.
 
         <br><i>Hail Mary . . .</i>
 
-        <br><strong>And the Word was made Flesh:</strong>
+        <br><strong>And the Word was made Flesh.</strong>
         <br>And dwelt among us.
 
         <br><i>Hail Mary . . .</i>
 
-        <br><strong>Pray for us, O Holy Mother of God, that we may be made worthy of the promises of Christ.</strong><br>
+        <br><strong>Pray for us, O Holy Mother of God.</strong>
+        <br>That we may be made worthy of the promises of Christ.<br>
 
         <br><strong><i>Let us pray:</i></strong>
 
