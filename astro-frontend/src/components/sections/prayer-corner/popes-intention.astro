@@ -1,18 +1,19 @@
 ---
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import { cn } from '~/helpers/cn';
-import {popeIntention} from '~/constants/pope-intention';
-import {popeIntentionKok} from '~/constants/pope-intention-kok';
+import { popeIntention } from '~/constants/pope-intention';
+import { popeIntentionKok } from '~/constants/pope-intention-kok';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 const title =
-				lang === 'kok' ? popeIntentionKok[0].title : popeIntention[0].title;
+	lang === 'kok' ? popeIntentionKok[0].title : popeIntention[0].title;
 
 const description =
-				lang === 'kok' ? popeIntentionKok[0].description : popeIntention[0].description;
-
+	lang === 'kok'
+		? popeIntentionKok[0].description
+		: popeIntention[0].description;
 ---
 
 <h2
