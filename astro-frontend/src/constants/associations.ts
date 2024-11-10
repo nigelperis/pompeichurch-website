@@ -69,7 +69,10 @@ const associations = [
 
 		Initially, the members of the sodality were required to attend Mass regularly and were notified through the notice board during the daily Mass. Whenever there was a death in the parish, they would be expected to visit the family and show support by being present in the church for the final rites. In recent years, female altar servers have also been serving along with the boys, providing their dedicated service to the parish. Even today, the members of the sodality, both male and female, continue to serve with devotion and commitment.`,
 		officeBearers: [
-			{ name: 'associations.altar-servers-animator', position: 'animator-many' },
+			{
+				name: 'associations.altar-servers-animator',
+				position: 'animator-many',
+			},
 			{ name: 'associations.altar-servers-prefect', position: 'prefect' },
 			{ name: 'associations.altar-servers-secretary', position: 'secretary' },
 		],
@@ -182,8 +185,14 @@ const associations = [
 
 		Our choir actively participates in the Holy Mass during festivals and other important celebrations, contributing significantly to the liturgical services and uplifting the congregation spiritually.The choir consists of many talented and enthusiastic young men and women, whose melodious voices bring life to the choir. Several young members of the choir not only play musical instruments but also participate in various singing competitions, showcasing their talents. Many have gone on to achieve excellence in the field of music, bringing glory to the parish.`,
 		officeBearers: [
-			{ name: 'associations.gurpur-gayan-mandali-choir-master', position: 'associations.choir-master' },
-			{ name: 'associations.gurpur-gayan-mandali-coordinator', position: 'associations.coordinator-male' },
+			{
+				name: 'associations.gurpur-gayan-mandali-choir-master',
+				position: 'associations.choir-master',
+			},
+			{
+				name: 'associations.gurpur-gayan-mandali-coordinator',
+				position: 'associations.coordinator-male',
+			},
 		],
 	},
 	{

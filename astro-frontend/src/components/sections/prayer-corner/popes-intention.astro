@@ -1,18 +1,19 @@
 ---
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import { cn } from '~/helpers/cn';
-import {popeIntention} from '~/constants/pope-intention';
-import {popeIntentionKok} from '~/constants/pope-intention-kok';
+import { popeIntention } from '~/constants/pope-intention';
+import { popeIntentionKok } from '~/constants/pope-intention-kok';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 const title =
-				lang === 'kok' ? popeIntentionKok[0].title : popeIntention[0].title;
+	lang === 'kok' ? popeIntentionKok[0].title : popeIntention[0].title;
 
 const description =
-				lang === 'kok' ? popeIntentionKok[0].description : popeIntention[0].description;
-
+	lang === 'kok'
+		? popeIntentionKok[0].description
+		: popeIntention[0].description;
 ---
 
 <h2
@@ -26,7 +27,7 @@ const description =
 	{t('prayer.pope-intention')}
 </h2>
 
-<div class="font-geist text-lg text-justify">
-	<p class="font-bold" set:html={ title }></p>
-	<p class="mt-2" set:html={ description }></p>
+<div class="text-justify font-geist text-lg">
+	<p class="font-bold" set:html={title} />
+	<p class="mt-2" set:html={description} />
 </div>

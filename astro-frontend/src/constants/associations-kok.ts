@@ -63,7 +63,10 @@ const associationsKok = [
 
 		ಪಯ್ಲೆಂ ಸದಾಂ ಮಿಸಾ ವೆಳಾರ್ ನೋಟಿಸ್ ಬೋರ್ಡಾರ್ ಕಾಣ್ಸಿಲ್ಲ್ಯಾ ಸಾಂದ್ಯಾಂನಿ ಖಡ್ಡಾಯೆನ್ ಮೀಸ್ ರಜಾರ್ ಕರುಂಕ್ ಆಸ್‌ಲ್ಲೆಂ, ಆನಿ ಫಿರ್ಗಜೆಂತ್ ಮೊರ್ನಾಂ ಜಾಲ್ಲ್ಯಾ ವೆಳಾರ್, ತಾಂಚ್ಯಾ ಘರಾ ವಚೊನ್ ಆಪ್ಣಾಚೊ ಲೋಬ್ ಘಾಲ್ನ್ ಇಗರ್ಜೆಕ್ ಪುರ್ಶಾಂವಾರ್ ಯೇವ್ಕ್ ಆಸ್‌ಲ್ಲೆಂ. ತಾಂಕಾಂ ತಾಂಚೆಂಚ್ಚ್ ಮ್ಹಳ್ಳೆಂ  ಸಮವಸ್ತ್ರ್ ಆಸಾ. ಆರ್ವಿಲ್ಯಾ ದಿಸಾಂನಿ ಆಮ್ಚ್ಯಾ ಫಿರ್ಗಜೆಂತ್ ಚಲಿಯೊಯಿ ವೆದಿ ಸೆವಕಿ ಜಾವ್ನ್ ಸೆವಾ ದಿತಾತ್. `,
 		officeBearers: [
-			{ name: 'associations.altar-servers-animator', position: 'animator-many' },
+			{
+				name: 'associations.altar-servers-animator',
+				position: 'animator-many',
+			},
 			{ name: 'associations.altar-servers-prefect', position: 'prefect' },
 			{ name: 'associations.altar-servers-secretary', position: 'secretary' },
 		],
@@ -109,7 +112,10 @@ const associationsKok = [
 		ಹರ್ಯೆಕಾ ವರ್ಸಾ, ಅಕ್ಟೋಬರ್ ೨ ತಾರಿಕೆರ್ ಫರಂಗಿಪೇಟೆ ಕಾಪುಚಿನ್ ಫ್ರಾದಿಂಚ್ಯಾ ಕೊವೆಂತಾಕ್ ಯಾತ್ರಿಕ್ ಪಯ್ಣಾಕ್ ಚಡಾವತ್ ಸಾಂದೆ ಹಾಜರ್ ಜಾತಾತ್. ಸಾಂ. ಫ್ರಾನ್ಸಿ ಆಸಿಸಿಚೆಂ ಫೆಸ್ತ್ ಆಮ್ಚ್ಯಾ ಪ್ರಾಂತ್ಯಾಂತ್, ತಶೆಂಚ್ಚ್ ಫಿರ್ಗಜೆಂತ್ ಆಚರಣ್ ಕರ್ತಾತ್. ಪ್ರಾಂತ್ಯಾಂತ್ ಏಕ್ ದೀಸ್ ‘ಪ್ರಾಚಿತಾಚೊ ದೀಸ್’ ಆಚರಣ್ ಕರ್ನ್, ಪಿಡೆಸ್ತಾಂಚಿ ಭೆಟ್ ಕರ್ನ್, ತಾಂಕಿ ಪ್ರಮಾಣೆಂ ಕುಮೊಕ್ ದಿತಾತ್ ಆನಿ ತಾಂಚ್ಯೆ ಖಾತಿರ್ ಮಾಗ್ತಾತ್. ಮಹಿನ್ಯಾಚ್ಯಾ ಪಯ್ಲ್ಯಾ ಆಯ್ತಾರಾ ಸಕಾಳಿಂ ಮಿಸಾ ಉಪ್ರಾಂತ್ ಜಮಾತ್ ಚಲವ್ನ್ ರ‍್ತಾಸ್ತಾನಾ, ಥೊಡ್ಯಾ ಸಂದರ್ಭಾಂನಿ ಕಾಪುಚಿನ್ ಫ್ರಾದ್ ಹಾಜರ್ ಜಾತಾತ್.`,
 		officeBearers: [
 			{ name: 'pastoral.secular-franciscan-president', position: 'president' },
-			{	name: 'associations.secular-franciscan-secretary', position: 'secretary'},
+			{
+				name: 'associations.secular-franciscan-secretary',
+				position: 'secretary',
+			},
 		],
 	},
 	{
@@ -178,8 +184,14 @@ const associationsKok = [
 
 		ಆಮ್ಚಿ ಗಾಯನ್ ಮಂಡಳಿ ಫೆಸ್ತಾಂ ಸಂದರ್ಭಿ, ವಿವಿಧ್ ಸಂಭ್ರಮಾಂ ವೆಳಿಂ ಮಿಸಾಚ್ಯಾ ಪವಿತ್ರ್ ಬಲಿದಾನಾಂ ಆನಿ ಲಿತುರ್ಜಿಕ್ ಕಾರ್ಯಾಂನಿ, ದೇವ್ ಪ್ರಜೆಕ್ ಉರ್ಭೆನ್ ಪಾತ್ರ್ ಘೆಂವ್ಚ್ಯಾಕ್ ಮುಖೇಲ್ಪಣ್ ವಹಿಸುನ್ ಆಸಾ. ಗಾಯನ್ ಮಂಡಳೆಂತ್ ಸಬಾರ್ ತಾಲೆಂತ್‌ವಂತ್ ಆನಿ ಉರ್ಭೆಸ್ತ್ ಯುವಜಣಾಂ ತಶೆಂಚ್ಚ್ ವ್ಹಡಾಂ ಸಾಂದೆ ಜಾವ್ನ್ ಆಸೊನ್, ತಾಂಚ್ಯಾ ಮಧುರ್ ತಾಳ್ಯಾನ್ ‘ಕೊಯರ್’ ಜಿವಾಳ್ ದವರುನ್ ಆಸಾತ್.ಆಮ್ಚ್ಯಾ ಗಾಯನ್ ಮಂಡಳಿಂತ್ ಆಸ್ಚ್ಯಾ ಸಬಾರ್ ಯುವಕ್-ಯುವತಿಂನಿ ಸಂಗೀತ್ ವಾಜಂತ್ರಾಂ ಖೆಳೊಂಕ್, ತಶೆಂಚ್ಚ್ ವಿವಿಧ್ ಗಾಯನ್ ಸ್ಪರ್ಧ್ಯಾಂನಿ ಭಾಗ್ ಘೆವ್ನ್ ತಾಂಚಿಂ ತಾಲೆಂತಾಂ ಪ್ರದರ್ಶಿತ್ ಕೆಲ್ಯಾಂತ್. ಜಯ್ತ್ಯಾಂನಿ ಗಾಯನ್ ಕ್ಷೇತ್ರಾಂತ್ ವರ್ತೆಂ ಸಾಧನ್ ಕರುನ್ ಫಿರ್ಗಜೆಕ್ ಕೀರ್ತ್ ಹಾಡ್ಲ್ಯಾ.`,
 		officeBearers: [
-			{ name: 'associations.gurpur-gayan-mandali-choir-master', position: 'associations.choir-master' },
-			{ name: 'associations.gurpur-gayan-mandali-coordinator', position: 'associations.coordinator-male' },
+			{
+				name: 'associations.gurpur-gayan-mandali-choir-master',
+				position: 'associations.choir-master',
+			},
+			{
+				name: 'associations.gurpur-gayan-mandali-coordinator',
+				position: 'associations.coordinator-male',
+			},
 		],
 	},
 	{
