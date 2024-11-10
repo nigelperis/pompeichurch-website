@@ -5,17 +5,15 @@ import '@fontsource/poppins';
 import '@fontsource/geist-sans';
 import poppinsRegular from '@fontsource/poppins/files/poppins-latin-500-normal.woff2?url';
 import notoSansKannadaRegualar from '@fontsource/noto-sans-kannada/files/noto-sans-kannada-latin-500-normal.woff2?url';
-
 import poppinsSemibold from '@fontsource/poppins/files/poppins-latin-600-normal.woff2?url';
 import notoSansKannadaSemiBold from '@fontsource/noto-sans-kannada/files/noto-sans-kannada-latin-600-normal.woff2?url';
 import 'aos/dist/aos.css';
-
-import LanguageSwitcher from '~/components/language-switcher.astro';
 import { getLangFromUrl } from '~/i18n/utils';
-
 import Navbar from '~/components/navbar.astro';
 import Footer from '~/components/footer.astro';
 import ScrollTop from '~/components/scroll-top.astro';
+import tempLogo from '~/assets/temp-logo.png';
+
 const lang = getLangFromUrl(Astro.url);
 
 interface Props {
@@ -35,7 +33,7 @@ const { title } = Astro.props;
 			name="viewport"
 			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
 		/>
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/png" href={tempLogo.src} />
 
 		<link
 			rel="preload"

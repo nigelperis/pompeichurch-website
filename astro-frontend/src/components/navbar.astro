@@ -4,57 +4,65 @@ import { Icon } from 'astro-icon/components';
 import { cn } from '~/helpers/cn';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import { navLinks } from '~/constants/nav-links.ts';
-import ScrollProgress from './ui/scroll-progress.astro';
-import churchLogo from '../assets/church-logo.png';
-import LanguageSwitcher from './language-switcher.astro';
+// import ScrollProgress from '~/components/ui/scroll-progress.astro';
+import tempLogo from '~/assets/temp-logo.png';
+import LanguageSwitcher from '~/components/language-switcher.astro';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<ScrollProgress />
+<!-- <ScrollProgress /> -->
 <header
 	class="sticky top-0 z-10 w-full border-b border-gray-300 bg-white p-3 xl:px-28"
 >
 	<section class="flex items-center justify-between">
 		<a href={lang === 'kok' ? '/kok/' : '/'}>
-			<img src={churchLogo.src} alt="" width={45} />
+			<img src={tempLogo.src} alt="" width={45} />
 		</a>
 		<div class="ml-auto hidden items-center lg:flex">
+			<!-- Navbar for Web -->
 			<ul class="flex items-center gap-6">
 				{
-					navLinks.map((link) => (
-						<li class="group relative">
-							<a
-								href={
-									link.type === 'link'
-										? getRelativeLocaleUrl(lang, link.href || '')
-										: '#'
-								}
-								class={cn(
-									'font-poppins font-semibold',
-									link.title === 'nav.home' && 'nav-home',
-									lang === 'kok' ? 'font-noto-sans-kannada text-lg' : 'text-md',
-								)}
+					navLinks
+						.filter((link) => link.title !== 'nav.home') // Exclude the 'Home' link
+						.map((link) => (
+							<li
+								class={cn('group relative', {
+									'expandable-link': link.type === 'expandable',
+								})}
 							>
-								{t(link.title)}
-							</a>
-							{link.type === 'expandable' && link.expandedLinks && (
-								<ul class="absolute left-0 top-full mt-2 hidden w-64 rounded-md p-2 shadow-md group-hover:block md:flex">
-									{link.expandedLinks.map((sublink) => (
-										<li class="w-150">
-											<a
-												href={getRelativeLocaleUrl(lang, sublink.href)}
-												class="block rounded-md px-4 py-2 font-poppins text-sm transition-all hover:bg-natgeo-yellow"
-											>
-												{t(sublink.title)}
-											</a>
-										</li>
-									))}
-								</ul>
-							)}
-						</li>
-					))
+								<a
+									href={
+										link.type === 'link'
+											? getRelativeLocaleUrl(lang, link.href || '')
+											: '#'
+									}
+									class={cn(
+										'font-poppins font-semibold',
+										lang === 'kok'
+											? 'font-noto-sans-kannada text-sm'
+											: 'text-md',
+									)}
+								>
+									{t(link.title)}
+								</a>
+								{link.type === 'expandable' && link.expandedLinks && (
+									<ul class="absolute top-full mt-2 hidden w-60 rounded-md p-2 shadow-md group-hover:block md:flex">
+										{link.expandedLinks.map((sublink) => (
+											<li class="w-150">
+												<a
+													href={getRelativeLocaleUrl(lang, sublink.href)}
+													class="block rounded-md px-2 py-2 text-sm transition-all hover:bg-natgeo-yellow"
+												>
+													{t(sublink.title)}
+												</a>
+											</li>
+										))}
+									</ul>
+								)}
+							</li>
+						))
 				}
 			</ul>
 		</div>
@@ -81,6 +89,7 @@ const t = useTranslations(lang);
 		id="hamburger-close"
 		class="relative ml-auto cursor-pointer rounded-full text-3xl"
 	/>
+	<!-- Navbar for mobile -->
 	<ul class="flex flex-col gap-y-5">
 		{
 			navLinks.map((link) => (
@@ -167,6 +176,7 @@ const t = useTranslations(lang);
 	@media (min-width: 768px) {
 		ul > li.group {
 			position: relative;
+			border: 2px solid transparent;
 		}
 
 		ul > li.group > ul {
@@ -183,7 +193,8 @@ const t = useTranslations(lang);
 		}
 
 		ul > li.group:hover > ul,
-		ul > li.group:focus-within > ul {
+		ul > li.group:focus-within > ul,
+		ul > li.group > ul:hover {
 			display: block;
 		}
 
@@ -247,33 +258,36 @@ const t = useTranslations(lang);
 				expandableContent?.style?.setProperty('max-height', '0');
 			} else {
 				element.setAttribute('data-is-submenu-expanded', 'true');
-				expandableContent?.style?.setProperty('max-height', '550px');
+				const elementHeight = expandableContent?.scrollHeight;
+				expandableContent?.style?.setProperty(
+					'max-height',
+					`${elementHeight ?? 500}px`,
+				);
 			}
 		});
 	});
 
 	allNavigationLinks.forEach((link) => {
 		link.addEventListener('click', (e) => {
-			e.preventDefault();
+			e.preventDefault(); // Prevent the default behavior
 
+			// Close all expandable submenus
 			expandableLinks.forEach((element) => {
-				const expandableContent =
-					element.parentElement?.querySelector<HTMLUListElement>('a + ul');
-
+				const expandableContent = element.parentElement?.querySelector(
+					'a + ul',
+				) as HTMLElement;
 				expandableContent?.style.setProperty('max-height', '0');
-
 				element.setAttribute('data-is-submenu-expanded', 'false');
 			});
 
+			// Close the navbar menu on mobile
 			navbar?.classList?.remove('open');
 
-			link.addEventListener('click', (e) => {
-				e.preventDefault();
-				const anchorElement = link as HTMLAnchorElement;
-				if (anchorElement.href) {
-					window.location.href = anchorElement.href;
-				}
-			});
+			// Redirect to the link's href
+			const anchorElement = link as HTMLAnchorElement;
+			if (anchorElement.href) {
+				window.location.href = anchorElement.href; // Trigger the redirect
+			}
 		});
 	});
 </script>

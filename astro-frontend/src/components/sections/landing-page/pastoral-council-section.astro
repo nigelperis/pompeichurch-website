@@ -2,10 +2,12 @@
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import HoverableLink from '~/components/ui/hoverable-link.astro';
 import Card from '~/components/pastoral-council-card.astro';
-import dummyImage from '~/assets/dummy-image.png';
-import priestImage from '~/assets/fr-rudolf-dsa.jpg';
+import johnLobo from '~/assets/mr-john-lobo.jpg';
+import priestImage from '~/assets/fr-rudolph-dsa.jpg';
 import vicepresident from '~/assets/vp-image.jpg';
 import ayogPresident from '~/assets/ayog-president.jpg';
+import praveenLobo from '~/assets/mr-praveen-lobo.jpg';
+import { cn } from '~/helpers/cn';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -18,7 +20,12 @@ const councilUrl =
 >
 	<h1
 		data-aos="fade-right"
-		class="mx-6 mb-4 inline-block border-l-4 border-natgeo-yellow pl-3 font-poppins text-[27px] font-extrabold xs:text-2xl lg:mx-0 lg:text-4xl"
+		class={cn(
+			'mx-6 mb-4 inline-block border-l-4 border-natgeo-yellow pl-3 font-poppins text-[27px] font-extrabold xs:text-2xl lg:mx-0 lg:text-4xl',
+			{
+				'font-noto-sans-kannada': lang === 'kok',
+			},
+		)}
 	>
 		{t('landing.pastoral-parishad')}
 	</h1>
@@ -37,7 +44,7 @@ const councilUrl =
 			title={t('landing.vp-name')}
 		/>
 		<Card
-			imageUrl={dummyImage}
+			imageUrl={johnLobo}
 			subtitle={t('landing.secretary')}
 			title={t('landing.secretary-name')}
 		/>
@@ -48,11 +55,11 @@ const councilUrl =
 		/>
 
 		<div
-			class="flex-shrink-0 transform snap-start border shadow-sm transition-all duration-200 ease-in-out hover:scale-[1.01] lg:hidden"
+			class="flex-shrink-0 transform snap-start border shadow-sm transition-all duration-200 ease-in-out lg:hidden"
 		>
 			<div class="opacity-50 blur-md">
 				<Card
-					imageUrl={ayogPresident}
+					imageUrl={praveenLobo}
 					subtitle={t('landing.pastoral-commission-coordinator')}
 					title={t('landing.pastoral-commission-coordinator-name')}
 				/>

@@ -1,0 +1,45 @@
+---
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+import { Image } from 'astro:assets';
+import centenaryHallImage from '~/assets/centenary-hall.jpg';
+import { loremIpsum } from '~/constants/lorem-ipsum';
+import centenaryHall1 from '~/assets/centenary-hall-1.jpg';
+import centenaryHall2 from '~/assets/centenary-hall-2.jpg';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<h1
+	class="mb-4 border-l-4 border-natgeo-yellow pl-3 text-3xl font-extrabold lg:text-4xl"
+>
+	{t('centenaryhall.title')}
+</h1>
+<Image
+	src={centenaryHallImage}
+	alt="Exterior view of Centenary Hall at Our Lady of Pomepi Church"
+	class="pb-2 text-center"
+/>
+<div class="pb-4 font-geist">
+	<p class="mb-4 text-lg font-bold">Capacity: 200</p>
+
+	<h4 class="mb-2 text-lg font-bold">Timings:</h4>
+
+	<div class="text-gray-700">
+		<p class="mb-1 font-semibold">Day:</p>
+		<ul class="mb-4 list-inside list-disc">
+			<li>Music Stop: 3:00 PM</li>
+			<li>Vacate: 3:30 PM</li>
+		</ul>
+
+		<p class="mb-1 font-semibold">Night:</p>
+		<ul class="list-inside list-disc">
+			<li>Music Stop: 10:15 PM</li>
+			<li>Vacate: 10:45 PM</li>
+		</ul>
+	</div>
+</div>
+<div class="flex flex-col gap-4 pb-4 md:flex-row">
+	<Image src={centenaryHall1} alt="" class="w-full md:w-1/2" />
+	<Image src={centenaryHall2} alt="" class="w-full md:w-1/2" />
+</div>

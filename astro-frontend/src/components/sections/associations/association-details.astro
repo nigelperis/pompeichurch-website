@@ -1,12 +1,13 @@
 ---
 import { Image } from 'astro:assets';
-import { getLangFromUrl } from '~/i18n/utils';
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import { associations } from '~/constants/associations';
 import { associationsKok } from '~/constants/associations-kok';
 import fallbackImage from '~/assets/church-logo.png';
 import { cn } from '~/helpers/cn';
 
 const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 const { slug } = Astro.params;
 
 const associationData = lang === 'kok' ? associationsKok : associations;
@@ -25,24 +26,27 @@ const {
 		<div class="flex justify-center">
 			<Image src={associationImage} alt="" />
 		</div>
-		<h2 class="mt-6 text-left font-poppins text-2xl font-bold text-slate-900">
-			About the Association
+		<h2
+			class="mt-6 text-justify font-poppins text-2xl font-bold text-slate-900"
+		>
+			{t('associations.about-us')}
 		</h2>
 		<p
 			class={cn(
-				'text-md mt-4 text-justify font-geist leading-7 text-slate-700 lg:text-left',
+				'text-md mt-4 text-justify font-geist leading-7 text-slate-700 ',
 				{ 'font-noto-sans-kannada': lang === 'kok' },
 			)}
 			set:html={description}
 		/>
 		<h2 class="mt-6 text-left font-poppins text-2xl font-bold text-slate-900">
-			Office Bearers
+			{t('associations.office-bearers')}
 		</h2>
 		<ul class="my-4 list-inside list-disc text-base text-slate-700">
 			{
 				officeBearers.map((bearer) => (
 					<li class="text-left">
-						<strong>{bearer.position}:</strong> {bearer.name}
+						<strong>{t(`${bearer.position}`)}: </strong>
+						{t(`${bearer.name}`)}
 					</li>
 				))
 			}

@@ -1,0 +1,26 @@
+---
+import Layout from '~/layouts/layout.astro';
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+import ParishFinancecommitteeList from '~/components/sections/parish-finance-committee/parish-finance-committee-list.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Layout title="Pompei Church | Parish Finance Committee">
+	<main class="mx-auto max-w-4xl overflow-hidden bg-white">
+		<section id="finance-committee" class="flex flex-col p-6 pb-4">
+			<h1
+				class="mb-5 border-l-4 border-natgeo-yellow pl-3 text-3xl font-extrabold lg:text-4xl"
+			>
+				{t('nav.parish-finance-committee')}
+			</h1>
+			<!-- <p class="pb-5 font-geist text-justify text-lg ">
+				Here is a glimpse of the esteemed former parish priests who have
+				nurtured our faith, enriched our community and individual lives, and
+				upheld the cherished legacy of our church throughout these years.
+			</p> -->
+			<ParishFinancecommitteeList />
+		</section>
+	</main>
+</Layout>

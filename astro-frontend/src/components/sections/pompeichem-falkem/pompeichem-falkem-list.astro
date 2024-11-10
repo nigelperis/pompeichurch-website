@@ -8,9 +8,11 @@ import { magazines } from '~/constants/pompeichem-falkem';
 >
 	{
 		magazines.map((magazine) => (
-			<a href={magazine.downloadUrl} download>
-				<MagazineCard title={magazine.title} imageUrl={magazine.imageUrl} />
-			</a>
+			<MagazineCard
+				title={magazine.title}
+				imageUrl={magazine.imageUrl}
+				downloadUrl={magazine.downloadUrl}
+			/>
 		))
 	}
 </div>
