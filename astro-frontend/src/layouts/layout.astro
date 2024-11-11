@@ -25,7 +25,8 @@ const { title } = Astro.props;
 
 <!doctype html>
 <html lang={lang}>
-	<head>
+	<head
+	>
 		<meta charset="UTF-8" />
 		<meta name="description" content="Astro description" />
 		<meta name="viewport" content="width=device-width" />
@@ -65,6 +66,13 @@ const { title } = Astro.props;
 		/>
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "owtkubhu7o");
+    </script>
 	</head>
 	<body class="w-screen overflow-x-hidden">
 		<Navbar />
@@ -75,5 +83,6 @@ const { title } = Astro.props;
 	<script>
 		import { aosInit } from '~/helpers/aos-config';
 		aosInit();
+
 	</script>
 </html>
