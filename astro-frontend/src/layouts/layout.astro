@@ -13,6 +13,7 @@ import Navbar from '~/components/navbar.astro';
 import Footer from '~/components/footer.astro';
 import ScrollTop from '~/components/scroll-top.astro';
 import tempLogo from '~/assets/temp-logo.png';
+import GoogleAnalytics from '~/components/google-analytics.astro';
 
 const lang = getLangFromUrl(Astro.url);
 
@@ -26,6 +27,7 @@ const { title } = Astro.props;
 <!doctype html>
 <html lang={lang}>
 	<head>
+		<GoogleAnalytics measurementId={'G-4HPXW69JQV'} />
 		<meta charset="UTF-8" />
 		<meta name="description" content="Astro description" />
 		<meta name="viewport" content="width=device-width" />
@@ -77,7 +79,7 @@ const { title } = Astro.props;
 				t.src = 'https://www.clarity.ms/tag/' + i;
 				y = l.getElementsByTagName(r)[0];
 				y.parentNode.insertBefore(t, y);
-			})(window, document, 'clarity', 'script', 'ox8wop4yap');
+			})(window, document, 'clarity', 'script', 'oxa7yg1jfv');
 		</script>
 	</head>
 	<body class="w-screen overflow-x-hidden">
@@ -85,9 +87,9 @@ const { title } = Astro.props;
 		<slot />
 		<Footer />
 		<ScrollTop />
+		<script>
+			import { aosInit } from '~/helpers/aos-config';
+			aosInit();
+		</script>
 	</body>
-	<script>
-		import { aosInit } from '~/helpers/aos-config';
-		aosInit();
-	</script>
 </html>
