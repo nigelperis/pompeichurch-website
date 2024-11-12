@@ -27,9 +27,11 @@ const description =
 	{t('prayer.pope-intention')}
 </h2>
 
-<div class={cn('text-justify font-geist text-lg', {
-	'font-noto-sans-kannada': lang === 'kok',
-})}>
-	<p class="font-bold" set:html={ title }></p>
-	<p class="mt-2" set:html={ description }></p>
+<div
+	class={cn('text-justify font-geist text-lg', {
+		'font-noto-sans-kannada': lang === 'kok',
+	})}
+>
+	<p class="font-bold" set:html={title} />
+	<p class="mt-2" set:html={description} />
 </div>
