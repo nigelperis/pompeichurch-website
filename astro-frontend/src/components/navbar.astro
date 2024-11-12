@@ -13,6 +13,69 @@ const t = useTranslations(lang);
 ---
 
 <!-- <ScrollProgress /> -->
+<div
+  id="hamburger"
+  class="fixed top-5 mt-1 right-10 z-20 lg:hidden"
+>
+  <div id="nav-icon3" onclick="this.classList.toggle('open')">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<style>
+  #nav-icon3 span {
+    display: block;
+    position: absolute;
+    height: 4px;
+    width: 30px;
+    background: #333;
+    border-radius: 2px;
+    opacity: 1;
+    left: 0;
+    transition: all 0.3s ease;
+  }
+
+  #nav-icon3 span:nth-child(1) {
+    top: 0px;
+  }
+
+  #nav-icon3 span:nth-child(2),
+  #nav-icon3 span:nth-child(3) {
+    top: 11px;
+  }
+
+  #nav-icon3 span:nth-child(4) {
+    top: 22px;
+  }
+
+  /* Animation for the 'open' class */
+  #nav-icon3.open span:nth-child(1) {
+    top: 18px;
+    width: 0%;
+    left: 50%;
+		opacity: 0;
+  }
+
+  #nav-icon3.open span:nth-child(2) {
+    transform: rotate(45deg);
+  }
+
+  #nav-icon3.open span:nth-child(3) {
+    transform: rotate(-45deg);
+  }
+
+  #nav-icon3.open span:nth-child(4) {
+    top: 18px;
+    width: 0%;
+    left: 50%;
+  }
+</style>
+
+
+
 <header
 	class="sticky top-0 z-10 w-full border-b border-gray-300 bg-white p-3 xl:px-28"
 >
@@ -66,14 +129,8 @@ const t = useTranslations(lang);
 				}
 			</ul>
 		</div>
-		<div class="flex flex-row-reverse">
-			<div
-				id="hamburger"
-				class="ml-3 flex cursor-pointer flex-col items-end lg:hidden"
-			>
-				<Icon name="menu" class="mt-1" size={35} />
-			</div>
-			<div class="ml-5">
+		<div class="flex lg:mr-0 mr-14 flex-row-reverse">
+			<div class=" lg:ml-5">
 				<LanguageSwitcher />
 			</div>
 		</div>
@@ -81,16 +138,11 @@ const t = useTranslations(lang);
 </header>
 
 <nav
-	class="fixed inset-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 transition-transform duration-500 ease-out"
+	class="fixed inset-0 z-10 w-full overflow-y-auto bg-white px-6 py-6  transition-transform duration-500 ease-out"
 	id="navbar"
 >
-	<Icon
-		name="cancel"
-		id="hamburger-close"
-		class="relative ml-auto cursor-pointer rounded-full text-3xl"
-	/>
 	<!-- Navbar for mobile -->
-	<ul class="flex flex-col gap-y-5">
+	<ul class="flex flex-col gap-y-5 ">
 		{
 			navLinks.map((link) => (
 				<li>
@@ -212,8 +264,9 @@ const t = useTranslations(lang);
 </style>
 
 <script>
+
+
 	const hamburgerMenu = document.querySelector('#hamburger');
-	const hamburgerClose = document.querySelector('#hamburger-close');
 	const navbar = document.querySelector('#navbar');
 	const expandableLinks = document.querySelectorAll(
 		'[data-expandable-links=true]',
@@ -222,19 +275,22 @@ const t = useTranslations(lang);
 		'nav a:not([data-expandable-links=true])',
 	);
 
+	// Toggle navbar open/close on hamburger icon click
 	hamburgerMenu?.addEventListener('click', () => {
-		navbar?.classList.add('open');
-	});
+		const isOpen = navbar?.classList.contains('open');
 
-	hamburgerClose?.addEventListener('click', () => {
-		expandableLinks.forEach((element) => {
-			const expandableContent =
-				element.parentElement?.querySelector<HTMLUListElement>('a + ul');
-			expandableContent?.style?.setProperty('max-height', '0');
-			element.setAttribute('data-is-submenu-expanded', 'false');
-		});
+		// Close all expandable submenus if closing
+		if (isOpen) {
+			expandableLinks.forEach((element) => {
+				const expandableContent =
+					element.parentElement?.querySelector<HTMLUListElement>('a + ul');
+				expandableContent?.style?.setProperty('max-height', '0');
+				element.setAttribute('data-is-submenu-expanded', 'false');
+			});
+		}
 
-		navbar?.classList.remove('open');
+		// Toggle navbar open/close
+		navbar?.classList.toggle('open');
 	});
 
 	expandableLinks.forEach((element) => {
@@ -269,7 +325,7 @@ const t = useTranslations(lang);
 
 	allNavigationLinks.forEach((link) => {
 		link.addEventListener('click', (e) => {
-			e.preventDefault(); // Prevent the default behavior
+			e.preventDefault();
 
 			// Close all expandable submenus
 			expandableLinks.forEach((element) => {
@@ -286,8 +342,9 @@ const t = useTranslations(lang);
 			// Redirect to the link's href
 			const anchorElement = link as HTMLAnchorElement;
 			if (anchorElement.href) {
-				window.location.href = anchorElement.href; // Trigger the redirect
+				window.location.href = anchorElement.href;
 			}
 		});
 	});
 </script>
+
