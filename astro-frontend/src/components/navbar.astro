@@ -4,7 +4,7 @@ import { Icon } from 'astro-icon/components';
 import { cn } from '~/helpers/cn';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import { navLinks } from '~/constants/nav-links.ts';
-// import ScrollProgress from '~/components/ui/scroll-progress.astro';
+import ScrollProgress from '~/components/ui/scroll-progress.astro';
 import tempLogo from '~/assets/temp-logo.png';
 import LanguageSwitcher from '~/components/language-switcher.astro';
 
@@ -12,7 +12,7 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<!-- <ScrollProgress /> -->
+<ScrollProgress />
 <header
 	class="sticky top-0 z-10 w-full border-b border-gray-300 bg-white p-3 xl:px-28"
 >
