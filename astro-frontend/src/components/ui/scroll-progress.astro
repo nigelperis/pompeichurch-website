@@ -14,6 +14,10 @@
 	#scroll-progress-bar.hidden {
 		display: none;
 	}
+	
+	.no-scroll {
+		overflow: hidden;
+	}
 </style>
 
 <div id="scroll-progress-bar"></div>
@@ -39,12 +43,12 @@
 	hamburgerMenu?.addEventListener('click', () => {
 		navbar?.classList.add('open');
 		scrollProgressBar?.classList.add('hidden');
-		document.body.style.overflow = 'hidden';
+		document.body.classList.add('no-scroll');
 	});
 
 	hamburgerClose?.addEventListener('click', () => {
 		navbar?.classList.remove('open');
 		scrollProgressBar?.classList.remove('hidden');
-		document.body.style.overflow = '';
+		document.body.classList.remove('no-scroll');
 	});
 </script>
