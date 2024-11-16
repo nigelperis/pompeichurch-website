@@ -5,6 +5,8 @@ import { associations } from '~/constants/associations';
 import { associationsKok } from '~/constants/associations-kok';
 import fallbackImage from '~/assets/church-logo.png';
 import { cn } from '~/helpers/cn';
+import { Icon } from 'astro-icon/components';
+import { handles } from '~/constants/social-media-handles';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -14,11 +16,19 @@ const associationData = lang === 'kok' ? associationsKok : associations;
 
 const association = associationData.find((assoc) => assoc.slug === slug);
 
+const associationName = association?.slug;
+
+
 const {
 	associationImage = fallbackImage,
 	description,
 	officeBearers = [],
 } = association || {};
+
+const handle = {
+	slug : String,
+	links: [{ key: String, value: String }],
+}
 ---
 
 <div class="mx-auto">
@@ -51,5 +61,24 @@ const {
 				))
 			}
 		</ul>
+		<div class="flex justify-center">
+			{
+				handles.map((handle) =>
+					handle.name === associationName && (
+						handle.links.map((link) => (
+							<div class="h-5 w-5 mx-10 mt-4 mb-9">
+								<a
+									href={link.value}
+									target="_blank"
+									class="transition-transform hover:scale-110"
+								>
+									<Icon name={link.key} size={52} class="text-xl text-white" />
+								</a>
+						  </div>
+						))
+					)
+				)
+			}
+		</div>
 	</div>
 </div>
