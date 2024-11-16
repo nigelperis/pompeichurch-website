@@ -1,4 +1,4 @@
-const handles = [
+const socials = [
   {
     name: 'icym-pyc',
     links: [
@@ -9,9 +9,9 @@ const handles = [
   {
     name: 'ycs',
     links: [
-      { key: 'instagram1', value: 'https://www.instagram.com' },
+      { key: 'instagram1', value: 'https://www.instagram.com/ycs_gurpur/profilecard/?igsh=ZG5vNmhwZDExMzMx' },
     ],
   },
 ];
 
-export { handles };
+export { socials };

@@ -6,7 +6,7 @@ import { associationsKok } from '~/constants/associations-kok';
 import fallbackImage from '~/assets/church-logo.png';
 import { cn } from '~/helpers/cn';
 import { Icon } from 'astro-icon/components';
-import { handles } from '~/constants/social-media-handles';
+import { socials } from '~/constants/social-media-handles';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -25,8 +25,8 @@ const {
 	officeBearers = [],
 } = association || {};
 
-const handle = {
-	slug : String,
+const social = {
+	name : String,
 	links: [{ key: String, value: String }],
 }
 ---
@@ -61,18 +61,33 @@ const handle = {
 				))
 			}
 		</ul>
-		<div class="flex justify-center">
+		{
+			socials.map((social) =>
+				social.name === associationName && (
+				<h2 class="mt-6 text-left font-poppins text-2xl font-bold text-slate-900">
+					{t('landing.follow-our-journey')}
+				</h2>
+				)
+			)
+		}
+		<div
+			data-aos="fade-in"
+			data-aos-offset="200"
+			data-aos-duration="1000"
+			data-aos-delay="300"
+			data-aos-easing="ease-in-out"
+			class="flex">
 			{
-				handles.map((handle) =>
-					handle.name === associationName && (
-						handle.links.map((link) => (
-							<div class="h-5 w-5 mx-10 mt-4 mb-9">
+				socials.map((social) =>
+					social.name === associationName && (
+					social.links.map((link) => (
+							<div class="h-5 w-5 mx-8 mt-4 mb-9">
 								<a
 									href={link.value}
 									target="_blank"
 									class="transition-transform hover:scale-110"
 								>
-									<Icon name={link.key} size={52} class="text-xl text-white" />
+									<Icon name={link.key} size={52} />
 								</a>
 						  </div>
 						))
