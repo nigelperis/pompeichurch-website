@@ -1,6 +1,4 @@
 import event1 from '~/assets/event1.jpg';
-import event10 from '~/assets/event10.jpg';
-import event11 from '~/assets/event11.jpg';
 import event2 from '~/assets/event2.jpg';
 import event3 from '~/assets/event3.jpg';
 import event4 from '~/assets/event4.jpg';
@@ -9,8 +7,31 @@ import event6 from '~/assets/event6.jpg';
 import event7 from '~/assets/event7.jpg';
 import event8 from '~/assets/event8.jpg';
 import event9 from '~/assets/event9.jpg';
+import event10 from '~/assets/event10.jpg';
+import event11 from '~/assets/event11.jpg';
+import event12 from '~/assets/event12.jpg';
+
 
 const events = [
+	{
+		eventName: 'ಪೊಂಪೈ ಕ್ರಿಕೆಟ್ ಲೀಗ್ - 2024 Auction',
+		slug: 'pcl-auction-2024',
+		imageUrl: event12,
+		shortDescription: `ಪಿ.ವೈ.ಸಿ - ಐ.ಸಿ.ವೈ.ಎಮ್ ಗುರ್ಪುರ್ ಘಟಕಾನ್ PCL Season 3 ಹಾಚೆಂ Auction ಚಲವ್ನ್ ವ್ಹೆಲೆಂ.`,
+		description: `ಪಿ.ವೈ.ಸಿ - ಐ.ಸಿ.ವೈ.ಎಮ್ ಗುರ್ಪುರ್ ಘಟಕ್ ಹಾಣಿಂ ನವೆಂಬರ್ ಮಹಿನ್ಯಾಚಾ 10 ತಾರಿಕೆರ್ ಆಯ್ತಾರಾ ಸಾಂಜೆರ್ 3:30 ವೊರಾರ್ PCL Season 3 ಹಾಚೆಂ Auction ಶತಾಬ್ದಿ ಸಭಾ ಭವನಂತ್ ಚಲವ್ನ್ ವ್ಹೆಲೆಂ.<br></br>
+
+		PCL 2024, 5 ಟೀಮಾ ಹ್ಯಾ ಪರಿಂ:<br></br>
+		<li> ASTEROID AMIGOS </li>
+		<li> BIG BULL WARRIORS </li>
+		<li> ELITE STRIKERS </li>
+		<li> JMJ CRICKETERS </li>
+		<li> ROYAL TITANS </li>
+
+		<br>
+
+		ಪಿ.ವೈ.ಸಿ ಅಧ್ಯಕ್ಷ್ ಲೆಸ್ಟರ್ ಮಿನೇಜಸ್ ಹಾಣೆಂ ಜಮ್ಲೆಲ್ಯಾಂಕ್ ಸ್ವಾಗತ್‌ ಮಾಗ್ಲೆಂ. ಪಿ.ವೈ.ಸಿ ಅಧ್ಯಕ್ಷ್ ಲೆಸ್ಟರ್ ಮಿನೇಜಸ್ ಆನಿ ಪಿ.ವೈ.ಸಿ ಸಹ ಕಾರ್ಯದರ್ಶಿ ದೀಪಕ್ ಡಿಸೋಜ ಹಾಣಿಂ PCL 2024 Auction ಚಲವ್ನ್ ವ್ಹೆಲೆಂ. ಹ್ಯಾ ಕಾರ್ಯ್ಯಾಕ್ ಫಿರ್ಗಜ್ ವಿಗಾರ್ ಭೋವ್ ಮಾI ಬಾI ರುಡೋಲ್ಫ್ ರವಿ ಡೆಸಾ, ದಿಯೊಕೊನ್ ಬಾಪ್ ವಿಕಾಸ್ ಪಿರೇರಾ, ಫಿರ್ಗಜ್ ಗೊವ್ಳಿಕ್ ಪರಿಷಧ್ ಉಪಾಧ್ಯಕ್ಷ್ ಶ್ರೀಮಾನ್ ರೋಮನ್ಸ್ ಲೋಬೊ ಆನಿ 5 ಟೀಮ್ ಹಾಚೆಂ Owner, Co-Owners, Icon Players ಆನಿ ಪಿ.ವೈ.ಸಿ ಅಧ್ಯಕ್ಷ್ ಲೆಸ್ಟರ್ ಮಿನೇಜಸ್, ಕಾರ್ಯದರ್ಶಿ ಪ್ರೀಮಾ ಮಿನೇಜಸ್, ಖೆಳಾ ಕಾರ್ಯದರ್ಶಿ ಆಗೊಸ್ತಿನ್ ಮಿನೇಜಸ್ ಆನಿ ಪಿ.ಸಿ.ಯೆಲ್ ಕಮಿಟಿ ಸಾಂದೆ ಹಾಜರ್ ಆಸ್ಲೆಂ. ಆಕ್ಷನಾಂಚೆರ್ ಪಿ.ಸಿ.ಯೆಲ್ ಕ್ರಿಕೆಟ್ ಟೀಮ್ಸ್ ರಚನ್ ಕೆಲಿಂ.`,
+		facebookLink: 'https://www.facebook.com/share/p/19LCMUvA9W/',
+	},
 	{
 		eventName: 'ಫಿರ್ಗಜ್ ವೆಬ್-ಸೈಟ್ ಉಗ್ತಾವಣ್',
 		slug: 'website-launch',
