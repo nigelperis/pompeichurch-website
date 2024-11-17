@@ -12,7 +12,6 @@ import { getLangFromUrl } from '~/i18n/utils';
 import Navbar from '~/components/navbar.astro';
 import Footer from '~/components/footer.astro';
 import ScrollTop from '~/components/scroll-top.astro';
-import tempLogo from '~/assets/temp-logo.png';
 import GoogleAnalytics from '~/components/google-analytics.astro';
 
 const lang = getLangFromUrl(Astro.url);
@@ -29,14 +28,63 @@ const { title } = Astro.props;
 	<head>
 		<GoogleAnalytics measurementId={'G-4HPXW69JQV'} />
 		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
+		<meta
+			name="description"
+			content="The Gurpur Parish is situated 19 km from Mangalore on the Mangalore-Moodbidri road."
+		/>
 		<meta name="viewport" content="width=device-width" />
 		<meta
 			name="viewport"
 			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
 		/>
+
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://pompeichurch.in/" />
+		<meta
+			property="og:title"
+			content="Our Lady of Pompei Church | Gurpur Kaikamba"
+		/>
+		<meta
+			property="og:description"
+			content="Gurpur Parish, also known as Kowdur, is 19 km from Mangalore on the Moodbidri road, with deep historical and spiritual roots."
+		/>
+		<meta
+			property="twitter:image"
+			content="https://pompeichurch.in/_astro/church-hero.DsdJ33pd_ZH8lAT.webp"
+		/>
+		<meta
+			property="og:image:alt"
+			content="Image of Our Lady of Pompei Church, Gurpur Kaikamba"
+		/>
+
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content="https://pompeichurch.in/" />
+		<meta
+			property="twitter:title"
+			content="Our Lady of Pompei Church | Gurpur Kaikamba"
+		/>
+		<meta
+			property="twitter:description"
+			content="Gurpur Parish, also known as Kowdur, is 19 km from Mangalore on the Moodbidri road, with deep historical and spiritual roots."
+		/>
+		<meta
+			property="twitter:image"
+			content="https://pompeichurch.in/_astro/church-hero.DsdJ33pd_ZH8lAT.webp"
+		/>
+		<meta
+			property="twitter:image:alt"
+			content="Image of Our Lady of Pompei Church, Gurpur Kaikamba"
+		/>
+
+		<meta name="apple-mobile-web-app-title" content="PompeiChurch" />
 		<meta name="msvalidate.01" content="BEA18465C48B90A839493EB6EE14A0BD" />
-		<link rel="icon" type="image/png" href={tempLogo.src} />
+		<link rel="icon" type="image/png" href="/favicon.ico" />
+		<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+		<link rel="manifest" href="/site.webmanifest" />
 
 		<link
 			rel="preload"
