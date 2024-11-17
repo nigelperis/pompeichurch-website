@@ -4,14 +4,16 @@ import { cn } from '~/helpers/cn';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import { commissions } from '~/constants/commissions';
 
-
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 const fontClass = lang === 'kok' ? 'font-noto-sans-kannada' : 'font-geist';
 ---
-<h2 class={cn("font-geist text-lg font-normal text-gray-700")}>
-	<strong>{t('landing.pastoral-commission-coordinator')}</strong> : {t('landing.pastoral-commission-coordinator-name')}
+
+<h2 class={cn('font-geist text-lg font-normal text-gray-700')}>
+	<strong>{t('landing.pastoral-commission-coordinator')}</strong> : {
+		t('landing.pastoral-commission-coordinator-name')
+	}
 </h2>
 <div class={`mx-auto mb-2 max-w-4xl ${fontClass}`}>
 	{
