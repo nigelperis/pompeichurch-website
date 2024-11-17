@@ -71,23 +71,17 @@ const social = {
 			)
 		}
 		<div
-			data-aos="fade-in"
-			data-aos-offset="200"
-			data-aos-duration="1000"
-			data-aos-delay="300"
-			data-aos-easing="ease-in-out"
 			class="flex">
 			{
 				socials.map((social) =>
 					social.name === associationName && (
 					social.links.map((link) => (
-							<div class="h-5 w-5 mx-8 mt-4 mb-9">
+							<div class="h-5 w-5 mx-6 mt-4 mb-9 transition-transform hover:scale-110">
 								<a
 									href={link.value}
 									target="_blank"
-									class="transition-transform hover:scale-110"
 								>
-									<Icon name={link.key} size={52} />
+									<Icon name={link.key} size={52}/>
 								</a>
 						  </div>
 						))
