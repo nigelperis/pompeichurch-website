@@ -1,12 +1,17 @@
 ---
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import { Image } from 'astro:assets';
-import pcl1 from '~/assets/pcl-poster-1.jpg';
-import pcl2 from '~/assets/pcl-poster-2.jpg';
 import { cn } from '~/helpers/cn';
+import {upcomingEvents} from '~/constants/upcoming-events';
+import { imageMetadata } from 'astro/assets/utils';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+const event = {
+		eventImg: imageMetadata,
+		class: String,
+}
 ---
 
 <section
@@ -24,8 +29,10 @@ const t = useTranslations(lang);
 		{t('landing.upcoming-events')}
 	</h1>
 	<div class="flex flex-col justify-center gap-4 md:flex-row md:gap-6">
-		<Image src={pcl1} alt="" class="w-full rounded-sm object-cover md:w-1/3" />
-
-		<Image src={pcl2} alt="" class="w-full rounded-sm object-cover md:w-1/3" />
+		{
+			upcomingEvents.map((event) => (
+				<Image src={event.eventImg} alt="" class={event.class} />
+			))
+		}
 	</div>
 </section>
