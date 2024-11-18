@@ -4,7 +4,6 @@ import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import priestImage from '~/assets/pp1.png';
 import { priestMessage } from '~/constants/parish-priest-message';
 import { cn } from '~/helpers/cn';
-import signature from '~/assets/father-signature.png';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -50,9 +49,8 @@ const t = useTranslations(lang);
 			>
 				{lang === 'kok' ? priestMessage.kok : priestMessage.en}
 			</p>
-			<div data-aos="fade-left" class="flex flex-col items-end pb-4 text-right">
-				<Image src={signature} alt="priest signature" width={150} />
-				<span class="mr-4 mt-1 font-bold">{t('landing.priest')}</span>
+			<div class="flex flex-col items-end lg:mt-10 pb-6">
+				<span class="mt-2 font-bold">{t('landing.priest')}</span>
 			</div>
 		</div>
 	</div>
