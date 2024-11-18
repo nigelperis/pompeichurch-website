@@ -2,16 +2,10 @@
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import { Image } from 'astro:assets';
 import { cn } from '~/helpers/cn';
-import {upcomingEvents} from '~/constants/upcoming-events';
-import { imageMetadata } from 'astro/assets/utils';
+import { upcomingEvents } from '~/constants/upcoming-events';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-
-const event = {
-		eventImg: imageMetadata,
-		class: String,
-}
 ---
 
 <section

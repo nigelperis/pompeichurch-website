@@ -18,7 +18,6 @@ const association = associationData.find((assoc) => assoc.slug === slug);
 
 const associationName = association?.slug;
 
-
 const {
 	associationImage = fallbackImage,
 	description,
@@ -26,9 +25,9 @@ const {
 } = association || {};
 
 const social = {
-	name : String,
+	name: String,
 	links: [{ key: String, value: String }],
-}
+};
 ---
 
 <div class="mx-auto">
@@ -62,30 +61,27 @@ const social = {
 			}
 		</ul>
 		{
-			socials.map((social) =>
-				social.name === associationName && (
-				<h2 class="mt-6 text-left font-poppins text-2xl font-bold text-slate-900">
-					{t('landing.follow-our-journey')}
-				</h2>
-				)
+			socials.map(
+				(social) =>
+					social.name === associationName && (
+						<h2 class="mt-6 text-left font-poppins text-2xl font-bold text-slate-900">
+							{t('landing.follow-our-journey')}
+						</h2>
+					),
 			)
 		}
-		<div
-			class="flex">
+		<div class="flex gap-12">
 			{
-				socials.map((social) =>
-					social.name === associationName && (
-					social.links.map((link) => (
-							<div class="h-5 w-5 mx-6 mt-4 mb-9 transition-transform hover:scale-110">
-								<a
-									href={link.value}
-									target="_blank"
-								>
-									<Icon name={link.key} size={52}/>
+				socials.map(
+					(social) =>
+						social.name === associationName &&
+						social.links.map((link) => (
+							<div class="mb-9 mt-4 h-5 w-5 transition-transform hover:scale-110">
+								<a href={link.value} target="_blank">
+									<Icon name={link.key} size={52} />
 								</a>
-						  </div>
-						))
-					)
+							</div>
+						)),
 				)
 			}
 		</div>
