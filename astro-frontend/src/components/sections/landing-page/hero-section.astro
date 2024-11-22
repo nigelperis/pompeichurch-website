@@ -3,7 +3,6 @@ import { getImage } from 'astro:assets';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import skyImage from '~/assets/sky-bg.jpg';
 import churchHeroImage from '~/assets/church-hero.jpg';
-import tempLogo from '~/assets/temp-logo.png';
 import { cn } from '~/helpers/cn';
 
 const lang = getLangFromUrl(Astro.url);
@@ -52,7 +51,7 @@ const optimizedChurchHeroImage = await getImage({ src: churchHeroImage });
 	</p>
 	<div class="mx-auto">
 		<img
-			src={tempLogo.src}
+			src="/temp-logo.webp"
 			alt="Our Lady of Pompei Church logo"
 			width={190}
 			data-aos="fade-up"
