@@ -5,9 +5,7 @@ import { cn } from '~/helpers/cn';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import { navLinks } from '~/constants/nav-links.ts';
 import ScrollProgress from '~/components/ui/scroll-progress.astro';
-import tempLogo from '~/assets/temp-logo.png';
 import LanguageSwitcher from '~/components/language-switcher.astro';
-
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
@@ -18,7 +16,12 @@ const t = useTranslations(lang);
 >
 	<section class="flex items-center justify-between">
 		<a href={lang === 'kok' ? '/kok/' : '/'}>
-			<img src={tempLogo.src} alt="" width={45} />
+			<img
+				src="/temp-logo.webp"
+				alt="Our Lady of Pompei Church logo"
+				width={45}
+				height={45}
+			/>
 		</a>
 		<div class="ml-auto hidden items-center lg:flex">
 			<!-- Navbar for Web -->
