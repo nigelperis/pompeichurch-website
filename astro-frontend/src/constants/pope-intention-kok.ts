@@ -1,52 +1,52 @@
 const popeIntentionKok = [
 	{
 		month: 1,
-		title: '',
+		title: 'ಜನೆರ್ ಮ್ಹಯ್ಯಾಕ್ ಪಾಪಾಚೊ ಇರಾದೊ',
 		description: '',
 	},
 	{
 		month: 2,
-		title: '',
+		title: 'ಫೆಬ್ರೆರ್ ಮ್ಹಯ್ಯಾಕ್ ಪಾಪಾಚೊ ಇರಾದೊ',
 		description: '',
 	},
 	{
 		month: 3,
-		title: '',
+		title: 'ಮಾರ್ಚ್ ಮ್ಹಯ್ಯಾಕ್ ಪಾಪಾಚೊ ಇರಾದೊ',
 		description: '',
 	},
 	{
 		month: 4,
-		title: '',
+		title: 'ಏಪ್ರಿಲ್ ಮ್ಹಯ್ಯಾಕ್ ಪಾಪಾಚೊ ಇರಾದೊ',
 		description: '',
 	},
 	{
 		month: 5,
-		title: '',
+		title: 'ಮಾಯ್ ಮ್ಹಯ್ಯಾಕ್ ಪಾಪಾಚೊ ಇರಾದೊ',
 		description: '',
 	},
 	{
 		month: 6,
-		title: '',
+		title: 'ಜೂನ್ ಮ್ಹಯ್ಯಾಕ್ ಪಾಪಾಚೊ ಇರಾದೊ',
 		description: '',
 	},
 	{
 		month: 7,
-		title: '',
+		title: 'ಜುಲಾಯಿ ಮ್ಹಯ್ಯಾಕ್ ಪಾಪಾಚೊ ಇರಾದೊ',
 		description: '',
 	},
 	{
 		month: 8,
-		title: '',
+		title: 'ಆಗೊಸ್ತ್ ಮ್ಹಯ್ಯಾಕ್ ಪಾಪಾಚೊ ಇರಾದೊ',
 		description: '',
 	},
 	{
 		month: 9,
-		title: '',
+		title: 'ಸೆಪ್ತೆಂಬರ್ ಮ್ಹಯ್ಯಾಕ್ ಪಾಪಾಚೊ ಇರಾದೊ',
 		description: '',
 	},
 	{
 		month: 10,
-		title: '',
+		title: 'ಅಕ‍್ತೋಬರ್ ಮ್ಹಯ್ಯಾಕ್ ಪಾಪಾಚೊ ಇರಾದೊ',
 		description: '',
 	},
 	{
