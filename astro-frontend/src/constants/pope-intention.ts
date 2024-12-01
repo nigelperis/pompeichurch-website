@@ -1,52 +1,52 @@
 const popeIntention = [
 	{
 		month: 1,
-		title: '',
+		title: `Pope's Intention for the month of January`,
 		description: '',
 	},
 	{
 		month: 2,
-		title: '',
+		title: `Pope's Intention for the month of February`,
 		description: '',
 	},
 	{
 		month: 3,
-		title: '',
+		title: `Pope's Intention for the month of March`,
 		description: '',
 	},
 	{
 		month: 4,
-		title: '',
+		title: `Pope's Intention for the month of April`,
 		description: '',
 	},
 	{
 		month: 5,
-		title: '',
+		title: `Pope's Intention for the month of May`,
 		description: '',
 	},
 	{
 		month: 6,
-		title: '',
+		title: `Pope's Intention for the month of June`,
 		description: '',
 	},
 	{
 		month: 7,
-		title: '',
+		title: `Pope's Intention for the month of July`,
 		description: '',
 	},
 	{
 		month: 8,
-		title: '',
+		title: `Pope's Intention for the month of August`,
 		description: '',
 	},
 	{
 		month: 9,
-		title: '',
+		title: `Pope's Intention for the month of September`,
 		description: '',
 	},
 	{
 		month: 10,
-		title: '',
+		title: `Pope's Intention for the month of October`,
 		description: '',
 	},
 	{
@@ -57,8 +57,8 @@ const popeIntention = [
 	},
 	{
 		month:12,
-		title: 'For pilgrims of hope',
-		description: 'We pray that this Jubilee Year strengthen our faith, helping us to recognize the Risen Christ in our daily lives, and that it may transform us into pilgrims of Christian hope.',
+		title: `Pope's Intention for the month of December`,
+		description: '<strong>For pilgrims of hope: </strong><br>We pray that this Jubilee Year strengthen our faith, helping us to recognize the Risen Christ in our daily lives, and that it may transform us into pilgrims of Christian hope.',
 	}
 ];
 
