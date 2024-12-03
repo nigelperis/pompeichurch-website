@@ -1,41 +1,34 @@
-# Astro project bootstraped using create astro
+<div align="center">
+    <h1 align="center">
+         Our Lady of Pompei Church Gurpur Kaikamba ⛪✝️
+    </h1>
+    This project, <a href="https://pompeichurch.in/">pompeichurch.in</a> is a labor of love, designed to keep parishioners and visitors informed about everything happening in our church right at their fingertips. 
+    <br></br>
+      <img src="src\assets\prototype.png" alt="protoype" height="500">
+      <br></br>
+      <img src="src\assets\prototype-kok.png" alt="protoype-kok" height="500">
+</div>
 
-```sh
-pnpm dlx create astro@latest -- --template basics
-```
+## 🙌 Key Features 
+With comprehensive information about the church since its inception, we aim to share current affairs through a dedicated events webpage and offer heartfelt tributes to parishioners who have departed for their heavenly abode. Mass Timings helps one to plan thier spiritual journey effortlessly. Sections for Wards, Associations, Halls, Convents, and Institutions and much more!
 
-## 🚀 Project Structure
+## Highlights That Set us Apart 
+✨ Bilingual Support : Konkani and English<br>
+✨ Prayer Corner <br>
+✨ Upcoming Events <br>
+✨ Rich Gallery <br>
+✨ Social Media Integration <br>
 
-Inside our Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where i like to put any Astro/React components.
-
-Any static assets, like images, can be placed in the `public/` directory.
 
 ## 🚀 Getting Started
+<i>To get [pompeichurch.in](https://pompeichurch.in/) on your local machine follow the steps given below :</i>
 
 ### 1. Clone the Repository
 
 First, you'll need to clone the repository to your local machine. Open your terminal and run the following command:
 
 ```bash
-git clone https://github.com/username/repo.git
+git clone https://github.com/nigelperis/pompeichurch-website.git
 ```
 
 ### 2. Navigate to the Project Directory
@@ -43,7 +36,7 @@ git clone https://github.com/username/repo.git
 Change your directory to the project folder:
 
 ```bash
-cd repo
+cd astro-frontend
 ```
 
 ### 3. Install Dependencies
@@ -58,12 +51,12 @@ pnpm install
 
 ### 4. Run the Project
 
-Now, you can run the project. Use the following command:
+Now, you can run the project on your localhost. Use the following command:
 
 For **pnpm**:
 
 ```bash
-pnpm dev
+pnpm run dev
 ```
 
 ## ⚙️ Technologies Used
@@ -73,21 +66,12 @@ This project utilizes the following technologies:
 - **Package Manager**: `pnpm`
 - **Framework**: `Astro`
 - **Styling**: `Tailwind CSS`
-- **Formatter**: `Prettier`
+- **CMS**: `Strapi`
+- **Database**: `PostgreSQL`
+- **Deployment**: `Netlify`
+- **Analytics**: `Google Analytics + Microsoft Clarity`
 
-## 🧞 Commands
 
-All commands are run from the root of the project, from a terminal:
+## 👀 Explore our site [pompeichurch.in](https://pompeichurch.in/)
 
-| Command                    | Action                                           |
-| :------------------------- | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm run dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm run build`           | Build your production site to `./dist/`          |
-| `pnpm run preview`         | Preview your build locally, before deploying     |
-| `pnpm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [astro documentation](https://docs.astro.build)
+This website is more than just a digital presence; it’s a step towards making church life more accessible to everyone, everywhere. 😀
