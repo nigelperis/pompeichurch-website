@@ -4,9 +4,9 @@
     </h1>
     This project, <a href="https://pompeichurch.in/">pompeichurch.in</a> is a labor of love, designed to keep parishioners and visitors informed about everything happening in our church right at their fingertips. 
     <br></br>
-      <img src="src\assets\prototype.png" alt="protoype" height="500">
+      <img src="public\prototype.png" alt="protoype" height="500">
       <br></br>
-      <img src="src\assets\prototype-kok.png" alt="protoype-kok" height="500">
+      <img src="public\prototype-kok.png" alt="protoype konkani" height="500">
 </div>
 
 ## 🙌 Key Features 
