@@ -2,17 +2,17 @@
     <h1 align="center">
          Our Lady of Pompei Church Gurpur Kaikamba ⛪✝️
     </h1>
-    This project, <a href="https://pompeichurch.in/">pompeichurch.in</a> is a labor of love, designed to keep parishioners and visitors informed about everything happening in our church right at their fingertips. 
+    This project, <a href="https://pompeichurch.in/">pompeichurch.in</a> is a labor of love, designed to keep parishioners and visitors informed about everything happening in our church right at their fingertips.
     <br></br>
-      <img src="public\prototype.png" alt="protoype" height="500">
+      <img src="public/prototype.png" alt="protoype" height="500">
       <br></br>
-      <img src="public\prototype-kok.png" alt="protoype konkani" height="500">
+      <img src="public/prototype-kok.png" alt="protoype konkani" height="500">
 </div>
 
-## 🙌 Key Features 
+## 🙌 Key Features
 With comprehensive information about the church since its inception, we aim to share current affairs through a dedicated events webpage and offer heartfelt tributes to parishioners who have departed for their heavenly abode. Mass Timings helps one to plan thier spiritual journey effortlessly. Sections for Wards, Associations, Halls, Convents, and Institutions and much more!
 
-## Highlights That Set us Apart 
+## Highlights That Set us Apart
 ✨ Bilingual Support : Konkani and English<br>
 ✨ Prayer Corner <br>
 ✨ Upcoming Events <br>
