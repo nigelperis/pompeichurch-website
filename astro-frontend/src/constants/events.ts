@@ -63,7 +63,7 @@ const events = [
 		facebookLink: 'https://www.facebook.com/share/p/JTjjSqKFdj8fksMF/',
 	},
 	{
-		eventName: '	PCL Auction-2024',
+		eventName: 'PCL Auction-2024',
 		eventNameKok: 'ಪೊಂಪೈ ಕ್ರಿಕೆಟ್ ಲೀಗ್ - 2024 Auction',
 		slug: 'pcl-auction-2024',
 		imageUrl: event12,
@@ -92,7 +92,7 @@ const events = [
 		facebookLink: 'https://www.facebook.com/share/p/XewSBgFUAJZPErNd/',
 	},
 	{
-		eventName: 'Annual Feast 2024',
+		eventName: 'Annual Feast-2024',
 		eventNameKok: 'ವಡ್ಲೆಂ ಫೆಸ್ತ್ - 2024',
 		slug: 'annual-feast',
 		imageUrl: event10,
@@ -101,7 +101,7 @@ const events = [
 		facebookLink: 'https://www.facebook.com/share/p/YAMxApxg1CHCMZhW/',
 	},
 	{
-		eventName: 'Vespers Sunday 2024',
+		eventName: 'Vespers-2024',
 		eventNameKok: 'ಬೆಸ್ಪಾಚೊ ಸಂಭ್ರಮ್ - 2024',
 		slug: 'vespers-sunday',
 		imageUrl: event9,
@@ -110,7 +110,7 @@ const events = [
 		facebookLink: 'https://www.facebook.com/share/p/q5kKE27YtCg9Q9Yo/',
 	},
 	{
-		eventName: 'Confraternity Sunday 2024',
+		eventName: 'Confraternity Sunday-2024',
 		eventNameKok: 'ಕೊಂಪ್ರಿಚ್ಯಾ ಆಯ್ತಾರಾಚೊ ಸಂಭ್ರಮ್ - 2024',
 		slug: 'confraternity-sunday',
 		imageUrl: event8,
@@ -119,7 +119,7 @@ const events = [
 		facebookLink: 'https://www.facebook.com/share/p/Ux5bBDZ4GGF2HF57/',
 	},
 	{
-		eventName: 'Papal Flag Hoisting 2024',
+		eventName: 'Papal Flag Hoisting-2024',
 		eventNameKok: 'ಪಾಪಾಲ್ ಬಾವ್ಟೊ ಉಬಾರ್ಚೆ ಕಾರ್ಯೆಂ - 2024',
 		slug: 'papal-flag-hoisting',
 		imageUrl: event7,
@@ -128,7 +128,7 @@ const events = [
 		facebookLink: 'https://www.facebook.com/share/p/EtmT92AHGXZtgRzF/',
 	},
 	{
-		eventName: 'Saint Life Enactment',
+		eventName: 'Saints Life Enactment',
 		eventNameKok: 'ಸಾಂತಾಚಿ ಜಿಣಿ ಸಾದರ್',
 		slug: 'saint-life-enactment',
 		imageUrl: event6,
@@ -167,7 +167,7 @@ const events = [
 		facebookLink: 'https://www.facebook.com/share/p/4SFQGJhW8ff5YFvL/',
 	},
 	{
-		eventName: 'Mission Sunday 2024',
+		eventName: 'Mission Sunday-2024',
 		eventNameKok: 'ಮಿಸಾಂವ್ ಆಯ್ತಾರ್ - 2024',
 		slug: 'mission-sunday',
 		imageUrl: event5,
@@ -181,7 +181,7 @@ const events = [
 		facebookLink: 'https://www.facebook.com/share/p/7VE3q9Bh8rCEXdVZ/',
 	},
 	{
-		eventName: 'Vehicle Blessing 2024',
+		eventName: 'Vehicle Blessing-2024',
 		eventNameKok: 'ವಾಹನಾಂ ಬೆಂಜಾರ್ - 2024',
 		slug: 'vehicle-blessing',
 		imageUrl: event4,
@@ -190,7 +190,7 @@ const events = [
 		facebookLink: 'https://www.facebook.com/share/p/NPTp5ADmUMFJaMdj/',
 	},
 	{
-		eventName: 'Welcome to Deacon',
+		eventName: 'Deacon Welcome',
 		eventNameKok: 'ದಿಯಾಕೊನ್ ಬಾಪಾಕ್ ಸ್ವಾಗತ್💐',
 		slug: 'deacon-welcome',
 		imageUrl: event3,
@@ -199,7 +199,7 @@ const events = [
 		facebookLink: 'https://www.facebook.com/share/p/c36mshHfh4CXpyem/',
 	},
 	{
-		eventName: 'A day with Lord',
+		eventName: 'A day with The Lord',
 		eventNameKok: 'ಸೊಮ್ಯಾ ಸಾಂಗಾತಾ ಧಾ ವೊರಾಂ ',
 		slug: 'day-with-lord',
 		imageUrl: event2,
@@ -208,7 +208,7 @@ const events = [
 		facebookLink: 'https://www.facebook.com/share/p/EtmT92AHGXZtgRzF/',
 	},
 	{
-		eventName: 'PYC League 2024',
+		eventName: 'PYC Champions League-2024',
 		eventNameKok: 'ಪಿ.ವೈ.ಸಿ. ಚಾಂಪಿಯನ್ಸ್ ಲೀಗ್ 2024 SEASON-2',
 		slug: 'pyc-league-2024',
 		imageUrl: event1,

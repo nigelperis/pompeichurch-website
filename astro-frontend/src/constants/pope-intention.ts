@@ -56,10 +56,11 @@ const popeIntention = [
 			'<strong>For anyone who has lost a child:</strong><br>We pray that all parents who mourn the loss of a son or daughter find support in their community and receive peace and consolation from the Holy Spirit.',
 	},
 	{
-		month:12,
+		month: 12,
 		title: `Pope's Intention for the month of December`,
-		description: '<strong>For pilgrims of hope: </strong><br>We pray that this Jubilee Year strengthen our faith, helping us to recognize the Risen Christ in our daily lives, and that it may transform us into pilgrims of Christian hope.',
-	}
+		description:
+			'<strong>For pilgrims of hope: </strong><br>We pray that this Jubilee Year strengthen our faith, helping us to recognize the Risen Christ in our daily lives, and that it may transform us into pilgrims of Christian hope.',
+	},
 ];
 
 export { popeIntention };
