@@ -14,6 +14,8 @@ import frPaulPinto from '~/assets/fr-paul-pinto.jpg';
 import frPaulRego from '~/assets/fr-paul-rego.jpeg';
 import frRaphaelPinto from '~/assets/fr-raphael-pinto.jpg';
 import frStanleyPeriera from '~/assets/fr-stanley-periera.jpeg';
+import frRudolphDsa from '~/assets/fr-ravi-dsa.jpg';
+import dnVikasPereira from '~/assets/dn-vikas-pereira.jpg'
 
 const parishPriests = [
 	{
@@ -96,6 +98,18 @@ const parishPriests = [
 		name: 'anthonylobo',
 		date: '2016-22',
 	},
+	//TODO: temporary date, updated once father leaves
+	{
+		imageUrl: frRudolphDsa,
+		name: 'rudolphdsa',
+		date: '2022-Present'
+	},
+	//TODO: temporary card, remove once deacon leaves
+	{
+		imageUrl: dnVikasPereira,
+		name: 'vikaspereira',
+		date: '2024-Present'
+	}
 ];
 
 export { parishPriests };

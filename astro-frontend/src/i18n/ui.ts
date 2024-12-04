@@ -151,6 +151,9 @@ export const ui = {
 		'priest.gregoryserrao': 'Rev. Fr. Gregory Serrao',
 		'priest.paulpinto': 'Rev. Fr. Paul Pinto',
 		'priest.anthonylobo': 'Rev. Fr. Anthony Lobo',
+		'priest.rudolphdsa':'V. Rev. Fr. Rudolph Ravi DSa',
+		//TODO: remove below line after deacon leaves
+		'priest.vikaspereira':'Deacon Vikas Pereira',
 		'bethany.title': 'Bethany School (CBSE)',
 		'rosamystica.title': 'Rosa Mystica Educational Institutions',
 		'rosamystica.higher-primary-school': 'Rosa Mystica Higher Primary School',
@@ -484,6 +487,9 @@ export const ui = {
 		'priest.gregoryserrao': 'ಮಾ| ಬಾ| ಗ್ರೆಗರಿ ಸೆರಾವೊ',
 		'priest.paulpinto': 'ಮಾ| ಬಾ| ಪಾವ್ಲ್ ಪಿಂಟೊ',
 		'priest.anthonylobo': 'ಮಾ| ಬಾ| ಆ್ಯಂಟನಿ ಲೋಬೊ',
+		'priest.rudolphdsa':'ಭೊ| ಮಾ| ಬಾ| ರುಡೋಲ್ಫ್ ರವಿ ಡೆಸಾ',
+		//TODO: remove below line after deacon leaves
+		'priest.vikaspereira':'ದಿಯಾಕೊನ್ ವಿಕಾಸ್ ಪಿರೇರಾ',
 		'bethany.title': 'ಬೆಥನಿ ಸ್ಕೂಲ್ (ಸಿ.ಬಿ.ಎಸ್.ಸಿ)',
 		'jeevadaan.title': 'ಜೀವದಾನ',
 		'rosamystica.title': 'ರೋಸಾ ಮಿಸ್ತಿಕಾ ಶಿಕ್ಪಾ ಸಂಸ್ಥೆ',
