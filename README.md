@@ -1,14 +1,9 @@
-<div align="center">
-    <h1 align="center">
-         Our Lady of Pompei Church Gurpur Kaikamba ⛪✝️
-    </h1>
-    This project, <a href="https://pompeichurch.in/">pompeichurch.in</a> is a labor of love, designed to keep parishioners and visitors informed about everything happening in our church right at their fingertips.
-    <br></br>
-    <img src="astro-frontend/public/prototype.png" alt="prototype" height="500">
-    <br></br>
-    <img src="astro-frontend/public/prototype-kok.png" alt="prototype Konkani" height="500">
-</div>
+# Our Lady of Pompei Church Gurpur Kaikamba ⛪✝️
 
+ This project, [pompeichurch.in](https://pompeichurch.in/) is a labor of love, designed to keep parishioners and visitors informed about everything happening in our church right at their fingertips.
+
+ ![prototype](astro-frontend/public/prototype.png)
+ ![prototype Konkani](astro-frontend/public/prototype-kok.png)
 
 ## Key Features
 
@@ -34,7 +29,7 @@ First, you'll need to clone the repository to your local machine. Open your term
 ```bash
 git clone https://github.com/nigelperis/pompeichurch-website.git
 ```
-# For astro frontend
+# For astro - frontend
 
 ### 2. Navigate to the Frontend Directory
 
@@ -63,8 +58,9 @@ For **pnpm**:
 ```bash
 pnpm run dev
 ```
+Once the development server starts, the application will typically be available at http://localhost:3000 (or another port if specified). You can Ctrl+click on the link to open it in your browser.
 
-# For strapi backend
+# For strapi - backend
 
 ### 2. Navigate to the Backend Directory
 
@@ -84,7 +80,11 @@ For **npm**:
 npm i
 ```
 
-### 4. Run the Project
+### 4. Configure Environment Variables
+
+Create a `.env.local` file based on the [`.env.example`](strapi-backend/.env.example) file.
+
+### 5. Run the Project
 
 Start the backend server on your localhost:
 
@@ -94,30 +94,19 @@ For **npm**:
 npm run develop
 ```
 
-# ⚒️ Environments
+Once the server is running, it will be available at http://localhost:1337 (or another port if specified). You can Ctrl+click on the link to open it in your browser.
 
-Make sure to configure the following environment variables in your .env file:
-
-```bash
-HOST=0.0.0.0
-PORT=1337
-APP_KEYS="toBeModified1,toBeModified2"
-API_TOKEN_SALT=tobemodified
-ADMIN_JWT_SECRET=tobemodified
-TRANSFER_TOKEN_SALT=tobemodified
-JWT_SECRET=tobemodified
-```
 
 ## ⚙️ Technologies Used
 
 This project utilizes the following technologies:
 
-- **Framework**: `Astro` 🌟
-- **Styling**: `Tailwind CSS` 🎨
-- **CMS**: `Strapi` 🛠️
-- **Database**: `PostgreSQL` 🗂️
-- **Deployment**: `Netlify` 🚀
-- **Analytics**: `Google Analytics + Microsoft Clarity` 💡
+- **Framework**: [Astro](https://astro.build/) 🌟
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/) 🎨
+- **CMS**: [Strapi](https://strapi.io/) 🛠️
+- **Database**: [PostgreSQL](https://www.postgresql.org/) 🗂️
+- **Deployment**: [Netlify](https://www.netlify.com/) 🚀
+- **Analytics**: [Google Analytics](https://developers.google.com/analytics) + [Microsoft Clarity](https://clarity.microsoft.com/) 💡
 
 ## 👀 Explore our site [pompeichurch.in](https://pompeichurch.in/)
 
@@ -127,4 +116,3 @@ This website is more than just a digital presence; it’s a step towards making 
 ## 📜 License
 This project is licensed under the [MIT License](LICENSE).
 
-`#Astro` `#TailwindCSS` `#Strapi` `#PostgreSQL` `#BilingualSupport` `#ChurchWebsite` `#Spirituality` `#ResponsiveDesign`  `#PrayerCorner` `#OurLadyOfPompeiChurch`
