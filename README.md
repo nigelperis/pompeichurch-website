@@ -7,20 +7,20 @@
 
 ## Key Features
 
-🙌🕊️📅⏰🏠 With comprehensive information about the church since its inception, we aim to share current affairs through a dedicated events webpage and offer heartfelt tributes to parishioners who have departed for their heavenly abode. Mass Timings helps one to plan thier spiritual journey effortlessly. Sections for Wards, Associations, Halls, Convents, and Institutions and much more!
+🙌🕊️📅⏰🏠 With comprehensive information about the church since its inception, we aim to share current affairs through a dedicated events webpage and offer heartfelt tributes to parishioners who have departed for their heavenly abode. Mass Timings helps one to plan their spiritual journey effortlessly. Sections for Wards, Associations, Halls, Convents, and Institutions and much more!
 
-## Highlights That Set us Apart
+## Highlights That Set Us Apart
 
-✨ Bilingual Support (Konkani and English)<br>
-✨ Prayer Corner <br>
-✨ Upcoming Events <br>
-✨ Rich Gallery <br>
-✨ Social Media Integration <br>
+✨ Bilingual Support (Konkani and English)  
+✨ Prayer Corner  
+✨ Upcoming Events  
+✨ Rich Gallery  
+✨ Social Media Integration  
 
 
 ## 🚀 Getting Started
 
-<i>To get [pompeichurch.in](https://pompeichurch.in/) on your local machine follow the steps given below :</i>
+*To get [pompeichurch.in](https://pompeichurch.in/) on your local machine follow the steps given below :*
 
 ### 1. Clone the Repository
 
@@ -29,6 +29,7 @@ First, you'll need to clone the repository to your local machine. Open your term
 ```bash
 git clone https://github.com/nigelperis/pompeichurch-website.git
 ```
+
 # For astro - frontend
 
 ### 2. Navigate to the Frontend Directory
@@ -72,7 +73,7 @@ cd strapi-backend
 
 ### 3. Install Dependencies
 
-Install the required dependencies for backend.  You can use the following command:
+Install the required dependencies for the backend.  You can use the following command:
 
 For **npm**:
 
