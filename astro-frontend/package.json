@@ -23,6 +23,7 @@
 		"@fontsource/noto-sans-kannada": "5.0.14",
 		"@fontsource/poppins": "5.0.15",
 		"@strapi/blocks-react-renderer": "1.0.1",
+		"@studio-freight/lenis": "1.0.42",
 		"aos": "2.3.4",
 		"astro": "4.15.9",
 		"astro-icon": "1.1.1",
