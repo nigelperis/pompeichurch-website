@@ -39,7 +39,7 @@ const t = useTranslations(lang);
 									href={
 										link.type === 'link'
 											? getRelativeLocaleUrl(lang, link.href || '')
-											: '#'
+											: 'javascript:void(0);'
 									}
 									class={cn(
 										'font-poppins font-semibold',
