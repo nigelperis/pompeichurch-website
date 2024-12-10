@@ -131,6 +131,7 @@ const { title } = Astro.props;
 			y.parentNode.insertBefore(t, y);
 		})(window, document, 'clarity', 'script', 'oxa7yg1jfv');
 	</script>
+
 	)}
 	</head>
 	<body class="w-screen overflow-x-hidden">
@@ -138,6 +139,23 @@ const { title } = Astro.props;
 		<slot />
 		<Footer />
 		<ScrollTop />
+		<style>
+			:global(::-webkit-scrollbar) {
+				width: 0.15em;
+			}
+
+			:global(::-webkit-scrollbar-track) {
+				box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+			}
+
+			:global(::-webkit-scrollbar-thumb) {
+				background-color: #ffdd00;
+				outline: 1px solid slategrey;
+				border-radius: 10px;
+			}
+
+		</style>
+
 		<script>
 			import { aosInit } from '~/helpers/aos-config';
 			aosInit();
