@@ -39,7 +39,7 @@ const t = useTranslations(lang);
 									href={
 										link.type === 'link'
 											? getRelativeLocaleUrl(lang, link.href || '')
-											: '#'
+											: 'javascript:void(0);'
 									}
 									class={cn(
 										'font-poppins font-semibold',
@@ -196,10 +196,9 @@ const t = useTranslations(lang);
 		}
 
 		ul > li.group:hover > ul,
-		ul > li.group:focus-within > ul,
-		ul > li.group > ul:hover {
-			display: block;
-		}
+ul > li.group > ul:hover {
+    display: block;
+}
 
 		ul > li.group:hover,
 		ul > li.group:focus-within {
