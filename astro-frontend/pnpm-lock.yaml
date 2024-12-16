@@ -10,10 +10,10 @@ importers:
     dependencies:
       '@astrojs/node':
         specifier: ^9.0.0
-        version: 9.0.0(astro@5.0.5(@types/node@22.9.0)(jiti@1.21.6)(rollup@4.27.2)(typescript@5.7.2)(yaml@2.6.0))
+        version: 9.0.0(astro@5.0.8(@types/node@22.9.0)(jiti@1.21.6)(rollup@4.27.2)(typescript@5.7.2)(yaml@2.6.0))
       '@astrojs/react':
-        specifier: 4.1.0
-        version: 4.1.0(@types/node@22.9.0)(@types/react-dom@19.0.2(@types/react@19.0.1))(@types/react@19.0.1)(jiti@1.21.6)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(yaml@2.6.0)
+        specifier: 4.1.1
+        version: 4.1.1(@types/node@22.9.0)(@types/react-dom@19.0.2(@types/react@19.0.1))(@types/react@19.0.1)(jiti@1.21.6)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(yaml@2.6.0)
       '@fontsource/bona-nova-sc':
         specifier: 5.1.0
         version: 5.1.0
@@ -42,8 +42,8 @@ importers:
         specifier: 2.3.4
         version: 2.3.4
       astro:
-        specifier: 5.0.5
-        version: 5.0.5(@types/node@22.9.0)(jiti@1.21.6)(rollup@4.27.2)(typescript@5.7.2)(yaml@2.6.0)
+        specifier: 5.0.8
+        version: 5.0.8(@types/node@22.9.0)(jiti@1.21.6)(rollup@4.27.2)(typescript@5.7.2)(yaml@2.6.0)
       astro-icon:
         specifier: 1.1.4
         version: 1.1.4
@@ -92,7 +92,7 @@ importers:
         version: 2.1.2
       '@astrojs/tailwind':
         specifier: 5.1.3
-        version: 5.1.3(astro@5.0.5(@types/node@22.9.0)(jiti@1.21.6)(rollup@4.27.2)(typescript@5.7.2)(yaml@2.6.0))(tailwindcss@3.4.16)
+        version: 5.1.3(astro@5.0.8(@types/node@22.9.0)(jiti@1.21.6)(rollup@4.27.2)(typescript@5.7.2)(yaml@2.6.0))(tailwindcss@3.4.16)
       '@types/aos':
         specifier: 3.0.7
         version: 3.0.7
@@ -206,8 +206,8 @@ packages:
     resolution: {integrity: sha512-GilTHKGCW6HMq7y3BUv9Ac7GMe/MO9gi9GW62GzKtth0SwukCu/qp2wLiGpEujhY+VVhaG9v7kv/5vFzvf4NYw==}
     engines: {node: ^18.17.1 || ^20.3.0 || >=22.0.0}
 
-  '@astrojs/react@4.1.0':
-    resolution: {integrity: sha512-8F0ncvcCexVeQZMwPouLSFuzCK1KXUIYQ57lW3ZG2p7B5DGAajXGanb/CGF7MMSpX8Z0t9sELQqLHOCV/+78Ig==}
+  '@astrojs/react@4.1.1':
+    resolution: {integrity: sha512-hT66DWYGquAgXm0miy+mjxEp9zOiqhKUWzLaJbXv+PDlObggmj8uiAkc+JWOs6lQdC4tldY3vIAr50ex0W9NKA==}
     engines: {node: ^18.17.1 || ^20.3.0 || >=22.0.0}
     peerDependencies:
       '@types/react': ^17.0.50 || ^18.0.21 || ^19.0.0
@@ -1232,8 +1232,8 @@ packages:
   astro-icon@1.1.4:
     resolution: {integrity: sha512-sMLkQaevIQLv38WBzb/RDbsmxhg5+X+KcNmpTi9cE6MLurNWU1MPnlO87d9Vwg4HxTenKpDlYp81A3syXFW/gw==}
 
-  astro@5.0.5:
-    resolution: {integrity: sha512-xfptdmurDsQcj/Anc7mU+eKlcyV7ppJIlmaSwhX3ZWwK5N/0rGKVmUqnuILgR6MB0XVJiIfublNzDGoyj4Q6BQ==}
+  astro@5.0.8:
+    resolution: {integrity: sha512-nW4TmRCeG3t2iDmm91KPvYpYNljNfjeaneN4BX463DKAZ3MPmUn92aKefOXC0bjMHQ2Gamc8MIZ6sORS2EhyAQ==}
     engines: {node: ^18.17.1 || ^20.3.0 || >=22.0.0, npm: '>=9.6.5', pnpm: '>=7.1.0'}
     hasBin: true
 
@@ -3385,9 +3385,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@astrojs/node@9.0.0(astro@5.0.5(@types/node@22.9.0)(jiti@1.21.6)(rollup@4.27.2)(typescript@5.7.2)(yaml@2.6.0))':
+  '@astrojs/node@9.0.0(astro@5.0.8(@types/node@22.9.0)(jiti@1.21.6)(rollup@4.27.2)(typescript@5.7.2)(yaml@2.6.0))':
     dependencies:
-      astro: 5.0.5(@types/node@22.9.0)(jiti@1.21.6)(rollup@4.27.2)(typescript@5.7.2)(yaml@2.6.0)
+      astro: 5.0.8(@types/node@22.9.0)(jiti@1.21.6)(rollup@4.27.2)(typescript@5.7.2)(yaml@2.6.0)
       send: 1.1.0
       server-destroy: 1.0.1
     transitivePeerDependencies:
@@ -3402,7 +3402,7 @@ snapshots:
     dependencies:
       prismjs: 1.29.0
 
-  '@astrojs/react@4.1.0(@types/node@22.9.0)(@types/react-dom@19.0.2(@types/react@19.0.1))(@types/react@19.0.1)(jiti@1.21.6)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(yaml@2.6.0)':
+  '@astrojs/react@4.1.1(@types/node@22.9.0)(@types/react-dom@19.0.2(@types/react@19.0.1))(@types/react@19.0.1)(jiti@1.21.6)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(yaml@2.6.0)':
     dependencies:
       '@types/react': 19.0.1
       '@types/react-dom': 19.0.2(@types/react@19.0.1)
@@ -3425,9 +3425,9 @@ snapshots:
       - tsx
       - yaml
 
-  '@astrojs/tailwind@5.1.3(astro@5.0.5(@types/node@22.9.0)(jiti@1.21.6)(rollup@4.27.2)(typescript@5.7.2)(yaml@2.6.0))(tailwindcss@3.4.16)':
+  '@astrojs/tailwind@5.1.3(astro@5.0.8(@types/node@22.9.0)(jiti@1.21.6)(rollup@4.27.2)(typescript@5.7.2)(yaml@2.6.0))(tailwindcss@3.4.16)':
     dependencies:
-      astro: 5.0.5(@types/node@22.9.0)(jiti@1.21.6)(rollup@4.27.2)(typescript@5.7.2)(yaml@2.6.0)
+      astro: 5.0.8(@types/node@22.9.0)(jiti@1.21.6)(rollup@4.27.2)(typescript@5.7.2)(yaml@2.6.0)
       autoprefixer: 10.4.20(postcss@8.4.49)
       postcss: 8.4.49
       postcss-load-config: 4.0.2(postcss@8.4.49)
@@ -4400,7 +4400,7 @@ snapshots:
       - debug
       - supports-color
 
-  astro@5.0.5(@types/node@22.9.0)(jiti@1.21.6)(rollup@4.27.2)(typescript@5.7.2)(yaml@2.6.0):
+  astro@5.0.8(@types/node@22.9.0)(jiti@1.21.6)(rollup@4.27.2)(typescript@5.7.2)(yaml@2.6.0):
     dependencies:
       '@astrojs/compiler': 2.10.3
       '@astrojs/internal-helpers': 0.4.2

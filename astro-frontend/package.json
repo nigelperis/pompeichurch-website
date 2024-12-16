@@ -14,7 +14,7 @@
 	},
 	"dependencies": {
 		"@astrojs/node": "^9.0.0",
-		"@astrojs/react": "4.1.0",
+		"@astrojs/react": "4.1.1",
 		"@fontsource/bona-nova-sc": "5.1.0",
 		"@fontsource/geist-sans": "5.1.0",
 		"@fontsource/lora": "5.1.0",
@@ -24,7 +24,7 @@
 		"@fontsource/poppins": "5.1.0",
 		"@strapi/blocks-react-renderer": "1.0.1",
 		"aos": "2.3.4",
-		"astro": "5.0.5",
+		"astro": "5.0.8",
 		"astro-icon": "1.1.4",
 		"clsx": "2.1.1",
 		"embla-carousel": "8.5.1",
