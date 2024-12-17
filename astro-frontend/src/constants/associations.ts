@@ -13,7 +13,7 @@ import ycs from '~/assets/ycs.jpg';
 const associations = [
 	{
 		slug: 'svp',
-		title: 'svp',
+		title: 'SVP',
 		associationImage: svp,
 		description: `
 		<strong>In the service of young brothers and sisters</strong><br>
@@ -98,7 +98,7 @@ const associations = [
 	},
 	{
 		slug: 'ycs',
-		title: 'Young catholic students',
+		title: 'Young Catholic Students',
 		associationImage: ycs,
 		description: `In 1931, Cardinal Joseph Cardijn from Belgium initiated this movement with the aim of guiding the youth who had passed SSLC, to walk alongside their younger peers, to reflect and deliberate on society, to ignite a revolution of change in life, and to build a better future. <br/><br/>
 
