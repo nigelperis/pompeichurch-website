@@ -10,7 +10,7 @@
     width: 100%;
     height: 2px;
     background-color: rgba(200, 200, 200, 0.5);
-    z-index: 1000;
+    z-index: 100;
   }
   .scroll-progress-indicator {
     height: 100%;
@@ -27,7 +27,7 @@ function calculateScrollProgress() {
     const docHeight = document.documentElement.scrollHeight;
     const windowHeight = window.innerHeight;
 
-		
+
     const scrollPercent = (scrollTop / (docHeight - windowHeight)) * 100;
     const scrollProgress = Math.min(scrollPercent, 100);
 
