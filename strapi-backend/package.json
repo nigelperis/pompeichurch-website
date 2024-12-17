@@ -18,7 +18,7 @@
     "@strapi/plugin-i18n": "4.25.3",
     "@strapi/plugin-users-permissions": "4.25.3",
     "@strapi/strapi": "4.25.3",
-    "pg": "8.8.0",
+    "pg": "8.13.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "5.3.4",
