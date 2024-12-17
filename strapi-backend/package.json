@@ -15,9 +15,9 @@
   },
   "dependencies": {
     "@strapi/plugin-cloud": "4.25.3",
-    "@strapi/plugin-i18n": "4.25.3",
-    "@strapi/plugin-users-permissions": "4.25.3",
-    "@strapi/strapi": "4.25.3",
+    "@strapi/plugin-i18n": "4.25.13",
+    "@strapi/plugin-users-permissions": "4.25.18",
+    "@strapi/strapi": "4.25.18",
     "pg": "8.8.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
