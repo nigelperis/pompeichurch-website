@@ -46,6 +46,10 @@ export const navLinks = [
 				href: '/parish-pastoral-21-commissions',
 			},
 			{
+				title: 'nav.parish-vocations',
+				href: '/parish-vocations',
+			},
+			{
 				title: 'nav.wards',
 				href: '/wards',
 			},

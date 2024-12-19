@@ -1,7 +1,7 @@
 ---
 import Layout from '~/layouts/layout.astro';
-import ParishPriestsList from '~/components/sections/parish-priests/parish-priests-list.astro';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+import ParishVocationsList from '~/components/sections/parish-vocations/parish-vocations-list.astro';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -13,16 +13,14 @@ const t = useTranslations(lang);
 			<h1
 				class="mb-4 border-l-4 border-natgeo-yellow pl-3 text-3xl font-extrabold lg:text-4xl"
 			>
-				{t('nav.parish-priests')}
+				{t('nav.parish-vocations')}
 			</h1>
 			<p class="text-justify font-geist text-lg text-slate-700">
-				ಫಿರ್ಗಜೆಚೊ ಶತಮಾನೋತ್ಸವ್ ಸಂಭ್ರಮ್ ಆಚರಣ್ ಕರ್ತನಾ ಪಾಟ್ಲ್ಯಾ ಶೆಂಬೊರ್ ವರ್ಸಾನಿಂ
-				ಫಿರ್ಗಜೆಚ್ಯಾ ಭಾವಾರ್ಥಾಚಾ ಆತ್ಮಿಕ್ ಪಯ್ಣಾರ್ ತಶೆಂಚ್ ಸಾಮಾಜಿಕ್ ಆನಿ ಲೌಕಿಕ್
-				ಜಿಣಿಯೆಕ್ ಆಧಾರ್ ಜಾಲ್ಲ್ಯಾ ಫಿರ್ಗಜೆಚೆಂ ಸುಂಕಾಣ್ ಹಾತಿಂ ಘೆವ್ನ್ ಫಿರ್ಗಜ್ ಕುಟ್ಮಾo
-				ಬರ‍್ಯಾ ರಿತಿನ್ ಚಲವ್ನ್ ವ್ಹರ್ನ್ ಆಮ್ಕಾಂ ಶತಮಾನೋತ್ಸವಾಚೆಂ ಭಾಗ್ ಪಳೆoವ್ಕ್ ಫಾವೊ
-				ಕೆಲ್ಲ್ಯಾ ಸರ್ವ್ ಫಿರ್ಗಜ್ ವಿಗಾರಾಂಚಿ ಮೊಟ್ವಿ ಝಳಕ್.
+				Here is a glimpse of the esteemed former parish priests who have
+				nurtured our faith, enriched our community and individual lives, and
+				upheld the cherished legacy of our church throughout these years.
 			</p>
-			<ParishPriestsList />
+			<ParishVocationsList />
 		</section>
 	</main>
 </Layout>

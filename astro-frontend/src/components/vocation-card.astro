@@ -1,0 +1,37 @@
+---
+import { Image } from 'astro:assets';
+
+export interface Props {
+  imageUrl: ImageMetadata;
+  name: string;
+  ward: string;
+  dob?: string;
+  dod?: string;
+  congregation: string;
+  parents?: string;
+}
+
+const { imageUrl, name, ward, dob, dod, congregation, parents } = Astro.props;
+---
+
+<div class="vocation-card bg-white shadow-lg rounded-lg p-6 text-center max-w-md mx-auto hover:shadow-xl transition-shadow duration-300">
+  <!-- Image -->
+  <div class="relative w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-gray-200 shadow-md">
+    <Image
+      src={imageUrl}
+      alt={`Portrait of ${name}`}
+      class="w-full h-full object-cover"
+      sizes="(max-width: 768px) 50vw, 25vw"
+    />
+  </div>
+
+  <!-- Details -->
+  <div class="details">
+    <h3 class="text-xl font-semibold text-gray-900 mb-2">{name}</h3>
+    {ward && <p class="text-sm text-gray-600 italic mb-1">Ward: {ward}</p>}
+    <p class="text-sm text-blue-700 font-medium mb-2">Congregation: {congregation}</p>
+    {dob && <p class="text-sm text-gray-600 mb-1">Date of Birth: {dob}</p>}
+    {dod && <p class="text-sm text-gray-600 mb-1">Date of Death: {dod}</p>}
+    {parents && <p class="text-sm text-gray-600 mb-1">Parents: {parents}</p>}
+  </div>
+</div>
