@@ -23,7 +23,7 @@ export const navLinks = [
 	},
 	{
 		type: 'expandable',
-		title: 'nav.our-church',
+		title: 'nav.about-us',
 		expandedLinks: [
 			{
 				title: 'nav.parish-history',
@@ -111,7 +111,7 @@ export const navLinks = [
 	},
 	{
 		type: 'expandable',
-		title: 'nav.infrastructure',
+		title: 'nav.halls',
 		expandedLinks: [
 			{
 				title: 'nav.pompei-sabha-bhavan',
