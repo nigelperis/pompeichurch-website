@@ -8,7 +8,7 @@ export const defaultLang: keyof typeof languages = 'en';
 export const ui = {
 	en: {
 		'nav.home': 'Home',
-		'nav.our-church': 'About Us',
+		'nav.about-us': 'About Us',
 		'nav.associations': 'Associations',
 		'nav.wards': 'Wards',
 		'nav.news': 'News',
@@ -23,7 +23,7 @@ export const ui = {
 		'nav.parish-pastoral-21-commissions': 'Parish Pastoral 21 Commissions',
 		'nav.institutions': 'Institutions',
 		'nav.convents': 'Convents',
-		'nav.infrastructure': 'Halls',
+		'nav.halls': 'Halls',
 		'nav.svp': 'SVP',
 		'nav.icym-pyc': 'ICYM-PYC',
 		'nav.altar-servers': 'Altar Servers',
@@ -344,7 +344,7 @@ export const ui = {
 	},
 	kok: {
 		'nav.home': 'ಹೋಮ್',
-		'nav.our-church': 'ಆಮ್ಚಿ ಫಿರ್ಗಜ್',
+		'nav.about-us': 'ಆಮ್ಚಿ ಫಿರ್ಗಜ್',
 		'nav.institutions': 'ಸಂಸ್ಥೆ',
 		'nav.associations': 'ಸಂಘ್-ಸಂಸ್ಥೆ',
 		'nav.wards': 'ವಾಡೆ',
@@ -357,7 +357,7 @@ export const ui = {
 		'nav.parish-finance-committee': 'ಫಿರ್ಗಜ್ ಆರ್ಥಿಕ್ ಸಮಿತಿ',
 		'nav.parish-pastoral-21-commissions': '21 ಆಯೋಗ್',
 		'nav.convents': 'ಕೊವೆಂತಾಂ',
-		'nav.infrastructure': 'ಸಭಾ ಸಾಲಾಂ',
+		'nav.halls': 'ಸಭಾ ಸಾಲಾಂ',
 		'nav.svp': 'ಸಾಂ. ವಿಶೆಂತ್ ಪಾವ್ಲ್ ಸಭಾ',
 		'nav.icym-pyc': 'ಐ.ಸಿ.ವೈ.ಎಮ್.-ಪಿ.ವೈ.ಸಿ.',
 		'nav.altar-servers': 'ವೆದಿ ಸೆವಕ್',
