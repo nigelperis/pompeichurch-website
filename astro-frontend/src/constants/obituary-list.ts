@@ -1,8 +1,8 @@
-import jeraldRodrigues from '~/assets/ob-jerald-rodrigues.jpg';
 import alwnynDsouza from '~/assets/ob-alwin-dsouza.jpg';
 import felixWalder from '~/assets/ob-felix-walder.jpg';
 import gracianDSouza from '~/assets/ob-gracian-dsouza.jpg';
 import jeevithPinto from '~/assets/ob-jeevith-pinto.jpg';
+import jeraldRodrigues from '~/assets/ob-jerald-rodrigues.jpg';
 import wilfredPinto from '~/assets/ob-wilfred-pinto.jpg';
 
 const obituaryData = [
