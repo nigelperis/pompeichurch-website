@@ -1,3 +1,4 @@
+import jeraldRodrigues from '~/assets/ob-jerald-rodrigues.jpg';
 import alwnynDsouza from '~/assets/ob-alwin-dsouza.jpg';
 import felixWalder from '~/assets/ob-felix-walder.jpg';
 import gracianDSouza from '~/assets/ob-gracian-dsouza.jpg';
@@ -5,6 +6,14 @@ import jeevithPinto from '~/assets/ob-jeevith-pinto.jpg';
 import wilfredPinto from '~/assets/ob-wilfred-pinto.jpg';
 
 const obituaryData = [
+	{
+		name: 'ಜೆರಾಲ್ಡ್ ರೊಡ್ರಿಗಸ್',
+		imageUrl: jeraldRodrigues,
+		age: '71',
+		description: 'ಪತಿ: ರೆಜಿನಾ ರೇಗೊ ',
+		ward: 'ಪೊಂಪೈ ಎ',
+		date: '20-12-2024',
+	},
 	{
 		name: 'ಆಲ್ವಿನ್ ಡಿಸೋಜಾ',
 		imageUrl: alwnynDsouza,
