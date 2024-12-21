@@ -14,16 +14,16 @@ const lang = getLangFromUrl(Astro.url);
 			type="button"
 			id="lang-button"
 			class={cn(
-				'inline-flex font-poppins font-semibold justify-center rounded-md border   border-gray-500 px-2 pt-1 pb-1 text-[16px] ',
-				lang === 'kok' && 'font-noto-sans-kannada xs:font-semibold',
+				'inline-flex font-poppins font-semibold justify-center rounded-md border border-gray-500 px-2 pt-2 pb-1 xs:-mt-1',
+				lang === 'kok' && 'font-noto-sans-kannada text-sm xs:pt-2 xs:font-semibold',
 			)}
-			 style="line-height: 1;font-size: 16px ;"
+			 style="line-height: 1;"
 		>
 			{selectedLanguage}
 			<!-- //TODO (Santhsim): Move this svg to assets -->
 			<svg
 				id="lang-arrow"
-				class="-mr-1 h-5 w-5  transition-transform duration-200 ease-in-out"
+				class="-mr-1 h-5 w-5 transition-transform duration-200 ease-in-out"
 				xmlns="http://www.w3.org/2000/svg"
 				viewBox="0 0 20 20"
 				fill="currentColor"
