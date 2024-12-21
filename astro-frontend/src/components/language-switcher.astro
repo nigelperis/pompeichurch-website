@@ -8,16 +8,17 @@ const selectedLanguage = currentLocale === 'kok' ? 'ಕೊಂಕಣಿ' : 'Engli
 const lang = getLangFromUrl(Astro.url);
 ---
 
-<div class="relative inline-block  text-left">
-	<div class="mt-2 lg:mt-[3px] ">
+<div class="relative inline-block text-left">
+	<div class="mt-2 lg:mt-[3px]">
 		<button
 			type="button"
 			id="lang-button"
 			class={cn(
 				'inline-flex font-poppins font-semibold justify-center rounded-md border border-gray-500 px-2 pt-2 pb-1 xs:-mt-1',
-				lang === 'kok' && 'font-noto-sans-kannada text-sm xs:pt-2 xs:font-semibold',
+				lang === 'kok' &&
+					'font-noto-sans-kannada text-sm xs:pt-2 xs:font-semibold lg:pt-3',
 			)}
-			 style="line-height: 1;"
+			style="line-height: 1;"
 		>
 			{selectedLanguage}
 			<!-- //TODO (Santhsim): Move this svg to assets -->
@@ -28,9 +29,8 @@ const lang = getLangFromUrl(Astro.url);
 				viewBox="0 0 20 20"
 				fill="currentColor"
 				aria-hidden="true"
-				 style="line-height: 1;"
+				style="line-height: 1;"
 			>
-
 				<path
 					fill-rule="evenodd"
 					d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
