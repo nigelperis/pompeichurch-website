@@ -5,7 +5,6 @@ const measurementId = props.measurementId;
 ---
 
 {import.meta.env.MODE === 'production' && (
-	<>
 		<script
 			type="text/partytown"
 			src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}
@@ -25,5 +24,4 @@ const measurementId = props.measurementId;
 			gtag('js', new Date());
 			gtag('config', measurementId);
 		</script>
-	</>
 )}
