@@ -28,15 +28,15 @@ const optimizedBgImage = await getImage({ src: psalmBg });
 	{
 		psalms[lang].map((psalm) => (
 			<div class="bg-opacity-80">
-					<h3
-						class={cn('text-center font-extrabold sm:text-xl', {
-							'font-noto-sans-kannada': lang === 'kok',
-							'font-geist': lang !== 'kok',
-						})}
-					>
-						{psalm.title}
-					</h3>
-					<br />
+				<h3
+					class={cn('text-center font-extrabold sm:text-xl', {
+						'font-noto-sans-kannada': lang === 'kok',
+						'font-geist': lang !== 'kok',
+					})}
+				>
+					{psalm.title}
+				</h3>
+				<br />
 				<p
 					set:html={psalm.content}
 					class={cn('text-center leading-relaxed', {

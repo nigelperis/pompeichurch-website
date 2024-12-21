@@ -1,7 +1,7 @@
-import pcl from '~/assets/pcl.jpg';
 import cartoonia from '~/assets/cartoonia.jpg';
 import pcl1 from '~/assets/pcl-poster-1.jpg';
 import pcl2 from '~/assets/pcl-poster-2.jpg';
+import pcl from '~/assets/pcl.jpg';
 
 const upcomingEvents = [
 	{
