@@ -1,30 +1,4 @@
 ---
-import Layout from '~/layouts/layout.astro';
-import { getLangFromUrl, useTranslations } from '~/i18n/utils';
-import ParishVocationsList from '~/components/sections/parish-vocations/parish-vocations-list.astro';
-
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
----
-
-<Layout title="Pompei Church | Parish Priests">
-	<main class="mx-auto max-w-4xl overflow-hidden bg-white">
-		<section id="parish-priests" class="flex flex-col p-6 pb-4">
-			<h1
-				class="mb-4 border-l-4 border-natgeo-yellow pl-3 text-3xl font-extrabold lg:text-4xl"
-			>
-				{t('nav.parish-vocations')}
-			</h1>
-			<p class="text-justify font-geist text-lg text-slate-700">
-				Here is a glimpse of the esteemed former parish priests who have
-				nurtured our faith, enriched our community and individual lives, and
-				upheld the cherished legacy of our church throughout these years.
-			</p>
-			<ParishVocationsList />
-		</section>
-	</main>
-</Layout>
----
 import { parishPriests } from '~/constants/parish-priests';
 import ProfileCard from '~/components/profile-card.astro';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
