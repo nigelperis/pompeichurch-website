@@ -9,24 +9,27 @@ const lang = getLangFromUrl(Astro.url);
 ---
 
 <div class="relative inline-block text-left">
-	<div>
+	<div class="mt-2 lg:mt-[3px]">
 		<button
 			type="button"
 			id="lang-button"
 			class={cn(
-				'inline-flex font-poppins font-semibold justify-center rounded-md border border-gray-500 px-2 py-1 text-md xs:mt-1',
-				lang === 'kok' && 'font-noto-sans-kannada text-sm xs:font-semibold',
+				'inline-flex font-poppins font-semibold justify-center rounded-md border border-gray-500 px-2 pt-2 pb-1 xs:-mt-1',
+				lang === 'kok' &&
+					'font-noto-sans-kannada text-sm xs:pt-2 xs:font-semibold lg:pt-3',
 			)}
+			style="line-height: 1;"
 		>
 			{selectedLanguage}
 			<!-- //TODO (Santhsim): Move this svg to assets -->
 			<svg
 				id="lang-arrow"
-				class="-mr-1 h-6 w-5 transition-transform duration-200 ease-in-out"
+				class="-mr-1 h-5 w-5 transition-transform duration-200 ease-in-out"
 				xmlns="http://www.w3.org/2000/svg"
 				viewBox="0 0 20 20"
 				fill="currentColor"
 				aria-hidden="true"
+				style="line-height: 1;"
 			>
 				<path
 					fill-rule="evenodd"
