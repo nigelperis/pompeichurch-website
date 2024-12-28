@@ -7,7 +7,7 @@ export interface Props {
   ward: string;
   dob?: string;
   dod?: string;
-  congregation: string;
+  congregation ?: string;
   parents?: string;
 }
 
@@ -28,9 +28,9 @@ const { imageUrl, name, ward, dob, dod, congregation, parents } = Astro.props;
     <h3 class="text-lg lg:text-xl  font-semibold text-gray-900 mb-2">{name}</h3>
 
     <p class="text-md lg:text-sm text-blue-700 font-medium mb-2">{congregation}</p>
-    {ward && <p class="text-md lg:text-sm text-gray-600 italic mb-1"><span class="font-semibold">Ward:</span>{ward}</p>}
+    {ward && <p class="text-md lg:text-sm text-gray-600 italic mb-1"><span class="font-semibold">Ward:</span> {ward}</p>}
     {dob && <p class="text-md lg:text-sm text-gray-600 mb-1"><span class="font-semibold">Date of Birth:</span> {dob}</p>}
     {dod && <p class="text-md lg:text-sm text-gray-600 mb-1"><span class="font-semibold">Date of Death:</span> {dod}</p>}
-    {parents && <p class="text-md lg:text-sm text-gray-600 mb-1"><span class="font-semibold">Parents: </span>{parents}</p>}
+    {parents && <p class="text-md lg:text-sm text-gray-600 mb-1"><span class="font-semibold">Parents: </span> {parents}</p>}
   </div>
 </div>

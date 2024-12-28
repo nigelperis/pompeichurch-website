@@ -357,7 +357,7 @@ export const ui = {
 		'nav.parish-pastoral-council': 'ಫಿರ್ಗಜ್ ಗೊವ್ಳಿಕ್ ಪರಿಷಧ್',
 		'nav.parish-finance-committee': 'ಫಿರ್ಗಜ್ ಆರ್ಥಿಕ್ ಸಮಿತಿ',
 		'nav.parish-pastoral-21-commissions': '21 ಆಯೋಗ್',
-		'nav.religious-vocations': 'ಫಿರ್ಗಜಿಂತ್ಲಿ ಧಾರ್ಮಿಕಾಂ',
+		'nav.religious-vocations': 'ಫಿರ್ಗಜಿಂತ್ಲಿಂ ಧಾರ್ಮಿಕಾಂ',
 		'nav.convents': 'ಕೊವೆಂತಾಂ',
 		'nav.halls': 'ಸಭಾ ಸಾಲಾಂ',
 		'nav.svp': 'ಸಾಂ. ವಿಶೆಂತ್ ಪಾವ್ಲ್ ಸಭಾ',
