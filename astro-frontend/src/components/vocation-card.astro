@@ -14,7 +14,7 @@ export interface Props {
 const { imageUrl, name, ward, dob, dod, congregation, parents } = Astro.props;
 ---
 
-<div class="vocation-card hover:scale-[1.01] rounded-md border p-6 text-center max-w-md mx-auto transition-shadow">
+<div class="vocation-card hover:scale-[1.01] duration-300 transition-transform rounded-md border p-6 text-center max-w-md mx-auto">
   <div class="relative w-[230px] h-[300px] mx-auto mb-6 rounded-full overflow-hidden border-4 border-gray-200 shadow-md">
     <Image
       src={imageUrl}
