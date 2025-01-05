@@ -1,12 +1,14 @@
 ---
-import rosaMysticaHs from '~/assets/rosa-mystica-hs.jpg';
-import rosaMysticaHrps from '~/assets/rosa-mystica-hrps.jpg';
-import rmStaff from '~/assets/rm-pu-staff.jpg';
-import rmPu1 from '~/assets/rm-pu-1.jpg';
-import rmPu2 from '~/assets/rm-pu-2.jpg';
-import rmPu3 from '~/assets/rm-pu-3.jpg';
 import { Image } from 'astro:assets';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+
+//Images
+import rosaMysticaHs from '~/assets/institutions/rosa-mystica-hs.jpg';
+import rosaMysticaHrps from '~/assets/institutions/rosa-mystica-hrps.jpg';
+import rmStaff from '~/assets/institutions/rm-pu-staff.jpg';
+import rmPu1 from '~/assets/institutions/rm-pu-1.jpg';
+import rmPu2 from '~/assets/institutions/rm-pu-2.jpg';
+import rmPu3 from '~/assets/institutions/rm-pu-3.jpg';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);

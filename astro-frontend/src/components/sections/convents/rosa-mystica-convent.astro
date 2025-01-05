@@ -1,7 +1,9 @@
 ---
 import { Image } from 'astro:assets';
-import rosaMysticaConvent from '~/assets/rosa-mystica-convent.jpg';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+
+//Images
+import rosaMysticaConvent from '~/assets/convents/rosa-mystica-convent.jpg';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);

@@ -1,7 +1,9 @@
 ---
 import { Image } from 'astro:assets';
-import bethanySchool from '~/assets/bethany-school.jpg';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+
+//Images
+import bethanySchool from '~/assets/institutions/bethany-school.jpg';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);

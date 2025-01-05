@@ -1,9 +1,9 @@
-import alwnynDsouza from '~/assets/ob-alwin-dsouza.jpg';
-import felixWalder from '~/assets/ob-felix-walder.jpg';
-import gracianDSouza from '~/assets/ob-gracian-dsouza.jpg';
-import jeevithPinto from '~/assets/ob-jeevith-pinto.jpg';
-import jeraldRodrigues from '~/assets/ob-jerald-rodrigues.jpg';
-import wilfredPinto from '~/assets/ob-wilfred-pinto.jpg';
+import alwnynDsouza from '~/assets/obituary/alwin-dsouza.jpg';
+import felixWalder from '~/assets/obituary/felix-walder.jpg';
+import gracianDSouza from '~/assets/obituary/gracian-dsouza.jpg';
+import jeevithPinto from '~/assets/obituary/jeevith-pinto.jpg';
+import jeraldRodrigues from '~/assets/obituary/jerald-rodrigues.jpg';
+import wilfredPinto from '~/assets/obituary/wilfred-pinto.jpg';
 
 const obituaryData = [
 	{

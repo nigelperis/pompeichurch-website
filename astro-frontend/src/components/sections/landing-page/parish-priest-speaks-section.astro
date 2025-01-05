@@ -1,9 +1,11 @@
 ---
 import { Image } from 'astro:assets';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
-import priestImage from '~/assets/pp1.png';
 import { priestMessage } from '~/constants/parish-priest-message';
 import { cn } from '~/helpers/cn';
+
+//Images
+import priestImage from '~/assets/landing-page/pp1.png';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
