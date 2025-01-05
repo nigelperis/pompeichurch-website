@@ -34,16 +34,20 @@ export const navLinks = [
 				href: '/parish-priests',
 			},
 			{
-				title: 'nav.parish-finance-committee',
-				href: '/parish-finance-committee',
-			},
-			{
 				title: 'nav.parish-pastoral-council',
 				href: '/parish-pastoral-council',
 			},
 			{
+				title: 'nav.parish-finance-committee',
+				href: '/parish-finance-committee',
+			},
+			{
 				title: 'nav.parish-pastoral-21-commissions',
 				href: '/parish-pastoral-21-commissions',
+			},
+			{
+				title: 'nav.ex-vp-secretaries',
+				href: '/ex-vp-secretaries',
 			},
 			{
 				title: 'nav.wards',
