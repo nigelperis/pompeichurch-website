@@ -1,9 +1,9 @@
-import priestImage from '~/assets/fr-rudolph-dsa-white.jpg';
-import jamesMenda from '~/assets/mr-james-menda.jpg';
-import johnLobo from '~/assets/mr-john-lobo.jpg';
-import praveenLobo from '~/assets/mr-praveen-lobo.jpg';
-import vijayaDcosta from '~/assets/mrs-vijaya-dcosta.jpg';
-import vicepresident from '~/assets/vp-image.jpg';
+import priestImage from '~/assets/finance-committee/fr-rudolph-dsa.jpg';
+import jamesMenda from '~/assets/finance-committee/mr-james-menda.jpg';
+import johnLobo from '~/assets/finance-committee/mr-john-lobo.jpg';
+import praveenLobo from '~/assets/finance-committee/mr-praveen-lobo.jpg';
+import vijayaDcosta from '~/assets/finance-committee/mrs-vijaya-dcosta.jpg';
+import vicepresident from '~/assets/finance-committee/vp-image.jpg';
 
 const financeCommittee = [
 	{
