@@ -1,9 +1,11 @@
 ---
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
-import jublieeLogo from '~/assets/jubliee-logo.jpeg';
-import jublieePrayer from '~/assets/jubliee-prayer.jpeg';
 import { Image } from 'astro:assets';
 import { cn } from '~/helpers/cn';
+
+//Images
+import jublieeLogo from '~/assets/prayer-corner/jubliee-logo.jpeg';
+import jublieePrayer from '~/assets/prayer-corner/jubliee-prayer.jpeg';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);

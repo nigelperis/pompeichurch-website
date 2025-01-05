@@ -1,11 +1,15 @@
 ---
 import { getImage } from 'astro:assets';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
-import maryGrotto from '~/assets/mary-grotto.jpg';
-import HoverableLink from '~/components/ui/hoverable-link.astro';
 import { cn } from '~/helpers/cn';
-import YoutubeVideo from './youtube-video.astro';
 import { historyExcerpt } from '~/constants/parish-history-excerpt';
+
+//Images
+import maryGrotto from '~/assets/landing-page/mary-grotto.jpg';
+
+//Components
+import YoutubeVideo from './youtube-video.astro';
+import HoverableLink from '~/components/ui/hoverable-link.astro';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);

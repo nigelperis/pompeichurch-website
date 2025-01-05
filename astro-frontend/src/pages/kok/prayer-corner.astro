@@ -1,10 +1,14 @@
 ---
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
-import Layout from '~/layouts/layout.astro';
-import { Image } from 'astro:assets';
-import candles from '~/assets/candles.jpg';
-import PrayerCard from '~/components/sections/prayer-corner/prayer-card.astro';
 import { cn } from '~/helpers/cn';
+import { Image } from 'astro:assets';
+
+//Images
+import candles from '~/assets/prayer-corner/candles.jpg';
+
+//Comoponents
+import Layout from '~/layouts/layout.astro';
+import PrayerCard from '~/components/sections/prayer-corner/prayer-card.astro';
 import Psalms from '~/components/sections/prayer-corner/psalms.astro';
 import Novena from '~/components/sections/prayer-corner/novena.astro';
 import JubileeYear from '~/components/sections/prayer-corner/jubilee-year.astro';

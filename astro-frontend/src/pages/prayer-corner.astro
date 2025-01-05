@@ -1,14 +1,18 @@
 ---
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
-import Layout from '~/layouts/layout.astro';
 import { Image } from 'astro:assets';
-import candles from '~/assets/candles.jpg';
-import PrayerCard from '~/components/sections/prayer-corner/prayer-card.astro';
 import { cn } from '~/helpers/cn';
+
+//Images
+import candles from '~/assets/prayer-corner/candles.jpg';
+
+//Components
 import Psalms from '~/components/sections/prayer-corner/psalms.astro';
 import Novena from '~/components/sections/prayer-corner/novena.astro';
 import JubileeYear from '~/components/sections/prayer-corner/jubilee-year.astro';
 import PopesIntention from '~/components/sections/prayer-corner/popes-intention.astro';
+import PrayerCard from '~/components/sections/prayer-corner/prayer-card.astro';
+import Layout from '~/layouts/layout.astro';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);

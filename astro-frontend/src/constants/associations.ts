@@ -1,14 +1,15 @@
-import altarServers from '~/assets/altar-servers.jpg';
-import catechism from '~/assets/catechism.jpg';
-import catholicSabha from '~/assets/catholic-sabha.jpg';
-import gurpurChoir from '~/assets/gurpur-choir.jpg';
-import moriyalSodality from '~/assets/moriyal-sodality.jpg';
-import pyc from '~/assets/pyc.jpg';
-import smallChristianCommunity from '~/assets/small-christian-community.jpg';
-import svp from '~/assets/svp.jpg';
-import thirdOrder from '~/assets/third-order.jpg';
-import womensForum from '~/assets/womens-forum.jpg';
-import ycs from '~/assets/ycs.jpg';
+//Images
+import altarServers from '~/assets/associations/altar-servers.jpg';
+import gurpurChoir from '~/assets/associations/gurpur-choir.jpg';
+import catechism from '~/assets/associations/catechism.jpg';
+import catholicSabha from '~/assets/associations/catholic-sabha.jpg';
+import moriyalSodality from '~/assets/associations/moriyal-sodality.jpg';
+import pyc from '~/assets/associations/pyc.jpg';
+import smallChristianCommunity from '~/assets/associations/small-christian-community.jpg';
+import svp from '~/assets/associations/svp.jpg';
+import thirdOrder from '~/assets/associations/third-order.jpg';
+import womensForum from '~/assets/associations/womens-forum.jpg';
+import ycs from '~/assets/associations/ycs.jpg';
 
 const associations = [
 	{

@@ -1,9 +1,11 @@
 ---
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import { psalms } from '~/constants/psalms';
-import psalmBg from '~/assets/psalm-bg.jpg';
 import { getImage } from 'astro:assets';
 import { cn } from '~/helpers/cn';
+
+//Images
+import psalmBg from '~/assets/prayer-corner/psalm-bg.jpg';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);

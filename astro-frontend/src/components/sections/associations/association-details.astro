@@ -3,10 +3,12 @@ import { Image } from 'astro:assets';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import { associations } from '~/constants/associations';
 import { associationsKok } from '~/constants/associations-kok';
-import fallbackImage from '~/assets/church-logo.png';
 import { cn } from '~/helpers/cn';
 import { Icon } from 'astro-icon/components';
 import { socials } from '~/constants/social-media-handles';
+
+//Images
+import fallbackImage from '/temp-logo.webp';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -19,7 +21,7 @@ const association = associationData.find((assoc) => assoc.slug === slug);
 const associationName = association?.slug;
 
 const {
-	associationImage = fallbackImage,
+	associationImage,
 	description,
 	officeBearers = [],
 } = association || {};
@@ -34,7 +36,7 @@ const social = {
 	<div class="mt-2">
 		<div class="flex justify-center">
 			<Image
-				src={associationImage}
+				src={associationImage || fallbackImage}
 				alt={`Members of ${association?.title} at Our Lady of Pompei Church`}
 			/>
 		</div>
