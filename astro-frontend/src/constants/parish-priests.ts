@@ -1,4 +1,4 @@
-import blank from '~/assets/blank.jpeg';
+import blank from '~/assets/parish-priests/blank.jpeg';
 import dnVikasPereira from '~/assets/parish-priests/dn-vikas-pereira.jpg';
 import frAaeColaco from '~/assets/parish-priests/fr-aae-colaco.jpeg';
 import frAnthonyLobo from '~/assets/parish-priests/fr-anthony-lobo.jpg';

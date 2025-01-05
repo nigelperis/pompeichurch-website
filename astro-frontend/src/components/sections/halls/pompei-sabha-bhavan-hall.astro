@@ -1,11 +1,13 @@
 ---
-import pompeiSabhaBhavanImage from '~/assets/pompei-sabha-bhavan.jpg';
-import { Image } from 'astro:assets';
-import pbs1 from '~/assets/psb-int-1.jpg';
-import pbs2 from '~/assets/psb-int-2.jpg';
-import pbs4 from '~/assets/psb-ext-2.jpg';
-import pbs6 from '~/assets/psb-ext-4.jpg';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+import { Image } from 'astro:assets';
+
+//Images
+import pompeiSabhaBhavanImage from '~/assets/halls/pompei-sabha-bhavan.jpg';
+import pbs1 from '~/assets/halls/psb-int-1.jpg';
+import pbs2 from '~/assets/halls/psb-int-2.jpg';
+import pbs4 from '~/assets/halls/psb-ext-2.jpg';
+import pbs6 from '~/assets/halls/psb-ext-4.jpg';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);

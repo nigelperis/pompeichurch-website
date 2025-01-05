@@ -1,7 +1,9 @@
 ---
 import { Image } from 'astro:assets';
-import snehasadan from '~/assets/snehasadan.jpg';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+
+//Images
+import snehasadan from '~/assets/institutions/snehasadan.jpg';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
