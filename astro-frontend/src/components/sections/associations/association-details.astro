@@ -7,6 +7,9 @@ import { cn } from '~/helpers/cn';
 import { Icon } from 'astro-icon/components';
 import { socials } from '~/constants/social-media-handles';
 
+//Images
+import fallbackImage from '/temp-logo.webp';
+
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const { slug } = Astro.params;
@@ -33,7 +36,7 @@ const social = {
 	<div class="mt-2">
 		<div class="flex justify-center">
 			<Image
-				src={associationImage}
+				src={associationImage || fallbackImage}
 				alt={`Members of ${association?.title} at Our Lady of Pompei Church`}
 			/>
 		</div>
