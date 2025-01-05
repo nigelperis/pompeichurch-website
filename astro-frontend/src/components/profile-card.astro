@@ -11,9 +11,11 @@ interface Props {
 	date?: string;
 	subtitle?: string;
 	class?: string;
+	term1?: string;
+	term2?: string;
 }
 
-const { name, date, subtitle, class: className, imageUrl } = Astro.props;
+const { name, date, subtitle, class: className, imageUrl, term1, term2 } = Astro.props;
 ---
 
 <div
@@ -38,20 +40,28 @@ const { name, date, subtitle, class: className, imageUrl } = Astro.props;
 		>
 			{name}
 		</h3>
-		{
-			date && (
-				<p class="card-date text-slate-700">
-					{t('priest.service-period')}:{' '}
-					<span class="font-semibold">{date}</span>
-				</p>
-			)
-		}
-		{
-			subtitle && (
-				<p class="card-subtitle line-clamp-3 text-slate-600 sm:text-sm">
-					{subtitle}
-				</p>
-			)
-		}
+		{date && (
+			<p class="card-date text-slate-700">
+				{t('priest.service-period')}:{' '}
+				<span class="font-semibold">{date}</span>
+			</p>
+		)}
+		{term1 && (
+			<p class="card-term1 text-slate-700">
+				{t('priest.term1')}:{' '}
+				<span class="font-semibold">{term1}</span>
+			</p>
+		)}
+		{term2 && (
+			<p class="card-term2 text-slate-700">
+				{t('priest.term2')}:{' '}
+				<span class="font-semibold">{term2}</span>
+			</p>
+		)}
+		{subtitle && (
+			<p class="card-subtitle line-clamp-3 text-slate-600 sm:text-sm">
+				{subtitle}
+			</p>
+		)}
 	</div>
 </div>
