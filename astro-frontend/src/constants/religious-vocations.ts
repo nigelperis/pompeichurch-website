@@ -16,9 +16,63 @@ import frPiusPinto from '~/assets/religious-priests/fr-pius-pinto.png';
 import frIvanMendonca from '~/assets/religious-priests/fr-ivan-mendonca.png';
 import frMelwinMendonca from '~/assets/religious-priests/fr-melwin-mendonca.png';
 import frRichardDSouza from '~/assets/religious-priests/fr-richard-dsouza.png';
+import frRudolphPinto from '~/assets/religious-priests/fr-rudolph-pinto.png';
+import frRohanMiranda from '~/assets/religious-priests/fr-rohan-miranda.png';
+import frVincentSaldanha from '~/assets/religious-priests/fr-vincent-saldanha.png';
+import frSanthoshMenezes from '~/assets/religious-priests/fr-santhosh-menezes.png';
+import frAnilFernandes from '~/assets/religious-priests/fr-anil-fernandes.png';
+import frStephenLobo from '~/assets/religious-priests/fr-stephen-lobo.png';
+import frPrakashDCunha from '~/assets/religious-priests/fr-prakash-dchuna.png';
+import frRoshanPinto from '~/assets/religious-priests/fr-roshan-pinto.png';
+import brCyrilDSouza from '~/assets/religious-priests/br-cyril-dsouza.png';
+import brCliffordRodrigues from '~/assets/religious-priests/br-john-rodrigues.png';
+import brWilsonSaldanha from '~/assets/religious-priests/br-wilson-saldanha.png';
 
 //Religious Nuns
 import srAngelaPinto from '~/assets/religious-nuns/sr-angela-pinto.png';
+import srAgnesPinto from '~/assets/religious-nuns/sr-agnes-pinto.png';
+import srAgnesDCunha from '~/assets/religious-nuns/sr-agnes-dchuna.png';
+import srEmiliana from '~/assets/religious-nuns/sr-emiliana.png';
+import srMarjari from '~/assets/religious-nuns/sr-margary.png';
+import srMarijohn from '~/assets/religious-nuns/sr-mariejohn.png';
+import srMelvis from '~/assets/religious-nuns/sr-melwis.png';
+import srRegis from '~/assets/religious-nuns/sr-regis.png';
+import srTeresaMargarette from '~/assets/religious-nuns/sr-teresa-margarette.png';
+import srAfemia from '~/assets/religious-nuns/sr-a-femiya.png';
+import srGilberta from '~/assets/religious-nuns/sr-gilberta.png';
+import srBaptistaPeris from '~/assets/religious-nuns/sr-baptista-peris.png'
+import srMariaNoncietta from '~/assets/religious-nuns/sr-maria-noncietta.png';
+import srMelwyn from '~/assets/religious-nuns/sr-melwin.png';
+import srFlevian from '~/assets/religious-nuns/sr-flevian.png';
+import srEveline from '~/assets/religious-nuns/sr-evline.png';
+import srNimpah from '~/assets/religious-nuns/sr-nimfa.png';
+import srBlanchePinto from '~/assets/religious-nuns/sr-blanche-pinto.png';
+import srNorbertin from '~/assets/religious-nuns/sr-norbertin.png';
+import srFelician from '~/assets/religious-nuns/sr-felician.png';
+import srMerician from '~/assets/religious-nuns/sr-merician.png'
+import srMallika from '~/assets/religious-nuns/sr-mallika.png';
+import srDulcis from '~/assets/religious-nuns/sr-dulcis.png';
+import srJulianaMary from '~/assets/religious-nuns/sr-juliana-mary.png';
+import srReginald from '~/assets/religious-nuns/sr-reginald.png';
+import srMoad from '~/assets/religious-nuns/sr-moad.png';
+import srMariaNavitha from '~/assets/religious-nuns/sr-maria-navitha.png';
+import srJosita from '~/assets/religious-nuns/sr-josita.png';
+import srRenuka from '~/assets/religious-nuns/sr-renuka.png';
+import srMariaSudeepa from '~/assets/religious-nuns/sr-maria-sudeepa.png';
+import srIrenePinto from '~/assets/religious-nuns/sr-irene-pinto.png';
+import srTresilla from '~/assets/religious-nuns/sr-dr-trescilla.png';
+import srMaryJane from '~/assets/religious-nuns/sr-mary-jane.png';
+import srShaletSequiera from '~/assets/religious-nuns/sr-shalet-sequeira.png';
+import srRoselita from '~/assets/religious-nuns/sr-roselita.png';
+import srEvelineSequiera from '~/assets/religious-nuns/sr-eveline-sequeira.png';
+import srMaryLobo from '~/assets/religious-nuns/sr-mary-lobo.png';
+import srHildguard from '~/assets/religious-nuns/sr-hildguard.png';
+import srMarieJane from '~/assets/religious-nuns/sr-marie-jane.png';
+import srLinetDsoouza from '~/assets/religious-nuns/sr-linet-dsouza.png';
+import srJacinthaRodrigues from '~/assets/religious-nuns/sr-jacintha-rodrigues.png';
+import srMFranics from '~/assets/religious-nuns/sr-m-francis.png';
+import srTitus from '~/assets/religious-nuns/sr-titus.png';
+import srAlan from '~/assets/religious-nuns/sr-alan.png';
 
 const religiousPriests = [
 	{
@@ -175,7 +229,7 @@ const religiousPriests = [
 		parents: 'Mr Mauris DSouza, Mrs Eliza Pinto',
 	},
 	{
-		imageUrl: frJosephLobo,
+		imageUrl: frRudolphPinto,
 		name: 'Rev| Dr | Rudolph Raj Pinto',
 		ward: 'Kowdoor B',
 		dob: '',
@@ -184,7 +238,7 @@ const religiousPriests = [
 		parents: ' Late| George Pinto, Late| Jeevith Pinto',
 	},
 	{
-		imageUrl: frJosephLobo,
+		imageUrl: frRohanMiranda,
 		name: 'Rev| Dr | Rohan Miranda',
 		ward: 'Gurpur',
 		dob: '',
@@ -193,7 +247,7 @@ const religiousPriests = [
 		parents: 'Late| Leo Miranda, Mrs Lucy Miranda',
 	},
 	{
-		imageUrl: frJosephLobo,
+		imageUrl: frVincentSaldanha,
 		name: 'Rev| Fr| Vincent Saldanha',
 		ward: 'Gurpur',
 		dob: '',
@@ -202,35 +256,35 @@ const religiousPriests = [
 		parents: 'Late| John Saldanha, Mrs Gertrude Saldanha',
 	},
 	{
-		imageUrl: frJosephLobo,
+		imageUrl: frSanthoshMenezes,
 		name: 'Rev| Fr| Santosh Menezes',
 		ward: 'Kandar A',
 		congregation: 'Secular, Mangalore Diocese',
 		parents: 'Late| Antony Francis Menezes, Late| Anna Maria Menezes',
 	},
 	{
-		imageUrl: frJosephLobo,
+		imageUrl: frAnilFernandes,
 		name: 'Rev| Fr| Anil Fernandes',
 		ward: 'Pompei A',
 		congregation: 'S.V.D.',
 		parents: 'Mr Mauris Fernandes, Mrs Christin Mendonca',
 	},
 	{
-		imageUrl: frJosephLobo,
+		imageUrl: frStephenLobo,
 		name: 'Rev| Fr| Stephan Arun Lobo',
 		ward: 'Church',
 		congregation: 'Capuchin',
 		parents: 'Late| William Lobo, Mrs Carmin Lobo',
 	},
 	{
-		imageUrl: frJosephLobo,
+		imageUrl: frPrakashDCunha,
 		name: 'Rev| Fr| Prakash DCunha',
 		ward: 'Monel',
 		congregation: 'Carmelite',
 		parents: 'Late| Egidor DCunha, Mrs Irene DCunha',
 	},
 	{
-		imageUrl: frJosephLobo,
+		imageUrl: frRoshanPinto,
 		name: 'Rev| Fr| Roshan Pinto ',
 		ward: 'Kowdoor A',
 		dob: '',
@@ -239,7 +293,7 @@ const religiousPriests = [
 		parents: 'Mr Norbert Pinto, Mrs Celine DSouza',
 	},
 	{
-		imageUrl: frJosephLobo,
+		imageUrl: brCyrilDSouza,
 		name: 'Br| Cyril DSouza',
 		ward: 'Gurpur',
 		dob: '',
@@ -248,8 +302,8 @@ const religiousPriests = [
 		parents: 'Late| Paul DSouza, Late| Coses DSouza',
 	},
 	{
-		imageUrl: frJosephLobo,
-		name: 'Rev| Fr| John Clifford Rodrigues', // Updated from Pompeichen Falkem
+		imageUrl: brCliffordRodrigues,
+		name: 'Rev| Fr| John Clifford Rodrigues',
 		ward: 'Kandar A',
 		dob: '',
 		dod: '',
@@ -257,8 +311,8 @@ const religiousPriests = [
 		parents: 'Mr Cyril Rodrigues, Mrs Leena Rodrigues',
 	},
 	{
-		imageUrl: frJosephLobo,
-		name: 'Rev| Fr| Wilson Saldanha', // Updated from Pompeichen Falkem
+		imageUrl: brWilsonSaldanha,
+		name: 'Rev| Fr| Wilson Saldanha',
 		ward: 'Gurpur',
 		dob: '',
 		dod: '',
@@ -277,16 +331,7 @@ const religiousNuns = [
 		parents: 'Late| Mariyan Pinto, Late| Magdaline Miranda',
 	},
 	{
-		imageUrl: srAngelaPinto,
-		name: 'something',
-		ward: 'kowdoor',
-		dob: '11-11-2022',
-		dod: '12-12-2023',
-		congregation: 'Secular',
-		parents: 'dad',
-	},
-	{
-		imageUrl: frJosephLobo,
+		imageUrl: srAgnesPinto,
 		name: 'Late| Sr| Agnes Pinto',
 		ward: 'Kowdoor A',
 		dob: '12-07-1919',
@@ -295,7 +340,7 @@ const religiousNuns = [
 		parents: 'Late| Benjamin Pinto, Late| Miliyana Pinto',
 	},
 	{
-		imageUrl: frJosephLobo,
+		imageUrl: srAgnesDCunha,
 		name: 'Late| Sr| Agnes DCunha',
 		ward: 'Kowdoor B',
 		dob: '04-11-1918',
@@ -304,7 +349,7 @@ const religiousNuns = [
 		parents: 'Late| Martin DCunha, Late| Angela Fernandes',
 	},
 	{
-		imageUrl: frJosephLobo,
+		imageUrl: srEmiliana,
 		name: 'Late| Sr| Emiliana ',
 		ward: 'Kowdoor B',
 		dob: '',
@@ -313,7 +358,7 @@ const religiousNuns = [
 		parents: 'Late| Bajil Rodrigues, Late| Benedicta Rodrigues',
 	},
 	{
-		imageUrl: frJosephLobo,
+		imageUrl: srMarjari,
 		name: 'Late| Sr| Marjari ',
 		ward: 'Kowdoor A',
 		dob: '18-07-1940',
@@ -322,7 +367,7 @@ const religiousNuns = [
 		parents: 'Late| Trindad Pinto, Late| Brijit Saldanha',
 	},
 	{
-		imageUrl: frJosephLobo,
+		imageUrl: srMarijohn,
 		name: 'Late| Sr| Marijohn ',
 		ward: 'Kowdoor A',
 		dob: '04-03-1944',
@@ -331,7 +376,7 @@ const religiousNuns = [
 		parents: 'Late| Trindad Pinto, Late| Brijit Saldanha',
 	},
 	{
-		imageUrl: frJosephLobo,
+		imageUrl: srMelvis,
 		name: 'Late| Sr| Melvis ',
 		ward: 'Kowdoor B',
 		dob: '12-07-1942',
@@ -340,7 +385,7 @@ const religiousNuns = [
 		parents: 'Late| Anthony Menezes, Late| Florine DCunha',
 	},
 	{
-		imageUrl: frJosephLobo,
+		imageUrl: srRegis,
 		name: 'Late| Sr| Regis ',
 		ward: 'Kowdoor B',
 		dob: '23-01-1945',
@@ -349,7 +394,7 @@ const religiousNuns = [
 		parents: 'Late| Anthony Menezes, Late| Florine DCunha',
 	},
 	{
-		imageUrl: frJosephLobo,
+		imageUrl: srTeresaMargarette,
 		name: 'Late| Sr| Terez Margarett ',
 		ward: 'Kowdoor B',
 		dob: '21-12-1950',
@@ -358,7 +403,7 @@ const religiousNuns = [
 		parents: 'Late| Vincent DCunha, Late| Delphin Rodrigues',
 	},
 	{
-		imageUrl: frJosephLobo,
+		imageUrl: srAfemia,
 		name: 'Late| Sr| A Femia ',
 		ward: 'Pompei A',
 		dob: '',
@@ -367,7 +412,7 @@ const religiousNuns = [
 		parents: 'Late| Domingo Rodrigues, Late| Magdaline Rodrigues',
 	},
 	{
-		imageUrl: frJosephLobo,
+		imageUrl: srGilberta,
 		name: 'Late| Sr| Gilberta',
 		ward: 'Pompei A',
 		dob: '',
@@ -376,7 +421,7 @@ const religiousNuns = [
 		parents: 'Late| Alexander Rodrigues, Late| Marta Rodrigues',
 	},
 	{
-		imageUrl: frJosephLobo,
+		imageUrl: srBaptistaPeris,
 		name: 'Late| Sr| Mary Baptista Peris',
 		ward: 'Pompei B',
 		dob: '02-04-1949',
@@ -385,7 +430,7 @@ const religiousNuns = [
 		parents: 'Late| Bernard Peris, Late| Alice Lobo',
 	},
 	{
-		imageUrl: frJosephLobo,
+		imageUrl: srMariaNoncietta,
 		name: 'Late| Sr| Maria Nunsiyeta',
 		ward: 'Kandar B',
 		dob: '',
@@ -394,7 +439,7 @@ const religiousNuns = [
 		parents: 'Late| Francis Tauro, Late| Catherine Pinto',
 	},
 	{
-		imageUrl: frJosephLobo,
+		imageUrl: srMelwyn,
 		name: 'Sr| Melwyn ',
 		ward: 'Kowdoor A',
 		dob: '',
@@ -403,7 +448,7 @@ const religiousNuns = [
 		parents: 'Late| Trindad Pinto, Late| Brijit Saldanha',
 	},
 	{
-		imageUrl: frJosephLobo,
+		imageUrl: srFlevian,
 		name: 'Sr| Fleviyan ',
 		ward: 'Kowdoor A',
 		dob: '',
@@ -412,7 +457,7 @@ const religiousNuns = [
 		parents: 'Late| Trindad Pinto, Late| Brijit Saldanha',
 	},
 	{
-		imageUrl: frJosephLobo,
+		imageUrl: srEveline,
 		name: 'Sr| Eveline ',
 		ward: 'Kowdoor A',
 		dob: '',
@@ -421,7 +466,7 @@ const religiousNuns = [
 		parents: 'Late| Sebastian Miranda, Late| Cecilia Pereira',
 	},
 	{
-		imageUrl: frJosephLobo,
+		imageUrl: srNimpah,
 		name: 'Sr| Nimpha ',
 		ward: 'Kowdoor B',
 		dob: '',
@@ -430,7 +475,7 @@ const religiousNuns = [
 		parents: 'Late| Peter Rodrigues, Late| Anna Maria Rodrigues',
 	},
 	{
-		imageUrl: frJosephLobo,
+		imageUrl: srBlanchePinto,
 		name: 'Sr| Blanch Pinto ',
 		ward: 'Kowdoor A',
 		dob: '',
@@ -439,7 +484,7 @@ const religiousNuns = [
 		parents: 'Late| Mark Pinto, Late| Piyad Nazreth',
 	},
 	{
-		imageUrl: frJosephLobo,
+		imageUrl: srNorbertin,
 		name: 'Sr| Norbetine ',
 		ward: 'Kowdoor A',
 		dob: '',
@@ -448,7 +493,7 @@ const religiousNuns = [
 		parents: 'Late| Mark Pinto, Late| Piyad Nazreth',
 	},
 	{
-		imageUrl: frJosephLobo,
+		imageUrl: srFelician,
 		name: 'Sr| Feliciyan ',
 		ward: 'Kowdoor A',
 		dob: '',
@@ -457,7 +502,7 @@ const religiousNuns = [
 		parents: 'Late| Jerome Pinto, Late| Juliana Nazreth',
 	},
 	{
-		imageUrl: frJosephLobo,
+		imageUrl: srMerician,
 		name: 'Sr| Mericiyan ',
 		ward: 'Kowdoor A',
 		dob: '',
@@ -466,7 +511,7 @@ const religiousNuns = [
 		parents: 'Late| Jerome Pinto, Late| Juliana Nazreth',
 	},
 	{
-		imageUrl: frJosephLobo,
+		imageUrl: srMallika,
 		name: 'Sr| Mallika ',
 		ward: 'Kowdoor A',
 		dob: '',
@@ -475,7 +520,7 @@ const religiousNuns = [
 		parents: 'Late| Jerome Pinto, Late| Juliana Nazreth',
 	},
 	{
-		imageUrl: frJosephLobo,
+		imageUrl: srDulcis,
 		name: 'Sr| Dulsis ',
 		ward: 'Kowdoor B',
 		dob: '',
@@ -484,7 +529,7 @@ const religiousNuns = [
 		parents: 'Late| Antony Menezes, Late| Florine DCunha',
 	},
 	{
-		imageUrl: frJosephLobo,
+		imageUrl: srJulianaMary,
 		name: 'Sr| Juliana Mary ',
 		ward: 'Kowdoor A',
 		dob: '',
@@ -493,7 +538,7 @@ const religiousNuns = [
 		parents: 'Late| Fredrick Rodrigues, Late| Florine Rodrigues',
 	},
 	{
-		imageUrl: frJosephLobo,
+		imageUrl: srReginald,
 		name: 'Sr| Reginalda',
 		ward: 'Kowdoor A',
 		dob: '',
@@ -502,7 +547,7 @@ const religiousNuns = [
 		parents: 'Late| Ignatius Rodrigues, Late| Monti Mary Rodrigues',
 	},
 	{
-		imageUrl: frJosephLobo,
+		imageUrl: srMoad,
 		name: 'Sr| Mode ',
 		ward: 'Kowdoor B',
 		dob: '',
@@ -511,7 +556,7 @@ const religiousNuns = [
 		parents: 'Late| Jacky Micheal Rodrigues, Late| Seraphine Rodrigues',
 	},
 	{
-		imageUrl: frJosephLobo,
+		imageUrl: srMariaNavitha,
 		name: 'Sr| Maria Navitha',
 		ward: 'Kowdoor A',
 		dob: '',
@@ -520,7 +565,7 @@ const religiousNuns = [
 		parents: 'Late| Hilary Vas, Mrs Benedicta DSouza',
 	},
 	{
-		imageUrl: frJosephLobo,
+		imageUrl: srJosita,
 		name: 'Sr| Josita',
 		ward: 'Kowdoor B',
 		dob: '',
@@ -529,7 +574,7 @@ const religiousNuns = [
 		parents: 'Late| Pascal Rodrigues, Late| Eliz Roseline Rodrigues',
 	},
 	{
-		imageUrl: frJosephLobo,
+		imageUrl: srRenuka,
 		name: 'Sr| Renuka',
 		ward: 'Kowdoor B',
 		dob: '',
@@ -538,7 +583,7 @@ const religiousNuns = [
 		parents: 'Late| Juliaan Lobo, Late| Apoline Lobo',
 	},
 	{
-		imageUrl: frJosephLobo,
+		imageUrl: srMariaSudeepa,
 		name: 'Sr| Maria Sudeepa',
 		ward: 'Kowdoor A',
 		dob: '',
@@ -547,7 +592,7 @@ const religiousNuns = [
 		parents: 'Mr Hilary Pinto, Late| Helen Pinto',
 	},
 	{
-		imageUrl: frJosephLobo,
+		imageUrl: srIrenePinto,
 		name: 'Sr| Irene Pinto',
 		ward: 'Kowdoor A',
 		dob: '',
@@ -556,7 +601,7 @@ const religiousNuns = [
 		parents: 'Late| Ambrose Pinto, Late| Juvanna Rodrigues',
 	},
 	{
-		imageUrl: frJosephLobo,
+		imageUrl: srTresilla,
 		name: 'Sr| Dr | Tresilla',
 		ward: 'Kowdoor A',
 		dob: '',
@@ -565,7 +610,7 @@ const religiousNuns = [
 		parents: 'Late| Lawrence Fredrick Pinto, Mrs Stella Lobo',
 	},
 	{
-		imageUrl: frJosephLobo,
+		imageUrl: srMaryJane,
 		name: 'Sr| Mary Jane',
 		ward: 'Pompei A',
 		dob: '',
@@ -574,7 +619,7 @@ const religiousNuns = [
 		parents: 'Late| Alex Serrao, Late| Seraphina Rodrigues',
 	},
 	{
-		imageUrl: frJosephLobo,
+		imageUrl: srShaletSequiera,
 		name: 'Sr| Shalet Sequiera',
 		ward: 'Pompei A',
 		dob: '',
@@ -583,7 +628,7 @@ const religiousNuns = [
 		parents: 'Late| Piyad Sequiera, Late| Gertrude Pinto',
 	},
 	{
-		imageUrl: frJosephLobo,
+		imageUrl: srRoselita,
 		name: 'Sr| Roselita',
 		ward: 'Pompei B',
 		dob: '',
@@ -592,7 +637,7 @@ const religiousNuns = [
 		parents: 'Late| John DSouza, Late| Angeline DSouza',
 	},
 	{
-		imageUrl: frJosephLobo,
+		imageUrl: srEvelineSequiera,
 		name: 'Sr| Eveline Sequiera',
 		ward: 'Kandar B',
 		dob: '',
@@ -601,7 +646,7 @@ const religiousNuns = [
 		parents: 'Late| Thomas Sequiera, Late| Christine Pinto',
 	},
 	{
-		imageUrl: frJosephLobo,
+		imageUrl: srMaryLobo,
 		name: 'Sr| Mary Stephen Lobo',
 		ward: 'Kandar A',
 		dob: '',
@@ -610,7 +655,7 @@ const religiousNuns = [
 		parents: 'Late| Aanaclitus Lobo, Late| Mercine Lobo',
 	},
 	{
-		imageUrl: frJosephLobo,
+		imageUrl: srHildguard,
 		name: 'Sr| Hildaguard',
 		ward: 'Church',
 		dob: '',
@@ -619,7 +664,7 @@ const religiousNuns = [
 		parents: 'Late| Felix DSouza, Late| Pauline Coelho',
 	},
 	{
-		imageUrl: frJosephLobo,
+		imageUrl: srMarieJane,
 		name: 'Sr| Mari Jane',
 		ward: 'Gurpur',
 		dob: '',
@@ -628,7 +673,7 @@ const religiousNuns = [
 		parents: 'Late| Baptist DSouza, Late| Sebina DSouza',
 	},
 	{
-		imageUrl: frJosephLobo,
+		imageUrl: srLinetDsoouza,
 		name: 'Sr| Linet Preetha DSouza',
 		ward: 'Addoor',
 		dob: '',
@@ -637,7 +682,7 @@ const religiousNuns = [
 		parents: 'Mr Plastid DSouza, Mrs Prescilla DSouza',
 	},
 	{
-		imageUrl: frJosephLobo,
+		imageUrl: srJacinthaRodrigues,
 		name: 'Sr| Jacintha Rodrigues',
 		ward: 'Kowdoor B',
 		dob: '',
@@ -646,7 +691,7 @@ const religiousNuns = [
 		parents: 'Late| Albert Rodrigues, Late| Emiliana Rodrigues',
 	},
 	{
-		imageUrl: frJosephLobo,
+		imageUrl: srMFranics,
 		name: 'Sr| M Francis',
 		ward: 'Pompei A',
 		dob: '',
@@ -655,7 +700,7 @@ const religiousNuns = [
 		parents: '',
 	},
 	{
-		imageUrl: frJosephLobo,
+		imageUrl: srTitus,
 		name: 'Sr| Titus',
 		ward: 'Kandar',
 		dob: '',
@@ -664,7 +709,7 @@ const religiousNuns = [
 		parents: '',
 	},
 	{
-		imageUrl: frJosephLobo,
+		imageUrl: srAlan,
 		name: 'Sr| Allen',
 		ward: 'Kowdoor B',
 		dob: '',
