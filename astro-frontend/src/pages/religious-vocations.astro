@@ -1,7 +1,8 @@
 ---
 import Layout from '~/layouts/layout.astro';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
-import ParishVocationsList from '~/components/sections/parish-vocations/parish-vocations-list.astro';
+import ReligiousPriestsList from '~/components/sections/religious-priests/religious-priests-list.astro';
+import ReligiousNunsList from '~/components/sections/religious-nuns/religious-nuns-list.astro';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -13,14 +14,19 @@ const t = useTranslations(lang);
 			<h1
 				class="mb-4 border-l-4 border-natgeo-yellow pl-3 text-3xl font-extrabold lg:text-4xl"
 			>
-				{t('nav.parish-vocations')}
+				{t('nav.religious-vocations')}
 			</h1>
 			<p class="text-justify font-geist text-lg text-slate-700">
-				Here is a glimpse of the esteemed former parish priests who have
-				nurtured our faith, enriched our community and individual lives, and
-				upheld the cherished legacy of our church throughout these years.
+				{t('vocation.title')}
 			</p>
-			<ParishVocationsList />
+      <h2 class="text-2xl text-red-600 font-semibold lg:text-3xl italic">
+				{t('vocation.subtitle1')}
+			</h2>
+			<ReligiousPriestsList />
+      <h2 class="text-2xl text-red-600 font-semibold lg:text-3xl italic">
+				{t('vocation.subtitle2')}
+			</h2>
+			<ReligiousNunsList />
 		</section>
 	</main>
 </Layout>

@@ -7,31 +7,30 @@ export interface Props {
   ward: string;
   dob?: string;
   dod?: string;
-  congregation: string;
+  congregation ?: string;
   parents?: string;
 }
 
 const { imageUrl, name, ward, dob, dod, congregation, parents } = Astro.props;
 ---
 
-<div class="vocation-card bg-white shadow-lg rounded-lg p-6 text-center max-w-md mx-auto hover:shadow-xl transition-shadow duration-300">
-  <!-- Image -->
-  <div class="relative w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-gray-200 shadow-md">
+<div class="vocation-card hover:scale-[1.01] rounded-md border p-6 text-center max-w-md mx-auto transition-shadow">
+  <div class="relative w-[230px] h-[300px] mx-auto mb-6 rounded-full overflow-hidden border-4 border-gray-200 shadow-md">
     <Image
       src={imageUrl}
-      alt={`Portrait of ${name}`}
+      alt={name}
       class="w-full h-full object-cover"
       sizes="(max-width: 768px) 50vw, 25vw"
     />
   </div>
 
-  <!-- Details -->
   <div class="details">
-    <h3 class="text-xl font-semibold text-gray-900 mb-2">{name}</h3>
-    {ward && <p class="text-sm text-gray-600 italic mb-1">Ward: {ward}</p>}
-    <p class="text-sm text-blue-700 font-medium mb-2">Congregation: {congregation}</p>
-    {dob && <p class="text-sm text-gray-600 mb-1">Date of Birth: {dob}</p>}
-    {dod && <p class="text-sm text-gray-600 mb-1">Date of Death: {dod}</p>}
-    {parents && <p class="text-sm text-gray-600 mb-1">Parents: {parents}</p>}
+    <h3 class="text-lg lg:text-xl  font-semibold text-gray-900 mb-2">{name}</h3>
+
+    <p class="text-md lg:text-sm text-blue-700 font-medium mb-2">{congregation}</p>
+    {ward && <p class="text-md lg:text-sm text-gray-600 italic mb-1"><span class="font-semibold">Ward:</span> {ward}</p>}
+    {dob && <p class="text-md lg:text-sm text-gray-600 mb-1"><span class="font-semibold">Date of Birth:</span> {dob}</p>}
+    {dod && <p class="text-md lg:text-sm text-gray-600 mb-1"><span class="font-semibold">Date of Death:</span> {dod}</p>}
+    {parents && <p class="text-md lg:text-sm text-gray-600 mb-1"><span class="font-semibold">Parents: </span> {parents}</p>}
   </div>
 </div>
