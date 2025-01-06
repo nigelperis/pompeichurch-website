@@ -22,7 +22,7 @@ const { name, class: className, imageUrl, term, term1, term2 } = Astro.props;
 	class={cn(
 		'hover:scale-[1.01] snap-start first:snap-align-none max-w-xs flex-shrink-0 rounded-md border sm:w-64 shadow-sm',
 		className,
-		'w-[230px] h-auto md:h-[490px]',
+		'h-auto md:h-[440px]',
     'transition-transform duration-300 ease-in-out'
 	)}
 >
@@ -30,7 +30,7 @@ const { name, class: className, imageUrl, term, term1, term2 } = Astro.props;
 		<Image
 			src={imageUrl}
 			alt={`Image of ${name}`}
-			class="h-[300px] w-full rounded-md object-cover"
+			class="h-[300px] w-full rounded-md object-fill"
 		/>
 	</div>
 
@@ -43,21 +43,21 @@ const { name, class: className, imageUrl, term, term1, term2 } = Astro.props;
 		</h3>
 		{term && (
 			<p class="card-term text-black">
-				{t('vpsec.term')}:{' '}
+				<b>I</b> :{' '}
 				<span class="font-semibold text-red-400">{term}</span>
-			</p>
-		)}
-		{term1 && (
-			<p class="card-term1 text-black">
-				{t('vpsec.term1')}:{' '}
-				<span class="font-semibold  text-red-400">{term1}</span>
 			</p>
 		)}
 		{term2 && (
 			<p class="card-term2 text-black">
-				{t('vpsec.term2')}:{' '}
+				<b>II</b> :{' '}
 				<span class="font-semibold  text-red-400">{term2}</span>
 			</p>
+		)}
+		{term1 && (
+			<p class="card-term1 text-black">
+				<b>I</b> :{' '}
+				<span class="font-semibold  text-red-400">{term1}</span>
+				</p>
 		)}
 	</div>
 </div>
