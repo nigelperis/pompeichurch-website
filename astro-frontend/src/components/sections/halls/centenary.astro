@@ -1,10 +1,11 @@
 ---
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import { Image } from 'astro:assets';
-import centenaryHallImage from '~/assets/centenary-hall.jpg';
-import { loremIpsum } from '~/constants/lorem-ipsum';
-import centenaryHall1 from '~/assets/centenary-hall-1.jpg';
-import centenaryHall2 from '~/assets/centenary-hall-2.jpg';
+
+//Images
+import centenaryHallImage from '~/assets/halls/centenary-hall.jpg';
+import centenaryHall1 from '~/assets/halls/centenary-hall-1.jpg';
+import centenaryHall2 from '~/assets/halls/centenary-hall-2.jpg';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);

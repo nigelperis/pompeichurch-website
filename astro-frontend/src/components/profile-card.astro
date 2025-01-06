@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import { cn } from '~/helpers/cn';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
@@ -13,7 +14,7 @@ interface Props {
 	class?: string;
 }
 
-const { name, date, subtitle, class: className, imageUrl } = Astro.props;
+const { name, date, subtitle, class: className, imageUrl} = Astro.props;
 ---
 
 <div
@@ -38,20 +39,16 @@ const { name, date, subtitle, class: className, imageUrl } = Astro.props;
 		>
 			{name}
 		</h3>
-		{
-			date && (
-				<p class="card-date text-slate-700">
-					{t('priest.service-period')}:{' '}
-					<span class="font-semibold">{date}</span>
-				</p>
-			)
-		}
-		{
-			subtitle && (
-				<p class="card-subtitle line-clamp-3 text-slate-600 sm:text-sm">
-					{subtitle}
-				</p>
-			)
-		}
+		{date && (
+			<p class="card-date text-slate-700">
+				{t('priest.service-period')}:{' '}
+				<span class="font-semibold">{date}</span>
+			</p>
+		)}
+		{subtitle && (
+			<p class="card-subtitle line-clamp-3 text-slate-600 sm:text-sm">
+				{subtitle}
+			</p>
+		)}
 	</div>
 </div>
