@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets';
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 
 export interface Props {
   imageUrl: ImageMetadata;
@@ -11,6 +12,8 @@ export interface Props {
   parents?: string;
 }
 
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 const { imageUrl, name, ward, dob, dod, congregation, parents } = Astro.props;
 ---
 
@@ -28,9 +31,9 @@ const { imageUrl, name, ward, dob, dod, congregation, parents } = Astro.props;
     <h3 class="text-lg lg:text-xl  font-semibold text-gray-900 mb-2">{name}</h3>
 
     <p class="text-md lg:text-sm text-blue-700 font-medium mb-2">{congregation}</p>
-    {ward && <p class="text-md lg:text-sm text-gray-600 italic mb-1"><span class="font-semibold">Ward:</span> {ward}</p>}
-    {dob && <p class="text-md lg:text-sm text-gray-600 mb-1"><span class="font-semibold">Date of Birth:</span> {dob}</p>}
-    {dod && <p class="text-md lg:text-sm text-gray-600 mb-1"><span class="font-semibold">Date of Death:</span> {dod}</p>}
+    {ward && <p class="text-md lg:text-sm text-gray-600 italic mb-1"><span class="font-semibold">{t('vocation.ward')}</span> {ward}</p>}
+    {dob && <p class="text-md lg:text-sm text-gray-600 mb-1"><span class="font-semibold">{t('vocation.dob')}</span> {dob}</p>}
+    {dod && <p class="text-md lg:text-sm text-gray-600 mb-1"><span class="font-semibold">{t('vocation.dod')}</span> {dod}</p>}
     {parents && <p class="text-md lg:text-sm text-gray-600 mb-1"><span class="font-semibold">Parents: </span> {parents}</p>}
   </div>
 </div>

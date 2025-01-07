@@ -15,10 +15,10 @@ const t = useTranslations(lang);
 			<VocationCard
         imageUrl={priest.imageUrl}
 				name={t(`priest.${priest.name}`)}
-        ward={priest.ward}
+        ward={t(`priest.${priest.ward}`)}
 				dob={priest.dob}
         dod={priest.dod}
-        congregation={priest.congregation}
+        congregation={t(`priest.${priest.congregation}`)}
         parents={priest.parents}
 			/>
 		))
