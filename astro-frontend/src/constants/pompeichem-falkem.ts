@@ -1,24 +1,25 @@
-import magazine1 from '~/assets/pompeichem-falkem/magazine1.jpg';
-import magazine2 from '~/assets/pompeichem-falkem/magazine2.jpg';
+import pfDecemeber2024 from '~/assets/pompeichem-falkem/pf-december-2024.jpeg';
+import pfSeptember2024 from '~/assets/pompeichem-falkem/pf-september-2024.jpg';
+import pfMarch2024 from '~/assets/pompeichem-falkem/pf-march-2024.jpg';
 
 const magazines = [
 	{
+		title: 'December Edition',
+		imageUrl: pfDecemeber2024,
+		downloadUrl: 'https://drive.google.com/uc?export=download&id=1vC1vFhV9-cC3HokBTsP3mtbulDSHcUQI',
+	},
+	{
 		title: 'September Edition',
-		imageUrl: magazine1,
+		imageUrl: pfSeptember2024,
 		downloadUrl:
 			'https://drive.google.com/uc?export=download&id=1RvnYVNiy7HOKP6jBGvGc9fJKQifDigVw',
 	},
 	{
 		title: ' March Edition',
-		imageUrl: magazine2,
+		imageUrl: pfMarch2024,
 		downloadUrl:
 			'https://drive.google.com/uc?export=download&id=1mHa90hb5dQbkh7RFBw_AbpznULY12U2G',
 	},
-	// {
-	// 	title: ' December Edition',
-	// 	imageUrl: '',
-	// 	downloadUrl: '',
-	// },
 ];
 
 export { magazines };
