@@ -82,7 +82,8 @@ const religiousPriests = [
 		dob: '06-12-1929',
 		dod: '31-08-1917',
 		congregation: 'secularmangalore',
-		parents: 'Late| Marcel Lobo, Late| Magdaline DSouza​',
+		parents: 'marcellobo',
+		role: 'priest'
 	},
 	{
 		imageUrl: brPaulLobo,
@@ -91,7 +92,8 @@ const religiousPriests = [
 		dob: '04-12-1915',
 		dod: '24-11-1993',
 		congregation: 'jesuitorder',
-		parents: 'Late| Baltazar Lobo, Late| Magdaline DSouza​',
+		parents: 'baltazarlobo',
+		role: 'priest'
 	},
 	{
 		imageUrl: frCyrilRasquinha,
@@ -100,7 +102,8 @@ const religiousPriests = [
 		dob: '22-07-1932',
 		dod: '26-03-2003',
 		congregation: 'seculardelhi',
-		parents: 'Late| Ignatius Rasquinha, Late| Coses Rodrigues',
+		parents: 'ignasiusrasquniha',
+		role: 'priest'
 	},
 	{
 		imageUrl: frHerbertPinto,
@@ -109,7 +112,8 @@ const religiousPriests = [
 		dob: '05-04-1936',
 		dod: '06-07-2007',
 		congregation: 'capuchin',
-		parents: 'Late| Trindad Pinto, Late| Brijit Saldanha',
+		parents: 'trindadpinto',
+		role: 'priest'
 	},
 	{
 		imageUrl: frJosephTauro,
@@ -118,7 +122,8 @@ const religiousPriests = [
 		dob: '04-03-1939',
 		dod: '08-02-2013',
 		congregation: 'secularmangalore',
-		parents: 'Late| Kashmir Tauro, Late| Igneshia Tauro​',
+		parents: 'kashmirtauro',
+		role: 'priest'
 	},
 	{
 		imageUrl: frGilbertPinto,
@@ -127,7 +132,8 @@ const religiousPriests = [
 		dob: '06-09-1945',
 		dod: '23-11-2015',
 		congregation: 'secularchikkmangalore',
-		parents: 'Late| Elias Pinto, Late| Juvanna Lucy Rodrigues',
+		parents: 'eliaspinto',
+		role: 'priest'
 	},
 	{
 		imageUrl: frGregoryDCunha,
@@ -136,7 +142,8 @@ const religiousPriests = [
 		dob: '25-05-1942',
 		dod: '04-10-2020',
 		congregation: 'secularshivmogga',
-		parents: 'Late| Denis DCunha, Late| Mary DCunha',
+		parents: 'denisdcunha',
+		role: 'priest'
 	},
 	{
 		imageUrl: frStanyDCunha,
@@ -145,147 +152,168 @@ const religiousPriests = [
 		dob: '26-12-1946',
 		dod: '05-08-2019',
 		congregation: 'secularkarwar',
-		parents: 'Late| Denis DCunha, Late| Mary DCunha',
+		parents: 'denisdcunha',
+		role: 'priest'
 	},
 	{
 		imageUrl: frJohnMendonca,
 		name: 'johnmendonca',
 		ward: 'kandar-a',
 		congregation: 'jesuit',
-		parents: 'Late| Ruzar Mendonca, Late| Florine Mendonca',
+		parents: 'ruzarmendonca',
+		role: 'priest'
 	},
 	{
 		imageUrl: frFelixMoras,
 		name: 'felixmoras',
 		ward: 'gurpur',
 		congregation: 'secularnagpur',
-		parents: 'Late| Pascal Moras, Late| Pascinha Saldanha',
+		parents: 'pascalmoras',
+		role: 'priest'
 	},
 	{
 		imageUrl: frAndrewMoras,
 		name: 'andrewmoras',
 		ward: 'gurpur',
 		congregation: 'secularnagpur',
-		parents: 'Late| Pascal Moras, Late| Pascinha Saldanha',
+		parents: 'pascalmoras',
+		role: 'priest'
 	},
 	{
 		imageUrl: frJohnPeris,
 		name: 'johnperis',
 		ward: 'church',
 		congregation: 'secularlucknow',
-		parents: 'Mr Lawrence Peris, Mr Cecilia Coelho',
+		parents: 'lawrenceperis',
+		role: 'priest'
 	},
 	{
 		imageUrl: frVictorLobo,
 		name: 'victorlobo',
 		ward: 'gurpur',
 		congregation: 'secularlucknow',
-		parents: 'Late| Pascal Lobo, Late| Alice DSouza',
+		parents: 'pascallobo',
+		role: 'priest'
 	},
 	{
 		imageUrl: frPiusPinto,
 		name: 'piuspinto',
 		ward: 'kowdoor-a',
 		congregation: 'secularmangalore',
-		parents: 'Late| Lawrence Fredrik Pinto, Mrs Stella Lobo',
+		parents: 'lawrencepinto',
+		role: 'priest'
 	},
 	{
 		imageUrl: frIvanMendonca,
 		name: 'ivanmendonca',
 		ward: 'church',
 		congregation: 'jesuit',
-		parents: 'Mr Aloysius Mendonca, Late| Julina Mendonca',
+		parents: 'aloysiusmendonca',
+		role: 'priest'
 	},
 	{
 		imageUrl: frMelwinMendonca,
 		name: 'melwynmendonca',
-		ward: 'Kandaar A',
+		ward: 'kandar-a',
 		congregation: 'jesuit',
-		parents: ' Late| Gabriel Mendonca, Mrs Celine Mendonca',
+		parents: 'gabrielmendonca',
+		role: 'priest'
 	},
 	{
 		imageUrl: frRichardDSouza,
 		name: 'richarddsouza',
 		ward: 'gurpur',
 		congregation: 'carmelite',
-		parents: 'Mr Mauris DSouza, Mrs Eliza Pinto',
+		parents: 'mauricedsouza',
+		role: 'priest'
 	},
 	{
 		imageUrl: frRudolphPinto,
 		name: 'rudolphpinto',
 		ward: 'kowdoor-b',
 		congregation: 'carmelite',
-		parents: ' Late| George Pinto, Late| Jeevith Pinto',
+		parents: 'georgepinto',
+		role: 'priest'
 	},
 	{
 		imageUrl: frRohanMiranda,
 		name: 'rohanmiranda',
 		ward: 'gurpur',
 		congregation: 'capuchin',
-		parents: 'Late| Leo Miranda, Mrs Lucy Miranda',
+		parents: 'leomiranda',
+		role: 'priest'
 	},
 	{
 		imageUrl: frVincentSaldanha,
 		name: 'vincentsaldanha',
 		ward: 'gurpur',
 		congregation: 'secularmangalore',
-		parents: 'Late| John Saldanha, Mrs Gertrude Saldanha',
+		parents: 'johnsaldanha',
+		role: 'priest'
 	},
 	{
 		imageUrl: frSanthoshMenezes,
 		name: 'santoshmenezes',
 		ward: 'kandar-a',
 		congregation: 'secularmangalore',
-		parents: 'Late| Antony Francis Menezes, Late| Anna Maria Menezes',
+		parents: 'antonymenezes',
+		role: 'priest'
 	},
 	{
 		imageUrl: frAnilFernandes,
 		name: 'anilfernandes',
 		ward: 'pompei-a',
 		congregation: 'svd',
-		parents: 'Mr Mauris Fernandes, Mrs Christin Mendonca',
+		parents: 'mauricefernandes',
+		role: 'priest'
 	},
 	{
 		imageUrl: frStephenLobo,
 		name: 'stephenlobo',
 		ward: 'church',
 		congregation: 'capuchin',
-		parents: 'Late| William Lobo, Mrs Carmin Lobo',
+		parents: 'williamlobo',
+		role: 'priest'
 	},
 	{
 		imageUrl: frPrakashDCunha,
 		name: 'prakashdcunha',
 		ward: 'monel',
 		congregation: 'carmelite',
-		parents: 'Late| Egidor DCunha, Mrs Irene DCunha',
+		parents: 'ijidoredcunha',
+		role: 'priest'
 	},
 	{
 		imageUrl: frRoshanPinto,
 		name: 'roshanpinto',
 		ward: 'kowdoor-a',
 		congregation: 'carmelite',
-		parents: 'Mr Norbert Pinto, Mrs Celine DSouza',
+		parents: 'norbertpinto',
+		role: 'priest'
 	},
 	{
 		imageUrl: brCyrilDSouza,
 		name: 'cyrildsouza',
-		congregation: 'carmelite', //not there in centenary sovenuir
+		congregation: 'carmelite',
 		ward: 'gurpur',
-		parents: 'Late| Paul DSouza, Late| Coses DSouza',
+		parents: 'pauldsouza',
+		role: 'priest'
 	},
 	{
 		imageUrl: brCliffordRodrigues,
 		name: 'johnrodrigues',
 		ward: 'kandar-a',
 		congregation: 'carmelite',
-		parents: 'Mr Cyril Rodrigues, Mrs Leena Rodrigues',
+		parents: 'cyrilrodrigues',
+		role: 'priest'
 	},
 	{
 		imageUrl: brWilsonSaldanha,
 		name: 'wilsonsaldanha',
 		ward: 'gurpur',
 		congregation: 'jesuit',
-		parents: 'Late| Dominic Saldanha, Mrs Cynthia Saldanha',
+		parents: 'dominicsaldanha',
+		role: 'priest'
 	},
 ];
 
@@ -297,6 +325,7 @@ const religiousNuns = [
 		dob: '23-10-1921',
 		dod: '04-01-2005',
 		parents: 'Late| Mariyan Pinto, Late| Magdaline Miranda',
+		role: 'nun'
 	},
 	{
 		imageUrl: srAgnesPinto,
@@ -306,6 +335,7 @@ const religiousNuns = [
 		dod: '24-01-2017',
 		congregation: 'Charity',
 		parents: 'Late| Benjamin Pinto, Late| Miliyana Pinto',
+		role: 'nun'
 	},
 	{
 		imageUrl: srAgnesDCunha,
@@ -315,6 +345,7 @@ const religiousNuns = [
 		dod: '13-11-1988',
 		congregation: 'Charity',
 		parents: 'Late| Martin DCunha, Late| Angela Fernandes',
+		role: 'nun'
 	},
 	{
 		imageUrl: srEmiliana,
@@ -322,6 +353,7 @@ const religiousNuns = [
 		ward: 'kowdoor-b',
 		congregation: 'Apostalic Carmel',
 		parents: 'Late| Bajil Rodrigues, Late| Benedicta Rodrigues',
+		role: 'nun'
 	},
 	{
 		imageUrl: srMarjari,
@@ -331,6 +363,7 @@ const religiousNuns = [
 		dod: '28-07-2019',
 		congregation: 'Bethany',
 		parents: 'Late| Trindad Pinto, Late| Brijit Saldanha',
+		role: 'nun'
 	},
 	{
 		imageUrl: srMarijohn,
@@ -340,6 +373,7 @@ const religiousNuns = [
 		dod: '30-08-2020',
 		congregation: 'Bethany',
 		parents: 'Late| Trindad Pinto, Late| Brijit Saldanha',
+		role: 'nun'
 	},
 	{
 		imageUrl: srMelvis,
@@ -349,6 +383,7 @@ const religiousNuns = [
 		dod: '02-09-2005',
 		congregation: 'Bethany',
 		parents: 'Late| Anthony Menezes, Late| Florine DCunha',
+		role: 'nun'
 	},
 	{
 		imageUrl: srRegis,
@@ -358,6 +393,7 @@ const religiousNuns = [
 		dod: '27-05-2016',
 		congregation: 'Bethany',
 		parents: 'Late| Anthony Menezes, Late| Florine DCunha',
+		role: 'nun'
 	},
 	{
 		imageUrl: srTeresaMargarette,
@@ -367,6 +403,7 @@ const religiousNuns = [
 		dod: '08-11-1987',
 		congregation: 'O.C.D.',
 		parents: 'Late| Vincent DCunha, Late| Delphin Rodrigues',
+		role: 'nun'
 	},
 	{
 		imageUrl: srAfemia,
@@ -374,6 +411,7 @@ const religiousNuns = [
 		ward: 'pompei-a',
 		congregation: 'Apostalic Carmel',
 		parents: 'Late| Domingo Rodrigues, Late| Magdaline Rodrigues',
+		role: 'nun'
 	},
 	{
 		imageUrl: srGilberta,
@@ -381,6 +419,7 @@ const religiousNuns = [
 		ward: 'pompei-a',
 		congregation: 'Apostalic Carmel',
 		parents: 'Late| Alexander Rodrigues, Late| Marta Rodrigues',
+		role: 'nun'
 	},
 	{
 		imageUrl: srBaptistaPeris,
@@ -390,6 +429,7 @@ const religiousNuns = [
 		dod: '21-05-2019',
 		congregation: `St Ann's Providence`,
 		parents: 'Late| Bernard Peris, Late| Alice Lobo',
+		role: 'nun'
 	},
 	{
 		imageUrl: srMariaNoncietta,
@@ -398,6 +438,7 @@ const religiousNuns = [
 		dod: '09-06-1921',
 		congregation: 'Apostalic Carmel',
 		parents: 'Late| Francis Tauro, Late| Catherine Pinto',
+		role: 'nun'
 	},
 	{
 		imageUrl: srMelwyn,
@@ -405,6 +446,7 @@ const religiousNuns = [
 		ward: 'kowdoor-a',
 		congregation: 'Bethany',
 		parents: 'Late| Trindad Pinto, Late| Brijit Saldanha',
+		role: 'nun'
 	},
 	{
 		imageUrl: srFlevian,
@@ -412,6 +454,7 @@ const religiousNuns = [
 		ward: 'kowdoor-a',
 		congregation: 'Bethany',
 		parents: 'Late| Trindad Pinto, Late| Brijit Saldanha',
+		role: 'nun'
 	},
 	{
 		imageUrl: srEveline,
@@ -419,6 +462,7 @@ const religiousNuns = [
 		ward: 'kowdoor-a',
 		congregation: 'Bethany',
 		parents: 'Late| Sebastian Miranda, Late| Cecilia Pereira',
+		role: 'nun'
 	},
 	{
 		imageUrl: srNimpah,
@@ -426,6 +470,7 @@ const religiousNuns = [
 		ward: 'kowdoor-b',
 		congregation: 'Bethany',
 		parents: 'Late| Peter Rodrigues, Late| Anna Maria Rodrigues',
+		role: 'nun'
 	},
 	{
 		imageUrl: srBlanchePinto,
@@ -433,6 +478,7 @@ const religiousNuns = [
 		ward: 'kowdoor-a',
 		congregation: 'Charity',
 		parents: 'Late| Mark Pinto, Late| Piyad Nazreth',
+		role: 'nun'
 	},
 	{
 		imageUrl: srNorbertin,
@@ -440,6 +486,7 @@ const religiousNuns = [
 		ward: 'kowdoor-a',
 		congregation: 'Bethany',
 		parents: 'Late| Mark Pinto, Late| Piyad Nazreth',
+		role: 'nun'
 	},
 	{
 		imageUrl: srFelician,
@@ -447,6 +494,7 @@ const religiousNuns = [
 		ward: 'kowdoor-a',
 		congregation: 'Apostalic Carmel',
 		parents: 'Late| Jerome Pinto, Late| Juliana Nazreth',
+		role: 'nun'
 	},
 	{
 		imageUrl: srMerician,
@@ -454,6 +502,7 @@ const religiousNuns = [
 		ward: 'kowdoor-a',
 		congregation: 'Apostalic Carmel',
 		parents: 'Late| Jerome Pinto, Late| Juliana Nazreth',
+		role: 'nun'
 	},
 	{
 		imageUrl: srMallika,
@@ -461,6 +510,7 @@ const religiousNuns = [
 		ward: 'kowdoor-a',
 		congregation: 'Apostalic Carmel',
 		parents: 'Late| Jerome Pinto, Late| Juliana Nazreth',
+		role: 'nun'
 	},
 	{
 		imageUrl: srDulcis,
@@ -468,6 +518,7 @@ const religiousNuns = [
 		ward: 'kowdoor-b',
 		congregation: 'Bethany',
 		parents: 'Late| Antony Menezes, Late| Florine DCunha',
+		role: 'nun'
 	},
 	{
 		imageUrl: srJulianaMary,
@@ -475,6 +526,7 @@ const religiousNuns = [
 		ward: 'kowdoor-a',
 		congregation: 'Bethany',
 		parents: 'Late| Fredrick Rodrigues, Late| Florine Rodrigues',
+		role: 'nun'
 	},
 	{
 		imageUrl: srReginald,
@@ -482,6 +534,7 @@ const religiousNuns = [
 		ward: 'kowdoor-a',
 		congregation: 'Bethany',
 		parents: 'Late| Ignatius Rodrigues, Late| Monti Mary Rodrigues',
+		role: 'nun'
 	},
 	{
 		imageUrl: srMoad,
@@ -489,6 +542,7 @@ const religiousNuns = [
 		ward: 'kowdoor-b',
 		congregation: 'Apostalic Carmel',
 		parents: 'Late| Jacky Micheal Rodrigues, Late| Seraphine Rodrigues',
+		role: 'nun'
 	},
 	{
 		imageUrl: srMariaNavitha,
@@ -496,6 +550,7 @@ const religiousNuns = [
 		ward: 'kowdoor-a',
 		congregation: 'Apostalic Carmel',
 		parents: 'Late| Hilary Vas, Mrs Benedicta DSouza',
+		role: 'nun'
 	},
 	{
 		imageUrl: srJosita,
@@ -503,6 +558,7 @@ const religiousNuns = [
 		ward: 'kowdoor-b',
 		congregation: 'Bethany',
 		parents: 'Late| Pascal Rodrigues, Late| Eliz Roseline Rodrigues',
+		role: 'nun'
 	},
 	{
 		imageUrl: srRenuka,
@@ -510,6 +566,7 @@ const religiousNuns = [
 		ward: 'kowdoor-b',
 		congregation: 'Apostalic Carmel',
 		parents: 'Late| Juliaan Lobo, Late| Apoline Lobo',
+		role: 'nun'
 	},
 	{
 		imageUrl: srMariaSudeepa,
@@ -517,6 +574,7 @@ const religiousNuns = [
 		ward: 'kowdoor-a',
 		congregation: 'Apostalic Carmel',
 		parents: 'Mr Hilary Pinto, Late| Helen Pinto',
+		role: 'nun'
 	},
 	{
 		imageUrl: srIrenePinto,
@@ -524,6 +582,7 @@ const religiousNuns = [
 		ward: 'kowdoor-a',
 		congregation: 'Selesiyan',
 		parents: 'Late| Ambrose Pinto, Late| Juvanna Rodrigues',
+		role: 'nun'
 	},
 	{
 		imageUrl: srTresilla,
@@ -531,6 +590,7 @@ const religiousNuns = [
 		ward: 'kowdoor-a',
 		congregation: 'Bethany',
 		parents: 'Late| Lawrence Fredrick Pinto, Mrs Stella Lobo',
+		role: 'nun'
 	},
 	{
 		imageUrl: srMaryJane,
@@ -538,6 +598,7 @@ const religiousNuns = [
 		ward: 'pompei-a',
 		congregation: 'Apostalic Carmel',
 		parents: 'Late| Alex Serrao, Late| Seraphina Rodrigues',
+		role: 'nun'
 	},
 	{
 		imageUrl: srShaletSequiera,
@@ -545,6 +606,7 @@ const religiousNuns = [
 		ward: 'pompei-a',
 		congregation: `Saint Ann's Providence`,
 		parents: 'Late| Piyad Sequiera, Late| Gertrude Pinto',
+		role: 'nun'
 	},
 	{
 		imageUrl: srRoselita,
@@ -552,6 +614,7 @@ const religiousNuns = [
 		ward: 'pompei-b',
 		congregation: 'Bethany',
 		parents: 'Late| John DSouza, Late| Angeline DSouza',
+		role: 'nun'
 	},
 	{
 		imageUrl: srEvelineSequiera,
@@ -559,6 +622,7 @@ const religiousNuns = [
 		ward: 'kandar-b',
 		congregation: `Saint Ann's Providence`,
 		parents: 'Late| Thomas Sequiera, Late| Christine Pinto',
+		role: 'nun'
 	},
 	{
 		imageUrl: srMaryLobo,
@@ -566,6 +630,7 @@ const religiousNuns = [
 		ward: 'kandar-a',
 		congregation: `Saint Ann's Providence`,
 		parents: 'Late| Aanaclitus Lobo, Late| Mercine Lobo',
+		role: 'nun'
 	},
 	{
 		imageUrl: srHildguard,
@@ -573,6 +638,7 @@ const religiousNuns = [
 		ward: 'church',
 		congregation: 'Bethany',
 		parents: 'Late| Felix DSouza, Late| Pauline Coelho',
+		role: 'nun'
 	},
 	{
 		imageUrl: srMarieJane,
@@ -580,6 +646,7 @@ const religiousNuns = [
 		ward: 'gurpur',
 		congregation: 'Bethany',
 		parents: 'Late| Baptist DSouza, Late| Sebina DSouza',
+		role: 'nun'
 	},
 	{
 		imageUrl: srLinetDsoouza,
@@ -587,6 +654,7 @@ const religiousNuns = [
 		ward: 'Addoor',
 		congregation: 'Charity',
 		parents: 'Mr Plastid DSouza, Mrs Prescilla DSouza',
+		role: 'nun'
 	},
 	{
 		imageUrl: srJacinthaRodrigues,
@@ -594,23 +662,27 @@ const religiousNuns = [
 		ward: 'kowdoor-b',
 		congregation: 'Bethany',
 		parents: 'Late| Albert Rodrigues, Late| Emiliana Rodrigues',
+		role: 'nun'
 	},
 	{
 		imageUrl: srMFranics,
 		name: 'Sr| M Francis',
 		ward: 'pompei-a',
 		congregation: 'Bethany',
+		role: 'nun'
 	},
 	{
 		imageUrl: srTitus,
 		name: 'Sr| Titus',
 		ward: 'Kandar',
+		role: 'nun'
 	},
 	{
 		imageUrl: srAlan,
 		name: 'Sr| Allen',
 		ward: 'kowdoor-b',
 		parents: 'Late| Denis DCunha, Late| Mary DCunha',
+		role: 'nun'
 	}
 ];
 

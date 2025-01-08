@@ -19,7 +19,8 @@ const t = useTranslations(lang);
 				dob={priest.dob}
         dod={priest.dod}
         congregation={t(`priest.${priest.congregation}`)}
-        parents={priest.parents}
+        parents={t(`priest.${priest.parents}`)}
+				role={priest.role}
 			/>
 		))
 	}
