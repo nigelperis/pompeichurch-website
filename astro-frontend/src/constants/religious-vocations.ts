@@ -324,6 +324,7 @@ const religiousNuns = [
 		ward: 'kowdoor-a',
 		dob: '23-10-1921',
 		dod: '04-01-2005',
+		congregation: 'charity', //TODO: confirm this and update, just a guess for now
 		parents: 'Late| Mariyan Pinto, Late| Magdaline Miranda',
 		role: 'nun'
 	},
@@ -333,7 +334,7 @@ const religiousNuns = [
 		ward: 'kowdoor-a',
 		dob: '12-07-1919',
 		dod: '24-01-2017',
-		congregation: 'Charity',
+		congregation: 'charity',
 		parents: 'Late| Benjamin Pinto, Late| Miliyana Pinto',
 		role: 'nun'
 	},
@@ -343,7 +344,7 @@ const religiousNuns = [
 		ward: 'kowdoor-b',
 		dob: '04-11-1918',
 		dod: '13-11-1988',
-		congregation: 'Charity',
+		congregation: 'charity',
 		parents: 'Late| Martin DCunha, Late| Angela Fernandes',
 		role: 'nun'
 	},
@@ -351,7 +352,7 @@ const religiousNuns = [
 		imageUrl: srEmiliana,
 		name: 'Late| Sr| Emiliana ',
 		ward: 'kowdoor-b',
-		congregation: 'Apostalic Carmel',
+		congregation: 'apostaliccarmel',
 		parents: 'Late| Bajil Rodrigues, Late| Benedicta Rodrigues',
 		role: 'nun'
 	},
@@ -361,7 +362,7 @@ const religiousNuns = [
 		ward: 'kowdoor-a',
 		dob: '18-07-1940',
 		dod: '28-07-2019',
-		congregation: 'Bethany',
+		congregation: 'bethany',
 		parents: 'Late| Trindad Pinto, Late| Brijit Saldanha',
 		role: 'nun'
 	},
@@ -371,7 +372,7 @@ const religiousNuns = [
 		ward: 'kowdoor-a',
 		dob: '04-03-1944',
 		dod: '30-08-2020',
-		congregation: 'Bethany',
+		congregation: 'bethany',
 		parents: 'Late| Trindad Pinto, Late| Brijit Saldanha',
 		role: 'nun'
 	},
@@ -381,7 +382,7 @@ const religiousNuns = [
 		ward: 'kowdoor-b',
 		dob: '12-07-1942',
 		dod: '02-09-2005',
-		congregation: 'Bethany',
+		congregation: 'bethany',
 		parents: 'Late| Anthony Menezes, Late| Florine DCunha',
 		role: 'nun'
 	},
@@ -391,7 +392,7 @@ const religiousNuns = [
 		ward: 'kowdoor-b',
 		dob: '23-01-1945',
 		dod: '27-05-2016',
-		congregation: 'Bethany',
+		congregation: 'bethany',
 		parents: 'Late| Anthony Menezes, Late| Florine DCunha',
 		role: 'nun'
 	},
@@ -401,7 +402,7 @@ const religiousNuns = [
 		ward: 'kowdoor-b',
 		dob: '21-12-1950',
 		dod: '08-11-1987',
-		congregation: 'O.C.D.',
+		congregation: 'ocd',
 		parents: 'Late| Vincent DCunha, Late| Delphin Rodrigues',
 		role: 'nun'
 	},
@@ -409,7 +410,7 @@ const religiousNuns = [
 		imageUrl: srAfemia,
 		name: 'Late| Sr| A Femia ',
 		ward: 'pompei-a',
-		congregation: 'Apostalic Carmel',
+		congregation: 'apostaliccarmel',
 		parents: 'Late| Domingo Rodrigues, Late| Magdaline Rodrigues',
 		role: 'nun'
 	},
@@ -417,7 +418,7 @@ const religiousNuns = [
 		imageUrl: srGilberta,
 		name: 'Late| Sr| Gilberta',
 		ward: 'pompei-a',
-		congregation: 'Apostalic Carmel',
+		congregation: 'apostaliccarmel',
 		parents: 'Late| Alexander Rodrigues, Late| Marta Rodrigues',
 		role: 'nun'
 	},
@@ -427,7 +428,7 @@ const religiousNuns = [
 		ward: 'pompei-b',
 		dob: '02-04-1949',
 		dod: '21-05-2019',
-		congregation: `St Ann's Providence`,
+		congregation: `stanns`,
 		parents: 'Late| Bernard Peris, Late| Alice Lobo',
 		role: 'nun'
 	},
@@ -436,7 +437,7 @@ const religiousNuns = [
 		name: 'Late| Sr| Maria Nunsiyeta',
 		ward: 'kandar-b',
 		dod: '09-06-1921',
-		congregation: 'Apostalic Carmel',
+		congregation: 'apostaliccarmel',
 		parents: 'Late| Francis Tauro, Late| Catherine Pinto',
 		role: 'nun'
 	},
@@ -444,7 +445,7 @@ const religiousNuns = [
 		imageUrl: srMelwyn,
 		name: 'Sr| Melwyn ',
 		ward: 'kowdoor-a',
-		congregation: 'Bethany',
+		congregation: 'bethany',
 		parents: 'Late| Trindad Pinto, Late| Brijit Saldanha',
 		role: 'nun'
 	},
@@ -452,7 +453,7 @@ const religiousNuns = [
 		imageUrl: srFlevian,
 		name: 'Sr| Fleviyan ',
 		ward: 'kowdoor-a',
-		congregation: 'Bethany',
+		congregation: 'bethany',
 		parents: 'Late| Trindad Pinto, Late| Brijit Saldanha',
 		role: 'nun'
 	},
@@ -460,7 +461,7 @@ const religiousNuns = [
 		imageUrl: srEveline,
 		name: 'Sr| Eveline ',
 		ward: 'kowdoor-a',
-		congregation: 'Bethany',
+		congregation: 'bethany',
 		parents: 'Late| Sebastian Miranda, Late| Cecilia Pereira',
 		role: 'nun'
 	},
@@ -468,7 +469,7 @@ const religiousNuns = [
 		imageUrl: srNimpah,
 		name: 'Sr| Nimpha ',
 		ward: 'kowdoor-b',
-		congregation: 'Bethany',
+		congregation: 'bethany',
 		parents: 'Late| Peter Rodrigues, Late| Anna Maria Rodrigues',
 		role: 'nun'
 	},
@@ -476,7 +477,7 @@ const religiousNuns = [
 		imageUrl: srBlanchePinto,
 		name: 'Sr| Blanch Pinto ',
 		ward: 'kowdoor-a',
-		congregation: 'Charity',
+		congregation: 'charity',
 		parents: 'Late| Mark Pinto, Late| Piyad Nazreth',
 		role: 'nun'
 	},
@@ -484,7 +485,7 @@ const religiousNuns = [
 		imageUrl: srNorbertin,
 		name: 'Sr| Norbetine ',
 		ward: 'kowdoor-a',
-		congregation: 'Bethany',
+		congregation: 'bethany',
 		parents: 'Late| Mark Pinto, Late| Piyad Nazreth',
 		role: 'nun'
 	},
@@ -492,7 +493,7 @@ const religiousNuns = [
 		imageUrl: srFelician,
 		name: 'Sr| Feliciyan ',
 		ward: 'kowdoor-a',
-		congregation: 'Apostalic Carmel',
+		congregation: 'apostaliccarmel',
 		parents: 'Late| Jerome Pinto, Late| Juliana Nazreth',
 		role: 'nun'
 	},
@@ -500,7 +501,7 @@ const religiousNuns = [
 		imageUrl: srMerician,
 		name: 'Sr| Mericiyan ',
 		ward: 'kowdoor-a',
-		congregation: 'Apostalic Carmel',
+		congregation: 'apostaliccarmel',
 		parents: 'Late| Jerome Pinto, Late| Juliana Nazreth',
 		role: 'nun'
 	},
@@ -508,7 +509,7 @@ const religiousNuns = [
 		imageUrl: srMallika,
 		name: 'Sr| Mallika ',
 		ward: 'kowdoor-a',
-		congregation: 'Apostalic Carmel',
+		congregation: 'apostaliccarmel',
 		parents: 'Late| Jerome Pinto, Late| Juliana Nazreth',
 		role: 'nun'
 	},
@@ -516,7 +517,7 @@ const religiousNuns = [
 		imageUrl: srDulcis,
 		name: 'Sr| Dulsis ',
 		ward: 'kowdoor-b',
-		congregation: 'Bethany',
+		congregation: 'bethany',
 		parents: 'Late| Antony Menezes, Late| Florine DCunha',
 		role: 'nun'
 	},
@@ -524,7 +525,7 @@ const religiousNuns = [
 		imageUrl: srJulianaMary,
 		name: 'Sr| Juliana Mary ',
 		ward: 'kowdoor-a',
-		congregation: 'Bethany',
+		congregation: 'bethany',
 		parents: 'Late| Fredrick Rodrigues, Late| Florine Rodrigues',
 		role: 'nun'
 	},
@@ -532,7 +533,7 @@ const religiousNuns = [
 		imageUrl: srReginald,
 		name: 'Sr| Reginalda',
 		ward: 'kowdoor-a',
-		congregation: 'Bethany',
+		congregation: 'bethany',
 		parents: 'Late| Ignatius Rodrigues, Late| Monti Mary Rodrigues',
 		role: 'nun'
 	},
@@ -540,7 +541,7 @@ const religiousNuns = [
 		imageUrl: srMoad,
 		name: 'Sr| Mode ',
 		ward: 'kowdoor-b',
-		congregation: 'Apostalic Carmel',
+		congregation: 'apostaliccarmel',
 		parents: 'Late| Jacky Micheal Rodrigues, Late| Seraphine Rodrigues',
 		role: 'nun'
 	},
@@ -548,7 +549,7 @@ const religiousNuns = [
 		imageUrl: srMariaNavitha,
 		name: 'Sr| Maria Navitha',
 		ward: 'kowdoor-a',
-		congregation: 'Apostalic Carmel',
+		congregation: 'apostaliccarmel',
 		parents: 'Late| Hilary Vas, Mrs Benedicta DSouza',
 		role: 'nun'
 	},
@@ -556,7 +557,7 @@ const religiousNuns = [
 		imageUrl: srJosita,
 		name: 'Sr| Josita',
 		ward: 'kowdoor-b',
-		congregation: 'Bethany',
+		congregation: 'bethany',
 		parents: 'Late| Pascal Rodrigues, Late| Eliz Roseline Rodrigues',
 		role: 'nun'
 	},
@@ -564,7 +565,7 @@ const religiousNuns = [
 		imageUrl: srRenuka,
 		name: 'Sr| Renuka',
 		ward: 'kowdoor-b',
-		congregation: 'Apostalic Carmel',
+		congregation: 'apostaliccarmel',
 		parents: 'Late| Juliaan Lobo, Late| Apoline Lobo',
 		role: 'nun'
 	},
@@ -572,7 +573,7 @@ const religiousNuns = [
 		imageUrl: srMariaSudeepa,
 		name: 'Sr| Maria Sudeepa',
 		ward: 'kowdoor-a',
-		congregation: 'Apostalic Carmel',
+		congregation: 'apostaliccarmel',
 		parents: 'Mr Hilary Pinto, Late| Helen Pinto',
 		role: 'nun'
 	},
@@ -580,7 +581,7 @@ const religiousNuns = [
 		imageUrl: srIrenePinto,
 		name: 'Sr| Irene Pinto',
 		ward: 'kowdoor-a',
-		congregation: 'Selesiyan',
+		congregation: 'salesian',
 		parents: 'Late| Ambrose Pinto, Late| Juvanna Rodrigues',
 		role: 'nun'
 	},
@@ -588,7 +589,7 @@ const religiousNuns = [
 		imageUrl: srTresilla,
 		name: 'Sr| Dr | Tresilla',
 		ward: 'kowdoor-a',
-		congregation: 'Bethany',
+		congregation: 'bethany',
 		parents: 'Late| Lawrence Fredrick Pinto, Mrs Stella Lobo',
 		role: 'nun'
 	},
@@ -596,7 +597,7 @@ const religiousNuns = [
 		imageUrl: srMaryJane,
 		name: 'Sr| Mary Jane',
 		ward: 'pompei-a',
-		congregation: 'Apostalic Carmel',
+		congregation: 'apostaliccarmel',
 		parents: 'Late| Alex Serrao, Late| Seraphina Rodrigues',
 		role: 'nun'
 	},
@@ -604,7 +605,7 @@ const religiousNuns = [
 		imageUrl: srShaletSequiera,
 		name: 'Sr| Shalet Sequiera',
 		ward: 'pompei-a',
-		congregation: `Saint Ann's Providence`,
+		congregation: 'stanns',
 		parents: 'Late| Piyad Sequiera, Late| Gertrude Pinto',
 		role: 'nun'
 	},
@@ -612,7 +613,7 @@ const religiousNuns = [
 		imageUrl: srRoselita,
 		name: 'Sr| Roselita',
 		ward: 'pompei-b',
-		congregation: 'Bethany',
+		congregation: 'bethany',
 		parents: 'Late| John DSouza, Late| Angeline DSouza',
 		role: 'nun'
 	},
@@ -620,7 +621,7 @@ const religiousNuns = [
 		imageUrl: srEvelineSequiera,
 		name: 'Sr| Eveline Sequiera',
 		ward: 'kandar-b',
-		congregation: `Saint Ann's Providence`,
+		congregation: 'stanns',
 		parents: 'Late| Thomas Sequiera, Late| Christine Pinto',
 		role: 'nun'
 	},
@@ -628,7 +629,7 @@ const religiousNuns = [
 		imageUrl: srMaryLobo,
 		name: 'Sr| Mary Stephen Lobo',
 		ward: 'kandar-a',
-		congregation: `Saint Ann's Providence`,
+		congregation: 'stanns',
 		parents: 'Late| Aanaclitus Lobo, Late| Mercine Lobo',
 		role: 'nun'
 	},
@@ -636,7 +637,7 @@ const religiousNuns = [
 		imageUrl: srHildguard,
 		name: 'Sr| Hildaguard',
 		ward: 'church',
-		congregation: 'Bethany',
+		congregation: 'bethany',
 		parents: 'Late| Felix DSouza, Late| Pauline Coelho',
 		role: 'nun'
 	},
@@ -644,7 +645,7 @@ const religiousNuns = [
 		imageUrl: srMarieJane,
 		name: 'Sr| Mari Jane',
 		ward: 'gurpur',
-		congregation: 'Bethany',
+		congregation: 'bethany',
 		parents: 'Late| Baptist DSouza, Late| Sebina DSouza',
 		role: 'nun'
 	},
@@ -652,7 +653,7 @@ const religiousNuns = [
 		imageUrl: srLinetDsoouza,
 		name: 'Sr| Linet Preetha DSouza',
 		ward: 'Addoor',
-		congregation: 'Charity',
+		congregation: 'charity',
 		parents: 'Mr Plastid DSouza, Mrs Prescilla DSouza',
 		role: 'nun'
 	},
@@ -660,7 +661,7 @@ const religiousNuns = [
 		imageUrl: srJacinthaRodrigues,
 		name: 'Sr| Jacintha Rodrigues',
 		ward: 'kowdoor-b',
-		congregation: 'Bethany',
+		congregation: 'bethany',
 		parents: 'Late| Albert Rodrigues, Late| Emiliana Rodrigues',
 		role: 'nun'
 	},
@@ -668,19 +669,21 @@ const religiousNuns = [
 		imageUrl: srMFranics,
 		name: 'Sr| M Francis',
 		ward: 'pompei-a',
-		congregation: 'Bethany',
+		congregation: 'bethany',
 		role: 'nun'
 	},
 	{
 		imageUrl: srTitus,
 		name: 'Sr| Titus',
-		ward: 'Kandar',
+		ward: 'kandar',
+		congregation: 'charity', //TODO: confirm this and update, just a guess for now
 		role: 'nun'
 	},
 	{
 		imageUrl: srAlan,
 		name: 'Sr| Allen',
 		ward: 'kowdoor-b',
+		congregation: 'bethany', 
 		parents: 'Late| Denis DCunha, Late| Mary DCunha',
 		role: 'nun'
 	}
