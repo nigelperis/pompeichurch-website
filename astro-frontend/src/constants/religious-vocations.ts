@@ -531,7 +531,7 @@ const religiousNuns = [
 	},
 	{
 		imageUrl: srReginald,
-		name: 'reginalda',
+		name: 'reginald',
 		ward: 'kowdoor-a',
 		congregation: 'bethany',
 		parents: 'ignatiusrodrigues',
