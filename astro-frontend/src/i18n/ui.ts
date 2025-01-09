@@ -385,7 +385,7 @@ export const ui = {
 		'priest.andrewmoras': 'Rev| Fr| Andrew Leo Moras',
 		'priest.johnperis': 'Rev| Fr| John Peris',
 		'priest.victorlobo': 'Rev| Fr| Victor Lobo',
-		'priest.piuspinto': 'Rev| Dr| Pius Phedelis Pinto',
+		'priest.piuspinto': 'Rev| Dr| Pius Fidelis Pinto',
 		'priest.ivanmendonca': 'Rev| Fr| Ivan Mendonca',
 		'priest.melwynmendonca': 'Rev| Fr| Melwyn Mendonca',
 		'priest.richarddsouza': 'Rev| Fr| Richard Francis DSouza',

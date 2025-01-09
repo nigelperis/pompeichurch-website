@@ -31,17 +31,21 @@ const { imageUrl, name, ward, dob, dod, congregation, parents, role } = Astro.pr
   <div class="details">
     <h3 class="text-lg lg:text-xl  font-semibold text-red-700 mb-2">{name}</h3>
 
-    {congregation && (
-      <p class="text-md lg:text-sm text-blue-700 font-medium mb-2">{congregation}</p>
+    {congregation && role && (
+      <p class="text-md lg:text-sm text-blue-700 font-medium mb-2">
+        {congregation}
+      </p>
     )}
     {ward && <p class="text-md lg:text-sm text-gray-600 italic mb-1"><span class="font-semibold">{t('vocation.ward')}</span> {ward}</p>}
     {dob && <p class="text-md lg:text-sm text-gray-600 mb-1"><span class="font-semibold">{t('vocation.dob')}</span> {dob}</p>}
     {dod && <p class="text-md lg:text-sm text-gray-600 mb-1"><span class="font-semibold">{t('vocation.dod')}</span> {dod}</p>}
-    {parents &&  <p class="text-md lg:text-sm text-gray-600 mb-1">
-      <span class="font-semibold">
-        {role === 'nun' ? t('vocation.do') : t('vocation.so')}
-      </span>
-      {parents}
-    </p>}
+    {parents && role && (
+      <p class="text-md lg:text-sm text-gray-600 mb-1">
+        <span class="font-semibold">
+          {role === 'nun' ? t('vocation.do') : t('vocation.so')}
+        </span>
+        {parents}
+      </p>
+    )}
   </div>
 </div>

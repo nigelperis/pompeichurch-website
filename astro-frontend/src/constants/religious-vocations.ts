@@ -670,14 +670,11 @@ const religiousNuns = [
 		name: 'mfrancis',
 		ward: 'pompei-a',
 		congregation: 'bethany',
-		role: 'nun'
 	},
 	{
 		imageUrl: srTitus,
 		name: 'titus',
 		ward: 'kandar',
-		congregation: 'charity', //TODO: confirm this and update, just a guess for now
-		role: 'nun'
 	},
 	{
 		imageUrl: srAlan,
