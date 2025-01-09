@@ -1,0 +1,32 @@
+---
+import Layout from '~/layouts/layout.astro';
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+import ReligiousPriestsList from '~/components/sections/religious-priests/religious-priests-list.astro';
+import ReligiousNunsList from '~/components/sections/religious-nuns/religious-nuns-list.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Layout title="Pompei Church | Parish Priests">
+	<main class="mx-auto max-w-4xl overflow-hidden bg-white">
+		<section id="parish-priests" class="flex flex-col p-6 pb-4">
+			<h1
+				class="mb-4 border-l-4 border-natgeo-yellow pl-3 text-3xl font-extrabold lg:text-4xl"
+			>
+				{t('nav.religious-vocations')}
+			</h1>
+			<p class="text-justify font-geist text-lg text-slate-700">
+				{t('vocation.title')}
+			</p>
+      <h2 class="text-3xl text-red-600 font-semibold mt-6 lg:text-3xl italic">
+				{t('vocation.subtitle1')}
+			</h2>
+			<ReligiousPriestsList />
+      <h2 class="text-3xl text-red-600 font-semibold mt-6 lg:text-3xl italic">
+				{t('vocation.subtitle2')}
+			</h2>
+			<ReligiousNunsList />
+		</section>
+	</main>
+</Layout>

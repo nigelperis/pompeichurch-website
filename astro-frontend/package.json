@@ -24,7 +24,7 @@
 		"@fontsource/poppins": "5.1.0",
 		"@strapi/blocks-react-renderer": "1.0.1",
 		"aos": "2.3.4",
-		"astro": "5.1.1",
+		"astro": "5.0.0",
 		"astro-icon": "1.1.4",
 		"clsx": "2.1.1",
 		"embla-carousel": "8.5.1",

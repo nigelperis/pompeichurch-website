@@ -21,8 +21,7 @@ const vicePresidents = [
 	{
 		imageUrl: georgePinto,
 		name: 'georgepinto',
-		term
-    : '06-03-1986 : 31-05-1991',
+		term: '06-03-1986 : 31-05-1991',
 	},
 	{
 		imageUrl: eliasRodrigues,
