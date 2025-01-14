@@ -3,9 +3,27 @@ import felixWalder from '~/assets/obituary/felix-walder.jpg';
 import gracianDSouza from '~/assets/obituary/gracian-dsouza.jpg';
 import jeevithPinto from '~/assets/obituary/jeevith-pinto.jpg';
 import jeraldRodrigues from '~/assets/obituary/jerald-rodrigues.jpg';
+import louisMonteiro from '~/assets/obituary/louis-monteiro.jpg';
+import maryCoutinho from '~/assets/obituary/mary-coutinho.jpeg';
 import wilfredPinto from '~/assets/obituary/wilfred-pinto.jpg';
 
 const obituaryData = [
+	{
+		name: 'ಲುವಿಸ್ ಮೊಂತೇರೊ',
+		imageUrl: louisMonteiro,
+		age: '75',
+		description: 'ಪತಿ: ಪ್ರೆಸಿಲ್ಲಾ ಮೊಂತೇರೊ ',
+		ward: 'ಅಡ್ಡೂರ್',
+		date: '14-01-2025',
+	},
+		{
+		name: 'ಮೇರಿ ಕುಟಿನ್ಹೊ',
+		imageUrl: maryCoutinho,
+		age: '87',
+		description: 'ಪತಿಣ್ : ದೆ। ಸಿಫ್ರಿಯನ್ ಕುಟಿನ್ಹೊ ',
+		ward: '',
+		date: '13-01-2025',
+	},
 	{
 		name: 'ಜೆರಾಲ್ಡ್ ರೊಡ್ರಿಗಸ್',
 		imageUrl: jeraldRodrigues,
