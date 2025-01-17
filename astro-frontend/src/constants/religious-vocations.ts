@@ -80,7 +80,7 @@ const religiousPriests = [
 		name: 'josephlobo',
 		ward: 'kowdoor-a',
 		dob: '06-12-1929',
-		dod: '31-08-1917',
+		dod: '31-08-2017',
 		congregation: 'secularmangalore',
 		parents: 'marcellobo',
 		role: 'priest'
@@ -230,7 +230,7 @@ const religiousPriests = [
 	{
 		imageUrl: frRudolphPinto,
 		name: 'rudolphpinto',
-		ward: 'kowdoor-b',
+		ward: 'kowdoor-a',
 		congregation: 'carmelite',
 		parents: 'georgepinto',
 		role: 'priest'
