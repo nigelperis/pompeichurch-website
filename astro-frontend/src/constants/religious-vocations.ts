@@ -230,7 +230,7 @@ const religiousPriests = [
 	{
 		imageUrl: frRudolphPinto,
 		name: 'rudolphpinto',
-		ward: 'kowdoor A',
+		ward: 'kowdoor-a',
 		congregation: 'carmelite',
 		parents: 'georgepinto',
 		role: 'priest'
