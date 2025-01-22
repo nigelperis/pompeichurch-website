@@ -1,5 +1,11 @@
 //Administrators
 import placeholderImage from '~/assets/parish-priests/blank.jpeg';
+import trindadPinto from '~/assets/vice-presidents/trindad-pinto.jpeg';
+import rosarioMendonca from '~/assets/vice-presidents/rosario-mendonca.jpeg';
+import baptistRasquinha from '~/assets/vice-presidents/baptist-rasquinha.jpeg';
+import richardRodrigues from '~/assets/vice-presidents/richard-rodrigues.jpeg';
+import hilaryPinto from '~/assets/vice-presidents/hilary-pinto.jpeg';
+import alexLobo from '~/assets/vice-presidents/alex-lobo.jpeg';
 
 //Vice-Presidents
 import eliasRodrigues from '~/assets/vice-presidents/elias-rodrigues.jpeg';
@@ -38,30 +44,30 @@ const treasurers = [
 		name: 'kashmirtauro',
 	},
 	{
-		imageUrl: placeholderImage,
+		imageUrl: trindadPinto,
 		name: 'trindadpinto',
 	},
 	{
-		imageUrl: placeholderImage,
+		imageUrl: rosarioMendonca,
 		name: 'rosariomendonca',
 	},
 	{
-		imageUrl: placeholderImage,
+		imageUrl: baptistRasquinha,
 		name: 'baptistrasquinha',
 	},
 ];
 
 const administrators = [
 	{
-		imageUrl: placeholderImage,
+		imageUrl: richardRodrigues,
 		name: 'richardrodrigues',
 	},
 	{
-		imageUrl: placeholderImage,
+		imageUrl: hilaryPinto,
 		name: 'hilarypinto',
 	},
 	{
-		imageUrl: placeholderImage,
+		imageUrl: alexLobo,
 		name: 'alexlobo',
 	}
 ];
