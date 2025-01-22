@@ -4,6 +4,8 @@ import { events } from '~/constants/events';
 import Layout from '~/layouts/layout.astro';
 import { Image } from 'astro:assets';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+import { Icon } from 'astro-icon/components';
+import ShareLink from '~/components/ui/share-link.astro';
 
 export async function getStaticPaths() {
 	return events.map((event) => ({
@@ -41,10 +43,11 @@ if (!event) {
 				set:html={event.description}
 			/>
 
-			<div class="mt-3 flex">
+			<div class="mt-3 flex items-center justify-between relative">
 				<HoverableLink href={event.facebookLink}>
 					{t('ui.facebook-link')}
 				</HoverableLink>
+				<ShareLink shareData={{ title: event.eventName, text: event.description, url: Astro.url.toString() }} />
 			</div>
 		</section>
 	</main>
