@@ -1,3 +1,6 @@
+//Administrators
+import placeholderImage from '~/assets/parish-priests/blank.jpeg';
+
 //Vice-Presidents
 import eliasRodrigues from '~/assets/vice-presidents/elias-rodrigues.jpeg';
 import georgePinto from '~/assets/vice-presidents/george-pinto.jpeg';
@@ -16,6 +19,52 @@ import jeraldLobo from '~/assets/secretaries/jerald-lobo.jpeg';
 import lillyMathias from '~/assets/secretaries/lilly-mathias.jpeg';
 import oswaldPeris from '~/assets/secretaries/oswald-peris.jpeg';
 import srJacintha from '~/assets/secretaries/sr-jacintha.jpeg';
+
+const treasurers = [
+	{
+		imageUrl: placeholderImage,
+		name: 'parodrigues',
+	},
+	{
+		imageUrl: placeholderImage,
+		name: 'benjaminpais',
+	},
+	{
+		imageUrl: placeholderImage,
+		name: 'rosariodsouza',
+	},
+	{
+		imageUrl: placeholderImage,
+		name: 'kashmirtauro',
+	},
+	{
+		imageUrl: placeholderImage,
+		name: 'trindadpinto',
+	},
+	{
+		imageUrl: placeholderImage,
+		name: 'rosariomendonca',
+	},
+	{
+		imageUrl: placeholderImage,
+		name: 'baptistrasquinha',
+	},
+];
+
+const administrators = [
+	{
+		imageUrl: placeholderImage,
+		name: 'richardrodrigues',
+	},
+	{
+		imageUrl: placeholderImage,
+		name: 'hilarypinto',
+	},
+	{
+		imageUrl: placeholderImage,
+		name: 'alexlobo',
+	}
+];
 
 const vicePresidents = [
 	{
@@ -123,7 +172,6 @@ const secretaries = [
 	//   name: 'johnsonlobo',
 	//   period: '',
 	// },
-]
+];
 
-export { vicePresidents, secretaries };
-
+export { treasurers, administrators, secretaries, vicePresidents };
