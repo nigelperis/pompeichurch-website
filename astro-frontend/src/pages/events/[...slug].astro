@@ -17,6 +17,8 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const event = events.find((event) => event.slug === slug);
 
+const eventUrl = lang === 'en' ? `/events/${slug}` : `/kok/events/${slug}`;
+
 if (!event) {
 	throw new Error(`Event not found for slug: ${slug}`);
 }
@@ -46,7 +48,7 @@ if (!event) {
 				<HoverableLink href={event.facebookLink}>
 					{t('ui.facebook-link')}
 				</HoverableLink>
-				<ShareLink shareData={{ title: event.eventName, url: Astro.url.href }}/>
+				<ShareLink shareData={{ title: event.eventName, url: eventUrl }}/>
 			</div>
 		</section>
 	</main>
