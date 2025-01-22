@@ -1,3 +1,12 @@
+//Administrators
+import placeholderImage from '~/assets/parish-priests/blank.jpeg';
+import trindadPinto from '~/assets/vice-presidents/trindad-pinto.jpeg';
+import rosarioMendonca from '~/assets/vice-presidents/rosario-mendonca.jpeg';
+import baptistRasquinha from '~/assets/vice-presidents/baptist-rasquinha.jpeg';
+import richardRodrigues from '~/assets/vice-presidents/richard-rodrigues.jpeg';
+import hilaryPinto from '~/assets/vice-presidents/hilary-pinto.jpeg';
+import alexLobo from '~/assets/vice-presidents/alex-lobo.jpeg';
+
 //Vice-Presidents
 import eliasRodrigues from '~/assets/vice-presidents/elias-rodrigues.jpeg';
 import georgePinto from '~/assets/vice-presidents/george-pinto.jpeg';
@@ -16,6 +25,52 @@ import jeraldLobo from '~/assets/secretaries/jerald-lobo.jpeg';
 import lillyMathias from '~/assets/secretaries/lilly-mathias.jpeg';
 import oswaldPeris from '~/assets/secretaries/oswald-peris.jpeg';
 import srJacintha from '~/assets/secretaries/sr-jacintha.jpeg';
+
+const treasurers = [
+	{
+		imageUrl: placeholderImage,
+		name: 'parodrigues',
+	},
+	{
+		imageUrl: placeholderImage,
+		name: 'benjaminpais',
+	},
+	{
+		imageUrl: placeholderImage,
+		name: 'rosariodsouza',
+	},
+	{
+		imageUrl: placeholderImage,
+		name: 'kashmirtauro',
+	},
+	{
+		imageUrl: trindadPinto,
+		name: 'trindadpinto',
+	},
+	{
+		imageUrl: rosarioMendonca,
+		name: 'rosariomendonca',
+	},
+	{
+		imageUrl: baptistRasquinha,
+		name: 'baptistrasquinha',
+	},
+];
+
+const administrators = [
+	{
+		imageUrl: richardRodrigues,
+		name: 'richardrodrigues',
+	},
+	{
+		imageUrl: hilaryPinto,
+		name: 'hilarypinto',
+	},
+	{
+		imageUrl: alexLobo,
+		name: 'alexlobo',
+	}
+];
 
 const vicePresidents = [
 	{
@@ -123,7 +178,6 @@ const secretaries = [
 	//   name: 'johnsonlobo',
 	//   period: '',
 	// },
-]
+];
 
-export { vicePresidents, secretaries };
-
+export { treasurers, administrators, secretaries, vicePresidents };
