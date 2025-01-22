@@ -3,6 +3,7 @@ import { cn } from '~/helpers/cn';
 import HoverableLink from './ui/hoverable-link.astro';
 import { Image } from 'astro:assets';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+import ShareLink from './ui/share-link.astro';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -55,5 +56,6 @@ const eventUrl = lang === 'en' ? `/events/${slug}` : `/kok/events/${slug}`;
 		<HoverableLink href={eventUrl}>
 			{t('ui.more-button-read')}
 		</HoverableLink>
+		<ShareLink class="absolute bottom-4 right-4" shareData={{ url: eventUrl, title: eventName, text: shortDescription }}/>
 	</div>
 </div>
