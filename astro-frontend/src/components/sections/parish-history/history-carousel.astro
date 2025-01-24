@@ -1,10 +1,13 @@
 ---
 import { Image } from 'astro:assets';
-import EmblaCarosuel from '~/components/ui/embla-carousel.astro';
-import EmblaCarosuelItem from '~/components/ui/embla-carousel-item.astro';
 
+//Images
 import churchBanner from '~/assets/church-banner.jpg';
 import churchHeroImage from '~/assets/church-hero.jpg';
+
+//Components
+import EmblaCarosuel from '~/components/ui/embla-carousel.astro';
+import EmblaCarosuelItem from '~/components/ui/embla-carousel-item.astro';
 ---
 
 <EmblaCarosuel>
@@ -14,7 +17,7 @@ import churchHeroImage from '~/assets/church-hero.jpg';
 	<EmblaCarosuelItem class="aspect-square">
 		<Image
 			src={churchHeroImage}
-			alt="Church Image"
+			alt="Image of Our lady of Pompei Church"
 			class="w-full object-cover"
 		/>
 	</EmblaCarosuelItem>

@@ -1,36 +1,82 @@
-const parishHistory = {
-	intro: [
-		'The Gurpur Parish is situated at a distance of 19 K.M. from Mangalore on Mangalore-Moodbidri road. The parish is locally known as Kowdur. The Church land structure is located at a village called ‘Kandavar’. Apart from Kowdur, Mulur, Badaga, Ulipadi, Paduperar, Mooduperar, Kolambe, Gurpur, Addur villages are covered under the area of Gurpur Parish. To describe the parish geographically, the area of the parish is covered with a number of fields and hills. To the south of the parish flows the Gurpur River.',
-		'Before the existence of the Gurpur parish, the families living in this locality belonged to Fezar parish. After Ferar became a parish in 1912, the people from Gurpur went to Ferar Church for the Eucharistic celebration and also for the spiritual benefits. The number of people was doubling every year and there was an urgent need for new parishes to take care of such rapid growth in population.',
+const parishHistory = [
+	{
+		history: `The Gurpur Parish is situated 19 km from Mangalore on the Mangalore-Moodbidri road. The parish is also known as Kowdur, but it is designated in the registered Diocesan Directory as Gurpur Parish. It is commonly referred to as Kowdur because, in the Kowdur ward of the parish, there is a place called ‘Kodi’, where a spring of water flows in all seasons. Hence, the location was named Kodi-ooru or Kowdur. It is said that since this location of Kowdur was near the present Church, it was named Kowdur Parish. According to the revenue department's classification, the parish belongs to the Gurpur zone, and most of the parishioners reside in this area; therefore, the parish is recognized under the name Gurpur. <br><br>
 
-		'On 7th October 1915, Parish Priest of Ferar Rev. Fr. Reginald Pinto laid a foundation for a chapel. The building of the chapel was said to be completed by Fr. Joseph M. Menezes and blessed by Rt. Rev. Bishop Paul Ferini S.J. on October 29, 1918. In the Diocese of Mangalore, only this parish was dedicated to Our Lady of Pompei. A holy picture of the image of Our Lady of Pompei was brought from a city called Pompei in Italy, and is being honored in this parish. Because of the number of miracles and goodness of Our Lady of Pompei, the barren Kowdur has blossomed like a beautiful garden in God’s vineyard.',
-	],
-	priests: [
-		{
-			name: 'Rev. Fr. Antony A. Colaco',
-			years: '1921-22',
-			description:
-				'Gurpur became an independent parish on May 8, 1921. Fr. Anthony A. Colaco was appointed as the first parish priest of the newly constituted parish of Our Lady of Pompei. During his time, he opened a primary school for the poor and needy people of the parish in 1922.',
-		},
-		{
-			name: 'Rev. Fr. F.X. Nazreth',
-			years: '1922-30',
-			description:
-				'He was a convincing preacher of God’s word. During his time, he built a church façade using Goan design. In 1925, the church compound wall was built, and in 1929, a church bell was placed on the façade, which was brought from Goa.',
-		},
-		{
-			name: 'Rev. Fr. Raphel Pinto',
-			years: '1930-33',
-			description:
-				'Rev. Fr. Nazreth was succeeded by Rev. Fr. Raphel Pinto. In 1931, he constructed a parochial house. In 1933, Rev. Fr. Antony F. Covelho and Rev. Fr. Denis Mathias served the church.',
-		},
-		{
-			name: 'Rev. Fr. Aveline Rebello',
-			years: '1933-40',
-			description:
-				'Fr. Aveline Rebello instituted a wooden artistic altar of the Blessed Mother, which was donated by Hospet Church and carved in the Goan style. It was erected in the center of the church in October 1933. On April 2, 1934, he erected a huge cross on the hill in remembrance of the 150 years of Tipu’s captivity of the Christians. This cross is said to be visible from a long distance even today, reflecting the Christian symbol. In 1937, a portico was added to the parish building.',
-		},
-	],
-};
+		The church land structure is located in a village called ‘Kandavar’. Apart from Kowdur, the villages of Mulur, Badaga, Ulipadi, Paduperar, Mooduperar, Kolambe, Gurpur, and Addur are included within the area of Gurpur Parish. Geographically, the area of the parish is characterized by numerous fields and hills. To the south of the parish flows the Gurpur River, whose sand is famous in Mangalore city. Part of the parish area consists of rocky terrain. <br><br>
+
+		The most common occupations of the people in this area include the cultivation of cashews, areca nuts, and flowers. In addition, many people are engaged in both large-scale and small-scale industries. A significant number of families from this parish are employed in foreign countries and metropolitan cities across the nation, which has positively impacted the economic condition of the parish. <br><br>
+
+		Before the establishment of Gurpur Parish, the families living in this locality belonged to Fezar Parish. The people of Gurpur would attend the Ferar Church for Eucharistic celebrations and spiritual benefits. The population was doubling each year, creating an urgent need for new parishes to accommodate such rapid growth.<br><br>
+
+		On October 7, 1915, Parish Priest Rev. Fr. Reginald Pinto laid the foundation for the chapel. The building was completed by Fr. J. M. Menezes and blessed by Rt. Rev. Bishop Paul Ferini S. J. on October 29, 1918. In the Diocese of Mangalore, this parish is uniquely dedicated to Our Lady of Pompei. A holy picture of the image of Our Lady of Pompei was brought from a city called ‘Pompei’ in Italy and was honored in this parish. Due to the number of miracles attributed to Our Lady of Pompei, the once-barren Kowdur has blossomed like a beautiful garden in God’s vineyard.`,
+	},
+	{
+		priestInfo: `<br><strong>Rev. Fr. Reginald Pinto</strong><br>
+		Father Reginald Pinto served as the first parish priest and laid the foundation for the church. The cornerstone was blessed and placed by Bishop Perrin on October 7, 1915. The parishioners gathered in large numbers for the event, making it a memorable occasion. <br><br>
+
+		<strong>Rev. Fr. J. M. Menezes</strong><br>
+		18.30 acres of land, owned by Ignatius Sequeira from Kandar, was given by the government to the church. Rev. J. M. Menezes, started the work of building a chapel. Facing various hardships and obstacles, Catholics and non-Catholics from Gurpur and the surrounding areas gathered together, and with the support of 125 families from Kandar, Gurpur, and Monel wards, the foundation for this chapel was laid. On 11-11-1918, the government granted permanent and specific land rights for the chapel. The Parish priest of Urwa, Rev. Fr. Lewis John Sequeira, began the devotion to Our Lady of Pompei at Urwa. In 1920, he went to the city of Pompei in Italy and obtained a registered statue of Our Lady of Pompei. After acquiring this statue, a decision was made to dedicate the church to the honor of Our Lady of Pompei. This led to the establishment of a place of veneration, and everything was officially recorded. <br><br>
+
+		<b><i>Role of Missionaries in building a spiritual community:</i></b><br>
+
+		<strong>Rev. Fr. A. A. E. Colaco (1921 - 1922)</strong><br>
+		Fr. A. A. E. Colaco was appointed as the first pastor of the newly constituted parish of Our Lady of Pompei. During his tenure, he established a primary school for the poor and those in need within the parish. <br><br>
+
+		<strong>Rev. Fr. F. X. Nazreth (1922 - 1930) </strong><br>
+		He was a convincing preacher of God’s word. During his tenure, he built a church façade using Goan design. In 1925, the church compound wall was constructed, and in 1929, a church bell, which was brought from Goa, was placed on the façade. <br><br>
+
+		<strong>Rev. Fr. Raphel Pinto (1930 - 1933) </strong><br>
+		Rev. Fr. Nazreth was succeeded by Rev. Fr. Raphel Pinto. In 1931, he constructed a parochial house. In 1933, Rev. Fr. Antony F. Covelho and Rev. Fr. Denis Mathias served the church. <br><br>
+
+		<strong>Rev. Fr. Aveline Rebello (1933 - 1940) </strong><br>
+		He instituted a wooden artistic altar of the Blessed Mother, which was donated by Hospet Church and carved and designed in the Goan style, and it was erected in the center of the church. To commemorate 150 years of Tippu’s bondage on Canara Christians, a cross was placed near the church in a prominent location in 1934. This cross is said to be visible from a long distance, and even today, it reflects the Christian symbol. In 1937, a portico was added to the parish building.  <br><br>
+
+		<strong>Rev. Fr. A. J. Nazreth (1940 - 1948) </strong><br>
+		He was like the leaven in bread or a hidden catalyst, whose presence inspired many to devote their lives to the Lord. He also constructed the road leading to the church. <br><br>
+
+		<strong>Rev. Fr. John Castelino (1948 - 1955) </strong><br>
+		With deep faith in God and filial trust in our Blessed Mother, he plunged into the work of creating a parish. He also repaired the structure of the church.<br><br>
+
+		<strong>Rev. Fr. J. S. T. Rodrigues (1955 - 1971) </strong><br>
+		He was a man of vision and deeply rooted in prayer. His dedicated service was remarkable. He constructed a new building for the primary school, renovated the façade of the church bell, and built a grotto of Our Lady of Lourdes. He invited the Sisters of the Little Flower of Bethany, Mangalore, to serve the parish. As a lover of Karnatic music, he sowed the seeds of music among the people of the parish. He trained children to participate in competitions held at the diocesan level for many years, often securing first place. He took a keen interest in promoting vocations for the religious life and priesthood. The good example he set through his own priestly life, his vigilant oversight, and the timely advice he provided to many young men undoubtedly inspired numerous vocations to the priesthood among the men of the parish where he served. <br><br>
+
+		<strong>Rev. Fr. Bernard D’Souza (1971 - 1972) </strong><br>
+		During his B.Ed. studies, he was appointed as a parish priest for a year. With his democratic personality and inspiring sermons, he became a beloved priest to the prisoners. Even as a young priest, he was sought after as a preacher and homilist on important occasions.<br><br>
+
+		<strong>Rev. Fr. Stanly Pereira (1983 - 1991) </strong><br>
+		He was a God-fearing priest, and devotion to the Blessed Virgin Mary was a special characteristic of Father Pereira. He was deeply committed to making Mary known and loved. The Marian Year of 1954 held particular significance for him, as he wanted to ensure it was recognized and cherished, especially by his own parishioners. During this year, he organized processions and conducted meetings at the ward level. <br><br>
+
+		<strong>Rev. Fr. Leo Veigas (1991 - 1998) </strong><br>
+		An active parish priest was transferred from the Bidar Mission Station to this parish. The depth of his interior life was reflected in his attitude toward prayer and various activities within the parish. His zeal was remarkable, and his efforts extended far beyond the confines of his parish. He genuinely cared for the entire community, making him a beloved figure among the parishioners. He worked diligently to combat alcoholism in families through counseling and guidance, fostering an atmosphere of spiritual awareness through retreats and B.C.C. meetings. Under his able and dynamic leadership, an attractive and spacious temple of God was built in commemoration of the parish's Platinum Jubilee. He also advocated for the downtrodden, the sick, and victims of natural disasters.<br><br>
+
+		<strong>Rev. Fr. Cyprian Pinto (1998 - 2005)</strong><br>
+		He was a young and energetic priest who became the parish priest in 1998. With his dynamic and active approach, he won the hearts of children, youth, and the elderly alike. After his arrival in this parish, the buildings and institutions became vibrant, demonstrating that not only had the "dry bones been covered with sinews and filled with life," but that the parish also stood out, "decked like a beautiful, young bride." His achievements are remarkable for the parish. As the shepherd of the flock entrusted to him, his concern for spiritual welfare led him to plan regular retreats, sermons, and spiritual guidance, without regard for the time and energy he had to invest. His quiet charity toward the sick and the poor often came at a personal cost and sacrifice. He is known for his meaningful sermons and is commonly referred to as the "Retreat Preacher," having preached over 100 retreats to various parishes. He is soft-spoken, God-fearing, loving, and stands firmly against injustice. To uplift the poor and marginalized, he took a keen interest in enhancing the infrastructure of the Hr. Pry. School through computer education and midday meals. He deserves credit for building the "Pompei Sabha Bhavana" and the church "Dwara." In light of all the achievements of our zealous priest, the parishioners concluded, "It is impossible to enumerate all that you have done for this parish." To name just a few of his contributions: the Altar Servers’ sodality, sodalities for men, women, boys, girls, and the St. Vincent de Paul Society, among others.<br><br>
+
+		<strong>Rev. Fr. Paul Rego (2005 - 2013)</strong>
+		<br>
+		Fr. Paul Rego joined our parish in 2005. He made efforts to unite the parish families, respond to the spiritual, social, and material needs of parishioners, and strengthen their faith. Through meaningful sermons at significant gatherings, he delivered profound messages that people could bring home, encouraging them to incorporate those messages into their lives and inspiring parishioners to do the same according to God’s word. He taught the importance of the Eucharist, introducing adoration of the Blessed Sacrament on the first Sunday of every month and every Friday. He encouraged attendance at Mass. The devotion to Mother Mary grew with the novenas of Our Lady of Pompei. He created opportunities for laypeople, including catechists and altar servers, to serve alongside priests. Masses were celebrated in different neighborhoods. Visiting village areas, he took on the responsibility of leading the choir and encouraged parishioners to sing. A children's choir was formed, and a youth group was created to serve at the altar. Bible classes were organized in the parish and neighborhoods to increase knowledge of the Holy Scriptures. <br><br>
+
+		The Christian community grew in zeal and strength through neighborhood training camps. He encouraged emerging leaders and organized neighborhood feasts and picnics to promote community unity. People were encouraged to bring their faith into their homes by setting up home altars and living according to those principles. He visited each household, extended congratulations to those in their milestones, sought to solve their problems, and through the Sacrament of Reconciliation encouraged people to live with peace and harmony. He motivated children and youth by supporting various groups and organizations. Talented individuals were honored. Initiatives were raised for water conservation, plastic bans, and environmental cleanliness. A women’s group was formed in the parish to address the needs and issues of women, raising awareness and finding solutions to their challenges.<br><br>
+
+		<strong>Rev. Fr. Gregory Serrao (2013 - 2015)</strong><br>
+		Fr. Gregory Sequeira joined our Parish in 2013. On November 24, a canvas painting of Our Lady of Pompei brought from Pompei was freshly repainted, and a new, attractive altar was constructed and decorated at the chapel. A TV and new projector system were installed in the church to display village devotional songs, prayers, and hymns. On February 23, 2014, a concrete slab was placed on the PYC stage and office, with new windows and doors added, and the PYC hall was newly renovated with the support of parishioners.
+		In February 2014, a new Cross was erected in the courtyard of Kordoor-B ward with contributions from villagers. In November 2014, a ‘Swachh Bharat Abhiyan’ was held in Kaikamba to promote cleanliness. Parishioners were offered a pilgrimage trip to Goa. With support from various organizations, events like Sports Day, dramas, musical events, picnics, feasts, gatherings, talent shows, Christmas peace gatherings, tree plantation drives, youth conventions, a social awareness bike rally, blood donation camps, and a new kitchen setup for Pompeii school children were organized. Additionally, initiatives like providing ID cards, uniforms, and other necessities to children were undertaken. After these contributions, he was transferred.
+		<br><br>
+
+		<strong>Rev. Fr. Paul Pinto (2015 - 2016)</strong><br>
+		Fr. Paul Pinto joined our parish in 2015. The first event he organized was Konkani Forward Day, celebrated on August 15. This event highlighted the culture, food, traditions, and language of the Konkani community. Villagers prepared traditional Konkani songs, dances, plays, and skits, and organized games where they exchanged turmeric-stained handkerchiefs. The president of Mandd Sobhann, Luvy J. Pinto, was present. On that day, a new arch was inaugurated at the main gate of the church. In addition, he organized village panchayat honors, blood donation camps, talent awards, YCS Day, Christmas peace gatherings at Kaikamba, retreats, neighborhood feasts, training camps, and the celebration of the anniversary of the youth group. The Young Christian Community Day was celebrated by everyone with devotion, beginning with the Holy Eucharist. Following the ceremony, the villagers came together to prepare a delicious communal meal.<br><br>
+
+		<strong>Rev. Fr. Anthony Lobo (2016 - 2022)</strong><br>
+		<strong>A New Direction, New Plans, and a Newly Renovated Temple</strong><br>
+		Fr. Antony Lobo took on the role of Parish Priest in 2016. In 2021, he was given the significant responsibility of overseeing the centenary celebrations of the parish. Known for his straightforward, disciplined, and devoted approach, he made efforts to foster the parish community. He actively organized village feasts, picnics, youth activities, annual days, Christian education days, talent awards, sports events, retreats, children’s feasts, visits to ashrams, holiday camps for children, and special days for the Little Christian Community, along with all other parish feasts. Fr. Antony also organized water conservation awareness camps and promoted youth awareness on topics such as gardening and agriculture through programs like "Playing in Our Own Gardens." He also conducted health camps on topics like "Kidney and Gallstones" and tissue culture techniques to educate farmers.<br><br>
+
+		The centenary of Our Lady of Fathima’s apparition was celebrated with devotion, which included welcoming a new statue of Our Lady with great reverence and celebrating over two days. A special "Laudato Si" Sunday was observed in a meaningful way. On the feast day of the Rosary, an exhibition of antique and Marian artifacts was organized. An attractive stage was built at the church’s main entrance for the Pompei Covent’s events, facilitating celebrations of Easter and Christmas. Drama performances and other programs were smoothly organized. Concrete benches were constructed in the church’s front yard, and a Centenary Memorial Hall was built. To support this, parishioner Charles D’Cunha from Mumbai organized a charitable event called "Charles Night."<br><br>
+
+		A new Cross was erected on the hilltop, paths were interlocked, and the cemetery was renovated. The main road to the church was concreted. To enhance the church surroundings, high mast lights were installed, a new concrete road with interlocking, flowerbeds were planted, and a new attractive entrance gate was erected with a welcoming arch. Additional renovations included new toilets, water drainage systems, workers' quarters, repairs to the vicarage, and fencing of the church property for security. This large-scale work also included ambitious projects like boundary walls and expanding the church premises.<br><br>
+
+		The Centenary Year was inaugurated on November 4, 2020, by Most Rev. Bishop Francis Serrao of the Diocese of Shivamogga, with a solemn Mass and the unveiling of a symbolic centenary banner to mark the occasion. With this, our parish embarked on a new path with new plans, renovation of the church, and the blessing of the newly renovated temple on August 27, 2021.
+		`,
+	},
+];
 
 export { parishHistory };

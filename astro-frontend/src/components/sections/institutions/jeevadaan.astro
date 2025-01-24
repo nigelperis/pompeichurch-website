@@ -1,0 +1,42 @@
+---
+import { Image } from 'astro:assets';
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+
+//Images
+import jeevadaan from '~/assets/institutions/jeevadaan.jpg';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<div class="mx-auto">
+	<h2 class="mt-4 font-poppins text-2xl font-bold">
+		{t('jeevadaan.title')}
+	</h2>
+	<Image
+		src={jeevadaan}
+		alt="Jeevadaan institute at Gurpur Kaikamba"
+		class="mt-6 rounded-sm md:float-left md:mr-5 md:w-1/2"
+	/>
+	<div class="mb-2 mt-4 pb-4 font-geist">
+		<p class="text-md mt-4 text-justify leading-7 text-slate-700">
+			'Jeevadaan' is their only ray of hope. They know that their life is short
+			and society will not accept them as they are infected by the dreaded
+			HIV/AIDS virus. They also have no money to live independently and lack the
+			strength to work hard. But 'Jeevadan' has created a space for them to live
+			a decent life till their death.
+		</p>
+		<p class="text-md mt-4 text-justify leading-7 text-slate-700">
+			The St Camillus congregation, known for serving the sick and the poor all
+			over the world, set up this home for HIV/AIDS patients here in Kaikamba,
+			Kinnikambla, located about 20 kms from the city. The nuns decided to serve
+			HIV/AIDS patients as it is a fast-spreading disease in the coastal region.
+		</p>
+		<p class="text-md mt-4 text-justify leading-7 text-slate-700">
+			Of the 38 patients here currently, 20 are females and the rest are
+			children. The children study at the Rosa Mystica School in Kinnikambla.
+			Most women patients here contracted the virus through their husbands.
+			Sumitra (name changed), a resident of Puttur, married a person from Udupi.
+		</p>
+	</div>
+</div>

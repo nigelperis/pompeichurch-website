@@ -1,0 +1,23 @@
+---
+import { novenaPrayer } from '~/constants/novena';
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+import { cn } from '~/helpers/cn';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<div
+	class={cn('font-poppins font-bold', {
+		'font-noto-sans-kannada': lang === 'kok',
+	})}
+>
+	<h2 class={cn('border-b-2 border-b-natgeo-yellow pb-2 text-2xl lg:text-3xl')}>
+		{t('prayer.novena-of-our-lady-of-pompei')}
+	</h2>
+
+	<h3 class={cn('card-title w-full pb-4 pt-2 text-slate-900 sm:text-lg')}>
+		{t('prayer.pray-for-us')}
+	</h3>
+</div>
+<p class="text-justify font-noto-sans-kannada" set:html={novenaPrayer} />

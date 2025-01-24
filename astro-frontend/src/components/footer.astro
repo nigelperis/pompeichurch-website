@@ -1,21 +1,23 @@
 ---
 import { Icon } from 'astro-icon/components';
+
+const currentYear = new Date().getFullYear();
 ---
 
 <footer
-	class="text-black-200 border-t-2 border-natgeo-yellow-400 bg-gray-900 pb-6 text-sm"
+	class="text-black-200 border-t-2 border-natgeo-yellow-400 bg-gray-900 p-2 pb-8 text-sm text-slate-200 xl:px-28"
 >
 	<div class="flex flex-col-reverse items-center justify-between">
 		<div class="mt-6">
-			<p class="text-center text-sm text-gray-100">
-				&copy;2024, Our Lady of Pompei Church. All Rights Reserved. <strong
+			<p class="text-center font-poppins text-sm text-gray-100">
+				&copy;{currentYear}, Our Lady of Pompei Church. All Rights Reserved. <strong
 					>Powered by:</strong
 				> Commission for Social Communication, Gurpur Kaikamba
 			</p>
 		</div>
 		<div class="mt-6 flex items-center space-x-4">
 			<a
-				href="mailto:pompeichurch100@gmail.com"
+				href="mailto:pompeichurchgurpur@gmail.com"
 				target="_blank"
 				class="transition-transform hover:scale-110"
 			>
@@ -43,7 +45,7 @@ import { Icon } from 'astro-icon/components';
 				<Icon name="youtube" size={24} class="text-xl text-white" />
 			</a>
 			<a
-				href="tel:+916969696969"
+				href="tel:+918277939340"
 				target="_blank"
 				class="transition-transform hover:scale-110"
 			>

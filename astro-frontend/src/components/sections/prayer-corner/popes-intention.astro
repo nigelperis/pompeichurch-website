@@ -1,0 +1,41 @@
+---
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+import { cn } from '~/helpers/cn';
+import { popeIntention } from '~/constants/pope-intention';
+import { popeIntentionKok } from '~/constants/pope-intention-kok';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const month = new Date().getMonth() + 1;
+
+const intention = lang === 'kok' ? popeIntentionKok : popeIntention;
+---
+
+<h2
+	class={cn(
+		'mb-4 mt-4 border-b-2 border-b-natgeo-yellow pb-2 font-poppins text-2xl font-bold lg:text-3xl',
+		{
+			'font-noto-sans-kannada': lang === 'kok',
+		},
+	)}
+>
+	{t('prayer.pope-intention')}
+</h2>
+
+<div
+	class={cn('text-justify font-geist', {
+		'font-noto-sans-kannada': lang === 'kok',
+	})}
+>
+	{
+		intention
+			.filter((i) => i.month === month)
+			.map((i) => (
+				<>
+					<p class="text-lg font-bold" set:html={i.title} />
+					<p class="mt-2" set:html={i.description} />
+				</>
+			))
+	}
+</div>

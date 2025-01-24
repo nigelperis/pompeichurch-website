@@ -1,47 +1,63 @@
 ---
 import { Image } from 'astro:assets';
-
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+import { priestMessage } from '~/constants/parish-priest-message';
+import { cn } from '~/helpers/cn';
+
+//Images
+import priestImage from '~/assets/landing-page/pp1.png';
+
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-
-import priestImage from '~/assets/pp1.png';
-
-import { loremIpsum } from '~/constants/lorem-ipsum';
 ---
 
-<section class="mx-6 mt-6">
+<section
+	class="mx-6 mt-6 flex flex-col lg:mx-28 lg:mb-3 lg:mt-0 lg:min-h-[70svh] lg:justify-evenly"
+>
 	<h2
 		data-aos="fade-right"
-		class="relative mb-4 border-l-4 border-natgeo-yellow pl-3 text-left font-poppins text-3xl font-extrabold"
+		class={cn(
+			'mb-4 inline-block border-l-4 border-natgeo-yellow pl-3 font-poppins text-[27px] font-extrabold xs:text-2xl lg:text-4xl',
+			{
+				'font-noto-sans-kannada': lang === 'kok',
+			},
+		)}
 	>
 		{t('landing.priest-speaks')}
 	</h2>
 
-	<div
-		data-aos="zoom-in-up"
-		class="relative mx-auto flex w-fit flex-col items-center"
-	>
-		<div
-			class="absolute top-full -z-10 h-[43%] w-[103%] -translate-y-full rounded bg-gradient-to-r from-natgeo-yellow-200 via-natgeo-yellow-300 to-natgeo-yellow-400"
-		>
+	<div class="flex flex-col gap-x-10 lg:flex-row">
+		<div class="lg:min-w-72 xl:min-w-96">
+			<div
+				data-aos="zoom-in-up"
+				class="relative mx-auto flex w-fit flex-col items-center"
+			>
+				<div class="absolute top-full -z-10 h-[43%] w-[103%]"></div>
+				<Image
+					src={priestImage}
+					alt="Parish Priest of Our Lady of Pompei Church"
+					width={300}
+				/>
+			</div>
+
+			<figcaption
+				class="mt-2 text-center font-lora text-lg italic text-slate-600"
+			>
+				{t('landing.priest-name')}
+			</figcaption>
 		</div>
-		<Image src={priestImage} alt="priest image" width={300} />
-	</div>
 
-	<figcaption class="mt-2 text-center font-lora text-lg italic text-slate-600">
-		{t('landing.priest-name')}
-	</figcaption>
-
-	<p
-		class="text-justify font-poppins text-base first-letter:font-serif first-letter:text-3xl"
-	>
-		{loremIpsum}
-	</p>
-
-	<div class="relative mb-8 ml-auto overflow-hidden text-lg font-semibold">
-		<p data-aos="fade-left" class="text-right">
-			Signature of Fr. Rudolf DSa(image)
-		</p>
+		<div class="lg:self-center">
+			<p
+				class={cn(`text-justify font-geist pt-2 text-base leading-7`, {
+					'font-noto-sans-kannada': lang === 'kok',
+				})}
+			>
+				{lang === 'kok' ? priestMessage.kok : priestMessage.en}
+			</p>
+			<div class="flex flex-col items-end pb-6 lg:mt-10">
+				<span class="mt-2 font-bold">{t('landing.priest')}</span>
+			</div>
+		</div>
 	</div>
 </section>

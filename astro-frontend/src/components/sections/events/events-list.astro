@@ -1,0 +1,19 @@
+---
+import EventCard from '~/components/event-card.astro';
+import { events } from '~/constants/events';
+---
+
+<div class="grid grid-cols-1 gap-8 sm:grid-cols-2">
+	{
+		events.map((event) => (
+			<EventCard
+				eventName={event.eventName}
+				eventNameKok={event.eventNameKok}
+				imageUrl={event.imageUrl}
+				shortDescription={event.shortDescription}
+				facebookLink={event.facebookLink}
+				slug={event.slug}
+			/>
+		))
+	}
+</div>

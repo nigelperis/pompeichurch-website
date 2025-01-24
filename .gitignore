@@ -23,11 +23,11 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 
-
-
 # Local Netlify folder
 .netlify
 
 db
 db-data
 _docker_volumes
+# pnpm lock file
+pnpm-lock.yaml

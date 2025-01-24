@@ -1,24 +1,24 @@
 ---
 import Layout from '~/layouts/layout.astro';
 import MasonryGallery from '~/components/sections/gallery/masonry-gallery.astro';
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <Layout title="Pompei Church | Gallery">
-	<main class="overflow-hidden bg-white">
-		<section
-			class="relative flex h-[225px] w-full items-center justify-center bg-slate-100 px-10"
-		>
-			<div class="text-center">
-				<h1
-					class="text-slate-1000 mb-6 font-poppins text-3xl font-extrabold text-black"
-				>
-					Gallery
-				</h1>
-				<p class="text-md font-poppins text-slate-400">
-					Capturing moments of grace
-				</p>
-			</div>
+	<main class="mx-auto max-w-4xl overflow-hidden bg-white">
+		<section id="gallery" class="flex flex-col p-6 pb-4">
+			<h1
+				class="mb-2 border-l-4 border-natgeo-yellow pl-3 text-3xl font-extrabold lg:text-4xl"
+			>
+				{t('gallery.title')}
+			</h1>
+			<p class="text-justify font-geist text-lg text-slate-700">
+				Capturing moments of grace
+			</p>
+			<MasonryGallery />
 		</section>
-		<MasonryGallery />
 	</main>
 </Layout>

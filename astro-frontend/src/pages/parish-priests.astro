@@ -1,68 +1,24 @@
 ---
 import Layout from '~/layouts/layout.astro';
-import dummyImage from '~/assets/dummy-image.png';
-import ProfileCard from '~/components/profile-card.astro';
+import ParishPriestsList from '~/components/sections/parish-priests/parish-priests-list.astro';
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 
-const parishPriests = [
-	{
-		imageUrl: dummyImage,
-		name: 'Rev. Fr. A.A.E Colaco',
-		date: '1921-22',
-	},
-	{
-		imageUrl: dummyImage,
-		name: 'Rev. Fr. F.X. Nazreth',
-		date: '1922-30',
-	},
-	{
-		imageUrl: dummyImage,
-		name: 'Rev. Fr. Raphael Pinto',
-		date: '1930-33',
-	},
-	{
-		imageUrl: dummyImage,
-		name: 'Rev. Fr. Aveline Rebello',
-		date: '1933-40',
-	},
-	{
-		imageUrl: dummyImage,
-		name: 'Rev. Fr. A.J. Nazreth',
-		date: '1940-48',
-	},
-	{
-		imageUrl: dummyImage,
-		name: 'Rev. Fr. John Castelino',
-		date: '1948-55',
-	},
-	{
-		imageUrl: dummyImage,
-		name: 'Rev. Fr. J.S.T Rodrigues',
-		date: '1955-71',
-	},
-];
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <Layout title="Pompei Church | Parish Priests">
-	<section class="mx-6 mt-5">
-		<h2
-			data-animate-on-view="animate-slidein-left"
-			class="font-roboto relative mb-4 border-l-4 border-natgeo-yellow pl-3 text-left text-3xl font-extrabold transition-opacity duration-700"
-		>
-			PARISH PRIESTS
-		</h2>
-		<ul
-			class="mx-auto grid w-full grid-cols-2 gap-4 gap-y-5 p-4 sm:w-[90%] sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
-		>
-			{
-				parishPriests.map((priest) => (
-					<ProfileCard
-						class="m-auto w-40"
-						imageUrl={priest.imageUrl}
-						name={priest.name}
-						date={priest.date}
-					/>
-				))
-			}
-		</ul>
-	</section>
+	<main class="mx-auto max-w-4xl overflow-hidden bg-white">
+		<section id="parish-priests" class="flex flex-col p-6 pb-4">
+			<h1
+				class="mb-4 border-l-4 border-natgeo-yellow pl-3 text-3xl font-extrabold lg:text-4xl"
+			>
+				{t('nav.parish-priests')}
+			</h1>
+			<p class="text-justify font-geist text-lg text-slate-700">
+				{t('pp.subtitle')}
+			</p>
+			<ParishPriestsList />
+		</section>
+	</main>
 </Layout>
