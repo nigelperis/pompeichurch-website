@@ -44,11 +44,11 @@ if (!event) {
 				set:html={event.description}
 			/>
 
-			<div class="mt-3 flex items-center justify-between relative">
+			<div class="relative mt-3 flex items-center justify-between">
 				<HoverableLink href={event.facebookLink}>
 					{t('ui.facebook-link')}
 				</HoverableLink>
-				<ShareLink shareData={{ title: event.eventName, url: eventUrl }}/>
+				<ShareLink shareData={{ title: event.eventName, url: eventUrl }} />
 			</div>
 		</section>
 	</main>

@@ -21,53 +21,58 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 const historyData =
-  lang === 'kok' ? parishHistoryKok[0].history : parishHistory[0].history;
+	lang === 'kok' ? parishHistoryKok[0].history : parishHistory[0].history;
 
 const priestsData =
-  lang === 'kok' ? parishHistoryKok[1].priestInfo : parishHistory[1].priestInfo;
+	lang === 'kok' ? parishHistoryKok[1].priestInfo : parishHistory[1].priestInfo;
 
 const fontClass = lang === 'kok' ? 'font-noto-sans-kannada' : 'font-geist';
 const images = [history1, history2, history3, history4, history5, history6];
 ---
+
 <div class="mx-auto">
-  <div class={fontClass}>
-    <div class="md:float-right md:ml-5 lg:mt-2">
-      <Image src={churchBannerImage} alt="Church Banner Image" />
-    </div>
-    <div
-      class="text-md mt-1 text-justify leading-7 text-slate-700"
-      set:html={historyData}
-    />
-    <div
-      class="text-md pb-4 text-justify leading-7 text-slate-700"
-      set:html={priestsData}
-    />
-    <h1 class="mb-4 mt-2 text-2xl font-extrabold lg:text-3xl">
-      {t('history.sweet-memories')}
-    </h1>
-    <div class="mt-4 pb-4">
-      <div class="hidden md:grid grid-cols-1 gap-4 md:grid-cols-2">
-        {images.map((image) => (
-          <Image
-            src={image}
-            alt="Historic Image of Our Parish"
-            class="w-full"
-          />
-        ))}
-      </div>
-			<div class="block md:hidden mx-[-1.5rem]">
-        <EmblaCarosuel>
-          {images.map((image, index) => (
-            <EmblaCarosuelItem>
-              <Image
-                src={image}
-                alt="Historic Image of Our Parish"
-                class="w-full object-cover"
-              />
-            </EmblaCarosuelItem>
-          ))}
-        </EmblaCarosuel>
-      </div>
-    </div>
-  </div>
+	<div class={fontClass}>
+		<div class="md:float-right md:ml-5 lg:mt-2">
+			<Image src={churchBannerImage} alt="Church Banner Image" />
+		</div>
+		<div
+			class="text-md mt-1 text-justify leading-7 text-slate-700"
+			set:html={historyData}
+		/>
+		<div
+			class="text-md pb-4 text-justify leading-7 text-slate-700"
+			set:html={priestsData}
+		/>
+		<h1 class="mb-4 mt-2 text-2xl font-extrabold lg:text-3xl">
+			{t('history.sweet-memories')}
+		</h1>
+		<div class="mt-4 pb-4">
+			<div class="hidden grid-cols-1 gap-4 md:grid md:grid-cols-2">
+				{
+					images.map((image) => (
+						<Image
+							src={image}
+							alt="Historic Image of Our Parish"
+							class="w-full"
+						/>
+					))
+				}
+			</div>
+			<div class="mx-[-1.5rem] block md:hidden">
+				<EmblaCarosuel>
+					{
+						images.map((image, index) => (
+							<EmblaCarosuelItem>
+								<Image
+									src={image}
+									alt="Historic Image of Our Parish"
+									class="w-full object-cover"
+								/>
+							</EmblaCarosuelItem>
+						))
+					}
+				</EmblaCarosuel>
+			</div>
+		</div>
+	</div>
 </div>

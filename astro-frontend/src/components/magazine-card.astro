@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import { cn } from '~/helpers/cn';
-import HoverableLink from './ui/hoverable-link.astro';
+import { Icon } from 'astro-icon/components';
 
 interface Props {
 	title: string;
@@ -15,7 +15,7 @@ const { title, imageUrl, downloadUrl, class: className } = Astro.props;
 
 <div
 	class={cn(
-		'hover:scale-[1.01] transform overflow-hidden rounded-md border duration-300 ease-in-out transition-all max-w-md mx-auto',
+		'hover:scale-[1.01] transform overflow-hidden rounded-md border duration-300 ease-in-out transition-all max-w-md mx-auto bg-white shadow-lg',
 		className,
 	)}
 >
@@ -23,13 +23,18 @@ const { title, imageUrl, downloadUrl, class: className } = Astro.props;
 		<Image
 			src={imageUrl}
 			alt={title}
-			class="w-full object-cover lg:h-[480px]"
+			class="w-full rounded-t-md object-cover lg:h-[480px]"
 		/>
 	</div>
 
-	<div
-		class="magazine-content mt-3 flex flex-row justify-center pb-5 text-center"
-	>
-		<HoverableLink href={downloadUrl}> Download </HoverableLink>
+	<div class="p-4 text-center">
+		<a
+			href={downloadUrl}
+			download
+			class="mt-1 inline-flex items-center gap-2 rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-md hover:bg-blue-700"
+		>
+			<Icon name="download" size={20} />
+			Download
+		</a>
 	</div>
 </div>

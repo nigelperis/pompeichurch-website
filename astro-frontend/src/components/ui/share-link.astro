@@ -4,37 +4,41 @@ import { cn } from '~/helpers/cn';
 
 interface Props {
 	class?: string;
-  shareData:Record<string,string>
-
+	shareData: Record<string, string>;
 }
 
-const { class: className ,shareData} = Astro.props;
+const { class: className, shareData } = Astro.props;
 ---
 
-<button data-share-data={JSON.stringify(shareData)}  class={cn('share-button cursor-pointer transform transition-transform duration-300 hover:scale-110', className)}  id="share">
-  <Icon name="share" size={30} class="text-slate-600"   />
+<button
+	data-share-data={JSON.stringify(shareData)}
+	class={cn(
+		'share-button cursor-pointer transform transition-transform duration-300 hover:scale-110',
+		className,
+	)}
+	id="share"
+>
+	<Icon name="share" size={30} class="text-slate-600" />
 </button>
 
 <script>
-function init(){
-    const buttons = document.querySelectorAll<HTMLButtonElement>(".share-button")
+	function init() {
+		const buttons =
+			document.querySelectorAll<HTMLButtonElement>('.share-button');
 
-    if(!buttons) return;
+		if (!buttons) return;
 
-    for(const button of buttons){
+		for (const button of buttons) {
+			const payloadData = button.getAttribute('data-share-data');
 
-    const payloadData = button.getAttribute('data-share-data');
+			if (!payloadData) continue;
 
-    if(!payloadData)continue;
+			const parsedPayloadData = JSON.parse(payloadData);
 
-    const parsedPayloadData = JSON.parse(payloadData);
-
-
-    button.addEventListener("click", async () => {
-      await navigator.share(parsedPayloadData);
-    });
-  }
-}
-init();
-
+			button.addEventListener('click', async () => {
+				await navigator.share(parsedPayloadData);
+			});
+		}
+	}
+	init();
 </script>

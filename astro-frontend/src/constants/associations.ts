@@ -1,8 +1,8 @@
 //Images
 import altarServers from '~/assets/associations/altar-servers.jpg';
-import gurpurChoir from '~/assets/associations/gurpur-choir.jpg';
 import catechism from '~/assets/associations/catechism.jpg';
 import catholicSabha from '~/assets/associations/catholic-sabha.jpg';
+import gurpurChoir from '~/assets/associations/gurpur-choir.jpg';
 import moriyalSodality from '~/assets/associations/moriyal-sodality.jpg';
 import pyc from '~/assets/associations/pyc.jpg';
 import smallChristianCommunity from '~/assets/associations/small-christian-community.jpg';
