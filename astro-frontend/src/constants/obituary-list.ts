@@ -16,7 +16,7 @@ const obituaryData = [
 		ward: 'ಅಡ್ಡೂರ್',
 		date: '14-01-2025',
 	},
-		{
+	{
 		name: 'ಮೇರಿ ಕುಟಿನ್ಹೊ',
 		imageUrl: maryCoutinho,
 		age: '87',

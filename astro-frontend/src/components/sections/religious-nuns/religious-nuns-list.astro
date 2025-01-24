@@ -13,13 +13,13 @@ const t = useTranslations(lang);
 	{
 		religiousNuns.map((nun) => (
 			<VocationCard
-        imageUrl={nun.imageUrl}
+				imageUrl={nun.imageUrl}
 				name={t(`nun.${nun.name}`)}
-        ward={t(`nun.${nun.ward}`)}
+				ward={t(`nun.${nun.ward}`)}
 				dob={nun.dob}
-        dod={nun.dod}
-        congregation={t(`nun.${nun.congregation}`)}
-        parents={t(`nun.${nun.parents}`)}
+				dod={nun.dod}
+				congregation={t(`nun.${nun.congregation}`)}
+				parents={t(`nun.${nun.parents}`)}
 				role={nun.role}
 			/>
 		))

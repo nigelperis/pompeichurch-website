@@ -86,7 +86,8 @@ export const ui = {
 		'landing.mrs-vijaya-dcosta': 'Mrs. Vijaya DCosta',
 		'landing.elected-member': 'Elected Member',
 		'landing.nominated-member': 'Nominated Member',
-		'pp.subtitle': 'Here is a glimpse of the esteemed former parish priests who have nurtured our faith, enriched our community and individual lives, and upheld the cherished legacy of our church throughout these years.',
+		'pp.subtitle':
+			'Here is a glimpse of the esteemed former parish priests who have nurtured our faith, enriched our community and individual lives, and upheld the cherished legacy of our church throughout these years.',
 		'pastoral.vp': 'Vice President',
 		'pastoral.secretary': 'Secretary',
 		'pastoral.21-commissions-coordinator': '21 Commissions Coordinator',
@@ -646,7 +647,8 @@ export const ui = {
 		'landing.mrs-vijaya-dcosta': ' ಶ್ರೀಮತಿ ವಿಜಯಾ ಡಿಕೋಸ್ತಾ',
 		'landing.elected-member': 'ಚುನಾಯಿತ್ ಸಾಂದೊ',
 		'landing.nominated-member': 'ನೇಮಕ್ ಸಾಂದೊ',
-		'pp.subtitle': 'ಫಿರ್ಗಜೆಚೊ ಶತಮಾನೋತ್ಸವ್ ಸಂಭ್ರಮ್ ಆಚರಣ್ ಕರ್ತನಾ ಪಾಟ್ಲ್ಯಾ ಶೆಂಬೊರ್ ವರ್ಸಾನಿಂ ಫಿರ್ಗಜೆಚ್ಯಾ ಭಾವಾರ್ಥಾಚಾ ಆತ್ಮಿಕ್ ಪಯ್ಣಾರ್ ತಶೆಂಚ್ ಸಾಮಾಜಿಕ್ ಆನಿ ಲೌಕಿಕ್ ಜಿಣಿಯೆಕ್ ಆಧಾರ್ ಜಾಲ್ಲ್ಯಾ ಫಿರ್ಗಜೆಚೆಂ ಸುಂಕಾಣ್ ಹಾತಿಂ ಘೆವ್ನ್ ಫಿರ್ಗಜ್ ಕುಟ್ಮಾo ಬರ‍್ಯಾ ರಿತಿನ್ ಚಲವ್ನ್ ವ್ಹರ್ನ್ ಆಮ್ಕಾಂ ಶತಮಾನೋತ್ಸವಾಚೆಂ ಭಾಗ್ ಪಳೆoವ್ಕ್ ಫಾವೊ ಕೆಲ್ಲ್ಯಾ ಸರ್ವ್ ಫಿರ್ಗಜ್ ವಿಗಾರಾಂಚಿ ಮೊಟ್ವಿ ಝಳಕ್',
+		'pp.subtitle':
+			'ಫಿರ್ಗಜೆಚೊ ಶತಮಾನೋತ್ಸವ್ ಸಂಭ್ರಮ್ ಆಚರಣ್ ಕರ್ತನಾ ಪಾಟ್ಲ್ಯಾ ಶೆಂಬೊರ್ ವರ್ಸಾನಿಂ ಫಿರ್ಗಜೆಚ್ಯಾ ಭಾವಾರ್ಥಾಚಾ ಆತ್ಮಿಕ್ ಪಯ್ಣಾರ್ ತಶೆಂಚ್ ಸಾಮಾಜಿಕ್ ಆನಿ ಲೌಕಿಕ್ ಜಿಣಿಯೆಕ್ ಆಧಾರ್ ಜಾಲ್ಲ್ಯಾ ಫಿರ್ಗಜೆಚೆಂ ಸುಂಕಾಣ್ ಹಾತಿಂ ಘೆವ್ನ್ ಫಿರ್ಗಜ್ ಕುಟ್ಮಾo ಬರ‍್ಯಾ ರಿತಿನ್ ಚಲವ್ನ್ ವ್ಹರ್ನ್ ಆಮ್ಕಾಂ ಶತಮಾನೋತ್ಸವಾಚೆಂ ಭಾಗ್ ಪಳೆoವ್ಕ್ ಫಾವೊ ಕೆಲ್ಲ್ಯಾ ಸರ್ವ್ ಫಿರ್ಗಜ್ ವಿಗಾರಾಂಚಿ ಮೊಟ್ವಿ ಝಳಕ್',
 		'pastoral.vp': 'ಉಪಾಧ್ಯಕ್ಷ್',
 		'pastoral.secretary': 'ಕಾರ್ಯದರ್ಶಿ',
 		'pastoral.21-commissions-coordinator': '21 ಆಯೋಗಾಂಚಿ ಸಂಯೋಜಕಿ',

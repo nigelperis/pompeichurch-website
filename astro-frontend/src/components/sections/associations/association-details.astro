@@ -20,11 +20,7 @@ const association = associationData.find((assoc) => assoc.slug === slug);
 
 const associationName = association?.slug;
 
-const {
-	associationImage,
-	description,
-	officeBearers = [],
-} = association || {};
+const { associationImage, description, officeBearers = [] } = association || {};
 
 const social = {
 	name: String,

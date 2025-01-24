@@ -1,78 +1,78 @@
 //Religious Priests
-import frJosephLobo from '~/assets/religious-priests/fr-joseph-lobo.png';
-import brPaulLobo from '~/assets/religious-priests/br-paul-lobo.png';
-import frCyrilRasquinha from '~/assets/religious-priests/fr-cyril-rasquinha.png';
-import frHerbertPinto from '~/assets/religious-priests/fr-herbert-pinto.png';
-import frJosephTauro from '~/assets/religious-priests/fr-joseph-tauro.png';
-import frGilbertPinto from '~/assets/religious-priests/fr-gilbert-pinto.png';
-import frGregoryDCunha from '~/assets/religious-priests/fr-gregory-dchuna.png';
-import frStanyDCunha from '~/assets/religious-priests/fr-stany-dchuna.png';
-import frJohnMendonca from '~/assets/religious-priests/fr-john mendonca.png';
-import frFelixMoras from '~/assets/religious-priests/fr-felix-moras.png';
-import frAndrewMoras from '~/assets/religious-priests/fr-andrew-moras.png';
-import frJohnPeris from '~/assets/religious-priests/fr-john-peris.png';
-import frVictorLobo from '~/assets/religious-priests/fr-victor-lobo.png';
-import frPiusPinto from '~/assets/religious-priests/fr-pius-pinto.png';
-import frIvanMendonca from '~/assets/religious-priests/fr-ivan-mendonca.png';
-import frMelwinMendonca from '~/assets/religious-priests/fr-melwin-mendonca.png';
-import frRichardDSouza from '~/assets/religious-priests/fr-richard-dsouza.png';
-import frRudolphPinto from '~/assets/religious-priests/fr-rudolph-pinto.png';
-import frRohanMiranda from '~/assets/religious-priests/fr-rohan-miranda.png';
-import frVincentSaldanha from '~/assets/religious-priests/fr-vincent-saldanha.png';
-import frSanthoshMenezes from '~/assets/religious-priests/fr-santhosh-menezes.png';
-import frAnilFernandes from '~/assets/religious-priests/fr-anil-fernandes.png';
-import frStephenLobo from '~/assets/religious-priests/fr-stephen-lobo.png';
-import frPrakashDCunha from '~/assets/religious-priests/fr-prakash-dchuna.png';
-import frRoshanPinto from '~/assets/religious-priests/fr-roshan-pinto.png';
 import brCyrilDSouza from '~/assets/religious-priests/br-cyril-dsouza.png';
 import brCliffordRodrigues from '~/assets/religious-priests/br-john-rodrigues.png';
+import brPaulLobo from '~/assets/religious-priests/br-paul-lobo.png';
 import brWilsonSaldanha from '~/assets/religious-priests/br-wilson-saldanha.png';
+import frAndrewMoras from '~/assets/religious-priests/fr-andrew-moras.png';
+import frAnilFernandes from '~/assets/religious-priests/fr-anil-fernandes.png';
+import frCyrilRasquinha from '~/assets/religious-priests/fr-cyril-rasquinha.png';
+import frFelixMoras from '~/assets/religious-priests/fr-felix-moras.png';
+import frGilbertPinto from '~/assets/religious-priests/fr-gilbert-pinto.png';
+import frGregoryDCunha from '~/assets/religious-priests/fr-gregory-dchuna.png';
+import frHerbertPinto from '~/assets/religious-priests/fr-herbert-pinto.png';
+import frIvanMendonca from '~/assets/religious-priests/fr-ivan-mendonca.png';
+import frJohnMendonca from '~/assets/religious-priests/fr-john mendonca.png';
+import frJohnPeris from '~/assets/religious-priests/fr-john-peris.png';
+import frJosephLobo from '~/assets/religious-priests/fr-joseph-lobo.png';
+import frJosephTauro from '~/assets/religious-priests/fr-joseph-tauro.png';
+import frMelwinMendonca from '~/assets/religious-priests/fr-melwin-mendonca.png';
+import frPiusPinto from '~/assets/religious-priests/fr-pius-pinto.png';
+import frPrakashDCunha from '~/assets/religious-priests/fr-prakash-dchuna.png';
+import frRichardDSouza from '~/assets/religious-priests/fr-richard-dsouza.png';
+import frRohanMiranda from '~/assets/religious-priests/fr-rohan-miranda.png';
+import frRoshanPinto from '~/assets/religious-priests/fr-roshan-pinto.png';
+import frRudolphPinto from '~/assets/religious-priests/fr-rudolph-pinto.png';
+import frSanthoshMenezes from '~/assets/religious-priests/fr-santhosh-menezes.png';
+import frStanyDCunha from '~/assets/religious-priests/fr-stany-dchuna.png';
+import frStephenLobo from '~/assets/religious-priests/fr-stephen-lobo.png';
+import frVictorLobo from '~/assets/religious-priests/fr-victor-lobo.png';
+import frVincentSaldanha from '~/assets/religious-priests/fr-vincent-saldanha.png';
 
 //Religious Nuns
-import srAngelaPinto from '~/assets/religious-nuns/sr-angela-pinto.png';
-import srAgnesPinto from '~/assets/religious-nuns/sr-agnes-pinto.png';
-import srAgnesDCunha from '~/assets/religious-nuns/sr-agnes-dchuna.png';
-import srEmiliana from '~/assets/religious-nuns/sr-emiliana.png';
-import srMarjari from '~/assets/religious-nuns/sr-margary.png';
-import srMarijohn from '~/assets/religious-nuns/sr-mariejohn.png';
-import srMelvis from '~/assets/religious-nuns/sr-melwis.png';
-import srRegis from '~/assets/religious-nuns/sr-regis.png';
-import srTeresaMargarette from '~/assets/religious-nuns/sr-teresa-margarette.png';
 import srAfemia from '~/assets/religious-nuns/sr-a-femiya.png';
-import srGilberta from '~/assets/religious-nuns/sr-gilberta.png';
-import srBaptistaPeris from '~/assets/religious-nuns/sr-baptista-peris.png'
-import srMariaNoncietta from '~/assets/religious-nuns/sr-maria-noncietta.png';
-import srMelwyn from '~/assets/religious-nuns/sr-melwin.png';
-import srFlevian from '~/assets/religious-nuns/sr-flevian.png';
-import srEveline from '~/assets/religious-nuns/sr-evline.png';
-import srNimpah from '~/assets/religious-nuns/sr-nimfa.png';
-import srBlanchePinto from '~/assets/religious-nuns/sr-blanche-pinto.png';
-import srNorbertin from '~/assets/religious-nuns/sr-norbertin.png';
-import srFelician from '~/assets/religious-nuns/sr-felician.png';
-import srMerician from '~/assets/religious-nuns/sr-merician.png'
-import srMallika from '~/assets/religious-nuns/sr-mallika.png';
-import srDulcis from '~/assets/religious-nuns/sr-dulcis.png';
-import srJulianaMary from '~/assets/religious-nuns/sr-juliana-mary.png';
-import srReginald from '~/assets/religious-nuns/sr-reginald.png';
-import srMoad from '~/assets/religious-nuns/sr-moad.png';
-import srMariaNavitha from '~/assets/religious-nuns/sr-maria-navitha.png';
-import srJosita from '~/assets/religious-nuns/sr-josita.png';
-import srRenuka from '~/assets/religious-nuns/sr-renuka.png';
-import srMariaSudeepa from '~/assets/religious-nuns/sr-maria-sudeepa.png';
-import srIrenePinto from '~/assets/religious-nuns/sr-irene-pinto.png';
-import srTresilla from '~/assets/religious-nuns/sr-dr-trescilla.png';
-import srMaryJane from '~/assets/religious-nuns/sr-mary-jane.png';
-import srShaletSequiera from '~/assets/religious-nuns/sr-shalet-sequeira.png';
-import srRoselita from '~/assets/religious-nuns/sr-roselita.png';
-import srEvelineSequiera from '~/assets/religious-nuns/sr-eveline-sequeira.png';
-import srMaryLobo from '~/assets/religious-nuns/sr-mary-lobo.png';
-import srHildguard from '~/assets/religious-nuns/sr-hildguard.png';
-import srMarieJane from '~/assets/religious-nuns/sr-marie-jane.png';
-import srLinetDsoouza from '~/assets/religious-nuns/sr-linet-dsouza.png';
-import srJacinthaRodrigues from '~/assets/religious-nuns/sr-jacintha-rodrigues.png';
-import srMFranics from '~/assets/religious-nuns/sr-m-francis.png';
-import srTitus from '~/assets/religious-nuns/sr-titus.png';
+import srAgnesDCunha from '~/assets/religious-nuns/sr-agnes-dchuna.png';
+import srAgnesPinto from '~/assets/religious-nuns/sr-agnes-pinto.png';
 import srAlan from '~/assets/religious-nuns/sr-alan.png';
+import srAngelaPinto from '~/assets/religious-nuns/sr-angela-pinto.png';
+import srBaptistaPeris from '~/assets/religious-nuns/sr-baptista-peris.png';
+import srBlanchePinto from '~/assets/religious-nuns/sr-blanche-pinto.png';
+import srTresilla from '~/assets/religious-nuns/sr-dr-trescilla.png';
+import srDulcis from '~/assets/religious-nuns/sr-dulcis.png';
+import srEmiliana from '~/assets/religious-nuns/sr-emiliana.png';
+import srEvelineSequiera from '~/assets/religious-nuns/sr-eveline-sequeira.png';
+import srEveline from '~/assets/religious-nuns/sr-evline.png';
+import srFelician from '~/assets/religious-nuns/sr-felician.png';
+import srFlevian from '~/assets/religious-nuns/sr-flevian.png';
+import srGilberta from '~/assets/religious-nuns/sr-gilberta.png';
+import srHildguard from '~/assets/religious-nuns/sr-hildguard.png';
+import srIrenePinto from '~/assets/religious-nuns/sr-irene-pinto.png';
+import srJacinthaRodrigues from '~/assets/religious-nuns/sr-jacintha-rodrigues.png';
+import srJosita from '~/assets/religious-nuns/sr-josita.png';
+import srJulianaMary from '~/assets/religious-nuns/sr-juliana-mary.png';
+import srLinetDsoouza from '~/assets/religious-nuns/sr-linet-dsouza.png';
+import srMFranics from '~/assets/religious-nuns/sr-m-francis.png';
+import srMallika from '~/assets/religious-nuns/sr-mallika.png';
+import srMarjari from '~/assets/religious-nuns/sr-margary.png';
+import srMariaNavitha from '~/assets/religious-nuns/sr-maria-navitha.png';
+import srMariaNoncietta from '~/assets/religious-nuns/sr-maria-noncietta.png';
+import srMariaSudeepa from '~/assets/religious-nuns/sr-maria-sudeepa.png';
+import srMarieJane from '~/assets/religious-nuns/sr-marie-jane.png';
+import srMarijohn from '~/assets/religious-nuns/sr-mariejohn.png';
+import srMaryJane from '~/assets/religious-nuns/sr-mary-jane.png';
+import srMaryLobo from '~/assets/religious-nuns/sr-mary-lobo.png';
+import srMelwyn from '~/assets/religious-nuns/sr-melwin.png';
+import srMelvis from '~/assets/religious-nuns/sr-melwis.png';
+import srMerician from '~/assets/religious-nuns/sr-merician.png';
+import srMoad from '~/assets/religious-nuns/sr-moad.png';
+import srNimpah from '~/assets/religious-nuns/sr-nimfa.png';
+import srNorbertin from '~/assets/religious-nuns/sr-norbertin.png';
+import srReginald from '~/assets/religious-nuns/sr-reginald.png';
+import srRegis from '~/assets/religious-nuns/sr-regis.png';
+import srRenuka from '~/assets/religious-nuns/sr-renuka.png';
+import srRoselita from '~/assets/religious-nuns/sr-roselita.png';
+import srShaletSequiera from '~/assets/religious-nuns/sr-shalet-sequeira.png';
+import srTeresaMargarette from '~/assets/religious-nuns/sr-teresa-margarette.png';
+import srTitus from '~/assets/religious-nuns/sr-titus.png';
 
 const religiousPriests = [
 	{
@@ -83,7 +83,7 @@ const religiousPriests = [
 		dod: '31-08-2017',
 		congregation: 'secularmangalore',
 		parents: 'marcellobo',
-		role: 'priest'
+		role: 'priest',
 	},
 	{
 		imageUrl: brPaulLobo,
@@ -93,7 +93,7 @@ const religiousPriests = [
 		dod: '24-11-1993',
 		congregation: 'jesuitorder',
 		parents: 'baltazarlobo',
-		role: 'priest'
+		role: 'priest',
 	},
 	{
 		imageUrl: frCyrilRasquinha,
@@ -103,7 +103,7 @@ const religiousPriests = [
 		dod: '26-03-2003',
 		congregation: 'seculardelhi',
 		parents: 'ignasiusrasquniha',
-		role: 'priest'
+		role: 'priest',
 	},
 	{
 		imageUrl: frHerbertPinto,
@@ -113,7 +113,7 @@ const religiousPriests = [
 		dod: '06-07-2007',
 		congregation: 'capuchin',
 		parents: 'trindadpinto',
-		role: 'priest'
+		role: 'priest',
 	},
 	{
 		imageUrl: frJosephTauro,
@@ -123,7 +123,7 @@ const religiousPriests = [
 		dod: '08-02-2013',
 		congregation: 'secularmangalore',
 		parents: 'kashmirtauro',
-		role: 'priest'
+		role: 'priest',
 	},
 	{
 		imageUrl: frGilbertPinto,
@@ -133,7 +133,7 @@ const religiousPriests = [
 		dod: '23-11-2015',
 		congregation: 'secularchikkmangalore',
 		parents: 'eliaspinto',
-		role: 'priest'
+		role: 'priest',
 	},
 	{
 		imageUrl: frGregoryDCunha,
@@ -143,7 +143,7 @@ const religiousPriests = [
 		dod: '04-10-2020',
 		congregation: 'secularshivmogga',
 		parents: 'denisdcunha',
-		role: 'priest'
+		role: 'priest',
 	},
 	{
 		imageUrl: frStanyDCunha,
@@ -153,7 +153,7 @@ const religiousPriests = [
 		dod: '05-08-2019',
 		congregation: 'secularkarwar',
 		parents: 'denisdcunha',
-		role: 'priest'
+		role: 'priest',
 	},
 	{
 		imageUrl: frJohnMendonca,
@@ -161,7 +161,7 @@ const religiousPriests = [
 		ward: 'kandar-a',
 		congregation: 'jesuit',
 		parents: 'ruzarmendonca',
-		role: 'priest'
+		role: 'priest',
 	},
 	{
 		imageUrl: frFelixMoras,
@@ -169,7 +169,7 @@ const religiousPriests = [
 		ward: 'gurpur',
 		congregation: 'secularnagpur',
 		parents: 'pascalmoras',
-		role: 'priest'
+		role: 'priest',
 	},
 	{
 		imageUrl: frAndrewMoras,
@@ -177,7 +177,7 @@ const religiousPriests = [
 		ward: 'gurpur',
 		congregation: 'secularnagpur',
 		parents: 'pascalmoras',
-		role: 'priest'
+		role: 'priest',
 	},
 	{
 		imageUrl: frJohnPeris,
@@ -185,7 +185,7 @@ const religiousPriests = [
 		ward: 'church',
 		congregation: 'secularlucknow',
 		parents: 'lawrenceperis',
-		role: 'priest'
+		role: 'priest',
 	},
 	{
 		imageUrl: frVictorLobo,
@@ -193,7 +193,7 @@ const religiousPriests = [
 		ward: 'gurpur',
 		congregation: 'secularlucknow',
 		parents: 'pascallobo',
-		role: 'priest'
+		role: 'priest',
 	},
 	{
 		imageUrl: frPiusPinto,
@@ -201,7 +201,7 @@ const religiousPriests = [
 		ward: 'kowdoor-a',
 		congregation: 'secularmangalore',
 		parents: 'lawrencepinto',
-		role: 'priest'
+		role: 'priest',
 	},
 	{
 		imageUrl: frIvanMendonca,
@@ -209,7 +209,7 @@ const religiousPriests = [
 		ward: 'church',
 		congregation: 'jesuit',
 		parents: 'aloysiusmendonca',
-		role: 'priest'
+		role: 'priest',
 	},
 	{
 		imageUrl: frMelwinMendonca,
@@ -217,7 +217,7 @@ const religiousPriests = [
 		ward: 'kandar-a',
 		congregation: 'jesuit',
 		parents: 'gabrielmendonca',
-		role: 'priest'
+		role: 'priest',
 	},
 	{
 		imageUrl: frRichardDSouza,
@@ -225,7 +225,7 @@ const religiousPriests = [
 		ward: 'gurpur',
 		congregation: 'carmelite',
 		parents: 'mauricedsouza',
-		role: 'priest'
+		role: 'priest',
 	},
 	{
 		imageUrl: frRudolphPinto,
@@ -233,7 +233,7 @@ const religiousPriests = [
 		ward: 'kowdoor-a',
 		congregation: 'carmelite',
 		parents: 'georgepinto',
-		role: 'priest'
+		role: 'priest',
 	},
 	{
 		imageUrl: frRohanMiranda,
@@ -241,7 +241,7 @@ const religiousPriests = [
 		ward: 'gurpur',
 		congregation: 'capuchin',
 		parents: 'leomiranda',
-		role: 'priest'
+		role: 'priest',
 	},
 	{
 		imageUrl: frVincentSaldanha,
@@ -249,7 +249,7 @@ const religiousPriests = [
 		ward: 'gurpur',
 		congregation: 'secularmangalore',
 		parents: 'johnsaldanha',
-		role: 'priest'
+		role: 'priest',
 	},
 	{
 		imageUrl: frSanthoshMenezes,
@@ -257,7 +257,7 @@ const religiousPriests = [
 		ward: 'kandar-a',
 		congregation: 'secularmangalore',
 		parents: 'antonymenezes',
-		role: 'priest'
+		role: 'priest',
 	},
 	{
 		imageUrl: frAnilFernandes,
@@ -265,7 +265,7 @@ const religiousPriests = [
 		ward: 'pompei-a',
 		congregation: 'svd',
 		parents: 'mauricefernandes',
-		role: 'priest'
+		role: 'priest',
 	},
 	{
 		imageUrl: frStephenLobo,
@@ -273,7 +273,7 @@ const religiousPriests = [
 		ward: 'church',
 		congregation: 'capuchin',
 		parents: 'williamlobo',
-		role: 'priest'
+		role: 'priest',
 	},
 	{
 		imageUrl: frPrakashDCunha,
@@ -281,7 +281,7 @@ const religiousPriests = [
 		ward: 'monel',
 		congregation: 'carmelite',
 		parents: 'ijidoredcunha',
-		role: 'priest'
+		role: 'priest',
 	},
 	{
 		imageUrl: frRoshanPinto,
@@ -289,7 +289,7 @@ const religiousPriests = [
 		ward: 'kowdoor-a',
 		congregation: 'carmelite',
 		parents: 'norbertpinto',
-		role: 'priest'
+		role: 'priest',
 	},
 	{
 		imageUrl: brCyrilDSouza,
@@ -297,7 +297,7 @@ const religiousPriests = [
 		congregation: 'carmelite',
 		ward: 'gurpur',
 		parents: 'pauldsouza',
-		role: 'priest'
+		role: 'priest',
 	},
 	{
 		imageUrl: brCliffordRodrigues,
@@ -305,7 +305,7 @@ const religiousPriests = [
 		ward: 'kandar-a',
 		congregation: 'carmelite',
 		parents: 'cyrilrodrigues',
-		role: 'priest'
+		role: 'priest',
 	},
 	{
 		imageUrl: brWilsonSaldanha,
@@ -313,7 +313,7 @@ const religiousPriests = [
 		ward: 'gurpur',
 		congregation: 'jesuit',
 		parents: 'dominicsaldanha',
-		role: 'priest'
+		role: 'priest',
 	},
 ];
 
@@ -326,7 +326,7 @@ const religiousNuns = [
 		dod: '04-01-2005',
 		congregation: 'charity', //TODO: confirm this and update, just a guess for now
 		parents: 'marianpinto',
-		role: 'nun'
+		role: 'nun',
 	},
 	{
 		imageUrl: srAgnesPinto,
@@ -336,7 +336,7 @@ const religiousNuns = [
 		dod: '24-01-2017',
 		congregation: 'charity',
 		parents: 'benjaminpinto',
-		role: 'nun'
+		role: 'nun',
 	},
 	{
 		imageUrl: srAgnesDCunha,
@@ -346,7 +346,7 @@ const religiousNuns = [
 		dod: '13-11-1988',
 		congregation: 'charity',
 		parents: 'martindcunha',
-		role: 'nun'
+		role: 'nun',
 	},
 	{
 		imageUrl: srEmiliana,
@@ -354,7 +354,7 @@ const religiousNuns = [
 		ward: 'kowdoor-b',
 		congregation: 'apostaliccarmel',
 		parents: 'bajilrodrigues',
-		role: 'nun'
+		role: 'nun',
 	},
 	{
 		imageUrl: srMarjari,
@@ -364,7 +364,7 @@ const religiousNuns = [
 		dod: '28-07-2019',
 		congregation: 'bethany',
 		parents: 'trindadpinto',
-		role: 'nun'
+		role: 'nun',
 	},
 	{
 		imageUrl: srMarijohn,
@@ -374,7 +374,7 @@ const religiousNuns = [
 		dod: '30-08-2020',
 		congregation: 'bethany',
 		parents: 'trindadpinto',
-		role: 'nun'
+		role: 'nun',
 	},
 	{
 		imageUrl: srMelvis,
@@ -384,7 +384,7 @@ const religiousNuns = [
 		dod: '02-09-2005',
 		congregation: 'bethany',
 		parents: 'antonymenezes',
-		role: 'nun'
+		role: 'nun',
 	},
 	{
 		imageUrl: srRegis,
@@ -394,7 +394,7 @@ const religiousNuns = [
 		dod: '27-05-2016',
 		congregation: 'bethany',
 		parents: 'antonymenezes',
-		role: 'nun'
+		role: 'nun',
 	},
 	{
 		imageUrl: srTeresaMargarette,
@@ -404,7 +404,7 @@ const religiousNuns = [
 		dod: '08-11-1987',
 		congregation: 'ocd',
 		parents: 'vincentdcunha',
-		role: 'nun'
+		role: 'nun',
 	},
 	{
 		imageUrl: srAfemia,
@@ -412,7 +412,7 @@ const religiousNuns = [
 		ward: 'pompei-a',
 		congregation: 'apostaliccarmel',
 		parents: 'domingorodrigues',
-		role: 'nun'
+		role: 'nun',
 	},
 	{
 		imageUrl: srGilberta,
@@ -420,7 +420,7 @@ const religiousNuns = [
 		ward: 'pompei-a',
 		congregation: 'apostaliccarmel',
 		parents: 'alexanderrodrigues',
-		role: 'nun'
+		role: 'nun',
 	},
 	{
 		imageUrl: srBaptistaPeris,
@@ -430,7 +430,7 @@ const religiousNuns = [
 		dod: '21-05-2019',
 		congregation: `stanns`,
 		parents: 'bernardperis',
-		role: 'nun'
+		role: 'nun',
 	},
 	{
 		imageUrl: srMariaNoncietta,
@@ -439,7 +439,7 @@ const religiousNuns = [
 		dod: '09-06-1921',
 		congregation: 'apostaliccarmel',
 		parents: 'francistauro',
-		role: 'nun'
+		role: 'nun',
 	},
 	{
 		imageUrl: srMelwyn,
@@ -447,7 +447,7 @@ const religiousNuns = [
 		ward: 'kowdoor-a',
 		congregation: 'bethany',
 		parents: 'trindadpinto',
-		role: 'nun'
+		role: 'nun',
 	},
 	{
 		imageUrl: srFlevian,
@@ -455,7 +455,7 @@ const religiousNuns = [
 		ward: 'kowdoor-a',
 		congregation: 'bethany',
 		parents: 'trindadpinto',
-		role: 'nun'
+		role: 'nun',
 	},
 	{
 		imageUrl: srEveline,
@@ -463,7 +463,7 @@ const religiousNuns = [
 		ward: 'kowdoor-a',
 		congregation: 'bethany',
 		parents: 'sebastianmiranda',
-		role: 'nun'
+		role: 'nun',
 	},
 	{
 		imageUrl: srNimpah,
@@ -471,7 +471,7 @@ const religiousNuns = [
 		ward: 'kowdoor-b',
 		congregation: 'bethany',
 		parents: 'peterrodrigues',
-		role: 'nun'
+		role: 'nun',
 	},
 	{
 		imageUrl: srBlanchePinto,
@@ -479,7 +479,7 @@ const religiousNuns = [
 		ward: 'kowdoor-a',
 		congregation: 'charity',
 		parents: 'markpinto',
-		role: 'nun'
+		role: 'nun',
 	},
 	{
 		imageUrl: srNorbertin,
@@ -487,7 +487,7 @@ const religiousNuns = [
 		ward: 'kowdoor-a',
 		congregation: 'bethany',
 		parents: 'markpinto',
-		role: 'nun'
+		role: 'nun',
 	},
 	{
 		imageUrl: srFelician,
@@ -495,7 +495,7 @@ const religiousNuns = [
 		ward: 'kowdoor-a',
 		congregation: 'apostaliccarmel',
 		parents: 'jeromepinto',
-		role: 'nun'
+		role: 'nun',
 	},
 	{
 		imageUrl: srMerician,
@@ -503,7 +503,7 @@ const religiousNuns = [
 		ward: 'kowdoor-a',
 		congregation: 'apostaliccarmel',
 		parents: 'jeromepinto',
-		role: 'nun'
+		role: 'nun',
 	},
 	{
 		imageUrl: srMallika,
@@ -511,7 +511,7 @@ const religiousNuns = [
 		ward: 'kowdoor-a',
 		congregation: 'apostaliccarmel',
 		parents: 'jeromepinto',
-		role: 'nun'
+		role: 'nun',
 	},
 	{
 		imageUrl: srDulcis,
@@ -519,7 +519,7 @@ const religiousNuns = [
 		ward: 'kowdoor-b',
 		congregation: 'bethany',
 		parents: 'antonymenezes',
-		role: 'nun'
+		role: 'nun',
 	},
 	{
 		imageUrl: srJulianaMary,
@@ -527,7 +527,7 @@ const religiousNuns = [
 		ward: 'kowdoor-a',
 		congregation: 'bethany',
 		parents: 'fredrickrodrigues',
-		role: 'nun'
+		role: 'nun',
 	},
 	{
 		imageUrl: srReginald,
@@ -535,7 +535,7 @@ const religiousNuns = [
 		ward: 'kowdoor-a',
 		congregation: 'bethany',
 		parents: 'ignatiusrodrigues',
-		role: 'nun'
+		role: 'nun',
 	},
 	{
 		imageUrl: srMoad,
@@ -543,7 +543,7 @@ const religiousNuns = [
 		ward: 'kowdoor-b',
 		congregation: 'apostaliccarmel',
 		parents: 'jackyrodrigues',
-		role: 'nun'
+		role: 'nun',
 	},
 	{
 		imageUrl: srMariaNavitha,
@@ -551,7 +551,7 @@ const religiousNuns = [
 		ward: 'kowdoor-a',
 		congregation: 'apostaliccarmel',
 		parents: 'hilaryvaz',
-		role: 'nun'
+		role: 'nun',
 	},
 	{
 		imageUrl: srJosita,
@@ -559,7 +559,7 @@ const religiousNuns = [
 		ward: 'kowdoor-b',
 		congregation: 'bethany',
 		parents: 'pascalrodrigues',
-		role: 'nun'
+		role: 'nun',
 	},
 	{
 		imageUrl: srRenuka,
@@ -567,7 +567,7 @@ const religiousNuns = [
 		ward: 'kowdoor-b',
 		congregation: 'apostaliccarmel',
 		parents: 'julianlobo',
-		role: 'nun'
+		role: 'nun',
 	},
 	{
 		imageUrl: srMariaSudeepa,
@@ -575,7 +575,7 @@ const religiousNuns = [
 		ward: 'kowdoor-a',
 		congregation: 'apostaliccarmel',
 		parents: 'hilarypinto',
-		role: 'nun'
+		role: 'nun',
 	},
 	{
 		imageUrl: srIrenePinto,
@@ -583,7 +583,7 @@ const religiousNuns = [
 		ward: 'kowdoor-a',
 		congregation: 'salesian',
 		parents: 'ambrosepinto',
-		role: 'nun'
+		role: 'nun',
 	},
 	{
 		imageUrl: srTresilla,
@@ -591,7 +591,7 @@ const religiousNuns = [
 		ward: 'kowdoor-a',
 		congregation: 'bethany',
 		parents: 'lawrencepinto',
-		role: 'nun'
+		role: 'nun',
 	},
 	{
 		imageUrl: srMaryJane,
@@ -599,7 +599,7 @@ const religiousNuns = [
 		ward: 'pompei-a',
 		congregation: 'apostaliccarmel',
 		parents: 'alexserrao',
-		role: 'nun'
+		role: 'nun',
 	},
 	{
 		imageUrl: srShaletSequiera,
@@ -607,7 +607,7 @@ const religiousNuns = [
 		ward: 'pompei-a',
 		congregation: 'stanns',
 		parents: 'piadsequiera',
-		role: 'nun'
+		role: 'nun',
 	},
 	{
 		imageUrl: srRoselita,
@@ -615,7 +615,7 @@ const religiousNuns = [
 		ward: 'pompei-b',
 		congregation: 'bethany',
 		parents: 'johndsouza',
-		role: 'nun'
+		role: 'nun',
 	},
 	{
 		imageUrl: srEvelineSequiera,
@@ -623,7 +623,7 @@ const religiousNuns = [
 		ward: 'kandar-b',
 		congregation: 'stanns',
 		parents: 'thomassequiera',
-		role: 'nun'
+		role: 'nun',
 	},
 	{
 		imageUrl: srMaryLobo,
@@ -631,7 +631,7 @@ const religiousNuns = [
 		ward: 'kandar-a',
 		congregation: 'stanns',
 		parents: 'anaclituslobo',
-		role: 'nun'
+		role: 'nun',
 	},
 	{
 		imageUrl: srHildguard,
@@ -639,7 +639,7 @@ const religiousNuns = [
 		ward: 'church',
 		congregation: 'bethany',
 		parents: 'felixdsouza',
-		role: 'nun'
+		role: 'nun',
 	},
 	{
 		imageUrl: srMarieJane,
@@ -647,7 +647,7 @@ const religiousNuns = [
 		ward: 'gurpur',
 		congregation: 'bethany',
 		parents: 'baptistdsouza',
-		role: 'nun'
+		role: 'nun',
 	},
 	{
 		imageUrl: srLinetDsoouza,
@@ -655,7 +655,7 @@ const religiousNuns = [
 		ward: 'addoor',
 		congregation: 'charity',
 		parents: 'plastiddsouza',
-		role: 'nun'
+		role: 'nun',
 	},
 	{
 		imageUrl: srJacinthaRodrigues,
@@ -663,7 +663,7 @@ const religiousNuns = [
 		ward: 'kowdoor-b',
 		congregation: 'bethany',
 		parents: 'albertrodrigues',
-		role: 'nun'
+		role: 'nun',
 	},
 	{
 		imageUrl: srMFranics,
@@ -682,8 +682,8 @@ const religiousNuns = [
 		ward: 'kowdoor-b',
 		congregation: 'bethany',
 		parents: 'denisdcunha',
-		role: 'nun'
-	}
+		role: 'nun',
+	},
 ];
 
 export { religiousNuns, religiousPriests };
