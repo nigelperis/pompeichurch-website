@@ -45,7 +45,7 @@ if (!event) {
 			/>
 
 			<div class="relative mt-3 flex items-center justify-between">
-				<HoverableLink href={event.facebookLink}>
+				<HoverableLink href={event.facebookLink} target="_blank">
 					{t('ui.facebook-link')}
 				</HoverableLink>
 				<ShareLink shareData={{ title: event.eventName, url: eventUrl }} />
