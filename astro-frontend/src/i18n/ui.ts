@@ -358,7 +358,7 @@ export const ui = {
 		'treasurer.trindadpinto': 'Late Trindad Pinto',
 		'treasurer.rosariomendonca': 'Late Rosario Mendonca',
 		'treasurer.baptistrasquinha': 'Late Baptist Rasquinha',
-		'administrator.richardrodrigues': 'Late Richard Fernandes',
+		'administrator.richardrodrigues': 'Late Richard Rodrigues',
 		'administrator.hilarypinto': 'Late Hilary Pinto',
 		'administrator.alexlobo': 'Late Alex J. Lobo',
 		'vp.georgepinto': 'Late George Pinto',
