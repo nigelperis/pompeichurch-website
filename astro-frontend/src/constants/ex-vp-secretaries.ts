@@ -18,6 +18,7 @@ import romansLobo from '~/assets/vice-presidents/romans-lobo.jpg';
 import wilfredPinto from '~/assets/vice-presidents/wilfred-pinto.jpeg';
 
 //Secretaries
+import praveenLobo from '~/assets/finance-committee/mr-praveen-lobo.jpg';
 import agnesRodrigues from '~/assets/secretaries/agnes-rodrigues.jpeg';
 import alexDsouza from '~/assets/secretaries/alex-dsouza.jpeg';
 import benedictPeris from '~/assets/secretaries/benedict-peris.jpeg';
@@ -25,7 +26,6 @@ import jeraldLobo from '~/assets/secretaries/jerald-lobo.jpeg';
 import lillyMathias from '~/assets/secretaries/lilly-mathias.jpeg';
 import oswaldPeris from '~/assets/secretaries/oswald-peris.jpeg';
 import srJacintha from '~/assets/secretaries/sr-jacintha.jpeg';
-import praveenLobo from '~/assets/finance-committee/mr-praveen-lobo.jpg'
 
 const treasurers = [
 	{
@@ -114,15 +114,14 @@ const vicePresidents = [
 	{
 		imageUrl: jeraldLobo,
 		name: 'jeraldlobo',
-		term: '01-01-2021 : 31-12-2022'
+		term: '01-01-2021 : 31-12-2022',
 	},
 	{
 		imageUrl: romansLobo,
 		name: 'romanslobo',
 		term1: '01-01-2011 : 31-12-2013',
-		term2: '01-01-2023 : Present'
+		term2: '01-01-2023 : Present',
 	},
-
 ];
 
 const secretaries = [
@@ -183,12 +182,12 @@ const secretaries = [
 	{
 		imageUrl: praveenLobo,
 		name: 'praveenlobo',
-		term: '01-01-2021 : 31-12-2022'
+		term: '01-01-2021 : 31-12-2022',
 	},
 	{
-	  imageUrl: johnsonLobo,
-	  name: 'johnsonlobo',
-	  term: '01-01-2023 : Present',
+		imageUrl: johnsonLobo,
+		name: 'johnsonlobo',
+		term: '01-01-2023 : Present',
 	},
 ];
 
