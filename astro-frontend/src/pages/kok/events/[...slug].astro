@@ -30,7 +30,7 @@ if (!event) {
 	>
 		<section class="flex flex-col p-6">
 			<h1
-				class="mb-4 border-l-4 border-natgeo-yellow pl-3 text-3xl font-extrabold lg:text-4xl"
+				class="mb-4 border-l-4 border-natgeo-yellow pl-3 text-3xl font-extrabold lg:text-4xl text-left"
 			>
 				{event.eventNameKok}
 			</h1>
@@ -44,11 +44,23 @@ if (!event) {
 				set:html={event.description}
 			/>
 
-			<div class="relative mt-3 flex items-center justify-between">
-				<HoverableLink href={event.facebookLink} target="_blank">
-					{t('ui.facebook-link')}
-				</HoverableLink>
-				<ShareLink shareData={{ title: event.eventName, url: eventUrl }} />
+			<div class="relative mt-3 flex flex-col items-center justify-between gap-3 md:flex-row md:gap-6">
+				<HoverableLink
+				href={event.facebookLink}
+				target="_blank"
+				class="flex items-center gap-2">
+				{t('ui.facebook-link')}
+			</HoverableLink>
+			{event.instagramLink && (<HoverableLink
+			href={event.instagramLink}
+    	target="_blank"
+    	class="flex items-center gap-2">
+				{t('ui.instagram-link')}
+				</HoverableLink>)}
+				<ShareLink
+				shareData={{ title: event.eventName, url: eventUrl }}
+    		class="flex items-center gap-2 text-lg">
+			</ShareLink>
 			</div>
 		</section>
 	</main>
