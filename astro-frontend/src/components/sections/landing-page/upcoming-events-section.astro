@@ -4,15 +4,19 @@ import { Image } from 'astro:assets';
 import { cn } from '~/helpers/cn';
 import { upcomingEvents } from '~/constants/upcoming-events';
 
+import {fromZonedTime} from "date-fns-tz"
+
 import stayTuned from '~/assets/upcoming-events/stay-tuned.png';
 import stayTunedKok from '~/assets/upcoming-events/stay-tuned-kok.png';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const today = new Date().toISOString().split('T')[0];
-console.log({testDate: today})
-const filteredEvents = upcomingEvents.filter((event) => event.endDate > today);
+const today = new Date();
+
+const filteredEvents = upcomingEvents.filter((event) =>{
+	return fromZonedTime(event.endDate,"Asia/Kolkata") > today
+	});
 ---
 
 <section
