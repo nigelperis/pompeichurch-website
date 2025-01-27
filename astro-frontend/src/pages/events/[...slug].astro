@@ -1,4 +1,6 @@
 ---
+export const prerender = true;
+
 import HoverableLink from '~/components/ui/hoverable-link.astro';
 import { events } from '~/constants/events';
 import Layout from '~/layouts/layout.astro';
@@ -30,7 +32,7 @@ if (!event) {
 	>
 		<section class="flex flex-col p-6">
 			<h1
-				class="mb-4 border-l-4 border-natgeo-yellow pl-3 text-3xl font-extrabold lg:text-4xl text-left"
+				class="mb-4 border-l-4 border-natgeo-yellow pl-3 text-2xl font-extrabold lg:text-4xl text-left"
 			>
 				{event.eventNameKok}
 			</h1>

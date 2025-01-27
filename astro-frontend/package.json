@@ -13,6 +13,7 @@
 		"lint:fix": "eslint ./src --fix"
 	},
 	"dependencies": {
+		"@astrojs/netlify": "6.1.0",
 		"@astrojs/node": "^9.0.2",
 		"@astrojs/react": "4.1.2",
 		"@fontsource/bona-nova-sc": "5.1.0",
