@@ -6,7 +6,7 @@ import pcl from '~/assets/upcoming-events/pcl.jpg';
 
 const upcomingEvents = [
 	{
-		endDate: '2025-01-26',
+		endDate: '2025-01-28',
 		eventImg: wordOfGodSunday,
 		class: 'w-full rounded-sm object-cover md:w-1/3',
 	},
