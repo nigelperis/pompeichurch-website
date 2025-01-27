@@ -11,6 +11,7 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 const today = new Date().toISOString().split('T')[0];
+console.log({testDate: today})
 const filteredEvents = upcomingEvents.filter((event) => event.endDate > today);
 ---
 
