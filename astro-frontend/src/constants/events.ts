@@ -1,7 +1,7 @@
 //Dynamic Imports
 const images = import.meta.glob('~/assets/events/*.jpg', { eager: true });
 
-const eventImages: Record<string, string> = Object.fromEntries(
+const eventImages = Object.fromEntries(
 	Object.entries(images).map(([path, module]) => {
 		const key = path.split('/').pop()?.replace('.jpg', '');
 		return [key, (module as { default: string }).default];
