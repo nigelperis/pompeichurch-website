@@ -1,12 +1,12 @@
-import wordOfGodSunday from '~/assets/upcoming-events/word-of-god-sunday.jpg';
 import cartoonia from '~/assets/upcoming-events/cartoonia.jpg';
 import pcl1 from '~/assets/upcoming-events/pcl-poster-1.jpg';
 import pcl2 from '~/assets/upcoming-events/pcl-poster-2.jpg';
 import pcl from '~/assets/upcoming-events/pcl.jpg';
+import wordOfGodSunday from '~/assets/upcoming-events/word-of-god-sunday.jpg';
 
 const upcomingEvents = [
 	{
-		endDate: '2025-01-28',
+		endDate: '2025-01-26',
 		eventImg: wordOfGodSunday,
 		class: 'w-full rounded-sm object-cover md:w-1/3',
 	},
