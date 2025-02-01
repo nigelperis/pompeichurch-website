@@ -18,6 +18,7 @@ import romansLobo from '~/assets/vice-presidents/romans-lobo.jpg';
 import wilfredPinto from '~/assets/vice-presidents/wilfred-pinto.jpeg';
 
 //Secretaries
+import praveenLobo from '~/assets/finance-committee/mr-praveen-lobo.jpg';
 import agnesRodrigues from '~/assets/secretaries/agnes-rodrigues.jpeg';
 import alexDsouza from '~/assets/secretaries/alex-dsouza.jpeg';
 import benedictPeris from '~/assets/secretaries/benedict-peris.jpeg';
@@ -105,16 +106,21 @@ const vicePresidents = [
 		term2: '01-01-2014 : 31-12-2016',
 	},
 	{
-		imageUrl: romansLobo,
-		name: 'romanslobo',
-		term: '01-01-2011 : 31-12-2013',
-		// term2: ''
-	},
-	{
 		imageUrl: richardFernandes,
 		name: 'richardfernandes',
 		term1: '01-01-2017 : 31-12-2019',
 		term2: '01-01-2020 : 31-12-2020',
+	},
+	{
+		imageUrl: jeraldLobo,
+		name: 'jeraldlobo',
+		term: '01-01-2021 : 31-12-2022',
+	},
+	{
+		imageUrl: romansLobo,
+		name: 'romanslobo',
+		term1: '01-01-2011 : 31-12-2013',
+		term2: '01-01-2023 : Present',
 	},
 ];
 
@@ -173,11 +179,16 @@ const secretaries = [
 		term1: '01-01-2017 : 31-12-2019',
 		term2: '01-01-2020 : 31-12-2020',
 	},
-	// {
-	//   imageUrl: johnsonLobo,
-	//   name: 'johnsonlobo',
-	//   period: '',
-	// },
+	{
+		imageUrl: praveenLobo,
+		name: 'praveenlobo',
+		term: '01-01-2021 : 31-12-2022',
+	},
+	{
+		imageUrl: johnsonLobo,
+		name: 'johnsonlobo',
+		term: '01-01-2023 : Present',
+	},
 ];
 
 export { administrators, secretaries, treasurers, vicePresidents };
