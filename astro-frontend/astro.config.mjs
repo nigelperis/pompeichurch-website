@@ -1,23 +1,27 @@
+import netlify from '@astrojs/netlify';
+import partytown from '@astrojs/partytown';
+import react from '@astrojs/react';
 import node from '@astrojs/node';
 import tailwind from '@astrojs/tailwind';
 import icon from 'astro-icon';
 import { defineConfig } from 'astro/config';
 
-import react from '@astrojs/react';
-
 // https://astro.build/config
 export default defineConfig({
-	prefetch: true,
 	output: 'server',
-	adapter: node({
-		mode: 'standalone',
-	}),
+	adapter: netlify(),
+	prefetch: true,
 	integrations: [
 		tailwind(),
 		icon({
 			iconDir: 'src/assets/icons',
 		}),
 		react(),
+		partytown({
+			config: {
+				forward: ['dataLayer.push'],
+			},
+		}),
 	],
 	i18n: {
 		locales: ['en', 'kok'],
@@ -26,14 +30,12 @@ export default defineConfig({
 			redirectToDefaultLocale: true,
 		},
 	},
-
 	image: {
 		domains: ['astro.build', 'http://localhost:1337'],
 		// remotePatterns: [{ protocol: 'https' }, { protocol: 'http' }],
 	},
-
 	devToolbar: {
-		enabled: true,
+		enabled: false,
 	},
 	vite: {
 		ssr: {

@@ -1,0 +1,44 @@
+---
+import { Icon } from 'astro-icon/components';
+import { cn } from '~/helpers/cn';
+
+interface Props {
+	class?: string;
+	shareData: Record<string, string>;
+}
+
+const { class: className, shareData } = Astro.props;
+---
+
+<button
+	data-share-data={JSON.stringify(shareData)}
+	class={cn(
+		'share-button cursor-pointer transform transition-transform duration-300 hover:scale-110',
+		className,
+	)}
+	id="share"
+>
+	<Icon name="share" size={30} class="text-slate-600" />
+</button>
+
+<script>
+	function init() {
+		const buttons =
+			document.querySelectorAll<HTMLButtonElement>('.share-button');
+
+		if (!buttons) return;
+
+		for (const button of buttons) {
+			const payloadData = button.getAttribute('data-share-data');
+
+			if (!payloadData) continue;
+
+			const parsedPayloadData = JSON.parse(payloadData);
+
+			button.addEventListener('click', async () => {
+				await navigator.share(parsedPayloadData);
+			});
+		}
+	}
+	init();
+</script>

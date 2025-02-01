@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import { cn } from '~/helpers/cn';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
@@ -25,30 +26,30 @@ const {
 
 <div
 	class={cn(
-		'hover:scale-[1.01] hover:shadow-md snap-start first:snap-align-none max-w-xs flex-shrink-0 rounded-md border shadow sm:w-64',
+		'hover:scale-[1.01] snap-start first:snap-align-none max-w-xs flex-shrink-0 rounded-md border sm:w-64',
 		className,
-		'w-[230px] h-[340px]',
+		'w-[230px] h-[410px]',
 	)}
 	{...rest}
 >
 	<div class="card-image flex-none">
 		<Image
 			src={imageUrl}
-			alt="Image"
-			class="h-[230px] w-full rounded-md object-fill"
+			alt={`Image of ${name}`}
+			class="h-[300px] w-full rounded-md object-cover"
 		/>
 	</div>
 
-	<div class="card-content mt-3 flex flex-1 flex-col justify-end space-y-1 p-3">
+	<div class="card-content flex flex-1 flex-col justify-end space-y-1 p-3">
 		<h3
-			class="card-title font-bold leading-snug text-slate-900 sm:text-lg"
+			class="card-title pt-1 font-bold leading-snug text-slate-900 sm:text-lg"
 			title={name}
 		>
 			{name}
 		</h3>
 		{
 			date && (
-				<p class="card-date line-clamp-3 text-slate-700 sm:text-sm">
+				<p class="card-date text-slate-700">
 					{t('priest.service-period')}:{' '}
 					<span class="font-semibold">{date}</span>
 				</p>

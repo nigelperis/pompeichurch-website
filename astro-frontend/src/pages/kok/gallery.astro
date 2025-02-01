@@ -8,17 +8,17 @@ const t = useTranslations(lang);
 ---
 
 <Layout title="Pompei Church | Gallery">
-	<main class="overflow-hidden bg-white">
-		<section id="gallery" class="flex flex-col items-center p-6">
+	<main class="mx-auto max-w-4xl overflow-hidden bg-white">
+		<section id="gallery" class="flex flex-col p-6 pb-4">
 			<h1
-				class="mb-2 border-l-4 border-l-natgeo-yellow pl-2 text-3xl font-extrabold lg:text-4xl"
+				class="mb-2 border-l-4 border-natgeo-yellow pl-3 text-3xl font-extrabold lg:text-4xl"
 			>
 				{t('gallery.title')}
 			</h1>
-			<p class="text-md font-poppins text-slate-400">
-				{t('gallery.subtitle')}
+			<p class="text-justify font-geist text-lg text-slate-700">
+				ಪಿಂತುರಾನಿ ದಾದೊಸ್ಕಾಯೆಚ್ಯೊ ಘಡ್ಯೊ
 			</p>
+			<MasonryGallery />
 		</section>
-		<MasonryGallery />
 	</main>
 </Layout>

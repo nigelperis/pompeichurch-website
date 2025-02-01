@@ -1,0 +1,69 @@
+---
+export const prerender = true;
+
+import HoverableLink from '~/components/ui/hoverable-link.astro';
+import { events } from '~/constants/events';
+import Layout from '~/layouts/layout.astro';
+import { Image } from 'astro:assets';
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+import ShareLink from '~/components/ui/share-link.astro';
+
+export async function getStaticPaths() {
+	return events.map((event) => ({
+		params: { slug: event.slug },
+	}));
+}
+
+const { slug } = Astro.params;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const event = events.find((event) => event.slug === slug);
+
+const eventUrl = lang === 'en' ? `/events/${slug}` : `/kok/events/${slug}`;
+
+if (!event) {
+	throw new Error(`Event not found for slug: ${slug}`);
+}
+---
+
+<Layout title={`Events | ${event.eventName}`}>
+	<main
+		class="mx-auto max-w-4xl overflow-hidden bg-white text-justify font-noto-sans-kannada"
+	>
+		<section class="flex flex-col p-6">
+			<h1
+				class="mb-4 border-l-4 border-natgeo-yellow pl-3 text-2xl font-extrabold lg:text-4xl text-left"
+			>
+				{event.eventNameKok}
+			</h1>
+			<Image
+				src={event.imageUrl}
+				alt={event.eventName}
+				class="mx-auto mt-1 rounded-sm md:w-3/4"
+			/>
+			<p
+				class="text-md mt-4 leading-7 text-slate-700"
+				set:html={event.description}
+			/>
+
+			<div class="relative mt-3 flex flex-col items-center justify-between gap-3 md:flex-row md:gap-6">
+				<HoverableLink
+				href={event.facebookLink}
+				target="_blank"
+				class="flex items-center gap-2">
+				{t('ui.facebook-link')}
+			</HoverableLink>
+			{event.instagramLink && (<HoverableLink
+			href={event.instagramLink}
+    	target="_blank"
+    	class="flex items-center gap-2">
+				{t('ui.instagram-link')}
+				</HoverableLink>)}
+				<ShareLink
+				shareData={{ title: event.eventName, url: eventUrl }}
+    		class="flex items-center gap-2 text-lg">
+			</ShareLink>
+			</div>
+		</section>
+	</main>
+</Layout>

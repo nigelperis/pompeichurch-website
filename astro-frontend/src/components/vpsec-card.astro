@@ -1,0 +1,63 @@
+---
+import { Image } from 'astro:assets';
+import { cn } from '~/helpers/cn';
+
+interface Props {
+	name: string;
+	imageUrl: ImageMetadata;
+	subtitle?: string;
+	class?: string;
+	term?: string;
+	term1?: string;
+	term2?: string;
+}
+
+const { name, class: className, imageUrl, term, term1, term2 } = Astro.props;
+---
+
+<div
+	class={cn(
+		'hover:scale-[1.01] snap-start first:snap-align-none max-w-xs flex-shrink-0 rounded-md border sm:w-64 shadow-sm',
+		className,
+		'w-[250px] h-auto md:h-[440px]',
+		'transition-transform duration-300 ease-in-out',
+	)}
+>
+	<div class="card-image flex-none">
+		<Image
+			src={imageUrl}
+			alt={`Image of ${name}`}
+			class="h-[300px] w-full rounded-md object-cover"
+		/>
+	</div>
+
+	<div class="card-content flex flex-1 flex-col justify-end space-y-1 p-3">
+		<h3
+			class="card-title pt-1 font-bold leading-snug text-blue-800 sm:text-lg"
+			title={name}
+		>
+			{name}
+		</h3>
+		{
+			term && (
+				<p class="card-term text-black">
+					<b>I</b> : <span class="font-semibold text-red-400">{term}</span>
+				</p>
+			)
+		}
+		{
+			term2 && (
+				<p class="card-term2 text-black">
+					<b>II</b> : <span class="font-semibold text-red-400">{term2}</span>
+				</p>
+			)
+		}
+		{
+			term1 && (
+				<p class="card-term1 text-black">
+					<b>I</b> : <span class="font-semibold text-red-400">{term1}</span>
+				</p>
+			)
+		}
+	</div>
+</div>

@@ -1,6 +1,5 @@
 ---
 import ContactInfo from '~/components/sections/contact/contact-info.astro';
-import ContactForm from '~/components/sections/contact/contact-form.astro';
 import ContactMap from '~/components/sections/contact/contact-map.astro';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import Layout from '~/layouts/layout.astro';
@@ -10,23 +9,22 @@ const t = useTranslations(lang);
 ---
 
 <Layout title="Pompei Church | Contact">
-	<section
-		class="flex flex-col p-6 font-poppins text-slate-100 lg:items-center"
-	>
-		<h1
-			class="mb-6 border-l-4 border-l-natgeo-yellow pl-3 text-3xl font-extrabold text-black"
-		>
-			{t('contact.title')}
-		</h1>
-		<h1 class="text-center text-lg font-normal text-gray-900">
-			Contact us for more information about our church activities, hall
-			bookings, and other details
-		</h1>
-
-		<div class="flex flex-col items-center md:mx-56 lg:flex-row">
-			<ContactInfo />
-			<ContactForm />
-		</div>
-		<ContactMap />
-	</section>
+	<main class="mx-auto max-w-4xl overflow-hidden bg-white">
+		<section id="contact" class="p-6 pb-4 lg:p-8">
+			<h1
+				class="mb-4 border-l-4 border-l-natgeo-yellow pl-3 text-3xl font-extrabold lg:text-4xl"
+			>
+				{t('contact.title')}
+			</h1>
+			<h2 class="mb-6 font-geist text-lg font-normal text-gray-700">
+				ಇಗರ್ಜೆಚ್ಯೊ ಚಟುವಟಿಕೊ ಆನಿಂ ಹೆರ್ ಮಾಹಿತಿ ಖಾತಿರ್ ಆಮ್ಕಾಂ ಸಂಪರ್ಕ್ ಕರಾ.
+			</h2>
+			<div class="space-y-6">
+				<ContactInfo />
+			</div>
+			<div class="mt-8">
+				<ContactMap class="w-full rounded-md border shadow-md" />
+			</div>
+		</section>
+	</main>
 </Layout>

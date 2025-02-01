@@ -1,0 +1,261 @@
+---
+import { Image } from 'astro:assets';
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+
+//Images
+import rosaMysticaHs from '~/assets/institutions/rosa-mystica-hs.jpg';
+import rosaMysticaHrps from '~/assets/institutions/rosa-mystica-hrps.jpg';
+import rmStaff from '~/assets/institutions/rm-pu-staff.jpg';
+import rmPu1 from '~/assets/institutions/rm-pu-1.jpg';
+import rmPu2 from '~/assets/institutions/rm-pu-2.jpg';
+import rmPu3 from '~/assets/institutions/rm-pu-3.jpg';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<div class="mx-auto">
+	<h2 class="mt-4 pb-4 font-poppins text-2xl font-bold">
+		{t('rosamystica.title')}
+	</h2>
+	<Image
+		src={rosaMysticaHrps}
+		alt="Rosa Mystica Higher Primary School, Gurpur Kaikamba"
+		class="mt-6 rounded-sm md:float-right md:ml-5 md:w-1/2"
+	/>
+	<h2 class="mt-2 text-lg font-bold text-slate-800">
+		• {t('rosamystica.higher-primary-school')}
+	</h2>
+	<p class="text-md mt-4 text-justify leading-7 text-slate-700">
+		Rosa Mystica Higher Primary School is the fruit of the far-sighted vision of
+		the Servant of God Mgr. R.F.C Mascarenhas, the Founder of Bethany
+		Congregation. It took its birth in 1939, a small step taken by Bethany,
+		which has gone a long way in changing the face of Rosa Mystica as the school
+		plays a vital role in catering to the all-round development and welfare of
+		the students of backward classes and in the fulfillment of the vision, goal,
+		and core values of Bethany Educational Society.
+	</p>
+	<p class="text-md mt-4 text-justify leading-7 text-slate-700">
+		Currently, there are 625 Students with 11 Staff and 4 Substitute Teachers.
+		They cater to the rural poor and the marginalized of the locality and others
+		as well. The opportunities for the blooming of the students, including
+		Karate, art, band, clubs, and bull-bull classes, are provided. The
+		Headmistress, along with its staff, strives towards fullness of life imbued
+		with the core values of Bethany Educational Society. While doing this, it
+		aims at becoming an effective agent for the transformation of society.
+	</p>
+	<address class="text-md mt-4 text-justify leading-7 text-slate-700">
+		<strong>Address:</strong><br />
+		Rosa Mystica Higher Primary School<br />
+		Kinnikambla Post, DK, Dt - 574151<br />
+		<br />
+		<strong>Telephone No.:</strong> 0824-2259835<br />
+		<strong>E-mail ID:</strong>
+		<a href="mailto:rosamysticahps@gmail.com" class="text-blue-600 underline"
+			>rosamysticahps@gmail.com</a
+		><br />
+		<br />
+		<strong>Year of Establishment:</strong> 1939<br />
+		<strong>Status:</strong> I - VII<br />
+		<strong>Aided/Unaided:</strong> Aided<br />
+		<strong>Affiliated to:</strong> Karnataka State Board<br />
+		<strong>Headmistress:</strong> Sr Prashanthi BS<br />
+		<strong>Correspondent:</strong> Sr Concetta BS
+	</address>
+	<br />
+	<Image
+		src={rosaMysticaHs}
+		alt="Rosa Mystica High School, Gurpur Kaikamba"
+		class="mt-2 rounded-sm md:float-left md:mr-5 md:w-1/2 lg:mt-8"
+	/>
+	<div class="mb-2 mt-6 pb-4 font-geist">
+		<h2 class="text-lg font-bold text-slate-800">
+			• {t('rosamystica.high-school')}
+		</h2>
+		<p class="text-md mt-4 text-justify leading-7 text-slate-700">
+			Rosa Mystica High School was opened in the year 1958. As there was no
+			facility for the secondary education of the children of this area, they
+			had to travel to distant places like Bajpe or Kulshekar. Hence seeing this
+			need, Sr Edburge, who was the Headmistress of the TTI, took the bold
+			initiative to start a high school to cater to the educational needs of the
+			children, especially those who pass out of Rosa Mystica Higher Primary
+			School. So, 20th June 1958 became a red-letter day in the annals of Rosa
+			Mystica as the High School was opened on this day.
+		</p>
+		<p class="text-md mt-4 text-justify leading-7 text-slate-700">
+			In 1966, co-education was started. Rosa Mystica High School, with three
+			sections in each, had the strength of 420 students. With the hard work of
+			all Headmistresses and the committed services of the staff, the high
+			school saw all-round development in the later years. In the year 2008, the
+			Golden Jubilee of the school was celebrated.
+		</p>
+		<p class="text-md mt-4 text-justify leading-7 text-slate-700">
+			The Headmistresses who served this institute are Sr Edburge BS, Sr Mithis
+			BS, Sr Mariette BS, Sr Valentine BS, Sr Mediatrice BS, Sr Helmina BS, Sr
+			Donalda BS, Sr Cicilia Mendonca, Sr Marie Ange BS, Sr Gloriosa BS, Sr
+			Ivilla BS, Sr Vidya BS, Sr Joyceline BS, and currently Sr Lolita Pereira
+			BS.
+		</p>
+		<p class="text-md mt-4 text-justify leading-7 text-slate-700">
+			This institute has special blessings of Saint Teresa of Calcutta, who paid
+			a visit to Rosa Mystica on 29th December 1980. In her address, she spoke
+			about religious vocation and her concern about the poor in India and our
+			duty to serve them.
+		</p>
+		<br />
+	</div>
+	<Image
+		src={rmStaff}
+		alt="Staff members of Rosa Mystica PU College, Gurpur Kaikamba"
+		class="mt-2 rounded-sm md:float-right md:ml-5 md:w-1/2 lg:mt-8"
+	/>
+	<div class="mb-2 mt-6 pb-4 font-geist">
+		<h2 class="text-lg font-bold text-slate-800">
+			• {t('rosamystica.p-u-college')}
+		</h2>
+		<p class="text-md mt-4 text-justify leading-7 text-slate-700">
+			Rosa Mystica PU College is indeed a gift to the people who come from poor
+			and backward areas. With the passage of time, the dire need to have a PU
+			College attached to the High School was felt by the parents. This desire
+			of the parents was courteously considered by the Management. Therefore,
+			Bethany Congregation has provided a spacious building Rosa Mystica PU
+			College came into existence on June 1 st, 2010 under the patronage of our
+			Blessed Mother known as Mystical Rose. Rosa Mystica PU College is a
+			renowned educational institution known for academic excellence and value
+			based education. This premier educational institution seeks to establish a
+			congenial learning environment for students of diverse cultural and
+			religious backgrounds. The BESP latinum Jubilee Year offered every student
+			the fullness of life through its focused objectives.
+		</p>
+		<p class="text-md mt-4 text-justify leading-7 text-slate-700">
+			This Rosa Mystica PU College is managed by the Bethany Educational Society
+			(BES). This has been relentlessly serving society for the last 14 years
+			without deviating from the vision and mission envisaged by the Founder.
+			The students who have passed the portals of this great institution have
+			immensely contributed to all spheres of life and facilitated a social,
+			economic, and spiritual transformation at all levels. Rosa Mystica PU
+			College has traversed many significant milestones during the past 13 years
+			and the legacy is carried forward with renewed hope and aspiration for the
+			next decade. Guided by the motto ‘Transformative Education for fullness of
+			life towards Human Fraternity’ the students commit themselves to spread
+			the light of knowledge and wisdom and kindle the ardour of faith thereby
+			forming men and women for and with others. The college believes in the
+			integral role played not just by academics but also in extra-curricular
+			and co-curricular activities in shaping the overall personality of a
+			student. Time and again this institution has strived to go beyond the
+			classroom walls and textbooks to augment learning.
+		</p>
+		<Image
+			src={rmPu1}
+			alt="Activities at Rosa Mystica PU College, Gurpur Kaikamba"
+			class="mt-2 rounded-sm md:float-left md:mr-5 md:w-1/2 lg:mt-8"
+		/>
+		<p class="text-md mt-4 text-justify leading-7 text-slate-700">
+			The College enjoys an atmosphere of peace and serenity in spite of its
+			nearness to the main road. The PTA works hand in hand with the management
+			in furthering the interests of the college. Extra-Curricular activity
+			essentially takes place outside a typical pen and pencil classroom
+			experience. It gives the student an opportunity to develop their innate
+			talents. Freshers’ Day, Students’ Day, Foundation Day, Independence Day,
+			Teachers’ Day, Gandhi Jayanthi, Yoga Day, Ethnic Day, Sports Meet, Talents
+			Fest, Sports Day, Annual Day, and NSS Unit have maintained the reputation
+			of the college, spreading its fame far and near.
+		</p>
+		<p class="text-md mt-4 text-justify leading-7 text-slate-700">
+			Sr. Jessy Rita BS, the first Principal of PU College, has made a
+			significant contribution to the people of the area and is an asset to
+			society. The College made steady progress and consistently provided
+			education to the rural area people. After 5 years of tireless work on June
+			1 st , 2015, Sr. Cicilia Dsouza BS continued as the Principal for 3 years
+			and helped to work for the keeping up the name of the institution. From
+			2018 to 2021 May 31 st Sr. Anitha Lydia Lobo was the Principal who worked
+			for the betterment of the institution. June 1 st , 2021, Sr Dr Sadhana BS
+			headed the responsibility of being the Principal of the college. The
+			College has achieved notable success in all spheres of education at both
+			District and State levels in sports and games. It has an excellent
+			academic track record. Many students who have passed out from this college
+			are doing very well in life and rendering valuable service to society as
+			responsible parents, educators, and members of the city corporation and
+			Panchayats.
+		</p>
+		<p class="text-md mt-4 text-justify leading-7 text-slate-700">
+			The College has grown to its present status under the dynamic leadership,
+			unstinted labour, and foresight of the successive Principals all through
+			the years. Their memories are etched in gold in the hearts of all those
+			who have passed the portals of this Institution. It is a matter of great
+			joy that PU College started with 39 students in 2010 and has a strength of
+			300 on its roll at present. The students deserve to be acclaimed for their
+			magnificent achievements and the Lecturers who guide them are indeed happy
+			that they are instrumental in moulding the character of young people.
+		</p>
+		<Image
+			src={rmPu2}
+			alt="Activities at Rosa Mystica PU College, Gurpur Kaikamba"
+			class="mt-2 rounded-sm md:float-right md:ml-5 md:w-1/2 lg:mt-8"
+		/>
+		<p class="text-md mt-4 text-justify leading-7 text-slate-700">
+			We, at Rosa Mystica believe that education is for both formation and
+			transformation. Therefore we are on a determined journey toward building a
+			humane, just, eco-friendly, and gender-sensitive society. Keeping in mind
+			the charism of the Founder of Bethany, the college caters to the poor, the
+			neglected, and other marginalized children of society and works for their
+			all-round development, unmindful of the limited economic resources and
+			benefits. Eco club of our college has conducted distinct programs like
+			planting medicinal Herbs by reusing plastic bottles to promote the Eco
+			friendly environment. Cartoon drawing with the theme of Nature, chart
+			making, Essay writing, and the elocution competition. World Environment
+			Day was observed to raise global awareness to take positive environmental
+			action to protect nature and the planet Earth.
+		</p>
+		<p class="text-md mt-4 text-justify leading-7 text-slate-700">
+			The College celebrated a hundred and four years of educating and
+			empowering girls on 16th July 2024. On this auspicious occasion, note
+			books were distributed to the students of the college. A quiz based on the
+			life of our Founder was conducted to all the students. The annual retreat
+			and prayer day was conducted for the students. A session on ‘Synodality’
+			by Rev Cyril Pinto and Romans was organized for the catholic students. The
+			college conducted Section wise outreach programmes to inculcate in the
+			students the core values of Bethany Educational Society. Catechism and
+			Moral Education classes are held weekly as faith formation gives students
+			a broader and healthier perspective on life. Our students are encouraged
+			to develop their talents and interest in a supportive environment. Sports
+			provide a competitive edge to students. District Level Volleyball, Throw
+			ball, Kabadi, Kho-Kho boys and girls brought laurels to our Institution.
+			State Level boys participated in throw ball. Annual sports meet also a
+			great success joining with the High School students.
+		</p>
+		<Image
+			src={rmPu3}
+			alt="Activities at Rosa Mystica PU College, Gurpur Kaikamba"
+			class="mt-2 rounded-sm md:float-left md:mr-5 md:w-1/2 lg:mt-8"
+		/>
+		<p class="text-md mt-4 text-justify leading-7 text-slate-700">
+			To commemorate the 152nd birth anniversary of Mahatma Gandhi, a college
+			Essay completion on Truth and Non - violence was conducted. NSS students
+			have cleaned the entire campus. The college organized variety competitions
+			were conducted on the Cultural fest. On the occasion of International Yoga
+			Day, the students exhibited various asanas and learnt how to maintain the
+			harmony between body and mind. Students showcased their talents through a
+			variety entertainment programme. The campus wore a festive look. College
+			also inaugurated the Platinum Jubilee of Bethany Educational society
+			brought out the entire Bethany and enacted the Bethany Core values.
+			Students were distributed sweets. The efficaciousness of this balanced
+			view can be seen in PU Board Exam results of the second year
+			pre-university students wherein the college secured an overall percentage
+			of 99.04, with Distinction and First class.
+		</p>
+		<p class="text-md mt-4 text-justify leading-7 text-slate-700">
+			To echo the words of Brigham Young, ‘Education is the power to think
+			clearly, the power to act well in the world’s work and the power to
+			appreciate life’. We believe that all round development can be achieved
+			through education as there is a prime need of striking a balance between
+			syllabus, curriculum and co- curricular activities. We look forward with
+			hope and greater commitment in this coming year to suffuse the life of
+			every student with unlimited potential for incredible growth and learning.
+			May Mystical Rose, the model and patroness of our students will enable to
+			acquire this life as it is spelt out in its motto.
+			<p></p>
+			<br />
+		</p>
+	</div>
+</div>

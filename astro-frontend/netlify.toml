@@ -1,0 +1,5 @@
+[build]
+  publish = "dist"
+  command = "pnpm install --frozen-lockfile && pnpm run build"
+  symlink_node_modules = false
+

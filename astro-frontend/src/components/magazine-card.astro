@@ -1,36 +1,41 @@
 ---
 import { Image } from 'astro:assets';
 import { cn } from '~/helpers/cn';
+import { Icon } from 'astro-icon/components';
 
 interface Props {
 	title: string;
 	imageUrl: ImageMetadata;
+	downloadUrl: string;
 	class?: string;
 }
 
-const { title, imageUrl, class: className, ...rest } = Astro.props;
+const { title, imageUrl, downloadUrl, class: className, ...rest } = Astro.props;
 ---
 
 <div
 	class={cn(
-		'hover:scale-[1.01] transform overflow-hidden rounded-md border duration-300 ease-in-out transition-all max-w-md mx-auto',
+		'hover:scale-[1.01] transform overflow-hidden rounded-md border duration-300 ease-in-out transition-all max-w-md mx-auto bg-white shadow-lg',
 		className,
 	)}
 	{...rest}
 >
-	<div class="magazine-image">
+	<div class="magazine-image relative">
 		<Image
 			src={imageUrl}
 			alt={title}
-			class="w-full object-cover lg:h-[480px]"
+			class="w-full rounded-t-md object-cover lg:h-[480px]"
 		/>
 	</div>
 
-	<div class="magazine-content mt-3 pb-5 pt-3 text-center">
-		<h3
-			class="magazine-title text-lg font-bold leading-snug text-slate-900 sm:text-xl"
+	<div class="p-4 text-center">
+		<a
+			href={downloadUrl}
+			download
+			class="mt-1 inline-flex items-center gap-2 rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-md hover:bg-blue-700"
 		>
-			{title}
-		</h3>
+			<Icon name="download" size={20} />
+			Download
+		</a>
 	</div>
 </div>

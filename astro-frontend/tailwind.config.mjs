@@ -39,10 +39,7 @@ export default {
 					'noto-sans-kannada-latin-600-normal',
 					defaultTheme.fontFamily.sans,
 				],
-				'geist':[
-					'geist-sans',
-					defaultTheme.fontFamily.sans
-				]
+				geist: ['geist-sans', defaultTheme.fontFamily.sans],
 			},
 			keyframes: {
 				slidein: {
@@ -71,7 +68,7 @@ export default {
 			'md-lg': '900px', // Small tablets in landscape / large phones
 			'lg-sm': '1024px', // Small laptops / larger tablets
 			'lg-md': '1152px', // Medium-sized laptops
-			lg: '1450px', // Medium to large laptops
+			lg: '1280px', // Medium to large laptops
 			'xl-sm': '1440px', // Large laptops / small desktop screens
 			xl: '1536px', // Large desktops / high-resolution screens
 		},

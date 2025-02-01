@@ -5,15 +5,19 @@ import { cn } from '~/helpers/cn';
 interface Props {
 	name: string;
 	imageUrl: ImageMetadata;
+	age: string;
 	description: string;
 	ward: string;
+	date: string;
 	class?: string;
 }
 
 const {
 	name,
 	description,
+	age,
 	ward,
+	date,
 	class: className,
 	imageUrl,
 	...rest
@@ -22,23 +26,25 @@ const {
 
 <div
 	class={cn(
-		'hover:scale-[1.01] hover:shadow-sm snap-start first:snap-align-none border duration-500 ease-in-out shadow sm:w-full',
+		'hover:scale-[1.01] snap-start h-full first:snap-align-none border duration-500 ease-in-out rounded-sm sm:w-[95%] md:w-[85%] lg:w-[75%]',
 		className,
 	)}
 	{...rest}
+	style={{ maxWidth: '350px' }}
 >
-	<div class="card-image flex-none">
+	<div class="card-image aspect-[2.3/3] w-full overflow-hidden rounded-sm">
 		<Image
 			src={imageUrl}
-			alt="Image"
-			width={300}
-			class="h-auto w-full rounded-md object-cover"
+			alt={`Image of ${name}`}
+			class="h-full w-full object-cover"
+			style={{ maxHeight: '500px' }}
 		/>
 	</div>
-
-	<div class="card-content mt-3 flex flex-1 flex-col justify-end space-y-1 p-3">
+	<div
+		class="card-content mt-2 flex flex-1 flex-col justify-end space-y-1 p-4 font-noto-sans-kannada"
+	>
 		<h3
-			class="card-title line-clamp-1 text-lg font-extrabold leading-snug text-slate-900 sm:text-2xl"
+			class="card-title line-clamp-1 text-lg font-extrabold text-slate-900 sm:text-lg"
 			title={name}
 		>
 			{name}
@@ -51,9 +57,23 @@ const {
 			)
 		}
 		{
+			age && (
+				<p class="card-age line-clamp-3 text-base text-slate-700 sm:text-lg">
+					ಪ್ರಾಯ್ : {age}
+				</p>
+			)
+		}
+		{
 			ward && (
-				<p class="card-ward line-clamp-3 text-sm font-semibold text-slate-600 sm:text-base">
-					Ward: {ward}
+				<p class="card-ward line-clamp-3 text-base text-slate-700 sm:text-lg">
+					ವಾಡೊ : {ward}
+				</p>
+			)
+		}
+		{
+			date && (
+				<p class="card-ward line-clamp-3 text-base text-slate-700 sm:text-lg">
+					ಮರಣ್ : {date}
 				</p>
 			)
 		}

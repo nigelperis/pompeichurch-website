@@ -1,0 +1,81 @@
+---
+import { wards } from '~/constants/wards';
+import { Image } from 'astro:assets';
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+import { cn } from '~/helpers/cn';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<div class="ward-details">
+	{
+		wards.map((ward) => (
+			<div
+				class={cn('mb-6 text-left', {
+					'font-noto-sans-kannada': lang === 'kok',
+				})}
+			>
+				<h2
+					class={cn('font-poppins text-3xl font-bold text-slate-900', {
+						'font-noto-sans-kannada': lang === 'kok',
+					})}
+				>
+					{t(`nav.${ward.name}`)}
+				</h2>
+				<p
+					class={cn(
+						'text-xm mb-6 mt-4 text-justify font-geist font-semibold leading-7 text-gray-800',
+					)}
+				>
+					{lang === 'kok'
+						? `${t(`ward.${ward.patronName}`)} ${t('ward.patron')}`
+						: `${t('ward.patron')} ${t(`ward.${ward.patronName}`)}`}
+				</p>
+				<div class="mb-6 flex flex-col items-center justify-center gap-4 rounded-md md:flex-row lg:flex-row">
+					<Image
+						src={ward.patronImage}
+						alt="Patron of the Ward"
+						class="w-full max-w-xl sm:w-1/2 md:h-[450px] lg:h-[450px]"
+					/>
+					<div
+						class={cn(
+							'max-w-xs flex-shrink-0 snap-start border first:snap-align-none sm:w-64',
+							'h-[450px] w-[250px]',
+						)}
+					>
+						<div class="card-image">
+							<Image
+								src={ward.gurkarImage}
+								alt="Gurkar or Gurkarn of the Ward"
+								class="h-[365px] w-full object-cover"
+							/>
+						</div>
+						<div class="card-content flex flex-1 flex-col justify-end space-y-1 p-3">
+							<h3 class="card-title pt-1 font-bold leading-snug text-slate-900 sm:text-lg">
+								{t(`ward.${ward.gurkarName}`)}
+							</h3>
+							<p class="card-subtitle line-clamp-3 text-slate-600 sm:text-sm">
+								{t(`ward.${ward.gurkarTitle}`)}
+							</p>
+						</div>
+					</div>
+				</div>
+
+				<h2 class="mx-4 mt-6 text-left font-poppins text-xl font-bold text-slate-900">
+					{t('ward.pratinidi')}
+				</h2>
+				<ul class="my-4 list-inside list-disc text-base text-slate-700">
+					<li class="mx-4 text-left">{t(`ward.${ward.pratinidiName1}`)}</li>
+					{ward.pratinidiName2 && (
+						<li class="mx-4 text-left">{t(`ward.${ward.pratinidiName2}`)}</li>
+					)}
+				</ul>
+				<p class="mx-4 mt-6 text-left font-poppins text-xl font-bold text-slate-900">
+					{t('ward.family')} : {ward.family}
+				</p>
+				<div class="mt-4 border-b-2 border-b-natgeo-yellow" />
+			</div>
+		))
+	}
+</div>

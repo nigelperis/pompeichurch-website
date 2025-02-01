@@ -1,19 +1,26 @@
-import maryImage from '~/assets/mother-mary.jpg';
+import pfDecemeber2024 from '~/assets/pompeichem-falkem/pf-december-2024.jpeg';
+import pfMarch2024 from '~/assets/pompeichem-falkem/pf-march-2024.jpg';
+import pfSeptember2024 from '~/assets/pompeichem-falkem/pf-september-2024.jpg';
 
 const magazines = [
 	{
-		title: 'Pompeichem Falkem - August Edition',
-		imageUrl: maryImage,
+		title: 'December Edition',
+		imageUrl: pfDecemeber2024,
 		downloadUrl:
-			'https://drive.google.com/drive/u/4/folders/1uIX6q5fgetnyaE9tJVeq6Yi2qNNlq7YR',
+			'https://drive.google.com/uc?export=download&id=1vC1vFhV9-cC3HokBTsP3mtbulDSHcUQI',
 	},
 	{
-		title: 'Pompeichem Falkem - July Edition',
-		imageUrl: maryImage,
+		title: 'September Edition',
+		imageUrl: pfSeptember2024,
 		downloadUrl:
-			'https://drive.google.com/drive/u/4/folders/1uIX6q5fgetnyaE9tJVeq6Yi2qNNlq7YR',
+			'https://drive.google.com/uc?export=download&id=1RvnYVNiy7HOKP6jBGvGc9fJKQifDigVw',
 	},
-	// Add more pompeichem falkem
+	{
+		title: ' March Edition',
+		imageUrl: pfMarch2024,
+		downloadUrl:
+			'https://drive.google.com/uc?export=download&id=1mHa90hb5dQbkh7RFBw_AbpznULY12U2G',
+	},
 ];
 
 export { magazines };

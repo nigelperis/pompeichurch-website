@@ -23,7 +23,7 @@ export const navLinks = [
 	},
 	{
 		type: 'expandable',
-		title: 'nav.our-church',
+		title: 'nav.about-us',
 		expandedLinks: [
 			{
 				title: 'nav.parish-history',
@@ -38,26 +38,32 @@ export const navLinks = [
 				href: '/parish-pastoral-council',
 			},
 			{
+				title: 'nav.parish-finance-committee',
+				href: '/parish-finance-committee',
+			},
+			{
 				title: 'nav.parish-pastoral-21-commissions',
 				href: '/parish-pastoral-21-commissions',
 			},
-		],
-	},
-	{
-		type: 'expandable',
-		title: 'nav.institutions',
-		expandedLinks: [
 			{
-				title: 'nav.our-institutions',
-				href: '/our-institutions',
+				title: 'nav.ex-vp-secretaries',
+				href: '/ex-vp-secretaries',
 			},
 			{
-				title: 'nav.our-convents',
-				href: '/our-convents',
+				title: 'nav.religious-vocations',
+				href: '/religious-vocations',
 			},
 			{
-				title: 'nav.infrastructure',
-				href: '/infrastructure',
+				title: 'nav.wards',
+				href: '/wards',
+			},
+			{
+				title: 'nav.convents',
+				href: '/convents',
+			},
+			{
+				title: 'nav.institutions',
+				href: '/institutions',
 			},
 		],
 	},
@@ -106,54 +112,22 @@ export const navLinks = [
 				href: '/associations/womens-forum',
 			},
 			{
-				title: 'nav.legion-of-mary',
-				href: '/associations/legion-of-mary',
+				title: 'nav.christian-life-community',
+				href: '/associations/christian-life-community',
 			},
 		],
 	},
 	{
 		type: 'expandable',
-		title: 'nav.wards',
+		title: 'nav.halls',
 		expandedLinks: [
 			{
-				title: 'nav.kowdoor-a-ward',
-				href: '/wards/kowdoor-a',
+				title: 'nav.pompei-sabha-bhavan',
+				href: '/pompei-sabha-bhavan',
 			},
 			{
-				title: 'nav.kowdoor-b-ward',
-				href: '/wards/kowdoor-b',
-			},
-			{
-				title: 'nav.pompei-a-ward',
-				href: '/wards/pompei-a',
-			},
-			{
-				title: 'nav.pompei-b-ward',
-				href: '/wards/pompei-b',
-			},
-			{
-				title: 'nav.kandar-a-ward',
-				href: '/wards/kandar-a',
-			},
-			{
-				title: 'nav.kandar-b-ward',
-				href: '/wards/kandar-b',
-			},
-			{
-				title: 'nav.monel-ward',
-				href: '/wards/monel',
-			},
-			{
-				title: 'nav.gurpur-ward',
-				href: '/wards/gurpur',
-			},
-			{
-				title: 'nav.church-ward',
-				href: '/wards/church',
-			},
-			{
-				title: 'nav.addoor-ward',
-				href: '/wards/addoor',
+				title: 'nav.centenary-hall',
+				href: '/centenary-hall',
 			},
 		],
 	},
@@ -169,11 +143,17 @@ export const navLinks = [
 				title: 'nav.events',
 				href: '/events',
 			},
-			{
-				title: 'nav.pompeichem-falkem',
-				href: '/pompeichem-falkem',
-			},
 		],
+	},
+	{
+		type: 'link',
+		title: 'nav.prayer-corner',
+		href: '/prayer-corner',
+	},
+	{
+		type: 'link',
+		title: 'nav.pompeichem-falkem',
+		href: '/pompeichem-falkem',
 	},
 	{
 		type: 'link',

@@ -4,7 +4,7 @@ import { obituaryData } from '~/constants/obituary-list';
 ---
 
 <div
-	class="mx-auto grid w-full max-w-4xl grid-cols-2 gap-x-20 gap-y-10 xs:grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2"
+	class="mx-auto grid w-full max-w-4xl gap-x-20 gap-y-10 xs:grid-cols-1 md:grid-cols-2"
 >
 	{
 		obituaryData.map((item) => (
@@ -12,7 +12,9 @@ import { obituaryData } from '~/constants/obituary-list';
 				name={item.name}
 				imageUrl={item.imageUrl}
 				description={item.description}
+				age={item.age}
 				ward={item.ward}
+				date={item.date}
 				class="m-auto"
 			/>
 		))

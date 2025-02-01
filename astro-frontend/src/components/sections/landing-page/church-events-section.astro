@@ -1,33 +1,50 @@
 ---
-import EventCard from '~/components/event-card.astro';
 import HoverableLink from '~/components/ui/hoverable-link.astro';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+import EventCard from '~/components/event-card.astro';
 import { events } from '~/constants/events';
+import { cn } from '~/helpers/cn';
+
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+const eventsUrl = lang === 'en' ? '/events' : '/kok/events';
 ---
 
-<section class="mx-6 mt-6 flex flex-col lg:justify-evenly lg:mx-28 lg:min-h-[70svh]">
+<section
+	class="mx-6 mt-4 flex flex-col lg:mx-28 lg:min-h-[70svh] lg:justify-evenly"
+>
 	<h1
 		data-aos="fade-right"
-		class="mb-4 border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl lg:text-4xl font-extrabold"
+		class={cn(
+			'mb-6 inline-block border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold xs:text-2xl lg:text-4xl',
+			{
+				'font-noto-sans-kannada': lang === 'kok',
+			},
+		)}
 	>
 		{t('nav.events')}
 	</h1>
-
-	<div class="grid grid-cols-1 gap-6 lg:grid-cols-2 ">
+	<div
+		class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 md:gap-4 lg:grid-cols-3 lg:gap-8"
+	>
 		{
-			events.map((event) => (
-				<EventCard
-					eventName={event.eventName}
-					imageUrl={event.imageUrl}
-					description={event.description}
-					facebookLink={event.facebookLink}
-				/>
-			))
+			events
+				.slice(0, 3)
+				.map((event) => (
+					<EventCard
+						eventName={event.eventName}
+						eventNameKok={event.eventNameKok}
+						imageUrl={event.imageUrl}
+						shortDescription={event.shortDescription}
+						facebookLink={event.facebookLink}
+						slug={event.slug}
+					/>
+				))
 		}
 	</div>
 	<div class="flex justify-center">
-		<HoverableLink href="/events" class="m-3"> Show More Events </HoverableLink>
+		<HoverableLink href={eventsUrl} class="m-5">
+			{t('ui.show-more-events')}
+		</HoverableLink>
 	</div>
 </section>

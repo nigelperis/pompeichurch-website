@@ -1,14 +1,14 @@
 ---
-import { Image, getImage } from 'astro:assets';
+import { getImage } from 'astro:assets';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+import skyImage from '~/assets/landing-page/sky-bg.jpg';
+import churchHeroImage from '~/assets/landing-page/church-hero.jpg';
+import { cn } from '~/helpers/cn';
+
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-import { cn } from '~/helpers/cn';
-import skyImage from '~/assets/sky-bg.jpg';
 const optimizedSkyImage = await getImage({ src: skyImage });
-import churchHeroImage from '~/assets/church-hero.jpg';
 const optimizedChurchHeroImage = await getImage({ src: churchHeroImage });
-import churchLogo from '~/assets/church-logo.png';
 ---
 
 <section
@@ -17,10 +17,10 @@ import churchLogo from '~/assets/church-logo.png';
 		backgroundImage: `url(${optimizedSkyImage.src})`,
 	}}
 >
-	<div class="absolute inset-0 bg-white opacity-70 bg-blend-darken"/>
+	<div class="absolute inset-0 bg-white opacity-70 bg-blend-darken"></div>
 
 	<div
-		class="relative mx-4 sm:mx-auto sm:w-[80vw] sm:h-[40vh] h-[30vh] md:h-80 md:w-96 xl:w-5/12 xl:h-96 overflow-hidden rounded-b-full bg-yellow-50"
+		class="relative mx-4 h-[30vh] overflow-hidden rounded-b-full bg-yellow-50 sm:mx-auto sm:h-[40vh] sm:w-[80vw] md:h-80 md:w-96 xl:h-96 xl:w-5/12"
 	>
 		<div
 			class="animated-background mx-auto h-full w-full bg-cover bg-center bg-no-repeat"
@@ -31,29 +31,30 @@ import churchLogo from '~/assets/church-logo.png';
 	<h1
 		data-aos="fade-up"
 		data-aos-delay="700"
-		class={cn('mt-3 text-center font-montserrat text-4xl  lg:text-5xl font-semibold', {
-			'font-noto-sans-kannada': lang === 'kok',
-		})}
+		class={cn(
+			'mt-3 text-center font-montserrat text-4xl  lg:text-5xl font-semibold',
+			{
+				'font-noto-sans-kannada': lang === 'kok',
+			},
+		)}
 	>
 		{t('landing.church-name')}
 	</h1>
 	<p
 		data-aos="fade-up"
 		data-aos-delay="900"
-		class={cn(
-			'mt-2 text-center font-montserrat font-normal text-3xl',
-			{
-				'font-noto-sans-kannada': lang === 'kok',
-			},
-		)}
+		class={cn('mt-2 text-center font-montserrat font-normal text-3xl', {
+			'font-noto-sans-kannada': lang === 'kok',
+		})}
 	>
 		{t('landing.town-name')}
 	</p>
 	<div class="mx-auto">
-		<Image
-			src={churchLogo}
-			alt="church logo"
-			width={180}
+		<img
+			src="/temp-logo.webp"
+			alt="Our Lady of Pompei Church logo"
+			width={190}
+			height={190}
 			data-aos="fade-up"
 			data-aos-delay="1100"
 			class="mx-auto my-4 opacity-0"
