@@ -5,6 +5,9 @@ import pcl from '~/assets/upcoming-events/pcl.jpg';
 import pycAnnualDay1 from '~/assets/upcoming-events/pyc-annual-day-1.jpg';
 import pycAnnualDay2 from '~/assets/upcoming-events/pyc-annual-day-2.jpg';
 import wordOfGodSunday from '~/assets/upcoming-events/word-of-god-sunday.jpg';
+import image1 from '~/assets/upcoming-events/image-1.jpg';
+import image2 from '~/assets/upcoming-events/image-2.jpg';
+
 
 const upcomingEvents = [
 	{
@@ -41,6 +44,16 @@ const upcomingEvents = [
 		endDate: '2024-12-15',
 		eventImg: pcl2,
 		class: 'w-full rounded-sm md:w-1/3',
+	},
+	{
+		endDate: '2025-02-09',
+		eventImg: image1,
+		class: 'w-full rounded-sm object-cover md:w-1/4',
+	},
+	{
+		endDate: '2025-02-09',
+		eventImg: image2,
+		class: 'w-full rounded-sm object-cover md:w-1/4',
 	},
 ];
 

@@ -45,7 +45,7 @@ const obituaryData = [
 		name: 'ಆಲ್ವಿನ್ ಡಿಸೋಜಾ',
 		imageUrl: alwnynDsouza,
 		age: '55',
-		description: 'ಪೂತ್ : ದೆ। ಗ್ರೇಶನ್ ಡಿನೋಜ',
+		description: 'ಪೂತ್ : ದೆ। ಗ್ರೇಶನ್ ಡಿಸೋಜಾ',
 		ward: 'ಅಡ್ಡೂರ್',
 		date: '28-10-2024',
 	},
