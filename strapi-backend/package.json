@@ -10,10 +10,9 @@
     "strapi": "strapi",
     "deploy": "strapi deploy"
   },
-  "devDependencies": {
-    "@strapi/typescript-utils": "^5.0.1"
-  },
+  "devDependencies": {},
   "dependencies": {
+    "@strapi/typescript-utils": "^5.0.1",
     "@strapi/plugin-cloud": "4.25.3",
     "@strapi/plugin-i18n": "4.25.3",
     "@strapi/plugin-users-permissions": "4.25.3",
