@@ -7,17 +7,8 @@ import lawrenceMendonca from '~/assets/obituary/lawrence-mendonca.jpg';
 import louisMonteiro from '~/assets/obituary/louis-monteiro.jpg';
 import maryCoutinho from '~/assets/obituary/mary-coutinho.jpeg';
 import wilfredPinto from '~/assets/obituary/wilfred-pinto.jpg';
-import ligoryLobo from '~/assets/obituary/ligory-lobo.jpeg';
 
-const obituaryData = [ 
-	{
-		name: 'ಲಿಗೋರಿ ಲೋಬೊ', 
-		imageUrl: ligoryLobo,
-		age: '61',
-		description: 'ಪತಿ : ಫ್ಲಾವಿಯಾ ಲೋಬೊ',
-		ward: 'ಮಣೆಲ್ ', 
-		date: '04-02-2025'
-	},
+const obituaryData = [
 	{
 		name: 'ಲಾರೆನ್ಸ್ ಮೆಂಡೊನ್ಸಾ',
 		imageUrl: lawrenceMendonca,
