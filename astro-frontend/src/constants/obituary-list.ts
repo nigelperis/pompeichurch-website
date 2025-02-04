@@ -4,11 +4,20 @@ import gracianDSouza from '~/assets/obituary/gracian-dsouza.jpg';
 import jeevithPinto from '~/assets/obituary/jeevith-pinto.jpg';
 import jeraldRodrigues from '~/assets/obituary/jerald-rodrigues.jpg';
 import lawrenceMendonca from '~/assets/obituary/lawrence-mendonca.jpg';
+import ligoryLobo from '~/assets/obituary/ligory-lobo.jpeg';
 import louisMonteiro from '~/assets/obituary/louis-monteiro.jpg';
 import maryCoutinho from '~/assets/obituary/mary-coutinho.jpeg';
 import wilfredPinto from '~/assets/obituary/wilfred-pinto.jpg';
 
 const obituaryData = [
+	{
+		name: 'ಲಿಗೋರಿ ಲೋಬೊ',
+		imageUrl: ligoryLobo,
+		age: '61',
+		description: 'ಪತಿ : ಫ್ಲಾವಿಯಾ ಲೋಬೊ',
+		ward: 'ಮಣೆಲ್ ',
+		date: '04-02-2025',
+	},
 	{
 		name: 'ಲಾರೆನ್ಸ್ ಮೆಂಡೊನ್ಸಾ',
 		imageUrl: lawrenceMendonca,
@@ -80,15 +89,7 @@ const obituaryData = [
 		description: 'ಪತಿಣ್ : ಶ್ರೀಮತಿ ಐರಿನ್ ಪಿಂಟೊ',
 		ward: 'ಪೊಂಪೈ ಬಿ',
 		date: '24-07-2024',
-	},
-	/*{
-		name: 'ಎಲಿಜಾ ಮಿನೇಜೆಸ್',
-		imageUrl: ,
-		age: '92',
-		description: 'ಪತಿ : ಶ್ರೀಮಾನ್ ಸ್ಟೆಫನ್ ಮಿನೇಜೆಸ್',
-		ward: 'ಗುರ್ಪುರ್',
-		date: '27-04-2024',
-	},*/
+	},	
 ];
 
 export { obituaryData };
