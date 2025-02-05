@@ -2,20 +2,33 @@ import cartoonia from '~/assets/upcoming-events/cartoonia.jpg';
 import pcl1 from '~/assets/upcoming-events/pcl-poster-1.jpg';
 import pcl2 from '~/assets/upcoming-events/pcl-poster-2.jpg';
 import pcl from '~/assets/upcoming-events/pcl.jpg';
-import pycAnnualDay1 from '~/assets/upcoming-events/pyc-annual-day-1.jpg';
-import pycAnnualDay2 from '~/assets/upcoming-events/pyc-annual-day-2.jpg';
+import pycAnnualDay1 from '~/assets/upcoming-events/pyc-annual-day-1.jpeg';
+import pycAnnualDay2 from '~/assets/upcoming-events/pyc-annual-day-2.jpeg';
+import pycAnnualDay3 from '~/assets/upcoming-events/pyc-annual-day-3.jpg';
+import pycAnnualDay4 from '~/assets/upcoming-events/pyc-annual-day-4.jpg';
 import wordOfGodSunday from '~/assets/upcoming-events/word-of-god-sunday.jpg';
+
 
 const upcomingEvents = [
 	{
 		endDate: '2025-02-09',
 		eventImg: pycAnnualDay1,
-		class: 'w-full rounded-sm md:w-1/3',
+		class: 'rounded-sm md:w-1/4',
 	},
 	{
 		endDate: '2025-02-09',
 		eventImg: pycAnnualDay2,
-		class: 'w-full rounded-sm md:w-1/3',
+		class: 'rounded-sm md:w-1/4',
+	},
+	{
+		endDate: '2025-02-09',
+		eventImg: pycAnnualDay3,
+		class: 'rounded-sm md:w-1/4',
+	},
+	{
+		endDate: '2025-02-09',
+		eventImg: pycAnnualDay4,
+		class: 'rounded-sm md:w-1/4',
 	},
 	{
 		endDate: '2025-01-26',

@@ -1,12 +1,16 @@
 ---
+import { Icon } from 'astro-icon/components';
+
 type CarouselType = 'opacityTransition' | 'scroll';
 
 interface Props {
 	carouselType?: CarouselType;
 	shouldLoop?: boolean;
 	shouldDragFreely?: boolean;
+	showArrows?: boolean;
+	autoScroll?: boolean;
 }
-const { carouselType, shouldLoop, shouldDragFreely } = Astro.props;
+const { carouselType, shouldLoop, shouldDragFreely, showArrows, autoScroll } = Astro.props;
 
 const carouselTypeToUse = carouselType ?? 'opacityTransition';
 const shouldLoopFlagToUse = shouldLoop ?? true;
@@ -14,14 +18,25 @@ const shouldDragFreelyFlagToUse = shouldDragFreely ?? false;
 ---
 
 <div
-	class="embla overflow-hidden p-4"
+	class="embla overflow-hidden p-4 relative"
 	data-carousel-type={carouselTypeToUse}
 	data-should-loop={String(shouldLoopFlagToUse)}
 	data-drag-freely={String(shouldDragFreelyFlagToUse)}
+	data-auto-scroll={String(autoScroll)}
 >
 	<div class="embla_container flex">
-		{(<slot />)}
+		<slot />
 	</div>
+	{showArrows && (
+		<>
+			<button class="embla__prev absolute left-1.5 top-1/2 -translate-y-1/2 p-1.5 rounded-full bg-black/40" aria-label="Previous">
+			<Icon name="chevron-left" class="text-white" size={30}/>
+			</button>
+			<button class="embla__next absolute right-1.5 top-1/2 -translate-y-1/2 p-1.5 rounded-full bg-black/40" aria-label="Next">
+			<Icon name="chevron-right" class="text-white" size={30}/>
+			</button>
+		</>
+	)}
 </div>
 
 <script>
@@ -108,6 +123,7 @@ const shouldDragFreelyFlagToUse = shouldDragFreely ?? false;
 		const carouselType = node.getAttribute('data-carousel-type');
 		const shouldLoop = node.getAttribute('data-should-loop');
 		const shouldDragFreely = node.getAttribute('data-drag-freely');
+		const autoScroll = node.getAttribute('data-auto-scroll'); // Get autoScroll attribute
 
 		const carouselOptions = {
 			loop: shouldLoop === 'true' ? true : false,
@@ -115,25 +131,55 @@ const shouldDragFreelyFlagToUse = shouldDragFreely ?? false;
 		} satisfies EmblaOptionsType;
 
 		if (carouselType === 'opacityTransition') {
-			const AutoPlay = await import('embla-carousel-autoplay');
+			const plugins = [];
+
+			// Add AutoPlay plugin only if autoScroll is enabled
+			if (autoScroll === 'true') {
+				const AutoPlay = await import('embla-carousel-autoplay');
+				plugins.push(
+					AutoPlay.default({
+						delay: 3000,
+						stopOnInteraction: false,
+						jump: false,
+					}),
+				);
+			}
+
+			// Add WheelGesturesPlugin
 			const WheelGesturesPlugin = await import('embla-carousel-wheel-gestures');
+			plugins.push(WheelGesturesPlugin.WheelGesturesPlugin({}));
 
-			const emblaApi = EmblaCarousel(node, carouselOptions, [
-				AutoPlay.default({
-					delay: 3000,
-					stopOnInteraction: false,
-					jump: false,
-				}),
-				WheelGesturesPlugin.WheelGesturesPlugin({}),
-			]);
+			const emblaApi = EmblaCarousel(node, carouselOptions, plugins);
+
+			// Add Arrow Navigation Logic
+			const prevButton = node.querySelector('.embla__prev');
+			const nextButton = node.querySelector('.embla__next');
+
+			if (prevButton) {
+				prevButton.addEventListener('click', () => emblaApi.scrollPrev());
+			}
+			if (nextButton) {
+				nextButton.addEventListener('click', () => emblaApi.scrollNext());
+			}
+
 			const removeTweenOpacity = setupTweenOpacity(emblaApi);
-
 			emblaApi.on('destroy', removeTweenOpacity);
 		} else {
 			const WheelGesturesPlugin = await import('embla-carousel-wheel-gestures');
-			const _ = EmblaCarousel(node, carouselOptions, [
+			const emblaApi = EmblaCarousel(node, carouselOptions, [
 				WheelGesturesPlugin.WheelGesturesPlugin({}),
 			]);
+
+			// Add Arrow Navigation Logic
+			const prevButton = node.querySelector('.embla__prev');
+			const nextButton = node.querySelector('.embla__next');
+
+			if (prevButton) {
+				prevButton.addEventListener('click', () => emblaApi.scrollPrev());
+			}
+			if (nextButton) {
+				nextButton.addEventListener('click', () => emblaApi.scrollNext());
+			}
 		}
 	}
 </script>

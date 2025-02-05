@@ -17,14 +17,16 @@ import galleryImage6 from '~/assets/gallery/g17.jpg';
 //Components
 import EmblaCarosuel from '~/components/ui/embla-carousel.astro';
 import EmblaCarosuelItem from '~/components/ui/embla-carousel-item.astro';
-import NetworkImage from '~/components/ui/network-image.astro';
 
-import { fetchLandingPageCarouselImages } from '~/services/landing-page-carousel-image';
-const carouselData = await fetchLandingPageCarouselImages();
+// import NetworkImage from '~/components/ui/network-image.astro';
+
+// import { fetchLandingPageCarouselImages } from '~/services/landing-page-carousel-image';
+// const carouselData = await fetchLandingPageCarouselImages();
 ---
 
-<EmblaCarosuel>
-	{
+<EmblaCarosuel autoScroll={true}>
+	<!-- TODO: uncomment once strapi in -->
+	<!-- {
 		carouselData.attributes.carouselImage.data.map((image) => {
 			return (
 				<EmblaCarosuelItem>
@@ -38,7 +40,7 @@ const carouselData = await fetchLandingPageCarouselImages();
 				</EmblaCarosuelItem>
 			);
 		})
-	}
+	} -->
 	<EmblaCarosuelItem>
 		<Image
 			src={ciboriumImage}
