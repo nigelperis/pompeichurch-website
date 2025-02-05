@@ -9,7 +9,7 @@ interface StrapiBlocksProps {
 	content: BlocksContent;
 }
 
-function StrapiBlocks(props: StrapiBlocksProps) {
+function StrapiBlocksRenderer(props: StrapiBlocksProps) {
 	const { content } = props;
 	return (
 		<BlocksRenderer
@@ -123,7 +123,7 @@ function StrapiBlocks(props: StrapiBlocksProps) {
 	);
 }
 
-export default StrapiBlocks;
+export default StrapiBlocksRenderer;
 
 function Link(props: { url: string; children: React.ReactNode }) {
 	const { children, url } = props;

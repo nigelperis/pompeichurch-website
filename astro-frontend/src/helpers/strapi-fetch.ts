@@ -1,55 +1,40 @@
-interface Props {
-	endpoint: string;
-	query?: Record<string, string>;
-	wrappedByKey?: string;
-	wrappedByList?: boolean;
+interface StrapiFetchProps {
+	endpoint: `/${string}`;
+	queryParams?: URLSearchParams;
 }
 
 /**
  * Fetches data from the Strapi API
- * @param endpoint - The endpoint to fetch from (withouth inclusion of api suffix)
+ * @param endpoint - The endpoint to fetch from (withouth inclusion of api prefix and should always begin with forward slash '/' )
  * @param query - The query parameters to add to the url
- * @param wrappedByKey - The key to unwrap the response from
- * @param wrappedByList - If the response is a list, unwrap it
  * @returns
- * @example  strapiFetch({
-		endpoint: '/landing-page-priest-message',
-		query: {
-			'populate[0]': 'signature',
-			'populate[1]': 'coverImage',
-			'populate[2]': 'parish_priest',
-		},
-		wrappedByKey: 'data',
-	});
+ * @example
+     const searchParam = new URLSearchParams();
+      searchParam.append('populate[0]', 'signature');
+      searchParam.append('populate[1]', 'coverImage');
+      strapiFetch(\{
+        endpoint: '/landing-page-priest-message',
+        queryParams:searchParam,
+        );
  */
 export async function strapiFetch<T>({
 	endpoint,
-	query,
-	wrappedByKey,
-	wrappedByList,
-}: Props): Promise<T> {
-	if (endpoint.startsWith('/')) {
-		endpoint = endpoint.slice(1);
+	queryParams,
+}: StrapiFetchProps): Promise<T | undefined> {
+	if (!import.meta.env.STRAPI_URL) {
+		throw new Error('Base url for strapi not found ');
 	}
 
-	const url = new URL(`${import.meta.env.STRAPI_URL}/api/${endpoint}`);
+	const url = new URL(`/api${endpoint}`, import.meta.env.STRAPI_URL);
 
-	if (query) {
-		Object.entries(query).forEach(([key, value]) => {
+	if (queryParams) {
+		for (const [key, value] of queryParams) {
 			url.searchParams.append(key, value);
-		});
+		}
 	}
 
 	const res = await fetch(url.toString());
-	let data = await res.json();
+	const data = (await res.json()) as unknown as T;
 
-	if (wrappedByKey) {
-		data = data[wrappedByKey];
-	}
-
-	if (wrappedByList) {
-		data = data[0];
-	}
-
-	return data as T;
+	return data as unknown as T;
 }

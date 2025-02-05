@@ -13,7 +13,6 @@
 		"lint:fix": "eslint ./src --fix"
 	},
 	"dependencies": {
-		"@astrojs/node": "^8.3.4",
 		"@astrojs/netlify": "6.1.0",
 		"@astrojs/node": "^9.0.2",
 		"@astrojs/react": "4.1.2",
@@ -24,7 +23,6 @@
 		"@fontsource/montserrat": "5.1.0",
 		"@fontsource/noto-sans-kannada": "5.1.0",
 		"@fontsource/poppins": "5.1.0",
-		"@strapi/blocks-react-renderer": "1.0.1",
 		"@strapi/blocks-react-renderer": "1.0.1",
 		"aos": "2.3.4",
 		"astro": "5.0.0",
@@ -43,13 +41,9 @@
 		"sharp": "0.33.5",
 		"tailwind-merge": "2.5.5"
 	},
-	"packageManager": "pnpm@9.15.0",
+	"packageManager": "pnpm@9.13.2",
 	"engines": {
 		"node": ">=18.0.0 <=22.12.0",
-		"pnpm": ">=8.x.x"
-	},
-	"engines": {
-		"node": ">=18.0.0 <=20.x.x",
 		"pnpm": ">=8.x.x"
 	},
 	"devDependencies": {

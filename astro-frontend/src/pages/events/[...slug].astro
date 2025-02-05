@@ -1,32 +1,39 @@
 ---
-export const prerender = true;
 
-import { events } from '~/constants/events';
 import Layout from '~/layouts/layout.astro';
-import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
+
+
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import ShareLink from '~/components/ui/share-link.astro';
+import { getEvent } from '~/services/events/get-event';
+import NetworkImage from '~/components/ui/network-image.astro';
+import { getPlaceholderImage } from '~/helpers/get-placeholder-image';
+import StrapiBlocksRenderer from '~/components/ui/strapi-blocks-renderer';
 
-export async function getStaticPaths() {
-	return events.map((event) => ({
-		params: { slug: event.slug },
-	}));
-}
+
 
 const { slug } = Astro.params;
+
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const event = events.find((event) => event.slug === slug);
+
+
+// const event = events.find((event) => event.slug === slug);
 
 const eventUrl = lang === 'en' ? `/events/${slug}` : `/kok/events/${slug}`;
 
-if (!event) {
-	throw new Error(`Event not found for slug: ${slug}`);
-}
+// if (!event) {
+// 	throw new Error(`Event not found for slug: ${slug}`);
+// }
+
+const data = await getEvent(slug?? '');
+
 ---
 
-<Layout title={`Events | ${event.eventName}`}>
+<Layout title={`Events | ${data?.slug}`}>
+	{
+		!data?<p>No content found</p>:
 	<main
 		class="mx-auto max-w-4xl overflow-hidden bg-white text-justify font-noto-sans-kannada"
 	>
@@ -34,32 +41,34 @@ if (!event) {
 			<h1
 				class="mb-4 border-l-4 border-natgeo-yellow pl-3 text-left text-2xl font-extrabold lg:text-4xl"
 			>
-				{event.eventNameKok}
+				{data?.title}
 			</h1>
-			<Image
-				src={event.imageUrl}
-				alt={event.eventName}
+			<NetworkImage
+				src={data.eventImage.url ?? getPlaceholderImage()}
+				width={data.eventImage.width ?? 0}
+				height={data.eventImage.height ?? 0}
 				class="mx-auto mt-1 rounded-sm md:w-3/4"
 			/>
 			<p
 				class="text-md mt-4 leading-7 text-slate-700"
-				set:html={event.description}
-			/>
+			>
+			{<StrapiBlocksRenderer content={data.longDescription}/>}
+		</p>
 			<div class="flex">
 				<div class="flex w-full flex-row justify-start gap-10">
 					{
-						event.facebookLink && (
+						data?.facebookLink && (
 							<div class="mb-1 mt-4 h-5 w-5 transition-transform hover:scale-110 duration-200">
-								<a href={event.facebookLink} target="_blank">
+								<a href={data.facebookLink} target="_blank">
 									<Icon name="facebook1" size={42} />
 								</a>
 							</div>
 						)
 					}
 					{
-						event.instagramLink && (
+						data?.instagramLink && (
 							<div class="mb-1 mt-4 h-5 w-5 transition-transform hover:scale-110 duration-200">
-								<a href={event.instagramLink} target="_blank">
+								<a href={data.instagramLink} target="_blank">
 									<Icon name="instagram1" size={42} />
 								</a>
 							</div>
@@ -67,10 +76,11 @@ if (!event) {
 					}
 				</div>
 				<ShareLink
-					shareData={{ title: event.eventName, url: eventUrl }}
+					shareData={{ title: data.title, url: eventUrl }}
 					class="mt-2 flex h-12 items-center"
 				/>
 			</div>
 		</section>
 	</main>
+	}
 </Layout>

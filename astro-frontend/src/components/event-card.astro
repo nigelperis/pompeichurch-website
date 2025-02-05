@@ -1,9 +1,9 @@
 ---
 import { cn } from '~/helpers/cn';
 import HoverableLink from './ui/hoverable-link.astro';
-import { Image } from 'astro:assets';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import ShareLink from './ui/share-link.astro';
+import NetworkImage from './ui/network-image.astro';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -11,7 +11,9 @@ const t = useTranslations(lang);
 interface Props {
 	eventName: string;
 	eventNameKok: string;
-	imageUrl: ImageMetadata;
+	imageUrl: string;
+	imageWidth: number;
+	imageHeight: number;
 	shortDescription: string;
 	facebookLink: string;
 	slug: string;
@@ -24,6 +26,8 @@ const {
 	eventNameKok,
 	imageUrl,
 	shortDescription,
+	imageWidth,
+	imageHeight,
 	slug,
 	class: className,
 	...rest
@@ -40,9 +44,11 @@ const eventUrl = lang === 'en' ? `/events/${slug}` : `/kok/events/${slug}`;
 	{...rest}
 >
 	<div class="event-image w-full">
-		<Image
+		<NetworkImage
 			src={imageUrl}
 			alt={eventName}
+			width={imageWidth}
+			height={imageHeight}
 			class="object-fit aspect-[1.2/0.7] rounded-t-sm duration-700 ease-in-out"
 		/>
 	</div>
