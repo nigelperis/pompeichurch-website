@@ -1,8 +1,6 @@
 ---
-
 import Layout from '~/layouts/layout.astro';
 import { Icon } from 'astro-icon/components';
-
 
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import ShareLink from '~/components/ui/share-link.astro';
@@ -11,21 +9,12 @@ import NetworkImage from '~/components/ui/network-image.astro';
 import { getPlaceholderImage } from '~/helpers/get-placeholder-image';
 import StrapiBlocksRenderer from '~/components/ui/strapi-blocks-renderer';
 
-
-
 const { slug } = Astro.params;
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-
-// const event = events.find((event) => event.slug === slug);
-
 const eventUrl = lang === 'en' ? `/events/${slug}` : `/kok/events/${slug}`;
-
-// if (!event) {
-// 	throw new Error(`Event not found for slug: ${slug}`);
-// }
 
 const data = await getEvent(slug?? '');
 

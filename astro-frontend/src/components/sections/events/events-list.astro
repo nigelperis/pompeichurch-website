@@ -1,8 +1,7 @@
 ---
 import EventCard from '~/components/event-card.astro';
-// import { events } from '~/constants/events';
-import { getPlaceholderImage } from '~/helpers/get-placeholder-image';
 
+import { getPlaceholderImage } from '~/helpers/get-placeholder-image';
 import { listEvents } from '~/services/events/list-events';
 
 const data = await listEvents();

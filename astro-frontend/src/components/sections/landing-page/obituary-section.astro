@@ -4,12 +4,15 @@ import { cn } from '~/helpers/cn';
 
 import HoverableLink from '~/components/ui/hoverable-link.astro';
 import Card from '~/components/pastoral-council-card.astro';
+import { listObituaries } from '~/services/obituaries/list-obituaries';
 
-import { obituaryData } from '~/constants/obituary-list';
+// import { obituaryData } from '~/constants/obituary-list';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const obituaryLink = lang === 'en' ? '/obituary' : '/kok/obituary';
+
+const obituaryData = await listObituaries();
 ---
 
 <section
@@ -31,26 +34,29 @@ const obituaryLink = lang === 'en' ? '/obituary' : '/kok/obituary';
 		class="my-4 flex w-full scroll-ml-6 space-x-8 overflow-x-auto overflow-y-hidden pl-3 pr-3 scrollbar-none lg:justify-center xl:space-x-10"
 	>
 		{
-			obituaryData
-				.slice(0, 4)
-				.map((ob) => (
+			obituaryData?.slice(0, 4)
+				.map((obituary) => (
 					<Card
-						imageUrl={ob.imageUrl}
-						title={ob.name + ` (${ob.age})`}
-						subtitle={`ಮರಣ್ : ` + ob.date}
+						imageUrl={obituary.image.url}
+						title={obituary.name + ` (${obituary.age})`}
+						subtitle={`ಮರಣ್ : ` + obituary.dateOfDeath}
 					/>
 				))
 		}
-		
+
 		<div
 			class="flex-shrink-0 transform snap-start border shadow-sm transition-all duration-200 ease-in-out overflow-hidden lg:hidden"
 		>
 			<div class="opacity-50 blur-md">
-				<Card
-					imageUrl={obituaryData[4].imageUrl}
-					title={obituaryData[4].name + ` (${obituaryData[4].age})`}
-					subtitle={`ಮರಣ್ : ` + obituaryData[4].date}
-				/>
+				{obituaryData && obituaryData[4] && (
+					<Card
+						imageUrl={obituaryData[4].image.url}
+						imageWidth={obituaryData[4].image.width}
+						imageHeight={obituaryData[4].image.height}
+						title={obituaryData[4].name + ` (${obituaryData[4].age})`}
+						subtitle={`ಮರಣ್ : ` + obituaryData[4].dateOfDeath}
+					/>
+				)}
 			</div>
 			<div class="absolute inset-0 flex items-center justify-center">
 				<HoverableLink
@@ -62,11 +68,11 @@ const obituaryLink = lang === 'en' ? '/obituary' : '/kok/obituary';
 			</div>
 		</div>
 	</div>
-	
+
 	<div class="hidden justify-center pb-2 lg:flex">
 		<HoverableLink href={obituaryLink}>
 			{t('ui.view-all')}
 		</HoverableLink>
 	</div>
-	
+
 </section>

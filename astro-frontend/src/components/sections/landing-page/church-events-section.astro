@@ -2,7 +2,7 @@
 import HoverableLink from '~/components/ui/hoverable-link.astro';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import EventCard from '~/components/event-card.astro';
-import { events } from '~/constants/events';
+
 import { cn } from '~/helpers/cn';
 
 const lang = getLangFromUrl(Astro.url);
@@ -12,7 +12,6 @@ const eventsUrl = lang === 'en' ? '/events' : '/kok/events';
 import { listEvents } from '~/services/events/list-events';
 
 const data = await listEvents();
-
 ---
 
 <section

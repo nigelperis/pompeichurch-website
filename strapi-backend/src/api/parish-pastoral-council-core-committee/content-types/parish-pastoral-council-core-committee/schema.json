@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "parish_pastoral_council_core_committees",
+  "info": {
+    "singularName": "parish-pastoral-council-core-committee",
+    "pluralName": "parish-pastoral-council-core-committees",
+    "displayName": "Parish Pastoral Council Core Committee"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "image": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "name": {
+      "type": "string"
+    },
+    "designation": {
+      "type": "string"
+    }
+  }
+}

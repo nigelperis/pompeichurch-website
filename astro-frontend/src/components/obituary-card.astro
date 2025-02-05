@@ -1,14 +1,17 @@
 ---
 import { Image } from 'astro:assets';
 import { cn } from '~/helpers/cn';
+import NetworkImage from './ui/network-image.astro';
 
 interface Props {
 	name: string;
-	imageUrl: ImageMetadata;
-	age: string;
+	imageUrl: string;
+	imageWidth: number;
+	imageHeight: number;
+	age: number;
 	description: string;
 	ward: string;
-	date: string;
+	date: Date;
 	class?: string;
 }
 
@@ -18,6 +21,8 @@ const {
 	age,
 	ward,
 	date,
+	imageWidth,
+	imageHeight,
 	class: className,
 	imageUrl,
 	...rest
@@ -33,11 +38,12 @@ const {
 	style={{ maxWidth: '350px' }}
 >
 	<div class="card-image aspect-[2.3/3] w-full overflow-hidden rounded-sm">
-		<Image
+		<NetworkImage
 			src={imageUrl}
 			alt={`Image of ${name}`}
-			class="h-full w-full object-cover"
-			style={{ maxHeight: '500px' }}
+			width={imageWidth}
+			height={imageHeight}
+			class="h-full w-full object-cover max-h-[500px]"
 		/>
 	</div>
 	<div
