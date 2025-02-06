@@ -20,7 +20,6 @@ const {
 	subtitle,
 	class: className,
 	imageUrl,
-	...rest
 } = Astro.props;
 ---
 
@@ -30,7 +29,6 @@ const {
 		className,
 		'w-[230px] h-[410px]',
 	)}
-	{...rest}
 >
 	<div class="card-image flex-none">
 		<Image

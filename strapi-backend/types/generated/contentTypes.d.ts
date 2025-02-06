@@ -436,37 +436,6 @@ export interface ApiObituaryObituary extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiParishPastoralCouncilCoreCommitteeParishPastoralCouncilCoreCommittee
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'parish_pastoral_council_core_committees';
-  info: {
-    displayName: 'Parish Pastoral Council Core Committee';
-    pluralName: 'parish-pastoral-council-core-committees';
-    singularName: 'parish-pastoral-council-core-committee';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    designation: Schema.Attribute.String;
-    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::parish-pastoral-council-core-committee.parish-pastoral-council-core-committee'
-    > &
-      Schema.Attribute.Private;
-    name: Schema.Attribute.String;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
 export interface PluginContentReleasesRelease
   extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_releases';
@@ -978,7 +947,6 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::event.event': ApiEventEvent;
       'api::obituary.obituary': ApiObituaryObituary;
-      'api::parish-pastoral-council-core-committee.parish-pastoral-council-core-committee': ApiParishPastoralCouncilCoreCommitteeParishPastoralCouncilCoreCommittee;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
