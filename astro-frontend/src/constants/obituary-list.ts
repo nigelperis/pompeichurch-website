@@ -7,9 +7,18 @@ import lawrenceMendonca from '~/assets/obituary/lawrence-mendonca.jpg';
 import ligoryLobo from '~/assets/obituary/ligory-lobo.jpeg';
 import louisMonteiro from '~/assets/obituary/louis-monteiro.jpg';
 import maryCoutinho from '~/assets/obituary/mary-coutinho.jpeg';
+import vinniLobo from '~/assets/obituary/vinni-lobo.jpg';
 import wilfredPinto from '~/assets/obituary/wilfred-pinto.jpg';
 
 const obituaryData = [
+	{
+		name: 'ವಿನ್ನಿ ಲೋಬೊ',
+		imageUrl: vinniLobo,
+		age: '87',
+		description: 'ಪತಿಣ್ : ದೆ। ಮಾರ್ಟಿನ್ ಲೋಬೊ',
+		ward: 'ಕೌಡೂರ್ ಬಿ',
+		date: '06-02-2025',
+	},
 	{
 		name: 'ಲಿಗೋರಿ ಲೋಬೊ',
 		imageUrl: ligoryLobo,
@@ -89,7 +98,7 @@ const obituaryData = [
 		description: 'ಪತಿಣ್ : ಶ್ರೀಮತಿ ಐರಿನ್ ಪಿಂಟೊ',
 		ward: 'ಪೊಂಪೈ ಬಿ',
 		date: '24-07-2024',
-	},	
+	},
 ];
 
 export { obituaryData };
