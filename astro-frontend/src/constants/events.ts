@@ -11,7 +11,7 @@ const eventImages = Object.fromEntries(
 const events = [
 	{
 		eventName: 'Catholic Sabha Unit Picnic',
-		eventNameKok: ' ಕಥೊಲಿಕ್ ಸಭಾ ಘಟಕಾಚೆಂ ಪಿಕ್ನಿಕ್',
+		eventNameKok: 'ಕಥೊಲಿಕ್ ಸಭಾ ಘಟಕಾಚೆಂ ಪಿಕ್ನಿಕ್',
 		slug: 'catholic-sabha-unit-picnic',
 		imageUrl: eventImages.event25,
 		shortDescription: 'ಪೊಂಪೈ ಮಾಯೆಕ್ ಸಮರ್ಪಿಲ್ಲ್ಯಾ ಗುರ್ಪುರ್ ಫಿರ್ಗಜೆಂತ್ ಫೆಬ್ರೆರ್ ಮಹಿನ್ಯಾಚಾ 02 ತಾರಿಕೆರ್ ಕಥೊಲಿಕ್ ಸಭಾ ಘಟಕಾಚೆಂ ಪಿಕ್ನಿಕ್ ಮಡಿಕೇರಿಕ್ ಆಸಾ ಕೆಲ್ಲೆಂ.',
@@ -25,7 +25,7 @@ const events = [
 		slug: 'our-youth-shine-in-sports',
 		imageUrl: eventImages.event24,
 		shortDescription: 'ದಿಯೆಸಿಜೆಂತ್ ಆನಿ ವಾರಾಡ್ಯಾ ಹಂತಾರ್ ಮಾಂಡುನ್ ಹಾಡ್ಲ್ಯಾ ಖೆಳಾ ಸ್ಪರ್ಧ್ಯಾಂತ್ ಆಮ್ಚ್ಯಾ ಫಿರ್ಗಜೆಕ್ ಬಹುಮಾನಾಂ ಫಾವೊ ಜಾಲ್ಯಾಂತ್.',
-		description: 'ದಿಯೆಸಿಜೆಂತ್ ಆನಿ ವಾರಾಡ್ಯಾ ಹಂತಾರ್ ಮಾಂಡುನ್ ಹಾಡ್ಲ್ಯಾ ಖೆಳಾ ಸ್ಪರ್ಧ್ಯಾಂತ್ ಆಮ್ಚ್ಯಾ ಫಿರ್ಗಜೆಕ್ ಬಹುಮಾನಾಂ ಫಾವೊ ಜಾಲ್ಯಾಂತ್.',
+		description: 'ಸಾಂ ಸಿಮಾಂವ್ ಪೆಜಾರ್ ವಾರಾಡ್ಯಾನ್ ಚಲಿಯ್ಯಾಂಕ್ ಮಾಂಡುನ್ ಹಾಡ್ಲ್ಯಾ ಥ್ರೋಬಾಲ್ ಟೂರ್ನಾಮೆಟಾಂತ್, ಆಮ್ಚ್ಯಾ ಫಿರ್ಗಜೆಕ್ ಪಯ್ಲೆಂ ಸ್ಥಾನ್ ಫಾವೊ ಜಾಲಾಂ.<br />Mercy strikers ತಲಪಾಡಿ  ದಿಯೆಸಿಜಿಚ್ಯಾ ಹಂತಾರ್ ಮಾಂಡುನ್ ಹಾಡ್ಲ್ಯಾ 5 s ಫುಟ್ಬಾಲ್ ಟೂರ್ನಾಮೆಂಟ್‌ ಹಾಂತುಂ  ಆಮ್ಚ್ಯಾ ಫಿರ್ಗಜೆಚ್ಯಾ ಯುವಜಣಾಂಕ್ ದುಸ್ರೆಂ‌ ಸ್ಥಾನ್ ಫಾವೊ ಜಾಲಾಂ',
 	},
 	{
 		eventName: '76th Republic Day Celebration',
