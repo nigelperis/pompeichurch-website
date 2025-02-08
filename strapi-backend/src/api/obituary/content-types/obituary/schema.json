@@ -4,53 +4,37 @@
   "info": {
     "singularName": "obituary",
     "pluralName": "obituaries",
-    "displayName": "Obituary",
-    "description": ""
+    "displayName": "obituary"
   },
   "options": {
     "draftAndPublish": true
   },
-  "pluginOptions": {
-    "i18n": {
-      "localized": true
-    }
-  },
+  "pluginOptions": {},
   "attributes": {
     "name": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "string",
-      "required": true
+      "type": "string"
     },
-    "image": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": [
-        "images"
-      ],
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      }
+    "description": {
+      "type": "string"
     },
     "age": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      },
-      "type": "integer",
-      "required": true
+      "type": "integer"
     },
     "ward": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::ward.ward"
+      "type": "string"
+    },
+    "dateOfDeath": {
+      "type": "date"
+    },
+    "image": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
     }
   }
 }

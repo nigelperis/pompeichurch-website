@@ -1,14 +1,16 @@
 ---
-import { Image } from 'astro:assets';
 import { cn } from '~/helpers/cn';
+import NetworkImage from './ui/network-image.astro';
 
 interface Props {
 	name: string;
-	imageUrl: ImageMetadata;
-	age: string;
+	imageUrl: string;
+	imageWidth: number;
+	imageHeight: number;
+	age: number;
 	description: string;
 	ward: string;
-	date: string;
+	dateOfDeath: string;
 	class?: string;
 }
 
@@ -17,9 +19,12 @@ const {
 	description,
 	age,
 	ward,
-	date,
+	dateOfDeath,
+	imageWidth,
+	imageHeight,
 	class: className,
 	imageUrl,
+	...rest
 } = Astro.props;
 ---
 
@@ -28,14 +33,16 @@ const {
 		'hover:scale-[1.01] snap-start h-full first:snap-align-none border duration-500 ease-in-out rounded-sm sm:w-[95%] md:w-[85%] lg:w-[75%]',
 		className,
 	)}
+	{...rest}
 	style={{ maxWidth: '350px' }}
 >
 	<div class="card-image aspect-[2.3/3] w-full overflow-hidden rounded-sm">
-		<Image
+		<NetworkImage
 			src={imageUrl}
 			alt={`Image of ${name}`}
-			class="h-full w-full object-cover"
-			style={{ maxHeight: '500px' }}
+			width={imageWidth}
+			height={imageHeight}
+			class="h-full w-full object-cover max-h-[500px]"
 		/>
 	</div>
 	<div
@@ -69,9 +76,9 @@ const {
 			)
 		}
 		{
-			date && (
+			dateOfDeath && (
 				<p class="card-ward line-clamp-3 text-lg text-slate-700">
-					ಮರಣ್ : {date}
+					ಮರಣ್ : {dateOfDeath}
 				</p>
 			)
 		}

@@ -2,12 +2,16 @@
 import HoverableLink from '~/components/ui/hoverable-link.astro';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import EventCard from '~/components/event-card.astro';
-import { events } from '~/constants/events';
+
 import { cn } from '~/helpers/cn';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const eventsUrl = lang === 'en' ? '/events' : '/kok/events';
+
+import { listEvents } from '~/services/events/list-events';
+
+const data = await listEvents();
 ---
 
 <section
@@ -28,17 +32,18 @@ const eventsUrl = lang === 'en' ? '/events' : '/kok/events';
 		class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 md:gap-4 lg:grid-cols-3 lg:gap-8"
 	>
 		{
-			events
-				.slice(0, 3)
+			data?.slice(0, 3)
 				.map((event) => (
-					<EventCard
-						eventName={event.eventName}
-						eventNameKok={event.eventNameKok}
-						imageUrl={event.imageUrl}
-						shortDescription={event.shortDescription}
-						facebookLink={event.facebookLink}
-						slug={event.slug}
-					/>
+				<EventCard
+				eventName={event.englishTitle}
+				eventNameKok={event.konkaniTitle}
+				imageUrl={event.eventImage.url}
+				imageWidth={event.eventImage.width}
+				imageHeight={event.eventImage.height}
+				shortDescription={event.shortDescription}
+				facebookLink={event.facebookLink}
+				slug={event.englishTitle.toLowerCase().replace(/ /g, '-')}
+				/>
 				))
 		}
 	</div>

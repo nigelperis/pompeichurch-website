@@ -1,17 +1,19 @@
 ---
-import { Image } from 'astro:assets';
 import { cn } from '~/helpers/cn.ts';
-import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+import { getLangFromUrl } from '~/i18n/utils';
+import NetworkImage from './ui/network-image.astro';
 
 interface Props {
 	title: string;
-	imageUrl: ImageMetadata;
+	imageUrl: string;
+	imageWidth?: number;
+	imageHeight?: number
 	subtitle: string;
 	class?: string;
 }
 
 const lang = getLangFromUrl(Astro.url);
-const { title, subtitle, class: className, imageUrl } = Astro.props;
+const { title, subtitle, class: className, imageUrl, imageWidth, imageHeight } = Astro.props;
 ---
 
 <div
@@ -21,8 +23,10 @@ const { title, subtitle, class: className, imageUrl } = Astro.props;
 	)}
 >
 	<div class="card-image flex-none">
-		<Image
+		<NetworkImage
 			src={imageUrl}
+			width={imageWidth ?? 300}
+			height={imageHeight ?? 300}
 			alt={`${title} ${subtitle} of Our Lady of Pompei Church`}
 			class="h-[300px] w-full object-cover"
 		/>

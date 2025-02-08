@@ -1,20 +1,40 @@
 ---
+import { format } from 'date-fns-tz';
 import ObituaryCard from '~/components/obituary-card.astro';
-import { obituaryData } from '~/constants/obituary-list';
+import { getPlaceholderImage } from '~/helpers/get-placeholder-image';
+import { listObituaries } from '~/services/obituaries/list-obituaries';
+
+const obituaryData = await listObituaries();
+
+const obituaryDataFormatted = obituaryData?.map((obituary) => ({
+    ...obituary,
+    formattedDate: obituary.dateOfDeath
+        ? format(new Date(obituary.dateOfDeath), 'dd-MM-yyyy')
+        : 'Unknown Date',
+}));
 ---
 
 <div
 	class="mx-auto grid w-full max-w-4xl gap-x-20 gap-y-10 xs:grid-cols-1 md:grid-cols-2"
 >
 	{
-		obituaryData.map((item) => (
+		obituaryDataFormatted?.map((item) => (
 			<ObituaryCard
 				name={item.name}
-				imageUrl={item.imageUrl}
+				imageUrl={
+            item.image.url
+              ? new URL(
+                  item.image.url,
+                  import.meta.env.STRAPI_URL,
+                ).toString()
+              : getPlaceholderImage()
+          }
+				imageWidth={item.image.width ?? 0}
+				imageHeight={item.image.height ?? 0}
 				description={item.description}
 				age={item.age}
 				ward={item.ward}
-				date={item.date}
+				dateOfDeath={item.formattedDate}
 				class="m-auto"
 			/>
 		))

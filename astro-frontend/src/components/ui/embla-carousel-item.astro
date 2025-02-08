@@ -5,7 +5,7 @@ interface Props {
 	class?: string;
 	style?: astroHTML.JSX.CSSProperties | undefined;
 }
-const { class: className, style } = Astro.props;
+const { class: className, style, ...rest } = Astro.props;
 ---
 
 <div
@@ -14,6 +14,7 @@ const { class: className, style } = Astro.props;
 		className,
 	)}
 	style={style}
+	{...rest}
 >
 	<slot />
 </div>
