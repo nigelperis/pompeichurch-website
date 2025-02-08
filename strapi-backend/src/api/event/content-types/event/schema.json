@@ -12,8 +12,9 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "title": {
-      "type": "string"
+    "konkaniTitle": {
+      "type": "string",
+      "required": true
     },
     "eventImage": {
       "type": "media",
@@ -29,7 +30,7 @@
     "shortDescription": {
       "type": "string"
     },
-    "longDescription": {
+    "description": {
       "type": "blocks"
     },
     "facebookLink": {
@@ -38,9 +39,13 @@
     "instagramLink": {
       "type": "string"
     },
-    "slug": {
-      "type": "uid",
-      "targetField": "title",
+    "englishTitle": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "eventDate": {
+      "type": "date",
       "required": true
     }
   }

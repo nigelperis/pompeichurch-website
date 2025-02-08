@@ -34,16 +34,16 @@ const data = await listEvents();
 		{
 			data?.slice(0, 3)
 				.map((event) => (
-					<EventCard
-						eventName={event.slug}
-						eventNameKok={event.title}
-						imageUrl={event.eventImage.url}
-						imageWidth={event.eventImage.width}
-						imageHeight={event.eventImage.height}
-						shortDescription={event.shortDescription}
-						facebookLink={event.facebookLink}
-						slug={event.slug}
-					/>
+				<EventCard
+				eventName={event.englishTitle}
+				eventNameKok={event.konkaniTitle}
+				imageUrl={event.eventImage.url}
+				imageWidth={event.eventImage.width}
+				imageHeight={event.eventImage.height}
+				shortDescription={event.shortDescription}
+				facebookLink={event.facebookLink}
+				slug={event.englishTitle.toLowerCase().replace(/ /g, '-')}
+				/>
 				))
 		}
 	</div>

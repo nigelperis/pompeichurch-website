@@ -1,5 +1,4 @@
 import type { Event, EventData } from '~/models/events';
-
 import { strapiFetch } from '~/helpers/strapi-fetch';
 
 async function listEvents(args?: {
@@ -7,23 +6,22 @@ async function listEvents(args?: {
 	page?: number;
 	/**@defaultValue 25 */
 	pageSize?: number;
-}): Promise<Event[] | undefined> {
-	const { page = 1, pageSize = 25 } = args ?? {};
+	/**@defaultValue 'eventDate:asc' */
+	sortBy?: string;
+}): Promise<Event[]> {
+	const { page = 1, pageSize = 25, sortBy = 'eventDate:desc' } = args ?? {};
 	const endpoint = '/events';
 
 	const queryParams = new URLSearchParams({
 		'populate[0]': 'eventImage',
-		'sort[0]': 'updatedAt:desc',
+		'sort[0]': sortBy,
 		'pagination[page]': String(page),
 		'pagination[pageSize]': String(pageSize),
 	});
 
-	const data = await strapiFetch<EventData>({
-		endpoint,
-    queryParams
-	});
+	const data = await strapiFetch<EventData>({ endpoint, queryParams });
 
-	return data?.data;
+	return data?.data ?? [];
 }
 
 export { listEvents };

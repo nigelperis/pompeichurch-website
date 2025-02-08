@@ -11,8 +11,8 @@ const data = await listEvents();
 	{
 		data?.map((event) => (
 			<EventCard
-				eventName={event.slug}
-				eventNameKok={event.title}
+				eventName={event.englishTitle}
+				eventNameKok={event.konkaniTitle}
 				imageUrl={
             event.eventImage.url
               ? new URL(
@@ -25,7 +25,7 @@ const data = await listEvents();
 				imageHeight={event.eventImage.height ?? 0}
 				shortDescription={event.shortDescription}
 				facebookLink={event.facebookLink}
-				slug={event.slug}
+				slug={event.englishTitle.toLowerCase().replace(/ /g, '-')}
 				instagramLink={event.instagramLink}
 			/>
 		))

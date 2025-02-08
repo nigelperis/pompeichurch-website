@@ -16,11 +16,12 @@ const t = useTranslations(lang);
 
 const eventUrl = lang === 'en' ? `/events/${slug}` : `/kok/events/${slug}`;
 
-const data = await getEvent(slug?? '');
+const data = await getEvent(slug ?? '');
 
+const eventImage = data?.eventImage ?? { url: getPlaceholderImage(), width: 0, height: 0 };
 ---
 
-<Layout title={`Events | ${data?.slug}`}>
+<Layout title={`Events | ${data?.englishTitle}`}>
 	{
 		!data?<p>No content found</p>:
 	<main
@@ -30,10 +31,10 @@ const data = await getEvent(slug?? '');
 			<h1
 				class="mb-4 border-l-4 border-natgeo-yellow pl-3 text-left text-2xl font-extrabold lg:text-4xl"
 			>
-				{data?.title}
+				{data?.konkaniTitle}
 			</h1>
 			<NetworkImage
-				src={data.eventImage.url ?? getPlaceholderImage()}
+				src={eventImage.url}
 				width={data.eventImage.width ?? 0}
 				height={data.eventImage.height ?? 0}
 				class="mx-auto mt-1 rounded-sm md:w-3/4"
@@ -41,8 +42,8 @@ const data = await getEvent(slug?? '');
 			<p
 				class="text-md mt-4 leading-7 text-slate-700"
 			>
-			{<StrapiBlocksRenderer content={data.longDescription}/>}
-		</p>
+				<StrapiBlocksRenderer content={data.description ?? []} />
+				</p>
 			<div class="flex">
 				<div class="flex w-full flex-row justify-start gap-10">
 					{
@@ -65,7 +66,7 @@ const data = await getEvent(slug?? '');
 					}
 				</div>
 				<ShareLink
-					shareData={{ title: data.title, url: eventUrl }}
+					shareData={{ title: data.konkaniTitle, url: eventUrl }}
 					class="mt-2 flex h-12 items-center"
 				/>
 			</div>

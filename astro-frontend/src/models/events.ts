@@ -43,10 +43,11 @@ interface ImageFormat {
 export interface Event {
 	id: number;
 	documentId: string;
-	title: string;
-  slug: string;
+	konkaniTitle: string;
+	englishTitle: string;
+	eventDate: string;
 	shortDescription: string;
-	longDescription: BlocksContent;
+	description: BlocksContent;
 	facebookLink: string;
 	instagramLink: string;
 	createdAt: string;

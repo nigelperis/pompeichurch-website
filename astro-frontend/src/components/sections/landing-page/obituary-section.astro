@@ -6,13 +6,20 @@ import HoverableLink from '~/components/ui/hoverable-link.astro';
 import Card from '~/components/normal-card.astro';
 import { listObituaries } from '~/services/obituaries/list-obituaries';
 
-// import { obituaryData } from '~/constants/obituary-list';
-
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const obituaryLink = lang === 'en' ? '/obituary' : '/kok/obituary';
 
+import { format } from 'date-fns';
+
 const obituaryData = await listObituaries();
+
+const obituaryDataFormatted = obituaryData?.map((obituary) => ({
+    ...obituary,
+    formattedDate: obituary.dateOfDeath
+        ? format(new Date(obituary.dateOfDeath), 'dd-MM-yyyy')
+        : 'Unknown Date',
+}));
 ---
 
 <section
@@ -34,14 +41,13 @@ const obituaryData = await listObituaries();
 		class="my-4 flex w-full scroll-ml-6 space-x-8 overflow-x-auto overflow-y-hidden pl-3 pr-3 scrollbar-none lg:justify-center xl:space-x-10"
 	>
 		{
-			obituaryData?.slice(0, 4)
-				.map((obituary) => (
-					<Card
-						imageUrl={obituary.image.url}
-						title={obituary.name + ` (${obituary.age})`}
-						subtitle={`ಮರಣ್ : ` + obituary.dateOfDeath}
-					/>
-				))
+			obituaryDataFormatted?.slice(0, 4).map((obituary) => (
+			<Card
+			imageUrl={obituary.image.url}
+ 			title={obituary.name + ` (${obituary.age})`}
+ 			subtitle={`ಮರಣ್ : ` + obituary.formattedDate}
+			/>
+		))
 		}
 
 		<div
