@@ -16,7 +16,7 @@ export async function getStaticPaths() {
 
 const { slug } = Astro.params;
 const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
+
 const event = events.find((event) => event.slug === slug);
 
 const eventUrl = lang === 'en' ? `/events/${slug}` : `/kok/events/${slug}`;
@@ -24,9 +24,18 @@ const eventUrl = lang === 'en' ? `/events/${slug}` : `/kok/events/${slug}`;
 if (!event) {
 	throw new Error(`Event not found for slug: ${slug}`);
 }
+
+const baseURL = import.meta.env.PROD ? Astro.site : new URL(Astro.url.origin);
+const absoluteImageURL = new URL(event.imageUrl, baseURL).href;
+const absoluteEventURL = new URL(eventUrl, baseURL).href;
 ---
 
-<Layout title={`Events | ${event.eventName}`}>
+<Layout
+	title={`Events | ${event.eventName}`}
+	description={event.shortDescription || event.description}
+	image={absoluteImageURL}
+	url={absoluteEventURL}
+>
 	<main
 		class="mx-auto max-w-4xl overflow-hidden bg-white text-justify font-noto-sans-kannada"
 	>
