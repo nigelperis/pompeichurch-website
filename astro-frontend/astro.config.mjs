@@ -10,6 +10,7 @@ export default defineConfig({
 	output: 'server',
 	adapter: netlify(),
 	prefetch: true,
+  site: "https://pompeichurch.in",
 	integrations: [
 		tailwind(),
 		icon({
