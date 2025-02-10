@@ -5,7 +5,7 @@ import { events } from '~/constants/events';
 import Layout from '~/layouts/layout.astro';
 import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
-import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+import { getLangFromUrl } from '~/i18n/utils';
 import ShareLink from '~/components/ui/share-link.astro';
 
 export async function getStaticPaths() {
@@ -21,12 +21,14 @@ const event = events.find((event) => event.slug === slug);
 
 const eventUrl = lang === 'en' ? `/events/${slug}` : `/kok/events/${slug}`;
 
+const eventIndex = events.findIndex((e) => e.slug === slug);
+
 if (!event) {
 	throw new Error(`Event not found for slug: ${slug}`);
 }
 
 const baseURL = import.meta.env.PROD ? Astro.site : new URL(Astro.url.origin);
-const absoluteImageURL = new URL(event.imageUrl.src, baseURL).href;
+const absoluteImageURL = new URL(event.imageUrl, baseURL).href;
 const absoluteEventURL = new URL(eventUrl, baseURL).href;
 ---
 
@@ -79,6 +81,43 @@ const absoluteEventURL = new URL(eventUrl, baseURL).href;
 					shareData={{ title: event.eventName, url: eventUrl }}
 					class="mt-2 flex h-12 items-center"
 				/>
+			</div>
+		</section>
+		<!-- Astro Inspo -->
+		<section class="mx-6 mb-8 pt-3">
+			<div class="flex flex-col gap-4 sm:flex-row sm:justify-between">
+				{events[eventIndex - 1] && (
+					<a
+						href={`/${lang === 'en' ? '' : 'kok/'}events/${events[eventIndex - 1].slug}`}
+						rel="prev"
+						class={`flex cursor-pointer items-center gap-3 border border-gray-300 rounded-lg px-4 py-3 transition-colors shadow-md hover:border-black
+							${events[eventIndex + 1] ? 'sm:w-1/2' : 'w-full'}`}
+					>
+						<Icon name="chevron-left" class="text-2xl stroke-2 text-gray-700" />
+						<span>
+							<div class="text-md text-gray-500 pb-1">Previous Event</div>
+							<div class="text-lg font-medium text-black text-left">
+								{events[eventIndex - 1].eventNameKok}
+							</div>
+						</span>
+					</a>
+				)}
+				{events[eventIndex + 1] && (
+					<a
+						href={`/${lang === 'en' ? '' : 'kok/'}events/${events[eventIndex + 1].slug}`}
+						rel="next"
+						class={`flex items-center gap-3 border border-gray-300 rounded-lg px-4 py-3 transition-colors shadow-md hover:border-gray-500 text-right flex-row-reverse
+							${events[eventIndex - 1] ? 'sm:w-1/2' : 'w-full'}`}
+					>
+						<Icon name="chevron-right" class="text-2xl stroke-2 text-gray-700" />
+						<span>
+							<div class="text-md text-gray-500 pb-1">Next Event</div>
+							<div class="text-lg font-medium text-black">
+								{events[eventIndex + 1].eventNameKok}
+							</div>
+						</span>
+					</a>
+				)}
 			</div>
 		</section>
 	</main>

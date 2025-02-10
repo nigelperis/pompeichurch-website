@@ -83,36 +83,41 @@ const absoluteEventURL = new URL(eventUrl, baseURL).href;
 				/>
 			</div>
 		</section>
+		<!-- Astro Inspo -->
 		<section class="mx-6 mb-8 pt-3">
 			<div class="flex flex-col gap-4 sm:flex-row sm:justify-between">
-				{
-					events[eventIndex - 1] && (
-						<a
-							href={`/${lang === 'en' ? '' : 'kok/'}events/${events[eventIndex - 1].slug}`}
-							class={`flex w-full flex-col gap-2 rounded-md px-4 py-3 transition-colors border border-gray-300 bg-white shadow-md hover:bg-gray-100 text-left
-								${!events[eventIndex + 1] ? 'w-full' : 'sm:w-1/2 sm:pe-8'}`}
-						>
-							<div class="text-md text-natgeo-yellow">Previous Event</div>
-							<div class="flex items-center gap-2 text-lg font-medium text-black">
+				{events[eventIndex - 1] && (
+					<a
+						href={`/${lang === 'en' ? '' : 'kok/'}events/${events[eventIndex - 1].slug}`}
+						rel="prev"
+						class={`flex cursor-pointer items-center gap-3 border border-gray-300 rounded-lg px-4 py-3 transition-colors shadow-md hover:border-black
+							${events[eventIndex + 1] ? 'sm:w-1/2' : 'w-full'}`}
+					>
+						<Icon name="chevron-left" class="text-2xl stroke-2 text-gray-700" />
+						<span>
+							<div class="text-md text-gray-500 pb-1">Previous Event</div>
+							<div class="text-lg font-medium text-black text-left">
 								{events[eventIndex - 1].eventNameKok}
 							</div>
-						</a>
-					)
-				}
-				{
-					events[eventIndex + 1] && (
-						<a
-							href={`/${lang === 'en' ? '' : 'kok/'}events/${events[eventIndex + 1].slug}`}
-							class={`flex w-full flex-col gap-2 rounded-md px-4 py-3 transition-colors border border-gray-300 bg-white shadow-md hover:bg-gray-100
-								${!events[eventIndex - 1] ? 'w-full text-left' : 'sm:w-1/2 sm:ps-8 text-right'}`}
-						>
-							<div class="text-md text-natgeo-yellow ${events[eventIndex - 1] ? 'text-right' : 'text-left'}">Next Event</div>
-							<div class="flex items-center ${events[eventIndex - 1] ? 'justify-end' : 'justify-start'} gap-2 text-lg font-medium text-black">
+						</span>
+					</a>
+				)}
+				{events[eventIndex + 1] && (
+					<a
+						href={`/${lang === 'en' ? '' : 'kok/'}events/${events[eventIndex + 1].slug}`}
+						rel="next"
+						class={`flex items-center gap-3 border border-gray-300 rounded-lg px-4 py-3 transition-colors shadow-md hover:border-gray-500 text-right flex-row-reverse
+							${events[eventIndex - 1] ? 'sm:w-1/2' : 'w-full'}`}
+					>
+						<Icon name="chevron-right" class="text-2xl stroke-2 text-gray-700" />
+						<span>
+							<div class="text-md text-gray-500 pb-1">Next Event</div>
+							<div class="text-lg font-medium text-black">
 								{events[eventIndex + 1].eventNameKok}
 							</div>
-						</a>
-					)
-				}
+						</span>
+					</a>
+				)}
 			</div>
 		</section>
 	</main>
