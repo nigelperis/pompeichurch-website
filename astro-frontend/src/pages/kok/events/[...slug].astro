@@ -28,7 +28,7 @@ if (!event) {
 }
 
 const baseURL = import.meta.env.PROD ? Astro.site : new URL(Astro.url.origin);
-const absoluteImageURL = new URL(event.imageUrl, baseURL).href;
+const absoluteImageURL = new URL(event.imageUrl.src, baseURL).href;
 const absoluteEventURL = new URL(eventUrl, baseURL).href;
 ---
 
