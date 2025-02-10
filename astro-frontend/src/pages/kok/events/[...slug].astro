@@ -5,7 +5,7 @@ import { events } from '~/constants/events';
 import Layout from '~/layouts/layout.astro';
 import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
-import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+import { getLangFromUrl } from '~/i18n/utils';
 import ShareLink from '~/components/ui/share-link.astro';
 
 export async function getStaticPaths() {
@@ -20,6 +20,8 @@ const lang = getLangFromUrl(Astro.url);
 const event = events.find((event) => event.slug === slug);
 
 const eventUrl = lang === 'en' ? `/events/${slug}` : `/kok/events/${slug}`;
+
+const eventIndex = events.findIndex((e) => e.slug === slug);
 
 if (!event) {
 	throw new Error(`Event not found for slug: ${slug}`);
@@ -79,6 +81,38 @@ const absoluteEventURL = new URL(eventUrl, baseURL).href;
 					shareData={{ title: event.eventName, url: eventUrl }}
 					class="mt-2 flex h-12 items-center"
 				/>
+			</div>
+		</section>
+		<section class="mx-6 mb-8 pt-3">
+			<div class="flex flex-col gap-4 sm:flex-row sm:justify-between">
+				{
+					events[eventIndex - 1] && (
+						<a
+							href={`/${lang === 'en' ? '' : 'kok/'}events/${events[eventIndex - 1].slug}`}
+							class={`flex w-full flex-col gap-2 rounded-md px-4 py-3 transition-colors border border-gray-300 bg-white shadow-md hover:bg-gray-100 text-left
+								${!events[eventIndex + 1] ? 'w-full' : 'sm:w-1/2 sm:pe-8'}`}
+						>
+							<div class="text-md text-natgeo-yellow">Previous Event</div>
+							<div class="flex items-center gap-2 text-lg font-medium text-black">
+								{events[eventIndex - 1].eventNameKok}
+							</div>
+						</a>
+					)
+				}
+				{
+					events[eventIndex + 1] && (
+						<a
+							href={`/${lang === 'en' ? '' : 'kok/'}events/${events[eventIndex + 1].slug}`}
+							class={`flex w-full flex-col gap-2 rounded-md px-4 py-3 transition-colors border border-gray-300 bg-white shadow-md hover:bg-gray-100
+								${!events[eventIndex - 1] ? 'w-full text-left' : 'sm:w-1/2 sm:ps-8 text-right'}`}
+						>
+							<div class="text-md text-natgeo-yellow ${events[eventIndex - 1] ? 'text-right' : 'text-left'}">Next Event</div>
+							<div class="flex items-center ${events[eventIndex - 1] ? 'justify-end' : 'justify-start'} gap-2 text-lg font-medium text-black">
+								{events[eventIndex + 1].eventNameKok}
+							</div>
+						</a>
+					)
+				}
 			</div>
 		</section>
 	</main>
