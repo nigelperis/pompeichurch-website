@@ -11,7 +11,7 @@ const selectedObituary = obituaryData.find(item =>
   (item.id || item.name).replace(/\s+/g, '-').toLowerCase() === id
 ) || obituaryData[0];
 
-const { name, imageUrl, ward } = selectedObituary;
+const { name, ward } = selectedObituary;
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -22,9 +22,8 @@ const absoluteImageURL = new URL(selectedObituary.imageUrl.src, baseURL).href;
 
 <Layout
 	title={name}
-	description={ward}
+	description={`${ward} ವಾಡೊ`}
 	image={absoluteImageURL}
-	url={url.href}
 	>
 	<main class="mx-auto max-w-4xl overflow-hidden bg-white">
 		<section id="obituary" class="flex flex-col p-6 pb-4">
