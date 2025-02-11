@@ -2,23 +2,43 @@
 import ObituaryList from '~/components/sections/obituary/obituary-list.astro';
 import Layout from '~/layouts/layout.astro';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+import { obituaryData } from '~/constants/obituary-list';
+
+const url = new URL(Astro.url);
+const id = url.searchParams.get('id');
+
+const selectedObituary = obituaryData.find(item =>
+  (item.id || item.name).replace(/\s+/g, '-').toLowerCase() === id
+) || obituaryData[0];
+
+const { name, ward } = selectedObituary;
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+const baseURL = import.meta.env.PROD ? Astro.site : new URL(Astro.url.origin);
+const absoluteImageURL = new URL(selectedObituary.imageUrl.src, baseURL).href;
 ---
 
-<Layout title="Pompei Church | Obituary">
+<Layout
+	title={name}
+	description={ward}
+	image={absoluteImageURL}
+	url={url.href}
+	>
 	<main class="mx-auto max-w-4xl overflow-hidden bg-white">
 		<section id="obituary" class="flex flex-col p-6 pb-4">
 			<h1
-				class="mb-4 border-l-4 border-natgeo-yellow pl-3 text-3xl font-extrabold lg:text-4xl"
+				class="mb-4 border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold lg:text-4xl"
 			>
 				{t('nav.obituary')}
 			</h1>
-			<h2 class="p-3 pb-6 font-poppins text-2xl font-bold italic text-red-600">
+			<p class="font-roboto p-3 pb-6 text-2xl font-bold italic text-red-600">
 				{t('obituary.subtitle')}
-			</h2>
-			<ObituaryList />
+				<p>
+					<ObituaryList />
+				</p>
+			</p>
 		</section>
 	</main>
 </Layout>

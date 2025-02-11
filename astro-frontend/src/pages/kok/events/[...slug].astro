@@ -78,7 +78,7 @@ const absoluteEventURL = new URL(eventUrl, baseURL).href;
 					}
 				</div>
 				<ShareLink
-					shareData={{ title: event.eventName, url: eventUrl }}
+					shareData={{ title: event.eventNameKok, url: eventUrl }}
 					class="mt-2 flex h-12 items-center"
 				/>
 			</div>
@@ -95,7 +95,7 @@ const absoluteEventURL = new URL(eventUrl, baseURL).href;
 					>
 						<Icon name="chevron-left" class="text-2xl stroke-2 text-gray-700" />
 						<span>
-							<div class="text-md text-gray-500 pb-1">Previous Event</div>
+							<div class="text-md text-gray-500 pb-1">ಆದ್ಲೆಂ ಘಡಿತ್</div>
 							<div class="text-lg font-medium text-black text-left">
 								{events[eventIndex - 1].eventNameKok}
 							</div>
@@ -111,7 +111,7 @@ const absoluteEventURL = new URL(eventUrl, baseURL).href;
 					>
 						<Icon name="chevron-right" class="text-2xl stroke-2 text-gray-700" />
 						<span>
-							<div class="text-md text-gray-500 pb-1">Next Event</div>
+							<div class="text-md text-gray-500 pb-1">ಮುಕ್ಲೆಂ ಘಡಿತ್</div>
 							<div class="text-lg font-medium text-black">
 								{events[eventIndex + 1].eventNameKok}
 							</div>

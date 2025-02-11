@@ -9,6 +9,7 @@ import { obituaryData } from '~/constants/obituary-list';
 	{
 		obituaryData.map((item) => (
 			<ObituaryCard
+				id={item.id}
 				name={item.name}
 				imageUrl={item.imageUrl}
 				description={item.description}

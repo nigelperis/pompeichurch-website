@@ -4,10 +4,11 @@ import { cn } from '~/helpers/cn';
 
 interface Props {
 	class?: string;
+	size?: number;
 	shareData: Record<string, string>;
 }
 
-const { class: className, shareData } = Astro.props;
+const { class: className, shareData, size = 30 } = Astro.props;
 ---
 
 <button
@@ -18,7 +19,7 @@ const { class: className, shareData } = Astro.props;
 	)}
 	id="share"
 >
-	<Icon name="share" size={30} class="text-slate-600" />
+	<Icon name="share" size={size} class="text-slate-600" />
 </button>
 
 <script>
