@@ -12,6 +12,7 @@ import winnyLobo from '~/assets/obituary/winny-lobo.jpg';
 
 const obituaryData = [
 	{
+		id: 'Winny Lobo',
 		name: 'ವಿನ್ನಿ ಲೋಬೊ',
 		imageUrl: winnyLobo,
 		age: '87',
@@ -20,14 +21,16 @@ const obituaryData = [
 		date: '06-02-2025',
 	},
 	{
+		id: 'Ligory Lobo',
 		name: 'ಲಿಗೋರಿ ಲೋಬೊ',
 		imageUrl: ligoryLobo,
 		age: '61',
 		description: 'ಪತಿ : ಫ್ಲಾವಿಯಾ ಲೋಬೊ',
-		ward: 'ಮಣೆಲ್ ',
+		ward: 'ಮಣೆಲ್',
 		date: '04-02-2025',
 	},
 	{
+		id: 'Lawrence Mendonca',
 		name: 'ಲಾರೆನ್ಸ್ ಮೆಂಡೊನ್ಸಾ',
 		imageUrl: lawrenceMendonca,
 		age: '75',
@@ -36,6 +39,7 @@ const obituaryData = [
 		date: '26-01-2025',
 	},
 	{
+		id: 'Louis Monteiro',
 		name: 'ಲುವಿಸ್ ಮೊಂತೇರೊ',
 		imageUrl: louisMonteiro,
 		age: '75',
@@ -44,6 +48,7 @@ const obituaryData = [
 		date: '14-01-2025',
 	},
 	{
+		id: 'Mary Coutinho',
 		name: 'ಮೇರಿ ಕುಟಿನ್ಹೊ',
 		imageUrl: maryCoutinho,
 		age: '87',
@@ -52,6 +57,7 @@ const obituaryData = [
 		date: '13-01-2025',
 	},
 	{
+		id: 'Jerald Rodrigues',
 		name: 'ಜೆರಾಲ್ಡ್ ರೊಡ್ರಿಗಸ್',
 		imageUrl: jeraldRodrigues,
 		age: '71',
@@ -60,6 +66,7 @@ const obituaryData = [
 		date: '20-12-2024',
 	},
 	{
+		id: 'Alwyn DSouza',
 		name: 'ಆಲ್ವಿನ್ ಡಿಸೋಜಾ',
 		imageUrl: alwnynDsouza,
 		age: '55',
@@ -68,6 +75,7 @@ const obituaryData = [
 		date: '28-10-2024',
 	},
 	{
+		id: 'Felix Valder',
 		name: 'ಫೆಲಿಕ್ಸ್ ವಾಲ್ಡರ್',
 		imageUrl: felixWalder,
 		age: '75',
@@ -76,6 +84,7 @@ const obituaryData = [
 		date: '12-08-2024',
 	},
 	{
+		id: 'Grashan DSouza',
 		name: 'ಗ್ರೇಶನ್ ಡಿಸೋಜಾ',
 		imageUrl: gracianDSouza,
 		age: '87',
@@ -84,6 +93,7 @@ const obituaryData = [
 		date: '05-08-2024',
 	},
 	{
+		id: 'Jeevith Pinto',
 		name: 'ಜೀವಿತ್ ಪಿಂಟೊ',
 		imageUrl: jeevithPinto,
 		age: '84',
@@ -92,6 +102,7 @@ const obituaryData = [
 		date: '31-07-2024',
 	},
 	{
+		id: 'Wilfred Pinto',
 		name: 'ವಿಲ್ಫ್ರೆಡ್ ಪಿಂಟೊ',
 		imageUrl: wilfredPinto,
 		age: '60',
