@@ -2,9 +2,18 @@
 import EventsList from '~/components/sections/events/events-list.astro';
 import Layout from '~/layouts/layout.astro';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+import { events } from '~/constants/events';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+// Pagination settings
+const eventsPerPage = 6; // Number of events per page
+const currentPage = Number(Astro.url.searchParams.get('page')) || 1;
+const startIndex = (currentPage - 1) * eventsPerPage;
+const endIndex = startIndex + eventsPerPage;
+const paginatedEvents = events.slice(startIndex, endIndex);
+const totalPages = Math.ceil(events.length / eventsPerPage);
 ---
 
 <Layout title="Pompei Church | Events">
@@ -16,9 +25,38 @@ const t = useTranslations(lang);
 				{t('nav.events')}
 			</h1>
 			<p class="pb-4 text-justify font-geist text-lg">
-				ಫಿರ್ಗಜ್ ಕುಟ್ಮಾಚ್ಯಾ ಎಕ್ವಟ್ಪಣಾಚ್ಯೊ ಘಡಿಯೊ
+				Celebrating the moments that unite our parish community.
 			</p>
-			<EventsList />
+			<EventsList events={paginatedEvents} />
+			<div class="flex justify-center gap-4 mt-8">
+				<a
+						href={`?page=${currentPage - 1}`}
+						class={`px-4 py-2 rounded ${
+								currentPage === 1
+										? 'bg-gray-300 cursor-not-allowed'
+										: 'bg-blue-500 text-white hover:bg-blue-600'
+						}`}
+						aria-disabled={currentPage === 1}
+				>
+						Previous
+				</a>
+
+				<span class="px-4 py-2">
+						Page {currentPage} of {totalPages}
+				</span>
+
+				<a
+						href={`?page=${currentPage + 1}`}
+						class={`px-4 py-2 rounded ${
+								currentPage === totalPages
+										? 'bg-gray-300 cursor-not-allowed'
+										: 'bg-blue-500 text-white hover:bg-blue-600'
+						}`}
+						aria-disabled={currentPage === totalPages}
+				>
+						Next
+				</a>
+		</div>
 		</section>
 	</main>
 </Layout>
