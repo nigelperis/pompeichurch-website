@@ -8,17 +8,17 @@ const eventImages = Object.fromEntries(
 	}),
 );
 
+// {
+// 	eventName: '',
+// 	eventNameKok: '',
+// 	slug: '',
+// 	imageUrl: eventImages.event,
+// 	shortDescription: '',
+// 	description: ``,
+// 	facebookLink: '',
+// 	instagramLink:'',
+// },
 const events = [
-	// {
-	// 	eventName: '',
-	// 	eventNameKok: '',
-	// 	slug: '',
-	// 	imageUrl: eventImages.event,
-	// 	shortDescription: '',
-	// 	description: ``,
-	// 	facebookLink: '',
-	// 	instagramLink:'',
-	// },
 	{
 		eventName: 'A visit to the sick',
 		eventNameKok: 'ಫಿರ್ಗಜೆಂತ್ಲ್ಯಾ ಪಿಡೆಸ್ತಾಂಚಿ ಭೆಟ್',
