@@ -1,7 +1,7 @@
+import centenarySouvenir from '~/assets/pompeichem-falkem/centenary-souvenir.jpg';
 import pfDecemeber2024 from '~/assets/pompeichem-falkem/pf-december-2024.jpeg';
 import pfMarch2024 from '~/assets/pompeichem-falkem/pf-march-2024.jpg';
 import pfSeptember2024 from '~/assets/pompeichem-falkem/pf-september-2024.jpg';
-import centenarySouvenir from '~/assets/pompeichem-falkem/centenary-souvenir.jpg'
 
 const magazines = [
 	{

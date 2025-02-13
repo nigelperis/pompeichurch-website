@@ -1,19 +1,32 @@
 ---
 import EventCard from '~/components/event-card.astro';
 
-const { events } = Astro.props;
+interface Event {
+  eventName: string;
+  eventNameKok: string;
+  imageUrl: ImageMetadata;
+  shortDescription: string;
+  facebookLink: string;
+  slug: string;
+  instagramLink: string;
+}
+
+
+const { events } = Astro.props as { events: Event[] };
 ---
 
 <div class="grid grid-cols-1 gap-8 sm:grid-cols-2">
-	{events.map((event) => (
+	{
+		events.map((event) => (
 			<EventCard
-					eventName={event.eventName}
-					eventNameKok={event.eventNameKok}
-					imageUrl={event.imageUrl}
-					shortDescription={event.shortDescription}
-					facebookLink={event.facebookLink}
-					slug={event.slug}
-					instagramLink={event.instagramLink}
+				eventName={event.eventName}
+				eventNameKok={event.eventNameKok}
+				imageUrl={event.imageUrl}
+				shortDescription={event.shortDescription}
+				facebookLink={event.facebookLink}
+				slug={event.slug}
+				instagramLink={event.instagramLink}
 			/>
-	))}
+		))
+	}
 </div>

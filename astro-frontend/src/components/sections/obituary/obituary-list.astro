@@ -1,13 +1,24 @@
 ---
 import ObituaryCard from '~/components/obituary-card.astro';
-import { obituaryData } from '~/constants/obituary-list';
+
+interface Obituary {
+  id: string;
+  name: string;
+  imageUrl: ImageMetadata;
+  description: string;
+  age: string;
+  ward: string;
+  date: string;
+}
+
+const { obituaries } = Astro.props as { obituaries: Obituary[] };
 ---
 
 <div
 	class="mx-auto grid w-full max-w-4xl gap-x-20 gap-y-10 xs:grid-cols-1 md:grid-cols-2"
 >
 	{
-		obituaryData.map((item) => (
+		obituaries.map((item) => (
 			<ObituaryCard
 				id={item.id}
 				name={item.name}

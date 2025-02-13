@@ -1,22 +1,25 @@
 ---
 import EventsList from '~/components/sections/events/events-list.astro';
 import Layout from '~/layouts/layout.astro';
+import Pagination from '~/components/pagination.astro';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import { events } from '~/constants/events';
+import { getPaginationRange } from '~/helpers/get-pagination-range';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-// Pagination settings
-const eventsPerPage = 6; // Number of events per page
-const currentPage = Number(Astro.url.searchParams.get('page')) || 1;
+const eventsPerPage = 6;
+const currentPage = Number(Astro.url.searchParams.get('p')) || 1;
 const startIndex = (currentPage - 1) * eventsPerPage;
 const endIndex = startIndex + eventsPerPage;
 const paginatedEvents = events.slice(startIndex, endIndex);
 const totalPages = Math.ceil(events.length / eventsPerPage);
+
+const pageTitle = `Page ${currentPage} | Events | Pompei Church`;
 ---
 
-<Layout title="Pompei Church | Events">
+<Layout title={pageTitle}>
 	<main class="mx-auto max-w-4xl overflow-hidden bg-white">
 		<section id="events" class="flex flex-col p-6">
 			<h1
@@ -27,36 +30,14 @@ const totalPages = Math.ceil(events.length / eventsPerPage);
 			<p class="pb-4 text-justify font-geist text-lg">
 				Celebrating the moments that unite our parish community.
 			</p>
+
 			<EventsList events={paginatedEvents} />
-			<div class="flex justify-center gap-4 mt-8">
-				<a
-						href={`?page=${currentPage - 1}`}
-						class={`px-4 py-2 rounded ${
-								currentPage === 1
-										? 'bg-gray-300 cursor-not-allowed'
-										: 'bg-blue-500 text-white hover:bg-blue-600'
-						}`}
-						aria-disabled={currentPage === 1}
-				>
-						Previous
-				</a>
 
-				<span class="px-4 py-2">
-						Page {currentPage} of {totalPages}
-				</span>
-
-				<a
-						href={`?page=${currentPage + 1}`}
-						class={`px-4 py-2 rounded ${
-								currentPage === totalPages
-										? 'bg-gray-300 cursor-not-allowed'
-										: 'bg-blue-500 text-white hover:bg-blue-600'
-						}`}
-						aria-disabled={currentPage === totalPages}
-				>
-						Next
-				</a>
-		</div>
+			<Pagination
+				currentPage={currentPage}
+				totalPages={totalPages}
+				getPaginationRange={getPaginationRange}
+			/>
 		</section>
 	</main>
 </Layout>
