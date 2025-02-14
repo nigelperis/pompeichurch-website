@@ -2,13 +2,13 @@
 import ObituaryCard from '~/components/obituary-card.astro';
 
 interface Obituary {
-  id: string;
-  name: string;
-  imageUrl: ImageMetadata;
-  description: string;
-  age: string;
-  ward: string;
-  date: string;
+	id: string;
+	name: string;
+	imageUrl: ImageMetadata;
+	description: string;
+	age: string;
+	ward: string;
+	date: string;
 }
 
 const { obituaries } = Astro.props as { obituaries: Obituary[] };

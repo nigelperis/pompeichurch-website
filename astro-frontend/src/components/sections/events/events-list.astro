@@ -2,15 +2,14 @@
 import EventCard from '~/components/event-card.astro';
 
 interface Event {
-  eventName: string;
-  eventNameKok: string;
-  imageUrl: ImageMetadata;
-  shortDescription: string;
-  facebookLink: string;
-  slug: string;
-  instagramLink: string;
+	eventName: string;
+	eventNameKok: string;
+	imageUrl: ImageMetadata;
+	shortDescription: string;
+	facebookLink: string;
+	slug: string;
+	instagramLink: string;
 }
-
 
 const { events } = Astro.props as { events: Event[] };
 ---
