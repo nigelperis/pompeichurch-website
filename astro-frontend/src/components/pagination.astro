@@ -8,50 +8,63 @@ const paginationRange = getPaginationRange(currentPage, totalPages);
 
 <div class="mt-10 flex items-center justify-center gap-2 text-lg lg:mt-10">
 	<!-- Previous Button -->
-	<a
-		href={`?p=${currentPage - 1}`}
-		class={`w-10 h-10 flex items-center justify-center font-bold rounded ${
-			currentPage === 1 ? 'opacity-60 cursor-not-allowed' : 'hover:bg-gray-100'
-		}`}
-		aria-disabled={currentPage === 1}
-	>
-		<Icon name="chevron-left" class="stroke-2 text-2xl text-black" />
-	</a>
+	{currentPage === 1 ? (
+		<span
+			class="w-10 h-10 flex items-center justify-center font-bold rounded opacity-60 cursor-not-allowed"
+			aria-label="Previous Page (Disabled)"
+			tabindex="-1"
+		>
+			<Icon name="chevron-left" class="stroke-2 text-2xl text-black" />
+		</span>
+	) : (
+		<a
+			href={`?p=${currentPage - 1}`}
+			class="w-10 h-10 flex items-center justify-center font-bold rounded hover:bg-gray-200 transition-all duration-200"
+			aria-label="Previous Page"
+		>
+			<Icon name="chevron-left" class="stroke-2 text-2xl text-black" />
+		</a>
+	)}
 
 	<!-- Page Numbers -->
-	{
-		paginationRange.map((page) => {
-			if (page === '...') {
-				return (
-					<span class="flex h-10 w-10 items-center justify-center">...</span>
-				);
-			} else {
-				return (
-					<a
-						href={`?p=${page}`}
-						class={`flex h-10 w-10 items-center justify-center rounded ${
-							currentPage === page
-								? 'bg-yellow-100 text-yellow-600'
-								: 'hover:bg-gray-100'
-						}`}
-					>
-						{page}
-					</a>
-				);
-			}
-		})
-	}
+	{paginationRange.map((page) => {
+		if (page === '...') {
+			return (
+				<span class="flex h-10 w-10 items-center justify-center">...</span>
+			);
+		} else {
+			return (
+				<a
+					href={`?p=${page}`}
+					class={`flex h-10 w-10 items-center justify-center rounded transition-all duration-200 ${
+						currentPage === page
+							? 'bg-natgeo-yellow text-white font-bold shadow-md'
+							: 'hover:bg-gray-200'
+					}`}
+					aria-label={`Page ${page}`}
+				>
+					{page}
+				</a>
+			);
+		}
+	})}
 
 	<!-- Next Button -->
-	<a
-		href={`?p=${currentPage + 1}`}
-		class={`w-10 h-10 flex items-center justify-center font-bold rounded ${
-			currentPage === totalPages
-				? 'opacity-60 cursor-not-allowed'
-				: 'hover:bg-gray-100'
-		}`}
-		aria-disabled={currentPage === totalPages}
-	>
-		<Icon name="chevron-right" class="stroke-2 text-2xl text-black" />
-	</a>
+	{currentPage === totalPages ? (
+		<span
+			class="w-10 h-10 flex items-center justify-center font-bold rounded opacity-60 cursor-not-allowed"
+			aria-label="Next Page (Disabled)"
+			tabindex="-1"
+		>
+			<Icon name="chevron-right" class="stroke-2 text-2xl text-black" />
+		</span>
+	) : (
+		<a
+			href={`?p=${currentPage + 1}`}
+			class="w-10 h-10 flex items-center justify-center font-bold rounded hover:bg-gray-200 transition-all duration-200"
+			aria-label="Next Page"
+		>
+			<Icon name="chevron-right" class="stroke-2 text-2xl text-black" />
+		</a>
+	)}
 </div>
