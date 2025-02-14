@@ -4,7 +4,7 @@ import { Image } from 'astro:assets';
 import { cn } from '~/helpers/cn';
 import { upcomingEvents } from '~/constants/upcoming-events';
 
-import {fromZonedTime} from "date-fns-tz"
+import { fromZonedTime } from 'date-fns-tz';
 
 //Components
 import EmblaCarosuel from '~/components/ui/embla-carousel.astro';
@@ -19,16 +19,19 @@ const t = useTranslations(lang);
 const today = new Date();
 
 const filteredEvents = upcomingEvents.filter((event) => {
-  return fromZonedTime(event.endDate, "Asia/Kolkata") > today;
+	return fromZonedTime(event.endDate, 'Asia/Kolkata') > today;
 });
 
-const images = filteredEvents.length > 0
-  ? filteredEvents.map(event => ({ src: event.eventImg, alt: "Upcoming Event" }))
-  : [{ src: lang === 'kok' ? stayTunedKok : stayTuned, alt: "Stay Tuned" }];
+const images =
+	filteredEvents.length > 0
+		? filteredEvents.map((event) => ({
+				src: event.eventImg,
+				alt: 'Upcoming Event',
+			}))
+		: [{ src: lang === 'kok' ? stayTunedKok : stayTuned, alt: 'Stay Tuned' }];
 ---
 
-<!-- This commented code is for fallback purpose  -->
-<!-- <section
+<!-- This commented code is for fallback purpose  --><!-- <section
 	class="mx-6 mb-4 flex flex-col lg:mx-28 lg:min-h-[70svh] lg:justify-evenly"
 >
 	<h1
@@ -62,36 +65,42 @@ const images = filteredEvents.length > 0
 		}
 	</div>
 </section> -->
-<section class="mx-6 mb-4 flex flex-col lg:mx-28 lg:min-h-[70svh] lg:justify-evenly">
-  <h1
-    data-aos="fade-right"
-    class={cn(
-      'mb-6 inline-block border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold xs:text-2xl lg:text-4xl',
-      { 'font-noto-sans-kannada': lang === 'kok' }
-    )}
-  >
-    {t('landing.upcoming-events')}
-  </h1>
+<section
+	class="mx-6 mb-4 flex flex-col lg:mx-28 lg:min-h-[70svh] lg:justify-evenly"
+>
+	<h1
+		data-aos="fade-right"
+		class={cn(
+			'mb-6 inline-block border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold xs:text-2xl lg:text-4xl',
+			{ 'font-noto-sans-kannada': lang === 'kok' },
+		)}
+	>
+		{t('landing.upcoming-events')}
+	</h1>
 	<!-- Mobile UI -->
-  {filteredEvents.length > 1 ? (
-		<div class="block md:hidden -mx-[1.5rem]">
-			<EmblaCarosuel showArrows={true}>
-				{images.map((image) => (
-					<EmblaCarosuelItem>
-						<Image src={image.src} alt={image.alt} class="w-full" />
-					</EmblaCarosuelItem>
-				))}
-			</EmblaCarosuel>
-		</div>
-	) : (
-		<div class="block md:hidden">
-			<Image src={images[0].src} alt={images[0].alt} class="w-full" />
-		</div>
-	)}
+	{
+		filteredEvents.length > 1 ? (
+			<div class="-mx-[1.5rem] block md:hidden">
+				<EmblaCarosuel showArrows={true}>
+					{images.map((image) => (
+						<EmblaCarosuelItem>
+							<Image src={image.src} alt={image.alt} class="w-full" />
+						</EmblaCarosuelItem>
+					))}
+				</EmblaCarosuel>
+			</div>
+		) : (
+			<div class="block md:hidden">
+				<Image src={images[0].src} alt={images[0].alt} class="w-full" />
+			</div>
+		)
+	}
 	<!-- Web UI -->
-  <div class="hidden md:flex gap-4 justify-center">
-		{images.map((image) => (
-			<Image src={image.src} alt={image.alt} class="rounded-sm md:w-1/4" />
-		))}
+	<div class="hidden justify-center gap-4 md:flex">
+		{
+			images.map((image) => (
+				<Image src={image.src} alt={image.alt} class="rounded-sm md:w-1/4" />
+			))
+		}
 	</div>
 </section>

@@ -1,13 +1,25 @@
 ---
 import EventsList from '~/components/sections/events/events-list.astro';
 import Layout from '~/layouts/layout.astro';
+import Pagination from '~/components/pagination.astro';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+import { events } from '~/constants/events';
+import { getPaginationRange } from '~/helpers/get-pagination-range';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+const eventsPerPage = 6;
+const currentPage = Number(Astro.url.searchParams.get('p')) || 1;
+const startIndex = (currentPage - 1) * eventsPerPage;
+const endIndex = startIndex + eventsPerPage;
+const paginatedEvents = events.slice(startIndex, endIndex);
+const totalPages = Math.ceil(events.length / eventsPerPage);
+
+const pageTitle = `Page ${currentPage} | Events | Pompei Church`;
 ---
 
-<Layout title="Pompei Church | Events">
+<Layout title={pageTitle}>
 	<main class="mx-auto max-w-4xl overflow-hidden bg-white">
 		<section id="events" class="flex flex-col p-6">
 			<h1
@@ -18,7 +30,14 @@ const t = useTranslations(lang);
 			<p class="pb-4 text-justify font-geist text-lg">
 				Celebrating the moments that unite our parish community.
 			</p>
-			<EventsList />
+
+			<EventsList events={paginatedEvents} />
+
+			<Pagination
+				currentPage={currentPage}
+				totalPages={totalPages}
+				getPaginationRange={getPaginationRange}
+			/>
 		</section>
 	</main>
 </Layout>
