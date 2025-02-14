@@ -1,0 +1,76 @@
+---
+import { Icon } from 'astro-icon/components';
+import { getPaginationRange } from '~/helpers/get-pagination-range';
+
+const { currentPage, totalPages } = Astro.props;
+const paginationRange = getPaginationRange(currentPage, totalPages);
+---
+
+<div class="mt-10 flex items-center justify-center gap-2 text-lg lg:mt-10">
+	<!-- Previous Button -->
+	{
+		currentPage === 1 ? (
+			<span
+				class="flex h-10 w-10 cursor-not-allowed items-center justify-center rounded font-bold opacity-60"
+				aria-label="Previous Page (Disabled)"
+				tabindex="-1"
+			>
+				<Icon name="chevron-left" class="stroke-2 text-2xl text-black" />
+			</span>
+		) : (
+			<a
+				href={`?p=${currentPage - 1}`}
+				class="flex h-10 w-10 items-center justify-center rounded font-bold transition-all duration-200 hover:bg-gray-200"
+				aria-label="Previous Page"
+			>
+				<Icon name="chevron-left" class="stroke-2 text-2xl text-black" />
+			</a>
+		)
+	}
+
+	<!-- Page Numbers -->
+	{
+		paginationRange.map((page) => {
+			if (page === '...') {
+				return (
+					<span class="flex h-10 w-10 items-center justify-center">...</span>
+				);
+			} else {
+				return (
+					<a
+						href={`?p=${page}`}
+						class={`flex h-10 w-10 items-center justify-center rounded transition-all duration-200 ${
+							currentPage === page
+								? 'bg-natgeo-yellow font-bold text-white shadow-md'
+								: 'hover:bg-gray-200'
+						}`}
+						aria-label={`Page ${page}`}
+					>
+						{page}
+					</a>
+				);
+			}
+		})
+	}
+
+	<!-- Next Button -->
+	{
+		currentPage === totalPages ? (
+			<span
+				class="flex h-10 w-10 cursor-not-allowed items-center justify-center rounded font-bold opacity-60"
+				aria-label="Next Page (Disabled)"
+				tabindex="-1"
+			>
+				<Icon name="chevron-right" class="stroke-2 text-2xl text-black" />
+			</span>
+		) : (
+			<a
+				href={`?p=${currentPage + 1}`}
+				class="flex h-10 w-10 items-center justify-center rounded font-bold transition-all duration-200 hover:bg-gray-200"
+				aria-label="Next Page"
+			>
+				<Icon name="chevron-right" class="stroke-2 text-2xl text-black" />
+			</a>
+		)
+	}
+</div>

@@ -1,6 +1,17 @@
 ---
 import EventCard from '~/components/event-card.astro';
-import { events } from '~/constants/events';
+
+interface Event {
+	eventName: string;
+	eventNameKok: string;
+	imageUrl: ImageMetadata;
+	shortDescription: string;
+	facebookLink: string;
+	slug: string;
+	instagramLink: string;
+}
+
+const { events } = Astro.props as { events: Event[] };
 ---
 
 <div class="grid grid-cols-1 gap-8 sm:grid-cols-2">
