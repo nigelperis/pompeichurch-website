@@ -50,12 +50,19 @@ const absoluteImageURL = selectedObituary?.imageUrl?.src
 const pageTitle = id
 	? `${selectedObituary?.name}`
 	: `Page ${currentPage} | Obituaries | Pompei Church`;
+
+const obituaryUrl = new URL(
+  lang === 'en' ? `/obituary?id=${id?.replace(/\s+/g, '-').toLowerCase()}`
+                : `/kok/obituary?id=${id?.replace(/\s+/g, '-').toLowerCase()}`,
+  Astro.url
+).href;
 ---
 
 <Layout
-	title={pageTitle}
+	title={`${pageTitle} (${selectedObituary?.age})`}
 	description={`${selectedObituary?.ward} ವಾಡೊ`}
 	image={absoluteImageURL}
+	url={obituaryUrl}
 >
 	<main class="mx-auto max-w-4xl overflow-hidden bg-white">
 		<section id="obituary" class="flex flex-col p-6 pb-4">
