@@ -7,13 +7,13 @@ import HoverableLink from "./ui/hoverable-link.astro";
 
 const videos = [
   {
-    url: 'https://youtube.com/embed/kL2WebNdPXc',
+    url: 'https://www.youtube-nocookie.com/embed/kL2WebNdPXc',
   },
   {
-    url: 'https://youtube.com/embed/TQVrdZetQ3o',
+    url: 'https://www.youtube-nocookie.com/embed/TQVrdZetQ3o',
   },
   {
-    url: 'https://youtube.com/embed/8PtMr1u7_X0',
+    url: 'https://www.youtube-nocookie.com/embed/8PtMr1u7_X0',
   },
 ];
 ---
@@ -27,15 +27,16 @@ const videos = [
 						width="100%"
 						height="200"
 						src={video.url}
+            loading="lazy"
 						title="YouTube Video"
 						allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
 						allowfullscreen
-						class="rounded-xl"
+						class="aspect-video rounded-xl pointer-events-none"
 					></iframe>
 				</div>
 			</EmblaCarouselItem>
 		))}
-  
+
 		<EmblaCarouselItem>
 			<div class="flex-shrink-0 w-full text-center rounded-xl relative">
 				<Image src={YtThumbnail} alt="Watch more" class="rounded-xl" />
