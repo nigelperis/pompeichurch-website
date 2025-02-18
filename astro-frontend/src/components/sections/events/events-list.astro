@@ -13,13 +13,13 @@ const data = await listEvents();
 				eventName={event.englishTitle}
 				eventNameKok={event.konkaniTitle}
 				imageUrl={
-            event.eventImage.url
-              ? new URL(
-                  event.eventImage.url,
-                  import.meta.env.STRAPI_URL,
-                ).toString()
-              : getPlaceholderImage()
-          }
+					event.eventImage.url
+						? new URL(
+								event.eventImage.url,
+								import.meta.env.STRAPI_URL,
+							).toString()
+						: getPlaceholderImage()
+				}
 				imageWidth={event.eventImage.width ?? 0}
 				imageHeight={event.eventImage.height ?? 0}
 				shortDescription={event.shortDescription}

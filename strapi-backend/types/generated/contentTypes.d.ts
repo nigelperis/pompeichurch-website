@@ -443,6 +443,38 @@ export interface ApiObituaryObituary extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiUpcomingEventUpcomingEvent
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'upcoming_events';
+  info: {
+    displayName: 'Upcoming Event';
+    pluralName: 'upcoming-events';
+    singularName: 'upcoming-event';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    eventEndDate: Schema.Attribute.Date;
+    eventImage: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::upcoming-event.upcoming-event'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface PluginContentReleasesRelease
   extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_releases';
@@ -954,6 +986,7 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::event.event': ApiEventEvent;
       'api::obituary.obituary': ApiObituaryObituary;
+      'api::upcoming-event.upcoming-event': ApiUpcomingEventUpcomingEvent;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

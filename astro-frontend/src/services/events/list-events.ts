@@ -1,5 +1,5 @@
-import type { Event, EventData } from '~/models/events';
 import { strapiFetch } from '~/helpers/strapi-fetch';
+import type { Event, EventData } from '~/models/events';
 
 async function listEvents(args?: {
 	/**@defaultValue 1 */

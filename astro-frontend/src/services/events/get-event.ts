@@ -3,19 +3,19 @@ import type { Event, EventData } from '~/models/events';
 import { strapiFetch } from '~/helpers/strapi-fetch';
 
 async function getEvent(slug: string): Promise<Event | undefined> {
-  const endpoint = '/events';
+	const endpoint = '/events';
 
-  const queryParams = new URLSearchParams({
-    'populate[0]': 'eventImage',
-    'filters[englishTitle][$eqi]': slug.replace(/-/g, ' '),
-  });
+	const queryParams = new URLSearchParams({
+		'populate[0]': 'eventImage',
+		'filters[englishTitle][$eqi]': slug.replace(/-/g, ' '),
+	});
 
-  const data = await strapiFetch<EventData>({
-    endpoint,
-    queryParams,
-  });
+	const data = await strapiFetch<EventData>({
+		endpoint,
+		queryParams,
+	});
 
-  return data?.data?.[0];
+	return data?.data?.[0];
 }
 
 export { getEvent };

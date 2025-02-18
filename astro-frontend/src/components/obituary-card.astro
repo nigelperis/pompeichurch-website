@@ -33,9 +33,10 @@ const {
 
 const lang = getLangFromUrl(Astro.url);
 const obituaryUrl = new URL(
-  lang === 'en' ? `/obituary?id=${id.replace(/\s+/g, '-').toLowerCase()}`
-                : `/kok/obituary?id=${id.replace(/\s+/g, '-').toLowerCase()}`,
-  Astro.url
+	lang === 'en'
+		? `/obituary?id=${id.replace(/\s+/g, '-').toLowerCase()}`
+		: `/kok/obituary?id=${id.replace(/\s+/g, '-').toLowerCase()}`,
+	Astro.url,
 ).href;
 ---
 
@@ -54,7 +55,7 @@ const obituaryUrl = new URL(
 			alt={`Image of ${name}`}
 			width={imageWidth}
 			height={imageHeight}
-			class="h-full w-full object-cover max-h-[500px]"
+			class="h-full max-h-[500px] w-full object-cover"
 		/>
 	</div>
 	<div

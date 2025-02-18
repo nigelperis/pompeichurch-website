@@ -1,34 +1,48 @@
 ---
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
-import { Image } from 'astro:assets';
 import { cn } from '~/helpers/cn';
-import { upcomingEvents } from '~/constants/upcoming-events';
 
+import { parseISO } from 'date-fns';
 import { fromZonedTime } from 'date-fns-tz';
 
 //Components
-import EmblaCarosuel from '~/components/ui/embla-carousel.astro';
-import EmblaCarosuelItem from '~/components/ui/embla-carousel-item.astro';
 
 import stayTuned from '~/assets/upcoming-events/stay-tuned.png';
 import stayTunedKok from '~/assets/upcoming-events/stay-tuned-kok.png';
+import { listUpcomingEvents } from '~/services/upcoming-events/list-upcoming-events';
+import NetworkImage from '~/components/ui/network-image.astro';
+import EmblaCarousel from '~/components/ui/embla-carousel.astro';
+import EmblaCarouselItem from '~/components/ui/embla-carousel-item.astro';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 const today = new Date();
 
+const upcomingEvents = await listUpcomingEvents();
+
 const filteredEvents = upcomingEvents.filter((event) => {
-	return fromZonedTime(event.endDate, 'Asia/Kolkata') > today;
+	if (!event.eventEndDate) return false;
+	const eventDate = parseISO(event.eventEndDate);
+	return eventDate > today;
 });
 
-const images =
-	filteredEvents.length > 0
-		? filteredEvents.map((event) => ({
-				src: event.eventImg,
-				alt: 'Upcoming Event',
-			}))
-		: [{ src: lang === 'kok' ? stayTunedKok : stayTuned, alt: 'Stay Tuned' }];
+const eventImages =
+  filteredEvents.length > 0
+    ? filteredEvents.map((event) => ({
+        src: event.eventImage?.url ?? stayTuned.src,
+        alt: 'Upcoming Event',
+        width: event.eventImage?.width,
+        height: event.eventImage?.height
+      }))
+    : [
+        {
+          src: lang === 'kok' ? stayTunedKok.src : stayTuned.src,
+          alt: 'Stay Tuned',
+          width: 500,
+          height: 200,
+        },
+      ];
 ---
 
 <!-- This commented code is for fallback purpose  --><!-- <section
@@ -66,7 +80,7 @@ const images =
 	</div>
 </section> -->
 <section
-	class="mt-3 mx-6 mb-4 flex flex-col lg:mx-28 lg:min-h-[70svh] lg:justify-evenly"
+	class="mx-6 mb-4 mt-3 flex flex-col lg:mx-28 lg:min-h-[70svh] lg:justify-evenly"
 >
 	<h1
 		data-aos="fade-right"
@@ -77,29 +91,49 @@ const images =
 	>
 		{t('landing.upcoming-events')}
 	</h1>
+
 	<!-- Mobile UI -->
 	{
 		filteredEvents.length > 1 ? (
 			<div class="-mx-[1.5rem] block md:hidden">
-				<EmblaCarosuel showArrows={true}>
-					{images.map((image) => (
-						<EmblaCarosuelItem>
-							<Image src={image.src} alt={image.alt} class="w-full" />
-						</EmblaCarosuelItem>
+				<EmblaCarousel showArrows={true}>
+					{filteredEvents.map((event) => (
+						<EmblaCarouselItem>
+							<NetworkImage
+								src={event.eventImage?.url ?? stayTuned.src}
+								alt="Upcoming Event"
+								class="w-full"
+								width={event.eventImage?.width ?? 500}
+								height={event.eventImage?.height ?? 200}
+							/>
+						</EmblaCarouselItem>
 					))}
-				</EmblaCarosuel>
+				</EmblaCarousel>
 			</div>
 		) : (
 			<div class="block md:hidden">
-				<Image src={images[0].src} alt={images[0].alt} class="w-full" />
+				<NetworkImage
+					src={eventImages[0]?.src ?? stayTuned.src}
+					alt={eventImages[0]?.alt ?? 'Default Alt Text'}
+					class="w-full"
+					width={eventImages[0]?.width}
+					height={eventImages[0]?.height}
+				/>
 			</div>
 		)
 	}
+
 	<!-- Web UI -->
 	<div class="hidden justify-center gap-4 md:flex">
 		{
-			images.map((image) => (
-				<Image src={image.src} alt={image.alt} class="rounded-sm md:w-1/4" />
+			eventImages.map((image) => (
+				<NetworkImage
+					src={image.src ?? stayTuned.src}
+					alt={image.alt ?? 'Default Alt Text'}
+					class="rounded-sm md:w-1/4"
+					width={500}
+					height={300}
+				/>
 			))
 		}
 	</div>

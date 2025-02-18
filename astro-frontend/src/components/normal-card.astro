@@ -7,13 +7,20 @@ interface Props {
 	title: string;
 	imageUrl: string;
 	imageWidth?: number;
-	imageHeight?: number
+	imageHeight?: number;
 	subtitle: string;
 	class?: string;
 }
 
 const lang = getLangFromUrl(Astro.url);
-const { title, subtitle, class: className, imageUrl, imageWidth, imageHeight } = Astro.props;
+const {
+	title,
+	subtitle,
+	class: className,
+	imageUrl,
+	imageWidth,
+	imageHeight,
+} = Astro.props;
 ---
 
 <div

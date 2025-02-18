@@ -8,10 +8,10 @@ import { listObituaries } from '~/services/obituaries/list-obituaries';
 const obituaryData = await listObituaries();
 
 const obituaryDataFormatted = obituaryData?.map((obituary) => ({
-    ...obituary,
-    formattedDate: obituary.dateOfDeath
-        ? format(new Date(obituary.dateOfDeath), 'dd-MM-yyyy')
-        : 'Unknown Date',
+	...obituary,
+	formattedDate: obituary.dateOfDeath
+		? format(new Date(obituary.dateOfDeath), 'dd-MM-yyyy')
+		: 'Unknown Date',
 }));
 ---
 
@@ -24,13 +24,10 @@ const obituaryDataFormatted = obituaryData?.map((obituary) => ({
 				id={item.englishName}
 				name={item.konkaniName}
 				imageUrl={
-            item.image.url
-              ? new URL(
-                  item.image.url,
-                  import.meta.env.STRAPI_URL,
-                ).toString()
-              : getPlaceholderImage()
-          }
+					item.image.url
+						? new URL(item.image.url, import.meta.env.STRAPI_URL).toString()
+						: getPlaceholderImage()
+				}
 				imageWidth={item.image.width ?? 0}
 				imageHeight={item.image.height ?? 0}
 				description={item.description}

@@ -5,7 +5,7 @@ async function getObituary(): Promise<Obituary | undefined> {
 	const endpoint = '/obituaries';
 
 	const queryParams = new URLSearchParams({
-    'populate[0]': 'image',
+		'populate[0]': 'image',
 	});
 
 	const data = await strapiFetch<ObituaryData>({
