@@ -42,6 +42,7 @@ interface ImageFormat {
 
 export interface Event {
 	id: number;
+	slug: string;
 	documentId: string;
 	konkaniTitle: string;
 	englishTitle: string;

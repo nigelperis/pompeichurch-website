@@ -3,81 +3,66 @@ import ObituaryList from '~/components/sections/obituary/obituary-list.astro';
 import Layout from '~/layouts/layout.astro';
 import Pagination from '~/components/pagination.astro';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
-import { obituaryData } from '~/constants/obituary-list';
+import { listObituaries } from '~/services/obituaries/list-obituaries';
 
 const url = new URL(Astro.url);
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+const obituaryData = await listObituaries() || [];
 
 const baseURL = import.meta.env.PROD ? Astro.site : new URL(Astro.url.origin);
 
-const getObituaryId = () => {
-	const idParam = url.searchParams.get('id');
-	return idParam ? idParam.replace(/\s+/g, '-').toLowerCase() : null;
-};
+const id = url.searchParams.get('id') || null;
 
-const id = getObituaryId();
+const selectedObituary = id ? obituaryData.find((item) => item.slug === id) : null;
+
+
 const obituariesPerPage = 6;
-const totalPages = Math.ceil(obituaryData.length / obituariesPerPage);
+const totalPages = obituaryData.length > 0 ? Math.ceil(obituaryData.length / obituariesPerPage) : 1;
 
-const index = id
-	? obituaryData.findIndex(
-			(item) =>
-				(item.id || item.name).replace(/\s+/g, '-').toLowerCase() === id,
-		)
-	: -1;
-
-const currentPage =
-	id && index !== -1
-		? Math.floor(index / obituariesPerPage) + 1
-		: Number(url.searchParams.get('p')) || 1;
+const index = selectedObituary ? obituaryData.findIndex((item) => item.slug === id) : -1;
+const currentPage = index !== -1 ? Math.floor(index / obituariesPerPage) + 1 : Number(url.searchParams.get('p')) || 1;
 
 const startIndex = (currentPage - 1) * obituariesPerPage;
-const endIndex = startIndex + obituariesPerPage;
-const paginatedObituaries = obituaryData.slice(startIndex, endIndex);
+const paginatedObituaries = obituaryData.length > 0 ? obituaryData.slice(startIndex, startIndex + obituariesPerPage) : [];
 
-const selectedObituary = id
-	? obituaryData.find(
-			(item) =>
-				(item.id || item.name).replace(/\s+/g, '-').toLowerCase() === id,
-		)
-	: null;
+const absoluteImageURL = selectedObituary?.image?.url
+  ? new URL(selectedObituary.image.url, baseURL).href
+  : undefined;
 
-const absoluteImageURL = selectedObituary?.imageUrl?.src
-	? new URL(selectedObituary.imageUrl.src, baseURL).href
-	: undefined;
+const pageTitle = selectedObituary
+  ? `${selectedObituary.konkaniName}`
+  : `Page ${currentPage} | Obituaries | Pompei Church`;
 
-const pageTitle = id
-	? `${selectedObituary?.name}`
-	: `Page ${currentPage} | Obituaries | Pompei Church`;
-
-const obituaryUrl = new URL(
-  lang === 'en' ? `/obituary?id=${id?.replace(/\s+/g, '-').toLowerCase()}`
-                : `/kok/obituary?id=${id?.replace(/\s+/g, '-').toLowerCase()}`,
+	const obituaryUrl = new URL(
+  lang === 'en' ? `/obituary?id=${id || ''}` : `/kok/obituary?id=${id || ''}`,
   Astro.url
 ).href;
 ---
 
 <Layout
-	title={`${pageTitle} (${selectedObituary?.age})`}
-	description={`${selectedObituary?.ward} ವಾಡೊ`}
-	image={absoluteImageURL}
-	url={obituaryUrl}
+  title={`${pageTitle} ${selectedObituary?.age ? `(${selectedObituary.age})` : ''}`}
+  description={`${selectedObituary?.ward}`}
+  image={absoluteImageURL}
+  url={obituaryUrl}
 >
-	<main class="mx-auto max-w-4xl overflow-hidden bg-white">
-		<section id="obituary" class="flex flex-col p-6 pb-4">
-			<h1
-				class="mb-4 border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold lg:text-4xl"
-			>
-				{t('nav.obituary')}
-			</h1>
-			<p class="font-roboto p-3 pb-6 text-2xl font-bold italic text-red-600">
-				{t('obituary.subtitle')}
-			</p>
+  <main class="mx-auto max-w-4xl overflow-hidden bg-white">
+    <section id="obituary" class="flex flex-col p-6 pb-4">
+      <h1 class="mb-4 border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold lg:text-4xl">
+        {t('nav.obituary')}
+      </h1>
+      <p class="font-roboto p-3 pb-6 text-2xl font-bold italic text-red-600">
+        {t('obituary.subtitle')}
+      </p>
 
-			<ObituaryList obituaries={paginatedObituaries} />
-
-			<Pagination currentPage={currentPage} totalPages={totalPages} />
-		</section>
-	</main>
+      {obituaryData.length > 0 ? (
+        <>
+          <ObituaryList obituaries={paginatedObituaries} />
+          <Pagination currentPage={currentPage} totalPages={totalPages} />
+        </>
+      ) : (
+			<p class="text-center font-semibold text-3xl py-8">No Obituaries!</p>
+      )}
+    </section>
+  </main>
 </Layout>

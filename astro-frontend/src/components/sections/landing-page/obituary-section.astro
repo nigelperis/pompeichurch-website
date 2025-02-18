@@ -15,20 +15,19 @@ import { format } from 'date-fns';
 
 const obituaryData = await listObituaries();
 
-const obituaryDataFormatted = obituaryData?.map((obituary) => ({
-    ...obituary,
-    formattedDate: obituary.dateOfDeath
+const obituaryDataFormatted = obituaryData?.length
+  ? obituaryData.map((obituary) => ({
+      ...obituary,
+      formattedDate: obituary.dateOfDeath
         ? format(new Date(obituary.dateOfDeath), 'dd-MM-yyyy')
         : 'Unknown Date',
-}));
+    }))
+  : [];
 
-const featuredObituary = obituaryData[4];
-const firstFourObituaries = obituaryData.slice(0, 4);
+const featuredObituary = obituaryData.length > 4 ? obituaryData[4] : null;
 ---
 
-<section
-	class="mt-1 flex flex-col lg:mx-28 lg:mb-3 lg:min-h-[70svh] lg:justify-evenly"
->
+<section class="mt-1 flex flex-col lg:mx-28 lg:mb-3 lg:min-h-[70svh] lg:justify-evenly">
 	<h1
 		data-aos="fade-right"
 		class={cn(
@@ -41,48 +40,59 @@ const firstFourObituaries = obituaryData.slice(0, 4);
 		{t('nav.obituary')}
 	</h1>
 
-	<div
-		class="my-4 flex w-full scroll-ml-6 space-x-8 overflow-x-auto overflow-y-hidden pl-6 pr-3 scrollbar-none lg:justify-center xl:space-x-10"
-	>
-		{
-			obituaryDataFormatted?.slice(0, 4).map((obituary) => (
-			<Card
-			imageUrl={obituary.image.url}
- 			title={obituary.name + ` (${obituary.age})`}
- 			subtitle={`ಮರಣ್ : ` + obituary.formattedDate}
-			/>
-		))
-		}
-
-		<div
-			class="relative flex-shrink-0 transform snap-start overflow-hidden border shadow-sm transition-all duration-200 ease-in-out lg:hidden"
-		>
-			<div class="opacity-50 blur-md">
-				{obituaryData && obituaryData[4] && (
-					<Card
-						imageUrl={featuredObituary.image.url}
-						imageWidth={obituaryData[4].image.width}
-						imageHeight={obituaryData[4].image.height}
-						title={featuredObituary.name + ` (${featuredObituary.age})`}
-						subtitle={`ಮರಣ್ : ` + featuredObituary.dateOfDeath}
-					/>
-				)}
+	{obituaryDataFormatted.length > 0 ? (
+		<>
+			<!-- Obituaries List -->
+			<div
+				class="my-4 flex w-full scroll-ml-6 space-x-8 overflow-x-auto overflow-y-hidden pl-6 pr-3 scrollbar-none lg:justify-center xl:space-x-10"
+			>
+				{obituaryDataFormatted.slice(0, 4).map((obituary) => (
+					<div class="relative">
+						<Card
+							imageUrl={obituary.image?.url}
+							title={`${obituary.konkaniName} (${obituary.age})`}
+							subtitle={`ಮರಣ್ : ${obituary.formattedDate}`}
+						/>
+						<ShareLink
+							class="absolute bottom-4 right-4"
+							shareData={{
+								url: `${new URL(
+									lang === 'en'
+										? `/obituary?id=${obituary.englishName.replace(/\s+/g, '-').toLowerCase()}`
+										: `/kok/obituary?id=${obituary.englishName.replace(/\s+/g, '-').toLowerCase()}`,
+									Astro.url
+								).href}`,
+								title: `${obituary.konkaniName} - ${obituary.ward}`,
+							}}
+							size={24}
+						/>
+					</div>
+				))}
 			</div>
-			<div class="absolute inset-0 flex items-center justify-center">
-				<HoverableLink
-					href={obituaryLink}
-					class="mb-2 mt-2 inline-block text-xl font-bold text-black"
-				>
-					{t('ui.view-all')}
-				</HoverableLink>
+
+			{featuredObituary && (
+				<div class="relative flex-shrink-0 transform snap-start overflow-hidden border shadow-sm transition-all duration-200 ease-in-out lg:hidden">
+					<div class="opacity-50 blur-md">
+						<Card
+							imageUrl={featuredObituary.image?.url}
+							title={`${featuredObituary.konkaniName} (${featuredObituary.age})`}
+							subtitle={`ಮರಣ್ : ${featuredObituary.dateOfDeath}`}
+						/>
+					</div>
+					<div class="absolute inset-0 flex items-center justify-center">
+						<HoverableLink href={obituaryLink} class="mb-2 mt-2 inline-block text-xl font-bold text-black">
+							{t('ui.view-all')}
+						</HoverableLink>
+					</div>
+				</div>
+			)}
+
+			<!-- View All Button -->
+			<div class="hidden justify-center pb-2 lg:flex">
+				<HoverableLink href={obituaryLink}>{t('ui.view-all')}</HoverableLink>
 			</div>
-		</div>
-	</div>
-
-	<div class="hidden justify-center pb-2 lg:flex">
-		<HoverableLink href={obituaryLink}>
-			{t('ui.view-all')}
-		</HoverableLink>
-	</div>
-
+		</>
+	) : (
+		<p class="text-center font-semibold text-4xl py-8">No Obituaries!</p>
+	)}
 </section>

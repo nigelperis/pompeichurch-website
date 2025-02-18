@@ -3,16 +3,6 @@ import EventCard from '~/components/event-card.astro';
 import { listEvents } from '~/services/events/list-events';
 import { getPlaceholderImage } from '~/helpers/get-placeholder-image';
 
-interface Event {
-	eventName: string;
-	eventNameKok: string;
-	imageUrl: ImageMetadata;
-	shortDescription: string;
-	facebookLink: string;
-	slug: string;
-	instagramLink: string;
-}
-
 const data = await listEvents();
 ---
 

@@ -47,6 +47,10 @@
     "eventDate": {
       "type": "date",
       "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "englishTitle"
     }
   }
 }

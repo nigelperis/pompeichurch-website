@@ -400,6 +400,7 @@ export interface ApiEventEvent extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
     shortDescription: Schema.Attribute.String;
+    slug: Schema.Attribute.UID<'englishTitle'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -409,6 +410,7 @@ export interface ApiEventEvent extends Struct.CollectionTypeSchema {
 export interface ApiObituaryObituary extends Struct.CollectionTypeSchema {
   collectionName: 'obituaries';
   info: {
+    description: '';
     displayName: 'obituary';
     pluralName: 'obituaries';
     singularName: 'obituary';
@@ -423,15 +425,17 @@ export interface ApiObituaryObituary extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     dateOfDeath: Schema.Attribute.Date;
     description: Schema.Attribute.String;
+    englishName: Schema.Attribute.String;
     image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    konkaniName: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::obituary.obituary'
     > &
       Schema.Attribute.Private;
-    name: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'englishName'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

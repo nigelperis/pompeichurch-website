@@ -4,14 +4,15 @@
   "info": {
     "singularName": "obituary",
     "pluralName": "obituaries",
-    "displayName": "obituary"
+    "displayName": "obituary",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "name": {
+    "konkaniName": {
       "type": "string"
     },
     "description": {
@@ -27,14 +28,22 @@
       "type": "date"
     },
     "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
+    },
+    "englishName": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "englishName"
     }
   }
 }

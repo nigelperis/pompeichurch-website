@@ -41,7 +41,9 @@ interface ImageFormat {
 export interface Obituary {
   id: number;
   documentId: string;
-  name: string;
+  konkaniName: string;
+  englishName: string;
+  slug: string;
   description: string;
   age: number;
   ward: string;
