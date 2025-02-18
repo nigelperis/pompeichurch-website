@@ -224,7 +224,7 @@ const religiousPriests = [
 		name: 'richarddsouza',
 		ward: 'gurpur',
 		congregation: 'carmelite',
-		parents: 'mauricedsouza',
+		parents: 'mouricedsouza',
 		role: 'priest',
 	},
 	{

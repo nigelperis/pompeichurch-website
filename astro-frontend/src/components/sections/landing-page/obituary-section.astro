@@ -5,6 +5,7 @@ import { cn } from '~/helpers/cn';
 import HoverableLink from '~/components/ui/hoverable-link.astro';
 import Card from '~/components/normal-card.astro';
 import { listObituaries } from '~/services/obituaries/list-obituaries';
+import ShareLink from '~/components/ui/share-link.astro';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -20,6 +21,9 @@ const obituaryDataFormatted = obituaryData?.map((obituary) => ({
         ? format(new Date(obituary.dateOfDeath), 'dd-MM-yyyy')
         : 'Unknown Date',
 }));
+
+const featuredObituary = obituaryData[4];
+const firstFourObituaries = obituaryData.slice(0, 4);
 ---
 
 <section
@@ -38,7 +42,7 @@ const obituaryDataFormatted = obituaryData?.map((obituary) => ({
 	</h1>
 
 	<div
-		class="my-4 flex w-full scroll-ml-6 space-x-8 overflow-x-auto overflow-y-hidden pl-3 pr-3 scrollbar-none lg:justify-center xl:space-x-10"
+		class="my-4 flex w-full scroll-ml-6 space-x-8 overflow-x-auto overflow-y-hidden pl-6 pr-3 scrollbar-none lg:justify-center xl:space-x-10"
 	>
 		{
 			obituaryDataFormatted?.slice(0, 4).map((obituary) => (
@@ -51,16 +55,16 @@ const obituaryDataFormatted = obituaryData?.map((obituary) => ({
 		}
 
 		<div
-			class="flex-shrink-0 transform snap-start border shadow-sm transition-all duration-200 ease-in-out overflow-hidden lg:hidden"
+			class="relative flex-shrink-0 transform snap-start overflow-hidden border shadow-sm transition-all duration-200 ease-in-out lg:hidden"
 		>
 			<div class="opacity-50 blur-md">
 				{obituaryData && obituaryData[4] && (
 					<Card
-						imageUrl={obituaryData[4].image.url}
+						imageUrl={featuredObituary.image.url}
 						imageWidth={obituaryData[4].image.width}
 						imageHeight={obituaryData[4].image.height}
-						title={obituaryData[4].name + ` (${obituaryData[4].age})`}
-						subtitle={`ಮರಣ್ : ` + obituaryData[4].dateOfDeath}
+						title={featuredObituary.name + ` (${featuredObituary.age})`}
+						subtitle={`ಮರಣ್ : ` + featuredObituary.dateOfDeath}
 					/>
 				)}
 			</div>

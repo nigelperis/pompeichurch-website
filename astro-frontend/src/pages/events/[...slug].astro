@@ -2,7 +2,7 @@
 import Layout from '~/layouts/layout.astro';
 import { Icon } from 'astro-icon/components';
 
-import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+import { getLangFromUrl } from '~/i18n/utils';
 import ShareLink from '~/components/ui/share-link.astro';
 import { getEvent } from '~/services/events/get-event';
 import NetworkImage from '~/components/ui/network-image.astro';
@@ -12,18 +12,27 @@ import StrapiBlocksRenderer from '~/components/ui/strapi-blocks-renderer';
 const { slug } = Astro.params;
 
 const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
 
-const eventUrl = lang === 'en' ? `/events/${slug}` : `/kok/events/${slug}`;
+
+const eventUrl = lang === 'en' ? `/events/${slug}/` : `/kok/events/${slug}/`;
+
+const eventIndex = events.findIndex((e) => e.slug === slug);
 
 const data = await getEvent(slug ?? '');
 
 const eventImage = data?.eventImage ?? { url: getPlaceholderImage(), width: 0, height: 0 };
+
+const baseURL = import.meta.env.PROD ? Astro.site : new URL(Astro.url.origin);
+const absoluteImageURL = new URL(event.imageUrl.src, baseURL).href;
+const ogUrl = new URL(eventUrl, baseURL).href;
 ---
 
-<Layout title={`Events | ${data?.englishTitle}`}>
-	{
-		!data?<p>No content found</p>:
+<Layout
+	title={event.eventNameKok}
+	description={event.shortDescription || event.description}
+	image={absoluteImageURL}
+	url={ogUrl}
+>
 	<main
 		class="mx-auto max-w-4xl overflow-hidden bg-white text-justify font-noto-sans-kannada"
 	>
@@ -69,6 +78,51 @@ const eventImage = data?.eventImage ?? { url: getPlaceholderImage(), width: 0, h
 					shareData={{ title: data.konkaniTitle, url: eventUrl }}
 					class="mt-2 flex h-12 items-center"
 				/>
+			</div>
+		</section>
+		<!-- Astro Inspo -->
+		<section class="mx-6 mb-8 pt-3">
+			<div class="flex flex-col gap-4 sm:flex-row sm:justify-between">
+				{
+					events[eventIndex - 1] && (
+						<a
+							href={`/${lang === 'en' ? '' : 'kok/'}events/${events[eventIndex - 1].slug}`}
+							rel="prev"
+							class={`flex cursor-pointer items-center gap-3 rounded-lg border border-gray-300 px-4 py-3 shadow-md transition-colors hover:border-black ${events[eventIndex + 1] ? 'sm:w-1/2' : 'w-full'}`}
+						>
+							<Icon
+								name="chevron-left"
+								class="stroke-2 text-2xl text-gray-700"
+							/>
+							<span>
+								<div class="text-md pb-1 text-gray-500">ಆದ್ಲೆಂ ಘಡಿತ್</div>
+								<div class="text-left text-lg font-medium text-black">
+									{events[eventIndex - 1].eventNameKok}
+								</div>
+							</span>
+						</a>
+					)
+				}
+				{
+					events[eventIndex + 1] && (
+						<a
+							href={`/${lang === 'en' ? '' : 'kok/'}events/${events[eventIndex + 1].slug}`}
+							rel="next"
+							class={`flex flex-row-reverse items-center gap-3 rounded-lg border border-gray-300 px-4 py-3 text-right shadow-md transition-colors hover:border-gray-500 ${events[eventIndex - 1] ? 'sm:w-1/2' : 'w-full'}`}
+						>
+							<Icon
+								name="chevron-right"
+								class="stroke-2 text-2xl text-gray-700"
+							/>
+							<span>
+								<div class="text-md pb-1 text-gray-500">ಮುಕ್ಲೆಂ ಘಡಿತ್</div>
+								<div class="text-lg font-medium text-black">
+									{events[eventIndex + 1].eventNameKok}
+								</div>
+							</span>
+						</a>
+					)
+				}
 			</div>
 		</section>
 	</main>

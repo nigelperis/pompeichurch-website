@@ -1,13 +1,69 @@
 ---
 import ObituaryList from '~/components/sections/obituary/obituary-list.astro';
 import Layout from '~/layouts/layout.astro';
+import Pagination from '~/components/pagination.astro';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+import { obituaryData } from '~/constants/obituary-list';
 
+const url = new URL(Astro.url);
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+const baseURL = import.meta.env.PROD ? Astro.site : new URL(Astro.url.origin);
+
+const getObituaryId = () => {
+	const idParam = url.searchParams.get('id');
+	return idParam ? idParam.replace(/\s+/g, '-').toLowerCase() : null;
+};
+
+const id = getObituaryId();
+const obituariesPerPage = 6;
+const totalPages = Math.ceil(obituaryData.length / obituariesPerPage);
+
+const index = id
+	? obituaryData.findIndex(
+			(item) =>
+				(item.id || item.name).replace(/\s+/g, '-').toLowerCase() === id,
+		)
+	: -1;
+
+const currentPage =
+	id && index !== -1
+		? Math.floor(index / obituariesPerPage) + 1
+		: Number(url.searchParams.get('p')) || 1;
+
+const startIndex = (currentPage - 1) * obituariesPerPage;
+const endIndex = startIndex + obituariesPerPage;
+const paginatedObituaries = obituaryData.slice(startIndex, endIndex);
+
+const selectedObituary = id
+	? obituaryData.find(
+			(item) =>
+				(item.id || item.name).replace(/\s+/g, '-').toLowerCase() === id,
+		)
+	: null;
+
+const absoluteImageURL = selectedObituary?.imageUrl?.src
+	? new URL(selectedObituary.imageUrl.src, baseURL).href
+	: undefined;
+
+const pageTitle = id
+	? `${selectedObituary?.name}`
+	: `Page ${currentPage} | Obituaries | Pompei Church`;
+
+const obituaryUrl = new URL(
+  lang === 'en' ? `/obituary?id=${id?.replace(/\s+/g, '-').toLowerCase()}`
+                : `/kok/obituary?id=${id?.replace(/\s+/g, '-').toLowerCase()}`,
+  Astro.url
+).href;
 ---
 
-<Layout title="Pompei Church | Obituary">
+<Layout
+	title={`${pageTitle} (${selectedObituary?.age})`}
+	description={`${selectedObituary?.ward} ವಾಡೊ`}
+	image={absoluteImageURL}
+	url={obituaryUrl}
+>
 	<main class="mx-auto max-w-4xl overflow-hidden bg-white">
 		<section id="obituary" class="flex flex-col p-6 pb-4">
 			<h1
@@ -17,10 +73,11 @@ const t = useTranslations(lang);
 			</h1>
 			<p class="font-roboto p-3 pb-6 text-2xl font-bold italic text-red-600">
 				{t('obituary.subtitle')}
-				<p>
-					<ObituaryList />
-				</p>
 			</p>
+
+			<ObituaryList obituaries={paginatedObituaries} />
+
+			<Pagination currentPage={currentPage} totalPages={totalPages} />
 		</section>
 	</main>
 </Layout>

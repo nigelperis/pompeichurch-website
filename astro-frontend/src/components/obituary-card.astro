@@ -1,8 +1,11 @@
 ---
 import { cn } from '~/helpers/cn';
 import NetworkImage from './ui/network-image.astro';
+import ShareLink from './ui/share-link.astro';
+import { getLangFromUrl } from '~/i18n/utils';
 
 interface Props {
+	id: string;
 	name: string;
 	imageUrl: string;
 	imageWidth: number;
@@ -15,6 +18,7 @@ interface Props {
 }
 
 const {
+	id,
 	name,
 	description,
 	age,
@@ -26,11 +30,19 @@ const {
 	imageUrl,
 	...rest
 } = Astro.props;
+
+const lang = getLangFromUrl(Astro.url);
+const obituaryUrl = new URL(
+  lang === 'en' ? `/obituary?id=${id.replace(/\s+/g, '-').toLowerCase()}`
+                : `/kok/obituary?id=${id.replace(/\s+/g, '-').toLowerCase()}`,
+  Astro.url
+).href;
 ---
 
 <div
+	id={id.replace(/\s+/g, '-').toLowerCase()}
 	class={cn(
-		'hover:scale-[1.01] snap-start h-full first:snap-align-none border duration-500 ease-in-out rounded-sm sm:w-[95%] md:w-[85%] lg:w-[75%]',
+		'hover:scale-[1.01] snap-start h-full first:snap-align-none border duration-500 ease-in-out rounded-sm sm:w-[95%] md:w-[85%] lg:w-[75%] relative',
 		className,
 	)}
 	{...rest}
@@ -83,4 +95,27 @@ const {
 			)
 		}
 	</div>
+	<ShareLink
+		class="absolute bottom-4 right-4"
+		shareData={{
+			url: obituaryUrl,
+			title: `${name} - ${ward}`,
+		}}
+	/>
 </div>
+<script>
+	document.addEventListener('DOMContentLoaded', () => {
+		const params = new URLSearchParams(window.location.search);
+		const obituaryId = params.get('id');
+
+		if (obituaryId) {
+			const targetElement = document.getElementById(obituaryId);
+
+			if (targetElement) {
+				setTimeout(() => {
+					targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+				}, 300);
+			}
+		}
+	});
+</script>

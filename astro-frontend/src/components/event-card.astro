@@ -18,7 +18,7 @@ interface Props {
 	facebookLink?: string;
 	slug: string;
 	class?: string;
-	instagramLink?: string
+	instagramLink?: string;
 }
 
 const {
@@ -33,7 +33,7 @@ const {
 	...rest
 } = Astro.props;
 
-const eventUrl = lang === 'en' ? `/events/${slug}` : `/kok/events/${slug}`;
+const eventUrl = lang === 'en' ? `/events/${slug}/` : `/kok/events/${slug}/`;
 ---
 
 <div

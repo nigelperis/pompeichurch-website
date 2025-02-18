@@ -2,6 +2,7 @@
 import { Icon } from 'astro-icon/components';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import { cn } from '~/helpers/cn';
+import FeatureYoutube from '~/components/feature-youtube.astro';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -20,10 +21,12 @@ const t = useTranslations(lang);
 		{t('landing.follow-our-journey')}
 	</h1>
 
+	<FeatureYoutube/>
+
 	<div
-		class="flex w-full max-w-2xl flex-col items-center justify-between gap-4 md:mx-auto md:flex-row md:items-center lg:mx-auto"
+		class="flex w-full max-w-2xl flex-col items-center justify-between gap-4 md:mx-auto md:flex-row md:items-center lg:mx-auto mt-6"
 	>
-		<!-- TODO: Temporary removal of FB grid in small devices -->
+		<!-- TODO: Temporary removal of FB grid in small devices -->
 		<div
 			class="hidden w-full max-w-xs flex-1 flex-col justify-center overflow-hidden rounded-lg md:flex"
 		>
@@ -88,4 +91,5 @@ const t = useTranslations(lang);
 	defer
 	crossorigin="anonymous"
 	src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v20.0"
-	nonce="sTNs2jJW"></script>
+	nonce="sTNs2jJW">
+</script>

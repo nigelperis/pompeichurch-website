@@ -453,7 +453,7 @@ export const ui = {
 		'priest.lawrencepinto': 'Late| Lawrence Fredrik Pinto, Mrs Stella Lobo',
 		'priest.aloysiusmendonca': 'Mr Aloysius Mendonca, Late| Juliana Mendonca',
 		'priest.gabrielmendonca': 'Late| Gabriel Mendonca, Mrs Celine Mendonca',
-		'priest.mauricedsouza': 'Mr Maurice DSouza, Mrs Eliza Pinto',
+		'priest.mouricedsouza': 'Late| Mourice DSouza, Mrs Eliza Pinto',
 		'priest.georgepinto': 'Late| George Pinto, Late| Jeevith Pinto',
 		'priest.leomiranda': 'Late| Leo Miranda, Mrs Lucy Miranda',
 		'priest.johnsaldanha': 'Late| John Saldanha, Mrs Gertrude Saldanha',
@@ -554,7 +554,7 @@ export const ui = {
 		'nun.pascalrodrigues':
 			'Late| Pascal Rodrigues, Late| Eliz Roseline Rodrigues',
 		'nun.julianlobo': 'Late| Julian Lobo, Late| Apoline Lobo',
-		'nun.hilarypinto': 'Mr Hilary Pinto, Late| Helen Pinto',
+		'nun.hilarypinto': 'Late| Hilary Pinto, Late| Helen Pinto',
 		'nun.ambrosepinto': 'Late| Ambrose Pinto, Late| Juvanna Rodrigues',
 		'nun.lawrencepinto': 'Late| Lawrence Fredrick Pinto, Mrs Stella Lobo',
 		'nun.alexserrao': 'Late| Alex Serrao, Late| Seraphina Rodrigues',
@@ -1019,7 +1019,7 @@ export const ui = {
 			'ಶ್ರೀ ಎಲೋಶಿಯಸ್ ಮೆಂಡೊನ್ಸಾ, ದೆ| ಜುಲಿಯಾನಾ ಮೆಂಡೊನ್ಸಾ',
 		'priest.gabrielmendonca':
 			'ದೆ| ಗ್ಯಾಬ್ರಿಯೆಲ್ ಮೆಂಡೊನ್ಸಾ, ಶ್ರೀಮತಿ ಸೆಲಿನ್ ಮೆಂಡೊನ್ಸಾ',
-		'priest.mauricedsouza': 'ಶ್ರೀ ಮೌರಿಸ್ ಡಿಸೋಜ​, ಶ್ರೀಮತಿ ಎಲಿಜ್ ಪಿಂಟೊ',
+		'priest.mouricedsouza': 'ದೆ| ಮೌರಿಸ್ ಡಿಸೋಜ​, ಶ್ರೀಮತಿ ಎಲಿಜ್ ಪಿಂಟೊ',
 		'priest.georgepinto': 'ದೆ| ಜೊರ್ಜ್ ಪಿಂಟೊ, ದೆ| ಜಿವಿತ್ ಮಿರಾಂದ​',
 		'priest.leomiranda': 'ದೆ| ಲಿಯೊ ಮಿರಾಂದ​, ಶ್ರೀಮತಿ ಲಿಯೊ ಮಿರಾಂದ​',
 		'priest.johnsaldanha': 'ದೆ| ಜೊನ್ ಸಲ್ಡಾನ್ಹಾ, ಶ್ರೀಮತಿ ಜೆತ್ರುದ್ ಸಲ್ಡಾನ್ಹಾ',
@@ -1118,7 +1118,7 @@ export const ui = {
 		'nun.pascalrodrigues':
 			'ದೆ| ಪಾಸ್ಕಲ್ ರೊಡ್ರಿಗಸ್, ದೆ| ಎಲಿಜ್ ರೊಜ್ ಲಿನ್ ರೊಡ್ರಿಗಸ್',
 		'nun.julianlobo': 'ದೆ| ಜುಲಿಯಾನ್ ಲೋಬೊ, ದೆ| ಆಪೊಲಿನ್	 ಲೋಬೊ',
-		'nun.hilarypinto': 'ಶ್ರೀ ಹಿಲರಿ ಪಿಂಟೊ, ದೆ| ಹೆಲೆನ್ ಪಿಂಟೊ',
+		'nun.hilarypinto': 'ದೆ| ಹಿಲರಿ ಪಿಂಟೊ, ದೆ| ಹೆಲೆನ್ ಪಿಂಟೊ',
 		'nun.ambrosepinto': 'ದೆ| ಆಂಬ್ರೊಜ್ ಪಿಂಟೊ, ದೆ| ಜುವಾನ್ನಾ ರೊಡ್ರಿಗಸ್',
 		'nun.lawrencepinto': 'ದೆ| ಲೊರೆನ್ಸ್ ಫ್ರೆಡ್ರಿಕ್ ಪಿಂಟೊ, ಶ್ರೀಮತಿ ಸ್ಟೆಲ್ಲಾ ಲೋಬೊ',
 		'nun.alexserrao': 'ದೆ| ಆಲೆಕ್ಸ್ ಸೆರಾವೊ, ದೆ| ಸೆರಾಫಿನಾ ರೊಡ್ರಿಗಸ್',
