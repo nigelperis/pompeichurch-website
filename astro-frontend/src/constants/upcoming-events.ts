@@ -14,7 +14,7 @@ const upcomingEvents = [
 		endDate: '2025-02-23',
 		eventImg: catechismDay,
 		class: 'rounded-sm md:w-1/4',
-	}
+	},
 	{
 		endDate: '2025-02-09',
 		eventImg: pycAnnualDay1,
