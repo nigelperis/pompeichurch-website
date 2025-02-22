@@ -16,57 +16,68 @@ const featuredObituary = obituaryData[4];
 const firstFourObituaries = obituaryData.slice(0, 4);
 ---
 
-<section class="mt-1 flex flex-col lg:mx-28 lg:mb-3 lg:min-h-[70svh] lg:justify-evenly">
-  <h1
-    data-aos="fade-right"
-    class={cn(
-      'mx-6 mb-4 inline-block border-l-4 border-natgeo-yellow pl-3 font-poppins text-[27px] font-extrabold xs:text-2xl lg:mx-0 lg:text-4xl',
-      {
-        'font-noto-sans-kannada': lang === 'kok',
-      },
-    )}
-  >
-    {t('nav.obituary')}
-  </h1>
+<section
+	class="mt-1 flex flex-col lg:mx-28 lg:mb-3 lg:min-h-[70svh] lg:justify-evenly"
+>
+	<h1
+		data-aos="fade-right"
+		class={cn(
+			'mx-6 mb-4 inline-block border-l-4 border-natgeo-yellow pl-3 font-poppins text-[27px] font-extrabold xs:text-2xl lg:mx-0 lg:text-4xl',
+			{
+				'font-noto-sans-kannada': lang === 'kok',
+			},
+		)}
+	>
+		{t('nav.obituary')}
+	</h1>
 
-  <div class="my-4 flex w-full scroll-ml-6 space-x-8 overflow-x-auto overflow-y-hidden pl-3 pr-3 scrollbar-none lg:justify-center xl:space-x-10">
-    {firstFourObituaries.map((item) => (
-      <div class="relative">
-        <Card
-          imageUrl={item.imageUrl}
-          title={item.name + ` (${item.age})`}
-          subtitle={`ಮರಣ್ : ` + item.date}
-        />
-        <ShareLink
-          class="absolute bottom-4 right-4"
-          shareData={{
-						url: `${new URL(lang === 'en' ? `/obituary?id=${item.id.replace(/\s+/g, '-').toLowerCase()}` : `/kok/obituary?id=${item.id.replace(/\s+/g, '-').toLowerCase()}`, Astro.url).href}`,
-						title: `${item.name} - ${item.ward}`
-					}}
-					size={24}
-        />
-      </div>
-    ))}
+	<div
+		class="my-4 flex w-full scroll-ml-6 space-x-8 overflow-x-auto overflow-y-hidden pl-6 pr-3 scrollbar-none lg:justify-center xl:space-x-10"
+	>
+		{
+			firstFourObituaries.map((item) => (
+				<div class="relative">
+					<Card
+						imageUrl={item.imageUrl}
+						title={item.name + ` (${item.age})`}
+						subtitle={`ಮರಣ್ : ` + item.date}
+					/>
+					<ShareLink
+						class="absolute bottom-4 right-4"
+						shareData={{
+							url: `${new URL(lang === 'en' ? `/obituary?id=${item.id.replace(/\s+/g, '-').toLowerCase()}` : `/kok/obituary?id=${item.id.replace(/\s+/g, '-').toLowerCase()}`, Astro.url).href}`,
+							title: `${item.name} - ${item.ward}`,
+						}}
+						size={24}
+					/>
+				</div>
+			))
+		}
 
-    <div class="flex-shrink-0 transform snap-start border shadow-sm transition-all duration-200 ease-in-out overflow-hidden lg:hidden relative">
-      <div class="opacity-50 blur-md">
-        <Card
-          imageUrl={featuredObituary.imageUrl}
-          title={featuredObituary.name + ` (${featuredObituary.age})`}
-          subtitle={`ಮರಣ್ : ` + featuredObituary.date}
-        />
-      </div>
-      <div class="absolute inset-0 flex items-center justify-center">
-        <HoverableLink href={obituaryLink} class="mb-2 mt-2 inline-block text-xl font-bold text-black">
-          {t('ui.view-all')}
-        </HoverableLink>
-      </div>
-    </div>
-  </div>
+		<div
+			class="relative flex-shrink-0 transform snap-start overflow-hidden border shadow-sm transition-all duration-200 ease-in-out lg:hidden"
+		>
+			<div class="opacity-50 blur-md">
+				<Card
+					imageUrl={featuredObituary.imageUrl}
+					title={featuredObituary.name + ` (${featuredObituary.age})`}
+					subtitle={`ಮರಣ್ : ` + featuredObituary.date}
+				/>
+			</div>
+			<div class="absolute inset-0 flex items-center justify-center">
+				<HoverableLink
+					href={obituaryLink}
+					class="mb-2 mt-2 inline-block text-xl font-bold text-black"
+				>
+					{t('ui.view-all')}
+				</HoverableLink>
+			</div>
+		</div>
+	</div>
 
-  <div class="hidden justify-center pb-2 lg:flex">
-    <HoverableLink href={obituaryLink}>
-      {t('ui.view-all')}
-    </HoverableLink>
-  </div>
+	<div class="hidden justify-center pb-2 lg:flex">
+		<HoverableLink href={obituaryLink}>
+			{t('ui.view-all')}
+		</HoverableLink>
+	</div>
 </section>

@@ -27,6 +27,11 @@ const {
 } = Astro.props;
 
 const lang = getLangFromUrl(Astro.url);
+const obituaryUrl = new URL(
+  lang === 'en' ? `/obituary?id=${id.replace(/\s+/g, '-').toLowerCase()}`
+                : `/kok/obituary?id=${id.replace(/\s+/g, '-').toLowerCase()}`,
+  Astro.url
+).href;
 ---
 
 <div
@@ -86,22 +91,22 @@ const lang = getLangFromUrl(Astro.url);
 	<ShareLink
 		class="absolute bottom-4 right-4"
 		shareData={{
-			url: `${new URL(lang === 'en' ? `/obituary?id=${id.replace(/\s+/g, '-').toLowerCase()}` : `/kok/obituary?id=${id.replace(/\s+/g, '-').toLowerCase()}`, Astro.url).href}`,
-			title: `${name} - ${ward}`
+			url: obituaryUrl,
+			title: `${name} - ${ward}`,
 		}}
-/>
+	/>
 </div>
 <script>
-	document.addEventListener("DOMContentLoaded", () => {
+	document.addEventListener('DOMContentLoaded', () => {
 		const params = new URLSearchParams(window.location.search);
-		const obituaryId = params.get("id");
+		const obituaryId = params.get('id');
 
 		if (obituaryId) {
 			const targetElement = document.getElementById(obituaryId);
 
 			if (targetElement) {
 				setTimeout(() => {
-					targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
+					targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
 				}, 300);
 			}
 		}

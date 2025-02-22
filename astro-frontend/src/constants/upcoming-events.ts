@@ -8,7 +8,6 @@ import pycAnnualDay3 from '~/assets/upcoming-events/pyc-annual-day-3.jpg';
 import pycAnnualDay4 from '~/assets/upcoming-events/pyc-annual-day-4.jpg';
 import wordOfGodSunday from '~/assets/upcoming-events/word-of-god-sunday.jpg';
 
-
 const upcomingEvents = [
 	{
 		endDate: '2025-02-09',

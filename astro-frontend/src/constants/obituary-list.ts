@@ -7,10 +7,20 @@ import lawrenceMendonca from '~/assets/obituary/lawrence-mendonca.jpg';
 import ligoryLobo from '~/assets/obituary/ligory-lobo.jpeg';
 import louisMonteiro from '~/assets/obituary/louis-monteiro.jpg';
 import maryCoutinho from '~/assets/obituary/mary-coutinho.jpeg';
+import mouriceDSouza from '~/assets/obituary/mourice-dsouza.jpg';
 import wilfredPinto from '~/assets/obituary/wilfred-pinto.jpg';
 import winnyLobo from '~/assets/obituary/winny-lobo.jpg';
 
 const obituaryData = [
+	{
+		id: 'Mourice DSouza',
+		name: 'ಮೌರಿಸ್ ಡಿಸೋಜ',
+		imageUrl: mouriceDSouza,
+		age: '85',
+		description: 'ಪತಿ : ಏಲಿಜ್ ಡಿಸೋಜ',
+		ward: 'ಗುರ್ಪುರ್',
+		date: '13-02-2025',
+	},
 	{
 		id: 'Winny Lobo',
 		name: 'ವಿನ್ನಿ ಲೋಬೊ',
