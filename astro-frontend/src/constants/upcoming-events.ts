@@ -7,8 +7,14 @@ import pycAnnualDay2 from '~/assets/upcoming-events/pyc-annual-day-2.jpeg';
 import pycAnnualDay3 from '~/assets/upcoming-events/pyc-annual-day-3.jpg';
 import pycAnnualDay4 from '~/assets/upcoming-events/pyc-annual-day-4.jpg';
 import wordOfGodSunday from '~/assets/upcoming-events/word-of-god-sunday.jpg';
+import catechismDay from '~/assets/upcoming-events/catechismDay.jpg;
 
 const upcomingEvents = [
+	{
+		endDate: '2025-02-23',
+		eventImg: catechismDay,
+		class: 'rounded-sm md:w-1/4',
+	}
 	{
 		endDate: '2025-02-09',
 		eventImg: pycAnnualDay1,
