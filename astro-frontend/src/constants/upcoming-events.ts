@@ -7,7 +7,7 @@ import pycAnnualDay2 from '~/assets/upcoming-events/pyc-annual-day-2.jpeg';
 import pycAnnualDay3 from '~/assets/upcoming-events/pyc-annual-day-3.jpg';
 import pycAnnualDay4 from '~/assets/upcoming-events/pyc-annual-day-4.jpg';
 import wordOfGodSunday from '~/assets/upcoming-events/word-of-god-sunday.jpg';
-import catechismDay from '~/assets/upcoming-events/catechism-day.jpg;
+import catechismDay from '~/assets/upcoming-events/catechism-day.jpg';
 
 const upcomingEvents = [
 	{
