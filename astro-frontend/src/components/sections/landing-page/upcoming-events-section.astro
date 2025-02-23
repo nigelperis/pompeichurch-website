@@ -1,34 +1,49 @@
 ---
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
-import { Image } from 'astro:assets';
 import { cn } from '~/helpers/cn';
-import { upcomingEvents } from '~/constants/upcoming-events';
 
-import { fromZonedTime } from 'date-fns-tz';
+import { parseISO } from 'date-fns';
 
 //Components
-import EmblaCarosuel from '~/components/ui/embla-carousel.astro';
-import EmblaCarosuelItem from '~/components/ui/embla-carousel-item.astro';
-
-import stayTuned from '~/assets/upcoming-events/stay-tuned.png';
-import stayTunedKok from '~/assets/upcoming-events/stay-tuned-kok.png';
+import { listUpcomingEvents } from '~/services/upcoming-events/list-upcoming-events';
+import NetworkImage from '~/components/ui/network-image.astro';
+import EmblaCarousel from '~/components/ui/embla-carousel.astro';
+import EmblaCarouselItem from '~/components/ui/embla-carousel-item.astro';
+import { Image } from 'astro:assets'
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 const today = new Date();
 
+const upcomingEvents = await listUpcomingEvents();
+
+const stayTunedImage = lang === 'kok' ? "/stay-tuned-kok.png" : "/stay-tuned.png";
+
 const filteredEvents = upcomingEvents.filter((event) => {
-	return fromZonedTime(event.endDate, 'Asia/Kolkata') > today;
+	if (!event.eventEndDate) return false;
+	const eventDate = parseISO(event.eventEndDate);
+	return eventDate > today;
 });
 
-const images =
-	filteredEvents.length > 0
-		? filteredEvents.map((event) => ({
-				src: event.eventImg,
-				alt: 'Upcoming Event',
-			}))
-		: [{ src: lang === 'kok' ? stayTunedKok : stayTuned, alt: 'Stay Tuned' }];
+const eventImages =
+  filteredEvents.length > 0
+    ? filteredEvents.map((event) => ({
+        src: event.eventImage?.url ?? stayTunedImage,
+        alt: 'Upcoming Event',
+        width: event.eventImage?.width,
+        height: event.eventImage?.height,
+				isRemote: event.eventImage?.url ? true : false,
+      }))
+    : [
+        {
+          src: stayTunedImage,
+          alt: 'Stay Tuned',
+          width: 500,
+          height: 200,
+					isRemote: false,
+        },
+      ];
 ---
 
 <!-- This commented code is for fallback purpose  --><!-- <section
@@ -77,30 +92,78 @@ const images =
 	>
 		{t('landing.upcoming-events')}
 	</h1>
+
 	<!-- Mobile UI -->
-	{
-		filteredEvents.length > 1 ? (
-			<div class="-mx-[1.5rem] block md:hidden">
-				<EmblaCarosuel showArrows={true}>
-					{images.map((image) => (
-						<EmblaCarosuelItem>
-							<Image src={image.src} alt={image.alt} class="w-full" />
-						</EmblaCarosuelItem>
-					))}
-				</EmblaCarosuel>
-			</div>
-		) : (
-			<div class="block md:hidden">
-				<Image src={images[0].src} alt={images[0].alt} class="w-full" />
-			</div>
-		)
-	}
+	{filteredEvents.length > 1 ? (
+		<div class="-mx-[1.5rem] block md:hidden">
+			<EmblaCarousel showArrows={true}>
+				{filteredEvents.map((event) =>
+					event.eventImage?.url ? (
+						<EmblaCarouselItem>
+							<NetworkImage
+								src={event.eventImage?.url}
+								alt="Upcoming Event"
+								class="w-full"
+								width={event.eventImage?.width ?? 500}
+								height={event.eventImage?.height ?? 200}
+							/>
+						</EmblaCarouselItem>
+					) : (
+						<EmblaCarouselItem>
+							<img
+								src={stayTunedImage}
+								alt="Stay Tuned"
+								class="w-full"
+								width={1000}
+								height={1000}
+							/>
+						</EmblaCarouselItem>
+					)
+				)}
+			</EmblaCarousel>
+		</div>
+	) : (
+		<div class="block md:hidden">
+			{eventImages[0].isRemote ? (
+				<NetworkImage
+					src={eventImages[0].src}
+					alt={eventImages[0].alt ?? 'Upcoming Event'}
+					class="w-full"
+					width={eventImages[0].width ?? 500}
+					height={eventImages[0].height ?? 300}
+				/>
+			) : (
+				<Image
+					src={eventImages[0].src}
+					alt="Stay Tuned"
+					class="w-full"
+					width={eventImages[0].width ?? 1000}
+					height={eventImages[0].height ?? 1000}
+				/>
+			)}
+		</div>
+	)}
+
 	<!-- Web UI -->
 	<div class="hidden justify-center gap-4 md:flex">
-		{
-			images.map((image) => (
-				<Image src={image.src} alt={image.alt} class="rounded-sm md:w-1/4" />
-			))
-		}
+		{eventImages.map((image) =>
+			image.isRemote ? (
+				<NetworkImage
+					src={image.src}
+					alt={image.alt ?? 'Upcoming Event'}
+					class="rounded-sm md:w-1/4"
+					width={500}
+					height={300}
+				/>
+			) : (
+				<Image
+					src={image.src}
+					alt={image.alt ?? 'Stay Tuned'}
+					class="rounded-sm md:w-1/4"
+					width={1000}
+					height={1000}
+				/>
+			)
+		)}
 	</div>
 </section>

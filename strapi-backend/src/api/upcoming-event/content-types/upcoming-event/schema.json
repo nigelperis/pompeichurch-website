@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "upcoming_events",
+  "info": {
+    "singularName": "upcoming-event",
+    "pluralName": "upcoming-events",
+    "displayName": "Upcoming Event"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "eventEndDate": {
+      "type": "date"
+    },
+    "eventImage": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

@@ -1,29 +1,30 @@
 ---
 import EventCard from '~/components/event-card.astro';
+import { listEvents } from '~/services/events/list-events';
+import { getPlaceholderImage } from '~/helpers/get-placeholder-image';
 
-interface Event {
-	eventName: string;
-	eventNameKok: string;
-	imageUrl: ImageMetadata;
-	shortDescription: string;
-	facebookLink: string;
-	slug: string;
-	instagramLink: string;
-}
-
-const { events } = Astro.props as { events: Event[] };
+const data = await listEvents();
 ---
 
 <div class="grid grid-cols-1 gap-8 sm:grid-cols-2">
 	{
-		events.map((event) => (
+		data?.map((event) => (
 			<EventCard
-				eventName={event.eventName}
-				eventNameKok={event.eventNameKok}
-				imageUrl={event.imageUrl}
+				eventName={event.englishTitle}
+				eventNameKok={event.konkaniTitle}
+				imageUrl={
+					event.eventImage.url
+						? new URL(
+								event.eventImage.url,
+								import.meta.env.STRAPI_URL,
+							).toString()
+						: getPlaceholderImage()
+				}
+				imageWidth={event.eventImage.width ?? 0}
+				imageHeight={event.eventImage.height ?? 0}
 				shortDescription={event.shortDescription}
 				facebookLink={event.facebookLink}
-				slug={event.slug}
+				slug={event.englishTitle.toLowerCase().replace(/ /g, '-')}
 				instagramLink={event.instagramLink}
 			/>
 		))
