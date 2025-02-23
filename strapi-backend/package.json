@@ -27,11 +27,8 @@
     "typescript": "^5"
   },
   "engines": {
-    "node": ">=18.0.0 <=22.x.x",
-    "npm": ">=6.0.0"
-  },
-  "packageManager": "pnpm@9.13.2",
-  "strapi": {
-    "uuid": "7fd6cfb7-d53f-449a-9efa-e9e5396d94dd"
-  }
+		"node": ">=18.0.0 <=22.14.0",
+		"pnpm": ">=8.x.x"
+	},
+  "license": "MIT"
 }

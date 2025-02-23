@@ -47,7 +47,9 @@ const pageTitle = selectedObituary
 	: `Page ${currentPage} | Obituaries | Pompei Church`;
 
 const obituaryUrl = new URL(
-	lang === 'en' ? `/obituary?id=${id || ''}` : `/kok/obituary?id=${id || ''}`,
+	lang === 'en'
+		? `/obituary?id=${id?.replace(/\s+/g, '-').toLowerCase()}`
+		: `/kok/obituary?id=${id?.replace(/\s+/g, '-').toLowerCase()}`,
 	Astro.url,
 ).href;
 ---

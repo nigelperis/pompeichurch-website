@@ -40,13 +40,14 @@ const videos = [
 		}
 
 		<EmblaCarouselItem>
-			<div class="relative w-full flex-shrink-0 rounded-xl text-center">
-				<Image src={YtThumbnail} alt="Watch more" class="rounded-xl" />
+			<div class="relative h-full w-full flex-shrink-0 rounded-xl text-center">
+				<Image src={YtThumbnail} alt="Watch more" class="h-full rounded-xl" />
 				<div class="absolute inset-0 rounded-xl bg-black/60"></div>
 				<div class="absolute inset-0 flex h-[200] items-center justify-center">
 					<HoverableLink
 						href="https://www.youtube.com/@pompeichurchmedia8386"
 						class="mb-2 mt-2 inline-block text-xl font-bold text-white"
+						target="_blank"
 					>
 						Watch More
 					</HoverableLink>
@@ -84,6 +85,7 @@ const videos = [
 			<HoverableLink
 				href="https://www.youtube.com/@pompeichurchmedia8386"
 				class="px-4 py-2 text-xl font-bold text-white"
+				target="_blank"
 			>
 				Watch More
 			</HoverableLink>
