@@ -28,9 +28,10 @@ const {
 
 const lang = getLangFromUrl(Astro.url);
 const obituaryUrl = new URL(
-  lang === 'en' ? `/obituary?id=${id.replace(/\s+/g, '-').toLowerCase()}`
-                : `/kok/obituary?id=${id.replace(/\s+/g, '-').toLowerCase()}`,
-  Astro.url
+	lang === 'en'
+		? `/obituary?id=${id.replace(/\s+/g, '-').toLowerCase()}`
+		: `/kok/obituary?id=${id.replace(/\s+/g, '-').toLowerCase()}`,
+	Astro.url,
 ).href;
 ---
 

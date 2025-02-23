@@ -20,30 +20,28 @@ const videos = [
 
 <div class="-mx-[1.5rem] lg:hidden">
 	<EmblaCarousel showArrows={true}>
-		{videos.map((video) => (
-			<EmblaCarouselItem>
-				<div class="flex-shrink-0 w-full">
-					<iframe
-						width="100%"
-						height="200"
-						src={video.url}
-            loading="lazy"
-						title="YouTube Video"
-						allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
-						allowfullscreen
-						class="aspect-video rounded-xl"
-					></iframe>
-				</div>
-			</EmblaCarouselItem>
-		))}
+		{
+			videos.map((video) => (
+				<EmblaCarouselItem>
+					<div class="w-full flex-shrink-0">
+						<iframe
+							width="100%"
+							height="200"
+							src={video.url}
+							loading="lazy"
+							title="YouTube Video"
+							allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
+							allowfullscreen
+							class="aspect-video rounded-xl"
+						/>
+					</div>
+				</EmblaCarouselItem>
+			))
+		}
 
 		<EmblaCarouselItem>
 			<div class="relative h-full w-full flex-shrink-0 rounded-xl text-center">
-				<Image
-					src={YtThumbnail}
-					alt="Watch more"
-					class="h-full rounded-xl object-fill"
-				/>
+				<Image src={YtThumbnail} alt="Watch more" class="h-full rounded-xl" />
 				<div class="absolute inset-0 rounded-xl bg-black/60"></div>
 				<div class="absolute inset-0 flex h-[200] items-center justify-center">
 					<HoverableLink
@@ -59,20 +57,22 @@ const videos = [
 	</EmblaCarousel>
 </div>
 
-<div class="hidden md:flex gap-6 ">
-	{videos.slice(0, 2).map((video) => (
-		<div class="w-1/3">
-			<iframe
-				width="100%"
-				height="250"
-				src={video.url}
-				title="YouTube Video"
-				allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
-				allowfullscreen
-				class="rounded-xl"
-			></iframe>
-		</div>
-	))}
+<div class="hidden gap-6 md:flex">
+	{
+		videos.slice(0, 2).map((video) => (
+			<div class="w-1/3">
+				<iframe
+					width="100%"
+					height="250"
+					src={video.url}
+					title="YouTube Video"
+					allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
+					allowfullscreen
+					class="rounded-xl"
+				/>
+			</div>
+		))
+	}
 
 	<div class="relative w-1/3">
 		<Image
