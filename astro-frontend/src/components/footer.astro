@@ -5,16 +5,21 @@ const currentYear = new Date().getFullYear();
 ---
 
 <footer
-	class="text-black-200 border-t-2 border-natgeo-yellow-400 bg-gray-900 p-2 pb-8 text-sm text-slate-200 xl:px-28"
+	class="text-black-200 border-natgeo-yellow-400 border-t-2 bg-gray-900 p-2 pb-8 text-sm text-slate-200 xl:px-28"
 >
 	<div class="flex flex-col-reverse items-center justify-between">
 		<div class="mt-6">
-  		<p class="text-center font-poppins text-sm text-gray-100">
-    		&copy;{currentYear}, Our Lady of Pompei Church. All Rights Reserved.
-  		</p>
-  		<p class="text-center font-poppins text-sm text-gray-100 mt-6">
-				Crafted with ✝️ using <a href="https://docs.astro.build/" target="_blank" rel="noopener noreferrer" class="text-purple-500 font-bold">Astro</a>
-  		</p>
+			<p class="font-poppins text-center text-sm text-gray-100">
+				&copy;{currentYear}, Our Lady of Pompei Church. All Rights Reserved.
+			</p>
+			<p class="font-poppins mt-6 text-center text-sm text-gray-100">
+				Crafted with ✝️ using <a
+					href="https://docs.astro.build/"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="font-bold text-purple-500">Astro</a
+				>
+			</p>
 		</div>
 		<div class="mt-6 flex items-center space-x-4">
 			<a

@@ -25,7 +25,7 @@ const t = useTranslations(lang);
 				</h2>
 				<p
 					class={cn(
-						'text-xm mb-6 mt-4 text-justify font-geist font-semibold leading-7 text-gray-800',
+						'text-xm font-geist mb-6 mt-4 text-justify font-semibold leading-7 text-gray-800',
 					)}
 				>
 					{lang === 'kok'
@@ -62,7 +62,7 @@ const t = useTranslations(lang);
 					</div>
 				</div>
 
-				<h2 class="mx-4 mt-6 text-left font-poppins text-xl font-bold text-slate-900">
+				<h2 class="font-poppins mx-4 mt-6 text-left text-xl font-bold text-slate-900">
 					{t('ward.pratinidi')}
 				</h2>
 				<ul class="my-4 list-inside list-disc text-base text-slate-700">
@@ -71,10 +71,10 @@ const t = useTranslations(lang);
 						<li class="mx-4 text-left">{t(`ward.${ward.pratinidiName2}`)}</li>
 					)}
 				</ul>
-				<p class="mx-4 mt-6 text-left font-poppins text-xl font-bold text-slate-900">
+				<p class="font-poppins mx-4 mt-6 text-left text-xl font-bold text-slate-900">
 					{t('ward.family')} : {ward.family}
 				</p>
-				<div class="mt-4 border-b-2 border-b-natgeo-yellow" />
+				<div class="border-b-natgeo-yellow mt-4 border-b-2" />
 			</div>
 		))
 	}
