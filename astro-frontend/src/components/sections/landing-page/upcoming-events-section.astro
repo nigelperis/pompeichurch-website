@@ -6,7 +6,7 @@ import { upcomingEvents } from '~/constants/upcoming-events';
 
 import { fromZonedTime } from 'date-fns-tz';
 
-//Components
+// Components
 import EmblaCarosuel from '~/components/ui/embla-carousel.astro';
 import EmblaCarosuelItem from '~/components/ui/embla-carousel-item.astro';
 
@@ -33,11 +33,11 @@ const images =
 		: [
 				{
 					src: lang === 'kok' ? stayTunedKok : stayTuned,
-					width: (lang === 'kok' ? stayTunedKok : stayTuned).width, // Ensure width is included
-					height: (lang === 'kok' ? stayTunedKok : stayTuned).height, // Ensure height is included
+					width: (lang === 'kok' ? stayTunedKok : stayTuned).width,
+					height: (lang === 'kok' ? stayTunedKok : stayTuned).height,
 					alt: 'Stay Tuned',
 				},
-		  ];
+			];
 ---
 
 <!-- This commented code is for fallback purpose  --><!-- <section
@@ -94,51 +94,75 @@ const images =
 				<EmblaCarosuel showArrows={true}>
 					{images.map((image) => (
 						<EmblaCarosuelItem>
-							<a
-								href="javascript:void(0);"
-								data-pswp-src={image.src.src}
-								data-pswp-width={image.width}
-								data-pswp-height={image.height}
+							{filteredEvents.length > 0 ? (
+								<a
+									href="javascript:void(0);"
+									data-pswp-src={image.src.src}
+									data-pswp-width={image.width}
+									data-pswp-height={image.height}
 								>
-								<Image src={image.src} alt={image.alt} class="w-full" />
-							</a>
+									<Image src={image.src} alt={image.alt} class="w-full" />
+								</a>
+							) : (
+								<Image src={image.src} alt={image.alt} />
+							)}
 						</EmblaCarosuelItem>
 					))}
 				</EmblaCarosuel>
 			</div>
 		) : (
 			<div class="event-gallery block md:hidden">
-				<a
-					href="javascript:void(0);"
-					data-pswp-src={images[0].src.src}
-					data-pswp-width={images[0].width}
-					data-pswp-height={images[0].height}
+				{filteredEvents.length > 0 ? (
+					<a
+						href="javascript:void(0);"
+						data-pswp-src={images[0].src.src}
+						data-pswp-width={images[0].width}
+						data-pswp-height={images[0].height}
+						class="block transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-lg"
 					>
-					<Image src={images[0].src} alt={images[0].alt} class="w-full" />
-				</a>
+						<Image src={images[0].src} alt={images[0].alt} class="w-full" />
+					</a>
+				) : (
+					<Image
+						src={images[0].src}
+						alt={images[0].alt}
+						class="w-full transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-lg"
+					/>
+				)}
 			</div>
 		)
 	}
 
 	<!-- Web UI -->
-	<div class="event-gallery hidden md:flex justify-center items-center gap-4">
+	<div class="event-gallery hidden items-center justify-center gap-4 md:flex">
 		{
 			images.map((image) => (
-				<div class="relative md:w-1/4"> <!-- Ensure a fixed width for centering -->
-					<a
-						href="javascript:void(0);"
-						data-pswp-src={image.src.src}
-						data-pswp-width={image.width}
-						data-pswp-height={image.height}
-						class="block w-full"
-					>
-						<Image src={image.src} alt={image.alt} class="rounded-sm w-full" />
-					</a>
+				<div class="relative md:w-1/4">
+					{filteredEvents.length > 0 ? (
+						<a
+							href="javascript:void(0);"
+							data-pswp-src={image.src.src}
+							data-pswp-width={image.width}
+							data-pswp-height={image.height}
+							class="block w-full transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-lg"
+						>
+							<Image
+								src={image.src}
+								alt={image.alt}
+								class="w-full rounded-sm"
+							/>
+						</a>
+					) : (
+						<Image
+							src={image.src}
+							alt={image.alt}
+							class="w-full rounded-sm transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-lg"
+						/>
+					)}
 				</div>
 			))
 		}
 	</div>
-
 </section>
 
 <script>
