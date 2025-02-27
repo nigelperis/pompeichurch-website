@@ -26,9 +26,18 @@ const images =
 	filteredEvents.length > 0
 		? filteredEvents.map((event) => ({
 				src: event.eventImg,
+				width: event.eventImg.width,
+				height: event.eventImg.height,
 				alt: 'Upcoming Event',
 			}))
-		: [{ src: lang === 'kok' ? stayTunedKok : stayTuned, alt: 'Stay Tuned' }];
+		: [
+				{
+					src: lang === 'kok' ? stayTunedKok : stayTuned,
+					width: (lang === 'kok' ? stayTunedKok : stayTuned).width, // Ensure width is included
+					height: (lang === 'kok' ? stayTunedKok : stayTuned).height, // Ensure height is included
+					alt: 'Stay Tuned',
+				},
+		  ];
 ---
 
 <!-- This commented code is for fallback purpose  --><!-- <section
@@ -77,30 +86,71 @@ const images =
 	>
 		{t('landing.upcoming-events')}
 	</h1>
+
 	<!-- Mobile UI -->
 	{
 		filteredEvents.length > 1 ? (
-			<div class="-mx-[1.5rem] block md:hidden">
+			<div class="event-gallery -mx-[1.5rem] block md:hidden">
 				<EmblaCarosuel showArrows={true}>
 					{images.map((image) => (
 						<EmblaCarosuelItem>
-							<Image src={image.src} alt={image.alt} class="w-full" />
+							<a
+								href="javascript:void(0);"
+								data-pswp-src={image.src.src}
+								data-pswp-width={image.width}
+								data-pswp-height={image.height}
+								>
+								<Image src={image.src} alt={image.alt} class="w-full" />
+							</a>
 						</EmblaCarosuelItem>
 					))}
 				</EmblaCarosuel>
 			</div>
 		) : (
-			<div class="block md:hidden">
-				<Image src={images[0].src} alt={images[0].alt} class="w-full" />
+			<div class="event-gallery block md:hidden">
+				<a
+					href="javascript:void(0);"
+					data-pswp-src={images[0].src.src}
+					data-pswp-width={images[0].width}
+					data-pswp-height={images[0].height}
+					>
+					<Image src={images[0].src} alt={images[0].alt} class="w-full" />
+				</a>
 			</div>
 		)
 	}
+
 	<!-- Web UI -->
-	<div class="hidden justify-center gap-4 md:flex">
+	<div class="event-gallery hidden md:flex justify-center items-center gap-4">
 		{
 			images.map((image) => (
-				<Image src={image.src} alt={image.alt} class="rounded-sm md:w-1/4" />
+				<div class="relative md:w-1/4"> <!-- Ensure a fixed width for centering -->
+					<a
+						href="javascript:void(0);"
+						data-pswp-src={image.src.src}
+						data-pswp-width={image.width}
+						data-pswp-height={image.height}
+						class="block w-full"
+					>
+						<Image src={image.src} alt={image.alt} class="rounded-sm w-full" />
+					</a>
+				</div>
 			))
 		}
 	</div>
+
 </section>
+
+<script>
+	import 'photoswipe/style.css';
+	import PhotoSwipeLightbox from 'photoswipe/lightbox';
+
+	const eventLightbox = new PhotoSwipeLightbox({
+		mainClass: 'pswp--custom-icon-colors',
+		gallery: '.event-gallery',
+		children: 'a',
+		pswpModule: () => import('photoswipe'),
+	});
+
+	eventLightbox.init();
+</script>
