@@ -41,18 +41,18 @@ const t = useTranslations(lang);
 					<div
 						class={cn(
 							'max-w-xs flex-shrink-0 snap-start border first:snap-align-none sm:w-64',
-							'h-[450px] w-[250px]',
+							'h-[460px] md:h-[450px] w-[250px]',
 						)}
 					>
 						<div class="card-image">
 							<Image
 								src={ward.gurkarImage}
 								alt="Gurkar or Gurkarn of the Ward"
-								class="h-[365px] w-full object-cover"
+								class="h-[365px] w-full object-cover "
 							/>
 						</div>
 						<div class="card-content flex flex-1 flex-col justify-end space-y-1 p-3">
-							<h3 class="card-title pt-1 font-bold leading-snug text-slate-900 sm:text-lg">
+							<h3 class="card-title pt-1 font-bold leading-snug text-slate-900 sm:text-lg md:text-sm">
 								{t(`ward.${ward.gurkarName}`)}
 							</h3>
 							<p class="card-subtitle line-clamp-3 text-slate-600 sm:text-sm">
