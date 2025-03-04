@@ -56,7 +56,7 @@ const t = useTranslations(lang);
 											<li class="w-150">
 												<a
 													href={getRelativeLocaleUrl(lang, sublink.href)}
-													class="block rounded-md px-2 py-2 text-sm transition-all hover:bg-natgeo-yellow"
+													class="hover:bg-natgeo-yellow block rounded-md px-2 py-2 text-sm transition-all"
 												>
 													{t(sublink.title)}
 												</a>
@@ -108,7 +108,7 @@ const t = useTranslations(lang);
 					>
 						<span
 							class={cn(
-								'border-b-4 border-b-transparent font-poppins font-black transition-all duration-150 group-hover:border-natgeo-yellow',
+								'font-poppins group-hover:border-natgeo-yellow border-b-4 border-b-transparent font-black transition-all duration-150',
 								{ 'font-noto-sans-kannada': lang === 'kok' },
 							)}
 						>
@@ -132,7 +132,7 @@ const t = useTranslations(lang);
 									>
 										<span
 											class={cn(
-												'border-b-4 border-b-transparent font-poppins text-lg font-semibold transition-all duration-150 group-hover:border-natgeo-yellow',
+												'font-poppins group-hover:border-natgeo-yellow border-b-4 border-b-transparent text-lg font-semibold transition-all duration-150',
 												{
 													'font-noto-sans-kannada font-normal': lang === 'kok',
 												},

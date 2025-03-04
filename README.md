@@ -11,11 +11,11 @@
 
 ## Highlights That Set Us Apart
 
-✨ Bilingual Support (Konkani and English)  
-✨ Prayer Corner  
-✨ Upcoming Events  
-✨ Rich Gallery  
-✨ Social Media Integration  
+✨ Bilingual Support (Konkani and English)
+✨ Prayer Corner
+✨ Upcoming Events
+✨ Rich Gallery
+✨ Social Media Integration
 
 
 ## 🚀 Getting Started
@@ -75,10 +75,10 @@ cd strapi-backend
 
 Install the required dependencies for the backend.  You can use the following command:
 
-For **npm**:
+For **pnpm**:
 
 ```bash
-npm i
+pnpm i
 ```
 
 ### 4. Configure Environment Variables
@@ -89,10 +89,10 @@ Create a `.env` file based on the [`.env.example`](strapi-backend/.env.example) 
 
 Start the backend server on your localhost:
 
-For **npm**:
+For **pnpm**:
 
 ```bash
-npm run develop
+pnpm run develop
 ```
 
 Once the server is running, it will be available at http://localhost:1337 (or another port if specified). You can Ctrl+click on the link to open it in your browser.

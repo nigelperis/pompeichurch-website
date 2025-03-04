@@ -79,7 +79,7 @@ const pastoralCouncil = [
 	{
 		name: 'ward.addoor-gurkar',
 		org: 'ward.addoor-ward',
-		position: 'ward.gurkarn',
+		position: 'ward.gurkar',
 	},
 	{
 		name: 'ward.church-gurkar',

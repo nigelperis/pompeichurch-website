@@ -1,15 +1,19 @@
 ---
-import { getLangFromUrl, useTranslations } from '~/i18n/utils';
-import { cn } from '~/helpers/cn';
+import { getLangFromUrl, useTranslations } from "~/i18n/utils";
+import { cn } from "~/helpers/cn";
+import { parseISO } from "date-fns";
+import { fromZonedTime } from "date-fns-tz";
 
-import { parseISO } from 'date-fns';
+// Components
+import { listUpcomingEvents } from "~/services/upcoming-events/list-upcoming-events";
+import NetworkImage from "~/components/ui/network-image.astro";
+import EmblaCarousel from "~/components/ui/embla-carousel.astro";
+import EmblaCarouselItem from "~/components/ui/embla-carousel-item.astro";
+import { Image } from "astro:assets";
 
-//Components
-import { listUpcomingEvents } from '~/services/upcoming-events/list-upcoming-events';
-import NetworkImage from '~/components/ui/network-image.astro';
-import EmblaCarousel from '~/components/ui/embla-carousel.astro';
-import EmblaCarouselItem from '~/components/ui/embla-carousel-item.astro';
-import { Image } from 'astro:assets'
+import stayTuned from "~/assets/upcoming-events/stay-tuned.png";
+import stayTunedKok from "~/assets/upcoming-events/stay-tuned-kok.png";
+import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -18,152 +22,156 @@ const today = new Date();
 
 const upcomingEvents = await listUpcomingEvents();
 
-const stayTunedImage = lang === 'kok' ? "/stay-tuned-kok.png" : "/stay-tuned.png";
-
 const filteredEvents = upcomingEvents.filter((event) => {
-	if (!event.eventEndDate) return false;
-	const eventDate = parseISO(event.eventEndDate);
-	return eventDate > today;
+  if (!event.eventEndDate) return false;
+  const eventDate = parseISO(event.eventEndDate);
+  return fromZonedTime(eventDate, "Asia/Kolkata") > today;
 });
-
-const eventImages =
-  filteredEvents.length > 0
-    ? filteredEvents.map((event) => ({
-        src: event.eventImage?.url ?? stayTunedImage,
-        alt: 'Upcoming Event',
-        width: event.eventImage?.width,
-        height: event.eventImage?.height,
-				isRemote: event.eventImage?.url ? true : false,
-      }))
-    : [
-        {
-          src: stayTunedImage,
-          alt: 'Stay Tuned',
-          width: 500,
-          height: 200,
-					isRemote: false,
-        },
-      ];
 ---
 
-<!-- This commented code is for fallback purpose  --><!-- <section
-	class="mx-6 mb-4 flex flex-col lg:mx-28 lg:min-h-[70svh] lg:justify-evenly"
->
-	<h1
-		data-aos="fade-right"
-		class={cn(
-			'mb-6 inline-block border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold xs:text-2xl lg:text-4xl',
-			{
-				'font-noto-sans-kannada': lang === 'kok',
-			},
-		)}
-	>
-		{t('landing.upcoming-events')}
-	</h1>
-	<div class="flex flex-col justify-center gap-4 md:flex-row md:gap-6">
-		{
-			filteredEvents.length > 0 ? (
-				filteredEvents.map((event) => (
-					<Image
-						src={event.eventImg}
-						alt="Upcoming Event"
-						class={event.class}
-					/>
-				))
-			) : (
-				<Image
-					src={lang === 'kok' ? stayTunedKok : stayTuned}
-					alt="Stay Tuned"
-					class="w-full rounded-sm object-cover md:w-1/3"
-				/>
-			)
-		}
-	</div>
-</section> -->
 <section
-	class="mx-6 mb-4 mt-3 flex flex-col lg:mx-28 lg:min-h-[70svh] lg:justify-evenly"
+  class="mx-6 mb-6 mt-3 flex flex-col lg:mx-28 lg:min-h-[70svh] lg:justify-evenly"
 >
-	<h1
-		data-aos="fade-right"
-		class={cn(
-			'mb-6 inline-block border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold xs:text-2xl lg:text-4xl',
-			{ 'font-noto-sans-kannada': lang === 'kok' },
-		)}
-	>
-		{t('landing.upcoming-events')}
-	</h1>
+  <h1
+    data-aos="fade-right"
+    class={cn(
+      "mb-6 inline-block border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold xs:text-2xl lg:text-4xl",
+      { "font-noto-sans-kannada": lang === "kok" }
+    )}
+  >
+    {t("landing.upcoming-events")}
+  </h1>
 
-	<!-- Mobile UI -->
-	{filteredEvents.length > 1 ? (
-		<div class="-mx-[1.5rem] block md:hidden">
-			<EmblaCarousel showArrows={true}>
-				{filteredEvents.map((event) =>
-					event.eventImage?.url ? (
-						<EmblaCarouselItem>
-							<NetworkImage
-								src={event.eventImage?.url}
-								alt="Upcoming Event"
-								class="w-full"
-								width={event.eventImage?.width ?? 500}
-								height={event.eventImage?.height ?? 200}
-							/>
-						</EmblaCarouselItem>
-					) : (
-						<EmblaCarouselItem>
-							<img
-								src={stayTunedImage}
-								alt="Stay Tuned"
-								class="w-full"
-								width={1000}
-								height={1000}
-							/>
-						</EmblaCarouselItem>
-					)
-				)}
-			</EmblaCarousel>
-		</div>
-	) : (
-		<div class="block md:hidden">
-			{eventImages[0].isRemote ? (
-				<NetworkImage
-					src={eventImages[0].src}
-					alt={eventImages[0].alt ?? 'Upcoming Event'}
-					class="w-full"
-					width={eventImages[0].width ?? 500}
-					height={eventImages[0].height ?? 300}
-				/>
-			) : (
-				<Image
-					src={eventImages[0].src}
-					alt="Stay Tuned"
-					class="w-full"
-					width={eventImages[0].width ?? 1000}
-					height={eventImages[0].height ?? 1000}
-				/>
-			)}
-		</div>
-	)}
+  {
+    filteredEvents.length > 0 ? (
+      <>
+        {/* Mobile: Show carousel only if more than one image */}
+        <div class="event-gallery -mx-[1.5rem] block md:hidden">
+          {filteredEvents.length === 1 ? (
+            <a
+              href="javascript:void(0);"
+              data-pswp-src={filteredEvents[0].eventImage?.url}
+              data-pswp-width={filteredEvents[0].eventImage?.width}
+              data-pswp-height={filteredEvents[0].eventImage?.height}
+            >
+              <NetworkImage
+                src={
+                  filteredEvents[0].eventImage?.url
+                    ? new URL(
+                        filteredEvents[0].eventImage.url,
+                        import.meta.env.STRAPI_URL
+                      ).toString()
+                    : getPlaceholderImage()
+                }
+                class="w-full"
+                width={filteredEvents[0].eventImage?.width || 0}
+                height={filteredEvents[0].eventImage?.height || 0}
+              />
+            </a>
+          ) : (
+            <EmblaCarousel showArrows={true}>
+              {filteredEvents.map((event) => (
+                <EmblaCarouselItem>
+                  <a
+                    href="javascript:void(0);"
+                    data-pswp-src={
+                      event.eventImage?.url
+                        ? new URL(
+                            event.eventImage.url,
+                            import.meta.env.STRAPI_URL
+                          ).toString()
+                        : getPlaceholderImage()
+                    }
+                    data-pswp-width={event.eventImage?.width}
+                    data-pswp-height={event.eventImage?.height}
+                  >
+                    <NetworkImage
+                      src={
+                        event.eventImage?.url
+                          ? new URL(
+                              event.eventImage.url,
+                              import.meta.env.STRAPI_URL
+                            ).toString()
+                          : getPlaceholderImage()
+                      }
+                      class="w-full"
+                      width={event.eventImage?.width || 0}
+                      height={event.eventImage?.height || 0}
+                    />
+                  </a>
+                </EmblaCarouselItem>
+              ))}
+            </EmblaCarousel>
+          )}
+        </div>
 
-	<!-- Web UI -->
-	<div class="hidden justify-center gap-4 md:flex">
-		{eventImages.map((image) =>
-			image.isRemote ? (
-				<NetworkImage
-					src={image.src}
-					alt={image.alt ?? 'Upcoming Event'}
-					class="rounded-sm md:w-1/4"
-					width={500}
-					height={300}
-				/>
-			) : (
-				<Image
-					src={image.src}
-					alt={image.alt ?? 'Stay Tuned'}
-					class="rounded-sm md:w-1/4"
-					width={1000}
-					height={1000}
-				/>
-			)
-		)}
-	</div>
+        {/* Web UI */}
+        <div class="event-gallery hidden items-center justify-center gap-4 md:flex">
+          {filteredEvents.map((event) => (
+            <a
+              href="javascript:void(0);"
+              data-pswp-src={
+                event.eventImage?.url
+                  ? new URL(
+                      event.eventImage.url,
+                      import.meta.env.STRAPI_URL
+                    ).toString()
+                  : getPlaceholderImage()
+              }
+              data-pswp-width={event.eventImage?.width}
+              data-pswp-height={event.eventImage?.height}
+              class="transition-transform duration-300 ease-in-out hover:[transform:scale(1.02)] hover:shadow-md max-h-[400px] flex items-center justify-center"
+              >
+              <NetworkImage
+                src={
+                  event.eventImage?.url
+                    ? new URL(
+                        event.eventImage.url,
+                        import.meta.env.STRAPI_URL
+                      ).toString()
+                    : getPlaceholderImage()
+                }
+                class="max-h-[400px] w-auto object-contain rounded-sm"
+                width={event.eventImage?.width || 0}
+                height={event.eventImage?.height || 0}
+              />
+            </a>
+          ))}
+        </div>
+      </>
+    ) : (
+      <>
+        {/* Show single static fallback image based on language */}
+        <div class="block lg:hidden">
+          <Image
+            src={lang === "kok" ? stayTunedKok : stayTuned}
+            alt="Stay Tuned"
+            class="w-full rounded-lg"
+          />
+        </div>
+
+        <div class="hidden lg:flex justify-center">
+          <Image
+            src={lang === "kok" ? stayTunedKok : stayTuned}
+            alt="Stay Tuned"
+            class="h-80 w-auto rounded-lg"
+          />
+        </div>
+      </>
+    )
+  }
 </section>
+
+<script>
+  import "photoswipe/style.css";
+  import PhotoSwipeLightbox from "photoswipe/lightbox";
+
+  const eventLightbox = new PhotoSwipeLightbox({
+    mainClass: "pswp--custom-icon-colors",
+    gallery: ".event-gallery",
+    children: "a",
+    pswpModule: () => import("photoswipe"),
+  });
+
+  eventLightbox.init();
+</script>

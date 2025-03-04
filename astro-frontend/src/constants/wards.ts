@@ -7,7 +7,7 @@ import mrRonald from '~/assets/wards/mr-ronald-dsouza.jpg';
 import mrsEveline from '~/assets/wards/mrs-eveline-sequiera.jpg';
 import mrsGretta from '~/assets/wards/mrs-gretta-lobo.jpg';
 import mrsLinet from '~/assets/wards/mrs-linet-monteiro.jpg';
-import mrsVeera from '~/assets/wards/mrs-veera-dsouza.jpg';
+import mrFredrick from '~/assets/wards/mr-fredrick-dsouza.jpg';
 import addoor from '~/assets/wards/ward-patron-addoor.jpg';
 import church from '~/assets/wards/ward-patron-church.jpg';
 import gurpur from '~/assets/wards/ward-patron-gurpur.jpg';
@@ -123,8 +123,8 @@ const wards = [
 		name: 'addoor-ward',
 		patronImage: addoor,
 		patronName: 'patron-addoor',
-		gurkarImage: mrsVeera,
-		gurkarTitle: 'gurkarn',
+		gurkarImage: mrFredrick,
+		gurkarTitle: 'gurkar',
 		family: '15',
 		gurkarName: 'addoor-gurkar',
 		pratinidiName1: 'addoor-pratinidi1',
