@@ -25,7 +25,7 @@ const t = useTranslations(lang);
 				</h2>
 				<p
 					class={cn(
-						'text-xm mb-6 mt-4 text-justify font-geist font-semibold leading-7 text-gray-800',
+						'text-xm font-geist mb-6 mt-4 text-justify font-semibold leading-7 text-gray-800',
 					)}
 				>
 					{lang === 'kok'
@@ -41,18 +41,18 @@ const t = useTranslations(lang);
 					<div
 						class={cn(
 							'max-w-xs flex-shrink-0 snap-start border first:snap-align-none sm:w-64',
-							'h-[450px] w-[250px]',
+							'h-[460px] md:h-[450px] w-[250px]',
 						)}
 					>
 						<div class="card-image">
 							<Image
 								src={ward.gurkarImage}
 								alt="Gurkar or Gurkarn of the Ward"
-								class="h-[365px] w-full object-cover"
+								class="h-[365px] w-full object-cover "
 							/>
 						</div>
 						<div class="card-content flex flex-1 flex-col justify-end space-y-1 p-3">
-							<h3 class="card-title pt-1 font-bold leading-snug text-slate-900 sm:text-lg">
+							<h3 class="card-title pt-1 font-bold leading-snug text-slate-900 sm:text-lg md:text-sm">
 								{t(`ward.${ward.gurkarName}`)}
 							</h3>
 							<p class="card-subtitle line-clamp-3 text-slate-600 sm:text-sm">
@@ -62,7 +62,7 @@ const t = useTranslations(lang);
 					</div>
 				</div>
 
-				<h2 class="mx-4 mt-6 text-left font-poppins text-xl font-bold text-slate-900">
+				<h2 class="font-poppins mx-4 mt-6 text-left text-xl font-bold text-slate-900">
 					{t('ward.pratinidi')}
 				</h2>
 				<ul class="my-4 list-inside list-disc text-base text-slate-700">
@@ -71,10 +71,10 @@ const t = useTranslations(lang);
 						<li class="mx-4 text-left">{t(`ward.${ward.pratinidiName2}`)}</li>
 					)}
 				</ul>
-				<p class="mx-4 mt-6 text-left font-poppins text-xl font-bold text-slate-900">
+				<p class="font-poppins mx-4 mt-6 text-left text-xl font-bold text-slate-900">
 					{t('ward.family')} : {ward.family}
 				</p>
-				<div class="mt-4 border-b-2 border-b-natgeo-yellow" />
+				<div class="border-b-natgeo-yellow mt-4 border-b-2" />
 			</div>
 		))
 	}
