@@ -1,0 +1,7 @@
+node_modules/
+dist/
+Dockerfile
+.env.*
+.vscode/
+.git/
+.strapi/
