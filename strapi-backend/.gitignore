@@ -109,6 +109,7 @@ node_modules
 !.yarn/sdks
 !.yarn/versions
 .pnp.*
+!pnpm-lock.yaml
 yarn-error.log
 
 ############################
