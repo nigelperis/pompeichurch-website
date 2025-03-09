@@ -10,7 +10,7 @@ interface Props {
 	class?: string;
 }
 
-const { title, imageUrl, downloadUrl, class: className } = Astro.props;
+const { title, imageUrl, downloadUrl, class: className, ...rest } = Astro.props;
 ---
 
 <div
@@ -18,6 +18,7 @@ const { title, imageUrl, downloadUrl, class: className } = Astro.props;
 		'hover:scale-[1.01] transform overflow-hidden rounded-md border duration-300 ease-in-out transition-all max-w-md mx-auto bg-white shadow-lg',
 		className,
 	)}
+	{...rest}
 >
 	<div class="magazine-image relative">
 		<Image

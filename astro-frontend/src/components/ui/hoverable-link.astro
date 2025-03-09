@@ -9,22 +9,23 @@ interface Props {
 	class?: string;
 	target?: string;
 }
-const { href, class: className, target } = Astro.props;
+const { href, class: className, target, ...rest } = Astro.props;
 ---
 
 <a
 	href={href}
 	class={cn(
-		'from-natgeo-yellow to-natgeo-yellow hoverable-link border-natgeo-yellow border-b-2 bg-gradient-to-r px-2 py-1 hover:border-transparent hover:text-black',
+		'from-natgeo-yellow font-medium  to-natgeo-yellow hoverable-link border-natgeo-yellow border-b-2 bg-gradient-to-r px-2 py-1 hover:border-transparent hover:text-black',
 		{ 'font-noto-sans-kannada': lang === 'kok' },
 		className,
 	)}
+	{...rest}
 	target={target}
 >
 	<slot />
 </a>
 
-<style>
+<style is:global>
 	.hoverable-link {
 		background-position: 0 100%;
 		background-repeat: no-repeat;

@@ -1,0 +1,51 @@
+version: "3.8"
+name: pompei-church-backend
+
+services:
+  pompei-church-strapi-cms:
+    build: .
+    image: pompei-church/strapi-cms
+    depends_on:
+      - pompei-church-postgres
+    ports:
+      - 1337:1337
+    environment:
+      - HOST=${HOST}
+      - PORT=${PORT}
+      - APP_KEYS=${APP_KEYS}
+      - API_TOKEN_SALT=${API_TOKEN_SALT}
+      - ADMIN_JWT_SECRET=${ADMIN_JWT_SECRET}
+      - TRANSFER_TOKEN_SALT=${TRANSFER_TOKEN_SALT}
+      - DATABASE_CLIENT=${DATABASE_CLIENT}
+      - DATABASE_HOST=${DATABASE_HOST}
+      - DATABASE_PORT=${DATABASE_PORT}
+      - DATABASE_NAME=${DATABASE_NAME}
+      - DATABASE_USERNAME=${DATABASE_USERNAME}
+      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+      - DATABASE_SSL=${DATABASE_SSL}
+      - JWT_SECRET=${JWT_SECRET}
+    volumes:
+      - strapi-uploads:/app/outputs/public
+    networks:
+      - pompei-church-network
+    restart: no
+
+  pompei-church-postgres:
+    image: postgres
+    environment:
+      - POSTGRES_USER=${DATABASE_USERNAME}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+      - POSTGRES_DB=${DATABASE_NAME}
+    volumes:
+      - pompei-church-db:/var/lib/postgresql/data
+    networks:
+      - pompei-church-network
+    restart: no
+
+volumes:
+  strapi-uploads:
+  pompei-church-db:
+
+networks:
+  pompei-church-network:
+    driver: bridge
