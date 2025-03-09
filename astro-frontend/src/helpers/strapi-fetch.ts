@@ -26,6 +26,7 @@ export async function strapiFetch<T>({
 	}
 
 	const url = new URL(`/api${endpoint}`, import.meta.env.STRAPI_URL);
+	console.log('url from strapi fetch', url)
 
 	if (queryParams) {
 		for (const [key, value] of queryParams) {
