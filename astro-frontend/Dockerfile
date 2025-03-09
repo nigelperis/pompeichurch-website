@@ -14,6 +14,8 @@ RUN pnpm install
 
 FROM  build-deps AS build
 WORKDIR /app
+ARG PUBLIC_STRAPI_URL=""
+ENV PUBLIC_STRAPI_URL=${PUBLIC_STRAPI_URL}
 COPY . .
 RUN pnpm build
 
