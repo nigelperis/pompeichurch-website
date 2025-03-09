@@ -21,12 +21,15 @@ export async function strapiFetch<T>({
 	endpoint,
 	queryParams,
 }: StrapiFetchProps): Promise<T | undefined> {
+	console.log('public_strapi_url',import.meta.env.PUBLIC_STRAPI_URL)
+	console.log('strapi_url',import.meta.env.STRAPI_URL)
+	const url = new URL(`/api${endpoint}`, import.meta.env.PUBLIC_STRAPI_URL);
+
 	if (!import.meta.env.STRAPI_URL) {
 		throw new Error('Base url for strapi not found ');
 	}
 
-	const url = new URL(`/api${endpoint}`, import.meta.env.STRAPI_URL);
-	console.log('url from strapi fetch', url)
+	// const url = new URL(`/api${endpoint}`, import.meta.env.STRAPI_URL);
 
 	if (queryParams) {
 		for (const [key, value] of queryParams) {
