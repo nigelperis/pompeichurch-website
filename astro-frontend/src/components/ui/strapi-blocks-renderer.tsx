@@ -56,7 +56,7 @@ function StrapiBlocksRenderer(props: StrapiBlocksProps) {
 
 				paragraph: ({ children }) => {
 					return (
-						<p className="font-poppins leading-relaxed tracking-wide">
+						<p className="font-noto-sans-kannada leading-7 text-slate-700">
 							{children}
 						</p>
 					);

@@ -26,8 +26,8 @@ const ogUrl = new URL(eventUrl, baseURL).href;
 
 const eventImage = event?.eventImage ?? {
 	url: getPlaceholderImage(),
-	width: 0,
-	height: 0,
+	width: 600,
+	height: 400,
 };
 
 const eventIndex = allEvents.findIndex((e) => e.slug === slug);

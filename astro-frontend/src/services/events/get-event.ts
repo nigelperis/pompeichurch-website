@@ -7,7 +7,7 @@ async function getEvent(slug: string): Promise<Event | undefined> {
 
 	const queryParams = new URLSearchParams({
 		'populate[0]': 'eventImage',
-		'filters[englishTitle][$eqi]': slug.replace(/-/g, ' '),
+		'filters[slug][$eq]': slug,
 	});
 
 	const data = await strapiFetch<EventData>({
