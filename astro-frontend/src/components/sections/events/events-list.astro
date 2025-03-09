@@ -3,7 +3,7 @@ import EventCard from '~/components/event-card.astro';
 import { listEvents } from '~/services/events/list-events';
 import { getPlaceholderImage } from '~/helpers/get-placeholder-image';
 
-const data = await listEvents();
+const data = (await listEvents()) || [];
 ---
 
 <div class="grid grid-cols-1 gap-8 sm:grid-cols-2">
