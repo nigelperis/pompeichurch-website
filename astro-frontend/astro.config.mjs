@@ -5,15 +5,10 @@ import tailwind from '@astrojs/tailwind';
 import icon from 'astro-icon';
 import { defineConfig } from 'astro/config';
 
-const adapter =
-  import.meta.env.ADAPTER === 'netlify'
-    ? netlify()
-    : node({ mode: 'standalone' });
-
 // https://astro.build/config
 export default defineConfig({
 	output: 'server',
-	adapter,
+	adapter: node({ mode: 'standalone' }),
 	prefetch: true,
   site: "https://pompeichurch.in",
 	integrations: [

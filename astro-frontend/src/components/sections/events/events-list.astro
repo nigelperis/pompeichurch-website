@@ -1,14 +1,14 @@
 ---
 import EventCard from '~/components/event-card.astro';
-import { listEvents } from '~/services/events/list-events';
+import type { Event } from '~/models/events';
 import { getPlaceholderImage } from '~/helpers/get-placeholder-image';
 
-const data = (await listEvents()) || [];
+const { events } = Astro.props as { events: Event[] };
 ---
 
 <div class="grid grid-cols-1 gap-8 sm:grid-cols-2">
 	{
-		data?.map((event) => (
+		events?.map((event) => (
 			<EventCard
 				eventName={event.englishTitle}
 				eventNameKok={event.konkaniTitle}

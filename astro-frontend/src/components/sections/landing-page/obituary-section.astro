@@ -44,7 +44,7 @@ const featuredObituary = obituaryData.length > 4 ? obituaryData[4] : null;
 			<>
 			<div class="my-4 flex w-full space-x-8 overflow-x-auto pl-6 pr-3 scrollbar-none lg:flex-wrap lg:justify-center lg:space-x-8 lg:overflow-x-visible xl:space-x-10">
 				{obituaryDataFormatted.slice(0, 4).map((obituary) => (
-    <div class="flex-none">
+    <div class="flex-none relative">
       <Card
         imageUrl={obituary.image?.url}
         title={`${obituary.konkaniName} (${obituary.age})`}
