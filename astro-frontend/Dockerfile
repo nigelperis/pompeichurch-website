@@ -14,7 +14,9 @@ RUN pnpm install
 FROM  build-deps AS build
 WORKDIR /app
 ARG STRAPI_URL
+ARG ADAPTER
 ENV STRAPI_URL=${STRAPI_URL}
+ENV ADAPTER=${ADAPTER}
 COPY . .
 RUN pnpm build
 
