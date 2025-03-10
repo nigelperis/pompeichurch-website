@@ -12,6 +12,7 @@ const adapter =
 	: netlify();
 ;
 
+console.log('adapter value', adapter)
 // https://astro.build/config
 export default defineConfig({
 	output: 'server',
