@@ -8,8 +8,8 @@ import { defineConfig } from 'astro/config';
 
 const adapter =
   import.meta.env.ADAPTER === 'netlify'
-    ? netlify()
-    : node({ mode: 'standalone' });
+	? netlify({ functionName: "astro-ssr" })
+	: node({ mode: 'standalone' });
 
 // https://astro.build/config
 export default defineConfig({
