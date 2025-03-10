@@ -1,6 +1,7 @@
 import partytown from '@astrojs/partytown';
 import node from '@astrojs/node';
 import react from '@astrojs/react';
+import netlify from '@astrojs/netlify';
 import tailwind from '@astrojs/tailwind';
 import icon from 'astro-icon';
 import { defineConfig } from 'astro/config';
