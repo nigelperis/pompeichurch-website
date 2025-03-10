@@ -3,3 +3,8 @@
   command = "pnpm install --frozen-lockfile && pnpm run build"
   symlink_node_modules = false
 
+[images]
+  remote_patterns = [
+    { protocol = "http", hostname = "strapi.pompeichurch.in", pathname = "/uploads/**" },
+    { protocol = "https", hostname = "strapi.pompeichurch.in", pathname = "/uploads/**" }
+  ]

@@ -7,9 +7,10 @@ import icon from 'astro-icon';
 import { defineConfig } from 'astro/config';
 
 const adapter =
-  import.meta.env.ADAPTER === 'netlify'
-    ? netlify()
-    : node({ mode: 'standalone' });
+  import.meta.env.ADAPTER === 'node'
+	? node({ mode: 'standalone' })
+	: netlify();
+;
 
 // https://astro.build/config
 export default defineConfig({
