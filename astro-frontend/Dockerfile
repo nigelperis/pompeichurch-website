@@ -4,7 +4,6 @@ RUN apk add --no-cache libc6-compat
 RUN npm i -g corepack
 COPY package.json pnpm-lock.yaml ./
 
-
 FROM base AS prod-deps
 RUN pnpm install --prod
 
@@ -15,7 +14,9 @@ RUN pnpm install
 FROM  build-deps AS build
 WORKDIR /app
 ARG STRAPI_URL
+ARG ADAPTER
 ENV STRAPI_URL=${STRAPI_URL}
+ENV ADAPTER=${ADAPTER}
 COPY . .
 RUN pnpm build
 
