@@ -1,22 +1,14 @@
 import partytown from '@astrojs/partytown';
 import node from '@astrojs/node';
 import react from '@astrojs/react';
-import netlify from '@astrojs/netlify';
 import tailwind from '@astrojs/tailwind';
 import icon from 'astro-icon';
 import { defineConfig } from 'astro/config';
 
-const adapter =
-  import.meta.env.ADAPTER === 'node'
-	? node({ mode: 'standalone' })
-	: netlify();
-;
-
-console.log('adapter value', adapter)
 // https://astro.build/config
 export default defineConfig({
 	output: 'server',
-	adapter,
+	adapter: node({ mode: 'standalone' }),
 	prefetch: true,
   site: "https://pompeichurch.in",
 	integrations: [
