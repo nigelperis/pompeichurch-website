@@ -443,6 +443,41 @@ export interface ApiObituaryObituary extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiPompeichemFalkemPompeichemFalkem
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'pompeichem_falkems';
+  info: {
+    description: '';
+    displayName: 'Pompeichem Falkem';
+    pluralName: 'pompeichem-falkems';
+    singularName: 'pompeichem-falkem';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    coverImage: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    dateOfPublish: Schema.Attribute.Date;
+    googleDriveLink: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::pompeichem-falkem.pompeichem-falkem'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiUpcomingEventUpcomingEvent
   extends Struct.CollectionTypeSchema {
   collectionName: 'upcoming_events';
@@ -986,6 +1021,7 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::event.event': ApiEventEvent;
       'api::obituary.obituary': ApiObituaryObituary;
+      'api::pompeichem-falkem.pompeichem-falkem': ApiPompeichemFalkemPompeichemFalkem;
       'api::upcoming-event.upcoming-event': ApiUpcomingEventUpcomingEvent;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;

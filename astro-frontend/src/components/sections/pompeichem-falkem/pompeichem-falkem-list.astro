@@ -1,6 +1,9 @@
 ---
 import MagazineCard from '~/components/magazine-card.astro';
-import { magazines } from '~/constants/pompeichem-falkem';
+import type { PompeichemFalkem } from '~/models/pompeichem-falkem';
+import { getPlaceholderImage } from '~/helpers/get-placeholder-image';
+
+const { magazines } = Astro.props as { magazines: PompeichemFalkem[] };
 ---
 
 <div
@@ -10,8 +13,17 @@ import { magazines } from '~/constants/pompeichem-falkem';
 		magazines.map((magazine) => (
 			<MagazineCard
 				title={magazine.title}
-				imageUrl={magazine.imageUrl}
-				downloadUrl={magazine.downloadUrl}
+				imageUrl={
+					magazine.coverImage.url
+						? new URL(
+						magazine.coverImage.url,
+								import.meta.env.STRAPI_URL,
+							).toString()
+						: getPlaceholderImage()
+				}
+				imageWidth={magazine.coverImage.width ?? 0}
+				imageHeight={magazine.coverImage.height ?? 0}
+				googleDriveLink={magazine.googleDriveLink}
 			/>
 		))
 	}
