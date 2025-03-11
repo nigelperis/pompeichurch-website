@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "pompeichem_falkems",
+  "info": {
+    "singularName": "pompeichem-falkem",
+    "pluralName": "pompeichem-falkems",
+    "displayName": "Pompeichem Falkem",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "coverImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "googleDriveLink": {
+      "type": "string"
+    },
+    "dateOfPublish": {
+      "type": "date"
+    },
+    "title": {
+      "type": "string"
+    }
+  }
+}

@@ -1,16 +1,18 @@
 ---
-import { Image } from 'astro:assets';
+import NetworkImage from './ui/network-image.astro';
 import { cn } from '~/helpers/cn';
 import { Icon } from 'astro-icon/components';
 
 interface Props {
 	title: string;
-	imageUrl: ImageMetadata;
-	downloadUrl: string;
+	imageUrl: string;
+	imageWidth: number;
+	imageHeight: number;
+	googleDriveLink: string;
 	class?: string;
 }
 
-const { title, imageUrl, downloadUrl, class: className, ...rest } = Astro.props;
+const { title, imageUrl, googleDriveLink, imageWidth , imageHeight, class: className, ...rest } = Astro.props;
 ---
 
 <div
@@ -21,16 +23,18 @@ const { title, imageUrl, downloadUrl, class: className, ...rest } = Astro.props;
 	{...rest}
 >
 	<div class="magazine-image relative">
-		<Image
+		<NetworkImage
 			src={imageUrl}
 			alt={title}
+			width={imageWidth}
+			height={imageHeight}
 			class="w-full rounded-t-md object-cover lg:h-[480px]"
 		/>
 	</div>
 
 	<div class="p-4 text-center">
 		<a
-			href={downloadUrl}
+			href={googleDriveLink}
 			download
 			class="mt-1 inline-flex items-center gap-2 rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-md hover:bg-blue-700"
 		>

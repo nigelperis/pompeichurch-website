@@ -40,8 +40,8 @@
 
         Example Response Structure:
         \<PASTE_JSON_RESPONSE_HERE\>
-
  */
+
 import type { BlocksContent } from '@strapi/blocks-react-renderer';
 
 interface EventImage {
