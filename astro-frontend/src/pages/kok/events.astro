@@ -5,17 +5,18 @@ import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import { getPaginationRange } from '~/helpers/get-pagination-range';
 import { listEvents } from '~/services/events/list-events';
 import EventsList from '~/components/sections/events/events-list.astro';
+import type { Event } from '~/models/events';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const events = (await listEvents()) || [];
+const events: Event[]= (await listEvents()) || [];
 
 const eventsPerPage = 6;
 const currentPage = Number(Astro.url.searchParams.get('p')) || 1;
 const startIndex = (currentPage - 1) * eventsPerPage;
 const endIndex = startIndex + eventsPerPage;
-const paginatedEvents = events.slice(startIndex, endIndex);
+const paginatedEvents: Event[] = events.slice(startIndex, endIndex);
 const totalPages = Math.ceil(events.length / eventsPerPage);
 
 const pageTitle = `Page ${currentPage} | Events | Pompei Church`;

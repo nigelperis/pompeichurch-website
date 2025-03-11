@@ -3,11 +3,11 @@ import { format } from 'date-fns-tz';
 import ObituaryCard from '~/components/obituary-card.astro';
 
 import { getPlaceholderImage } from '~/helpers/get-placeholder-image';
-import { listObituaries } from '~/services/obituaries/list-obituaries';
+import type { Obituary } from '~/models/obituaries';
 
-const obituaryData = await listObituaries();
+const { obituaries } = Astro.props as { obituaries: Obituary[] };
 
-const obituaryDataFormatted = obituaryData?.map((obituary) => ({
+const obituaryDataFormatted = obituaries?.map((obituary) => ({
 	...obituary,
 	formattedDate: obituary.dateOfDeath
 		? format(new Date(obituary.dateOfDeath), 'dd-MM-yyyy')
