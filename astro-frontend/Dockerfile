@@ -11,7 +11,7 @@ FROM base AS build-deps
 WORKDIR /app
 RUN pnpm install
 
-FROM  build-deps AS build
+FROM build-deps AS build
 WORKDIR /app
 ARG STRAPI_URL
 ENV STRAPI_URL=${STRAPI_URL}
