@@ -130,7 +130,7 @@ function Link(props: { url: string; children: React.ReactNode }) {
 	return (
 		<a
 			className={cn(
-				'hoverable-link border-b-2 border-natgeo-yellow bg-gradient-to-r from-natgeo-yellow to-natgeo-yellow px-2 py-1 font-medium hover:border-transparent hover:text-black',
+				'font-medium text-blue-600 hover:underline',
 			)}
 			href={url}
 		>

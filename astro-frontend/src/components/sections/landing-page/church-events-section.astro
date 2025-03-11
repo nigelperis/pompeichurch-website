@@ -11,7 +11,7 @@ const eventsUrl = lang === 'en' ? '/events' : '/kok/events';
 
 import { listEvents } from '~/services/events/list-events';
 
-const data = (await listEvents()) || [];
+const data = (await listEvents({pageSize: 100})) || [];
 ---
 
 <section

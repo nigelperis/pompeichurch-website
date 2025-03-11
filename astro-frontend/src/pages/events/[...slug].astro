@@ -14,7 +14,7 @@ const { slug } = Astro.params;
 const lang = getLangFromUrl(Astro.url);
 
 const event = await getEvent(slug ?? '');
-const allEvents = await listEvents();
+const allEvents = await listEvents({pageSize:100});
 
 const eventUrl = lang === 'en' ? `/events/${slug}/` : `/kok/events/${slug}/`;
 

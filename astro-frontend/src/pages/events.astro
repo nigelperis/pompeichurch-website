@@ -10,7 +10,7 @@ import type { Event } from '~/models/events';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const events: Event[]= (await listEvents()) || [];
+const events: Event[]= (await listEvents({pageSize:100})) || [];
 
 const eventsPerPage = 6;
 const currentPage = Number(Astro.url.searchParams.get('p')) || 1;
