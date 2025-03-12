@@ -5,7 +5,6 @@ import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import { getPaginationRange } from '~/helpers/get-pagination-range';
 import { listEvents } from '~/services/events/list-events';
 import EventsList from '~/components/sections/events/events-list.astro';
-import type { Event } from '~/models/events';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -14,10 +13,10 @@ const events: Event[]= (await listEvents()) || [];
 
 const eventsPerPage = 6;
 const currentPage = Number(Astro.url.searchParams.get('p')) || 1;
-const startIndex = (currentPage - 1) * eventsPerPage;
-const endIndex = startIndex + eventsPerPage;
-const paginatedEvents: Event[] = events.slice(startIndex, endIndex);
-const totalPages = Math.ceil(events.length / eventsPerPage);
+
+const { events, pagination } = await listEvents({ page: currentPage, pageSize: eventsPerPage });
+
+const totalPages = pagination.pageCount;
 
 const pageTitle = `Page ${currentPage} | Events | Pompei Church`;
 ---
@@ -25,31 +24,27 @@ const pageTitle = `Page ${currentPage} | Events | Pompei Church`;
 <Layout title={pageTitle}>
 	<main class="mx-auto max-w-4xl overflow-hidden bg-white">
 		<section id="events" class="flex flex-col p-6">
-			<h1
-				class="border-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl font-extrabold lg:text-4xl"
-			>
+			<h1 class="border-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl font-extrabold lg:text-4xl">
 				{t('nav.events')}
 			</h1>
 			<p class="font-geist pb-4 text-justify text-lg">
 				Celebrating the moments that unite our parish community.
 			</p>
 
-			{
-				events.length > 0 ? (
-					<>
-						<EventsList events={paginatedEvents} />
-						<Pagination
-							currentPage={currentPage}
-							totalPages={totalPages}
-							getPaginationRange={getPaginationRange}
-						/>
-					</>
-				) : (
-					<p class="py-8 text-center text-3xl font-semibold">
-						No Events Found!
-					</p>
-				)
-			}
+			{events.length > 0 ? (
+				<>
+					<EventsList events={events} />
+					<Pagination
+						currentPage={currentPage}
+						totalPages={totalPages}
+						getPaginationRange={getPaginationRange}
+					/>
+				</>
+			) : (
+				<p class="py-8 text-center text-3xl font-semibold">
+					No Events Found!
+				</p>
+			)}
 		</section>
 	</main>
 </Layout>

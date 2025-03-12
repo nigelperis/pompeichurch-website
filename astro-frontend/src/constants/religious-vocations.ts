@@ -324,7 +324,7 @@ const religiousNuns = [
 		ward: 'kowdoor-a',
 		dob: '23-10-1921',
 		dod: '04-01-2005',
-		congregation: 'charity', //TODO: confirm this and update, just a guess for now
+		congregation: 'charity',
 		parents: 'marianpinto',
 		role: 'nun',
 	},

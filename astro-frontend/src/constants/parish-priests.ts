@@ -98,7 +98,7 @@ const parishPriests = [
 		name: 'anthonylobo',
 		date: '2016-22',
 	},
-	//TODO: temporary date, updated once father leaves
+	//TODO: temporary date, update once father leaves
 	{
 		imageUrl: frRudolphDsa,
 		name: 'rudolphdsa',

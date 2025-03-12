@@ -2,9 +2,13 @@
 import PompeichemFalkemList from '~/components/sections/pompeichem-falkem/pompeichem-falkem-list.astro';
 import Layout from '~/layouts/layout.astro';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+import type { PompeichemFalkem } from '~/models/pompeichem-falkem';
+import { listMagazines } from '~/services/pompeichem-falkem/list-magazines';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+const magazines: PompeichemFalkem[] = (await listMagazines()) || [];
 ---
 
 <Layout title="Pompei Church | Pompeichem Falkem">
@@ -15,7 +19,7 @@ const t = useTranslations(lang);
 			>
 				{t('nav.pompeichem-falkem')}
 			</h1>
-			<PompeichemFalkemList />
+			<PompeichemFalkemList magazines={magazines}/>
 		</section>
 	</main>
 </Layout>
