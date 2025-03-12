@@ -11,7 +11,7 @@ const eventsUrl = lang === 'en' ? '/events' : '/kok/events';
 
 import { listEvents } from '~/services/events/list-events';
 
-const data = (await listEvents()) || [];
+const data = (await listEvents({ page: 1, pageSize: 3 })) || [];
 ---
 
 <section
@@ -30,9 +30,9 @@ const data = (await listEvents()) || [];
 	</h1>
 
 	{
-		data.length > 0 ? (
+		data.events.length > 0 ? (
 			<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 md:gap-4 lg:grid-cols-3 lg:gap-8">
-				{data.slice(0, 3).map((event) => (
+				{data.events.map((event) => (
 					<EventCard
 						eventName={event.englishTitle}
 						eventNameKok={event.konkaniTitle}
@@ -50,13 +50,9 @@ const data = (await listEvents()) || [];
 		)
 	}
 
-	{
-		data.length > 3 && (
-			<div class="flex justify-center">
-				<HoverableLink href={eventsUrl} class="m-5">
-					{t('ui.show-more-events')}
-				</HoverableLink>
-			</div>
-		)
-	}
+	<div class="flex justify-center">
+		<HoverableLink href={eventsUrl} class="m-5">
+			{t('ui.show-more-events')}
+		</HoverableLink>
+	</div>
 </section>

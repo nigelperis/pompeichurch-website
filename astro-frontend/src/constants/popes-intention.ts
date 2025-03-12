@@ -1,4 +1,4 @@
-const popeIntention = [
+const popesIntention = [
 	{
 		month: 1,
 		title: `Pope's Intention for the month of January`,
@@ -73,4 +73,4 @@ const popeIntention = [
 	},
 ];
 
-export { popeIntention };
+export { popesIntention };

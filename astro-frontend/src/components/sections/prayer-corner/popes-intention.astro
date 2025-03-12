@@ -1,8 +1,8 @@
 ---
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import { cn } from '~/helpers/cn';
-import { popeIntention } from '~/constants/pope-intention';
-import { popeIntentionKok } from '~/constants/pope-intention-kok';
+import {  } from '~/constants/popes-intention';
+import { popesIntentionKok } from '~/constants/popes-intention-kok';
 import { toZonedTime } from 'date-fns-tz';
 
 const lang = getLangFromUrl(Astro.url);
@@ -10,7 +10,7 @@ const t = useTranslations(lang);
 
 const month = toZonedTime(new Date(), 'Asia/Kolkata').getMonth() + 1;
 
-const intention = lang === 'kok' ? popeIntentionKok : popeIntention;
+const intention = lang === 'kok' ? popesIntentionKok : popesIntention;
 ---
 
 <h2

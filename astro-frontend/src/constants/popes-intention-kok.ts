@@ -1,4 +1,4 @@
-const popeIntentionKok = [
+const popesIntentionKok = [
 	{
 		month: 1,
 		title: 'ಜನೆರ್ ಮ್ಹಯ್ಞಾಕ್ ಪಾಪಾಚೊ ಇರಾದೊ',
@@ -11,7 +11,6 @@ const popeIntentionKok = [
 		description:
 			'<strong>ಧಾರ್ಮಿಕ್ ಭೆಸಾಕ್ ಆನಿ ಯಾಜಕ್ಪಣಾಕ್ ಆಪೊವ್ಣಿಂ ಲಾಬುಂಕ್: </strong> <br>ಖುಶೆ ಮನಾನ್ ಆನಿ ಸ್ವಾಭಾವಿಕ್ ದುಬಾವಾನ್ ಮುಕಾರ್ ಯೆತಲ್ಯಾ ಯುವಜಣಾಂನಿ ಪವಿತ್ರ್ ಸಭೆಂತ್ ಏಕ್ ಯಾಜಕ್ ಜಾವ್ನ್ ವಾ ಧಾರ್ಮಿಕ್ ಜಾವ್ನ್ ಜೆಜು ಕ್ರಿಸ್ತಾಚೆಂ ಮಿಸಾಂವ್ ಸ್ವೀಕಾರ್ ಕರುಂಕ್ ಮಾಗ್ಯಾಂ.',
 	},
-	//TODO: Proof these descriptions
 	{
 		month: 3,
 		title: 'ಮಾರ್ಚ್ ಮ್ಹಯ್ಞಾಕ್ ಪಾಪಾಚೊ ಇರಾದೊ',
@@ -74,4 +73,4 @@ const popeIntentionKok = [
 	},
 ];
 
-export { popeIntentionKok };
+export { popesIntentionKok };
