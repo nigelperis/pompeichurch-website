@@ -1,6 +1,16 @@
 import { strapiFetch } from '~/helpers/strapi-fetch';
 import type { Obituary, ObituaryData } from '~/models/obituaries';
 
+interface ObituaryPagination {
+	obituaries: Obituary[];
+	pagination: {
+		total: number;
+		page: number;
+		pageSize: number;
+		pageCount: number;
+	};
+}
+
 async function listObituaries(args?: {
 	/**@defaultValue 1 */
 	page?: number;
@@ -8,7 +18,7 @@ async function listObituaries(args?: {
 	pageSize?: number;
 	/**@defaultValue 'dateOfDeath:desc' */
 	sortBy?: string;
-}): Promise<Obituary[]> {
+}): Promise<ObituaryPagination> {
 	const { page = 1, pageSize = 25, sortBy = 'dateOfDeath:desc' } = args ?? {};
 	const endpoint = '/obituaries';
 
@@ -21,7 +31,15 @@ async function listObituaries(args?: {
 
 	const data = await strapiFetch<ObituaryData>({ endpoint, queryParams });
 
-	return data?.data ?? [];
+	return {
+		obituaries: data?.data ?? [],
+		pagination: data?.meta?.pagination ?? {
+			total: 0,
+			page,
+			pageSize,
+			pageCount: 0,
+		},
+	};
 }
 
 export { listObituaries };
