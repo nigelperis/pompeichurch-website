@@ -3,6 +3,7 @@ const languages = ['English', 'ಕೊಂಕಣಿ'];
 const currentLocale = Astro.currentLocale;
 import { cn } from '~/helpers/cn';
 import { getLangFromUrl } from '~/i18n/utils';
+import { Icon } from 'astro-icon/components';
 
 const selectedLanguage = currentLocale === 'kok' ? 'ಕೊಂಕಣಿ' : 'English';
 const lang = getLangFromUrl(Astro.url);
@@ -21,21 +22,11 @@ const lang = getLangFromUrl(Astro.url);
 			style="line-height: 1;"
 		>
 			{selectedLanguage}
-			<!-- //TODO (Aroma): Move this svg to assets -->
-			<svg
+			<Icon
+				name="chevron-down"
 				id="lang-arrow"
 				class="-mr-1 h-5 w-5 transition-transform duration-200 ease-in-out"
-				xmlns="http://www.w3.org/2000/svg"
-				viewBox="0 0 20 20"
-				fill="currentColor"
-				aria-hidden="true"
-				style="line-height: 1;"
-			>
-				<path
-					fill-rule="evenodd"
-					d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-					clip-rule="evenodd"></path>
-			</svg>
+			/>
 		</button>
 	</div>
 	<div
