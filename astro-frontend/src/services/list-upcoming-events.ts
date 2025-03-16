@@ -2,7 +2,7 @@ import { strapiFetch } from '~/helpers/strapi-fetch';
 import type {
 	UpcomingEvent,
 	UpcomingEventsData,
-} from '~/models/upcoming-events';
+} from '~/models/upcoming-event';
 
 async function listUpcomingEvents(args?: {
 	/** @defaultValue 1 */
