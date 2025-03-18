@@ -4,7 +4,7 @@ import Layout from '~/layouts/layout.astro';
 import Pagination from '~/components/pagination.astro';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import { listObituaries } from '~/services/obituaries/list-obituaries';
-import type { Obituary } from '~/models/obituaries';
+import type { Obituary } from '~/models/obituary';
 
 const url = new URL(Astro.url);
 const lang = getLangFromUrl(Astro.url);

@@ -1,5 +1,5 @@
 import { strapiFetch } from '~/helpers/strapi-fetch';
-import type { Obituary, ObituaryData } from '~/models/obituaries';
+import type { Obituary, ObituaryData } from '~/models/obituary';
 
 interface ObituaryPagination {
 	obituaries: Obituary[];

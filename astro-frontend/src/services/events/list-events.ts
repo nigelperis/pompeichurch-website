@@ -1,5 +1,5 @@
 import { strapiFetch } from "~/helpers/strapi-fetch";
-import type { Event, EventData } from '~/models/events';
+import type { Event, EventData } from '~/models/event';
 
 
 interface EventsPagination {

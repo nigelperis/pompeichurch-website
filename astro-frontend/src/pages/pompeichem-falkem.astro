@@ -3,7 +3,7 @@ import PompeichemFalkemList from '~/components/sections/pompeichem-falkem/pompei
 import Layout from '~/layouts/layout.astro';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import type { PompeichemFalkem } from '~/models/pompeichem-falkem';
-import { listMagazines } from '~/services/pompeichem-falkem/list-magazines';
+import { listMagazines } from '~/services/list-magazines';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);

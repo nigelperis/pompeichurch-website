@@ -535,6 +535,58 @@ export interface ApiParishPastoralCouncilParishPastoralCouncil
   };
 }
 
+export interface ApiParishPriestMessageParishPriestMessage
+  extends Struct.SingleTypeSchema {
+  collectionName: 'parish_priest_messages';
+  info: {
+    displayName: 'Parish Priest Message';
+    pluralName: 'parish-priest-messages';
+    singularName: 'parish-priest-message';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::parish-priest-message.parish-priest-message'
+    >;
+    message: Schema.Attribute.Text &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    parishPriestImage: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    > &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    parishPriestName: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiPompeichemFalkemPompeichemFalkem
   extends Struct.CollectionTypeSchema {
   collectionName: 'pompeichem_falkems';
@@ -1115,6 +1167,7 @@ declare module '@strapi/strapi' {
       'api::obituary.obituary': ApiObituaryObituary;
       'api::parish-pastoral-council-image.parish-pastoral-council-image': ApiParishPastoralCouncilImageParishPastoralCouncilImage;
       'api::parish-pastoral-council.parish-pastoral-council': ApiParishPastoralCouncilParishPastoralCouncil;
+      'api::parish-priest-message.parish-priest-message': ApiParishPriestMessageParishPriestMessage;
       'api::pompeichem-falkem.pompeichem-falkem': ApiPompeichemFalkemPompeichemFalkem;
       'api::upcoming-event.upcoming-event': ApiUpcomingEventUpcomingEvent;
       'plugin::content-releases.release': PluginContentReleasesRelease;

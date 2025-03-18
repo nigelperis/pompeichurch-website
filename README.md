@@ -106,7 +106,7 @@ This project utilizes the following technologies:
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/) 🎨
 - **CMS**: [Strapi](https://strapi.io/) 🛠️
 - **Database**: [PostgreSQL](https://www.postgresql.org/) 🗂️
-- **Deployment**: [Netlify](https://www.netlify.com/) 🚀
+- **Deployment**: [Hostinger](https://www.hostinger.com/) 🚀
 - **Analytics**: [Google Analytics](https://developers.google.com/analytics) + [Microsoft Clarity](https://clarity.microsoft.com/) 💡
 
 ## 👀 Explore our site [pompeichurch.in](https://pompeichurch.in/)

@@ -1,63 +1,71 @@
 ---
-import { Image } from 'astro:assets';
-import { getLangFromUrl, useTranslations } from '~/i18n/utils';
-import { priestMessage } from '~/constants/parish-priest-message';
-import { cn } from '~/helpers/cn';
+import { getLangFromUrl, useTranslations } from "~/i18n/utils";
+import { cn } from "~/helpers/cn";
 
-//Images
-import priestImage from '~/assets/landing-page/pp1.png';
+import { fetchParishPriestMessage } from "~/services/get-parish-priest-message";
+import { Locale } from "~/models/parish-priest-message";
+
+import NetworkImage from "~/components/ui/network-image.astro";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+const parishPriestMessage =
+  lang === Locale.KOK
+    ? await fetchParishPriestMessage(Locale.KOK)
+    : await fetchParishPriestMessage();
 ---
 
 <section
-	class="mx-6 mt-6 flex flex-col lg:mx-28 lg:mb-3 lg:mt-0 lg:min-h-[70svh] lg:justify-evenly"
+  class="mx-6 mt-6 flex flex-col lg:mx-28 lg:mb-3 lg:mt-0 lg:min-h-[70svh] lg:justify-evenly"
 >
-	<h2
-		data-aos="fade-right"
-		class={cn(
-			'mb-4 inline-block border-l-4 border-natgeo-yellow pl-3 font-poppins text-[27px] font-extrabold xs:text-2xl lg:text-4xl',
-			{
-				'font-noto-sans-kannada': lang === 'kok',
-			},
-		)}
-	>
-		{t('landing.priest-speaks')}
-	</h2>
+  <h2
+    data-aos="fade-right"
+    class={cn(
+      "mb-4 inline-block border-l-4 border-natgeo-yellow pl-3 font-poppins text-[27px] font-extrabold xs:text-2xl lg:text-4xl",
+      {
+        "font-noto-sans-kannada": lang === "kok",
+      }
+    )}
+  >
+    {t("landing.priest-speaks")}
+  </h2>
 
-	<div class="flex flex-col gap-x-10 lg:flex-row">
-		<div class="lg:min-w-72 xl:min-w-96">
-			<div
-				data-aos="fade-in"
-				class="relative mx-auto flex w-fit flex-col items-center"
-			>
-				<div class="absolute top-full -z-10 h-[43%] w-[103%]"></div>
-				<Image
-					src={priestImage}
-					alt="Parish Priest of Our Lady of Pompei Church"
-					width={300}
-				/>
-			</div>
+  <div class="flex flex-col gap-x-10 lg:flex-row">
+    <div class="lg:min-w-72 xl:min-w-96">
+      <div
+        data-aos="fade-in"
+        class="relative mx-auto flex w-fit flex-col items-center"
+      >
+        <div class="absolute top-full -z-10 h-[43%] w-[103%]"></div>
+        <NetworkImage
+          src={parishPriestMessage?.parishPriestImage.url ||
+            "Hello Parishioners"}
+          alt={parishPriestMessage?.parishPriestName || "Father"}
+          width={parishPriestMessage?.parishPriestImage.width || 300}
+          height={parishPriestMessage?.parishPriestImage.height || 300}
+          class="w-[300px]"
+        />
+      </div>
 
-			<figcaption
-				class="font-lora mt-2 text-center text-lg italic text-slate-600"
-			>
-				{t('landing.priest-name')}
-			</figcaption>
-		</div>
+      <figcaption
+        class="font-lora mt-2 text-center text-lg italic text-slate-600"
+      >
+        {parishPriestMessage?.parishPriestName}
+      </figcaption>
+    </div>
 
-		<div class="lg:self-center">
-			<p
-				class={cn(`text-justify font-geist pt-2 text-base leading-7`, {
-					'font-noto-sans-kannada': lang === 'kok',
-				})}
-			>
-				{lang === 'kok' ? priestMessage.kok : priestMessage.en}
-			</p>
-			<div class="flex flex-col items-end pb-6 lg:mt-10">
-				<span class="mt-2 font-bold">{t('landing.priest')}</span>
-			</div>
-		</div>
-	</div>
+    <div class="lg:self-center">
+      <p
+        class={cn(`text-justify font-geist pt-2 text-base leading-7`, {
+          "font-noto-sans-kannada": lang === "kok",
+        })}
+      >
+        {parishPriestMessage?.message}
+      </p>
+      <div class="flex flex-col items-end pb-6 lg:mt-10">
+        <span class="mt-2 font-bold">{t("landing.priest")}</span>
+      </div>
+    </div>
+  </div>
 </section>
