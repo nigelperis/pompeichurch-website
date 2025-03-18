@@ -2,9 +2,15 @@
 import Layout from '~/layouts/layout.astro';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import ParishPastoralCouncilList from '~/components/sections/parish-pastoral-council/parish-pastoral-council-list.astro';
+import type { ParishPastoralCouncil } from '~/models/parish-pastoral-council';
+import { listPastoralCouncilData } from '~/services/parish-pastoral-council/list-parish-pastoral-council-data.ts';
+import { getPastoralCouncilImage } from '~/services/parish-pastoral-council/get-parish-pastoral-council-image.ts';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+const parishPastoralCouncilData: ParishPastoralCouncil[] = (await listPastoralCouncilData( {locale: 'kok'} )) || [];
+const parishPastoralCouncilImage = await getPastoralCouncilImage();
 ---
 
 <Layout title="Pompei Church | Parish Pastoral Council">
@@ -15,7 +21,7 @@ const t = useTranslations(lang);
 			>
 				{t('parish.pastoral-parishad')}
 			</h1>
-			<ParishPastoralCouncilList />
+			<ParishPastoralCouncilList pastoralCouncilData={parishPastoralCouncilData} pastoralCouncilImage={parishPastoralCouncilImage} />
 		</section>
 	</main>
 </Layout>
