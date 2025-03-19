@@ -7,10 +7,10 @@ const { pastoralCouncilImage } = Astro.props;
 ---
 <div>
 	<NetworkImage
-			src={pastoralCouncilImage.pastoralCouncilImage.url}
+			src={pastoralCouncilImage?.pastoralCouncilImage.url || 'Parish Pastoral Council of Our Lady of Pompei Church'}
 			alt="Parish Pastoral Council of Our Lady of Pompei Church"
-			width={pastoralCouncilImage.pastoralCouncilImage.width}
-			height={pastoralCouncilImage.pastoralCouncilImage.height}
+			width={pastoralCouncilImage?.pastoralCouncilImage.width || 300}
+			height={pastoralCouncilImage?.pastoralCouncilImage.height || 300}
 			class="w-full rounded-sm object-contain pb-4 pt-4"
 		/>
 	<table class="mx-auto w-full max-w-4xl border border-gray-200">
