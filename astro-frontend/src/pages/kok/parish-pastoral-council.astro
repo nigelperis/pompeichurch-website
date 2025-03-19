@@ -9,7 +9,7 @@ import { getPastoralCouncilImage } from '~/services/parish-pastoral-council/get-
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const parishPastoralCouncilData: ParishPastoralCouncil[] = (await listPastoralCouncilData( {locale: 'kok'} )) || [];
+const parishPastoralCouncilData: ParishPastoralCouncil[] = (await listPastoralCouncilData( {page:1, pageSize: 100, locale: 'kok'} )) || [];
 const parishPastoralCouncilImage = await getPastoralCouncilImage();
 ---
 

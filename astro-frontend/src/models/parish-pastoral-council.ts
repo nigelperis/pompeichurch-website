@@ -11,20 +11,16 @@ export interface ParishPastoralCouncil {
   locale?: string;
 }
 
-interface Pagination {
-  page: number;
-  pageSize: number;
-  pageCount: number;
-  total: number;
-}
-
-interface Meta {
-  pagination: Pagination;
-}
-
 interface ParishPastoralCouncilData {
   data: ParishPastoralCouncil[];
-  meta: Meta;
+  meta: {
+		pagination: {
+			page: number;
+			pageSize: number;
+			pageCount: number;
+			total: number;
+		};
+	};
 }
 
 export type { ParishPastoralCouncilData };
