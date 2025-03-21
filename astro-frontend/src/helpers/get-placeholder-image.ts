@@ -3,7 +3,7 @@ interface PlaceholderImageArgs {
 	width?: number;
 	/**@defaultValue 400 */
 	height?: number;
-	/**@defaultValue 'TAC+Design+Lab' */
+	/**@defaultValue 'Pompei+Church' */
 	text?: string;
 	/**@defaultValue 'svg' */
 	format?: 'svg' | 'webp' | 'png' | 'jpeg';

@@ -15,7 +15,7 @@ const lang = getLangFromUrl(Astro.url);
 			type="button"
 			id="lang-button"
 			class={cn(
-				'inline-flex font-poppins font-semibold justify-center rounded-md border border-gray-500 px-2 pt-2 pb-1 xs:-mt-1',
+				'inline-flex font-poppins font-semibold justify-center rounded-md border border-gray-500 px-2 pt-2 pb-1 xs:-mt-1 hover:bg-natgeo-yellow',
 				lang === 'kok' &&
 					'font-noto-sans-kannada text-sm xs:pt-2 xs:font-semibold lg:pt-3',
 			)}
@@ -25,7 +25,7 @@ const lang = getLangFromUrl(Astro.url);
 			<Icon
 				name="chevron-down"
 				id="lang-arrow"
-				class="-mr-1 h-5 w-5 transition-transform duration-200 ease-in-out"
+				class="-mr-1 h-5 w-5 transition-transform duration-300 ease-in-out"
 			/>
 		</button>
 	</div>

@@ -14,11 +14,7 @@ const { slug } = Astro.params;
 const lang = getLangFromUrl(Astro.url);
 
 const event = await getEvent(slug ?? '');
-
-if (!event) {
-  console.error("Event not found for slug:", slug);
-  return;
-}
+const { events: allEvents } = await listEvents();
 
 const eventUrl = lang === 'en' ? `/events/${slug}/` : `/kok/events/${slug}/`;
 
@@ -37,20 +33,9 @@ const eventImage = event?.eventImage ?? {
 	height: 400,
 };
 
-const { events: prevEventList } = await listEvents({
-  filters: { id: { $lt: String(event.id) } },
-  sortBy: ['id:desc'],
-  pageSize: 1,
-});
-
-const { events: nextEventList } = await listEvents({
-  filters: { id: { $gt: String(event.id) } },
-  sortBy: ['id:asc'],
-  pageSize: 1,
-});
-
-const prevEvent = prevEventList[0] ?? null;
-const nextEvent = nextEventList[0] ?? null;
+const eventIndex = allEvents.findIndex((e) => e.slug === slug);
+const prevEvent = allEvents[eventIndex - 1];
+const nextEvent = allEvents[eventIndex + 1];
 
 const socialLinks = [
 	{ platform: 'facebook', url: event?.facebookLink },
