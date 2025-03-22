@@ -6,6 +6,7 @@ import HoverableLink from '~/components/ui/hoverable-link.astro';
 import Card from '~/components/normal-card.astro';
 import { listObituaries } from '~/services/obituaries/list-obituaries';
 import ShareLink from '~/components/ui/share-link.astro';
+import { Message } from "~/constants/message.ts";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -90,6 +91,6 @@ const featuredObituary = obituaries.length === 5 ? obituaries[4] : null;
 			</div>
 		</>
 	) : (
-		<p class="text-center font-semibold text-3xl py-8">No Obituaries!</p>
+	<p class="py-8 text-center text-3xl font-semibold">{Message.OBITUARIES}</p>
 	)}
 </section>

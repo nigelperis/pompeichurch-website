@@ -5,6 +5,7 @@ import Pagination from '~/components/pagination.astro';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import { listObituaries } from '~/services/obituaries/list-obituaries';
 import type { Obituary } from '~/models/obituary';
+import { Message } from '~/constants/message.ts';
 
 const url = new URL(Astro.url);
 const lang = getLangFromUrl(Astro.url);
@@ -64,7 +65,9 @@ const obituaryUrl = new URL(
             <Pagination currentPage={currentPage} totalPages={totalPages} />
           </>
         ) : (
-          <p class="py-8 text-center text-3xl font-semibold">No Obituaries!</p>
+          <p class="py-8 text-center text-3xl font-semibold">
+            {Message.OBITUARIES}
+          </p>
         )
       }
     </section>

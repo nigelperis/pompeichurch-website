@@ -7,6 +7,8 @@ import { Locale } from "~/models/parish-priest-message";
 
 import NetworkImage from "~/components/ui/network-image.astro";
 
+import { Message } from "~/constants/message.ts";
+
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
@@ -61,7 +63,15 @@ const parishPriestMessage =
           "font-noto-sans-kannada": lang === "kok",
         })}
       >
-        {parishPriestMessage?.message}
+        {
+          parishPriestMessage === null ? (
+            <p class="py-8 text-center text-3xl font-semibold">
+              {Message.MESSAGE}
+            </p>
+          ) : (
+            parishPriestMessage?.message
+          )
+        }
       </p>
       <div class="flex flex-col items-end pb-6 lg:mt-10">
         <span class="mt-2 font-bold">{t("landing.priest")}</span>
