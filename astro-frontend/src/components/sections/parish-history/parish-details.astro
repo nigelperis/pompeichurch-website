@@ -1,78 +1,108 @@
 ---
-import { parishHistoryKok } from '~/constants/parish-history-kok';
-import { parishHistory } from '~/constants/parish-history';
-import { Image } from 'astro:assets';
-import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+import { parishHistoryKok } from "~/constants/parish-history-kok";
+import { parishHistory } from "~/constants/parish-history";
+import { Image } from "astro:assets";
+import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 
 // Images
-import churchBannerImage from '~/assets/parish-history/church-banner.jpg';
-import history1 from '~/assets/parish-history/history-1.jpg';
-import history2 from '~/assets/parish-history/history-2.jpg';
-import history3 from '~/assets/parish-history/history-3.jpg';
-import history4 from '~/assets/parish-history/history-4.jpg';
-import history5 from '~/assets/parish-history/history-5.jpg';
-import history6 from '~/assets/parish-history/history-6.jpg';
+import churchBannerImage from "~/assets/parish-history/church-banner.jpg";
+import history1 from "~/assets/parish-history/history-1.jpg";
+import history2 from "~/assets/parish-history/history-2.jpg";
+import history3 from "~/assets/parish-history/history-3.jpg";
+import history4 from "~/assets/parish-history/history-4.jpg";
+import history5 from "~/assets/parish-history/history-5.jpg";
+import history6 from "~/assets/parish-history/history-6.jpg";
 
 // Components
-import EmblaCarosuel from '~/components/ui/embla-carousel.astro';
-import EmblaCarosuelItem from '~/components/ui/embla-carousel-item.astro';
+import EmblaCarousel from "~/components/ui/embla-carousel.astro";
+import EmblaCarouselItem from "~/components/ui/embla-carousel-item.astro";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 const historyData =
-	lang === 'kok' ? parishHistoryKok[0].history : parishHistory[0].history;
+  lang === "kok" ? parishHistoryKok[0].history : parishHistory[0].history;
 
 const priestsData =
-	lang === 'kok' ? parishHistoryKok[1].priestInfo : parishHistory[1].priestInfo;
+  lang === "kok" ? parishHistoryKok[1].priestInfo : parishHistory[1].priestInfo;
 
-const fontClass = lang === 'kok' ? 'font-noto-sans-kannada' : 'font-geist';
+const fontClass = lang === "kok" ? "font-noto-sans-kannada" : "font-geist";
 const images = [history1, history2, history3, history4, history5, history6];
 ---
 
 <div class="mx-auto">
-	<div class={fontClass}>
-		<div class="md:float-right md:ml-5 lg:mt-2">
-			<Image src={churchBannerImage} alt="Church Banner Image" />
-		</div>
-		<div
-			class="text-md mt-1 text-justify leading-7 text-slate-700"
-			set:html={historyData}
-		/>
-		<div
-			class="text-md pb-4 text-justify leading-7 text-slate-700"
-			set:html={priestsData}
-		/>
-		<h1 class="mb-4 mt-2 text-2xl font-extrabold lg:text-3xl">
-			{t('history.sweet-memories')}
-		</h1>
-		<div class="mt-4 pb-4">
-			<div class="hidden grid-cols-1 gap-4 md:grid md:grid-cols-2">
-				{
-					images.map((image) => (
-						<Image
-							src={image}
-							alt="Historic Image of Our Parish"
-							class="w-full"
-						/>
-					))
-				}
-			</div>
-			<div class="mx-[-1.5rem] block md:hidden">
-				<EmblaCarosuel autoScroll={true} showArrows={true}>
-					{
-						images.map((image) => (
-							<EmblaCarosuelItem>
-								<Image
-									src={image}
-									alt="Historic Image of Our Parish"
-									class="w-full object-cover"
-								/>
-							</EmblaCarosuelItem>
-						))
-					}
-				</EmblaCarosuel>
-			</div>
-		</div>
-	</div>
+  <div class={fontClass}>
+    <div class="md:float-right md:ml-5 lg:mt-2">
+      <Image src={churchBannerImage} alt="Church Banner Image" />
+    </div>
+    <div
+      class="text-md mt-1 text-justify leading-7 text-slate-700"
+      set:html={historyData}
+    />
+    <div
+      class="text-md pb-4 text-justify leading-7 text-slate-700"
+      set:html={priestsData}
+    />
+    <h1 class="mb-4 mt-2 text-2xl font-extrabold lg:text-3xl">
+      {t("history.sweet-memories")}
+    </h1>
+    <div class="mt-4 pb-4">
+      <div
+        class="hidden grid-cols-1 gap-4 md:grid md:grid-cols-2 history-gallery"
+      >
+        {
+          images.map((image) => (
+            <a
+              href="javascript:void(0);"
+              data-pswp-src={image.src}
+              data-pswp-width={image.width}
+              data-pswp-height={image.height}
+            >
+              <Image
+                src={image}
+                alt="Historic Image of Our Parish"
+                class="w-full cursor-pointer"
+              />
+            </a>
+          ))
+        }
+      </div>
+      <div class="mx-[-1.5rem] block md:hidden history-gallery">
+        <EmblaCarousel autoScroll={true} showArrows={true}>
+          {
+            images.map((image) => (
+              <EmblaCarouselItem>
+                <a
+                  href="javascript:void(0);"
+                  data-pswp-src={image.src}
+                  data-pswp-width={image.width}
+                  data-pswp-height={image.height}
+                >
+                  <Image
+                    src={image}
+                    alt="Historic Image of Our Parish"
+                    class="w-full object-cover cursor-pointer"
+                  />
+                </a>
+              </EmblaCarouselItem>
+            ))
+          }
+        </EmblaCarousel>
+      </div>
+    </div>
+  </div>
 </div>
+
+<script>
+  import "photoswipe/style.css";
+  import PhotoSwipeLightbox from "photoswipe/lightbox";
+
+  const historyLightbox = new PhotoSwipeLightbox({
+    mainClass: "pswp--custom-icon-colors",
+    gallery: ".history-gallery",
+    children: "a",
+    pswpModule: () => import("photoswipe"),
+  });
+
+  historyLightbox.init();
+</script>
