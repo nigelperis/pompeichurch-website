@@ -4,6 +4,7 @@ import Layout from '~/layouts/layout.astro';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import type { PompeichemFalkem } from '~/models/pompeichem-falkem';
 import { listMagazines } from '~/services/list-magazines';
+import { Message } from '~/constants/message.ts';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -12,14 +13,22 @@ const magazines: PompeichemFalkem[] = (await listMagazines()) || [];
 ---
 
 <Layout title="Pompei Church | Pompeichem Falkem">
-	<main class="mx-auto max-w-4xl overflow-hidden bg-white">
-		<section id="pompeichem-falkem" class="flex flex-col p-6">
-			<h1
-				class="border-natgeo-yellow border-l-4 pl-3 text-3xl font-extrabold lg:text-4xl"
-			>
-				{t('nav.pompeichem-falkem')}
-			</h1>
-			<PompeichemFalkemList magazines={magazines}/>
-		</section>
-	</main>
+  <main class="mx-auto max-w-4xl overflow-hidden bg-white">
+    <section id="pompeichem-falkem" class="flex flex-col p-6">
+      <h1
+        class="border-natgeo-yellow border-l-4 pl-3 text-3xl font-extrabold lg:text-4xl"
+      >
+        {t('nav.pompeichem-falkem')}
+      </h1>
+      {
+        magazines.length > 0 ? (
+          <PompeichemFalkemList magazines={magazines} />
+        ) : (
+          <p class="py-8 text-center text-3xl font-semibold">
+            {Message.MAGAZINE}
+          </p>
+        )
+      }
+    </section>
+  </main>
 </Layout>

@@ -5,12 +5,14 @@ import ParishPastoralCouncilList from "~/components/sections/parish-pastoral-cou
 import type { ParishPastoralCouncil } from "~/models/parish-pastoral-council";
 import { listPastoralCouncilData } from "~/services/parish-pastoral-council/list-parish-pastoral-council-data.ts";
 import { getPastoralCouncilImage } from "~/services/parish-pastoral-council/get-parish-pastoral-council-image.ts";
+import { Message } from "~/constants/message.ts";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 const parishPastoralCouncilDataKok: ParishPastoralCouncil[] =
-  (await listPastoralCouncilData({ page: 1, pageSize: 100, locale: "kok" })) || [];
+  (await listPastoralCouncilData({ page: 1, pageSize: 100, locale: "kok" })) ||
+  [];
 const parishPastoralCouncilData: ParishPastoralCouncil[] =
   (await listPastoralCouncilData({ page: 1, pageSize: 100 })) || [];
 const parishPastoralCouncilImage = await getPastoralCouncilImage();
@@ -30,11 +32,15 @@ const parishPastoralCouncilImage = await getPastoralCouncilImage();
             pastoralCouncilData={parishPastoralCouncilData}
             pastoralCouncilImage={parishPastoralCouncilImage}
           />
-        ) : (
+        ) : parishPastoralCouncilDataKok.length > 0 ? (
           <ParishPastoralCouncilList
             pastoralCouncilData={parishPastoralCouncilDataKok}
             pastoralCouncilImage={parishPastoralCouncilImage}
           />
+        ) : (
+          <p class="py-8 text-center text-3xl font-semibold">
+            {Message.COUNCIL}
+          </p>
         )
       }
     </section>
