@@ -1,27 +1,42 @@
 ---
-import Layout from '~/layouts/layout.astro';
-import { getLangFromUrl, useTranslations } from '~/i18n/utils';
-import ParishPastoralCouncilList from '~/components/sections/parish-pastoral-council/parish-pastoral-council-list.astro';
-import type { ParishPastoralCouncil } from '~/models/parish-pastoral-council';
-import { listPastoralCouncilData } from '~/services/parish-pastoral-council/list-parish-pastoral-council-data.ts';
-import { getPastoralCouncilImage } from '~/services/parish-pastoral-council/get-parish-pastoral-council-image';
+import Layout from "~/layouts/layout.astro";
+import { getLangFromUrl, useTranslations } from "~/i18n/utils";
+import ParishPastoralCouncilList from "~/components/sections/parish-pastoral-council/parish-pastoral-council-list.astro";
+import type { ParishPastoralCouncil } from "~/models/parish-pastoral-council";
+import { listPastoralCouncilData } from "~/services/parish-pastoral-council/list-parish-pastoral-council-data.ts";
+import { getPastoralCouncilImage } from "~/services/parish-pastoral-council/get-parish-pastoral-council-image.ts";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const parishPastoralCouncilData: ParishPastoralCouncil[] = (await listPastoralCouncilData( { page: 1, pageSize: 100 })) || [];
+const parishPastoralCouncilDataKok: ParishPastoralCouncil[] =
+  (await listPastoralCouncilData({ page: 1, pageSize: 100, locale: "kok" })) || [];
+const parishPastoralCouncilData: ParishPastoralCouncil[] =
+  (await listPastoralCouncilData({ page: 1, pageSize: 100 })) || [];
 const parishPastoralCouncilImage = await getPastoralCouncilImage();
 ---
 
 <Layout title="Pompei Church | Parish Pastoral Council">
-	<main class="mx-auto max-w-4xl overflow-hidden bg-white">
-		<section id="pastoral-council" class="flex flex-col p-6 pb-4">
-			<h1
-				class="border-natgeo-yellow border-l-4 pl-3 text-3xl font-extrabold lg:text-4xl"
-			>
-				{t('parish.pastoral-parishad')}
-			</h1>
-			<ParishPastoralCouncilList pastoralCouncilData={parishPastoralCouncilData} pastoralCouncilImage={parishPastoralCouncilImage} />
-		</section>
-	</main>
+  <main class="mx-auto max-w-4xl overflow-hidden bg-white">
+    <section id="pastoral-council" class="flex flex-col p-6 pb-4">
+      <h1
+        class="border-natgeo-yellow border-l-4 pl-3 text-3xl font-extrabold lg:text-4xl"
+      >
+        {t("parish.pastoral-parishad")}
+      </h1>
+      {
+        parishPastoralCouncilData.length > 0 ? (
+          <ParishPastoralCouncilList
+            pastoralCouncilData={parishPastoralCouncilData}
+            pastoralCouncilImage={parishPastoralCouncilImage}
+          />
+        ) : (
+          <ParishPastoralCouncilList
+            pastoralCouncilData={parishPastoralCouncilDataKok}
+            pastoralCouncilImage={parishPastoralCouncilImage}
+          />
+        )
+      }
+    </section>
+  </main>
 </Layout>
