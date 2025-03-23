@@ -1,4 +1,5 @@
 import type { BlocksContent } from "@strapi/blocks-react-renderer";
+import type { Locale } from "~/enums/locale";
 
 interface MediaFormat {
   ext: string;
@@ -50,11 +51,6 @@ export interface ParishPriestMessage {
   publishedAt: string;
   locale: Locale;
   parishPriestImage: ParishPriestImage;
-}
-
-export enum Locale {
-  EN= 'en',
-  KOK= 'kok'
 }
 
 interface ParishPriestMessageData {

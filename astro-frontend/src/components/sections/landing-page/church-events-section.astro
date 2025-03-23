@@ -7,9 +7,10 @@ import { cn } from '~/helpers/cn';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const eventsUrl = lang === 'en' ? '/events' : '/kok/events';
+const eventsUrl = lang === Locale.EN ? '/events' : '/kok/events';
 
 import { listEvents } from '~/services/events/list-events';
+import { Locale } from '~/enums/locale';
 
 const data = (await listEvents({ page: 1, pageSize: 3 })) || [];
 ---
@@ -22,7 +23,7 @@ const data = (await listEvents({ page: 1, pageSize: 3 })) || [];
 		class={cn(
 			'mb-6 inline-block border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold xs:text-2xl lg:text-4xl',
 			{
-				'font-noto-sans-kannada': lang === 'kok',
+				'font-noto-sans-kannada': lang === Locale.KOK,
 			},
 		)}
 	>
@@ -50,7 +51,7 @@ const data = (await listEvents({ page: 1, pageSize: 3 })) || [];
 		)
 	}
 
-		{data.events.length > 3 && (
+		{data.events.length && (
 		<div class="flex justify-center">
 			<HoverableLink href={eventsUrl} class="m-5">
 				{t('ui.show-more-events')}

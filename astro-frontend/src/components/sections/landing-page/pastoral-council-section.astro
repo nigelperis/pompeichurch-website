@@ -10,11 +10,12 @@ import priestImage from '~/assets/pastoral-council/fr-rudolph-dsa-white.jpg';
 import vicepresident from '~/assets/pastoral-council/vp-image.jpg';
 import ayogPresident from '~/assets/pastoral-council/mrs-hilda-menezes.jpg';
 import praveenLobo from '~/assets/pastoral-council/mr-praveen-lobo.jpg';
+import { Locale } from '~/enums/locale';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const councilUrl =
-	lang === 'en' ? '/parish-pastoral-council' : '/kok/parish-pastoral-council';
+	lang === Locale.EN ? '/parish-pastoral-council' : '/kok/parish-pastoral-council';
 ---
 
 <section
@@ -25,7 +26,7 @@ const councilUrl =
 		class={cn(
 			'mx-6 mb-4 inline-block border-l-4 border-natgeo-yellow pl-3 font-poppins text-[27px] font-extrabold xs:text-2xl lg:mx-0 lg:text-4xl',
 			{
-				'font-noto-sans-kannada': lang === 'kok',
+				'font-noto-sans-kannada': lang === Locale.KOK,
 			},
 		)}
 	>

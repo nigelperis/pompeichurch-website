@@ -9,12 +9,13 @@ import { socials } from "~/constants/social-media-handles";
 
 //Images
 import fallbackImage from "~/assets/landing-page/temp-logo.webp";
+import { Locale } from "~/enums/locale";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const { slug } = Astro.params;
 
-const associationData = lang === "kok" ? associationsKok : associations;
+const associationData = lang === Locale.KOK ? associationsKok : associations;
 
 const association = associationData.find((assoc) => assoc.slug === slug);
 
@@ -39,7 +40,7 @@ const { associationImage, description, officeBearers = [] } = association || {};
     <p
       class={cn(
         "text-md mt-4 text-justify font-geist leading-7 text-slate-700 ",
-        { "font-noto-sans-kannada": lang === "kok" }
+        { "font-noto-sans-kannada": lang === Locale.KOK }
       )}
       set:html={description}
     />

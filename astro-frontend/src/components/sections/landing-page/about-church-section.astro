@@ -3,6 +3,7 @@ import { getImage } from 'astro:assets';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import { cn } from '~/helpers/cn';
 import { historyExcerpt } from '~/constants/parish-history-excerpt';
+import { Locale } from "~/enums/locale";
 
 //Images
 import maryGrotto from '~/assets/landing-page/mary-grotto.jpg';
@@ -14,7 +15,7 @@ import HoverableLink from '~/components/ui/hoverable-link.astro';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const optimizedGrottoImage = await getImage({ src: maryGrotto });
-const historyUrl = lang === 'en' ? '/parish-history' : '/kok/parish-history';
+const historyUrl = lang === Locale.EN ? '/parish-history' : '/kok/parish-history';
 ---
 
 <section
@@ -24,7 +25,7 @@ const historyUrl = lang === 'en' ? '/parish-history' : '/kok/parish-history';
 	<h1
 		data-aos="fade-right"
 		class={cn('font-poppins text-5xl font-black leading-tight', {
-			'font-noto-sans-kannada	': lang === 'kok',
+			'font-noto-sans-kannada	': lang === Locale.KOK,
 		})}
 	>
 		{t('landing.about-church')}
@@ -34,9 +35,9 @@ const historyUrl = lang === 'en' ? '/parish-history' : '/kok/parish-history';
 			class="lg:gap-18 relative flex w-full flex-col gap-12 bg-cover bg-center pb-2 xl:gap-20"
 		>
 			<p
-				class={`max-w-2xl text-justify ${lang === 'kok' ? 'font-noto-sans-kannada' : 'font-geist'} text-base leading-7 drop-shadow-xl lg:max-w-fit`}
+				class={`max-w-2xl text-justify ${lang === Locale.KOK ? 'font-noto-sans-kannada' : 'font-geist'} text-base leading-7 drop-shadow-xl lg:max-w-fit`}
 			>
-				{lang === 'kok' ? historyExcerpt.kok : historyExcerpt.en}
+				{lang === Locale.KOK ? historyExcerpt.kok : historyExcerpt.en}
 			</p>
 
 			<div class="flex justify-end">

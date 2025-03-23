@@ -6,6 +6,7 @@ import { cn } from '~/helpers/cn';
 
 //Images
 import psalmBg from '~/assets/prayer-corner/psalm-bg.jpg';
+import { Locale } from '~/enums/locale';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -16,7 +17,7 @@ const optimizedBgImage = await getImage({ src: psalmBg });
 	class={cn(
 		'mt-4 border-b-2 border-b-natgeo-yellow pb-2 font-poppins text-2xl font-bold lg:text-3xl',
 		{
-			'font-noto-sans-kannada': lang === 'kok',
+			'font-noto-sans-kannada': lang === Locale.KOK,
 		},
 	)}
 >
@@ -32,8 +33,8 @@ const optimizedBgImage = await getImage({ src: psalmBg });
 			<div class="bg-opacity-80">
 				<h3
 					class={cn('text-center font-extrabold sm:text-xl', {
-						'font-noto-sans-kannada': lang === 'kok',
-						'font-geist': lang !== 'kok',
+						'font-noto-sans-kannada': lang === Locale.KOK,
+						'font-geist': lang !== Locale.KOK,
 					})}
 				>
 					{psalm.title}
@@ -42,8 +43,8 @@ const optimizedBgImage = await getImage({ src: psalmBg });
 				<p
 					set:html={psalm.content}
 					class={cn('text-center leading-relaxed', {
-						'font-noto-sans-kannada': lang === 'kok',
-						'font-geist': lang !== 'kok',
+						'font-noto-sans-kannada': lang === Locale.KOK,
+						'font-geist': lang !== Locale.KOK,
 					})}
 				/>
 			</div>

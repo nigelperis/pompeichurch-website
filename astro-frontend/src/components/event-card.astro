@@ -4,6 +4,7 @@ import HoverableLink from './ui/hoverable-link.astro';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import ShareLink from './ui/share-link.astro';
 import NetworkImage from './ui/network-image.astro';
+import { Locale } from '~/enums/locale';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -33,7 +34,7 @@ const {
 	...rest
 } = Astro.props;
 
-const eventUrl = lang === 'en' ? `/events/${slug}/` : `/kok/events/${slug}/`;
+const eventUrl = lang === Locale.EN ? `/events/${slug}/` : `/kok/events/${slug}/`;
 ---
 
 <div

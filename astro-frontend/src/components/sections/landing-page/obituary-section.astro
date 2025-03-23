@@ -9,9 +9,10 @@ import ShareLink from '~/components/ui/share-link.astro';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const obituaryLink = lang === 'en' ? '/obituary' : '/kok/obituary';
+const obituaryLink = lang === Locale.EN ? '/obituary' : '/kok/obituary';
 
 import { format } from 'date-fns';
+import { Locale } from '~/enums/locale';
 
 const { obituaries } = await listObituaries({ page: 1, pageSize: 5 });
 
@@ -31,7 +32,7 @@ const featuredObituary = obituaries.length === 5 ? obituaries[4] : null;
 		class={cn(
 			'mx-6 mb-4 inline-block border-l-4 border-natgeo-yellow pl-3 font-poppins text-[27px] font-extrabold xs:text-2xl lg:mx-0 lg:text-4xl',
 			{
-				'font-noto-sans-kannada': lang === 'kok',
+				'font-noto-sans-kannada': lang === Locale.KOK,
 			},
 		)}
 	>
@@ -52,7 +53,7 @@ const featuredObituary = obituaries.length === 5 ? obituaries[4] : null;
 							class="absolute bottom-4 right-4"
 							shareData={{
 								url: `${new URL(
-									lang === 'en'
+									lang === Locale.EN
 										? `/obituary?id=${obituary.englishName.replace(/\s+/g, '-').toLowerCase()}`
 										: `/kok/obituary?id=${obituary.englishName.replace(/\s+/g, '-').toLowerCase()}`,
 									Astro.url

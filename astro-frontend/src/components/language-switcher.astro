@@ -4,8 +4,9 @@ const currentLocale = Astro.currentLocale;
 import { cn } from '~/helpers/cn';
 import { getLangFromUrl } from '~/i18n/utils';
 import { Icon } from 'astro-icon/components';
+import { Locale } from '~/enums/locale';
 
-const selectedLanguage = currentLocale === 'kok' ? 'ಕೊಂಕಣಿ' : 'English';
+const selectedLanguage = currentLocale === Locale.KOK ? 'ಕೊಂಕಣಿ' : 'English';
 const lang = getLangFromUrl(Astro.url);
 ---
 
@@ -16,7 +17,7 @@ const lang = getLangFromUrl(Astro.url);
 			id="lang-button"
 			class={cn(
 				'inline-flex font-poppins font-semibold justify-center rounded-md border border-gray-500 px-2 pt-2 pb-1 xs:-mt-1 md:hover:bg-natgeo-yellow',
-				lang === 'kok' &&
+				lang === Locale.KOK &&
 					'font-noto-sans-kannada text-sm xs:pt-2 xs:font-semibold lg:pt-3',
 			)}
 			style="line-height: 1;"
@@ -55,6 +56,8 @@ const lang = getLangFromUrl(Astro.url);
 </div>
 
 <script>
+import { Locale } from "~/enums/locale";
+
 	document.addEventListener('DOMContentLoaded', () => {
 		const button = document.getElementById(
 			'lang-button',
@@ -76,9 +79,9 @@ const lang = getLangFromUrl(Astro.url);
 
 			const currentPath = window.location.pathname;
 			const pathWithLocaleStripped = currentPath.replace(/^\/kok\//, '/');
-			const localeToSwitchTo = lang === 'ಕೊಂಕಣಿ' ? 'kok' : 'en';
+			const localeToSwitchTo = lang === 'ಕೊಂಕಣಿ' ? Locale.KOK : Locale.EN;
 			const newPath =
-				localeToSwitchTo === 'kok'
+				localeToSwitchTo === Locale.KOK
 					? `/${localeToSwitchTo}${pathWithLocaleStripped}`
 					: `${pathWithLocaleStripped}`;
 

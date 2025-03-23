@@ -3,11 +3,12 @@ import PullDown from '~/components/pull-down.astro';
 import { cn } from '~/helpers/cn';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import { commissions } from '~/constants/commissions';
+import { Locale } from '~/enums/locale';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const fontClass = lang === 'kok' ? 'font-noto-sans-kannada' : 'font-geist';
+const fontClass = lang === Locale.KOK ? 'font-noto-sans-kannada' : 'font-geist';
 ---
 
 <h2 class={cn('font-geist text-lg font-normal text-gray-700')}>
