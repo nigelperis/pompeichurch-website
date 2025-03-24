@@ -3,17 +3,18 @@ import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import { cn } from '~/helpers/cn';
 import { prayersKok } from '~/constants/prayers-kok';
 import { prayers } from '~/constants/prayers';
+import { Locale } from '~/enums/locale';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const prayer = lang === 'kok' ? prayersKok : prayers;
+const prayer = lang === Locale.KOK ? prayersKok : prayers;
 ---
 
 <h2
 	class={cn(
 		'mb-4 border-b-2 border-b-natgeo-yellow pb-2 font-poppins text-2xl font-bold lg:text-3xl',
 		{
-			'font-noto-sans-kannada': lang === 'kok',
+			'font-noto-sans-kannada': lang === Locale.KOK,
 		},
 	)}
 >
@@ -29,8 +30,8 @@ const prayer = lang === 'kok' ? prayersKok : prayers;
 					class={cn(
 						'card-content text-sl flex flex-1 flex-col items-center space-y-4 p-5',
 						{
-							'font-noto-sans-kannada xs:font-normal': lang === 'kok',
-							'font-serif': lang !== 'kok',
+							'font-noto-sans-kannada xs:font-normal': lang === Locale.KOK,
+							'font-serif': lang !== Locale.KOK,
 						},
 					)}
 				>

@@ -1,5 +1,6 @@
+import { Locale } from "~/enums/locale";
 import { strapiFetch } from "~/helpers/strapi-fetch";
-import { Locale, type ParishPriestMessage, type ParishPriestMessageData } from "~/models/parish-priest-message";
+import { type ParishPriestMessage, type ParishPriestMessageData } from "~/models/parish-priest-message";
 
 async function fetchParishPriestMessage(locale: Locale = Locale.EN): Promise<ParishPriestMessage | null> {
   const endpoint = '/parish-priest-message';

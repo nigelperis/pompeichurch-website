@@ -6,6 +6,8 @@ import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import { navLinks } from "~/constants/nav-links.ts";
 import ScrollProgress from "~/components/ui/scroll-progress.astro";
 import LanguageSwitcher from "~/components/language-switcher.astro";
+import { Locale } from "~/enums/locale";
+
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
@@ -15,7 +17,7 @@ const t = useTranslations(lang);
   class="sticky top-0 z-10 w-full border-b border-gray-300 bg-white p-3 xl:px-28"
 >
   <section class="flex items-center justify-between">
-    <a href={lang === "kok" ? "/kok/" : "/"}>
+    <a href={lang === Locale.KOK ? "/kok/" : "/"}>
       <img
         src="/temp-logo.webp"
         alt="Our Lady of Pompei Church logo"
@@ -43,10 +45,10 @@ const t = useTranslations(lang);
                   }
                   class={cn(
                     "font-poppins font-semibold transition-all duration-200 p-2 rounded-md",
-                    lang === "kok"
+                    lang === Locale.KOK
                       ? "font-noto-sans-kannada text-sm p-2"
                       : "text-md",
-                    "hover:bg-natgeo-yellow"
+                    "hover:bg-natgeo-yellow",
                   )}
                 >
                   {t(link.title)}
@@ -110,7 +112,7 @@ const t = useTranslations(lang);
             <span
               class={cn(
                 "font-poppins group-hover:border-natgeo-yellow border-b-4 border-b-transparent font-black transition-all duration-150",
-                { "font-noto-sans-kannada": lang === "kok" }
+                { "font-noto-sans-kannada": lang === Locale.KOK },
               )}
             >
               {t(link.title)}
@@ -135,8 +137,8 @@ const t = useTranslations(lang);
                       class={cn(
                         "font-poppins group-hover:border-natgeo-yellow border-b-4 border-b-transparent text-lg font-semibold transition-all duration-150",
                         {
-                          "font-noto-sans-kannada font-normal": lang === "kok",
-                        }
+                          "font-noto-sans-kannada font-normal": lang === Locale.KOK,
+                        },
                       )}
                     >
                       {t(sublinks.title)}
@@ -181,11 +183,11 @@ const t = useTranslations(lang);
     ul > li.group {
       position: relative;
       border: 2px solid transparent;
-			z-index: 20;
+      z-index: 20;
     }
 
     ul > li.group > ul {
-			z-index: 30;
+      z-index: 30;
       display: none;
       position: absolute;
       left: 0;
@@ -221,10 +223,10 @@ const t = useTranslations(lang);
   const hamburgerClose = document.querySelector("#hamburger-close");
   const navbar = document.querySelector("#navbar");
   const expandableLinks = document.querySelectorAll(
-    "[data-expandable-links=true]"
+    "[data-expandable-links=true]",
   );
   const allNavigationLinks = document.querySelectorAll(
-    "nav a:not([data-expandable-links=true])"
+    "nav a:not([data-expandable-links=true])",
   );
 
   hamburgerMenu?.addEventListener("click", () => {
@@ -266,7 +268,7 @@ const t = useTranslations(lang);
         const elementHeight = expandableContent?.scrollHeight;
         expandableContent?.style?.setProperty(
           "max-height",
-          `${elementHeight ?? 500}px`
+          `${elementHeight ?? 500}px`,
         );
       }
     });
@@ -279,7 +281,7 @@ const t = useTranslations(lang);
       // Close all expandable submenus
       expandableLinks.forEach((element) => {
         const expandableContent = element.parentElement?.querySelector(
-          "a + ul"
+          "a + ul",
         ) as HTMLElement;
         expandableContent?.style.setProperty("max-height", "0");
         element.setAttribute("data-is-submenu-expanded", "false");

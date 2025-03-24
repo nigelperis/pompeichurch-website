@@ -3,6 +3,7 @@ import { wards } from '~/constants/wards';
 import { Image } from 'astro:assets';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import { cn } from '~/helpers/cn';
+import { Locale } from '~/enums/locale';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -13,12 +14,12 @@ const t = useTranslations(lang);
 		wards.map((ward) => (
 			<div
 				class={cn('mb-6 text-left', {
-					'font-noto-sans-kannada': lang === 'kok',
+					'font-noto-sans-kannada': lang === Locale.KOK,
 				})}
 			>
 				<h2
 					class={cn('font-poppins text-3xl font-bold text-slate-900', {
-						'font-noto-sans-kannada': lang === 'kok',
+						'font-noto-sans-kannada': lang === Locale.KOK,
 					})}
 				>
 					{t(`nav.${ward.name}`)}
@@ -28,7 +29,7 @@ const t = useTranslations(lang);
 						'text-xm font-geist mb-6 mt-4 text-justify font-semibold leading-7 text-gray-800',
 					)}
 				>
-					{lang === 'kok'
+					{lang === Locale.KOK
 						? `${t(`ward.${ward.patronName}`)} ${t('ward.patron')}`
 						: `${t('ward.patron')} ${t(`ward.${ward.patronName}`)}`}
 				</p>

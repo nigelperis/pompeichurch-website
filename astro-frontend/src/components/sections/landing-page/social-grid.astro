@@ -3,6 +3,7 @@ import { Icon } from "astro-icon/components";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import { cn } from "~/helpers/cn";
 import FeatureYoutube from "~/components/feature-youtube.astro";
+import { Locale } from "~/enums/locale";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -14,7 +15,7 @@ const t = useTranslations(lang);
     class={cn(
       "mb-4 inline-block border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold xs:text-2xl lg:mb-10 lg:text-4xl",
       {
-        "font-noto-sans-kannada": lang === "kok",
+        "font-noto-sans-kannada": lang === Locale.KOK,
       }
     )}
   >

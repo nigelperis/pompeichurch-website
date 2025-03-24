@@ -3,9 +3,9 @@ import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import { cn } from "~/helpers/cn";
 
 import { fetchParishPriestMessage } from "~/services/get-parish-priest-message";
-import { Locale } from "~/models/parish-priest-message";
 
 import NetworkImage from "~/components/ui/network-image.astro";
+import { Locale } from "~/enums/locale";
 
 import { Message } from "~/constants/message.ts";
 
@@ -26,7 +26,7 @@ const parishPriestMessage =
     class={cn(
       "mb-4 inline-block border-l-4 border-natgeo-yellow pl-3 font-poppins text-[27px] font-extrabold xs:text-2xl lg:text-4xl",
       {
-        "font-noto-sans-kannada": lang === "kok",
+        "font-noto-sans-kannada": lang === Locale.KOK,
       }
     )}
   >
@@ -60,7 +60,7 @@ const parishPriestMessage =
     <div class="lg:self-center">
       <p
         class={cn(`text-justify font-geist pt-2 text-base leading-7`, {
-          "font-noto-sans-kannada": lang === "kok",
+          "font-noto-sans-kannada": lang === Locale.KOK,
         })}
       >
         {

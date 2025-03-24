@@ -6,6 +6,7 @@ import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import { listObituaries } from '~/services/obituaries/list-obituaries';
 import type { Obituary } from '~/models/obituary';
 import { Message } from '~/constants/message.ts';
+import { Locale } from '~/enums/locale';
 
 const url = new URL(Astro.url);
 const lang = getLangFromUrl(Astro.url);
@@ -36,7 +37,7 @@ const pageTitle = selectedObituary
   : `Page ${currentPage} | Obituaries | Pompei Church`;
 
 const obituaryUrl = new URL(
-  lang === 'en'
+  lang === Locale.EN
     ? `/obituary?id=${id?.replace(/\s+/g, '-').toLowerCase()}`
     : `/kok/obituary?id=${id?.replace(/\s+/g, '-').toLowerCase()}`,
   Astro.url,

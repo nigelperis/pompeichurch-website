@@ -9,6 +9,7 @@ import NetworkImage from '~/components/ui/network-image.astro';
 import { getPlaceholderImage } from '~/helpers/get-placeholder-image';
 import StrapiBlocksRenderer from '~/components/ui/strapi-blocks-renderer';
 import { listEvents } from '~/services/events/list-events';
+import { Locale } from '~/enums/locale';
 
 const { slug } = Astro.params;
 const lang = getLangFromUrl(Astro.url);
@@ -16,7 +17,7 @@ const lang = getLangFromUrl(Astro.url);
 const event = await getEvent(slug ?? '');
 const { events: allEvents } = await listEvents();
 
-const eventUrl = lang === 'en' ? `/events/${slug}/` : `/kok/events/${slug}/`;
+const eventUrl = lang === Locale.EN ? `/events/${slug}/` : `/kok/events/${slug}/`;
 
 const baseURL = import.meta.env.STRAPI_URL
 
@@ -98,7 +99,7 @@ const socialLinks = [
 					<div class="flex flex-col gap-4 sm:flex-row sm:justify-between">
 						{prevEvent && (
 							<a
-								href={`/${lang === 'en' ? '' : 'kok/'}events/${prevEvent.slug}`}
+								href={`/${lang === Locale.EN ? '' : 'kok/'}events/${prevEvent.slug}`}
 								rel="prev"
 								class={`flex cursor-pointer items-center gap-3 rounded-lg border border-gray-300 px-4 py-3 shadow-md transition-colors hover:border-black ${nextEvent ? 'sm:w-1/2' : 'w-full'}`}
 							>
@@ -117,7 +118,7 @@ const socialLinks = [
 
 						{nextEvent && (
 							<a
-								href={`/${lang === 'en' ? '' : 'kok/'}events/${nextEvent.slug}`}
+								href={`/${lang === Locale.EN ? '' : 'kok/'}events/${nextEvent.slug}`}
 								rel="next"
 								class={`flex flex-row-reverse items-center gap-3 rounded-lg border border-gray-300 px-4 py-3 text-right shadow-md transition-colors hover:border-gray-500 ${prevEvent ? 'sm:w-1/2' : 'w-full'}`}
 							>

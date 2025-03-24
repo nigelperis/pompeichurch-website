@@ -2,6 +2,7 @@
 import { cn } from '~/helpers/cn.ts';
 import { getLangFromUrl } from '~/i18n/utils';
 import NetworkImage from './ui/network-image.astro';
+import { Locale } from '~/enums/locale';
 
 interface Props {
 	title: string;
@@ -42,7 +43,7 @@ const {
 	<div
 		class={cn(
 			'card-content flex flex-1 flex-col font-poppins justify-end space-y-1 p-3',
-			{ 'font-noto-sans-kannada': lang === 'kok' },
+			{ 'font-noto-sans-kannada': lang === Locale.KOK },
 		)}
 	>
 		<h3 class="card-title text-lg font-bold leading-snug text-slate-900">

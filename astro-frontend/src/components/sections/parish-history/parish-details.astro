@@ -16,17 +16,18 @@ import history6 from "~/assets/parish-history/history-6.jpg";
 // Components
 import EmblaCarousel from "~/components/ui/embla-carousel.astro";
 import EmblaCarouselItem from "~/components/ui/embla-carousel-item.astro";
+import { Locale } from "~/enums/locale";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 const historyData =
-  lang === "kok" ? parishHistoryKok[0].history : parishHistory[0].history;
+  lang === Locale.KOK ? parishHistoryKok[0].history : parishHistory[0].history;
 
 const priestsData =
-  lang === "kok" ? parishHistoryKok[1].priestInfo : parishHistory[1].priestInfo;
+  lang === Locale.KOK ? parishHistoryKok[1].priestInfo : parishHistory[1].priestInfo;
 
-const fontClass = lang === "kok" ? "font-noto-sans-kannada" : "font-geist";
+const fontClass = lang === Locale.KOK ? "font-noto-sans-kannada" : "font-geist";
 const images = [history1, history2, history3, history4, history5, history6];
 ---
 

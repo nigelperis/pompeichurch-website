@@ -3,6 +3,7 @@ import { getImage } from 'astro:assets';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import massInteriorImage from '~/assets/landing-page/mass-interior.jpg';
 import { cn } from '~/helpers/cn';
+import { Locale } from '~/enums/locale';
 
 const optimizedmassInteriorImage = await getImage({ src: massInteriorImage });
 const lang = getLangFromUrl(Astro.url);
@@ -18,7 +19,7 @@ const t = useTranslations(lang);
 		class={cn(
 			'mb-4 inline-block border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold xs:text-2xl lg:text-4xl',
 			{
-				'font-noto-sans-kannada': lang === 'kok',
+				'font-noto-sans-kannada': lang === Locale.KOK,
 			},
 		)}
 	>
@@ -29,7 +30,7 @@ const t = useTranslations(lang);
 		class={cn(
 			'space-y-3 lg:space-y-4 font-poppins text-sm lg:text-xl text-white leading-relaxed',
 			{
-				'font-noto-sans-kannada': lang === 'kok',
+				'font-noto-sans-kannada': lang === Locale.KOK,
 			},
 		)}
 	>

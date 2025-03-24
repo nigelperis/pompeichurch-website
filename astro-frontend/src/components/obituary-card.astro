@@ -3,6 +3,7 @@ import { cn } from '~/helpers/cn';
 import NetworkImage from './ui/network-image.astro';
 import ShareLink from './ui/share-link.astro';
 import { getLangFromUrl } from '~/i18n/utils';
+import { Locale } from '~/enums/locale';
 
 interface Props {
 	id: string;
@@ -33,7 +34,7 @@ const {
 
 const lang = getLangFromUrl(Astro.url);
 const obituaryUrl = new URL(
-	lang === 'en'
+	lang === Locale.EN
 		? `/obituary?id=${id.replace(/\s+/g, '-').toLowerCase()}`
 		: `/kok/obituary?id=${id.replace(/\s+/g, '-').toLowerCase()}`,
 	Astro.url,

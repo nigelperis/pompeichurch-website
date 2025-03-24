@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets';
+import { Locale } from '~/enums/locale';
 import { cn } from '~/helpers/cn.ts';
 import { getLangFromUrl } from '~/i18n/utils';
 
@@ -31,7 +32,7 @@ const { title, subtitle, class: className, imageUrl } = Astro.props;
 	<div
 		class={cn(
 			'card-content flex flex-1 flex-col font-poppins justify-end space-y-1 p-3',
-			{ 'font-noto-sans-kannada': lang === 'kok' },
+			{ 'font-noto-sans-kannada': lang === Locale.KOK },
 		)}
 	>
 		<h3 class="card-title text-lg font-bold leading-snug text-slate-900">

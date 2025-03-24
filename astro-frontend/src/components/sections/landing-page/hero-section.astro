@@ -4,6 +4,7 @@ import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import skyImage from '~/assets/landing-page/sky-bg.jpg';
 import churchHeroImage from '~/assets/landing-page/church-hero.jpg';
 import { cn } from '~/helpers/cn';
+import { Locale } from '~/enums/locale';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -34,7 +35,7 @@ const optimizedChurchHeroImage = await getImage({ src: churchHeroImage });
 		class={cn(
 			'mt-3 text-center font-montserrat text-4xl  lg:text-5xl font-semibold',
 			{
-				'font-noto-sans-kannada': lang === 'kok',
+				'font-noto-sans-kannada': lang === Locale.KOK,
 			},
 		)}
 	>
@@ -44,7 +45,7 @@ const optimizedChurchHeroImage = await getImage({ src: churchHeroImage });
 		data-aos="fade-up"
 		data-aos-delay="900"
 		class={cn('mt-2 text-center font-montserrat font-normal text-3xl', {
-			'font-noto-sans-kannada': lang === 'kok',
+			'font-noto-sans-kannada': lang === Locale.KOK,
 		})}
 	>
 		{t('landing.town-name')}

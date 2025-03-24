@@ -4,20 +4,21 @@ import { cn } from '~/helpers/cn';
 import { popesIntention } from '~/constants/popes-intention';
 import { popesIntentionKok } from '~/constants/popes-intention-kok';
 import { toZonedTime } from 'date-fns-tz';
+import { Locale } from '~/enums/locale';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 const month = toZonedTime(new Date(), 'Asia/Kolkata').getMonth() + 1;
 
-const intention = lang === 'kok' ? popesIntentionKok : popesIntention;
+const intention = lang === Locale.KOK ? popesIntentionKok : popesIntention;
 ---
 
 <h2
 	class={cn(
 		'mb-4 mt-4 border-b-2 border-b-natgeo-yellow pb-2 font-poppins text-2xl font-bold lg:text-3xl',
 		{
-			'font-noto-sans-kannada': lang === 'kok',
+			'font-noto-sans-kannada': lang === Locale.KOK,
 		},
 	)}
 >
@@ -26,7 +27,7 @@ const intention = lang === 'kok' ? popesIntentionKok : popesIntention;
 
 <div
 	class={cn('text-justify font-geist', {
-		'font-noto-sans-kannada': lang === 'kok',
+		'font-noto-sans-kannada': lang === Locale.KOK,
 	})}
 >
 	{
