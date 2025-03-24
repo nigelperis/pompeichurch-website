@@ -48,7 +48,7 @@ const data = (await listEvents({ page: 1, pageSize: 3 })) || [];
         ))}
       </div>
     ) : (
-      <p class="py-8 text-center text-3xl font-semibold">{Message.EVENTS}</p>
+      <p class="py-8 text-center text-3xl font-semibold">{Message.EVENTS_NOT_FOUND}</p>
     )
   }
 

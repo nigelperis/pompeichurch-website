@@ -3,15 +3,15 @@ import Layout from "~/layouts/layout.astro";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import ParishPastoralCouncilList from "~/components/sections/parish-pastoral-council/parish-pastoral-council-list.astro";
 import type { ParishPastoralCouncil } from "~/models/parish-pastoral-council";
-import { listPastoralCouncilData } from "~/services/parish-pastoral-council/list-parish-pastoral-council-data.ts";
-import { getPastoralCouncilImage } from "~/services/parish-pastoral-council/get-parish-pastoral-council-image.ts";
+import { listPastoralCouncilData, getPastoralCouncilImage } from "~/services/parish-pastoral-council-data.ts";
 import { Message } from "~/constants/message";
+import { Locale } from "~/enums/locale";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 const parishPastoralCouncilDataKok: ParishPastoralCouncil[] =
-  (await listPastoralCouncilData({ page: 1, pageSize: 100, locale: "kok" })) ||
+  (await listPastoralCouncilData({ page: 1, pageSize: 100, locale: Locale.KOK })) ||
   [];
 const parishPastoralCouncilData: ParishPastoralCouncil[] =
   (await listPastoralCouncilData({ page: 1, pageSize: 100 })) || [];
@@ -27,19 +27,23 @@ const parishPastoralCouncilImage = await getPastoralCouncilImage();
         {t("parish.pastoral-parishad")}
       </h1>
       {
-        parishPastoralCouncilData.length > 0 ? (
-          <ParishPastoralCouncilList
-            pastoralCouncilData={parishPastoralCouncilData}
-            pastoralCouncilImage={parishPastoralCouncilImage}
-          />
-        ) : parishPastoralCouncilDataKok.length > 0 ? (
+        parishPastoralCouncilDataKok.length > 0 ? (
           <ParishPastoralCouncilList
             pastoralCouncilData={parishPastoralCouncilDataKok}
             pastoralCouncilImage={parishPastoralCouncilImage}
           />
+        ) : parishPastoralCouncilData.length > 0 ? (
+          <ParishPastoralCouncilList
+            pastoralCouncilData={parishPastoralCouncilData}
+            pastoralCouncilImage={parishPastoralCouncilImage}
+          />
         ) : (
+          <ParishPastoralCouncilList
+            pastoralCouncilData={parishPastoralCouncilData}
+            pastoralCouncilImage={parishPastoralCouncilImage}
+          />
           <p class="py-8 text-center text-3xl font-semibold">
-            {Message.COUNCIL}
+            {Message.COUNCIL_MEMBERS_NOT_FOUND}
           </p>
         )
       }

@@ -21,7 +21,7 @@ function getPlaceholderImage(args?: PlaceholderImageArgs): string {
 	const {
 		width = 600,
 		height = 400,
-		text = 'Pompei+Church',
+		text = 'Pompei Church',
 		format = 'svg',
 	} = args ?? {};
 	// eslint-disable-next-line @typescript-eslint/restrict-template-expressions -- because we are using template literals in the URL

@@ -25,7 +25,7 @@ const magazines: PompeichemFalkem[] = (await listMagazines()) || [];
           <PompeichemFalkemList magazines={magazines} />
         ) : (
           <p class="py-8 text-center text-3xl font-semibold">
-            {Message.MAGAZINE}
+            {Message.MAGAZINES_NOT_FOUND}
           </p>
         )
       }
