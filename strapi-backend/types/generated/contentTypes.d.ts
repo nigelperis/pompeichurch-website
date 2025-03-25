@@ -369,11 +369,96 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiAssociationOfficeBearerAssociationOfficeBearer
+  extends Struct.SingleTypeSchema {
+  collectionName: 'association_office_bearers';
+  info: {
+    description: '';
+    displayName: 'Association Office Bearers';
+    pluralName: 'association-office-bearers';
+    singularName: 'association-office-bearer';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    altarServersAnimators: Schema.Attribute.String;
+    altarServersGroupPicture: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    altarServersPresident: Schema.Attribute.String;
+    altarServersSecretary: Schema.Attribute.String;
+    catechismCoordinator: Schema.Attribute.String;
+    catechismGroupPicture: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    catholicSabhaGroupPicture: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    catholicSabhaPresident: Schema.Attribute.String;
+    catholicSabhaSecretary: Schema.Attribute.String;
+    choirCoordinator: Schema.Attribute.String;
+    choirGroupPicture: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    choirMaster: Schema.Attribute.String;
+    clcGroupPicture: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    clcPresident: Schema.Attribute.String;
+    clcSecretary: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::association-office-bearer.association-office-bearer'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    pycAnimator: Schema.Attribute.String;
+    pycGroupPicture: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    pycPresident: Schema.Attribute.String;
+    pycSecretary: Schema.Attribute.String;
+    secularFransiscanGroupPicture: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    secularFransiscanPresident: Schema.Attribute.String;
+    secularFransiscanSecretary: Schema.Attribute.String;
+    smallChristianCommunityConvenor: Schema.Attribute.String;
+    smallChristianCommunityGroupPicture: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    svpGroupPicture: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    svpPresident: Schema.Attribute.String;
+    svpSecretary: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    womensForumGroupPicture: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    womensForumPresident: Schema.Attribute.String;
+    womensForumSecretary: Schema.Attribute.String;
+    ycsAnimators: Schema.Attribute.String;
+    ycsGroupPicture: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    ycsPresident: Schema.Attribute.String;
+    ycsSecretary: Schema.Attribute.String;
+  };
+}
+
 export interface ApiEventEvent extends Struct.CollectionTypeSchema {
   collectionName: 'events';
   info: {
     description: '';
-    displayName: 'event';
+    displayName: 'events';
     pluralName: 'events';
     singularName: 'event';
   };
@@ -411,7 +496,7 @@ export interface ApiObituaryObituary extends Struct.CollectionTypeSchema {
   collectionName: 'obituaries';
   info: {
     description: '';
-    displayName: 'obituary';
+    displayName: 'obituaries';
     pluralName: 'obituaries';
     singularName: 'obituary';
   };
@@ -534,7 +619,8 @@ export interface ApiUpcomingEventUpcomingEvent
   extends Struct.CollectionTypeSchema {
   collectionName: 'upcoming_events';
   info: {
-    displayName: 'Upcoming Event';
+    description: '';
+    displayName: 'Upcoming Events';
     pluralName: 'upcoming-events';
     singularName: 'upcoming-event';
   };
@@ -1071,6 +1157,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::association-office-bearer.association-office-bearer': ApiAssociationOfficeBearerAssociationOfficeBearer;
       'api::event.event': ApiEventEvent;
       'api::obituary.obituary': ApiObituaryObituary;
       'api::parish-priest-message.parish-priest-message': ApiParishPriestMessageParishPriestMessage;

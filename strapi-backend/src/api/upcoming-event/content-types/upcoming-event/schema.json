@@ -4,7 +4,8 @@
   "info": {
     "singularName": "upcoming-event",
     "pluralName": "upcoming-events",
-    "displayName": "Upcoming Event"
+    "displayName": "Upcoming Events",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -15,14 +16,15 @@
       "type": "date"
     },
     "eventImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     }
   }
 }

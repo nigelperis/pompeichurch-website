@@ -1,0 +1,206 @@
+{
+  "kind": "singleType",
+  "collectionName": "association_office_bearers",
+  "info": {
+    "singularName": "association-office-bearer",
+    "pluralName": "association-office-bearers",
+    "displayName": "Association Office Bearers",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "svpPresident": {
+      "type": "string"
+    },
+    "svpSecretary": {
+      "type": "string"
+    },
+    "svpGroupPicture": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "pycAnimator": {
+      "type": "string"
+    },
+    "pycPresident": {
+      "type": "string"
+    },
+    "pycSecretary": {
+      "type": "string"
+    },
+    "pycGroupPicture": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "altarServersAnimators": {
+      "type": "string"
+    },
+    "altarServersPresident": {
+      "type": "string"
+    },
+    "altarServersSecretary": {
+      "type": "string"
+    },
+    "altarServersGroupPicture": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "catholicSabhaPresident": {
+      "type": "string"
+    },
+    "catholicSabhaSecretary": {
+      "type": "string"
+    },
+    "catholicSabhaGroupPicture": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "ycsAnimators": {
+      "type": "string"
+    },
+    "ycsPresident": {
+      "type": "string"
+    },
+    "ycsSecretary": {
+      "type": "string"
+    },
+    "ycsGroupPicture": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "secularFransiscanPresident": {
+      "type": "string"
+    },
+    "secularFransiscanSecretary": {
+      "type": "string"
+    },
+    "secularFransiscanGroupPicture": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "catechismCoordinator": {
+      "type": "string"
+    },
+    "catechismGroupPicture": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "smallChristianCommunityConvenor": {
+      "type": "string"
+    },
+    "smallChristianCommunityGroupPicture": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "choirMaster": {
+      "type": "string"
+    },
+    "choirCoordinator": {
+      "type": "string"
+    },
+    "choirGroupPicture": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "womensForumPresident": {
+      "type": "string"
+    },
+    "womensForumSecretary": {
+      "type": "string"
+    },
+    "womensForumGroupPicture": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "clcPresident": {
+      "type": "string"
+    },
+    "clcSecretary": {
+      "type": "string"
+    },
+    "clcGroupPicture": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  }
+}
