@@ -1,3 +1,4 @@
+import { OBITUARIES } from '~/constants/strapi-endpoints';
 import { strapiFetch } from '~/helpers/strapi-fetch';
 import type { Obituary, ObituaryData } from '~/models/obituary';
 
@@ -20,7 +21,6 @@ async function listObituaries(args?: {
 	sortBy?: string;
 }): Promise<ObituaryPagination> {
 	const { page = 1, pageSize = 25, sortBy = 'dateOfDeath:desc' } = args ?? {};
-	const endpoint = '/obituaries';
 
 	const queryParams = new URLSearchParams({
 		'populate[0]': 'image',
@@ -29,7 +29,7 @@ async function listObituaries(args?: {
 		'pagination[pageSize]': String(pageSize),
 	});
 
-	const data = await strapiFetch<ObituaryData>({ endpoint, queryParams });
+	const data = await strapiFetch<ObituaryData>({ endpoint: OBITUARIES, queryParams });
 
 	return {
 		obituaries: data?.data ?? [],
