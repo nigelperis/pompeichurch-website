@@ -3,4 +3,3 @@ export const POMPEICHEM_FALKEM = '/pompeichem-falkems';
 export const UPCOMING_EVENTS = '/upcoming-events';
 export const OBITUARIES = '/obituaries';
 export const EVENTS = '/events';
-
