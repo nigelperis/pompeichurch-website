@@ -1,86 +1,102 @@
 ---
-import { Image } from "astro:assets";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import { associations } from "~/constants/associations";
 import { associationsKok } from "~/constants/associations-kok";
 import { cn } from "~/helpers/cn";
 import { Icon } from "astro-icon/components";
 import { socials } from "~/constants/social-media-handles";
-
-//Images
-import fallbackImage from "~/assets/landing-page/temp-logo.webp";
 import { Locale } from "~/enums/locale";
+import { fetchAssociationBearers } from "~/services/association-bearers-data";
+import NetworkImage from "~/components/ui/network-image.astro";
+import { slugMappings } from "~/constants/association-slug-mappings";
+import { getGroupImage } from "~/helpers/get-association-picture";
+import type { AssociationOfficeBearers } from "~/models/association-bearers";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const { slug } = Astro.params;
 
+const { slug } = Astro.params as { slug: keyof typeof slugMappings };
 const associationData = lang === Locale.KOK ? associationsKok : associations;
+
+const associationDetails: AssociationOfficeBearers | undefined =
+  (await fetchAssociationBearers(lang as Locale)) ?? undefined;
 
 const association = associationData.find((assoc) => assoc.slug === slug);
 
-const associationName = association?.slug;
+const title = association?.title ?? "";
+const description = association?.description ?? [];
 
-const { associationImage, description, officeBearers = [] } = association || {};
+const currentAssociation = slugMappings[slug] ?? {};
+const officeBearers = Object.entries(currentAssociation)
+  .filter(([key]) => key !== "groupPicture")
+  .map(([role, field]) => {
+    const name = associationDetails?.[field as keyof AssociationOfficeBearers];
+    return { role, name };
+  })
+  .filter(({ name }) => name !== undefined);
+
+console.log(officeBearers);
+
+const currentSocial = socials.find((social) => social.name === slug);
+
+const groupPictureField = slugMappings[slug]
+  ?.groupPicture as keyof AssociationOfficeBearers;
+const groupPicture = associationDetails?.[groupPictureField];
 ---
 
 <div class="mx-auto">
-  <div class="mt-2">
-    <div class="flex justify-center">
-      <Image
-        src={associationImage || fallbackImage}
-        alt={`Members of ${association?.title} at Our Lady of Pompei Church`}
-      />
-    </div>
-    <h2
-      class="font-poppins mt-6 text-justify text-2xl font-bold text-slate-900"
-    >
-      {t("associations.about-us")}
-    </h2>
-    <p
-      class={cn(
-        "text-md mt-4 text-justify font-geist leading-7 text-slate-700 ",
-        { "font-noto-sans-kannada": lang === Locale.KOK }
-      )}
-      set:html={description}
+  <div class="mt-2 flex justify-center">
+    <NetworkImage
+      src={getGroupImage(associationDetails, slug)}
+      alt={`Members of ${title} at Our Lady of Pompei Church`}
+      width={(typeof groupPicture === "object" && groupPicture?.width) || 600}
+      height={(typeof groupPicture === "object" && groupPicture?.height) || 400}
     />
-    <h2 class="font-poppins mt-6 text-left text-2xl font-bold text-slate-900">
-      {t("associations.office-bearers")}
-    </h2>
-    <ul class="my-4 list-inside list-disc text-base text-slate-700">
-      {
-        officeBearers.map((bearer) => (
-          <li class="text-left">
-            <strong>{t(`${bearer.position}`)}: </strong>
-            {t(`${bearer.name}`)}
-          </li>
-        ))
-      }
-    </ul>
-    {
-      socials.map(
-        (social) =>
-          social.name === associationName && (
-            <h2 class="font-poppins mt-6 text-left text-2xl font-bold text-slate-900">
-              {t("landing.follow-our-journey")}
-            </h2>
-          )
-      )
-    }
-    <div class="flex gap-12">
-      {
-        socials.map(
-          (social) =>
-            social.name === associationName &&
-            social.links.map((link) => (
-              <div class="mb-9 mt-4 h-5 w-5 transition-transform hover:scale-110">
-                <a href={link.value} target="_blank">
-                  <Icon name={link.key} size={52} />
-                </a>
-              </div>
-            ))
-        )
-      }
-    </div>
   </div>
+
+  <h2 class="font-poppins mt-6 text-justify text-2xl font-bold text-slate-900">
+    {t("associations.about-us")}
+  </h2>
+  <p
+    class={cn("text-md mt-4 text-justify font-geist leading-7 text-slate-700", {
+      "font-noto-sans-kannada": lang === Locale.KOK,
+    })}
+    set:html={description}
+  />
+
+  {
+    officeBearers.length > 0 && (
+      <>
+        <h2 class="font-poppins mt-6 text-left text-2xl font-bold text-slate-900">
+          {t("associations.office-bearers")}
+        </h2>
+        <ul class="my-4 list-inside list-disc text-base text-slate-700">
+          {officeBearers.map((bearer) => (
+            <li class="text-left">
+              <strong>{t(`${bearer.role}`)}: </strong> {bearer.name}
+            </li>
+          ))}
+        </ul>
+      </>
+    )
+  }
+
+  {
+    currentSocial && (
+      <>
+        <h2 class="font-poppins mt-6 text-left text-2xl font-bold text-slate-900">
+          {t("landing.follow-our-journey")}
+        </h2>
+        <div class="flex gap-12">
+          {currentSocial.links.map((link) => (
+            <div class="mb-9 mt-4 h-5 w-5 transition-transform hover:scale-110">
+              <a href={link.value} target="_blank" rel="noopener noreferrer">
+                <Icon name={link.key} size={52} />
+              </a>
+            </div>
+          ))}
+        </div>
+      </>
+    )
+  }
 </div>

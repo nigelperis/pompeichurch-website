@@ -19,7 +19,7 @@ async function fetchAssociationBearers(locale: Locale = Locale.EN): Promise<Asso
     'populate[10]': 'clcGroupPicture',
     'locale': locale
   });
-  
+
   const data = await strapiFetch<AssociationOfficeBearersData>({ endpoint, queryParams });
 
   if (!data?.data) {

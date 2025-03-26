@@ -13,7 +13,7 @@ interface MediaFormat {
   sizeInBytes: number;
 }
 
-interface Media {
+export interface AssociationMedia {
   id: number;
   documentId: string;
   name: string;
@@ -40,43 +40,43 @@ interface Media {
   publishedAt: string;
 }
 
-export interface AssociationOfficeBearers {
+export interface  AssociationOfficeBearers {
   id: number;
   documentId: string;
   svpPresident: string;
   svpSecretary: string;
-  svpGroupPicture: Media;
+  svpGroupPicture: AssociationMedia;
   pycAnimator: string;
   pycPresident: string;
   pycSecretary: string;
-  pycGroupPicture: Media;
+  pycGroupPicture: AssociationMedia;
   altarServersAnimators: string;
   altarServersPresident: string;
   altarServersSecretary: string;
-  altarServersGroupPicture: Media;
+  altarServersGroupPicture: AssociationMedia;
   catholicSabhaPresident: string;
   catholicSabhaSecretary: string;
-  catholicSabhaGroupPicture: Media;
+  catholicSabhaGroupPicture: AssociationMedia;
   ycsAnimators: string;
   ycsPresident: string;
   ycsSecretary: string;
-  ycsGroupPicture: Media;
+  ycsGroupPicture: AssociationMedia;
   secularFransiscanPresident: string;
   secularFransiscanSecretary: string;
-  secularFransiscanGroupPicture: Media;
+  secularFransiscanGroupPicture: AssociationMedia;
   catechismCoordinator: string;
-  catechismGroupPicture: Media;
+  catechismGroupPicture: AssociationMedia;
   smallChristianCommunityConvenor: string;
-  smallChristianCommunityGroupImage: Media;
+  smallChristianCommunityGroupImage: AssociationMedia;
   choirMaster: string;
   choirCoordinator: string;
-  choirGroupPicture: Media;
+  choirGroupPicture: AssociationMedia;
   womensForumPresident: string;
   womensForumSecretary: string;
-  womensForumGroupImage: Media;
+  womensForumGroupImage: AssociationMedia;
   clcPresident: string;
   clcSecretary: string;
-  clcGroupImage: Media;
+  clcGroupImage: AssociationMedia;
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
