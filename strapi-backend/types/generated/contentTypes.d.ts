@@ -873,6 +873,51 @@ export interface ApiPompeichemFalkemPompeichemFalkem
   };
 }
 
+export interface ApiPopesIntentionPopesIntention
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'popes_intentions';
+  info: {
+    description: '';
+    displayName: 'Popes Intention';
+    pluralName: 'popes-intentions';
+    singularName: 'popes-intention';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::popes-intention.popes-intention'
+    >;
+    month: Schema.Attribute.Date &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    monthlyIntention: Schema.Attribute.Blocks &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiUpcomingEventUpcomingEvent
   extends Struct.CollectionTypeSchema {
   collectionName: 'upcoming_events';
@@ -1420,6 +1465,7 @@ declare module '@strapi/strapi' {
       'api::obituary.obituary': ApiObituaryObituary;
       'api::parish-priest-message.parish-priest-message': ApiParishPriestMessageParishPriestMessage;
       'api::pompeichem-falkem.pompeichem-falkem': ApiPompeichemFalkemPompeichemFalkem;
+      'api::popes-intention.popes-intention': ApiPopesIntentionPopesIntention;
       'api::upcoming-event.upcoming-event': ApiUpcomingEventUpcomingEvent;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
