@@ -25,7 +25,11 @@ export async function getStaticPaths() {
 	return paths;
 }
 
-const { slug, title } = Astro.props as { slug: string; title: string };
+const { slug } = Astro.params as { slug: string };
+const title =
+  associations.find((assoc) => assoc.slug === slug)?.title ||
+  associationsKok.find((assoc) => assoc.slug === slug)?.title ||
+  "Default Title";
 ---
 
 <Layout title={`Associations | ${title}`}>
