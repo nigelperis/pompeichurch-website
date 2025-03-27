@@ -22,6 +22,9 @@ const [enDetails, kokDetails] = (await Promise.all([
   fetchAssociationBearers(Locale.KOK),
 ])) as [AssociationOfficeBearers | null, AssociationOfficeBearers | null];
 
+console.log("Fetched Association Data (EN):", enDetails);
+console.log("Fetched Association Data (KOK):", kokDetails);
+
 const associationDetails: AssociationOfficeBearers | undefined =
   lang === Locale.KOK
     ? kokDetails || enDetails || undefined
@@ -56,6 +59,12 @@ const currentSocial = socials.find((social) => social.name === slug);
 const groupPictureField = slugMappings[slug]
   ?.groupPicture as keyof AssociationOfficeBearers;
 const groupPicture = associationDetails?.[groupPictureField];
+
+console.log("STRAPI URL:", import.meta.env.PUBLIC_STRAPI_URL);
+
+console.log("Association Details:", associationDetails);
+console.log("Slug Mapping for Current Association:", slugMappings[slug]);
+console.log("Generated Office Bearers:", officeBearers);
 ---
 
 <div class="mx-auto">
@@ -72,9 +81,12 @@ const groupPicture = associationDetails?.[groupPictureField];
     {t("associations.about-us")}
   </h2>
   <p
-    class={cn("text-md mt-4 text-justify font-geist leading-7 text-slate-700 mb-4", {
-      "font-noto-sans-kannada": lang === Locale.KOK,
-    })}
+    class={cn(
+      "text-md mt-4 text-justify font-geist leading-7 text-slate-700 mb-4",
+      {
+        "font-noto-sans-kannada": lang === Locale.KOK,
+      }
+    )}
     set:html={description}
   />
 

@@ -1,10 +1,9 @@
+import { ASSOCIATION_OFFICE_BEARERS } from "~/constants/strapi-endpoints";
 import { Locale } from "~/enums/locale";
 import { strapiFetch } from "~/helpers/strapi-fetch";
 import type { AssociationOfficeBearers, AssociationOfficeBearersData } from "~/models/association-bearers";
 
 async function fetchAssociationBearers(locale: Locale = Locale.EN): Promise<AssociationOfficeBearers | null> {
-  const endpoint = '/association-office-bearer';
-
   const queryParams = new URLSearchParams({
     'populate[0]': 'svpGroupPicture',
     'populate[1]': 'pycGroupPicture',
@@ -20,7 +19,7 @@ async function fetchAssociationBearers(locale: Locale = Locale.EN): Promise<Asso
     'locale': locale
   });
 
-  const data = await strapiFetch<AssociationOfficeBearersData>({ endpoint, queryParams });
+  const data = await strapiFetch<AssociationOfficeBearersData>({ endpoint: ASSOCIATION_OFFICE_BEARERS, queryParams });
 
   if (!data?.data) {
     return null;
