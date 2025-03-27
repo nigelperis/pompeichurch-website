@@ -14,10 +14,13 @@ import type { AssociationOfficeBearers } from "~/models/association-bearers";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
 const { slug } = Astro.params as { slug: keyof typeof slugMappings };
 
-const enDetails = await fetchAssociationBearers(Locale.EN);
-const kokDetails = await fetchAssociationBearers(Locale.KOK);
+const [enDetails, kokDetails] = (await Promise.all([
+  fetchAssociationBearers(Locale.EN),
+  fetchAssociationBearers(Locale.KOK),
+])) as [AssociationOfficeBearers | null, AssociationOfficeBearers | null];
 
 const associationDetails: AssociationOfficeBearers | undefined =
   lang === Locale.KOK
@@ -25,7 +28,8 @@ const associationDetails: AssociationOfficeBearers | undefined =
     : enDetails || kokDetails || undefined;
 
 const associationData = lang === Locale.KOK ? associationsKok : associations;
-const fallbackAssociationData = lang === Locale.KOK ? associations : associationsKok;
+const fallbackAssociationData =
+  lang === Locale.KOK ? associations : associationsKok;
 
 const association =
   associationData.find((assoc) => assoc.slug === slug) ??
@@ -49,7 +53,8 @@ const officeBearers = Object.entries(currentAssociation)
 
 const currentSocial = socials.find((social) => social.name === slug);
 
-const groupPictureField = slugMappings[slug]?.groupPicture as keyof AssociationOfficeBearers;
+const groupPictureField = slugMappings[slug]
+  ?.groupPicture as keyof AssociationOfficeBearers;
 const groupPicture = associationDetails?.[groupPictureField];
 ---
 
