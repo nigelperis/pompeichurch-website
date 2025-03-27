@@ -16,7 +16,7 @@
     }
   },
   "attributes": {
-    "svpPresident": {
+    "svpPresidentMale": {
       "type": "string",
       "pluginOptions": {
         "i18n": {
@@ -48,7 +48,7 @@
         }
       }
     },
-    "pycAnimator": {
+    "pycAnimatorMale": {
       "type": "string",
       "pluginOptions": {
         "i18n": {
@@ -56,7 +56,7 @@
         }
       }
     },
-    "pycPresident": {
+    "pycPresidentMale": {
       "type": "string",
       "pluginOptions": {
         "i18n": {
@@ -128,7 +128,7 @@
         }
       }
     },
-    "catholicSabhaPresident": {
+    "catholicSabhaPresidentMale": {
       "type": "string",
       "pluginOptions": {
         "i18n": {
@@ -168,7 +168,7 @@
         }
       }
     },
-    "ycsPresident": {
+    "ycsPresidentMale": {
       "type": "string",
       "pluginOptions": {
         "i18n": {
@@ -200,7 +200,7 @@
         }
       }
     },
-    "secularFransiscanPresident": {
+    "secularFransiscanPresidentMale": {
       "type": "string",
       "pluginOptions": {
         "i18n": {
@@ -232,7 +232,7 @@
         }
       }
     },
-    "catechismCoordinator": {
+    "catechismCoordinatorMale": {
       "type": "string",
       "pluginOptions": {
         "i18n": {
@@ -256,7 +256,7 @@
         }
       }
     },
-    "smallChristianCommunityConvenor": {
+    "smallChristianCommunityConvenorMale": {
       "type": "string",
       "pluginOptions": {
         "i18n": {
@@ -288,7 +288,7 @@
         }
       }
     },
-    "choirCoordinator": {
+    "choirCoordinatorMale": {
       "type": "string",
       "pluginOptions": {
         "i18n": {
@@ -344,7 +344,7 @@
         }
       }
     },
-    "clcPresident": {
+    "clcPresidentMale": {
       "type": "string",
       "pluginOptions": {
         "i18n": {
@@ -375,6 +375,118 @@
           "localized": true
         }
       }
+    },
+    "svpPresidentFemale": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
+    },
+    "pycAnimatorFemale": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
+    },
+    "pycPresidentFemale": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
+    },
+    "altarServersAnimatorMale": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
+    },
+    "altarServersAnimatorFemale": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
+    },
+    "catholicSabhaPresidentFemale": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
+    },
+    "ycsAnimatorMale": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
+    },
+    "ycsAnimatorFemale": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
+    },
+    "secularFransiscanPresidentFemale": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
+    },
+    "smallChristianCommunityConvenorFemale": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
+    },
+    "catechismCoordinatorFemale": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
+    },
+    "choirCoordinatorFemale": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
+    },
+    "clcPresidentFemale": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
+    },
+    "ycsPresidentFemale": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
     }
   }
 }

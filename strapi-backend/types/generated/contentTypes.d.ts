@@ -387,6 +387,18 @@ export interface ApiAssociationOfficeBearerAssociationOfficeBearer
     };
   };
   attributes: {
+    altarServersAnimatorFemale: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    altarServersAnimatorMale: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     altarServersAnimators: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -413,7 +425,13 @@ export interface ApiAssociationOfficeBearerAssociationOfficeBearer
           localized: true;
         };
       }>;
-    catechismCoordinator: Schema.Attribute.String &
+    catechismCoordinatorFemale: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    catechismCoordinatorMale: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -435,7 +453,13 @@ export interface ApiAssociationOfficeBearerAssociationOfficeBearer
           localized: true;
         };
       }>;
-    catholicSabhaPresident: Schema.Attribute.String &
+    catholicSabhaPresidentFemale: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    catholicSabhaPresidentMale: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -447,7 +471,13 @@ export interface ApiAssociationOfficeBearerAssociationOfficeBearer
           localized: true;
         };
       }>;
-    choirCoordinator: Schema.Attribute.String &
+    choirCoordinatorFemale: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    choirCoordinatorMale: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -475,7 +505,13 @@ export interface ApiAssociationOfficeBearerAssociationOfficeBearer
           localized: true;
         };
       }>;
-    clcPresident: Schema.Attribute.String &
+    clcPresidentFemale: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    clcPresidentMale: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -496,7 +532,13 @@ export interface ApiAssociationOfficeBearerAssociationOfficeBearer
       'api::association-office-bearer.association-office-bearer'
     >;
     publishedAt: Schema.Attribute.DateTime;
-    pycAnimator: Schema.Attribute.String &
+    pycAnimatorFemale: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    pycAnimatorMale: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -510,7 +552,13 @@ export interface ApiAssociationOfficeBearerAssociationOfficeBearer
           localized: true;
         };
       }>;
-    pycPresident: Schema.Attribute.String &
+    pycPresidentFemale: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    pycPresidentMale: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -530,7 +578,13 @@ export interface ApiAssociationOfficeBearerAssociationOfficeBearer
           localized: true;
         };
       }>;
-    secularFransiscanPresident: Schema.Attribute.String &
+    secularFransiscanPresidentFemale: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    secularFransiscanPresidentMale: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -542,7 +596,13 @@ export interface ApiAssociationOfficeBearerAssociationOfficeBearer
           localized: true;
         };
       }>;
-    smallChristianCommunityConvenor: Schema.Attribute.String &
+    smallChristianCommunityConvenorFemale: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    smallChristianCommunityConvenorMale: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -564,7 +624,13 @@ export interface ApiAssociationOfficeBearerAssociationOfficeBearer
           localized: true;
         };
       }>;
-    svpPresident: Schema.Attribute.String &
+    svpPresidentFemale: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    svpPresidentMale: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -599,6 +665,18 @@ export interface ApiAssociationOfficeBearerAssociationOfficeBearer
           localized: true;
         };
       }>;
+    ycsAnimatorFemale: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    ycsAnimatorMale: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     ycsAnimators: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -613,7 +691,13 @@ export interface ApiAssociationOfficeBearerAssociationOfficeBearer
           localized: true;
         };
       }>;
-    ycsPresident: Schema.Attribute.String &
+    ycsPresidentFemale: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    ycsPresidentMale: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;

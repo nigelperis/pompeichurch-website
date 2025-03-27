@@ -1,15 +1,3 @@
-import altarServers from '~/assets/associations/altar-servers.jpg';
-import catechism from '~/assets/associations/catechism.jpg';
-import catholicSabha from '~/assets/associations/catholic-sabha.jpg';
-import gurpurChoir from '~/assets/associations/gurpur-choir.jpg';
-import moriyalSodality from '~/assets/associations/moriyal-sodality.jpg';
-import pyc from '~/assets/associations/pyc.jpg';
-import smallChristianCommunity from '~/assets/associations/small-christian-community.jpg';
-import svp from '~/assets/associations/svp.jpg';
-import thirdOrder from '~/assets/associations/third-order.jpg';
-import womensForum from '~/assets/associations/womens-forum.jpg';
-import ycs from '~/assets/associations/ycs.jpg';
-
 const associationsKok = [
 	{
 		slug: 'svp',
@@ -120,7 +108,6 @@ const associationsKok = [
 	{
 		slug: 'gurpur-choir',
 		title: 'Gurpur Choir',
-		associationImage: gurpurChoir,
 		description: `
 		<strong>ಜೊ ಗಾಯ್ತಾ, ತೊ ದೊಡ್ತ್ಯಾನ್ನ್ ಮಾಗ್ತಾ - ಗಾಯನ್ ಮಂಡಳಿ:</strong><br/>
 
@@ -130,21 +117,10 @@ const associationsKok = [
 		<br/><br/>
 
 		ಆಮ್ಚಿ ಗಾಯನ್ ಮಂಡಳಿ ಫೆಸ್ತಾಂ ಸಂದರ್ಭಿ, ವಿವಿಧ್ ಸಂಭ್ರಮಾಂ ವೆಳಿಂ ಮಿಸಾಚ್ಯಾ ಪವಿತ್ರ್ ಬಲಿದಾನಾಂ ಆನಿ ಲಿತುರ್ಜಿಕ್ ಕಾರ್ಯಾಂನಿ, ದೇವ್ ಪ್ರಜೆಕ್ ಉರ್ಭೆನ್ ಪಾತ್ರ್ ಘೆಂವ್ಚ್ಯಾಕ್ ಮುಖೇಲ್ಪಣ್ ವಹಿಸುನ್ ಆಸಾ. ಗಾಯನ್ ಮಂಡಳೆಂತ್ ಸಬಾರ್ ತಾಲೆಂತ್‌ವಂತ್ ಆನಿ ಉರ್ಭೆಸ್ತ್ ಯುವಜಣಾಂ ತಶೆಂಚ್ಚ್ ವ್ಹಡಾಂ ಸಾಂದೆ ಜಾವ್ನ್ ಆಸೊನ್, ತಾಂಚ್ಯಾ ಮಧುರ್ ತಾಳ್ಯಾನ್ ‘ಕೊಯರ್’ ಜಿವಾಳ್ ದವರುನ್ ಆಸಾತ್.ಆಮ್ಚ್ಯಾ ಗಾಯನ್ ಮಂಡಳಿಂತ್ ಆಸ್ಚ್ಯಾ ಸಬಾರ್ ಯುವಕ್-ಯುವತಿಂನಿ ಸಂಗೀತ್ ವಾಜಂತ್ರಾಂ ಖೆಳೊಂಕ್, ತಶೆಂಚ್ಚ್ ವಿವಿಧ್ ಗಾಯನ್ ಸ್ಪರ್ಧ್ಯಾಂನಿ ಭಾಗ್ ಘೆವ್ನ್ ತಾಂಚಿಂ ತಾಲೆಂತಾಂ ಪ್ರದರ್ಶಿತ್ ಕೆಲ್ಯಾಂತ್. ಜಯ್ತ್ಯಾಂನಿ ಗಾಯನ್ ಕ್ಷೇತ್ರಾಂತ್ ವರ್ತೆಂ ಸಾಧನ್ ಕರುನ್ ಫಿರ್ಗಜೆಕ್ ಕೀರ್ತ್ ಹಾಡ್ಲ್ಯಾ.`,
-		officeBearers: [
-			{
-				name: 'associations.gurpur-gayan-mandali-choir-master',
-				position: 'associations.choir-master',
-			},
-			{
-				name: 'associations.gurpur-gayan-mandali-coordinator',
-				position: 'associations.coordinator-male',
-			},
-		],
 	},
 	{
 		slug: 'womens-forum',
 		title: 'Womens Forum',
-		associationImage: womensForum,
 		description: `
 		</strong>ಘನಾನ್ ಆನಿ ಮಾನಾನ್ ಜಿಯೆಂವ್ಚಿ ಸ್ತ್ರೀ - ‘ಸ್ನೇಹ ಸ್ತ್ರೀ ಸಂಘಟನ್’:</strong><br/>
 
@@ -157,18 +133,10 @@ const associationsKok = [
 		ಮಾ| ಬಾ| ಆ್ಯಂಟನಿ ಲೋಬೊನ್, ಹ್ಯಾ ಸ್ತ್ರೀ ಸಂಘಟನಾಕ್ ಏಕ್ ನಾಂವ್ ದವರಿಜಾಯ್ ಮ್ಹಣ್ ಜಮಾತೆರ್ ತಿಳ್ಸಿಲೆಂ. ಅಶೆಂ ಹ್ಯಾ ಸಂಘಟನಾಕ್ ‘ಸ್ನೇಹ ಸ್ತ್ರೀ -ಸಂಘಟನ್’ ಮ್ಹಳ್ಳೆಂ ನಾಂವ್ ದಿಲೆಂ. ಅಶೆಂ ಹೆಂ ಸಂಘಟನ್, ‘ಸ್ನೇಹ - ಸ್ತ್ರೀ ಸಂಘಟನ್’ ನಾಂವಾಖಾಲ್, ಫಿರ್ಗಜೆಂತ್ ಆಪ್ಲಿ ಸೆವಾ ದೀವ್ನ್ ಆಸಾ.<br/><br/>
 
 		ಸ್ನೇಹ- ಸ್ತ್ರೀ ಸಂಘಟನಾಕ್ ೨೦೦೬ ಥಾವ್ನ್ ೨೦೨೦ ಪರ್ಯಾಂತ್ ಅಧ್ಯಕ್ಷಿಣ್ ಆನಿ ಕಾರ್ಯದರ್ಶಿ ಜಾವ್ನ್ ಸಬಾರ್ ಸ್ತ್ರೀಯಾಂನಿ ಮುಖೇಲ್ಪಣ್ ಘೆತ್ಲಾಂ. ಶ್ರೀಮತಿ ಐರಿನ್ ಸಿಕ್ವೇರಾ, ಸಿಲ್ವಿಯಾ ಕ್ರಾಸ್ತಾ, ವಿಜಯ ಡಿ ಕೋಸ್ತಾ, ಐಡಾ ಕುಟಿನ್ಹಾ, ಅನಿತಾ ಫೆರ್ನಾಂಡಿಸ್, ರೀಟಾ ಡಿಸೋಜಾ, ಗ್ರೆಟ್ಟಾ ನಜರೆತ್, ವಿನ್ನಿ ರೊಡ್ರಿಗಸ್, ರಿನ್ನಾ ಪಿಂಟೊ, ಲವೀನಾ ಅಂದ್ರಾದೆ ಆನಿ ಜ್ಯೂಲಿಯೆಟ್ ಸೆರಾವೊ - ಹಾಣಿಂ.`,
-		officeBearers: [
-			{
-				name: 'associations.womens-forum-president',
-				position: 'president-female',
-			},
-			{ name: 'associations.womens-forum-secretary', position: 'secretary' },
-		],
 	},
 	{
 		slug: 'christian-life-community',
 		title: 'Christian Life Community',
-		associationImage: moriyalSodality,
 		description: `
 		ಆಮ್ಚ್ಯಾ ಕುಟ್ಮಾಂತ್ ಶೆಗುಣಾಂಭರಿತ್, ದೆಕಿಭರಿತ್ ಆನಿ ಆದರ್ಶ್ ಕ್ರೀಸ್ತಾಂವ್ ಜಿಣಿ ಜಿಯೆಂವ್ಕ್ ಆನಿ ವೈಯಕ್ತಿಕ್ ಶಾಂತಿಪಣಾಖಾತಿರ್ ವಾವ್ರುಂಕ್ ಪ್ರೇರಣ್ ದಿತಾ, ಹಿ ಮರಿಯಾಳ್ ಸೊಡೆಲಿಟಿ.<br/><br/>
 
@@ -177,16 +145,6 @@ const associationsKok = [
 		ಜಮಾತೆಕ್ ಪೊಂಪೈ ಕೊವೆಂತಾಚಿಂ ಧರ್ಮ್ ಭಯ್ಣಿಂ ಹಾಜರ್ ಜಾವ್ನ್ ಮರಿಯೆ ವಿಷ್ಯಾಂತ್ ವಿವರ್/ಮಾಹೆತ್/ಜಾಣ್ವಾಯ್ ದಿತಾತ್.<br/><br/>
 
 		ಆತಾಂ ಹ್ಯಾ ಸೊಡೆಲಿಟಿಕ್ ಸಿ. ಲ್. ಸಿ. ಮ್ಹಣೊನ್ ಆಪಯ್ತಾತ್.`,
-		officeBearers: [
-			{
-				name: 'associations.christian-life-community-president',
-				position: 'president',
-			},
-			{
-				name: 'associations.christian-life-community-secretary',
-				position: 'secretary',
-			},
-		],
 	},
 ];
 
