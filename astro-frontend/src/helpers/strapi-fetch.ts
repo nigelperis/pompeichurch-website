@@ -9,13 +9,13 @@ interface StrapiFetchProps {
  * @param query - The query parameters to add to the url
  * @returns
  * @example
-     const searchParam = new URLSearchParams();
-      searchParam.append('populate[0]', 'signature');
-      searchParam.append('populate[1]', 'coverImage');
-      strapiFetch(\{
-        endpoint: '/landing-page-priest-message',
-        queryParams:searchParam,
-        );
+		 const searchParam = new URLSearchParams();
+			searchParam.append('populate[0]', 'signature');
+			searchParam.append('populate[1]', 'coverImage');
+			strapiFetch(\{
+				endpoint: '/landing-page-priest-message',
+				queryParams:searchParam,
+				);
  */
 export async function strapiFetch<T>({
 	endpoint,
