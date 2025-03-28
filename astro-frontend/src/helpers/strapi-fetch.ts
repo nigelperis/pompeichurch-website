@@ -22,7 +22,7 @@ export async function strapiFetch<T>({
 	queryParams,
 }: StrapiFetchProps): Promise<T | undefined> {
 	if (!import.meta.env.STRAPI_URL) {
-		throw new Error('Base url for strapi not found ');
+		throw new Error('Strapi Base URL not found!');
 	}
 
 	const url = new URL(`/api${endpoint}`, import.meta.env.STRAPI_URL);

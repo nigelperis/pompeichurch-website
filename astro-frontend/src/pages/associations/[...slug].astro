@@ -1,6 +1,4 @@
 ---
-export const prerender = true;
-
 import Layout from '~/layouts/layout.astro';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import AssociationDetails from '~/components/sections/associations/association-details.astro';
@@ -12,14 +10,14 @@ const t = useTranslations(lang);
 
 export async function getStaticPaths() {
 	const paths = [
-		...associations.map(({ slug, title, associationImage, officeBearers }) => ({
+		...associations.map(({ slug, title }) => ({
 			params: { slug },
-			props: { slug, title, associationImage, officeBearers },
+			props: { slug, title },
 		})),
 		...associationsKok.map(
-			({ slug, title, associationImage, officeBearers }) => ({
+			({ slug, title }) => ({
 				params: { slug },
-				props: { slug, title, associationImage, officeBearers },
+				props: { slug, title },
 			}),
 		),
 	];
@@ -27,7 +25,11 @@ export async function getStaticPaths() {
 	return paths;
 }
 
-const { slug, title } = Astro.props as { slug: string; title: string };
+const { slug } = Astro.params as { slug: string };
+const title =
+  associations.find((assoc) => assoc.slug === slug)?.title ||
+  associationsKok.find((assoc) => assoc.slug === slug)?.title ||
+  "Default Title";
 ---
 
 <Layout title={`Associations | ${title}`}>

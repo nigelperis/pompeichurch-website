@@ -14,7 +14,7 @@ interface PlaceholderImageArgs {
  * @param args - Configuration object for the placeholder image
  * @returns  Complete URL string for the placeholder image
  * @example
- * getPlaceholderImage(\{ width: 300, height: 200, text: 'Hello+World', format: 'png' \})
+ * getPlaceholderImage(\{ width: 300, height: 200, text: 'Pompei Church', format: 'png' \})
  * // returns "https://placehold.co/300x200/png?text=Hello+World"
  */
 function getPlaceholderImage(args?: PlaceholderImageArgs): string {
