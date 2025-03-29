@@ -1,0 +1,25 @@
+{
+  "kind": "singleType",
+  "collectionName": "parish_pastoral_council_images",
+  "info": {
+    "singularName": "parish-pastoral-council-image",
+    "pluralName": "parish-pastoral-council-images",
+    "displayName": "Parish Pastoral Council Image",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "pastoralCouncilImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ],
+      "pluginOptions": {}
+    }
+  }
+}
