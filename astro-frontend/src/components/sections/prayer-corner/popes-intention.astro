@@ -6,6 +6,8 @@ import { Locale } from "~/enums/locale";
 
 import { fetchPopesIntention } from "~/services/get-popes-intention";
 import StrapiBlocksRenderer from "~/components/ui/strapi-blocks-renderer";
+import { popesIntentionKok } from "~/constants/popes-intention-kok";
+import { popesIntentionEn } from "~/constants/popes-intention";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -23,6 +25,11 @@ const currentIntention = Array.isArray(popesIntention)
       return intentionMonth === currentMonth;
     })
   : null;
+
+const subtitle =
+  locale === Locale.KOK
+    ? popesIntentionKok.find((i) => i.month === currentMonth)?.title
+    : popesIntentionEn.find((i) => i.month === currentMonth)?.title;
 ---
 
 <h2
@@ -41,13 +48,12 @@ const currentIntention = Array.isArray(popesIntention)
     "font-noto-sans-kannada": lang === Locale.KOK,
   })}
 >
+  {subtitle && <h1 class="text-xl font-bold mb-2">{subtitle}</h1>}
   {
     currentIntention ? (
-      <>
-        <p>
-          <StrapiBlocksRenderer content={currentIntention.monthlyIntention} />
-        </p>
-      </>
+      <p>
+        <StrapiBlocksRenderer content={currentIntention.monthlyIntention} />
+      </p>
     ) : (
       <p>Popes Intention Not found!!!</p>
     )
