@@ -4,4 +4,5 @@ export class Message {
   public static OBITUARIES_NOT_FOUND = 'No Obituaries Found!';
   public static COUNCIL_MEMBERS_NOT_FOUND = 'No Council Members Found!';
   public static MAGAZINES_NOT_FOUND = 'No Magazines available!';
+  public static POPES_INTENTION_NOT_FOUND = 'Popes Intention Not found!';
 }

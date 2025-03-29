@@ -44,7 +44,7 @@ const parishPriestMessage =
       >
         <div class="absolute top-full -z-10 h-[43%] w-[103%]"></div>
         {
-          (parishPriestMessageKok || parishPriestMessageEn) && (
+          (
             <NetworkImage
               src={
                 parishPriestMessage?.parishPriestImage?.url
@@ -67,13 +67,16 @@ const parishPriestMessage =
         class="font-lora mt-2 text-center text-lg italic text-slate-600"
       >
         {
-          lang == Locale.KOK
-            ? parishPriestMessageKok?.parishPriestName
+          parishPriestMessageKok?.parishPriestName ||
+          parishPriestMessageEn?.parishPriestName
+            ? lang == Locale.KOK
               ? parishPriestMessageKok?.parishPriestName
+                ? parishPriestMessageKok?.parishPriestName
+                : parishPriestMessageEn?.parishPriestName
               : parishPriestMessageEn?.parishPriestName
-            : parishPriestMessageEn?.parishPriestName
-              ? parishPriestMessageEn?.parishPriestName
-              : parishPriestMessageKok?.parishPriestName
+                ? parishPriestMessageEn?.parishPriestName
+                : parishPriestMessageKok?.parishPriestName
+            : "Parish Priest Name"
         }
       </figcaption>
     </div>
@@ -99,14 +102,8 @@ const parishPriestMessage =
           </div>
         </div>
       ) : (
-        <div class="flex flex-col justify-center">
-          <NetworkImage
-            src={getPlaceholderImage()}
-            alt="Placeholder Image"
-            width={600}
-            height={400}
-          />
-          <p class="py-8 text-center text-3xl font-semibold">
+        <div class="m-auto">
+          <p class="py-6 text-center text-3xl font-semibold">
             {Message.MESSAGE_TO_BE_SHARED}
           </p>
         </div>
