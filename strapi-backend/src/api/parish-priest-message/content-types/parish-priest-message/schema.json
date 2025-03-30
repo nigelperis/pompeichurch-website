@@ -4,7 +4,8 @@
   "info": {
     "singularName": "parish-priest-message",
     "pluralName": "parish-priest-messages",
-    "displayName": "Parish Priest Message"
+    "displayName": "Parish Priest Message",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -16,17 +17,18 @@
   },
   "attributes": {
     "parishPriestImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
       ],
-      "type": "media",
-      "multiple": false,
       "pluginOptions": {
         "i18n": {
-          "localized": false
+          "localized": true
         }
       }
     },

@@ -13,15 +13,15 @@ const { events } = Astro.props as { events: Event[] };
 				eventName={event.englishTitle}
 				eventNameKok={event.konkaniTitle}
 				imageUrl={
-					event.eventImage.url
+					event.eventImage?.url
 						? new URL(
-								event.eventImage.url,
+								event.eventImage?.url,
 								import.meta.env.STRAPI_URL,
 							).toString()
 						: getPlaceholderImage()
 				}
-				imageWidth={event.eventImage.width ?? 0}
-				imageHeight={event.eventImage.height ?? 0}
+				imageWidth={event.eventImage?.width || 600}
+				imageHeight={event.eventImage?.height || 400}
 				shortDescription={event.shortDescription}
 				facebookLink={event.facebookLink}
 				slug={event.englishTitle.toLowerCase().replace(/ /g, '-')}

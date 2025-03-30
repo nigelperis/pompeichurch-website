@@ -786,10 +786,103 @@ export interface ApiObituaryObituary extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiParishPastoralCouncilImageParishPastoralCouncilImage
+  extends Struct.SingleTypeSchema {
+  collectionName: 'parish_pastoral_council_images';
+  info: {
+    description: '';
+    displayName: 'Parish Pastoral Council Image';
+    pluralName: 'parish-pastoral-council-images';
+    singularName: 'parish-pastoral-council-image';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::parish-pastoral-council-image.parish-pastoral-council-image'
+    > &
+      Schema.Attribute.Private;
+    pastoralCouncilImage: Schema.Attribute.Media<'images'>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiParishPastoralCouncilParishPastoralCouncil
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'parish_pastoral_councils';
+  info: {
+    description: '';
+    displayName: 'Parish Pastoral Council ';
+    pluralName: 'parish-pastoral-councils';
+    singularName: 'parish-pastoral-council';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    association: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::parish-pastoral-council.parish-pastoral-council'
+    >;
+    name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    position: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    publishedAt: Schema.Attribute.DateTime;
+    sNo: Schema.Attribute.Integer &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiParishPriestMessageParishPriestMessage
   extends Struct.SingleTypeSchema {
   collectionName: 'parish_priest_messages';
   info: {
+    description: '';
     displayName: 'Parish Priest Message';
     pluralName: 'parish-priest-messages';
     singularName: 'parish-priest-message';
@@ -822,7 +915,7 @@ export interface ApiParishPriestMessageParishPriestMessage
     > &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
-          localized: false;
+          localized: true;
         };
       }>;
     parishPriestName: Schema.Attribute.String &
@@ -1463,6 +1556,8 @@ declare module '@strapi/strapi' {
       'api::association-office-bearer.association-office-bearer': ApiAssociationOfficeBearerAssociationOfficeBearer;
       'api::event.event': ApiEventEvent;
       'api::obituary.obituary': ApiObituaryObituary;
+      'api::parish-pastoral-council-image.parish-pastoral-council-image': ApiParishPastoralCouncilImageParishPastoralCouncilImage;
+      'api::parish-pastoral-council.parish-pastoral-council': ApiParishPastoralCouncilParishPastoralCouncil;
       'api::parish-priest-message.parish-priest-message': ApiParishPriestMessageParishPriestMessage;
       'api::pompeichem-falkem.pompeichem-falkem': ApiPompeichemFalkemPompeichemFalkem;
       'api::popes-intention.popes-intention': ApiPopesIntentionPopesIntention;

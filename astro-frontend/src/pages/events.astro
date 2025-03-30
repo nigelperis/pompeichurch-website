@@ -5,6 +5,7 @@ import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import { getPaginationRange } from '~/helpers/get-pagination-range';
 import { listEvents } from '~/services/events/list-events';
 import EventsList from '~/components/sections/events/events-list.astro';
+import { Message } from '~/constants/message.ts';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -12,7 +13,10 @@ const t = useTranslations(lang);
 const eventsPerPage = 6;
 const currentPage = Number(Astro.url.searchParams.get('p')) || 1;
 
-const { events, pagination } = await listEvents({ page: currentPage, pageSize: eventsPerPage });
+const { events, pagination } = await listEvents({
+  page: currentPage,
+  pageSize: eventsPerPage,
+});
 
 const totalPages = pagination.pageCount;
 
@@ -29,20 +33,22 @@ const pageTitle = `Page ${currentPage} | Events | Pompei Church`;
 				Celebrating the moments that unite our parish community.
 			</p>
 
-			{events.length > 0 ? (
-				<>
-					<EventsList events={events} />
-					<Pagination
-						currentPage={currentPage}
-						totalPages={totalPages}
-						getPaginationRange={getPaginationRange}
-					/>
-				</>
-			) : (
-				<p class="py-8 text-center text-3xl font-semibold">
-					No Events Found!
-				</p>
-			)}
-		</section>
-	</main>
+      {
+        events.length > 0 ? (
+          <>
+            <EventsList events={events} />
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              getPaginationRange={getPaginationRange}
+            />
+          </>
+        ) : (
+          <p class="py-8 text-center text-3xl font-semibold">
+            {Message.EVENTS_NOT_FOUND}
+          </p>
+        )
+      }
+    </section>
+  </main>
 </Layout>
