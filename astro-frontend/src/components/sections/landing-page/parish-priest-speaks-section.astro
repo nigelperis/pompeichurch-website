@@ -70,12 +70,10 @@ const parishPriestMessage =
           parishPriestMessageKok?.parishPriestName ||
           parishPriestMessageEn?.parishPriestName
             ? lang == Locale.KOK
-              ? parishPriestMessageKok?.parishPriestName
-                ? parishPriestMessageKok?.parishPriestName
-                : parishPriestMessageEn?.parishPriestName
-              : parishPriestMessageEn?.parishPriestName
-                ? parishPriestMessageEn?.parishPriestName
-                : parishPriestMessageKok?.parishPriestName
+              ? parishPriestMessageKok?.parishPriestName ||
+                parishPriestMessageEn?.parishPriestName
+              : parishPriestMessageEn?.parishPriestName ||
+                parishPriestMessageKok?.parishPriestName
             : "Parish Priest Name"
         }
       </figcaption>
@@ -90,12 +88,10 @@ const parishPriestMessage =
             })}
           >
             {lang == Locale.KOK
-              ? parishPriestMessageKok?.message
-                ? parishPriestMessageKok?.message
-                : parishPriestMessageEn?.message
-              : parishPriestMessageEn?.message
-                ? parishPriestMessageEn?.message
-                : parishPriestMessageKok?.message}
+              ? parishPriestMessageKok?.message ||
+                parishPriestMessageEn?.message
+              : parishPriestMessageEn?.message ||
+                parishPriestMessageKok?.message}
           </p>
           <div class="flex flex-col items-end pb-6 lg:mt-10">
             <span class="mt-2 font-bold">{t("landing.priest")}</span>
