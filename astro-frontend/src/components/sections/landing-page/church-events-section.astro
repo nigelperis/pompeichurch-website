@@ -12,6 +12,7 @@ const eventsUrl = lang === Locale.EN ? '/events' : '/kok/events';
 
 import { listEvents } from '~/services/events/list-events';
 import { Locale } from '~/enums/locale';
+import { getPlaceholderImage } from '~/helpers/get-placeholder-image';
 
 const data = (await listEvents({ page: 1, pageSize: 3 })) || [];
 ---
@@ -38,9 +39,16 @@ const data = (await listEvents({ page: 1, pageSize: 3 })) || [];
           <EventCard
             eventName={event.englishTitle}
             eventNameKok={event.konkaniTitle}
-            imageUrl={event.eventImage?.url}
-            imageWidth={event.eventImage?.width}
-            imageHeight={event.eventImage?.height}
+            imageUrl={
+              event?.eventImage?.url
+                ? new URL(
+                    event?.eventImage?.url,
+                    import.meta.env.STRAPI_URL
+                  ).toString()
+                : getPlaceholderImage()
+            }
+            imageWidth={event?.eventImage?.width || 300}
+            imageHeight={event?.eventImage?.height || 300}
             shortDescription={event.shortDescription}
             facebookLink={event.facebookLink}
             slug={event.slug}
@@ -55,7 +63,7 @@ const data = (await listEvents({ page: 1, pageSize: 3 })) || [];
   }
 
   {
-    data.events.length && (
+    data.events.length > 0 && (
       <div class="flex justify-center">
         <HoverableLink href={eventsUrl} class="m-5">
           {t("ui.show-more-events")}

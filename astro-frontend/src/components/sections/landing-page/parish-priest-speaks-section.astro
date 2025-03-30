@@ -15,10 +15,20 @@ const t = useTranslations(lang);
 
 const parishPriestMessageKok = await fetchParishPriestMessage(Locale.KOK);
 const parishPriestMessageEn = await fetchParishPriestMessage();
-const parishPriestMessage =
+
+const parishPriestImage =
   lang === Locale.KOK
-    ? await fetchParishPriestMessage(Locale.KOK)
-    : await fetchParishPriestMessage();
+    ? parishPriestMessageKok?.parishPriestImage ||
+      parishPriestMessageEn?.parishPriestImage
+    : parishPriestMessageEn?.parishPriestImage ||
+      parishPriestMessageKok?.parishPriestImage;
+
+const parishPriestName =
+  (lang === Locale.KOK
+    ? parishPriestMessageKok?.parishPriestName ||
+      parishPriestMessageEn?.parishPriestName
+    : parishPriestMessageEn?.parishPriestName ||
+      parishPriestMessageKok?.parishPriestName) || "Parish Priest";
 ---
 
 <section
@@ -47,16 +57,16 @@ const parishPriestMessage =
           (
             <NetworkImage
               src={
-                parishPriestMessage?.parishPriestImage?.url
+                parishPriestImage?.url
                   ? new URL(
-                      parishPriestMessage?.parishPriestImage.url,
+                      parishPriestImage?.url,
                       import.meta.env.STRAPI_URL
                     ).toString()
                   : getPlaceholderImage()
               }
-              alt={parishPriestMessage?.parishPriestName || "Parish Priest"}
-              width={parishPriestMessage?.parishPriestImage?.width || 300}
-              height={parishPriestMessage?.parishPriestImage?.height || 300}
+              alt={parishPriestName || "Parish Priest"}
+              width={parishPriestImage?.width || 300}
+              height={parishPriestImage?.height || 300}
               class="w-[300px]"
             />
           )
@@ -94,7 +104,15 @@ const parishPriestMessage =
                 parishPriestMessageKok?.message}
           </p>
           <div class="flex flex-col items-end pb-6 lg:mt-10">
-            <span class="mt-2 font-bold">{t("landing.priest")}</span>
+            <span class="mt-2 font-bold">
+              {lang == Locale.KOK
+                ? parishPriestMessageKok?.message
+                  ? "ಫಿರ್ಗಜ್ ವಿಗಾರ್"
+                  : "Parish Priest"
+                : parishPriestMessageEn?.message
+                  ? "Parish Priest"
+                  : "ಫಿರ್ಗಜ್ ವಿಗಾರ್"}
+            </span>
           </div>
         </div>
       ) : (

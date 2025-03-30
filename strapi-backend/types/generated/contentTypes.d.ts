@@ -882,6 +882,7 @@ export interface ApiParishPriestMessageParishPriestMessage
   extends Struct.SingleTypeSchema {
   collectionName: 'parish_priest_messages';
   info: {
+    description: '';
     displayName: 'Parish Priest Message';
     pluralName: 'parish-priest-messages';
     singularName: 'parish-priest-message';
@@ -914,7 +915,7 @@ export interface ApiParishPriestMessageParishPriestMessage
     > &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
-          localized: false;
+          localized: true;
         };
       }>;
     parishPriestName: Schema.Attribute.String &

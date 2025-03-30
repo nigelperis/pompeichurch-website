@@ -1,3 +1,5 @@
+import type { Locale } from "~/enums/locale";
+
 export interface ParishPastoralCouncil {
   id: number;
   documentId: string;
@@ -8,7 +10,7 @@ export interface ParishPastoralCouncil {
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
-  locale?: string;
+  locale?: Locale;
 }
 
 interface ParishPastoralCouncilData {

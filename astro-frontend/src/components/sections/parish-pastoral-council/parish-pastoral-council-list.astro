@@ -11,14 +11,14 @@ const { pastoralCouncilImage } = Astro.props;
 
 <div>
   <NetworkImage
-    src={pastoralCouncilImage.pastoralCouncilImage?.url
+    src={pastoralCouncilImage?.pastoralCouncilImage?.url
       ? new URL(
-          pastoralCouncilImage.pastoralCouncilImage?.url,
+          pastoralCouncilImage?.pastoralCouncilImage?.url,
           import.meta.env.STRAPI_URL
         ).toString()
       : getPlaceholderImage()}
-    width={pastoralCouncilImage.pastoralCouncilImage?.width || 600}
-    height={pastoralCouncilImage.pastoralCouncilImage?.height || 400}
+    width={pastoralCouncilImage?.pastoralCouncilImage?.width || 600}
+    height={pastoralCouncilImage?.pastoralCouncilImage?.height || 400}
     class="w-full rounded-sm object-contain pb-4 pt-4"
   />
   <table class="mx-auto w-full max-w-4xl border border-gray-200">
