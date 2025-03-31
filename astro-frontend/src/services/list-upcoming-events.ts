@@ -1,4 +1,4 @@
-import { UPCOMING_EVENTS } from '~/constants/strapi-endpoints';
+import { ROUTES } from '~/constants/strapi-endpoints';
 import { strapiFetch } from '~/helpers/strapi-fetch';
 import type {
 	UpcomingEvent,
@@ -28,7 +28,7 @@ async function listUpcomingEvents(args?: {
 		'pagination[pageSize]': String(pageSize),
 	});
 
-	const data = await strapiFetch<UpcomingEventsData>({ endpoint: UPCOMING_EVENTS, queryParams });
+	const data = await strapiFetch<UpcomingEventsData>({ endpoint: ROUTES.UPCOMING_EVENTS, queryParams });
 
 	return data?.data ?? [];
 }

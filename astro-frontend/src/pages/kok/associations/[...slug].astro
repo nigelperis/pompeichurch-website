@@ -8,22 +8,6 @@ import { associationsKok } from '~/constants/associations-kok';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-export async function getStaticPaths() {
-	const paths = [
-		...associations.map(({ slug, title }) => ({
-			params: { slug },
-			props: { slug, title },
-		})),
-		...associationsKok.map(
-			({ slug, title }) => ({
-				params: { slug },
-				props: { slug, title },
-			}),
-		),
-	];
-
-	return paths;
-}
 
 const { slug } = Astro.params as { slug: string };
 const title =

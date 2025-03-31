@@ -1,3 +1,4 @@
+import { ROUTES } from "~/constants/strapi-endpoints";
 import { Locale } from "~/enums/locale";
 import { strapiFetch } from "~/helpers/strapi-fetch";
 import type {
@@ -14,7 +15,6 @@ async function listPastoralCouncilData(args?: {
   locale?: Locale;
 }): Promise<ParishPastoralCouncil[]> {
   const { page = 1, pageSize = 25, sortBy = "sNo:asc", locale = Locale.EN } = args ?? {};
-  const endpoint = "/parish-pastoral-councils";
 
   const queryParams = new URLSearchParams({
     'pagination[page]': String(page),
@@ -24,7 +24,7 @@ async function listPastoralCouncilData(args?: {
   });
 
   const data = await strapiFetch<ParishPastoralCouncilData>({
-    endpoint,
+    endpoint: ROUTES.PARISH_PASTORAL_COUNCIL,
     queryParams,
   });
 
@@ -32,14 +32,12 @@ async function listPastoralCouncilData(args?: {
 }
 
 async function getPastoralCouncilImage(): Promise<ParishPastoralCouncilImage | null> {
-	const endpoint = '/parish-pastoral-council-image';
-
 	const queryParams = new URLSearchParams({
 		'populate[0]': 'pastoralCouncilImage',
 	});
 
 	const data = await strapiFetch<ParishPastoralCouncilImageData>({
-		endpoint,
+		endpoint: ROUTES.PARISH_PASTORAL_COUNCIL_IMAGE,
 		queryParams,
 	});
 

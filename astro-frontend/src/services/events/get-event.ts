@@ -1,6 +1,6 @@
 import type { Event, EventData } from '~/models/event';
 import { strapiFetch } from '~/helpers/strapi-fetch';
-import { EVENTS } from '~/constants/strapi-endpoints';
+import { ROUTES } from '~/constants/strapi-endpoints';
 
 /**
  * Fetches a specific event from the Strapi CMS based on the provided slug.
@@ -15,7 +15,7 @@ async function getEvent(slug: string): Promise<Event | undefined> {
 	});
 
 	const data = await strapiFetch<EventData>({
-		endpoint: EVENTS,
+		endpoint: ROUTES.EVENTS,
 		queryParams,
 	});
 

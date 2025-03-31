@@ -1,4 +1,4 @@
-import { POMPEICHEM_FALKEM } from "~/constants/strapi-endpoints";
+import { ROUTES } from "~/constants/strapi-endpoints";
 import { strapiFetch } from "~/helpers/strapi-fetch";
 import type { PompeichemFalkem, PompeichemFalkemData } from "~/models/pompeichem-falkem";
 
@@ -26,7 +26,7 @@ async function listMagazines(args?: {
 		'pagination[pageSize]': String(pageSize),
 	});
 
-	const data = await strapiFetch<PompeichemFalkemData>({ endpoint: POMPEICHEM_FALKEM, queryParams });
+	const data = await strapiFetch<PompeichemFalkemData>({ endpoint: ROUTES.POMPEICHEM_FALKEM, queryParams });
 
 	return data?.data ?? [];
 }

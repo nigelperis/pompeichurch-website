@@ -26,7 +26,7 @@ export async function strapiFetch<T>({
 	}
 
 	const url = new URL(`/api${endpoint}`, import.meta.env.STRAPI_URL);
-
+	
 	if (queryParams) {
 		for (const [key, value] of queryParams) {
 			url.searchParams.append(key, value);

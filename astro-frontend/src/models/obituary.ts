@@ -54,6 +54,16 @@ export interface Obituary {
 	image: ObituaryImage;
 }
 
+interface ObituaryPagination {
+	obituaries: Obituary[];
+	pagination: {
+		total: number;
+		page: number;
+		pageSize: number;
+		pageCount: number;
+	};
+}
+
 interface ObituaryData {
 	data: Obituary[];
 	meta: {
@@ -66,4 +76,4 @@ interface ObituaryData {
 	};
 }
 
-export type { ObituaryData };
+export type { ObituaryData, ObituaryPagination };

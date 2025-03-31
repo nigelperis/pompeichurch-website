@@ -1,4 +1,4 @@
-import { PARISH_PRIEST_MESSAGE } from "~/constants/strapi-endpoints";
+import { ROUTES } from "~/constants/strapi-endpoints";
 import { Locale } from "~/enums/locale";
 import { strapiFetch } from "~/helpers/strapi-fetch";
 import { type ParishPriestMessage, type ParishPriestMessageData } from "~/models/parish-priest-message";
@@ -15,7 +15,7 @@ async function fetchParishPriestMessage(locale: Locale = Locale.EN): Promise<Par
     'locale': locale
   });
 
-  const data = await strapiFetch<ParishPriestMessageData>({ endpoint: PARISH_PRIEST_MESSAGE, queryParams });
+  const data = await strapiFetch<ParishPriestMessageData>({ endpoint: ROUTES.PARISH_PRIEST_MESSAGE, queryParams });
 
   if (!data?.data) {
     return null;

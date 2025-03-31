@@ -33,7 +33,7 @@ const data = (await listEvents({ page: 1, pageSize: 3 })) || [];
 	</h1>
 
   {
-    data.events.length > 0 ? (
+    data.events?.length > 0 ? (
       <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 md:gap-4 lg:grid-cols-3 lg:gap-8">
         {data.events.map((event) => (
           <EventCard

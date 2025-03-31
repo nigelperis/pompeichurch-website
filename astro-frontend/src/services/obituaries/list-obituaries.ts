@@ -1,23 +1,19 @@
-import { OBITUARIES } from '~/constants/strapi-endpoints';
+import { ROUTES } from '~/constants/strapi-endpoints';
 import { strapiFetch } from '~/helpers/strapi-fetch';
-import type { Obituary, ObituaryData } from '~/models/obituary';
+import type { ObituaryData, ObituaryPagination } from '~/models/obituary';
 
-interface ObituaryPagination {
-	obituaries: Obituary[];
-	pagination: {
-		total: number;
-		page: number;
-		pageSize: number;
-		pageCount: number;
-	};
-}
-
+/**
+ * Fetches a paginated list of obituaries from Strapi.
+ *
+ * @param {Object} [args] - Optional parameters for fetching obituaries.
+ * @param {number} [args.page=1] - The page number to retrieve.
+ * @param {number} [args.pageSize=25] - The number of obituaries per page.
+ * @param {string} [args.sortBy='dateOfDeath:desc'] - The sorting order of the obituaries.
+ * @returns {Promise<ObituaryPagination>} A promise that resolves to an object containing obituaries and pagination details.
+ */
 async function listObituaries(args?: {
-	/**@defaultValue 1 */
 	page?: number;
-	/**@defaultValue 25 */
 	pageSize?: number;
-	/**@defaultValue 'dateOfDeath:desc' */
 	sortBy?: string;
 }): Promise<ObituaryPagination> {
 	const { page = 1, pageSize = 25, sortBy = 'dateOfDeath:desc' } = args ?? {};
@@ -29,7 +25,7 @@ async function listObituaries(args?: {
 		'pagination[pageSize]': String(pageSize),
 	});
 
-	const data = await strapiFetch<ObituaryData>({ endpoint: OBITUARIES, queryParams });
+	const data = await strapiFetch<ObituaryData>({ endpoint: ROUTES.OBITUARIES, queryParams });
 
 	return {
 		obituaries: data?.data ?? [],

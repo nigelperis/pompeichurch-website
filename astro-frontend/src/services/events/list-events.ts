@@ -1,4 +1,4 @@
-import { EVENTS } from "~/constants/strapi-endpoints";
+import { ROUTES } from "~/constants/strapi-endpoints";
 import { strapiFetch } from "~/helpers/strapi-fetch";
 import type { EventData, EventsPagination } from '~/models/event';
 
@@ -40,7 +40,7 @@ async function listEvents(args?: {
     });
   }
 
-  const data = await strapiFetch<EventData>({ endpoint: EVENTS, queryParams });
+  const data = await strapiFetch<EventData>({ endpoint: ROUTES.EVENTS, queryParams });
 
   return {
     events: data?.data ?? [],
