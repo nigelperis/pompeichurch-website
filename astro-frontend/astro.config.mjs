@@ -43,7 +43,6 @@ export default defineConfig({
     build: {
       minify: "terser",
       cssCodeSplit: true,
-      cssMinify: "lightningcss",
       terserOptions: {
         compress: {
           drop_console: true,
