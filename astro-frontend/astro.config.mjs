@@ -10,6 +10,8 @@ export default defineConfig({
   output: "server",
   adapter: node({ mode: "standalone" }),
   prefetch: true,
+  compressHTML: true,
+
   site: "https://pompeichurch.in",
   integrations: [
     tailwind(),
@@ -42,6 +44,7 @@ export default defineConfig({
     },
     build: {
       minify: "terser",
+      rollupOptions: {},
       cssCodeSplit: true,
       terserOptions: {
         compress: {
