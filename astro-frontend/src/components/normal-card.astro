@@ -1,56 +1,56 @@
 ---
-import { cn } from '~/helpers/cn.ts';
-import { getLangFromUrl } from '~/i18n/utils';
-import NetworkImage from './ui/network-image.astro';
-import { Locale } from '~/enums/locale';
+import { cn } from "~/helpers/cn.ts";
+import { getLangFromUrl } from "~/i18n/utils";
+import NetworkImage from "./ui/network-image.astro";
+import { Locale } from "~/enums/locale";
 
 interface Props {
-	title: string;
-	imageUrl: string;
-	imageWidth?: number;
-	imageHeight?: number;
-	subtitle: string;
-	class?: string;
+  title: string;
+  imageUrl: string;
+  imageWidth?: number;
+  imageHeight?: number;
+  subtitle: string;
+  class?: string;
 }
 
 const lang = getLangFromUrl(Astro.url);
 const {
-	title,
-	subtitle,
-	class: className,
-	imageUrl,
-	imageWidth,
-	imageHeight,
+  title,
+  subtitle,
+  class: className,
+  imageUrl,
+  imageWidth,
+  imageHeight,
 } = Astro.props;
 ---
 
 <div
-	class={cn(
-		'w-64 snap-start first:snap-align-none max-w-xs flex-shrink-0 border duration-200 ease-in-out sm:w-64',
-		className,
-	)}
+  class={cn(
+    "w-64 snap-start first:snap-align-none max-w-xs flex-shrink-0 border duration-200 ease-in-out sm:w-64",
+    className
+  )}
 >
-	<div class="card-image flex-none">
-		<NetworkImage
-			src={imageUrl}
-			width={imageWidth ?? 300}
-			height={imageHeight ?? 300}
-			alt={`${title} ${subtitle} of Our Lady of Pompei Church`}
-			class="h-[300px] w-full object-cover"
-		/>
-	</div>
+  <div class="card-image flex-none">
+    <NetworkImage
+      src={imageUrl}
+      width={imageWidth ?? 300}
+      height={imageHeight ?? 300}
+      alt={`${title} ${subtitle} of Our Lady of Pompei Church`}
+      class="h-[300px] w-full object-cover"
+    />
+  </div>
 
-	<div
-		class={cn(
-			'card-content flex flex-1 flex-col font-poppins justify-end space-y-1 p-3',
-			{ 'font-noto-sans-kannada': lang === Locale.KOK },
-		)}
-	>
-		<h3 class="card-title text-lg font-bold leading-snug text-slate-900">
-			{title}
-		</h3>
-		<p class="card-subtitle text-md text-slate-600">
-			{subtitle}
-		</p>
-	</div>
+  <div
+    class={cn(
+      "card-content flex flex-1 flex-col font-poppins justify-end space-y-1 p-3",
+      { "font-noto-sans-kannada": lang === Locale.KOK }
+    )}
+  >
+    <h3 class="card-title text-lg font-bold leading-snug text-gray-800">
+      {title}
+    </h3>
+    <p class="card-subtitle text-md text-gray-700">
+      {subtitle}
+    </p>
+  </div>
 </div>

@@ -1,29 +1,31 @@
 ---
-import { Icon } from 'astro-icon/components';
+import { Icon } from "astro-icon/components";
 ---
 
 <aside>
-	<button
-		id="scrollToTop"
-		class="fixed bottom-[30px] right-4 flex items-center justify-center rounded-full"
-	>
-		<Icon name="scrolltop" size={60} class="" />
-	</button>
+  <button
+    id="scrollToTop"
+    class="fixed bottom-[30px] right-4 flex items-center justify-center rounded-full"
+    aria-label="Scroll to top"
+    title="Scroll to top"
+  >
+    <Icon name="scrolltop" size={60} />
+  </button>
 </aside>
 
 <style>
-	svg {
-		background-color: transparent;
-	}
+  svg {
+    background-color: transparent;
+  }
 </style>
 
 <script>
-	const scrollToTopButton = document.querySelector('#scrollToTop');
+  const scrollToTopButton = document.querySelector("#scrollToTop");
 
-	scrollToTopButton?.addEventListener('click', () => {
-		window.scrollTo({
-			top: 0,
-			behavior: 'smooth',
-		});
-	});
+  scrollToTopButton?.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  });
 </script>
