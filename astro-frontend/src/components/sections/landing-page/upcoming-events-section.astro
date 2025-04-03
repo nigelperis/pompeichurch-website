@@ -46,30 +46,9 @@ const filteredEvents = upcomingEvents.filter((event) => {
   {
     filteredEvents.length > 0 ? (
       <>
-        {/* Mobile: Show carousel only if more than one image */}
-        <div class="event-gallery -mx-[1.5rem] block md:hidden">
-          {filteredEvents.length === 1 ? (
-            <a
-              href="javascript:void(0);"
-              data-pswp-src={filteredEvents[0].eventImage?.url}
-              data-pswp-width={filteredEvents[0].eventImage?.width}
-              data-pswp-height={filteredEvents[0].eventImage?.height}
-            >
-              <NetworkImage
-                src={
-                  filteredEvents[0].eventImage?.url
-                    ? new URL(
-                        filteredEvents[0].eventImage.url,
-                        import.meta.env.STRAPI_URL
-                      ).toString()
-                    : getPlaceholderImage()
-                }
-                class="w-full"
-                width={filteredEvents[0].eventImage?.width || 0}
-                height={filteredEvents[0].eventImage?.height || 0}
-              />
-            </a>
-          ) : (
+        {/* Mobile: Always use the same structure for lightbox compatibility */}
+        <div class="-mx-[1.5rem] block md:hidden">
+          {filteredEvents.length > 1 ? (
             <EmblaCarousel showArrows={true}>
               {filteredEvents.map((event) => (
                 <EmblaCarouselItem>
@@ -103,6 +82,37 @@ const filteredEvents = upcomingEvents.filter((event) => {
                 </EmblaCarouselItem>
               ))}
             </EmblaCarousel>
+          ) : (
+            <div class="event-gallery flex justify-center px-2">
+              <a
+                href="javascript:void(0);"
+                data-pswp-src={
+                  filteredEvents[0].eventImage?.url
+                    ? new URL(
+                        filteredEvents[0].eventImage.url,
+                        import.meta.env.STRAPI_URL
+                      ).toString()
+                    : getPlaceholderImage()
+                }
+                data-pswp-width={filteredEvents[0].eventImage?.width}
+                data-pswp-height={filteredEvents[0].eventImage?.height}
+                class="max-w-[90%] shadow-md"
+              >
+                <NetworkImage
+                  src={
+                    filteredEvents[0].eventImage?.url
+                      ? new URL(
+                          filteredEvents[0].eventImage.url,
+                          import.meta.env.STRAPI_URL
+                        ).toString()
+                      : getPlaceholderImage()
+                  }
+                  class="w-full h-auto rounded-md"
+                  width={filteredEvents[0].eventImage?.width || 0}
+                  height={filteredEvents[0].eventImage?.height || 0}
+                />
+              </a>
+            </div>
           )}
         </div>
 
@@ -122,7 +132,7 @@ const filteredEvents = upcomingEvents.filter((event) => {
               data-pswp-width={event.eventImage?.width}
               data-pswp-height={event.eventImage?.height}
               class="transition-transform duration-300 ease-in-out hover:[transform:scale(1.02)] hover:shadow-md max-h-[400px] flex items-center justify-center"
-              >
+            >
               <NetworkImage
                 src={
                   event.eventImage?.url
