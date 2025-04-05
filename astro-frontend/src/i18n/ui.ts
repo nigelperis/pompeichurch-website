@@ -88,7 +88,6 @@ export const ui = {
 		'landing.nominated-member': 'Nominated Member',
 		'pp.subtitle':
 			'Here is a glimpse of the esteemed former parish priests who have nurtured our faith, enriched our community and individual lives, and upheld the cherished legacy of our church throughout these years.',
-
 		'ui.more-button-know': 'KNOW MORE',
 		'ui.more-button-show': 'SHOW MORE',
 		'ui.more-button-read': 'Read More',
@@ -509,6 +508,7 @@ export const ui = {
 		'nun.plastiddsouza': 'Mr Placid DSouza, Mrs Prescilla DSouza',
 		'nun.albertrodrigues': 'Late| Albert Rodrigues, Late| Emiliana Rodrigues',
 		'nun.denisdcunha': 'Late| Denis DCunha, Late| Mary DCunha',
+		'events.subtitle': 'Celebrating the moments that unite our parish community.'
 	},
 	kok: {
 		'nav.home': 'ಹೋಮ್',
@@ -1011,5 +1011,6 @@ export const ui = {
 		'nun.plastiddsouza': 'ಶ್ರೀ ಪ್ಲಾಸಿಡ್ ಡಿಸೋಜ​, ಶ್ರೀಮತಿ ಪ್ರೆಸಿಲ್ಲಾ ಡಿಸೋಜ​',
 		'nun.albertrodrigues': 'ದೆ| ಆಲ್ಬರ್ಟ್ ರೊಡ್ರಿಗಸ್, ದೆ| ಎಮಿಲಿಯಾನಾ ರೊಡ್ರಿಗಸ್',
 		'nun.denisdcunha': 'ದೆ| ಡೆನಿಸ್ ಡಿಕುನ್ಹಾ, ದೆ| ಮೇರಿ ಡಿಕುನ್ಹಾ',
+		'events.subtitle': 'ಫಿರ್ಗಜ್ ಕುಟ್ಮಾಚ್ಯಾ ಎಕ್ವಟ್ಪಣಾಚ್ಯೊ ಘಡಿಯೊ'
 	},
 } as const;
