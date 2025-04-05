@@ -5,17 +5,41 @@ import { cn } from '~/helpers/cn';
 import HoverableLink from '~/components/ui/hoverable-link.astro';
 import ParishPastoralCard from '~/components/pastoral-council-card.astro';
 
-import johnLobo from '~/assets/pastoral-council/mr-john-lobo.jpg';
-import priestImage from '~/assets/pastoral-council/fr-rudolph-dsa-white.jpg';
-import vicepresident from '~/assets/pastoral-council/vp-image.jpg';
-import ayogPresident from '~/assets/pastoral-council/mrs-hilda-menezes.jpg';
-import praveenLobo from '~/assets/pastoral-council/mr-praveen-lobo.jpg';
+import { Message } from '~/constants/message.ts';
 import { Locale } from '~/enums/locale';
+import { listPastoralCoreCommitteeData } from '~/services/parish-pastoral-council-core-committee-data'
+import { listParishFinanceCommitteeData } from '~/services/list-parish-finance-committee-data';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const councilUrl =
-	lang === Locale.EN ? '/parish-pastoral-council' : '/kok/parish-pastoral-council';
+  lang === Locale.EN
+    ? '/parish-pastoral-council'
+    : '/kok/parish-pastoral-council';
+
+const pastoralCoreCommitteeKok = await listPastoralCoreCommitteeData({
+  locale: Locale.KOK
+});
+const pastoralCoreCommitteeEn = await listPastoralCoreCommitteeData();
+const pastoralCoreCommittee =
+  lang === Locale.KOK
+    ? (pastoralCoreCommitteeKok.length > 0
+        ? pastoralCoreCommitteeKok
+        : pastoralCoreCommitteeEn)
+    : (pastoralCoreCommitteeEn.length > 0
+        ? pastoralCoreCommitteeEn
+        : pastoralCoreCommitteeKok);
+
+const parishFinanceCommitteeKok = await listParishFinanceCommitteeData({ locale: Locale.KOK });
+const parishFinanceCommitteeEn = await listParishFinanceCommitteeData();
+const parishFinanceCommittee =
+	lang === Locale.KOK
+		? (parishFinanceCommitteeKok.length > 0
+				? parishFinanceCommitteeKok
+				: parishFinanceCommitteeEn)
+		: (parishFinanceCommitteeEn.length > 0
+				? parishFinanceCommitteeEn
+				: parishFinanceCommitteeKok);
 ---
 
 <section
@@ -32,55 +56,63 @@ const councilUrl =
 	>
 		{t('landing.pastoral-parishad')}
 	</h1>
+	{
+		pastoralCoreCommittee.length > 0 ? (
+			<div class="scrollbar-none my-4 flex w-full scroll-ml-6 space-x-8 overflow-x-auto overflow-y-hidden pl-6 pr-3 lg:justify-center xl:space-x-10">
+				{pastoralCoreCommittee.map((member) => (
+					<ParishPastoralCard
+						src={member.image.url}
+						name={member.name}
+						position={member.position}
+						width={300}
+						height={300}
+					/>
+				))}
+					<div
+						class="flex-shrink-0 transform snap-start overflow-hidden border shadow-sm transition-all duration-200 ease-in-out lg:hidden"
+					>
+						<div class="opacity-50 blur-md">
+							{
+								parishFinanceCommittee.length == 0 || parishFinanceCommittee[4] === undefined ? (
+								<ParishPastoralCard
+										src={pastoralCoreCommittee[0].image.url}
+										name={pastoralCoreCommittee[0].name}
+										position={pastoralCoreCommittee[0].position}
+										width={300}
+										height={300}
+									/>) : (
+								<ParishPastoralCard
+										src={parishFinanceCommittee[4].image.url}
+										name={parishFinanceCommittee[4].name}
+										position={parishFinanceCommittee[4].position}
+										width={300}
+										height={300}
+									/>
+								)
+							}
 
-	<div
-		class="scrollbar-none my-4 flex w-full scroll-ml-6 space-x-8 overflow-x-auto overflow-y-hidden pl-6 pr-3 lg:justify-center xl:space-x-10"
-	>
-		<ParishPastoralCard
-			imageUrl={priestImage}
-			subtitle={t('landing.priest')}
-			title={t('landing.priest-name')}
-		/>
-		<ParishPastoralCard
-			imageUrl={vicepresident}
-			subtitle={t('landing.vice-president')}
-			title={t('landing.vp-name')}
-		/>
-		<ParishPastoralCard
-			imageUrl={johnLobo}
-			subtitle={t('landing.secretary')}
-			title={t('landing.secretary-name')}
-		/>
-		<ParishPastoralCard
-			imageUrl={ayogPresident}
-			subtitle={t('landing.pastoral-commission-coordinator')}
-			title={t('landing.pastoral-commission-coordinator-name')}
-		/>
-
-		<div
-			class="flex-shrink-0 transform snap-start overflow-hidden border shadow-sm transition-all duration-200 ease-in-out lg:hidden"
-		>
-			<div class="opacity-50 blur-md">
-				<ParishPastoralCard
-					imageUrl={praveenLobo}
-					subtitle={t('landing.pastoral-commission-coordinator')}
-					title={t('landing.pastoral-commission-coordinator-name')}
-				/>
+						</div>
+						<div class="absolute inset-0 flex items-center justify-center">
+							<HoverableLink
+								href={councilUrl}
+								class="mb-2 mt-2 inline-block text-xl font-bold text-black"
+							>
+								{t('ui.view-all')}
+							</HoverableLink>
+						</div>
+					</div>
 			</div>
-			<div class="absolute inset-0 flex items-center justify-center">
-				<HoverableLink
-					href={councilUrl}
-					class="mb-2 mt-2 inline-block text-xl font-bold text-black"
-				>
+			<div class="hidden justify-center lg:flex">
+				<HoverableLink href={councilUrl}>
 					{t('ui.view-all')}
 				</HoverableLink>
 			</div>
-		</div>
-	</div>
-
-	<div class="hidden justify-center lg:flex">
-		<HoverableLink href={councilUrl}>
-			{t('ui.view-all')}
-		</HoverableLink>
-	</div>
+		) : (
+			<div class="m-auto">
+				<p class="py-8 text-center text-3xl font-semibold">
+        	{Message.CORE_COMMITTEE_NOT_FOUND}
+      	</p>
+			</div>
+		)
+	}
 </section>

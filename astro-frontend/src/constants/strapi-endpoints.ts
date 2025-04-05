@@ -8,4 +8,6 @@ export const ROUTES = {
   PARISH_PASTORAL_COUNCIL: '/parish-pastoral-councils',
   PARISH_PASTORAL_COUNCIL_IMAGE: '/parish-pastoral-council-image',
   ASSCIATION_OFFICE_BEARERS: '/association-office-bearer',
+  PASTORAL_CORE_COMMITTEE: '/parish-pastoral-council-core-committees',
+  PARISH_FINANCE_COMMITTEE: '/parish-finance-committees',
 } as const;

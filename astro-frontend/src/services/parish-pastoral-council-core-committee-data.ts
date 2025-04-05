@@ -1,0 +1,39 @@
+import { ROUTES } from "~/constants/strapi-endpoints";
+import { Locale } from "~/enums/locale";
+import { strapiFetch } from "~/helpers/strapi-fetch";
+import type {
+  PastoralCoreCommittee,
+  PastoralCoreCommitteeData,
+} from "~/models/parish-pastoral-council-core-committee";
+
+async function listPastoralCoreCommitteeData(args?: {
+  page?: number;
+  pageSize?: number;
+  sortBy?: string;
+  locale?: Locale;
+}): Promise<PastoralCoreCommittee[]> {
+
+  const { page = 1, pageSize = 25, sortBy = "sNo:asc", locale = Locale.EN } = args ?? {};
+
+  const queryParams = new URLSearchParams({
+    'populate[0]': 'image',
+    'pagination[page]': String(page),
+    'pagination[pageSize]': String(pageSize),
+    'sort[0]': sortBy,
+    'locale': locale,
+  });
+
+  const data = await strapiFetch<PastoralCoreCommitteeData>({
+    endpoint: ROUTES.PASTORAL_CORE_COMMITTEE,
+    queryParams,
+  });
+
+  if (!data?.data) {
+    return null;
+  }
+
+  return data.data;
+
+}
+
+export { listPastoralCoreCommitteeData };
