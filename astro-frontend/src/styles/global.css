@@ -50,3 +50,11 @@
 
   --animation-slidein: slidein 1s ease-out var(--slidein-delay, 0) forwards;
 }
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
