@@ -24,7 +24,7 @@ const { events } = Astro.props as { events: Event[] };
 				imageHeight={event.eventImage?.height || 400}
 				shortDescription={event.shortDescription}
 				facebookLink={event.facebookLink}
-				slug={event.englishTitle.toLowerCase().replace(/ /g, '-')}
+				slug={event.slug}
 				instagramLink={event.instagramLink}
 			/>
 		))
