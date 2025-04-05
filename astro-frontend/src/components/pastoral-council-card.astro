@@ -1,18 +1,23 @@
 ---
-import { Image } from "astro:assets";
 import { Locale } from "~/enums/locale";
 import { cn } from "~/helpers/cn.ts";
 import { getLangFromUrl } from "~/i18n/utils";
+import NetworkImage from "./ui/network-image.astro";
+import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
 
 interface Props {
-  title: string;
-  imageUrl: ImageMetadata;
-  subtitle: string;
-  class?: string;
+	src: string;
+	baseUrl?: string;
+	width: number;
+	height: number;
+	alt?: string;
+	class?: string;
+  name: string;
+  position: string;
 }
 
 const lang = getLangFromUrl(Astro.url);
-const { title, subtitle, class: className, imageUrl } = Astro.props;
+const { src, width, height, class: className, name, position} = Astro.props;
 ---
 
 <div
@@ -22,10 +27,19 @@ const { title, subtitle, class: className, imageUrl } = Astro.props;
   )}
 >
   <div class="card-image flex-none">
-    <Image
-      src={imageUrl}
-      alt={`${title} ${subtitle} of Our Lady of Pompei Church`}
-      class="h-[300px] w-full object-cover"
+    <NetworkImage
+    src={
+      src
+        ? new URL(
+            src,
+            import.meta.env.STRAPI_URL
+          ).toString()
+        : getPlaceholderImage()
+    }
+    width={width}
+    height={height}
+    alt={`${position} of Our Lady of Pompei Church`}
+    class="h-[300px] w-full object-cover"
     />
   </div>
 
@@ -36,10 +50,10 @@ const { title, subtitle, class: className, imageUrl } = Astro.props;
     )}
   >
     <h3 class="card-title text-lg font-bold leading-snug text-gray-800">
-      {title}
+      {name}
     </h3>
     <p class="card-subtitle text-md text-gray-700">
-      {subtitle}
+      {position}
     </p>
   </div>
 </div>
