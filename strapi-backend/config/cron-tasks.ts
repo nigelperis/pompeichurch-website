@@ -1,5 +1,5 @@
 export default {
-  '* * * * *': async ({ strapi }) => {
+  '0 1 * * *': async ({ strapi }) => {
     const today = new Date().toISOString().split('T')[0];
 
     const events = await strapi.entityService.findMany('api::upcoming-event.upcoming-event', {
