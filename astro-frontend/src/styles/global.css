@@ -1,6 +1,5 @@
 @import "tailwindcss";
 
-/* Define custom keyframes directly in CSS */
 @keyframes slidein {
   from {
     opacity: 0;
@@ -12,11 +11,9 @@
   }
 }
 
-/* Define theme customizations using CSS custom properties within @theme */
 @theme {
-  /* Screens (replaces theme.screens) */
   --screen-xs: 320px;
-  --screen-sm-xs: 370px; /* Note: Dashes are kept */
+  --screen-sm-xs: 370px;
   --screen-sm-md: 430px;
   --screen-sm-lg: 480px;
   --screen-md-xs: 550px;
@@ -29,8 +26,7 @@
   --screen-xl-sm: 1440px;
   --screen-xl: 1536px;
 
-  /* Colors (replaces theme.extend.colors) */
-  --color-natgeo-yellow: #ffdd00; /* DEFAULT maps to the base name */
+  --color-natgeo-yellow: #ffdd00;
   --color-natgeo-yellow-50: #feffe7;
   --color-natgeo-yellow-100: #fcffc1;
   --color-natgeo-yellow-200: #feff86;
@@ -42,9 +38,6 @@
   --color-natgeo-yellow-900: #744a0f;
   --color-natgeo-yellow-950: #442704;
 
-  /* Fonts (replaces theme.extend.fontFamily) */
-  /* Fallbacks like 'serif' or 'sans-serif' are used. */
-  /* You might want to use Tailwind's full default stacks if needed. */
   --font-bona-nova-sc: "Bona Nova SC", serif;
   --font-poppins: "poppins-latin-500-normal", sans-serif;
   --font-poppins-semibold: "poppins-latin-600-normal", sans-serif;
@@ -55,11 +48,5 @@
   --font-noto-sans-kannada-semibold: "noto-sans-kannada-latin-600-normal", sans-serif;
   --font-geist: "geist-sans", sans-serif;
 
-  /* Animations (replaces theme.animation) */
-  /* Uses the @keyframes defined above */
   --animation-slidein: slidein 1s ease-out var(--slidein-delay, 0) forwards;
 }
-
-/* You can add custom base styles or component layers here if needed */
-/* @layer base { ... } */
-/* @layer components { ... } */

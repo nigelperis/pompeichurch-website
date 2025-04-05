@@ -13,8 +13,18 @@ const optimizedChurchHeroImage = await getImage({ src: churchHeroImage });
 ---
 
 <head>
-  <link rel="preload" as="image" href={optimizedSkyImage.src} type="image/webp" />
-  <link rel="preload" as="image" href={optimizedChurchHeroImage.src} type="image/webp" />
+  <link
+    rel="preload"
+    as="image"
+    href={optimizedSkyImage.src}
+    type="image/webp"
+  />
+  <link
+    rel="preload"
+    as="image"
+    href={optimizedChurchHeroImage.src}
+    type="image/webp"
+  />
 </head>
 <section
   class="relative h-screen w-screen bg-black/20 bg-cover bg-blend-darken"
@@ -37,7 +47,7 @@ const optimizedChurchHeroImage = await getImage({ src: churchHeroImage });
     data-aos="fade-up"
     data-aos-delay="700"
     class={cn(
-      "mt-3 text-center font-montserrat text-4xl  lg:text-5xl font-semibold",
+    "mt-3 text-center font-montserrat text-4xl lg:text-5xl font-semibold",
       {
         "font-noto-sans-kannada": lang === Locale.KOK,
       }
@@ -67,15 +77,15 @@ const optimizedChurchHeroImage = await getImage({ src: churchHeroImage });
   </div>
 </section>
 <style>
-	@keyframes animatedBackground {
-		from {
-			transform: scale(1.2);
-		}
-		to {
-			transform: scale(1);
-		}
-	}
-	.animated-background {
-		animation: animatedBackground 2s ease-out forwards;
-	}
+  @keyframes animatedBackground {
+    from {
+      transform: scale(1.2);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+  .animated-background {
+    animation: animatedBackground 2s ease-out forwards;
+  }
 </style>

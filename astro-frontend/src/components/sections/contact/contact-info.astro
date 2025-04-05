@@ -1,38 +1,38 @@
 ---
-import { Icon } from 'astro-icon/components';
-import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+import { Icon } from "astro-icon/components";
+import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
 <div class="mt-8 max-w-4xl bg-white lg:px-4">
-	<div class="mb-4 flex items-center border-b-2 pb-4">
-		<Icon name="map-pin" size={22} class="text-gray-900" />
-		<p class="ml-4 font-semibold text-gray-800">
-			{t('contact.address')}
-		</p>
-	</div>
+  <div class="mb-4 flex items-center border-gray-200 border-b-2 pb-4">
+    <Icon name="map-pin" size={22} class="text-gray-900" />
+    <p class="ml-4 font-semibold text-gray-800">
+      {t("contact.address")}
+    </p>
+  </div>
 
-	<div class="mb-6 flex items-center border-b-2 pb-4">
-		<Icon name="contact-phone" size={22} class="text-gray-900" />
-		<p class="ml-4 font-semibold text-gray-800">8277939340</p>
-	</div>
+  <div class="mb-6 flex items-center border-gray-200 border-b-2 pb-4">
+    <Icon name="contact-phone" size={22} class="text-gray-900" />
+    <p class="ml-4 font-semibold text-gray-800">8277939340</p>
+  </div>
 
-	<div class="mb-6 flex items-center border-b-2 pb-4">
-		<Icon name="user" size={22} class="text-gray-900" />
-		<p class="ml-4 font-semibold text-gray-800">
-			{t('contact.mon-sat')} 9AM - 1PM | 2PM-5PM
-		</p>
-	</div>
+  <div class="mb-6 flex items-center border-gray-200 border-b-2 pb-4">
+    <Icon name="user" size={22} class="text-gray-900" />
+    <p class="ml-4 font-semibold text-gray-800">
+      {t("contact.mon-sat")} 9AM - 1PM | 2PM-5PM
+    </p>
+  </div>
 
-	<div class="mb-6 flex items-center border-b-2 pb-4">
-		<Icon name="clock" size={22} class="text-gray-900" />
-		<p class="ml-4 font-semibold text-gray-800">{t('contact.clerk-name')}</p>
-	</div>
+  <div class="mb-6 flex items-center border-gray-200 border-b-2 pb-4">
+    <Icon name="clock" size={22} class="text-gray-900" />
+    <p class="ml-4 font-semibold text-gray-800">{t("contact.clerk-name")}</p>
+  </div>
 
-	<div class="mb-6 flex items-center pb-4">
-		<Icon name="contact-mail" size={22} class="text-gray-900" />
-		<p class="ml-4 font-semibold text-gray-800">pompeichurchgurpur@gmail.com</p>
-	</div>
+  <div class="mb-6 flex items-center pb-4">
+    <Icon name="contact-mail" size={22} class="text-gray-900" />
+    <p class="ml-4 font-semibold text-gray-800">pompeichurchgurpur@gmail.com</p>
+  </div>
 </div>
