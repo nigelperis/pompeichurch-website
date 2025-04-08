@@ -10,6 +10,7 @@ import { getPlaceholderImage } from '~/helpers/get-placeholder-image';
 import StrapiBlocksRenderer from '~/components/ui/strapi-blocks-renderer';
 import { listEvents } from '~/services/events/list-events';
 import { Locale } from '~/enums/locale';
+import { SITE_URL } from '~/constants/constants';
 
 const { slug } = Astro.params;
 const lang = getLangFromUrl(Astro.url);
@@ -26,7 +27,7 @@ const absoluteImageURL = new URL(
 	baseURL,
 ).href;
 
-const ogUrl = new URL(eventUrl, baseURL).href;
+const ogUrl = new URL(eventUrl, SITE_URL).href;
 
 const eventImage = event?.eventImage ?? {
 	url: getPlaceholderImage(),

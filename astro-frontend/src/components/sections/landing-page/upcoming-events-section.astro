@@ -46,44 +46,10 @@ const filteredEvents = upcomingEvents.filter((event) => {
   {
     filteredEvents.length > 0 ? (
       <>
-        {/* Mobile: Always use the same structure for lightbox compatibility */}
+        {/* Mobile: Show carousel only if more than one image */}
         <div class="-mx-[1.5rem] block md:hidden">
-          {filteredEvents.length > 1 ? (
-            <EmblaCarousel showArrows={true}>
-              {filteredEvents.map((event) => (
-                <EmblaCarouselItem>
-                  <a
-                    href="javascript:void(0);"
-                    data-pswp-src={
-                      event.eventImage?.url
-                        ? new URL(
-                            event.eventImage.url,
-                            import.meta.env.STRAPI_URL
-                          ).toString()
-                        : getPlaceholderImage()
-                    }
-                    data-pswp-width={event.eventImage?.width}
-                    data-pswp-height={event.eventImage?.height}
-                  >
-                    <NetworkImage
-                      src={
-                        event.eventImage?.url
-                          ? new URL(
-                              event.eventImage.url,
-                              import.meta.env.STRAPI_URL
-                            ).toString()
-                          : getPlaceholderImage()
-                      }
-                      class="w-full"
-                      width={event.eventImage?.width || 0}
-                      height={event.eventImage?.height || 0}
-                    />
-                  </a>
-                </EmblaCarouselItem>
-              ))}
-            </EmblaCarousel>
-          ) : (
-            <div class="event-gallery flex justify-center px-2">
+          {filteredEvents.length === 1 ? (
+            <div class="event-gallery px-4">
               <a
                 href="javascript:void(0);"
                 data-pswp-src={
@@ -96,7 +62,6 @@ const filteredEvents = upcomingEvents.filter((event) => {
                 }
                 data-pswp-width={filteredEvents[0].eventImage?.width}
                 data-pswp-height={filteredEvents[0].eventImage?.height}
-                class="max-w-[90%] shadow-md"
               >
                 <NetworkImage
                   src={
@@ -107,11 +72,47 @@ const filteredEvents = upcomingEvents.filter((event) => {
                         ).toString()
                       : getPlaceholderImage()
                   }
-                  class="w-full h-auto rounded-md"
+                  class="w-full rounded-sm"
                   width={filteredEvents[0].eventImage?.width || 0}
                   height={filteredEvents[0].eventImage?.height || 0}
                 />
               </a>
+            </div>
+          ) : (
+            <div class="event-gallery">
+              <EmblaCarousel showArrows={true}>
+                {filteredEvents.map((event) => (
+                  <EmblaCarouselItem>
+                    <a
+                      href="javascript:void(0);"
+                      data-pswp-src={
+                        event.eventImage?.url
+                          ? new URL(
+                              event.eventImage.url,
+                              import.meta.env.STRAPI_URL
+                            ).toString()
+                          : getPlaceholderImage()
+                      }
+                      data-pswp-width={event.eventImage?.width}
+                      data-pswp-height={event.eventImage?.height}
+                    >
+                      <NetworkImage
+                        src={
+                          event.eventImage?.url
+                            ? new URL(
+                                event.eventImage.url,
+                                import.meta.env.STRAPI_URL
+                              ).toString()
+                            : getPlaceholderImage()
+                        }
+                        class="w-full"
+                        width={event.eventImage?.width || 0}
+                        height={event.eventImage?.height || 0}
+                      />
+                    </a>
+                  </EmblaCarouselItem>
+                ))}
+              </EmblaCarousel>
             </div>
           )}
         </div>
