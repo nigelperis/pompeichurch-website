@@ -8,10 +8,10 @@ import { Locale } from '~/enums/locale';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const fontClass = lang === Locale.KOK ? 'font-noto-sans-kannada' : 'font-geist';
+const fontClass = lang === Locale.KOK ? 'font-noto-sans-kannada' : 'font-geist-normal';
 ---
 
-<h2 class={cn('font-geist text-lg font-normal text-gray-700')}>
+<h2 class={cn('font-geist-normal text-lg font-normal text-gray-700')}>
 	<strong>{t('landing.pastoral-commission-coordinator')}</strong> : {
 		t('landing.pastoral-commission-coordinator-name')
 	}

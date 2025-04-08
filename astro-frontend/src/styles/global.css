@@ -39,14 +39,14 @@
   --color-natgeo-yellow-950: #442704;
 
   --font-bona-nova-sc: "Bona Nova SC", serif;
-  --font-poppins: "poppins-latin-500-normal", sans-serif;
+  --font-poppins: "poppins-latin-500-normal", ui-sans-serif, system-ui, sans-serif;
   --font-poppins-semibold: "poppins-latin-600-normal", sans-serif;
-  --font-montserrat: "Montserrat", sans-serif;
   --font-merriweather: "Merriweather", serif;
   --font-lora: "Lora", serif;
   --font-noto-sans-kannada: "noto-sans-kannada-latin-500-normal", sans-serif;
-  --font-noto-sans-kannada-semibold: "noto-sans-kannada-latin-600-normal", sans-serif;
-  --font-geist: "geist-sans", sans-serif;
+  --font-noto-sans-kannada-semibold:
+    "noto-sans-kannada-latin-600-normal", sans-serif;
+  --font-geist: 'Geist Sans', ui-sans-serif, system-ui, sans-serif;
 
   --animation-slidein: slidein 1s ease-out var(--slidein-delay, 0) forwards;
 }

@@ -34,7 +34,7 @@ const optimizedBgImage = await getImage({ src: psalmBg });
 				<h3
 					class={cn('text-center font-extrabold sm:text-xl', {
 						'font-noto-sans-kannada': lang === Locale.KOK,
-						'font-geist': lang !== Locale.KOK,
+						'font-geist-normal': lang !== Locale.KOK,
 					})}
 				>
 					{psalm.title}
@@ -44,7 +44,7 @@ const optimizedBgImage = await getImage({ src: psalmBg });
 					set:html={psalm.content}
 					class={cn('text-center leading-relaxed', {
 						'font-noto-sans-kannada': lang === Locale.KOK,
-						'font-geist': lang !== Locale.KOK,
+						'font-geist-normal': lang !== Locale.KOK,
 					})}
 				/>
 			</div>
