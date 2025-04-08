@@ -18,6 +18,7 @@
     "@fontsource/noto-sans-kannada": "5.1.1",
     "@fontsource/poppins": "5.1.1",
     "@strapi/blocks-react-renderer": "1.0.2",
+    "@tsparticles/confetti": "3.8.1",
     "aos": "2.3.4",
     "astro": "5.5.3",
     "astro-icon": "1.1.5",
