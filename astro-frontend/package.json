@@ -66,6 +66,7 @@
       "sharp"
     ],
     "onlyBuiltDependencies": [
+      "@tsparticles/engine",
       "sharp"
     ]
   }
