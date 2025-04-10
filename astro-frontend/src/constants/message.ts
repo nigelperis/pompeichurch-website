@@ -7,4 +7,5 @@ export class Message {
   public static readonly POPES_INTENTION_NOT_FOUND = 'Popes Intention Not found!';
   public static readonly CORE_COMMITTEE_NOT_FOUND = 'No Core Committee Found!';
   public static readonly FINANCE_COMMITTEE_NOT_FOUND = 'No Finance Committee Found!';
+  public static readonly PARISH_PRIESTS_NOT_FOUND = 'No Parish Priests Found!';
 }

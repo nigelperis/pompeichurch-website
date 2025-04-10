@@ -10,4 +10,5 @@ export const ROUTES = {
   ASSCIATION_OFFICE_BEARERS: '/association-office-bearer',
   PASTORAL_CORE_COMMITTEE: '/parish-pastoral-council-core-committees',
   PARISH_FINANCE_COMMITTEE: '/parish-finance-committees',
+  PARISH_PRIESTS: '/parish-priests',
 } as const;

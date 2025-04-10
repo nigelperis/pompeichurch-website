@@ -6,6 +6,17 @@ import type {
   PastoralCoreCommitteeData,
 } from "~/models/parish-pastoral-council-core-committee";
 
+/**
+ * Fetches a paginated list of members of the Pastoral Core Committee from Strapi.
+ *
+ * @param {Object} [args] - Optional parameters for fetching the list of members.
+ * @param {number} [args.page=1] - The page number to retrieve.
+ * @param {number} [args.pageSize=25] - The number of members per page.
+ * @param {string} [args.sortBy='sNo:asc'] - The sorting order of the members.
+ * @param {Locale} [args.locale=Locale.EN] - The locale of the content to retrieve.
+ * @returns {Promise<PastoralCoreCommittee[]>} A promise that resolves to an array of PastoralCoreCommittee objects.
+ */
+
 async function listPastoralCoreCommitteeData(args?: {
   page?: number;
   pageSize?: number;
