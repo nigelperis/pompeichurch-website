@@ -1,22 +1,22 @@
 ---
 import ProfileCard from '~/components/profile-card.astro';
-import { financeCommittee } from '~/constants/finance-committee-members';
-import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+import type { ParishFinanceCommittee } from '~/models/parish-finance-committee';
 
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
+const { parishFinanceCommittee } = Astro.props;
 ---
 
 <div
 	class="xs:grid-cols-1 mx-auto grid w-full max-w-4xl grid-cols-2 gap-x-20 gap-y-10 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
 >
 	{
-		financeCommittee.map((councilMember) => (
+		parishFinanceCommittee.map((member: ParishFinanceCommittee) => (
 			<ProfileCard
 				class="m-auto"
-				imageUrl={councilMember.imageUrl}
-				name={t(`landing.${councilMember.name}`)}
-				subtitle={t(`landing.${councilMember.subtitle}`)}
+				url={member.image?.url}
+				name={member.name}
+				subtitle={member.position}
+				width={300}
+				height={300}
 			/>
 		))
 	}

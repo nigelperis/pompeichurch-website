@@ -4,7 +4,8 @@
   "info": {
     "singularName": "parish-finance-committee",
     "pluralName": "parish-finance-committees",
-    "displayName": "Parish Finance Committee"
+    "displayName": "Parish Finance Committee",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -35,17 +36,17 @@
       "unique": true
     },
     "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images"
       ],
-      "type": "media",
-      "multiple": false,
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
-      },
-      "required": true
+      }
     },
     "position": {
       "pluginOptions": {

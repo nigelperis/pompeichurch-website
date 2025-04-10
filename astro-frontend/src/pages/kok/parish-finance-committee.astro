@@ -2,25 +2,48 @@
 import Layout from '~/layouts/layout.astro';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import ParishFinancecommitteeList from '~/components/sections/parish-finance-committee/parish-finance-committee-list.astro';
+import { listParishFinanceCommitteeData } from '~/services/list-parish-finance-committee-data';
+import type { ParishFinanceCommittee } from '~/models/parish-finance-committee';
+import { Locale } from '~/enums/locale';
+import { Message } from '~/constants/message';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+const parishFinanceCommitteeDataKok: ParishFinanceCommittee[] =
+  (await listParishFinanceCommitteeData({ page: 1, pageSize: 100, locale: Locale.KOK })) || [];
+const parishFinanceCommitteeData: ParishFinanceCommittee[] =
+  (await listParishFinanceCommitteeData({ page: 1, pageSize: 100 })) || [];
 ---
 
 <Layout title="Pompei Church | Parish Finance Committee">
-	<main class="mx-auto max-w-4xl overflow-hidden bg-white">
-		<section id="finance-committee" class="flex flex-col p-6 pb-4">
-			<h1
-				class="border-natgeo-yellow mb-5 border-l-4 pl-3 text-3xl font-extrabold lg:text-4xl"
-			>
-				{t('nav.parish-finance-committee')}
-			</h1>
-			<!-- <p class="pb-5 font-geist text-justify text-lg ">
+  <main class="mx-auto max-w-4xl overflow-hidden bg-white">
+    <section id="finance-committee" class="flex flex-col p-6 pb-4">
+      <h1
+        class="border-natgeo-yellow mb-5 border-l-4 pl-3 text-3xl font-extrabold lg:text-4xl"
+      >
+        {t('nav.parish-finance-committee')}
+      </h1>
+      <!-- <p class="pb-5 font-geist text-justify text-lg ">
 				Here is a glimpse of the esteemed former parish priests who have
 				nurtured our faith, enriched our community and individual lives, and
 				upheld the cherished legacy of our church throughout these years.
 			</p> -->
-			<ParishFinancecommitteeList />
-		</section>
-	</main>
+      {
+        parishFinanceCommitteeDataKok.length > 0 ? (
+          <ParishFinancecommitteeList
+            parishFinanceCommittee={parishFinanceCommitteeDataKok}
+          />
+        ) : parishFinanceCommitteeData.length > 0 ? (
+          <ParishFinancecommitteeList
+            parishFinanceCommittee={parishFinanceCommitteeData}
+          />
+        ) : (
+          <p class="py-8 text-center text-3xl font-semibold">
+            {Message.FINANCE_COMMITTEE_NOT_FOUND}
+          </p>
+        )
+      }
+    </section>
+  </main>
 </Layout>

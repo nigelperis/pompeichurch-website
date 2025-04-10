@@ -2,19 +2,31 @@
 import { Image } from 'astro:assets';
 import { cn } from '~/helpers/cn';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+import NetworkImage from './ui/network-image.astro';
+import profileImage from '~/assets/parish-priests/blank.jpeg';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 interface Props {
-	name: string;
-	imageUrl: ImageMetadata;
-	date?: string;
-	subtitle?: string;
-	class?: string;
+  name: string;
+  url: string;
+  date?: string;
+  subtitle?: string;
+  class?: string;
+  width?: number;
+  height?: number;
 }
 
-const { name, date, subtitle, class: className, imageUrl } = Astro.props;
+const {
+  name,
+  url,
+  date,
+  subtitle,
+  class: className,
+  width,
+  height,
+} = Astro.props;
 ---
 
 <div
@@ -24,35 +36,48 @@ const { name, date, subtitle, class: className, imageUrl } = Astro.props;
 		'w-[230px] h-[410px]',
 	)}
 >
-	<div class="card-image flex-none">
-		<Image
-			src={imageUrl}
-			alt={`Image of ${name}`}
-			class="h-[300px] w-full rounded-md object-cover"
-		/>
-	</div>
+  <div class="card-image flex-none">
+    {
+      url ? (
+        <NetworkImage
+          src={url}
+          width={width || 300}
+          height={height || 300}
+          class="h-[300px] w-full object-cover"
+        />
+      ) : (
+        <Image
+          src={profileImage}
+          alt="Profile"
+          class="h-[300px] w-full object-cover"
+          width={width}
+          height={height}
+        />
+      )
+    }
+  </div>
 
-	<div class="card-content flex flex-1 flex-col justify-end space-y-1 p-3">
-		<h3
-			class="card-title pt-1 font-bold leading-snug text-slate-900 sm:text-lg"
-			title={name}
-		>
-			{name}
-		</h3>
-		{
-			date && (
-				<p class="card-date text-slate-700">
-					{t('priest.service-period')}:{' '}
-					<span class="font-semibold">{date}</span>
-				</p>
-			)
-		}
-		{
-			subtitle && (
-				<p class="card-subtitle line-clamp-3 text-slate-600 sm:text-sm">
-					{subtitle}
-				</p>
-			)
-		}
-	</div>
+  <div class="card-content flex flex-1 flex-col justify-end space-y-1 p-3">
+    <h3
+      class="card-title pt-1 font-bold leading-snug text-slate-900 sm:text-lg"
+      title={name}
+    >
+      {name}
+    </h3>
+    {
+      date && (
+        <p class="card-date text-slate-700">
+          {t("priest.service-period")}:{" "}
+          <span class="font-semibold">{date}</span>
+        </p>
+      )
+    }
+    {
+      subtitle && (
+        <p class="card-subtitle line-clamp-3 text-slate-600 sm:text-sm">
+          {subtitle}
+        </p>
+      )
+    }
+  </div>
 </div>

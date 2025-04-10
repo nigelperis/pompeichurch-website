@@ -790,6 +790,7 @@ export interface ApiParishFinanceCommitteeParishFinanceCommittee
   extends Struct.CollectionTypeSchema {
   collectionName: 'parish_finance_committees';
   info: {
+    description: '';
     displayName: 'Parish Finance Committee';
     pluralName: 'parish-finance-committees';
     singularName: 'parish-finance-committee';
@@ -807,7 +808,6 @@ export interface ApiParishFinanceCommitteeParishFinanceCommittee
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     image: Schema.Attribute.Media<'images'> &
-      Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -869,7 +869,6 @@ export interface ApiParishPastoralCouncilCoreCommitteeParishPastoralCouncilCoreC
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     image: Schema.Attribute.Media<'images'> &
-      Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
