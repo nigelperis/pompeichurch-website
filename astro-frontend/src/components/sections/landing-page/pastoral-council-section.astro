@@ -7,7 +7,7 @@ import ParishPastoralCard from '~/components/pastoral-council-card.astro';
 
 import { Message } from '~/constants/message.ts';
 import { Locale } from '~/enums/locale';
-import { listPastoralCoreCommitteeData } from '~/services/parish-pastoral-council-core-committee-data'
+import { listPastoralCoreCommitteeData } from '~/services/parish-pastoral-council/parish-pastoral-council-core-committee-data'
 import { listParishFinanceCommitteeData } from '~/services/list-parish-finance-committee-data';
 
 const lang = getLangFromUrl(Astro.url);
@@ -17,9 +17,7 @@ const councilUrl =
     ? '/parish-pastoral-council'
     : '/kok/parish-pastoral-council';
 
-const pastoralCoreCommitteeKok = await listPastoralCoreCommitteeData({
-  locale: Locale.KOK
-});
+const pastoralCoreCommitteeKok = await listPastoralCoreCommitteeData({ locale: Locale.KOK });
 const pastoralCoreCommitteeEn = await listPastoralCoreCommitteeData();
 const pastoralCoreCommittee =
   lang === Locale.KOK
@@ -59,9 +57,9 @@ const parishFinanceCommittee =
 	{
 		pastoralCoreCommittee.length > 0 ? (
 			<div class="scrollbar-none my-4 flex w-full scroll-ml-6 space-x-8 overflow-x-auto overflow-y-hidden pl-6 pr-3 lg:justify-center xl:space-x-10">
-				{pastoralCoreCommittee.map((member) => (
+				{pastoralCoreCommittee.slice(0, 4).map((member) => (
 					<ParishPastoralCard
-						src={member.image.url}
+						src={member.image?.url}
 						name={member.name}
 						position={member.position}
 						width={300}
@@ -73,18 +71,12 @@ const parishFinanceCommittee =
 					>
 						<div class="opacity-50 blur-md">
 							{
-								parishFinanceCommittee.length == 0 || parishFinanceCommittee[4] === undefined ? (
+								parishFinanceCommittee.length == 0 || parishFinanceCommittee[3] === undefined ? (
+								<ParishPastoralCard src={''} name={''} position={''} width={300} height={300}/>) : (
 								<ParishPastoralCard
-										src={pastoralCoreCommittee[0].image.url}
-										name={pastoralCoreCommittee[0].name}
-										position={pastoralCoreCommittee[0].position}
-										width={300}
-										height={300}
-									/>) : (
-								<ParishPastoralCard
-										src={parishFinanceCommittee[4].image.url}
-										name={parishFinanceCommittee[4].name}
-										position={parishFinanceCommittee[4].position}
+										src={parishFinanceCommittee[3].image.url}
+										name={parishFinanceCommittee[3].name}
+										position={parishFinanceCommittee[3].position}
 										width={300}
 										height={300}
 									/>

@@ -28,12 +28,7 @@ async function listParishFinanceCommitteeData(args?: {
     queryParams,
   });
 
-  if (!data?.data) {
-    return null;
-  }
-
-  return data.data;
-
+  return data?.data ?? [];
 }
 
 export { listParishFinanceCommitteeData };
