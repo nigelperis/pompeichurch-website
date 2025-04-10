@@ -1,38 +1,39 @@
 ---
-import Layout from '~/layouts/layout.astro';
-import { Icon } from 'astro-icon/components';
+import Layout from "~/layouts/layout.astro";
+import { Icon } from "astro-icon/components";
 
-import { getLangFromUrl } from '~/i18n/utils';
-import ShareLink from '~/components/ui/share-link.astro';
-import { getEvent } from '~/services/events/get-event';
-import NetworkImage from '~/components/ui/network-image.astro';
-import { getPlaceholderImage } from '~/helpers/get-placeholder-image';
-import StrapiBlocksRenderer from '~/components/ui/strapi-blocks-renderer';
-import { listEvents } from '~/services/events/list-events';
-import { Locale } from '~/enums/locale';
-import { SITE_URL } from '~/constants/constants';
+import { getLangFromUrl } from "~/i18n/utils";
+import ShareLink from "~/components/ui/share-link.astro";
+import { getEvent } from "~/services/events/get-event";
+import NetworkImage from "~/components/ui/network-image.astro";
+import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
+import StrapiBlocksRenderer from "~/components/ui/strapi-blocks-renderer";
+import { listEvents } from "~/services/events/list-events";
+import { Locale } from "~/enums/locale";
+import { SITE_URL } from "~/constants/constants";
 
 const { slug } = Astro.params;
 const lang = getLangFromUrl(Astro.url);
 
-const event = await getEvent(slug ?? '');
+const event = await getEvent(slug ?? "");
 const { events: allEvents } = await listEvents();
 
-const eventUrl = lang === Locale.EN ? `/events/${slug}/` : `/kok/events/${slug}/`;
+const eventUrl =
+  lang === Locale.EN ? `/events/${slug}/` : `/kok/events/${slug}/`;
 
-const baseURL = import.meta.env.STRAPI_URL
+const baseURL = import.meta.env.STRAPI_URL;
 
 const absoluteImageURL = new URL(
-	event?.eventImage?.url ?? getPlaceholderImage(),
-	baseURL,
+  event?.eventImage?.url ?? getPlaceholderImage(),
+  baseURL
 ).href;
 
 const ogUrl = new URL(eventUrl, SITE_URL).href;
 
 const eventImage = event?.eventImage ?? {
-	url: getPlaceholderImage(),
-	width: 600,
-	height: 400,
+  url: getPlaceholderImage(),
+  width: 600,
+  height: 400,
 };
 
 const eventIndex = allEvents.findIndex((e) => e.slug === slug);
@@ -40,104 +41,104 @@ const prevEvent = allEvents[eventIndex - 1];
 const nextEvent = allEvents[eventIndex + 1];
 
 const socialLinks = [
-	{ platform: 'facebook', url: event?.facebookLink },
-	{ platform: 'instagram', url: event?.instagramLink },
+  { platform: "facebook", url: event?.facebookLink },
+  { platform: "instagram", url: event?.instagramLink },
 ].filter((link) => link.url);
 ---
 
 <Layout
-	title={event?.konkaniTitle ?? ''}
-	description={event?.shortDescription}
-	image={absoluteImageURL}
-	url={ogUrl}
+  title={event?.konkaniTitle ?? ""}
+  description={event?.shortDescription}
+  image={absoluteImageURL}
+  url={ogUrl}
 >
-	<main
-		class="font-noto-sans-kannada mx-auto max-w-4xl overflow-hidden bg-white text-justify"
-	>
-		<section class="flex flex-col p-6">
-			<h1
-				class="border-natgeo-yellow mb-4 border-l-4 pl-3 text-left text-2xl font-extrabold lg:text-4xl"
-			>
-				{event?.konkaniTitle}
-			</h1>
+  <main
+    class="font-noto-sans-kannada mx-auto max-w-4xl overflow-hidden bg-white text-justify"
+  >
+    <section class="flex flex-col p-6">
+      <h1
+        class="border-natgeo-yellow mb-4 border-l-4 pl-3 text-left text-2xl font-extrabold lg:text-4xl"
+      >
+        {event?.konkaniTitle}
+      </h1>
 
-			<NetworkImage
-				src={eventImage?.url}
-				width={eventImage?.width}
-				height={eventImage?.height}
-				class="mx-auto mt-1 rounded-sm md:w-3/4"
-			/>
+      <NetworkImage
+        src={eventImage?.url}
+        width={eventImage?.width}
+        height={eventImage?.height}
+        class="mx-auto mt-1 rounded-sm md:w-3/4"
+      />
 
-			<p class="text-md mt-4 leading-7 text-slate-700">
-				<StrapiBlocksRenderer content={event?.description ?? []} />
-			</p>
+      <p class="mt-4 leading-7 text-slate-700">
+        <StrapiBlocksRenderer content={event?.description ?? []} />
+      </p>
 
-			<!-- Social Links & Share -->
-			<div class="flex">
-				<div class="flex w-full justify-start gap-10">
-					{
-						socialLinks.map(({ platform, url }) => (
-							<div class="mb-1 mt-4 h-5 w-5 transition-transform duration-200 hover:scale-110">
-								<a href={url} target="_blank">
-									<Icon name={platform + '1'} size={42} />
-								</a>
-							</div>
-						))
-					}
-				</div>
+      <!-- Social Links & Share -->
+      <div class="flex">
+        <div class="flex w-full justify-start gap-10">
+          {
+            socialLinks.map(({ platform, url }) => (
+              <div class="mb-1 mt-4 h-5 w-5 transition-transform duration-200 hover:scale-110">
+                <a href={url} target="_blank">
+                  <Icon name={platform + "1"} size={42} />
+                </a>
+              </div>
+            ))
+          }
+        </div>
 
-				<ShareLink
-					shareData={{ title: event?.konkaniTitle || '', url: eventUrl }}
-					class="mt-2 flex h-12 items-center"
-				/>
-			</div>
-		</section>
+        <ShareLink
+          shareData={{ title: event?.konkaniTitle || "", url: eventUrl }}
+          class="mt-2 flex h-12 items-center"
+        />
+      </div>
+    </section>
 
-		<!-- Navigation: Previous & Next Events -->
-		{
-			(prevEvent || nextEvent) && (
-				<section class="mx-6 mb-8 pt-3">
-					<div class="flex flex-col gap-4 sm:flex-row sm:justify-between">
-						{prevEvent && (
-							<a
-								href={`/${lang === Locale.EN ? '' : 'kok/'}events/${prevEvent.slug}`}
-								rel="prev"
-								class={`flex cursor-pointer items-center gap-3 rounded-lg border border-gray-300 px-4 py-3 shadow-md transition-colors hover:border-black ${nextEvent ? 'sm:w-1/2' : 'w-full'}`}
-							>
-								<Icon
-									name="chevron-left"
-									class="stroke-2 text-2xl text-gray-700"
-								/>
-								<span>
-									<div class="text-md pb-1 text-gray-500">Previous Event</div>
-									<div class="text-left text-lg font-medium text-black">
-										{prevEvent.konkaniTitle}
-									</div>
-								</span>
-							</a>
-						)}
+    <!-- Navigation: Previous & Next Events -->
+    {
+      (prevEvent || nextEvent) && (
+        <section class="mx-6 mb-8 pt-3">
+          <div class="flex flex-col gap-4 sm:flex-row sm:justify-between">
+            {prevEvent && (
+              <a
+                href={`/${lang === Locale.EN ? "" : "kok/"}events/${prevEvent.slug}`}
+                rel="prev"
+                class={`flex cursor-pointer items-center gap-3 rounded-lg border border-gray-300 px-4 py-3 shadow-md transition-colors hover:border-black ${nextEvent ? "sm:w-1/2" : "w-full"}`}
+              >
+                <Icon
+                  name="chevron-left"
+                  class="stroke-2 text-2xl text-gray-700"
+                />
+                <span>
+                  <div class=" pb-1 text-gray-500">Previous Event</div>
+                  <div class="text-left text-lg font-medium text-black">
+                    {prevEvent.konkaniTitle}
+                  </div>
+                </span>
+              </a>
+            )}
 
-						{nextEvent && (
-							<a
-								href={`/${lang === Locale.EN ? '' : 'kok/'}events/${nextEvent.slug}`}
-								rel="next"
-								class={`flex flex-row-reverse items-center gap-3 rounded-lg border border-gray-300 px-4 py-3 text-right shadow-md transition-colors hover:border-gray-500 ${prevEvent ? 'sm:w-1/2' : 'w-full'}`}
-							>
-								<Icon
-									name="chevron-right"
-									class="stroke-2 text-2xl text-gray-700"
-								/>
-								<span>
-									<div class="text-md pb-1 text-gray-500">Next Event</div>
-									<div class="text-lg font-medium text-black">
-										{nextEvent.konkaniTitle}
-									</div>
-								</span>
-							</a>
-						)}
-					</div>
-				</section>
-			)
-		}
-	</main>
+            {nextEvent && (
+              <a
+                href={`/${lang === Locale.EN ? "" : "kok/"}events/${nextEvent.slug}`}
+                rel="next"
+                class={`flex flex-row-reverse items-center gap-3 rounded-lg border border-gray-300 px-4 py-3 text-right shadow-md transition-colors hover:border-gray-500 ${prevEvent ? "sm:w-1/2" : "w-full"}`}
+              >
+                <Icon
+                  name="chevron-right"
+                  class="stroke-2 text-2xl text-gray-700"
+                />
+                <span>
+                  <div class=" pb-1 text-gray-500">Next Event</div>
+                  <div class="text-lg font-medium text-black">
+                    {nextEvent.konkaniTitle}
+                  </div>
+                </span>
+              </a>
+            )}
+          </div>
+        </section>
+      )
+    }
+  </main>
 </Layout>

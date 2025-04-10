@@ -47,8 +47,8 @@ const t = useTranslations(lang);
                     "font-poppins font-semibold transition-all duration-200 p-2 rounded-md",
                     lang === Locale.KOK
                       ? "font-noto-sans-kannada text-sm p-2"
-                      : "text-md",
-                    "hover:bg-natgeo-yellow",
+                      : "",
+                    "hover:bg-natgeo-yellow"
                   )}
                 >
                   {t(link.title)}
@@ -112,7 +112,7 @@ const t = useTranslations(lang);
             <span
               class={cn(
                 "font-poppins group-hover:border-natgeo-yellow border-b-4 border-b-transparent font-black transition-all duration-150",
-                { "font-noto-sans-kannada": lang === Locale.KOK },
+                { "font-noto-sans-kannada": lang === Locale.KOK }
               )}
             >
               {t(link.title)}
@@ -137,8 +137,9 @@ const t = useTranslations(lang);
                       class={cn(
                         "font-poppins group-hover:border-natgeo-yellow border-b-4 border-b-transparent text-lg font-semibold transition-all duration-150",
                         {
-                          "font-noto-sans-kannada font-normal": lang === Locale.KOK,
-                        },
+                          "font-noto-sans-kannada font-normal":
+                            lang === Locale.KOK,
+                        }
                       )}
                     >
                       {t(sublinks.title)}
@@ -223,10 +224,10 @@ const t = useTranslations(lang);
   const hamburgerClose = document.querySelector("#hamburger-close");
   const navbar = document.querySelector("#navbar");
   const expandableLinks = document.querySelectorAll(
-    "[data-expandable-links=true]",
+    "[data-expandable-links=true]"
   );
   const allNavigationLinks = document.querySelectorAll(
-    "nav a:not([data-expandable-links=true])",
+    "nav a:not([data-expandable-links=true])"
   );
 
   hamburgerMenu?.addEventListener("click", () => {
@@ -268,7 +269,7 @@ const t = useTranslations(lang);
         const elementHeight = expandableContent?.scrollHeight;
         expandableContent?.style?.setProperty(
           "max-height",
-          `${elementHeight ?? 500}px`,
+          `${elementHeight ?? 500}px`
         );
       }
     });
@@ -281,7 +282,7 @@ const t = useTranslations(lang);
       // Close all expandable submenus
       expandableLinks.forEach((element) => {
         const expandableContent = element.parentElement?.querySelector(
-          "a + ul",
+          "a + ul"
         ) as HTMLElement;
         expandableContent?.style.setProperty("max-height", "0");
         element.setAttribute("data-is-submenu-expanded", "false");
