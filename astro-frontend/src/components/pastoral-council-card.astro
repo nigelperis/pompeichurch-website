@@ -17,7 +17,7 @@ const { title, subtitle, class: className, imageUrl } = Astro.props;
 
 <div
   class={cn(
-    "w-64 snap-start first:snap-align-none max-w-xs flex-shrink-0 border duration-200 ease-in-out sm:w-64",
+    "w-64 snap-start first:snap-align-none max-w-xs flex-shrink-0 border border-gray-200 duration-200 ease-in-out sm:w-64",
     className
   )}
 >
@@ -38,7 +38,7 @@ const { title, subtitle, class: className, imageUrl } = Astro.props;
     <h3 class="card-title text-lg font-bold leading-snug text-gray-800">
       {title}
     </h3>
-    <p class="card-subtitle text-md text-gray-700">
+    <p class="card-subtitle text-gray-700">
       {subtitle}
     </p>
   </div>
