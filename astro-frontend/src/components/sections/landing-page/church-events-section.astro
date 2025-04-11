@@ -1,36 +1,36 @@
 ---
-import HoverableLink from '~/components/ui/hoverable-link.astro';
-import { getLangFromUrl, useTranslations } from '~/i18n/utils';
-import EventCard from '~/components/event-card.astro';
-import { Message } from '~/constants/message.ts';
+import HoverableLink from "~/components/ui/hoverable-link.astro";
+import { getLangFromUrl, useTranslations } from "~/i18n/utils";
+import EventCard from "~/components/event-card.astro";
+import { Message } from "~/constants/message.ts";
 
-import { cn } from '~/helpers/cn';
+import { cn } from "~/helpers/cn";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const eventsUrl = lang === Locale.EN ? '/events' : '/kok/events';
+const eventsUrl = lang === Locale.EN ? "/events" : "/kok/events";
 
-import { listEvents } from '~/services/events/list-events';
-import { Locale } from '~/enums/locale';
-import { getPlaceholderImage } from '~/helpers/get-placeholder-image';
+import { listEvents } from "~/services/events/list-events";
+import { Locale } from "~/enums/locale";
+import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
 
 const data = (await listEvents({ page: 1, pageSize: 3 })) || [];
 ---
 
 <section
-	class="mx-6 mt-4 flex flex-col lg:mx-28 lg:min-h-[70svh] lg:justify-evenly"
+  class="mx-6 mt-4 flex flex-col lg:mx-28 lg:min-h-[70svh] lg:justify-evenly"
 >
-	<h1
-		data-aos="fade-right"
-		class={cn(
-			'mb-6 inline-block border-l-4 border-natgeo-yellow pl-3 font-poppins text-2xl font-extrabold xs:text-2xl lg:text-4xl',
-			{
-				'font-noto-sans-kannada': lang === Locale.KOK,
-			},
-		)}
-	>
-		{t('nav.events')}
-	</h1>
+  <h1
+    data-aos="fade-right"
+    class={cn(
+      "mb-6 inline-block border-l-4 border-natgeo-yellow pl-3 font-poppins text-2xl font-extrablack xs:text-2xl lg:text-4xl",
+      {
+        "font-noto-sans-kannada": lang === Locale.KOK,
+      }
+    )}
+  >
+    {t("nav.events")}
+  </h1>
 
   {
     data.events?.length > 0 ? (

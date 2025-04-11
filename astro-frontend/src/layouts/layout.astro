@@ -1,9 +1,11 @@
 ---
-import poppinsRegular from '@fontsource/poppins/files/poppins-latin-500-normal.woff2?url';
-import notoSansKannadaRegualar from '@fontsource/noto-sans-kannada/files/noto-sans-kannada-latin-500-normal.woff2?url';
 import poppinsSemibold from '@fontsource/poppins/files/poppins-latin-600-normal.woff2?url';
 import notoSansKannadaSemiBold from '@fontsource/noto-sans-kannada/files/noto-sans-kannada-latin-600-normal.woff2?url';
+import '@fontsource-variable/lora';
+import '@fontsource/geist-sans';
+import '@fontsource/poppins';
 import 'aos/dist/aos.css';
+
 import { getLangFromUrl } from '~/i18n/utils';
 import Navbar from '~/components/navbar.astro';
 import Footer from '~/components/footer.astro';
@@ -62,20 +64,6 @@ const { title, description, image, url } = Astro.props;
 		<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
 		<link rel="manifest" href="/site.webmanifest" />
 
-		<link
-			rel="preload"
-			as="font"
-			type="font/woff2"
-			href={poppinsRegular}
-			crossorigin="anonymous"
-		/>
-		<link
-			rel="preload"
-			as="font"
-			type="font/woff2"
-			href={notoSansKannadaRegualar}
-			crossorigin="anonymous"
-		/>
 		<link
 			rel="preload"
 			as="font"

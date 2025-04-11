@@ -29,8 +29,7 @@ const priestsData =
     ? parishHistoryKok[1].priestInfo
     : parishHistory[1].priestInfo;
 
-const fontClass =
-  lang === Locale.KOK ? "font-noto-sans-kannada" : "font-geist-normal";
+const fontClass = lang === Locale.KOK ? "font-noto-sans-kannada" : "font-geist";
 const images = [history1, history2, history3, history4, history5, history6];
 ---
 
@@ -47,7 +46,7 @@ const images = [history1, history2, history3, history4, history5, history6];
       class="pb-4 text-justify leading-7 text-slate-700"
       set:html={priestsData}
     />
-    <h1 class="mb-4 mt-2 text-2xl font-extrabold lg:text-3xl">
+    <h1 class="mb-4 mt-2 text-2xl font-extrablack lg:text-3xl">
       {t("history.sweet-memories")}
     </h1>
     <div class="mt-4 pb-4">

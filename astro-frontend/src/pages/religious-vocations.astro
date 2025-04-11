@@ -1,32 +1,32 @@
 ---
-import Layout from '~/layouts/layout.astro';
-import { getLangFromUrl, useTranslations } from '~/i18n/utils';
-import ReligiousPriestsList from '~/components/sections/religious-priests/religious-priests-list.astro';
-import ReligiousNunsList from '~/components/sections/religious-nuns/religious-nuns-list.astro';
+import Layout from "~/layouts/layout.astro";
+import { getLangFromUrl, useTranslations } from "~/i18n/utils";
+import ReligiousPriestsList from "~/components/sections/religious-priests/religious-priests-list.astro";
+import ReligiousNunsList from "~/components/sections/religious-nuns/religious-nuns-list.astro";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
 <Layout title="Pompei Church | Religious Vocations">
-	<main class="mx-auto max-w-4xl overflow-hidden bg-white">
-		<section id="parish-priests" class="flex flex-col p-6 pb-4">
-			<h1
-				class="border-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl font-extrabold lg:text-4xl"
-			>
-				{t('nav.religious-vocations')}
-			</h1>
-			<p class="font-geist-normal text-justify text-lg text-slate-700">
-				{t('vocation.title')}
-			</p>
-			<h2 class="mt-6 text-3xl font-semibold italic text-red-600 lg:text-3xl">
-				{t('vocation.subtitle1')}
-			</h2>
-			<ReligiousPriestsList />
-			<h2 class="mt-6 text-3xl font-semibold italic text-red-600 lg:text-3xl">
-				{t('vocation.subtitle2')}
-			</h2>
-			<ReligiousNunsList />
-		</section>
-	</main>
+  <main class="mx-auto max-w-4xl overflow-hidden bg-white">
+    <section id="parish-priests" class="flex flex-col p-6 pb-4">
+      <h1
+        class="border-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl font-extrablack lg:text-4xl"
+      >
+        {t("nav.religious-vocations")}
+      </h1>
+      <p class="font-geist text-justify text-lg text-slate-700">
+        {t("vocation.title")}
+      </p>
+      <h2 class="mt-6 text-3xl font-semibold italic text-red-600 lg:text-3xl">
+        {t("vocation.subtitle1")}
+      </h2>
+      <ReligiousPriestsList />
+      <h2 class="mt-6 text-3xl font-semibold italic text-red-600 lg:text-3xl">
+        {t("vocation.subtitle2")}
+      </h2>
+      <ReligiousNunsList />
+    </section>
+  </main>
 </Layout>

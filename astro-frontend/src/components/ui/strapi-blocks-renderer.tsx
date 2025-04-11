@@ -19,7 +19,7 @@ function StrapiBlocksRenderer(props: StrapiBlocksProps) {
           switch (level) {
             case 1:
               return (
-                <h1 className="font-poppins text-5xl font-extrabold">
+                <h1 className="font-poppins text-5xl font-extrablack">
                   {children}
                 </h1>
               );

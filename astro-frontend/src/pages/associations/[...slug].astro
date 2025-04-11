@@ -1,28 +1,26 @@
 ---
-import Layout from '~/layouts/layout.astro';
-import { getLangFromUrl, useTranslations } from '~/i18n/utils';
-import AssociationDetails from '~/components/sections/associations/association-details.astro';
-import { associations } from '~/constants/associations';
-import { associationsKok } from '~/constants/associations-kok';
+import Layout from "~/layouts/layout.astro";
+import { getLangFromUrl, useTranslations } from "~/i18n/utils";
+import AssociationDetails from "~/components/sections/associations/association-details.astro";
+import { associations } from "~/constants/associations";
+import { associationsKok } from "~/constants/associations-kok";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 export async function getStaticPaths() {
-	const paths = [
-		...associations.map(({ slug, title }) => ({
-			params: { slug },
-			props: { slug, title },
-		})),
-		...associationsKok.map(
-			({ slug, title }) => ({
-				params: { slug },
-				props: { slug, title },
-			}),
-		),
-	];
+  const paths = [
+    ...associations.map(({ slug, title }) => ({
+      params: { slug },
+      props: { slug, title },
+    })),
+    ...associationsKok.map(({ slug, title }) => ({
+      params: { slug },
+      props: { slug, title },
+    })),
+  ];
 
-	return paths;
+  return paths;
 }
 
 const { slug } = Astro.params as { slug: string };
@@ -33,14 +31,14 @@ const title =
 ---
 
 <Layout title={`Associations | ${title}`}>
-	<main class="mx-auto max-w-4xl overflow-hidden bg-white">
-		<section id="associations" class="flex flex-col p-6 pb-4">
-			<h1
-				class="border-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl font-extrabold lg:text-4xl"
-			>
-				{t(`nav.${slug}`)}
-			</h1>
-			<AssociationDetails />
-		</section>
-	</main>
+  <main class="mx-auto max-w-4xl overflow-hidden bg-white">
+    <section id="associations" class="flex flex-col p-6 pb-4">
+      <h1
+        class="border-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl font-extrablack lg:text-4xl"
+      >
+        {t(`nav.${slug}`)}
+      </h1>
+      <AssociationDetails />
+    </section>
+  </main>
 </Layout>
