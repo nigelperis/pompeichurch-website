@@ -37,9 +37,9 @@ const parishPriestName =
   <h2
     data-aos="fade-right"
     class={cn(
-      "mb-4 inline-block border-l-4 border-natgeo-yellow pl-3 font-poppins text-2xl font-extrablack xs:text-2xl lg:text-4xl",
+      "mb-4 inline-block border-l-4 border-natgeo-yellow pl-3 font-poppins text-2xl font-extrablack lg:text-4xl",
       {
-        "font-noto-sans-kannada": lang === Locale.KOK,
+        "font-noto-sans-kannada font-extrabold pt-2": lang === Locale.KOK,
       }
     )}
   >
@@ -93,9 +93,12 @@ const parishPriestName =
       parishPriestMessageKok || parishPriestMessageEn ? (
         <div class="lg:self-center">
           <p
-            class={cn(`text-justify font-geist font-light pt-2 text-base leading-7`, {
-              "font-noto-sans-kannada": lang === Locale.KOK,
-            })}
+            class={cn(
+              `text-justify font-geist font-light pt-2 text-base leading-7`,
+              {
+                "font-noto-sans-kannada font-normal": lang === Locale.KOK,
+              }
+            )}
           >
             {lang == Locale.KOK
               ? parishPriestMessageKok?.message ||
@@ -104,7 +107,11 @@ const parishPriestName =
                 parishPriestMessageKok?.message}
           </p>
           <div class="flex flex-col items-end pb-6 lg:mt-10">
-            <span class="mt-2 font-bold">
+            <span
+              class={cn("mt-2 font-bold", {
+                "font-noto-sans-kannada": lang === Locale.KOK,
+              })}
+            >
               {lang == Locale.KOK
                 ? parishPriestMessageKok?.message
                   ? "ಫಿರ್ಗಜ್ ವಿಗಾರ್"

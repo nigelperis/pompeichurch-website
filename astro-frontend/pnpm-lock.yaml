@@ -17,10 +17,10 @@ importers:
       '@fontsource-variable/lora':
         specifier: 5.2.5
         version: 5.2.5
-      '@fontsource/geist-sans':
+      '@fontsource-variable/noto-sans-kannada':
         specifier: 5.2.5
         version: 5.2.5
-      '@fontsource/noto-sans-kannada':
+      '@fontsource/geist-sans':
         specifier: 5.2.5
         version: 5.2.5
       '@fontsource/poppins':
@@ -490,11 +490,11 @@ packages:
   '@fontsource-variable/lora@5.2.5':
     resolution: {integrity: sha512-eupTrzQnDFr3i9pci0efxfT0mCjGmWJNmDyvsl9Wq11JCyNr5ZN7bTjhIT6/q9daq5CshTsowg0/BH2gERbtXQ==}
 
+  '@fontsource-variable/noto-sans-kannada@5.2.5':
+    resolution: {integrity: sha512-7MnvzZSSo/4mm1rnmqZHxZYNLlG8XzeW1L+tJFMHU4fW/aEils5UfSM84cjmlhHns7IF57t0D6dDTaX6onr+WQ==}
+
   '@fontsource/geist-sans@5.2.5':
     resolution: {integrity: sha512-anllOHyJbElRs9fV15TeDRqAeb1IKm4bSknPl6ZMoyPTx1BBy7logudcUwpNjmQLkzn4Q0JGQLRCUKJYoyST6A==}
-
-  '@fontsource/noto-sans-kannada@5.2.5':
-    resolution: {integrity: sha512-0W2eoMW7JRbiLnNKUk2BmkzO/MiaQQ2XefiRAYHspVxdoVWfQBKc+OLbbovWJ7adlGZA7mb1Q3lh0tZJXqv+HA==}
 
   '@fontsource/poppins@5.2.5':
     resolution: {integrity: sha512-1S3k45pZOz2jqGPPqKw0in3uxFwnB+d5jSU8Tp9YwH/dIJptE3jdkQbYN0QD861GtuOpn6QhPW/yKt1w7hVRBQ==}
@@ -3518,9 +3518,9 @@ snapshots:
 
   '@fontsource-variable/lora@5.2.5': {}
 
-  '@fontsource/geist-sans@5.2.5': {}
+  '@fontsource-variable/noto-sans-kannada@5.2.5': {}
 
-  '@fontsource/noto-sans-kannada@5.2.5': {}
+  '@fontsource/geist-sans@5.2.5': {}
 
   '@fontsource/poppins@5.2.5': {}
 

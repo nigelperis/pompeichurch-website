@@ -1,9 +1,7 @@
 ---
-import poppinsSemibold from '@fontsource/poppins/files/poppins-latin-600-normal.woff2?url';
-import notoSansKannadaSemiBold from '@fontsource/noto-sans-kannada/files/noto-sans-kannada-latin-600-normal.woff2?url';
 import '@fontsource-variable/lora';
 import '@fontsource/geist-sans';
-import '@fontsource/poppins';
+import '@fontsource-variable/noto-sans-kannada';
 import 'aos/dist/aos.css';
 
 import { getLangFromUrl } from '~/i18n/utils';
@@ -64,7 +62,7 @@ const { title, description, image, url } = Astro.props;
 		<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
 		<link rel="manifest" href="/site.webmanifest" />
 
-		<link
+		<!-- <link
 			rel="preload"
 			as="font"
 			type="font/woff2"
@@ -77,7 +75,7 @@ const { title, description, image, url } = Astro.props;
 			type="font/woff2"
 			href={notoSansKannadaSemiBold}
 			crossorigin="anonymous"
-		/>
+		/> -->
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		{import.meta.env.MODE === 'production' && (
