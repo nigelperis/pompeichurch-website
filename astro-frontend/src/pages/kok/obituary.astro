@@ -7,6 +7,7 @@ import { listObituaries } from "~/services/obituaries/list-obituaries";
 import type { Obituary } from "~/models/obituary";
 import { Message } from "~/constants/message.ts";
 import { Locale } from "~/enums/locale";
+import { cn } from "~/helpers/cn";
 
 const url = new URL(Astro.url);
 const lang = getLangFromUrl(Astro.url);
@@ -55,11 +56,19 @@ const obituaryUrl = new URL(
   <main class="mx-auto max-w-4xl overflow-hidden bg-white">
     <section id="obituary" class="flex flex-col p-6 pb-4">
       <h1
-        class="border-natgeo-yellow font-poppins mb-4 border-l-4 pl-3 text-3xl font-extrablack lg:text-4xl"
+        class={cn(
+          "border-natgeo-yellow font-poppins mb-4 border-l-4 pl-3 text-3xl font-extrablack lg:text-4xl",
+          { "font-noto-sans-kannada pt-2 font-bold": lang === Locale.KOK }
+        )}
       >
         {t("nav.obituary")}
       </h1>
-      <p class="font-roboto p-3 pb-6 text-2xl font-bold italic text-red-600">
+      <p
+        class={cn(
+          "font-roboto p-3 pb-6 text-2xl font-bold italic text-red-600",
+          { "font-noto-sans-kannada font-bold": lang === Locale.KOK }
+        )}
+      >
         {t("obituary.subtitle")}
       </p>
 

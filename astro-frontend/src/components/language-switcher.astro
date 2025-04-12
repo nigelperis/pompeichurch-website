@@ -11,14 +11,14 @@ const lang = getLangFromUrl(Astro.url);
 ---
 
 <div class="relative inline-block text-left">
-  <div class="-mt-1">
+  <div>
     <button
       type="button"
       id="lang-button"
       class={cn(
-        "inline-flex font-poppins font-semibold justify-center rounded-md border border-gray-500 px-2 lg:py-1 pt-1 pb-1 mt-1 md:hover:bg-natgeo-yellow",
+        "inline-flex font-roboto font-semibold justify-center rounded-md border border-gray-500 px-2 lg:py-1 pt-1 pb-1 mt-1 md:hover:bg-natgeo-yellow",
         lang === Locale.KOK &&
-          "font-noto-sans-kannada text-sm pt-2 font-semibold lg:mt-2 lg:py-1.5"
+          "font-noto-sans-kannada pt-2 font-semibold lg:mt-2 lg:py-1.5"
       )}
       aria-label="Click here to switch language"
     >
@@ -46,7 +46,7 @@ const lang = getLangFromUrl(Astro.url);
           <button
             type="button"
             class={cn(
-              "font-poppins hover:bg-natgeo-yellow w-full rounded-md py-2 text-sm font-normal transition-all",
+              "font-roboto hover:bg-natgeo-yellow w-full rounded-md py-2 text-sm font-normal transition-all",
               selectedLanguage === lang && "font-noto-sans-kannada"
             )}
             aria-label="Language label"

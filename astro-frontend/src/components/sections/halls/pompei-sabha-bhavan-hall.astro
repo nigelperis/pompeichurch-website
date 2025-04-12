@@ -8,13 +8,17 @@ import pbs1 from "~/assets/halls/psb-int-1.jpg";
 import pbs2 from "~/assets/halls/psb-int-2.jpg";
 import pbs4 from "~/assets/halls/psb-ext-2.jpg";
 import pbs6 from "~/assets/halls/psb-ext-4.jpg";
+import { Locale } from "~/enums/locale";
+import { cn } from "~/helpers/cn";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
 <h1
-  class="border-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl font-extrablack lg:text-4xl"
+  class={cn("border-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl font-extrablack lg:text-4xl",{
+    "font-noto-sans-kannada font-bold sm:pt-2": lang === Locale.KOK,
+  })}
 >
   {t("hall.title")}
 </h1>
@@ -25,7 +29,7 @@ const t = useTranslations(lang);
     class="pb-2 text-center"
   />
 </div>
-<div class="font-geist pb-4">
+<div class="font-roboto pb-4">
   <p class="mb-4 text-lg font-bold">Capacity: 500</p>
 
   <h4 class="mb-2 text-lg font-bold">Timings:</h4>

@@ -15,7 +15,7 @@ const optimizedBgImage = await getImage({ src: psalmBg });
 
 <h2
   class={cn(
-    "mt-4 border-b-2 border-b-natgeo-yellow pb-2 font-poppins text-2xl font-bold lg:text-3xl",
+    "mt-4 border-b-2 border-b-natgeo-yellow pb-2 text-2xl font-bold lg:text-3xl",
     {
       "font-noto-sans-kannada": lang === Locale.KOK,
     }
@@ -33,8 +33,7 @@ const optimizedBgImage = await getImage({ src: psalmBg });
       <div class="bg-opacity-80">
         <h3
           class={cn("text-center font-extrablack sm:text-xl", {
-            "font-noto-sans-kannada": lang === Locale.KOK,
-            "font-geist": lang !== Locale.KOK,
+            "font-noto-sans-kannada font-bold": lang === Locale.KOK,
           })}
         >
           {psalm.title}

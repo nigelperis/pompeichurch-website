@@ -2,6 +2,8 @@
 import Layout from "~/layouts/layout.astro";
 import ParishPriestsList from "~/components/sections/parish-priests/parish-priests-list.astro";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
+import { Locale } from "~/enums/locale";
+import { cn } from "~/helpers/cn";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -11,7 +13,12 @@ const t = useTranslations(lang);
   <main class="mx-auto max-w-4xl overflow-hidden bg-white">
     <section id="parish-priests" class="flex flex-col p-6 pb-4">
       <h1
-        class="border-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl font-extrablack lg:text-4xl"
+        class={cn(
+          "border-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl font-extrablack lg:text-4xl",
+          {
+            "font-noto-sans-kannada font-bold": lang === Locale.KOK,
+          }
+        )}
       >
         {t("nav.parish-priests")}
       </h1>

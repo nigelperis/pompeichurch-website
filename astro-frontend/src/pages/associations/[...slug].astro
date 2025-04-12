@@ -4,6 +4,8 @@ import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import AssociationDetails from "~/components/sections/associations/association-details.astro";
 import { associations } from "~/constants/associations";
 import { associationsKok } from "~/constants/associations-kok";
+import { cn } from "~/helpers/cn";
+import { Locale } from "~/enums/locale";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -34,7 +36,12 @@ const title =
   <main class="mx-auto max-w-4xl overflow-hidden bg-white">
     <section id="associations" class="flex flex-col p-6 pb-4">
       <h1
-        class="border-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl font-extrablack lg:text-4xl"
+        class={cn(
+          "border-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl font-extrablack lg:text-4xl",
+          {
+            "font-noto-sans-kannada font-bold": lang === Locale.KOK,
+          }
+        )}
       >
         {t(`nav.${slug}`)}
       </h1>

@@ -1,58 +1,63 @@
 ---
-import { Image } from 'astro:assets';
-import { cn } from '~/helpers/cn';
-import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+import { Image } from "astro:assets";
+import { Locale } from "~/enums/locale";
+import { cn } from "~/helpers/cn";
+import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 interface Props {
-	name: string;
-	imageUrl: ImageMetadata;
-	date?: string;
-	subtitle?: string;
-	class?: string;
+  name: string;
+  imageUrl: ImageMetadata;
+  date?: string;
+  subtitle?: string;
+  class?: string;
 }
 
 const { name, date, subtitle, class: className, imageUrl } = Astro.props;
 ---
 
 <div
-	class={cn(
-		'hover:scale-[1.01] snap-start first:snap-align-none max-w-xs flex-shrink-0 rounded-md border border-gray-200 sm:w-64',
-		className,
-		'w-[230px] h-[410px]',
-	)}
+  class={cn(
+    "hover:scale-[1.01] snap-start first:snap-align-none max-w-xs flex-shrink-0 rounded-md border border-gray-200 sm:w-64",
+    className,
+    "w-[230px] h-[410px]"
+  )}
 >
-	<div class="card-image flex-none">
-		<Image
-			src={imageUrl}
-			alt={`Image of ${name}`}
-			class="h-[300px] w-full rounded-md object-cover"
-		/>
-	</div>
+  <div class="card-image flex-none">
+    <Image
+      src={imageUrl}
+      alt={`Image of ${name}`}
+      class="h-[300px] w-full rounded-md object-cover"
+    />
+  </div>
 
-	<div class="card-content flex flex-1 flex-col justify-end space-y-1 p-3">
-		<h3
-			class="card-title pt-1 font-bold leading-snug text-slate-900 sm:text-lg"
-			title={name}
-		>
-			{name}
-		</h3>
-		{
-			date && (
-				<p class="card-date text-slate-700">
-					{t('priest.service-period')}:{' '}
-					<span class="font-semibold">{date}</span>
-				</p>
-			)
-		}
-		{
-			subtitle && (
-				<p class="card-subtitle line-clamp-3 text-slate-600 sm:text-sm">
-					{subtitle}
-				</p>
-			)
-		}
-	</div>
+  <div
+    class={cn("card-content flex flex-1 flex-col justify-end space-y-1 p-3 font-roboto", {
+      "font-noto-sans-kannada font-bold": lang === Locale.KOK,
+    })}
+  >
+    <h3
+      class="card-title pt-1 font-bold leading-snug text-slate-900 sm:text-lg"
+      title={name}
+    >
+      {name}
+    </h3>
+    {
+      date && (
+        <p class="card-date text-slate-700">
+          {t("priest.service-period")}:{" "}
+          <span class="font-semibold">{date}</span>
+        </p>
+      )
+    }
+    {
+      subtitle && (
+        <p class="card-subtitle line-clamp-3 text-slate-600 sm:text-sm">
+          {subtitle}
+        </p>
+      )
+    }
+  </div>
 </div>

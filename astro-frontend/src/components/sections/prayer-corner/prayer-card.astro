@@ -12,9 +12,9 @@ const prayer = lang === Locale.KOK ? prayersKok : prayers;
 
 <h2
   class={cn(
-    "mb-4 border-b-2 border-b-natgeo-yellow pb-2 font-poppins text-2xl font-bold lg:text-3xl",
+    "mb-4 border-b-2 border-b-natgeo-yellow pb-2 text-2xl font-bold lg:text-3xl",
     {
-      "font-noto-sans-kannada": lang === Locale.KOK,
+      "font-noto-sans-kannada font-semibold": lang === Locale.KOK,
     }
   )}
 >
@@ -35,11 +35,16 @@ const prayer = lang === Locale.KOK ? prayersKok : prayers;
             }
           )}
         >
-          <h3 class="card-title text-center text-xl font-semibold tracking-wide">
+          <h3
+            class={cn(
+              "card-title text-center text-xl font-semibold tracking-wide",
+              { "font-noto-sans-kannada font-bold": lang === Locale.KOK }
+            )}
+          >
             {p.title}
           </h3>
           <p
-            class=" drop-cap text-justify leading-relaxed text-gray-700"
+            class="drop-cap text-justify leading-relaxed text-gray-700"
             set:html={p.content}
           />
         </div>

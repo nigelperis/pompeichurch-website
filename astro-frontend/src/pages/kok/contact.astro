@@ -1,6 +1,8 @@
 ---
 import ContactInfo from "~/components/sections/contact/contact-info.astro";
 import ContactMap from "~/components/sections/contact/contact-map.astro";
+import { Locale } from "~/enums/locale";
+import { cn } from "~/helpers/cn";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import Layout from "~/layouts/layout.astro";
 
@@ -12,7 +14,12 @@ const t = useTranslations(lang);
   <main class="mx-auto max-w-4xl overflow-hidden bg-white">
     <section id="contact" class="p-6 pb-4 lg:p-8">
       <h1
-        class="border-l-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl font-extrablack lg:text-4xl"
+        class={cn(
+          "border-l-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl font-extrablack lg:text-4xl",
+          {
+            "font-noto-sans-kannada pt-2 font-bold": lang === Locale.KOK,
+          }
+        )}
       >
         {t("contact.title")}
       </h1>

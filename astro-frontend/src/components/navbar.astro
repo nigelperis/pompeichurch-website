@@ -44,9 +44,9 @@ const t = useTranslations(lang);
                       : "javascript:void(0);"
                   }
                   class={cn(
-                    "font-poppins font-semibold transition-all duration-200 p-2 rounded-md",
+                    "font-roboto font-semibold transition-all duration-200 p-2 rounded-md",
                     lang === Locale.KOK
-                      ? "font-noto-sans-kannada text-sm p-2"
+                      ? "font-noto-sans-kannada p-2"
                       : "",
                     "hover:bg-natgeo-yellow"
                   )}
@@ -107,12 +107,12 @@ const t = useTranslations(lang);
             href={
               link.type === "link" ? getRelativeLocaleUrl(lang, link.href) : "#"
             }
-            class="font-popppins group flex items-center justify-between text-xl font-extrablack text-black"
+            class="font-roboto group flex items-center justify-between text-xl font-extrablack text-black"
           >
             <span
               class={cn(
-                "font-poppins group-hover:border-natgeo-yellow border-b-4 border-b-transparent font-extrablack transition-all duration-150",
-                { "font-noto-sans-kannada": lang === Locale.KOK }
+                "font-roboto group-hover:border-natgeo-yellow border-b-4 border-b-transparent font-extrablack transition-all duration-150",
+                { "font-noto-sans-kannada font-bold": lang === Locale.KOK }
               )}
             >
               {t(link.title)}
@@ -135,7 +135,7 @@ const t = useTranslations(lang);
                   >
                     <span
                       class={cn(
-                        "font-poppins group-hover:border-natgeo-yellow border-b-4 border-b-transparent text-lg font-bold transition-all duration-150",
+                        "font-roboto group-hover:border-natgeo-yellow border-b-4 border-b-transparent text-lg font-bold transition-all duration-150",
                         {
                           "font-noto-sans-kannada font-normal":
                             lang === Locale.KOK,

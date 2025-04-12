@@ -20,6 +20,9 @@ importers:
       '@fontsource-variable/noto-sans-kannada':
         specifier: 5.2.5
         version: 5.2.5
+      '@fontsource-variable/roboto':
+        specifier: 5.2.5
+        version: 5.2.5
       '@fontsource/geist-sans':
         specifier: 5.2.5
         version: 5.2.5
@@ -492,6 +495,9 @@ packages:
 
   '@fontsource-variable/noto-sans-kannada@5.2.5':
     resolution: {integrity: sha512-7MnvzZSSo/4mm1rnmqZHxZYNLlG8XzeW1L+tJFMHU4fW/aEils5UfSM84cjmlhHns7IF57t0D6dDTaX6onr+WQ==}
+
+  '@fontsource-variable/roboto@5.2.5':
+    resolution: {integrity: sha512-csqBSOWXv0h5IbPhEqYJua6/nxl7dSNZbBOMeXSO9aqzgPw3GpfgC9kL5M6ULFLRaoDoBD4U9QctoDLKMaTyMg==}
 
   '@fontsource/geist-sans@5.2.5':
     resolution: {integrity: sha512-anllOHyJbElRs9fV15TeDRqAeb1IKm4bSknPl6ZMoyPTx1BBy7logudcUwpNjmQLkzn4Q0JGQLRCUKJYoyST6A==}
@@ -3519,6 +3525,8 @@ snapshots:
   '@fontsource-variable/lora@5.2.5': {}
 
   '@fontsource-variable/noto-sans-kannada@5.2.5': {}
+
+  '@fontsource-variable/roboto@5.2.5': {}
 
   '@fontsource/geist-sans@5.2.5': {}
 
