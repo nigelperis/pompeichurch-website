@@ -4,8 +4,6 @@ import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import AssociationDetails from "~/components/sections/associations/association-details.astro";
 import { associations } from "~/constants/associations";
 import { associationsKok } from "~/constants/associations-kok";
-import { cn } from "~/helpers/cn";
-import { Locale } from "~/enums/locale";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);

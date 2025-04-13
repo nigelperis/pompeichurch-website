@@ -16,7 +16,7 @@ const t = useTranslations(lang);
     <section id="parish-history" class="flex flex-col p-6 pb-4">
       <h1
         class={cn(
-          "border-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl font-extrablack lg:text-4xl",
+          "font-roboto font-black border-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl lg:text-4xl",
           {
             "font-noto-sans-kannada font-bold": lang === Locale.KOK,
           }
@@ -24,7 +24,7 @@ const t = useTranslations(lang);
       >
         {t("history.title")}
       </h1>
-      <h2 class="font-roboto text-black-400 pb-6 pt-2 text-2xl font-bold italic">
+      <h2 class="font-noto-sans-kannada text-black pb-6 pt-2 text-2xl font-bold italic">
         {t("history.subtitle")}
       </h2>
       <ParishDetails />

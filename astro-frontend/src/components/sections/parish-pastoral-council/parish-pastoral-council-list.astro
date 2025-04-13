@@ -2,18 +2,16 @@
 import NetworkImage from "~/components/ui/network-image.astro";
 import { cn } from "~/helpers/cn";
 import { Locale } from "~/enums/locale";
-import { getLangFromUrl, useTranslations } from "~/i18n/utils";
+import { getLangFromUrl } from "~/i18n/utils";
 import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
 import type { ParishPastoralCouncil } from "~/models/parish-pastoral-council";
 
 const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
 
 const { pastoralCouncilData } = Astro.props as {
   pastoralCouncilData: ParishPastoralCouncil[];
 };
 const { pastoralCouncilImage } = Astro.props;
-
 ---
 
 <div>

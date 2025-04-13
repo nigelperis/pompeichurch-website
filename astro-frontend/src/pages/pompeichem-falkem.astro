@@ -16,9 +16,9 @@ const magazines: PompeichemFalkem[] = (await listMagazines()) || [];
 
 <Layout title="Pompei Church | Pompeichem Falkem">
   <main class="mx-auto max-w-4xl overflow-hidden bg-white">
-    <section id="pompeichem-falkem" class="flex flex-col p-6">
+    <section class="flex flex-col p-6">
       <h1
-        class={cn("border-natgeo-yellow border-l-4 pl-3 text-3xl font-extrablack lg:text-4xl",{
+        class={cn("font-roboto font-black border-natgeo-yellow border-l-4 pl-3 text-3xl lg:text-4xl",{
           "font-noto-sans-kannada pt-2 font-bold": lang === Locale.KOK,
         })}
       >

@@ -1,18 +1,18 @@
 ---
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
-import { cn } from "~/helpers/cn";
 import { Image } from "astro:assets";
+import { cn } from "~/helpers/cn";
 
 //Images
 import candles from "~/assets/prayer-corner/candles.jpg";
 
-//Comoponents
-import Layout from "~/layouts/layout.astro";
-import PrayerCard from "~/components/sections/prayer-corner/prayer-card.astro";
+//Components
 import Psalms from "~/components/sections/prayer-corner/psalms.astro";
 import Novena from "~/components/sections/prayer-corner/novena.astro";
 import JubileeYear from "~/components/sections/prayer-corner/jubilee-year.astro";
 import PopesIntention from "~/components/sections/prayer-corner/popes-intention.astro";
+import PrayerCard from "~/components/sections/prayer-corner/prayer-card.astro";
+import Layout from "~/layouts/layout.astro";
 import { Locale } from "~/enums/locale";
 
 const lang = getLangFromUrl(Astro.url);
@@ -24,7 +24,7 @@ const t = useTranslations(lang);
     <section id="parish-history" class="flex flex-col p-6 pb-4">
       <h1
         class={cn(
-          "mb-4 border-l-4 border-natgeo-yellow pl-3  text-3xl font-extrablack lg:text-4xl",
+          "font-black font-roboto mb-4 border-l-4 border-natgeo-yellow pl-3 text-3xl lg:text-4xl",
           {
             "font-noto-sans-kannada font-bold": lang === Locale.KOK,
           }
