@@ -92,9 +92,12 @@ const groupPicture = associationDetails?.[groupPictureField];
     officeBearers.length > 0 && (
       <>
         <h2
-          class={cn("font-bold mt-2 text-left text-2xl text-slate-900", {
-            "font-noto-sans-kannada font-bold sm:pt-1": lang === Locale.KOK,
-          })}
+          class={cn(
+            "font-roboto font-bold mt-2 text-left text-2xl text-slate-900",
+            {
+              "font-noto-sans-kannada font-bold sm:pt-1": lang === Locale.KOK,
+            }
+          )}
         >
           {t("associations.office-bearers")}
         </h2>
@@ -121,7 +124,7 @@ const groupPicture = associationDetails?.[groupPictureField];
     currentSocial && (
       <>
         <h2
-          class={cn("mt-6 text-left text-2xl font-bold text-slate-900", {
+          class={cn("font-roboto mt-6 text-left text-2xl font-bold text-slate-900", {
             "font-noto-sans-kannada font-bold sm:pt-1": lang === Locale.KOK,
           })}
         >
