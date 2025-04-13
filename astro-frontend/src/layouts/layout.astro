@@ -1,8 +1,8 @@
 ---
-import '@fontsource-variable/lora';
 import '@fontsource/geist-sans';
 import '@fontsource-variable/noto-sans-kannada';
 import '@fontsource-variable/roboto';
+
 import 'aos/dist/aos.css';
 
 import { getLangFromUrl } from '~/i18n/utils';
@@ -63,13 +63,22 @@ const { title, description, image, url } = Astro.props;
 		<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
 		<link rel="manifest" href="/site.webmanifest" />
 
+		// TODO: Preload these two fonts
 		<!-- <link
 			rel="preload"
 			as="font"
 			type="font/woff2"
-			href={notoSansKannadaSemiBold}
+			href={robotoFont}
+			crossorigin="anonymous"
+		/>
+		<link
+			rel="preload"
+			as="font"
+			type="font/woff2"
+			href={notoFont}
 			crossorigin="anonymous"
 		/> -->
+
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		{import.meta.env.MODE === 'production' && (
