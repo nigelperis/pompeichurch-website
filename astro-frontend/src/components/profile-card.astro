@@ -25,7 +25,7 @@ const { name, date, subtitle, class: className, imageUrl } = Astro.props;
     "w-[230px] h-[410px]"
   )}
 >
-  <div class="card-image flex-none">
+  <div class="flex-none">
     <Image
       src={imageUrl}
       alt={`Image of ${name}`}
@@ -34,7 +34,7 @@ const { name, date, subtitle, class: className, imageUrl } = Astro.props;
   </div>
 
   <div
-    class={cn("card-content flex flex-1 flex-col justify-end space-y-1 p-3 font-roboto", {
+    class={cn("flex flex-1 flex-col justify-end space-y-1 p-3 font-roboto", {
       "font-noto-sans-kannada font-bold": lang === Locale.KOK,
     })}
   >
@@ -46,7 +46,7 @@ const { name, date, subtitle, class: className, imageUrl } = Astro.props;
     </h3>
     {
       date && (
-        <p class="card-date text-slate-700">
+        <p class="text-slate-700">
           {t("priest.service-period")}:{" "}
           <span class="font-semibold">{date}</span>
         </p>
@@ -54,7 +54,7 @@ const { name, date, subtitle, class: className, imageUrl } = Astro.props;
     }
     {
       subtitle && (
-        <p class="card-subtitle line-clamp-3 text-slate-600 sm:text-sm">
+        <p class="line-clamp-3 font-normal text-slate-600 text-md">
           {subtitle}
         </p>
       )

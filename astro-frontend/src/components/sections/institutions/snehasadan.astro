@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
+import { cn } from "~/helpers/cn";
 
 //Images
 import snehasadan from "~/assets/institutions/snehasadan.jpg";
@@ -9,14 +10,17 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<div class="mx-auto">
-  <h2 class="font-poppins mt-4 text-2xl font-bold">{t("snehasadan.title")}</h2>
+<div
+  class={cn("font-roboto mx-auto", {
+    "font-noto-sans-kannada": lang === "kok",
+  })}
+>  <h2 class="mt-4 text-2xl font-bold">{t("snehasadan.title")}</h2>
   <Image
     src={snehasadan}
     alt="Snehasadan institute at Gurpur Kaikamba "
     class="mt-6 rounded-sm md:float-right md:ml-5 md:w-1/2"
   />
-  <div class="font-geist mb-2 mt-4">
+  <div class="mb-2 mt-4">
     <p class="text-justify leading-7 text-slate-700">
       Snehasadan is a comprehensive care and support centre for children living
       with HIV, managed by Sneha Charitable Trust. A 60-bedded centre,

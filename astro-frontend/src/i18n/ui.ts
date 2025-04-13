@@ -684,7 +684,7 @@ export const ui = {
 		'commissions.commission-for-inter-religious-dialogue-apostolate':
 			'ಅಂತರ್ ಧರ್ಮೀಯ ಸಂವಾದ್ ಅಪಸ್ತಲಾದಿಚೊ ಆಯೋಗ್',
 		'commissions.mrs-linet-monteiro': 'ಶ್ರೀಮತಿ ಲಿನೆಟ್ ಮೊಂತೆರೊ ',
-		'commissions.mr-roshan-dcunha': 'ಶ್ರೀಮಾನ್ ಗ್ಲೆನ್ ರೋಶನ್ ಡಿಕುನ್ಹಾ',
+		'commissions.mr-roshan-dcunha': 'ಶ್ರೀಮಾನ್ ರೋಶನ್ ಡಿಕುನ್ಹಾ',
 		'commissions.mrs-vijaya-dcosta': 'ಶ್ರೀಮತಿ ವಿಜಯಾ ಡಿಕೋಸ್ತಾ',
 		'commissions.sr-dr-sadhana': 'ಸಿ.ದೊ ಸಾದನ',
 		'commissions.mrs-violet-peris': 'ಶ್ರೀಮತಿ ವಾಯ್ಲೆಟ್ ಪೆರಿಸ್',
@@ -749,7 +749,7 @@ export const ui = {
 		'ward.kandar-b-gurkar': 'ಶ್ರೀಮತಿ ಎವ್ಲಿನ್ ಸಿಕ್ವೇರಾ',
 		'ward.kandar-b-pratinidi1': 'ಶ್ರೀಮಾನ್ ಅಸ್ಸಿಸ್ ಮೊರಾಸ್',
 		'ward.kandar-b-pratinidi2': 'ಶ್ರೀಮತಿ ರೆನಿಟಾ ಲೋಬೊ',
-		'ward.kowdoor-a-gurkar': 'ಶ್ರೀಮಾನ್ ಗ್ಲೆನ್ ರೋಶನ್ ಡಿಕುನ್ಹಾ',
+		'ward.kowdoor-a-gurkar': 'ಶ್ರೀಮಾನ್ ರೋಶನ್ ಡಿಕುನ್ಹಾ',
 		'ward.kowdoor-a-pratinidi1': 'ಶ್ರೀಮಾನ್ ಜೊನ್ಸನ್ ಲೋಬೊ',
 		'ward.kowdoor-a-pratinidi2': 'ಶ್ರೀಮತಿ ಮಾರ್ಗರೆಟ್ ಅಂದ್ರಾದೆ',
 		'ward.kowdoor-b-gurkar': 'ಶ್ರೀಮತಿ ಗ್ರೆಟ್ಟಾ ಲೋಬೊ',

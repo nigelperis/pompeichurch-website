@@ -2,6 +2,8 @@
 import Layout from "~/layouts/layout.astro";
 import PastoralCommission from "~/components/sections/parish-pastoral-21-commissions/pastoral-commission.astro";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
+import { cn } from "~/helpers/cn";
+import { Locale } from "~/enums/locale";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -11,7 +13,12 @@ const t = useTranslations(lang);
   <main class="mx-auto min-h-screen max-w-4xl overflow-hidden bg-white">
     <section id="pastoral-commissions" class="flex flex-col p-6">
       <h1
-        class="border-l-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl font-extrablack lg:text-4xl"
+        class={cn(
+          "border-l-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl font-extrablack lg:text-4xl",
+          {
+            "font-noto-sans-kannada font-bold pt-2": lang === Locale.KOK,
+          }
+        )}
       >
         {t("nav.parish-pastoral-21-commissions")}
       </h1>

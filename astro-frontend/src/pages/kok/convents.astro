@@ -3,6 +3,8 @@ import Layout from "~/layouts/layout.astro";
 import PompeiConvent from "~/components/sections/convents/pompei-convent.astro";
 import RosaMysticaConvent from "~/components/sections/convents/rosa-mystica-convent.astro";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
+import { Locale } from "~/enums/locale";
+import { cn } from "~/helpers/cn";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -12,7 +14,12 @@ const t = useTranslations(lang);
   <main class="mx-auto max-w-4xl overflow-hidden bg-white">
     <section id="our-convents" class="flex flex-col p-6">
       <h1
-        class="border-l-natgeo-yellow mb-2 border-l-4 pl-3 text-3xl font-extrablack lg:text-4xl"
+        class={cn(
+          "border-l-natgeo-yellow mb-2 border-l-4 pl-3 text-3xl font-extrablack lg:text-4xl",
+          {
+            "font-noto-sans-kannada font-bold": lang === Locale.KOK,
+          }
+        )}
       >
         {t("nav.convents")}
       </h1>

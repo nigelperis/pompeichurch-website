@@ -2,6 +2,8 @@
 import Layout from "~/layouts/layout.astro";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import WardDetails from "~/components/sections/wards/ward-details.astro";
+import { Locale } from "~/enums/locale";
+import { cn } from "~/helpers/cn";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -9,9 +11,14 @@ const t = useTranslations(lang);
 
 <Layout title="Pompei Church | Wards">
   <main class="mx-auto max-w-4xl overflow-hidden bg-white">
-    <section id="wards" class="flex flex-col p-6">
+    <section class="flex flex-col p-6">
       <h1
-        class="border-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl font-extrablack lg:text-4xl"
+        class={cn(
+          "border-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl font-extrablack lg:text-4xl",
+          {
+            "font-noto-sans-kannada font-bold": lang === Locale.KOK,
+          }
+        )}
       >
         {t("nav.wards")}
       </h1>

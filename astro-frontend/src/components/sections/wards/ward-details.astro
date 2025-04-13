@@ -9,16 +9,16 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<div class="ward-details">
+<div
+  class={cn("font-roboto", {
+    "font-noto-sans-kannada": lang === Locale.KOK,
+  })}
+>
   {
     wards.map((ward) => (
-      <div
-        class={cn("mb-6 text-left", {
-          "font-noto-sans-kannada": lang === Locale.KOK,
-        })}
-      >
+      <div class="mb-6 text-left">
         <h2
-          class={cn("font-poppins text-3xl font-bold text-slate-900", {
+          class={cn("text-3xl font-bold text-slate-900", {
             "font-noto-sans-kannada": lang === Locale.KOK,
           })}
         >
@@ -45,25 +45,25 @@ const t = useTranslations(lang);
               "h-[460px] md:h-[450px] w-[250px]"
             )}
           >
-            <div class="card-image">
+            <div>
               <Image
                 src={ward.gurkarImage}
                 alt="Gurkar or Gurkarn of the Ward"
                 class="h-[365px] w-full object-cover "
               />
             </div>
-            <div class="card-content flex flex-1 flex-col justify-end space-y-1 p-3">
-              <h3 class="card-title pt-1 font-bold leading-snug text-slate-900 sm:text-lg md:text-sm">
+            <div class="flex flex-1 flex-col justify-end space-y-1 p-3">
+              <h3 class="pt-1 font-bold leading-snug text-slate-900 text-lg md:text-lg">
                 {t(`ward.${ward.gurkarName}`)}
               </h3>
-              <p class="card-subtitle line-clamp-3 text-slate-600 sm:text-sm">
+              <p class="line-clamp-3 text-slate-600 text-lg md:text-lg">
                 {t(`ward.${ward.gurkarTitle}`)}
               </p>
             </div>
           </div>
         </div>
 
-        <h2 class="font-poppins mx-4 mt-6 text-left text-xl font-bold text-slate-900">
+        <h2 class="mx-4 mt-6 text-left text-xl font-bold text-slate-900">
           {t("ward.pratinidi")}
         </h2>
         <ul class="my-4 list-inside list-disc text-base text-slate-700">
@@ -72,7 +72,7 @@ const t = useTranslations(lang);
             <li class="mx-4 text-left">{t(`ward.${ward.pratinidiName2}`)}</li>
           )}
         </ul>
-        <p class="font-poppins mx-4 mt-6 text-left text-xl font-bold text-slate-900">
+        <p class="mx-4 mt-6 text-left text-xl font-bold text-slate-900">
           {t("ward.family")} : {ward.family}
         </p>
         <div class="border-b-natgeo-yellow mt-4 border-b-2" />

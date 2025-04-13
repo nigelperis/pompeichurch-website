@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
+import { cn } from "~/helpers/cn";
 
 //Images
 import bethanySchool from "~/assets/institutions/bethany-school.jpg";
@@ -9,8 +10,11 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<div class="mx-auto">
-  <h2 class="font-poppins mt-4 text-2xl font-bold">
+<div
+  class={cn("font-roboto mx-auto", {
+    "font-noto-sans-kannada": lang === "kok",
+  })}
+>  <h2 class="mt-4 text-2xl font-bold">
     {t("bethany.title")}
   </h2>
   <Image
@@ -18,7 +22,7 @@ const t = useTranslations(lang);
     alt="Bethany School, Gurpur Kaikamba"
     class="mt-6 rounded-sm md:float-right md:ml-5 md:w-1/2"
   />
-  <div class="font-geist mb-2 mt-6 pb-4">
+  <div class="mb-2 mt-6 pb-4">
     <p class="mt-4 text-justify leading-7 text-slate-700">
       Bethany School Kinnikambla, was established on 30th May 2014 and is
       administrated by the Bethany Educational Society, Mangaluru, a Christian
