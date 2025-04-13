@@ -68,26 +68,48 @@ const groupPicture = associationDetails?.[groupPictureField];
     />
   </div>
 
-  <h2 class="font-poppins mt-6 text-justify text-2xl font-bold text-slate-900">
+  <h2
+    class={cn(
+      "font-roboto mt-6 text-justify text-2xl font-bold text-slate-900",
+      {
+        "font-noto-sans-kannada font-bold": lang === Locale.KOK,
+      }
+    )}
+  >
     {t("associations.about-us")}
   </h2>
   <p
-    class={cn("text-md mt-4 text-justify font-geist leading-7 text-slate-700 mb-4", {
-      "font-noto-sans-kannada": lang === Locale.KOK,
-    })}
+    class={cn(
+      "rich-content mt-4 text-justify font-geist font-light leading-7 text-slate-600 mb-4",
+      {
+        "font-noto-sans-kannada font-normal": lang === Locale.KOK,
+      }
+    )}
     set:html={description}
   />
 
   {
     officeBearers.length > 0 && (
       <>
-        <h2 class="font-poppins mt-6 text-left text-2xl font-bold text-slate-900">
+        <h2
+          class={cn("font-bold mt-2 text-left text-2xl text-slate-900", {
+            "font-noto-sans-kannada font-bold sm:pt-1": lang === Locale.KOK,
+          })}
+        >
           {t("associations.office-bearers")}
         </h2>
-        <ul class="my-4 list-inside list-disc text-base text-slate-700">
+        <ul
+          class={cn(
+            "font-roboto my-4 list-inside list-disc text-base text-slate-600",
+            {
+              "font-noto-sans-kannada font-normal sm:pt-1": lang === Locale.KOK,
+            }
+          )}
+        >
           {officeBearers.map((bearer) => (
             <li class="text-left">
-              <strong>{t(`${bearer.role}`)}: </strong> {bearer.name}
+              <span class="text-black">{t(`${bearer.role}`)}: </span>{" "}
+              {bearer.name}
             </li>
           ))}
         </ul>
@@ -98,7 +120,11 @@ const groupPicture = associationDetails?.[groupPictureField];
   {
     currentSocial && (
       <>
-        <h2 class="font-poppins mt-6 text-left text-2xl font-bold text-slate-900">
+        <h2
+          class={cn("mt-6 text-left text-2xl font-bold text-slate-900", {
+            "font-noto-sans-kannada font-bold sm:pt-1": lang === Locale.KOK,
+          })}
+        >
           {t("landing.follow-our-journey")}
         </h2>
         <div class="flex gap-12">

@@ -1,47 +1,47 @@
 ---
-import { getLangFromUrl, useTranslations } from '~/i18n/utils';
-import { cn } from '~/helpers/cn';
-import { Image } from 'astro:assets';
+import { getLangFromUrl, useTranslations } from "~/i18n/utils";
+import { cn } from "~/helpers/cn";
+import { Image } from "astro:assets";
 
 //Images
-import candles from '~/assets/prayer-corner/candles.jpg';
+import candles from "~/assets/prayer-corner/candles.jpg";
 
 //Comoponents
-import Layout from '~/layouts/layout.astro';
-import PrayerCard from '~/components/sections/prayer-corner/prayer-card.astro';
-import Psalms from '~/components/sections/prayer-corner/psalms.astro';
-import Novena from '~/components/sections/prayer-corner/novena.astro';
-import JubileeYear from '~/components/sections/prayer-corner/jubilee-year.astro';
-import PopesIntention from '~/components/sections/prayer-corner/popes-intention.astro';
-import { Locale } from '~/enums/locale';
+import Layout from "~/layouts/layout.astro";
+import PrayerCard from "~/components/sections/prayer-corner/prayer-card.astro";
+import Psalms from "~/components/sections/prayer-corner/psalms.astro";
+import Novena from "~/components/sections/prayer-corner/novena.astro";
+import JubileeYear from "~/components/sections/prayer-corner/jubilee-year.astro";
+import PopesIntention from "~/components/sections/prayer-corner/popes-intention.astro";
+import { Locale } from "~/enums/locale";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
 <Layout title="Pompei Church | Prayer Corner">
-	<main class="mx-auto max-w-4xl overflow-hidden bg-white">
-		<section id="parish-history" class="flex flex-col p-6 pb-4">
-			<h1
-				class={cn(
-					'mb-4 border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold lg:text-4xl',
-					{
-						'font-noto-sans-kannada': lang === Locale.KOK,
-					},
-				)}
-			>
-				{t('nav.prayer-corner')}
-			</h1>
-			<Image
-				src={candles}
-				alt="Candles lit for prayer"
-				class="w-full pb-4 pt-2"
-			/>
-			<PrayerCard />
-			<Novena />
-			<Psalms />
-			<PopesIntention />
-			<JubileeYear />
-		</section>
-	</main>
+  <main class="mx-auto max-w-4xl overflow-hidden bg-white">
+    <section id="parish-history" class="flex flex-col p-6 pb-4">
+      <h1
+        class={cn(
+          "mb-4 border-l-4 border-natgeo-yellow pl-3  text-3xl font-extrablack lg:text-4xl",
+          {
+            "font-noto-sans-kannada font-bold": lang === Locale.KOK,
+          }
+        )}
+      >
+        {t("nav.prayer-corner")}
+      </h1>
+      <Image
+        src={candles}
+        alt="Candles lit for prayer"
+        class="w-full pb-4 pt-2"
+      />
+      <PrayerCard />
+      <Novena />
+      <Psalms />
+      <PopesIntention />
+      <JubileeYear />
+    </section>
+  </main>
 </Layout>

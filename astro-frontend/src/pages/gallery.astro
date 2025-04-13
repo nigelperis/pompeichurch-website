@@ -1,24 +1,31 @@
 ---
-import Layout from '~/layouts/layout.astro';
-import MasonryGallery from '~/components/sections/gallery/masonry-gallery.astro';
-import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+import Layout from "~/layouts/layout.astro";
+import MasonryGallery from "~/components/sections/gallery/masonry-gallery.astro";
+import { getLangFromUrl, useTranslations } from "~/i18n/utils";
+import { Locale } from "~/enums/locale";
+import { cn } from "~/helpers/cn";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
 <Layout title="Pompei Church | Gallery">
-	<main class="mx-auto max-w-4xl overflow-hidden bg-white">
-		<section id="gallery" class="flex flex-col p-6 pb-4">
-			<h1
-				class="border-natgeo-yellow mb-2 border-l-4 pl-3 text-3xl font-extrabold lg:text-4xl"
-			>
-				{t('gallery.title')}
-			</h1>
-			<p class="font-geist text-justify text-lg text-slate-700">
-				Capturing moments of grace
-			</p>
-			<MasonryGallery />
-		</section>
-	</main>
+  <main class="mx-auto max-w-4xl overflow-hidden bg-white">
+    <section id="gallery" class="flex flex-col p-6 pb-4">
+      <h1
+        class={cn(
+          "border-natgeo-yellow mb-2 border-l-4 pl-3 text-3xl font-extrablack lg:text-4xl",
+          {
+            "font-noto-sans-kannada font-bold": lang === Locale.KOK,
+          }
+        )}
+      >
+        {t("gallery.title")}
+      </h1>
+      <p class="font-geist text-justify text-lg text-slate-700">
+        Capturing moments of grace
+      </p>
+      <MasonryGallery />
+    </section>
+  </main>
 </Layout>

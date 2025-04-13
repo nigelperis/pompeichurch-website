@@ -6,6 +6,8 @@ import { getPaginationRange } from "~/helpers/get-pagination-range";
 import { listEvents } from "~/services/events/list-events";
 import EventsList from "~/components/sections/events/events-list.astro";
 import { Message } from "~/constants/message.ts";
+import { Locale } from "~/enums/locale";
+import { cn } from "~/helpers/cn";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -27,7 +29,12 @@ const pageTitle = `Page ${currentPage} | Events | Pompei Church`;
   <main class="mx-auto max-w-4xl overflow-hidden bg-white">
     <section id="events" class="flex flex-col p-6">
       <h1
-        class="border-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl font-extrabold lg:text-4xl"
+        class={cn(
+          "border-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl font-extrablack lg:text-4xl",
+          {
+            "font-noto-sans-kannada font-bold": lang === Locale.KOK,
+          }
+        )}
       >
         {t("nav.events")}
       </h1>

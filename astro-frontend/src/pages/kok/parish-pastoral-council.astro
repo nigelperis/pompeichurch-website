@@ -4,8 +4,9 @@ import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import ParishPastoralCouncilList from "~/components/sections/parish-pastoral-council/parish-pastoral-council-list.astro";
 import type { ParishPastoralCouncil } from "~/models/parish-pastoral-council";
 import { listPastoralCouncilData, getPastoralCouncilImage } from "~/services/parish-pastoral-council-data.ts";
-import { Message } from "~/constants/message";
+import { Message } from "~/constants/message.ts";
 import { Locale } from "~/enums/locale";
+import { cn } from "~/helpers/cn";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -22,7 +23,11 @@ const parishPastoralCouncilImage = await getPastoralCouncilImage();
   <main class="mx-auto max-w-4xl overflow-hidden bg-white">
     <section id="pastoral-council" class="flex flex-col p-6 pb-4">
       <h1
-        class="border-natgeo-yellow border-l-4 pl-3 text-3xl font-extrabold lg:text-4xl"
+        class={cn("border-natgeo-yellow border-l-4 pl-3 text-3xl font-extrablack lg:text-4xl",
+        {
+          "font-noto-sans-kannada font-bold": lang === Locale.KOK,
+        }
+        )}
       >
         {t("parish.pastoral-parishad")}
       </h1>

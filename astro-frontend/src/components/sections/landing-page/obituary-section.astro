@@ -31,9 +31,9 @@ const featuredObituary = obituaries.length === 5 ? obituaries[4] : null;
 	<h1
 		data-aos="fade-right"
 		class={cn(
-			'mx-6 mb-4 inline-block border-l-4 border-natgeo-yellow pl-3 font-poppins text-[27px] font-extrabold xs:text-2xl lg:mx-0 lg:text-4xl',
+			'mx-6 mb-4 inline-block border-l-4 border-natgeo-yellow pl-3  text-2xl font-extrablack xs:text-2xl lg:mx-0 lg:text-4xl',
 			{
-				'font-noto-sans-kannada': lang === Locale.KOK,
+				'font-noto-sans-kannada font-extrabold pt-2': lang === Locale.KOK,
 			},
 		)}
 	>
@@ -67,7 +67,7 @@ const featuredObituary = obituaries.length === 5 ? obituaries[4] : null;
 				))}
 
 				{featuredObituary && (
-					<div class="flex-none relative lg:hidden overflow-hidden border shadow-sm">
+					<div class="flex-none relative lg:hidden overflow-hidden border border-gray-200 shadow-sm">
 						<div class="opacity-50 blur-md rounded-lg">
 							<Card
 								imageUrl={featuredObituary.image?.url}

@@ -1,54 +1,55 @@
 ---
-import { getImage } from 'astro:assets';
-import { getLangFromUrl, useTranslations } from '~/i18n/utils';
-import { cn } from '~/helpers/cn';
-import { historyExcerpt } from '~/constants/parish-history-excerpt';
+import { getImage } from "astro:assets";
+import { getLangFromUrl, useTranslations } from "~/i18n/utils";
+import { cn } from "~/helpers/cn";
+import { historyExcerpt } from "~/constants/parish-history-excerpt";
 import { Locale } from "~/enums/locale";
 
 //Images
-import maryGrotto from '~/assets/landing-page/mary-grotto.webp';
+import maryGrotto from "~/assets/landing-page/mary-grotto.webp";
 
 //Components
-import YoutubeVideo from './youtube-video.astro';
-import HoverableLink from '~/components/ui/hoverable-link.astro';
+import YoutubeVideo from "./youtube-video.astro";
+import HoverableLink from "~/components/ui/hoverable-link.astro";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const optimizedGrottoImage = await getImage({ src: maryGrotto });
-const historyUrl = lang === Locale.EN ? '/parish-history' : '/kok/parish-history';
+const historyUrl =
+  lang === Locale.EN ? "/parish-history" : "/kok/parish-history";
 ---
 
 <section
-	style={{ backgroundImage: `url(${optimizedGrottoImage.src})` }}
-	class="relative flex flex-col gap-y-8 bg-black/70 bg-cover bg-center p-8 text-white bg-blend-darken md:p-24"
+  style={{ backgroundImage: `url(${optimizedGrottoImage.src})` }}
+  class="relative flex flex-col gap-y-8 bg-black/70 bg-cover bg-center p-8 text-white bg-blend-darken md:p-24"
 >
-	<h1
-		data-aos="fade-right"
-		class={cn('font-poppins text-5xl font-black leading-tight', {
-			'font-noto-sans-kannada	': lang === Locale.KOK,
-		})}
-	>
-		{t('landing.about-church')}
-	</h1>
-	<div class="flex flex-col items-center gap-x-10 md:flex-row-reverse">
-		<div
-			class="lg:gap-18 relative flex w-full flex-col gap-12 bg-cover bg-center pb-2 xl:gap-20"
-		>
-			<p
-				class={`max-w-2xl text-justify ${lang === Locale.KOK ? 'font-noto-sans-kannada' : 'font-geist'} text-base leading-7 drop-shadow-xl lg:max-w-fit`}
-			>
-				{lang === Locale.KOK ? historyExcerpt.kok : historyExcerpt.en}
-			</p>
+  <h1
+    data-aos="fade-right"
+    class={cn(" text-5xl font-extrablack leading-tight", {
+      "font-noto-sans-kannada	font-bold": lang === Locale.KOK,
+    })}
+  >
+    {t("landing.about-church")}
+  </h1>
+  <div class="flex flex-col items-center gap-x-10 md:flex-row-reverse">
+    <div
+      class="lg:gap-18 relative flex w-full flex-col gap-12 bg-cover bg-center pb-2 xl:gap-20"
+    >
+      <p
+        class={`max-w-2xl text-justify ${lang === Locale.KOK ? "font-noto-sans-kannada" : "font-geist"} text-base leading-7 drop-shadow-xl lg:max-w-fit`}
+      >
+        {lang === Locale.KOK ? historyExcerpt.kok : historyExcerpt.en}
+      </p>
 
-			<div class="flex justify-end">
-				<HoverableLink href={historyUrl} class="m-3">
-					{t('ui.more-button-know')}
-				</HoverableLink>
-			</div>
-		</div>
+      <div class="flex justify-end">
+        <HoverableLink href={historyUrl} class="m-3">
+          {t("ui.more-button-know")}
+        </HoverableLink>
+      </div>
+    </div>
 
-		<div class="md:w-[90rem]">
-			<YoutubeVideo />
-		</div>
-	</div>
+    <div class="md:w-[90rem]">
+      <YoutubeVideo />
+    </div>
+  </div>
 </section>

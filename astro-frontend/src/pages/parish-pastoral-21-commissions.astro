@@ -1,21 +1,28 @@
 ---
-import Layout from '~/layouts/layout.astro';
-import PastoralCommission from '~/components/sections/parish-pastoral-21-commissions/pastoral-commission.astro';
-import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+import Layout from "~/layouts/layout.astro";
+import PastoralCommission from "~/components/sections/parish-pastoral-21-commissions/pastoral-commission.astro";
+import { getLangFromUrl, useTranslations } from "~/i18n/utils";
+import { cn } from "~/helpers/cn";
+import { Locale } from "~/enums/locale";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
 <Layout title="Pompei Church | Parish Pastoral 21 Commissions  ">
-	<main class="mx-auto min-h-screen max-w-4xl overflow-hidden bg-white">
-		<section id="pastoral-commissions" class="flex flex-col p-6">
-			<h1
-				class="border-l-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl font-extrabold lg:text-4xl"
-			>
-				{t('nav.parish-pastoral-21-commissions')}
-			</h1>
-			<PastoralCommission />
-		</section>
-	</main></Layout
+  <main class="mx-auto min-h-screen max-w-4xl overflow-hidden bg-white">
+    <section id="pastoral-commissions" class="flex flex-col p-6">
+      <h1
+        class={cn(
+          "border-l-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl font-extrablack lg:text-4xl",
+          {
+            "font-noto-sans-kannada font-bold pt-2": lang === Locale.KOK,
+          }
+        )}
+      >
+        {t("nav.parish-pastoral-21-commissions")}
+      </h1>
+      <PastoralCommission />
+    </section>
+  </main></Layout
 >

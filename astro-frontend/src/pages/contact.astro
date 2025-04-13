@@ -1,31 +1,38 @@
 ---
-import ContactInfo from '~/components/sections/contact/contact-info.astro';
-import ContactMap from '~/components/sections/contact/contact-map.astro';
-import { getLangFromUrl, useTranslations } from '~/i18n/utils';
-import Layout from '~/layouts/layout.astro';
+import ContactInfo from "~/components/sections/contact/contact-info.astro";
+import ContactMap from "~/components/sections/contact/contact-map.astro";
+import { Locale } from "~/enums/locale";
+import { cn } from "~/helpers/cn";
+import { getLangFromUrl, useTranslations } from "~/i18n/utils";
+import Layout from "~/layouts/layout.astro";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
 <Layout title="Pompei Church | Contact">
-	<main class="mx-auto max-w-4xl overflow-hidden bg-white">
-		<section id="contact" class="p-6 pb-4 lg:p-8">
-			<h1
-				class="border-l-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl font-extrabold lg:text-4xl"
-			>
-				{t('contact.title')}
-			</h1>
-			<h2 class="font-geist mb-6 text-lg font-normal text-gray-700">
-				Contact us for more information about our church activities, hall
-				bookings, and other details
-			</h2>
-			<div class="space-y-6">
-				<ContactInfo />
-			</div>
-			<div class="mt-8">
-				<ContactMap class="w-full rounded-md border shadow-md" />
-			</div>
-		</section>
-	</main>
+  <main class="mx-auto max-w-4xl overflow-hidden bg-white">
+    <section id="contact" class="p-6 pb-4 lg:p-8">
+      <h1
+        class={cn(
+          "border-l-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl font-extrablack lg:text-4xl",
+          {
+            "font-noto-sans-kannada pt-2 font-bold": lang === Locale.KOK,
+          }
+        )}
+      >
+        {t("contact.title")}
+      </h1>
+      <h2 class="font-roboto mb-6 text-lg font-normal text-gray-800">
+        Contact us for more information about our church activities, hall
+        bookings, and other details
+      </h2>
+      <div class="space-y-6">
+        <ContactInfo />
+      </div>
+      <div class="mt-8">
+        <ContactMap class="w-full rounded-md border shadow-md" />
+      </div>
+    </section>
+  </main>
 </Layout>

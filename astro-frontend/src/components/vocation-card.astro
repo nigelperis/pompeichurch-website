@@ -1,78 +1,81 @@
 ---
-import { Image } from 'astro:assets';
-import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+import { Image } from "astro:assets";
+import { cn } from "~/helpers/cn";
+import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 
 export interface Props {
-	imageUrl: ImageMetadata;
-	name: string;
-	ward: string;
-	dob?: string;
-	dod?: string;
-	congregation?: string;
-	parents?: string;
-	role?: string;
+  imageUrl: ImageMetadata;
+  name: string;
+  ward: string;
+  dob?: string;
+  dod?: string;
+  congregation?: string;
+  parents?: string;
+  role?: string;
 }
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const { imageUrl, name, ward, dob, dod, congregation, parents, role } =
-	Astro.props;
+  Astro.props;
 ---
 
 <div
-	class="vocation-card mx-auto w-full max-w-md rounded-md border p-5 text-center transition-all duration-300 ease-in-out hover:scale-[1.01] hover:shadow-md md:w-full lg:w-auto"
+  class="mx-auto w-full max-w-md rounded-md border border-gray-200 p-5 text-center transition-all duration-300 ease-in-out hover:scale-[1.01] hover:shadow-md md:w-full lg:w-auto"
 >
-	<div
-		class="relative mx-auto mb-6 h-[300px] w-[230px] overflow-hidden rounded-full border-4 border-gray-200 shadow-md md:h-[280px] md:w-[210px]"
-	>
-		<Image
-			src={imageUrl}
-			alt={name}
-			class="h-full w-full object-cover"
-			sizes="(max-width: 768px) 50vw, 25vw"
-		/>
-	</div>
+  <div
+    class="relative mx-auto mb-6 h-[300px] w-[230px] overflow-hidden rounded-full border-4 border-gray-200 shadow-md md:h-[280px] md:w-[210px]"
+  >
+    <Image
+      src={imageUrl}
+      alt={name}
+      class="h-full w-full object-cover"
+      sizes="(max-width: 768px) 50vw, 25vw"
+    />
+  </div>
 
-	<div class="details">
-		<h3 class="mb-2 text-lg font-semibold text-red-700 lg:text-xl">{name}</h3>
+  <div
+    class={cn("font-roboto", {
+      "font-noto-sans-kannada font-bold": lang === "kok",
+    })}
+  >
+    <h3 class="mb-2 text-lg font-semibold text-red-700 lg:text-xl">{name}</h3>
 
-		{
-			congregation && role && (
-				<p class="text-md mb-2 font-medium text-blue-700 lg:text-sm">
-					{congregation}
-				</p>
-			)
-		}
-		{
-			ward && (
-				<p class="text-md mb-1 italic text-gray-600 lg:text-sm">
-					<span class="font-semibold">{t('vocation.ward')}</span> {ward}
-				</p>
-			)
-		}
-		{
-			dob && (
-				<p class="text-md mb-1 text-gray-600 lg:text-sm">
-					<span class="font-semibold">{t('vocation.dob')}</span> {dob}
-				</p>
-			)
-		}
-		{
-			dod && (
-				<p class="text-md mb-1 text-gray-600 lg:text-sm">
-					<span class="font-semibold">{t('vocation.dod')}</span> {dod}
-				</p>
-			)
-		}
-		{
-			parents && role && (
-				<p class="text-md mb-1 text-gray-600 lg:text-sm">
-					<span class="font-semibold">
-						{role === 'nun' ? t('vocation.do') : t('vocation.so')}
-					</span>
-					{parents}
-				</p>
-			)
-		}
-	</div>
+    {
+      congregation && role && (
+        <p class="mb-2 font-medium text-blue-700 lg:text-sm">{congregation}</p>
+      )
+    }
+    {
+      ward && (
+        <p class="mb-1 italic text-gray-600 lg:text-sm">
+          <span class="font-semibold">{t("vocation.ward")}</span> {ward}
+        </p>
+      )
+    }
+    {
+      dob && (
+        <p class="mb-1 text-gray-600 lg:text-sm">
+          <span class="font-semibold">{t("vocation.dob")}</span> {dob}
+        </p>
+      )
+    }
+    {
+      dod && (
+        <p class="mb-1 text-gray-600 lg:text-sm">
+          <span class="font-semibold">{t("vocation.dod")}</span> {dod}
+        </p>
+      )
+    }
+    {
+      parents && role && (
+        <p class="mb-1 text-gray-600 lg:text-sm">
+          <span class="font-semibold">
+            {role === "nun" ? t("vocation.do") : t("vocation.so")}
+          </span>
+          {parents}
+        </p>
+      )
+    }
+  </div>
 </div>
