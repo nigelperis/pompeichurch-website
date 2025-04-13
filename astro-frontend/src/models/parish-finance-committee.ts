@@ -1,4 +1,3 @@
-import type { BlocksContent } from '@strapi/blocks-react-renderer';
 import { Locale } from '~/enums/locale';
 
 interface ImageFormat {

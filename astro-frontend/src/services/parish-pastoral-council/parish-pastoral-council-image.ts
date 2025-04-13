@@ -7,15 +7,10 @@ import type {
 } from "~/models/parish-pastoral-council";
 
 /**
- * Fetches a paginated list of members of the Parish Pastoral Council from Strapi.
- * @param {Object} [args] - Optional parameters for fetching the list of members.
- * @param {number} [args.page=1] - The page number to retrieve.
- * @param {number} [args.pageSize=25] - The number of members per page.
- * @param {string} [args.sortBy='sNo:asc'] - The sorting order of the members.
- * @param {Locale} [args.locale=Locale.EN] - The locale of the content to retrieve.
- * @returns {Promise<ParishPastoralCouncil[]>} A promise that resolves to an array of ParishPastoralCouncil objects.
+ * Fetches the Parish Pastoral Council image from Strapi.
+ *
+ * @returns {Promise<ParishPastoralCouncilImage | null>} A promise that resolves to a ParishPastoralCouncilImage object or `null` if not found.
  */
-
 async function getPastoralCouncilImage(): Promise<ParishPastoralCouncilImage | null> {
   const queryParams = new URLSearchParams({
     "populate[0]": "pastoralCouncilImage",
@@ -26,8 +21,11 @@ async function getPastoralCouncilImage(): Promise<ParishPastoralCouncilImage | n
     queryParams,
   });
 
-  return data?.data ?? [];
+  if (!data?.data) {
+    return null;
+  }
 
+  return data.data;
 }
 
 export { getPastoralCouncilImage };

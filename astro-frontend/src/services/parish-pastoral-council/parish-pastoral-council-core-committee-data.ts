@@ -4,7 +4,7 @@ import { strapiFetch } from "~/helpers/strapi-fetch";
 import type {
   PastoralCoreCommittee,
   PastoralCoreCommitteeData,
-} from "~/models/parish-pastoral-council-core-committee";
+} from "~/models/parish-pastoral-council";
 
 /**
  * Fetches a paginated list of members of the Pastoral Core Committee from Strapi.
@@ -44,7 +44,6 @@ async function listPastoralCoreCommitteeData(args?: {
   });
 
   return data?.data ?? [];
-
 }
 
 export { listPastoralCoreCommitteeData };

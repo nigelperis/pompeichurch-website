@@ -1,4 +1,3 @@
-import type { BlocksContent } from '@strapi/blocks-react-renderer';
 import { Locale } from '~/enums/locale';
 
 interface ImageFormat {
@@ -66,4 +65,4 @@ interface ParishPriestsData {
   };
 }
 
-export type { ParishPriests, ParishPriestsData }; 
+export type { ParishPriests, ParishPriestsData };

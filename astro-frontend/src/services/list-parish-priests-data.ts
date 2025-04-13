@@ -1,6 +1,6 @@
 import { ROUTES } from "~/constants/strapi-endpoints";
 import { strapiFetch } from "~/helpers/strapi-fetch";
-import type { ParishPriests, ParishPriestsData  } from "~/models/parish-priests";
+import type { ParishPriests, ParishPriestsData  } from "~/models/parish-priest";
 import { Locale } from "~/enums/locale";
 
 /**
@@ -19,19 +19,37 @@ async function listParishPriests(args?: {
 	sortBy?: string;
 	locale?: Locale;
 }): Promise<ParishPriests[]> {
-	const { page = 1, pageSize = 25, sortBy = 'sNo:asc', locale = Locale.EN } = args ?? {};
+	const batchSize = 100;
+	let page = 1;
+	let priests = [];
+	let hasMore = true;
 
-	const queryParams = new URLSearchParams({
-		'populate[0]': 'image',
-		'sort[0]': sortBy,
-		'pagination[page]': String(page),
-		'pagination[pageSize]': String(pageSize),
-		'locale': locale
-	});
+	while (hasMore) {
+		const { pageSize = 25, sortBy = 'sNo:asc', locale = Locale.EN } = args ?? {};
 
-	const data = await strapiFetch<ParishPriestsData>({ endpoint: ROUTES.PARISH_PRIESTS, queryParams });
+		const queryParams = new URLSearchParams({
+			'populate[0]': 'image',
+			'sort[0]': sortBy,
+			'pagination[page]': String(page),
+			'pagination[pageSize]': String(pageSize),
+			'locale': locale
+		});
 
-	return data?.data ?? [];
+		const data = await strapiFetch<ParishPriestsData>({ endpoint: ROUTES.PARISH_PRIESTS, queryParams });
+
+		if(data?.data?.length){
+			priests = [...priests, ...data?.data];
+			page++;
+
+			if(data?.data?.length < batchSize){
+				hasMore = false;
+			}
+		} else {
+			hasMore = false;
+		}
+	}
+
+	return priests;
 }
 
 export { listParishPriests };

@@ -4,7 +4,7 @@ import { Locale } from "~/enums/locale";
 import { cn } from "~/helpers/cn.ts";
 import { getLangFromUrl } from "~/i18n/utils";
 import NetworkImage from "./ui/network-image.astro";
-import profileImage from "~/assets/parish-priests/blank.jpeg";
+import blankImage from "~/assets/parish-priests/blank.jpeg";
 
 interface Props {
 	src: string;
@@ -36,7 +36,7 @@ const { src, width, height, class: className, name, position} = Astro.props;
         class="h-[300px] w-full object-cover"
       />
     ) : (
-      <Image src={profileImage} alt="Profile" class="h-[300px] w-full object-cover" width={width} height={height} />
+      <Image src={blankImage} alt="Blank Profile Image" class="h-[300px] w-full object-cover" width={width} height={height} />
     )}
   </div>
 
