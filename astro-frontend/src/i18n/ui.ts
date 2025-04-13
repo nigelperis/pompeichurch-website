@@ -703,7 +703,7 @@ export const ui = {
 		'commissions.mr-melwin-saldanha': 'ಶ್ರೀಮಾನ್ ಮೆಲ್ವಿನ್ ಸಲ್ಡಾನ್ಹಾ',
 		'commissions.mrs-delcy-rodrigues': 'ಶ್ರೀಮತಿ ಡೆಲ್ಸಿ ರೊಡ್ರಿಗಸ್',
 		'commissions.mr-ivan-dsouza': 'ಶ್ರೀಮಾನ್ ಐವನ್ ಡಿಸೋಜಾ',
-		'commissions.mr-alwyn-ಪಿಂಟೊ': 'ಶ್ರೀಮಾನ್ ಅಲ್ವಿನ್ ಪಿಂಟೊ',
+		'commissions.mr-alwyn-pinto': 'ಶ್ರೀಮಾನ್ ಅಲ್ವಿನ್ ಪಿಂಟೊ',
 		'commissions.mrs-juliet-serrao': 'ಶ್ರೀಮತಿ ಜ್ಯುಲಿಯೆಟ್ ಸೆರಾವೊ	',
 		'commissions.mr-godwin-tauro': 'ಶ್ರೀಮಾನ್ ಗೊಡ್ವಿನ್ ತಾವ್ರೊ',
 		'commissions.mrs-margaret-andrade': ' ಶ್ರೀಮತಿ ಮಾರ್ಗರೆಟ್ ಅಂದ್ರಾದೆ',

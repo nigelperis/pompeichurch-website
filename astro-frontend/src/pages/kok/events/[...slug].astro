@@ -57,7 +57,7 @@ const socialLinks = [
   >
     <section class="flex flex-col p-6">
       <h1
-        class="border-natgeo-yellow mb-4 border-l-4 pl-3 text-left text-2xl font-extrablack lg:text-4xl"
+        class="border-natgeo-yellow mb-4 border-l-4 pl-3 text-left text-2xl font-bold lg:text-4xl"
       >
         {event?.konkaniTitle}
       </h1>
@@ -110,7 +110,7 @@ const socialLinks = [
                   class="stroke-2 text-2xl text-gray-700"
                 />
                 <span>
-                  <div class=" pb-1 text-gray-500">Previous Event</div>
+                  <div class="pb-1 text-gray-500">Previous Event</div>
                   <div class="text-left text-lg font-medium text-black">
                     {prevEvent.konkaniTitle}
                   </div>
@@ -122,14 +122,14 @@ const socialLinks = [
               <a
                 href={`/${lang === Locale.EN ? "" : "kok/"}events/${nextEvent.slug}`}
                 rel="next"
-                class={`flex flex-row-reverse items-center gap-3 rounded-lg border border-gray-300 px-4 py-3 text-right shadow-md transition-colors hover:border-gray-500 ${prevEvent ? "sm:w-1/2" : "w-full"}`}
+                class={`flex flex-row-reverse items-center gap-3 rounded-lg border border-gray-300 px-4 py-3 text-right shadow-md transition-colors hover:border-black ${prevEvent ? "sm:w-1/2" : "w-full"}`}
               >
                 <Icon
                   name="chevron-right"
                   class="stroke-2 text-2xl text-gray-700"
                 />
                 <span>
-                  <div class=" pb-1 text-gray-500">Next Event</div>
+                  <div class="pb-1 text-gray-500">Next Event</div>
                   <div class="text-lg font-medium text-black">
                     {nextEvent.konkaniTitle}
                   </div>

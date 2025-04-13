@@ -29,7 +29,7 @@ const t = useTranslations(lang);
       <!-- Navbar for Web -->
       <ul
         class={cn("font-roboto flex items-center gap-2", {
-          "font-noto-sans-kannada": lang === Locale.KOK,
+          "font-noto-sans-kannada lg:pt-[0.5rem]": lang === Locale.KOK,
         })}
       >
         {
@@ -121,7 +121,14 @@ const t = useTranslations(lang);
               }
             )}
           >
-            <span class="font-roboto font-extrablack transition-all duration-150">
+            <span
+              class={cn(
+                "font-roboto font-extrablack transition-all duration-150",
+                {
+                  "font-noto-sans-kannada": lang === Locale.KOK,
+                }
+              )}
+            >
               {t(link.title)}
             </span>
 

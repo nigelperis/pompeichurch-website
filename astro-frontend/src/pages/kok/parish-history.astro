@@ -24,14 +24,7 @@ const t = useTranslations(lang);
       >
         {t("history.title")}
       </h1>
-      <h2
-        class={cn(
-          "text-black-400 font-geist pb-6 pt-2 text-2xl font-bold italic",
-          {
-            "font-noto-sans-kannada font-bold": lang === Locale.KOK,
-          }
-        )}
-      >
+      <h2 class="font-roboto text-black-400 pb-6 pt-2 text-2xl font-bold italic">
         {t("history.subtitle")}
       </h2>
       <ParishDetails />

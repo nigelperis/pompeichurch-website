@@ -40,8 +40,6 @@
 
   --font-roboto: 'Roboto Variable', sans-serif;
   --font-noto-sans-kannada: 'Noto Sans Kannada Variable', sans-serif;
-  --font-noto-sans-kannada-semibold:
-    "noto-sans-kannada-latin-600-normal", sans-serif;
   --font-geist: "Geist Sans", sans-serif;
 
   --font-weight-extrablack: 1000;
@@ -55,4 +53,8 @@
 .scrollbar-none {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+.rich-content strong {
+  @apply font-semibold text-black tracking-wide;
 }
