@@ -38,14 +38,11 @@
   --color-natgeo-yellow-900: #744a0f;
   --color-natgeo-yellow-950: #442704;
 
-  --font-poppins: "Poppins", sans-serif;
   --font-roboto: 'Roboto Variable', sans-serif;
-  /* --font-poppins-semibold: "poppins-latin-600-normal", sans-serif; */
   --font-noto-sans-kannada: 'Noto Sans Kannada Variable', sans-serif;
   --font-noto-sans-kannada-semibold:
     "noto-sans-kannada-latin-600-normal", sans-serif;
   --font-geist: "Geist Sans", sans-serif;
-  --font-lora: "Lora Variable", serif;
 
   --font-weight-extrablack: 1000;
 

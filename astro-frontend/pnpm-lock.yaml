@@ -26,9 +26,6 @@ importers:
       '@fontsource/geist-sans':
         specifier: 5.2.5
         version: 5.2.5
-      '@fontsource/poppins':
-        specifier: 5.2.5
-        version: 5.2.5
       '@strapi/blocks-react-renderer':
         specifier: 1.0.2
         version: 1.0.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -501,9 +498,6 @@ packages:
 
   '@fontsource/geist-sans@5.2.5':
     resolution: {integrity: sha512-anllOHyJbElRs9fV15TeDRqAeb1IKm4bSknPl6ZMoyPTx1BBy7logudcUwpNjmQLkzn4Q0JGQLRCUKJYoyST6A==}
-
-  '@fontsource/poppins@5.2.5':
-    resolution: {integrity: sha512-1S3k45pZOz2jqGPPqKw0in3uxFwnB+d5jSU8Tp9YwH/dIJptE3jdkQbYN0QD861GtuOpn6QhPW/yKt1w7hVRBQ==}
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -3529,8 +3523,6 @@ snapshots:
   '@fontsource-variable/roboto@5.2.5': {}
 
   '@fontsource/geist-sans@5.2.5': {}
-
-  '@fontsource/poppins@5.2.5': {}
 
   '@humanfs/core@0.19.1': {}
 

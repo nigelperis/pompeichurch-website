@@ -18,35 +18,19 @@ function StrapiBlocksRenderer(props: StrapiBlocksProps) {
         heading: ({ level, children }) => {
           switch (level) {
             case 1:
-              return (
-                <h1 className="font-poppins text-5xl font-extrablack">
-                  {children}
-                </h1>
-              );
+              return <h1 className=" text-5xl font-extrablack">{children}</h1>;
             case 2:
-              return (
-                <h2 className="font-poppins text-4xl font-bold"> {children}</h2>
-              );
+              return <h2 className=" text-4xl font-bold"> {children}</h2>;
             case 3:
-              return (
-                <h3 className="font-poppins text-3xl font-bold"> {children}</h3>
-              );
+              return <h3 className=" text-3xl font-bold"> {children}</h3>;
             case 4:
-              return (
-                <h4 className="font-poppins text-2xl font-bold"> {children}</h4>
-              );
+              return <h4 className=" text-2xl font-bold"> {children}</h4>;
             case 5:
-              return (
-                <h5 className="font-poppins text-xl font-bold"> {children}</h5>
-              );
+              return <h5 className=" text-xl font-bold"> {children}</h5>;
             case 6:
-              return (
-                <h6 className="font-poppins text-lg font-bold"> {children}</h6>
-              );
+              return <h6 className=" text-lg font-bold"> {children}</h6>;
             default:
-              return (
-                <h3 className="font-poppins text-lg font-bold"> {children}</h3>
-              );
+              return <h3 className=" text-lg font-bold"> {children}</h3>;
           }
         },
 
@@ -89,11 +73,7 @@ function StrapiBlocksRenderer(props: StrapiBlocksProps) {
           );
         },
         "list-item": ({ children }) => {
-          return (
-            <li className="font-poppins leading-relaxed tracking-wide">
-              {children}
-            </li>
-          );
+          return <li className=" leading-relaxed tracking-wide">{children}</li>;
         },
         quote: ({ children }) => {
           return (
@@ -107,16 +87,16 @@ function StrapiBlocksRenderer(props: StrapiBlocksProps) {
       }}
       modifiers={{
         bold: ({ children }) => {
-          return <b className="font-poppins font-bold">{children}</b>;
+          return <b className=" font-bold">{children}</b>;
         },
         italic: ({ children }) => {
-          return <i className="font-poppins italic">{children}</i>;
+          return <i className=" italic">{children}</i>;
         },
         underline: ({ children }) => {
-          return <span className="font-poppins underline">{children}</span>;
+          return <span className=" underline">{children}</span>;
         },
         strikethrough: ({ children }) => {
-          return <s className="font-poppins line-through">{children}</s>;
+          return <s className=" line-through">{children}</s>;
         },
       }}
     />

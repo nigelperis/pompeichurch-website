@@ -59,41 +59,23 @@ const obituaryUrl = new URL(
       class="h-full max-h-[500px] w-full object-cover"
     />
   </div>
+
   <div
-    class="card-content font-noto-sans-kannada mt-2 flex flex-1 flex-col justify-end space-y-1 p-4"
+    class="font-noto-sans-kannada mt-2 flex flex-1 flex-col justify-end space-y-1 p-4"
   >
-    <h3
-      class="card-title line-clamp-1 text-xl font-bold text-slate-900"
-      title={name}
-    >
+    <h3 class="line-clamp-1 text-xl font-bold text-slate-900" title={name}>
       {name}
     </h3>
     {
       description && (
-        <p class="card-description line-clamp-3 text-lg text-slate-700">
-          {description}
-        </p>
+        <p class="line-clamp-3 text-lg text-slate-700">{description}</p>
       )
     }
-    {
-      age && (
-        <p class="card-age line-clamp-3 text-lg text-slate-700">
-          ಪ್ರಾಯ್ : {age}
-        </p>
-      )
-    }
-    {
-      ward && (
-        <p class="card-ward line-clamp-3 text-lg text-slate-700">
-          ವಾಡೊ : {ward}
-        </p>
-      )
-    }
+    {age && <p class="line-clamp-3 text-lg text-slate-700">ಪ್ರಾಯ್ : {age}</p>}
+    {ward && <p class="line-clamp-3 text-lg text-slate-700">ವಾಡೊ : {ward}</p>}
     {
       dateOfDeath && (
-        <p class="card-ward line-clamp-3 text-lg text-slate-700">
-          ಮರಣ್ : {dateOfDeath}
-        </p>
+        <p class="line-clamp-3 text-lg text-slate-700">ಮರಣ್ : {dateOfDeath}</p>
       )
     }
   </div>
@@ -105,6 +87,7 @@ const obituaryUrl = new URL(
     }}
   />
 </div>
+
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const params = new URLSearchParams(window.location.search);
