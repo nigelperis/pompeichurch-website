@@ -21,7 +21,7 @@ async function listParishPriests(args?: {
 }): Promise<ParishPriests[]> {
 	const batchSize = 100;
 	let page = 1;
-	let priests = [];
+	let priests: ParishPriests[] = [];
 	let hasMore = true;
 
 	while (hasMore) {
