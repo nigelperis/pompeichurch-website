@@ -134,9 +134,8 @@ const parishPriestName =
   import { triggerPoppers, message} from "../../../scripts/priest-poppers.ts";
 
   const section = document.getElementById("parish-priest-speaks");
-  const lang = section?.getAttribute("data-lang") || "en";
 
   triggerPoppers();
-  message(lang);
+  message();
 </script>
 

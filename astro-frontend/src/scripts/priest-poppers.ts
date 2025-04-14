@@ -1,22 +1,23 @@
 import { confetti } from "@tsparticles/confetti";
+import { Locale } from "~/enums/locale";
 
-export const message = (lang: string) => {
+export const message = () => {
+  const section = document.getElementById("parish-priest-speaks");
+  const lang = section?.getAttribute("data-lang");
+
   setTimeout(() => {
     const message = document.getElementById('message-section');
     if (!message) return;
 
     message.innerText = lang == 'kok' ? "ಭಾಂಗ್ರಾಳ್ಯಾ ಜಲ್ಮಾ ದಿಸಾಚೆ ರಾಸ್ ರಾಸ್ ಉಲ್ಲಾಸ್, ತುಮ್ಕಾಂ ವಿಗಾರ್ ಬಾಪಾನೊ 🎉🎂" : "Happy 50th Birthday, Dear Father! 🎉🎂";
-    message.style.fontFamily = lang == 'kok' ? "noto-sans-kannada" : "monospace";
-    message.className = "bg-[#e74141] rounded-xl my-3 text-center text-[#ffd700] p-3 text-2xl md:text-4xl font-bold scale-95 opacity-100 transform transition-all duration-900 ease-out";
+    message.className = "bg-[#e74141] font-noto-sans-kannada rounded-xl my-3 text-center text-[#ffd700] p-3 text-2xl md:text-4xl font-bold scale-95 opacity-100 transform transition-all duration-900 ease-out";
 
     setTimeout(() => {
-      message.style.fontFamily = lang == 'kok' ? "noto-sans-kannada" : "monospace";
-      message.className = "bg-[#e74141] rounded-xl my-3 text-center text-[#ffd700] p-3 text-2xl md:text-4xl font-bold scale-100 opacity-100 transform transition-all duration-900 ease-out";
+      message.className = "bg-[#e74141] font-noto-sans-kannada rounded-xl my-3 text-center text-[#ffd700] p-3 text-2xl md:text-3xl font-bold scale-100 opacity-100 transform transition-all duration-900 ease-out";
     }, 50);
 
     setTimeout(() => {
-      message.style.fontFamily = lang == 'kok' ? "noto-sans-kannada" : "monospace";
-      message.className = "bg-[#e74141] rounded-xl my-3 text-center text-[#ffd700] p-3 text-2xl md:text-4xl font-bold opacity-0 scale-95 transform transition-all duration-900 ease-out";
+      message.className = "bg-[#e74141] font-noto-sans-kannada rounded-xl my-3 text-center text-[#ffd700] p-3 text-2xl md:text-3xl font-bold opacity-0 scale-95 transform transition-all duration-900 ease-out";
 
       setTimeout(() => {
         message.style.display = "none";
@@ -101,7 +102,7 @@ window.addEventListener("DOMContentLoaded", () => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           triggerPoppers();
-          message(lang);
+          message();
         }
       });
     },
