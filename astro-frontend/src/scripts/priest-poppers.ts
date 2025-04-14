@@ -17,7 +17,17 @@ export const triggerPoppers = () => {
     const timeLeft = animationEnd - Date.now();
 
     if (timeLeft <= 0) {
-      return clearInterval(interval);
+      clearInterval(interval);
+
+      setTimeout(() => {
+        document.querySelectorAll("canvas").forEach((canvas) => {
+          if (canvas.style.zIndex === "1000") {
+            canvas.remove();
+          }
+        });
+      }, 500);
+
+      return;
     }
 
     const bounds = section.getBoundingClientRect();
@@ -40,6 +50,12 @@ export const triggerPoppers = () => {
           x: 0.8,
           y: Math.random() * 0.4 + 0.3,
         },
+      });
+
+      document.querySelectorAll("canvas").forEach((canvas) => {
+        if (canvas.style.zIndex === "1000") {
+          canvas.style.pointerEvents = "none";
+        }
       });
     } else {
       clearInterval(interval);
