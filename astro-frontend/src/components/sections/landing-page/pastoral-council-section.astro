@@ -1,63 +1,69 @@
 ---
-import { getLangFromUrl, useTranslations } from '~/i18n/utils';
-import { cn } from '~/helpers/cn';
+import { getLangFromUrl, useTranslations } from "~/i18n/utils";
+import { cn } from "~/helpers/cn";
 
-import HoverableLink from '~/components/ui/hoverable-link.astro';
-import ParishPastoralCard from '~/components/pastoral-council-card.astro';
+import HoverableLink from "~/components/ui/hoverable-link.astro";
+import ParishPastoralCard from "~/components/pastoral-council-card.astro";
 
-import { Message } from '~/constants/message.ts';
-import { Locale } from '~/enums/locale';
-import { listPastoralCoreCommitteeData } from '~/services/parish-pastoral-council/parish-pastoral-council-core-committee-data'
-import { listParishFinanceCommitteeData } from '~/services/list-parish-finance-committee-data';
+import { Message } from "~/constants/message.ts";
+import { Locale } from "~/enums/locale";
+import { listPastoralCoreCommitteeData } from "~/services/parish-pastoral-council/parish-pastoral-council-core-committee-data";
+import { listParishFinanceCommitteeData } from "~/services/list-parish-finance-committee-data";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const councilUrl =
   lang === Locale.EN
-    ? '/parish-pastoral-council'
-    : '/kok/parish-pastoral-council';
+    ? "/parish-pastoral-council"
+    : "/kok/parish-pastoral-council";
 
-const pastoralCoreCommitteeKok = await listPastoralCoreCommitteeData({ locale: Locale.KOK });
+const pastoralCoreCommitteeKok = await listPastoralCoreCommitteeData({
+  locale: Locale.KOK,
+});
 const pastoralCoreCommitteeEn = await listPastoralCoreCommitteeData();
 const pastoralCoreCommittee =
   lang === Locale.KOK
-    ? (pastoralCoreCommitteeKok.length > 0
-        ? pastoralCoreCommitteeKok
-        : pastoralCoreCommitteeEn)
-    : (pastoralCoreCommitteeEn.length > 0
-        ? pastoralCoreCommitteeEn
-        : pastoralCoreCommitteeKok);
+    ? pastoralCoreCommitteeKok.length > 0
+      ? pastoralCoreCommitteeKok
+      : pastoralCoreCommitteeEn
+    : pastoralCoreCommitteeEn.length > 0
+      ? pastoralCoreCommitteeEn
+      : pastoralCoreCommitteeKok;
 
-const parishFinanceCommitteeKok = await listParishFinanceCommitteeData({ locale: Locale.KOK });
+const parishFinanceCommitteeKok = await listParishFinanceCommitteeData({
+  locale: Locale.KOK,
+});
 const parishFinanceCommitteeEn = await listParishFinanceCommitteeData();
 const parishFinanceCommittee =
-	lang === Locale.KOK
-		? (parishFinanceCommitteeKok.length > 0
-				? parishFinanceCommitteeKok
-				: parishFinanceCommitteeEn)
-		: (parishFinanceCommitteeEn.length > 0
-				? parishFinanceCommitteeEn
-				: parishFinanceCommitteeKok);
+  lang === Locale.KOK
+    ? parishFinanceCommitteeKok.length > 0
+      ? parishFinanceCommitteeKok
+      : parishFinanceCommitteeEn
+    : parishFinanceCommitteeEn.length > 0
+      ? parishFinanceCommitteeEn
+      : parishFinanceCommitteeKok;
 ---
 
 <section
-	class="mt-6 flex flex-col lg:mx-28 lg:mb-3 lg:min-h-[70svh] lg:justify-evenly"
+  class="mt-6 flex flex-col lg:mx-28 lg:mb-3 lg:min-h-[70svh] lg:justify-evenly"
 >
-	<h1
-		data-aos="fade-right"
-		class={cn(
-			'mx-6 mb-4 inline-block border-l-4 border-natgeo-yellow pl-3 font-poppins text-[27px] font-extrabold xs:text-2xl lg:mx-0 lg:text-4xl',
-			{
-				'font-noto-sans-kannada': lang === Locale.KOK,
-			},
-		)}
-	>
-		{t('landing.pastoral-parishad')}
-	</h1>
-	{
+  <h1
+    data-aos="fade-right"
+    class={cn(
+      "font-roboto font-black mx-6 mb-4 inline-block border-l-4 border-natgeo-yellow pl-3 text-2xl lg:mx-0 lg:text-4xl",
+      {
+        "font-noto-sans-kannada font-extrabold pt-2": lang === Locale.KOK,
+      }
+    )}
+  >
+    {t("landing.pastoral-parishad")}
+  </h1>
+  {
 		pastoralCoreCommittee.length > 0 ? (
-			<div class="scrollbar-none my-4 flex w-full scroll-ml-6 space-x-8 overflow-x-auto overflow-y-hidden pl-6 pr-3 lg:justify-center xl:space-x-10">
-				{pastoralCoreCommittee.slice(0, 4).map((member) => (
+  <div
+    class="scrollbar-none my-4 flex w-full scroll-ml-6 space-x-8 overflow-x-auto overflow-y-hidden pl-6 pr-3 lg:justify-center xl:space-x-10"
+  >
+    {pastoralCoreCommittee.slice(0, 4).map((member) => (
 					<ParishPastoralCard
 						src={member.image?.url}
 						name={member.name}
@@ -66,10 +72,10 @@ const parishFinanceCommittee =
 						height={300}
 					/>
 				))}
-					<div
-						class="flex-shrink-0 transform snap-start overflow-hidden border shadow-sm transition-all duration-200 ease-in-out lg:hidden"
-					>
-						<div class="opacity-50 blur-md">
+    <div
+      class="flex-shrink-0 transform snap-start overflow-hidden border shadow-sm transition-all duration-200 ease-in-out lg:hidden"
+    >
+      	<div class="opacity-50 blur-md">
 							{
 								parishFinanceCommittee.length == 0 || parishFinanceCommittee[3] === undefined ? (
 								<ParishPastoralCard src={''} name={''} position={''} width={300} height={300}/>) : (
@@ -82,29 +88,30 @@ const parishFinanceCommittee =
 									/>
 								)
 							}
+						</div>
 
-						</div>
-						<div class="absolute inset-0 flex items-center justify-center">
-							<HoverableLink
-								href={councilUrl}
-								class="mb-2 mt-2 inline-block text-xl font-bold text-black"
-							>
-								{t('ui.view-all')}
-							</HoverableLink>
-						</div>
-					</div>
-			</div>
-			<div class="hidden justify-center lg:flex">
-				<HoverableLink href={councilUrl}>
-					{t('ui.view-all')}
-				</HoverableLink>
-			</div>
-		) : (
+      <div class="absolute inset-0 flex items-center justify-center">
+        <HoverableLink
+          href={councilUrl}
+          class="mb-2 mt-2 inline-block text-xl font-bold text-black"
+        >
+          {t("ui.view-all")}
+        </HoverableLink>
+      </div>
+    </div>
+  </div>
+
+  <div class="hidden justify-center lg:flex">
+    <HoverableLink href={councilUrl}>
+      {t("ui.view-all")}
+    </HoverableLink>
+  </div>
+  ) : (
 			<div class="m-auto">
 				<p class="py-8 text-center text-3xl font-semibold">
         	{Message.CORE_COMMITTEE_NOT_FOUND}
       	</p>
 			</div>
-		)
-	}
+    )
+  }
 </section>

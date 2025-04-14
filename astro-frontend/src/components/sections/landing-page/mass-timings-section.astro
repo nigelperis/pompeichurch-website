@@ -1,9 +1,9 @@
 ---
-import { getImage } from 'astro:assets';
-import { getLangFromUrl, useTranslations } from '~/i18n/utils';
-import massInteriorImage from '~/assets/landing-page/mass-interior.webp';
-import { cn } from '~/helpers/cn';
-import { Locale } from '~/enums/locale';
+import { getImage } from "astro:assets";
+import { getLangFromUrl, useTranslations } from "~/i18n/utils";
+import massInteriorImage from "~/assets/landing-page/mass-interior.webp";
+import { cn } from "~/helpers/cn";
+import { Locale } from "~/enums/locale";
 
 const optimizedmassInteriorImage = await getImage({ src: massInteriorImage });
 const lang = getLangFromUrl(Astro.url);
@@ -11,56 +11,56 @@ const t = useTranslations(lang);
 ---
 
 <section
-	style={{ backgroundImage: `url(${optimizedmassInteriorImage.src})` }}
-	class="relative mt-4 flex flex-col bg-black/60 bg-cover bg-center p-8 text-white bg-blend-darken lg:p-28"
+  style={{ backgroundImage: `url(${optimizedmassInteriorImage.src})` }}
+  class="relative mt-4 flex flex-col bg-black/60 bg-cover bg-center p-8 text-white bg-blend-darken lg:p-28"
 >
-	<h1
-		data-aos="fade-right"
-		class={cn(
-			'mb-4 inline-block border-l-4 border-natgeo-yellow pl-3 font-poppins text-3xl font-extrabold xs:text-2xl lg:text-4xl',
-			{
-				'font-noto-sans-kannada': lang === Locale.KOK,
-			},
-		)}
-	>
-		{t('landing.mass-timings')}
-	</h1>
+  <h1
+    data-aos="fade-right"
+    class={cn(
+      "font-roboto font-black mb-4 border-l-4 border-natgeo-yellow pl-3 text-2xl lg:text-4xl",
+      {
+        "font-noto-sans-kannada font-extrabold pt-2": lang === Locale.KOK,
+      }
+    )}
+  >
+    {t("landing.mass-timings")}
+  </h1>
 
-	<ul
-		class={cn(
-			'space-y-3 lg:space-y-4 font-poppins text-sm lg:text-xl text-white leading-relaxed',
-			{
-				'font-noto-sans-kannada': lang === Locale.KOK,
-			},
-		)}
-	>
-		<li>
-			<strong>{t('landing.mon-sat')}</strong> 6:45 AM ({
-				t('landing.daily-mass')
-			})
-		</li>
-		<li>
-			<strong>{t('landing.friday')}</strong> 4:45 PM ({
-				t('landing.friday-note')
-			})
-		</li>
-		<li>
-			<strong>{t('landing.saturday')}:</strong> 4 PM ({
-				t('landing.saturday-note')
-			})
-		</li>
-		<li>
-			<strong>{t('landing.sunday')}:</strong> 7:30 AM & 10:15 AM {
-				t('landing.adoration-note')
-			}
-		</li>
-		<li>
-			<strong>{t('landing.catechism')}:</strong>
-			{t('landing.catechism-note')}
-		</li>
-		<li>
-			<strong>{t('landing.novena')}:</strong>
-			{t('landing.novena-note')}
-		</li>
-	</ul>
+  <ul
+    class={cn(
+      "font-roboto space-y-3 lg:space-y-4  text-sm lg:text-xl text-white leading-relaxed",
+      {
+        "font-noto-sans-kannada": lang === Locale.KOK,
+      }
+    )}
+  >
+    <li>
+      <strong>{t("landing.mon-sat")}</strong> 6:45 AM ({
+        t("landing.daily-mass")
+      })
+    </li>
+    <li>
+      <strong>{t("landing.friday")}</strong> 4:45 PM ({
+        t("landing.friday-note")
+      })
+    </li>
+    <li>
+      <strong>{t("landing.saturday")}:</strong> 4 PM ({
+        t("landing.saturday-note")
+      })
+    </li>
+    <li>
+      <strong>{t("landing.sunday")}:</strong> 7:30 AM & 10:15 AM {
+        t("landing.adoration-note")
+      }
+    </li>
+    <li>
+      <strong>{t("landing.catechism")}:</strong>
+      {t("landing.catechism-note")}
+    </li>
+    <li>
+      <strong>{t("landing.novena")}:</strong>
+      {t("landing.novena-note")}
+    </li>
+  </ul>
 </section>

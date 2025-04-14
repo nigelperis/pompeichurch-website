@@ -1,76 +1,80 @@
 ---
-import { getLangFromUrl, useTranslations } from '~/i18n/utils';
-import { Image } from 'astro:assets';
+import { getLangFromUrl, useTranslations } from "~/i18n/utils";
+import { Image } from "astro:assets";
 
 //Images
-import pompeiSabhaBhavanImage from '~/assets/halls/pompei-sabha-bhavan.jpg';
-import pbs1 from '~/assets/halls/psb-int-1.jpg';
-import pbs2 from '~/assets/halls/psb-int-2.jpg';
-import pbs4 from '~/assets/halls/psb-ext-2.jpg';
-import pbs6 from '~/assets/halls/psb-ext-4.jpg';
+import pompeiSabhaBhavanImage from "~/assets/halls/pompei-sabha-bhavan.jpg";
+import pbs1 from "~/assets/halls/psb-int-1.jpg";
+import pbs2 from "~/assets/halls/psb-int-2.jpg";
+import pbs4 from "~/assets/halls/psb-ext-2.jpg";
+import pbs6 from "~/assets/halls/psb-ext-4.jpg";
+import { Locale } from "~/enums/locale";
+import { cn } from "~/helpers/cn";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
 <h1
-	class="border-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl font-extrabold lg:text-4xl"
+  class={cn("font-roboto font-black border-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl lg:text-4xl",{
+    "font-noto-sans-kannada font-bold sm:pt-2": lang === Locale.KOK,
+  })}
 >
-	{t('hall.title')}
+  {t("hall.title")}
 </h1>
 <div class="flex items-center justify-center">
-	<Image
-		src={pompeiSabhaBhavanImage}
-		alt="Exterior view of Pompei Sabha Bhavan at Our Lady of Pomepi Church"
-		class="pb-2 text-center"
-	/>
+  <Image
+    src={pompeiSabhaBhavanImage}
+    alt="Exterior view of Pompei Sabha Bhavan at Our Lady of Pomepi Church"
+    class="pb-2 text-center"
+  />
 </div>
-<div class="font-geist pb-4">
-	<p class="mb-4 text-lg font-bold">Capacity: 500</p>
+<div class="font-roboto pb-4">
+  <p class="mb-4 text-lg font-bold">Capacity: 500</p>
 
-	<h4 class="mb-2 text-lg font-bold">Timings:</h4>
+  <h4 class="mb-2 text-lg font-bold">Timings:</h4>
 
-	<div class="text-gray-700">
-		<p class="mb-1 font-semibold">Day:</p>
-		<ul class="mb-4 list-inside list-disc">
-			<li>Music Stop: 3:00 PM</li>
-			<li>Vacate: 3:30 PM</li>
-		</ul>
+  <div class="text-gray-700">
+    <p class="mb-1 font-semibold">Day:</p>
+    <ul class="mb-4 list-inside list-disc">
+      <li>Music Stop: 3:00 PM</li>
+      <li>Vacate: 3:30 PM</li>
+    </ul>
 
-		<p class="mb-1 font-semibold">Night:</p>
-		<ul class="list-inside list-disc">
-			<li>Music Stop: 10:15 PM</li>
-			<li>Vacate: 10:45 PM</li>
-		</ul>
-	</div>
+    <p class="mb-1 font-semibold">Night:</p>
+    <ul class="list-inside list-disc">
+      <li>Music Stop: 10:15 PM</li>
+      <li>Vacate: 10:45 PM</li>
+    </ul>
+  </div>
 </div>
-<h2 class="pb-4 text-lg font-bold text-slate-800">
-	Pompei Sabha Bhavan Interior
+<h2 class="font-roboto pb-4 text-lg font-bold text-slate-800">
+  Pompei Sabha Bhavan Interior
 </h2>
 <div class="flex flex-col gap-4 pb-4 md:flex-row">
-	<Image
-		src={pbs1}
-		alt="Pompei Sabha Bhavan Interior Image 1"
-		class="w-full md:w-1/2"
-	/>
-	<Image
-		src={pbs2}
-		alt="Pompei Sabha Bhavan Interior Image 2"
-		class="w-full md:w-1/2"
-	/>
+  <Image
+    src={pbs1}
+    alt="Pompei Sabha Bhavan Interior Image 1"
+    class="w-full md:w-1/2"
+  />
+  <Image
+    src={pbs2}
+    alt="Pompei Sabha Bhavan Interior Image 2"
+    class="w-full md:w-1/2"
+  />
 </div>
-<h2 class="pb-4 text-lg font-bold text-slate-800">
-	Pompei Sabha Bhavan Exterior
+<h2 class="font-roboto pb-4 text-lg font-bold text-slate-800">
+  Pompei Sabha Bhavan Exterior
 </h2>
 <div class="flex flex-col gap-4 md:flex-row">
-	<Image
-		src={pbs4}
-		alt="Pompei Sabha Bhavan Exterior Image 1"
-		class="w-full md:w-1/2"
-	/>
-	<Image
-		src={pbs6}
-		alt="Pompei Sabha Bhavan Exterior Image 2"
-		class="w-full md:w-1/2"
-	/>
+  <Image
+    src={pbs4}
+    alt="Pompei Sabha Bhavan Exterior Image 1"
+    class="w-full md:w-1/2"
+  />
+  <Image
+    src={pbs6}
+    alt="Pompei Sabha Bhavan Exterior Image 2"
+    class="w-full md:w-1/2"
+  />
 </div>

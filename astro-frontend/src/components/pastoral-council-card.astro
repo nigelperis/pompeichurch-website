@@ -7,49 +7,56 @@ import NetworkImage from "./ui/network-image.astro";
 import blankImage from "~/assets/parish-priests/blank.jpeg";
 
 interface Props {
-	src: string;
+  src: string;
   width: number;
-	height: number;
-	alt?: string;
-	class?: string;
+  height: number;
+  alt?: string;
+  class?: string;
   name: string;
   position: string;
 }
 
 const lang = getLangFromUrl(Astro.url);
-const { src, width, height, class: className, name, position} = Astro.props;
+const { src, width, height, class: className, name, position } = Astro.props;
 ---
 
 <div
   class={cn(
-    "w-64 snap-start first:snap-align-none max-w-xs flex-shrink-0 border duration-200 ease-in-out sm:w-64",
+    "w-64 snap-start first:snap-align-none max-w-xs flex-shrink-0 border border-gray-200 duration-200 ease-in-out sm:w-64",
     className
   )}
 >
-  <div class="card-image flex-none">
-    {src ? (
-      <NetworkImage
-        src={src}
-        width={width}
-        height={height}
-        alt={`${position} of Our Lady of Pompei Church`}
-        class="h-[300px] w-full object-cover"
-      />
-    ) : (
-      <Image src={blankImage} alt="Blank Profile Image" class="h-[300px] w-full object-cover" width={width} height={height} />
-    )}
+  <div class="flex-none">
+    {
+      src ? (
+        <NetworkImage
+          src={src}
+          width={width}
+          height={height}
+          alt={`${position} of Our Lady of Pompei Church`}
+          class="h-[300px] w-full object-cover"
+        />
+      ) : (
+        <Image
+          src={blankImage}
+          alt="Blank Profile Image"
+          class="h-[300px] w-full object-cover"
+          width={width}
+          height={height}
+        />
+      )
+    }
   </div>
 
   <div
-    class={cn(
-      "card-content flex flex-1 flex-col font-poppins justify-end space-y-1 p-3",
-      { "font-noto-sans-kannada": lang === Locale.KOK }
-    )}
+    class={cn("font-roboto flex flex-1 flex-col justify-end space-y-1 p-3", {
+      "font-noto-sans-kannada": lang === Locale.KOK,
+    })}
   >
-    <h3 class="card-title text-lg font-bold leading-snug text-gray-800">
+    <h3 class="text-lg font-bold leading-snug text-gray-800">
       {name}
     </h3>
-    <p class="card-subtitle text-md text-gray-700">
+    <p class="text-gray-700">
       {position}
     </p>
   </div>

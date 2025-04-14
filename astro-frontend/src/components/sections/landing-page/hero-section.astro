@@ -13,8 +13,18 @@ const optimizedChurchHeroImage = await getImage({ src: churchHeroImage });
 ---
 
 <head>
-  <link rel="preload" as="image" href={optimizedSkyImage.src} type="image/webp" />
-  <link rel="preload" as="image" href={optimizedChurchHeroImage.src} type="image/webp" />
+  <link
+    rel="preload"
+    as="image"
+    href={optimizedSkyImage.src}
+    type="image/webp"
+  />
+  <link
+    rel="preload"
+    as="image"
+    href={optimizedChurchHeroImage.src}
+    type="image/webp"
+  />
 </head>
 <section
   class="relative h-screen w-screen bg-black/20 bg-cover bg-blend-darken"
@@ -37,9 +47,10 @@ const optimizedChurchHeroImage = await getImage({ src: churchHeroImage });
     data-aos="fade-up"
     data-aos-delay="700"
     class={cn(
-      "mt-3 text-center font-montserrat text-4xl  lg:text-5xl font-semibold",
+      "mt-6 text-center font-roboto text-4xl lg:text-5xl font-semibold tracking-wide",
       {
-        "font-noto-sans-kannada": lang === Locale.KOK,
+        "font-noto-sans-kannada font-semibold tracking-wide":
+          lang === Locale.KOK,
       }
     )}
   >
@@ -48,7 +59,7 @@ const optimizedChurchHeroImage = await getImage({ src: churchHeroImage });
   <p
     data-aos="fade-up"
     data-aos-delay="900"
-    class={cn("mt-2 text-center font-montserrat font-normal text-3xl", {
+    class={cn("mt-2 text-center font-roboto text-3xl", {
       "font-noto-sans-kannada": lang === Locale.KOK,
     })}
   >
@@ -67,15 +78,15 @@ const optimizedChurchHeroImage = await getImage({ src: churchHeroImage });
   </div>
 </section>
 <style>
-	@keyframes animatedBackground {
-		from {
-			transform: scale(1.2);
-		}
-		to {
-			transform: scale(1);
-		}
-	}
-	.animated-background {
-		animation: animatedBackground 2s ease-out forwards;
-	}
+  @keyframes animatedBackground {
+    from {
+      transform: scale(1.2);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+  .animated-background {
+    animation: animatedBackground 2s ease-out forwards;
+  }
 </style>

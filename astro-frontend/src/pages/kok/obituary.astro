@@ -1,19 +1,20 @@
 ---
-import ObituaryList from '~/components/sections/obituary/obituary-list.astro';
-import Layout from '~/layouts/layout.astro';
-import Pagination from '~/components/pagination.astro';
-import { getLangFromUrl, useTranslations } from '~/i18n/utils';
-import { listObituaries } from '~/services/obituaries/list-obituaries';
-import type { Obituary } from '~/models/obituary';
-import { Message } from '~/constants/message.ts';
-import { Locale } from '~/enums/locale';
+import ObituaryList from "~/components/sections/obituary/obituary-list.astro";
+import Layout from "~/layouts/layout.astro";
+import Pagination from "~/components/pagination.astro";
+import { getLangFromUrl, useTranslations } from "~/i18n/utils";
+import { listObituaries } from "~/services/obituaries/list-obituaries";
+import type { Obituary } from "~/models/obituary";
+import { Message } from "~/constants/message.ts";
+import { Locale } from "~/enums/locale";
+import { cn } from "~/helpers/cn";
 
 const url = new URL(Astro.url);
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 const obituariesPerPage = 6;
-const currentPage = Number(url.searchParams.get('p')) || 1;
+const currentPage = Number(url.searchParams.get("p")) || 1;
 
 // Fetch only the required page of obituaries
 const { obituaries, pagination } = await listObituaries({
@@ -25,8 +26,10 @@ const totalPages = pagination.pageCount;
 
 const baseURL = import.meta.env.STRAPI_URL;
 
-const id = url.searchParams.get('id') || null;
-const selectedObituary = id ? obituaries.find((item) => item.slug === id) : null;
+const id = url.searchParams.get("id") || null;
+const selectedObituary = id
+  ? obituaries.find((item) => item.slug === id)
+  : null;
 
 const absoluteImageURL = selectedObituary?.image?.url
   ? new URL(selectedObituary.image.url, baseURL).href
@@ -38,25 +41,37 @@ const pageTitle = selectedObituary
 
 const obituaryUrl = new URL(
   lang === Locale.EN
-    ? `/obituary?id=${id?.replace(/\s+/g, '-').toLowerCase()}`
-    : `/kok/obituary?id=${id?.replace(/\s+/g, '-').toLowerCase()}`,
-  Astro.url,
+    ? `/obituary?id=${id?.replace(/\s+/g, "-").toLowerCase()}`
+    : `/kok/obituary?id=${id?.replace(/\s+/g, "-").toLowerCase()}`,
+  Astro.url
 ).href;
 ---
 
 <Layout
-  title={`${pageTitle} ${selectedObituary?.age ? `(${selectedObituary.age})` : ''}`}
+  title={`${pageTitle} ${selectedObituary?.age ? `(${selectedObituary.age})` : ""}`}
   description={`${selectedObituary?.ward}`}
   image={absoluteImageURL}
   url={obituaryUrl}
 >
   <main class="mx-auto max-w-4xl overflow-hidden bg-white">
     <section id="obituary" class="flex flex-col p-6 pb-4">
-      <h1 class="border-natgeo-yellow font-poppins mb-4 border-l-4 pl-3 text-3xl font-extrabold lg:text-4xl">
-        {t('nav.obituary')}
+      <h1
+        class={cn(
+          "font-roboto font-black border-natgeo-yellow  mb-4 border-l-4 pl-3 text-3xl lg:text-4xl",
+          { "font-noto-sans-kannada pt-2 font-bold": lang === Locale.KOK }
+        )}
+      >
+        {t("nav.obituary")}
       </h1>
-      <p class="font-roboto p-3 pb-6 text-2xl font-bold italic text-red-600">
-        {t('obituary.subtitle')}
+      <p
+        class={cn(
+          "font-roboto p-3 pb-6 text-2xl font-bold italic text-red-600",
+          {
+            "font-noto-sans-kannada font-semibold": lang === Locale.KOK,
+          }
+        )}
+      >
+        {t("obituary.subtitle")}
       </p>
 
       {

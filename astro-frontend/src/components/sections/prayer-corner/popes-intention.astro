@@ -35,7 +35,7 @@ const subtitle =
 
 <h2
   class={cn(
-    "mb-4 mt-4 border-b-2 border-b-natgeo-yellow pb-2 font-poppins text-2xl font-bold lg:text-3xl",
+    "font-roboto mb-4 mt-4 border-b-2 border-b-natgeo-yellow pb-2 text-2xl font-bold lg:text-3xl",
     {
       "font-noto-sans-kannada": lang === Locale.KOK,
     }
@@ -45,11 +45,11 @@ const subtitle =
 </h2>
 
 <div
-  class={cn("text-justify font-geist", {
+  class={cn("text-justify font-roboto", {
     "font-noto-sans-kannada": lang === Locale.KOK,
   })}
 >
-  {subtitle && <h1 class="text-xl font-bold mb-2">{subtitle}</h1>}
+  {subtitle && <h1 class="font-roboto text-xl font-bold mb-2">{subtitle}</h1>}
   {
     currentIntention ? (
       <p>

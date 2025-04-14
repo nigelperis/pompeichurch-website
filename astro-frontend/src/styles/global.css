@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+@keyframes slidein {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@theme {
+  --screen-xs: 320px;
+  --screen-sm-xs: 370px;
+  --screen-sm-md: 430px;
+  --screen-sm-lg: 480px;
+  --screen-md-xs: 550px;
+  --screen-sm: 640px;
+  --screen-md: 768px;
+  --screen-md-lg: 900px;
+  --screen-lg-sm: 1024px;
+  --screen-lg-md: 1152px;
+  --screen-lg: 1280px;
+  --screen-xl-sm: 1440px;
+  --screen-xl: 1536px;
+
+  --color-natgeo-yellow: #ffdd00;
+  --color-natgeo-yellow-50: #feffe7;
+  --color-natgeo-yellow-100: #fcffc1;
+  --color-natgeo-yellow-200: #feff86;
+  --color-natgeo-yellow-300: #fff941;
+  --color-natgeo-yellow-400: #ffec0d;
+  --color-natgeo-yellow-600: #d1a300;
+  --color-natgeo-yellow-700: #a67502;
+  --color-natgeo-yellow-800: #895b0a;
+  --color-natgeo-yellow-900: #744a0f;
+  --color-natgeo-yellow-950: #442704;
+
+  --font-roboto: 'Roboto Variable', sans-serif;
+  --font-noto-sans-kannada: 'Noto Sans Kannada Variable', sans-serif;
+  --font-geist: "Geist Sans", sans-serif;
+
+  --font-weight-extrablack: 1000;
+
+  --animation-slidein: slidein 1s ease-out var(--slidein-delay, 0) forwards;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.rich-content strong {
+  @apply font-semibold text-black tracking-wide;
+}
