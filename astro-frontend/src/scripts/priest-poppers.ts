@@ -1,5 +1,32 @@
 import { confetti } from "@tsparticles/confetti";
 
+export const message = (lang: string) => {
+  setTimeout(() => {
+    const message = document.getElementById('message-section');
+    if (!message) return;
+
+    message.innerText = lang == 'kok' ? "ಭಾಂಗ್ರಾಳ್ಯಾ ಜಲ್ಮಾ ದಿಸಾಚೆ ರಾಸ್ ರಾಸ್ ಉಲ್ಲಾಸ್, ತುಮ್ಕಾಂ ವಿಗಾರ್ ಬಾಪಾನೊ 🎉🎂" : "Happy 50th Birthday, Dear Father! 🎉🎂";
+    message.style.fontFamily = lang == 'kok' ? "noto-sans-kannada" : "monospace";
+    message.className = "bg-[#e74141] rounded-xl my-3 text-center text-[#ffd700] p-3 text-2xl md:text-4xl font-bold scale-95 opacity-100 transform transition-all duration-900 ease-out";
+
+    setTimeout(() => {
+      message.style.fontFamily = lang == 'kok' ? "noto-sans-kannada" : "monospace";
+      message.className = "bg-[#e74141] rounded-xl my-3 text-center text-[#ffd700] p-3 text-2xl md:text-4xl font-bold scale-100 opacity-100 transform transition-all duration-900 ease-out";
+    }, 50);
+
+    setTimeout(() => {
+      message.style.fontFamily = lang == 'kok' ? "noto-sans-kannada" : "monospace";
+      message.className = "bg-[#e74141] rounded-xl my-3 text-center text-[#ffd700] p-3 text-2xl md:text-4xl font-bold opacity-0 scale-95 transform transition-all duration-900 ease-out";
+
+      setTimeout(() => {
+        message.style.display = "none";
+        message.innerText = "";
+      }, 700);
+    }, 8000);
+
+  }, 1000);
+}
+
 export const triggerPoppers = () => {
   const section = document.getElementById("parish-priest-speaks");
   if (!section) return;
@@ -40,6 +67,7 @@ export const triggerPoppers = () => {
           x: 0.2,
           y: Math.random() * 0.4 + 0.3,
         },
+        colors: ["#e74141", "#ffd700"],
       });
 
       confetti({
@@ -50,6 +78,7 @@ export const triggerPoppers = () => {
           x: 0.8,
           y: Math.random() * 0.4 + 0.3,
         },
+        colors: ["#e74141", "#ffd700"],
       });
 
       document.querySelectorAll("canvas").forEach((canvas) => {
@@ -72,6 +101,7 @@ window.addEventListener("DOMContentLoaded", () => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           triggerPoppers();
+          message(lang);
         }
       });
     },

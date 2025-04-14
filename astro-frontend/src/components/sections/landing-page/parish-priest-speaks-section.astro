@@ -34,6 +34,7 @@ const parishPriestName =
 <section
   class="mx-6 mt-6 flex flex-col lg:mx-28 lg:mb-3 lg:mt-0 lg:min-h-[70svh] lg:justify-evenly"
   id="parish-priest-speaks"
+  data-lang={lang}
 >
   <h2
     data-aos="fade-right"
@@ -126,10 +127,16 @@ const parishPriestName =
       )
     }
   </div>
+  <div id="message-section"></div>
 </section>
 
 <script>
-  import { triggerPoppers } from "../../../scripts/priest-poppers.ts";
+  import { triggerPoppers, message} from "../../../scripts/priest-poppers.ts";
+
+  const section = document.getElementById("parish-priest-speaks");
+  const lang = section?.getAttribute("data-lang") || "en";
+
   triggerPoppers();
+  message(lang);
 </script>
 
