@@ -80,9 +80,6 @@ const lang = getLangFromUrl(Astro.url);
     });
 
     const handleLanguageChange = (lang: string): void => {
-      button.innerHTML = "Loading...";
-      button.setAttribute("disabled", "true");
-
       const currentPath = window.location.pathname;
       const pathWithLocaleStripped = currentPath.replace(/^\/kok\//, "/");
       const localeToSwitchTo = lang === "ಕೊಂಕಣಿ" ? Locale.KOK : Locale.EN;
