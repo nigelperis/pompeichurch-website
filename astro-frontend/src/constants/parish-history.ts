@@ -13,11 +13,10 @@ const parishHistory = [
 	{
 		priestInfo: `<br><strong>Rev. Fr. Reginald Pinto</strong><br>
 		Father Reginald Pinto served as the first parish priest and laid the foundation for the church. The cornerstone was blessed and placed by Bishop Perrin on October 7, 1915. The parishioners gathered in large numbers for the event, making it a memorable occasion. <br><br>
-
 		<strong>Rev. Fr. J. M. Menezes</strong><br>
 		18.30 acres of land, owned by Ignatius Sequeira from Kandar, was given by the government to the church. Rev. J. M. Menezes, started the work of building a chapel. Facing various hardships and obstacles, Catholics and non-Catholics from Gurpur and the surrounding areas gathered together, and with the support of 125 families from Kandar, Gurpur, and Monel wards, the foundation for this chapel was laid. On 11-11-1918, the government granted permanent and specific land rights for the chapel. The Parish priest of Urwa, Rev. Fr. Lewis John Sequeira, began the devotion to Our Lady of Pompei at Urwa. In 1920, he went to the city of Pompei in Italy and obtained a registered statue of Our Lady of Pompei. After acquiring this statue, a decision was made to dedicate the church to the honor of Our Lady of Pompei. This led to the establishment of a place of veneration, and everything was officially recorded. <br><br>
 
-		<b><i>Role of Missionaries in building a spiritual community:</i></b><br>
+		<strong><i>Role of Missionaries in building a spiritual community:</i></strong><br>
 
 		<strong>Rev. Fr. A. A. E. Colaco (1921 - 1922)</strong><br>
 		Fr. A. A. E. Colaco was appointed as the first pastor of the newly constituted parish of Our Lady of Pompei. During his tenure, he established a primary school for the poor and those in need within the parish. <br><br>

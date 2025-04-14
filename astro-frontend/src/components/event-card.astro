@@ -1,74 +1,79 @@
 ---
-import { cn } from '~/helpers/cn';
-import HoverableLink from './ui/hoverable-link.astro';
-import { getLangFromUrl, useTranslations } from '~/i18n/utils';
-import ShareLink from './ui/share-link.astro';
-import NetworkImage from './ui/network-image.astro';
-import { Locale } from '~/enums/locale';
+import { cn } from "~/helpers/cn";
+import HoverableLink from "./ui/hoverable-link.astro";
+import { getLangFromUrl, useTranslations } from "~/i18n/utils";
+import ShareLink from "./ui/share-link.astro";
+import NetworkImage from "./ui/network-image.astro";
+import { Locale } from "~/enums/locale";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 interface Props {
-	eventName: string;
-	eventNameKok: string;
-	imageUrl: string;
-	imageWidth: number;
-	imageHeight: number;
-	shortDescription: string;
-	facebookLink?: string;
-	slug: string;
-	class?: string;
-	instagramLink?: string;
+  eventName: string;
+  eventNameKok: string;
+  imageUrl: string;
+  imageWidth: number;
+  imageHeight: number;
+  shortDescription: string;
+  facebookLink?: string;
+  slug: string;
+  class?: string;
+  instagramLink?: string;
 }
 
 const {
-	eventName,
-	eventNameKok,
-	imageUrl,
-	shortDescription,
-	imageWidth,
-	imageHeight,
-	slug,
-	class: className,
-	...rest
+  eventName,
+  eventNameKok,
+  imageUrl,
+  shortDescription,
+  imageWidth,
+  imageHeight,
+  slug,
+  class: className,
+  ...rest
 } = Astro.props;
 
-const eventUrl = lang === Locale.EN ? `/events/${slug}/` : `/kok/events/${slug}/`;
+const eventUrl =
+  lang === Locale.EN ? `/events/${slug}/` : `/kok/events/${slug}/`;
 ---
 
 <div
-	class={cn(
-		'hover:scale-[1.01] flex flex-col transform rounded-sm border transition-all duration-300 ease-in-out',
-		className,
-	)}
-	{...rest}
+  class={cn(
+    "hover:scale-[1.01] flex flex-col transform rounded-sm border border-gray-200 transition-all duration-300 ease-in-out",
+    className
+  )}
+  {...rest}
 >
-	<div class="event-image w-full">
-		<NetworkImage
-			src={imageUrl}
-			alt={eventName}
-			width={imageWidth}
-			height={imageHeight}
-			class="object-fit aspect-[1.2/0.7] rounded-t-sm duration-700 ease-in-out"
-		/>
-	</div>
+  <div class="event-image w-full">
+    <NetworkImage
+      src={imageUrl}
+      alt={eventName}
+      width={imageWidth}
+      height={imageHeight}
+      class="object-fit aspect-[1.2/0.7] rounded-t-sm duration-700 ease-in-out"
+    />
+  </div>
 
-	<div class="event-content font-noto-sans-kannada p-4">
-		<div class="flex flex-col gap-2">
-			<h3 class="event-title text-xl font-bold text-slate-900">
-				{eventNameKok}
-			</h3>
-			<p class="event-description pb-4 text-justify text-base text-slate-700">
-				{shortDescription}
-			</p>
-		</div>
-		<HoverableLink href={eventUrl}>
-			{t('ui.more-button-read')}
-		</HoverableLink>
-		<ShareLink
-			class="absolute bottom-4 right-4"
-			shareData={{ url: eventUrl, title: eventName }}
-		/>
-	</div>
+  <div
+    class={cn("font-noto-sans-kannada p-4", {
+      "font-noto-sans-kannada": lang === Locale.KOK,
+    })}
+  >
+    <div class="flex flex-col gap-2">
+      <h3 class="text-xl font-bold text-slate-900">
+        {eventNameKok}
+      </h3>
+      <p class="pb-4 text-justify text-base text-slate-700">
+        {shortDescription}
+      </p>
+    </div>
+    <HoverableLink href={eventUrl}>
+      {t("ui.more-button-read")}
+    </HoverableLink>
+    <ShareLink
+      class="absolute bottom-4 right-4"
+      shareData={{ url: eventUrl, title: eventName }}
+    />
+  </div>
 </div>
