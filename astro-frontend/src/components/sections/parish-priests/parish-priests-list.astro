@@ -1,22 +1,24 @@
 ---
-import { parishPriests } from '~/constants/parish-priests';
 import ProfileCard from '~/components/profile-card.astro';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+import type { ParishPriests } from '~/models/parish-priests';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+const { parishPriests } = Astro.props;
 ---
 
 <div
 	class="grid-cols-1 mx-auto grid w-full gap-x-20 gap-y-10 pt-10 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
 >
 	{
-		parishPriests.map((priest) => (
+		parishPriests.map((priest: ParishPriests) => (
 			<ProfileCard
 				class="m-auto"
-				imageUrl={priest.imageUrl}
-				name={t(`priest.${priest.name}`)}
-				date={priest.date}
+				url={priest.image?.url}
+				name={priest.name}
+				date={priest.servicePeriod}
 			/>
 		))
 	}

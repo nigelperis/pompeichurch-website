@@ -3,19 +3,31 @@ import { Image } from "astro:assets";
 import { Locale } from "~/enums/locale";
 import { cn } from "~/helpers/cn";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
+import NetworkImage from "./ui/network-image.astro";
+import blankImage from "~/assets/parish-priests/blank.jpeg";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 interface Props {
   name: string;
-  imageUrl: ImageMetadata;
+  url?: string;
   date?: string;
   subtitle?: string;
   class?: string;
+  width?: number;
+  height?: number;
 }
 
-const { name, date, subtitle, class: className, imageUrl } = Astro.props;
+const {
+  name,
+  url,
+  date,
+  subtitle,
+  class: className,
+  width,
+  height,
+} = Astro.props;
 ---
 
 <div
@@ -27,11 +39,24 @@ const { name, date, subtitle, class: className, imageUrl } = Astro.props;
   )}
 >
   <div class="flex-none">
-    <Image
-      src={imageUrl}
-      alt={`Image of ${name}`}
-      class="h-[300px] w-full rounded-md object-cover"
-    />
+    {
+      url ? (
+        <NetworkImage
+          src={url}
+          width={width || 300}
+          height={height || 300}
+          class="h-[300px] w-full object-cover"
+        />
+      ) : (
+        <Image
+          src={blankImage}
+          alt="Blank Profile Image"
+          class="h-[300px] w-full object-cover"
+          width={width}
+          height={height}
+        />
+      )
+    }
   </div>
 
   <div
