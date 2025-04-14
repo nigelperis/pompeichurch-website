@@ -1,5 +1,4 @@
 import { Locale } from '~/enums/locale';
-
 interface ImageFormat {
   ext: string;
   url: string;
