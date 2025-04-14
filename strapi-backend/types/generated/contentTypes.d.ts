@@ -786,6 +786,128 @@ export interface ApiObituaryObituary extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiParishFinanceCommitteeParishFinanceCommittee
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'parish_finance_committees';
+  info: {
+    description: '';
+    displayName: 'Parish Finance Committee';
+    pluralName: 'parish-finance-committees';
+    singularName: 'parish-finance-committee';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    image: Schema.Attribute.Media<'images'> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::parish-finance-committee.parish-finance-committee'
+    >;
+    name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    position: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    publishedAt: Schema.Attribute.DateTime;
+    sNo: Schema.Attribute.Integer &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiParishPastoralCouncilCoreCommitteeParishPastoralCouncilCoreCommittee
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'parish_pastoral_council_core_committees';
+  info: {
+    description: '';
+    displayName: 'Parish Pastoral Council Core Committee';
+    pluralName: 'parish-pastoral-council-core-committees';
+    singularName: 'parish-pastoral-council-core-committee';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    image: Schema.Attribute.Media<'images'> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::parish-pastoral-council-core-committee.parish-pastoral-council-core-committee'
+    >;
+    name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    position: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    publishedAt: Schema.Attribute.DateTime;
+    sNo: Schema.Attribute.Integer &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiParishPastoralCouncilImageParishPastoralCouncilImage
   extends Struct.SingleTypeSchema {
   collectionName: 'parish_pastoral_council_images';
@@ -925,6 +1047,66 @@ export interface ApiParishPriestMessageParishPriestMessage
         };
       }>;
     publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiParishPriestParishPriest
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'parish_priests';
+  info: {
+    displayName: 'Parish Priests';
+    pluralName: 'parish-priests';
+    singularName: 'parish-priest';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    image: Schema.Attribute.Media<'images'> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::parish-priest.parish-priest'
+    >;
+    name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    publishedAt: Schema.Attribute.DateTime;
+    servicePeriod: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    sNo: Schema.Attribute.Integer &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1556,9 +1738,12 @@ declare module '@strapi/strapi' {
       'api::association-office-bearer.association-office-bearer': ApiAssociationOfficeBearerAssociationOfficeBearer;
       'api::event.event': ApiEventEvent;
       'api::obituary.obituary': ApiObituaryObituary;
+      'api::parish-finance-committee.parish-finance-committee': ApiParishFinanceCommitteeParishFinanceCommittee;
+      'api::parish-pastoral-council-core-committee.parish-pastoral-council-core-committee': ApiParishPastoralCouncilCoreCommitteeParishPastoralCouncilCoreCommittee;
       'api::parish-pastoral-council-image.parish-pastoral-council-image': ApiParishPastoralCouncilImageParishPastoralCouncilImage;
       'api::parish-pastoral-council.parish-pastoral-council': ApiParishPastoralCouncilParishPastoralCouncil;
       'api::parish-priest-message.parish-priest-message': ApiParishPriestMessageParishPriestMessage;
+      'api::parish-priest.parish-priest': ApiParishPriestParishPriest;
       'api::pompeichem-falkem.pompeichem-falkem': ApiPompeichemFalkemPompeichemFalkem;
       'api::popes-intention.popes-intention': ApiPopesIntentionPopesIntention;
       'api::upcoming-event.upcoming-event': ApiUpcomingEventUpcomingEvent;

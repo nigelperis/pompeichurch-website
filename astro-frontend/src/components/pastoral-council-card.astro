@@ -3,16 +3,21 @@ import { Image } from "astro:assets";
 import { Locale } from "~/enums/locale";
 import { cn } from "~/helpers/cn.ts";
 import { getLangFromUrl } from "~/i18n/utils";
+import NetworkImage from "./ui/network-image.astro";
+import blankImage from "~/assets/parish-priests/blank.jpeg";
 
 interface Props {
-  title: string;
-  imageUrl: ImageMetadata;
-  subtitle: string;
+  src: string;
+  width: number;
+  height: number;
+  alt?: string;
   class?: string;
+  name: string;
+  position: string;
 }
 
 const lang = getLangFromUrl(Astro.url);
-const { title, subtitle, class: className, imageUrl } = Astro.props;
+const { src, width, height, class: className, name, position } = Astro.props;
 ---
 
 <div
@@ -22,24 +27,37 @@ const { title, subtitle, class: className, imageUrl } = Astro.props;
   )}
 >
   <div class="flex-none">
-    <Image
-      src={imageUrl}
-      alt={`${title} ${subtitle} of Our Lady of Pompei Church`}
-      class="h-[300px] w-full object-cover"
-    />
+    {
+      src ? (
+        <NetworkImage
+          src={src}
+          width={width}
+          height={height}
+          alt={`${position} of Our Lady of Pompei Church`}
+          class="h-[300px] w-full object-cover"
+        />
+      ) : (
+        <Image
+          src={blankImage}
+          alt="Blank Profile Image"
+          class="h-[300px] w-full object-cover"
+          width={width}
+          height={height}
+        />
+      )
+    }
   </div>
 
   <div
-    class={cn(
-      "font-roboto flex flex-1 flex-col justify-end space-y-1 p-3",
-      { "font-noto-sans-kannada": lang === Locale.KOK }
-    )}
+    class={cn("font-roboto flex flex-1 flex-col justify-end space-y-1 p-3", {
+      "font-noto-sans-kannada": lang === Locale.KOK,
+    })}
   >
     <h3 class="text-lg font-bold leading-snug text-gray-800">
-      {title}
+      {name}
     </h3>
     <p class="text-gray-700">
-      {subtitle}
+      {position}
     </p>
   </div>
 </div>

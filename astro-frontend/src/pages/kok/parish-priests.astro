@@ -1,12 +1,21 @@
 ---
 import Layout from "~/layouts/layout.astro";
-import ParishPriestsList from "~/components/sections/parish-priests/parish-priests-list.astro";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
+import ParishPriestsList from "~/components/sections/parish-priests/parish-priests-list.astro";
+import type { ParishPriests } from "~/models/parish-priest";
+import { listParishPriests } from "~/services/list-parish-priests-data.ts";
+import { Message } from "~/constants/message.ts";
 import { Locale } from "~/enums/locale";
 import { cn } from "~/helpers/cn";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+const parishPriestsKok: ParishPriests[] =
+  (await listParishPriests({ page: 1, pageSize: 100, locale: Locale.KOK })) ||
+  [];
+const parishPriestsEn: ParishPriests[] =
+  (await listParishPriests({ page: 1, pageSize: 100 })) || [];
 ---
 
 <Layout title="Pompei Church | Parish Priests">
@@ -29,7 +38,17 @@ const t = useTranslations(lang);
       >
         {t("pp.subtitle")}
       </p>
-      <ParishPriestsList />
+      {
+        parishPriestsKok.length > 0 ? (
+          <ParishPriestsList parishPriests={parishPriestsKok} />
+        ) : parishPriestsEn.length > 0 ? (
+          <ParishPriestsList parishPriests={parishPriestsEn} />
+        ) : (
+          <p class="py-8 text-center text-3xl font-semibold">
+            {Message.PARISH_PRIESTS_NOT_FOUND}
+          </p>
+        )
+      }
     </section>
   </main>
 </Layout>
