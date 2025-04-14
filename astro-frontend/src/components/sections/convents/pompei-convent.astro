@@ -1,80 +1,85 @@
 ---
-import { Image } from 'astro:assets';
-import pompeiConvent from '~/assets/convents/pompei-convent.jpg';
-import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+import { Image } from "astro:assets";
+import pompeiConvent from "~/assets/convents/pompei-convent.jpg";
+import { cn } from "~/helpers/cn";
+import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
 <div class="mx-auto max-w-4xl">
-	<h2 class="font-poppins mt-4 pb-2 text-2xl font-bold">
-		{t('pompeiconvent.title')}
-	</h2>
-	<Image
-		src={pompeiConvent}
-		alt="Pompei Convent at Our Lady of Pompei Church, Gurpur Kaikamba"
-		class="mt-2 rounded-sm md:float-right md:ml-5 md:w-1/2 lg:mt-5"
-	/>
-	<div class="font-geist pb-4">
-		<p class="text-md mt-4 text-justify leading-7 text-slate-700">
-			In the quiet heart of Kowdoor, nestled within the embrace of nature, lies
-			the cherished legacy of the Bethany Sisters under the mantle of Our Lady
-			of Pompei. This is not just a story of a place; it is a story of faith,
-			dedication, and a melody of gratitude that resounds through the years,
-			honoring God’s unfailing love.
-		</p>
-		<p class="text-md mt-4 text-justify leading-7 text-slate-700">
-			Since the year 1965, when Rev. Fr. J.S.T. Rodrigues, then the Parish
-			Priest of Pompei Church, envisioned the growth of Pompei Primary School,
-			the Bethany Sisters have become an unwavering presence in the lives of
-			countless students and families in this rural community. Answering his
-			call, Rev. Mother Macrina, Superior General of the Bethany Congregation at
-			the time, sent Sr. Patricia, Sr. Florita, and Sr. Susanna to establish
-			this new mission of education. With courage and compassion, they began
-			sowing the seeds of knowledge, faith, and service—a mission that would
-			flourish over the decades.
-		</p>
-		<p class="text-md mt-4 text-justify leading-7 text-slate-700">
-			Their presence was a living testament to the power of grace, their
-			dedication unwavering even as challenges arose. With each passing year,
-			the school became not only a center for education but a beacon of hope.
-			Led by the dynamic guidance of Superiors and Headmistresses who succeeded
-			them, the Sisters nurtured generations, their teachings backed by the
-			strength of their faith. Like a cloud by day and fire by night, the Lord’s
-			hand guided their every step, allowing them to make a meaningful impact on
-			thousands of lives.
-		</p>
-		<p class="text-md mt-4 text-justify leading-7 text-slate-700">
-			Throughout the years, the Sisters’ bond with their students extended far
-			beyond the classroom walls. The convent, positioned in the heart of the
-			parish, became a sanctuary of powerful spiritual resonance. Here, among
-			the rhythms of parish life, the Sisters found both strength and solace,
-			partaking actively in all parish activities and enriching the lives of the
-			community. Their commitment to education and service shaped not only young
-			minds but the spirit of an entire community, creating a lasting legacy
-			that reflects the beauty of their purpose.
-		</p>
-		<p class="text-md mt-4 text-justify leading-7 text-slate-700">
-			In March 2021, after years of heartfelt service, circumstances required
-			the closing of the school under CBE management due to a decrease in
-			enrollment. While this brought an end to a chapter, it did not diminish
-			the profound impact that the Bethany Sisters left in Kowdoor. Each Sister
-			who walked these halls carried a light that will continue to inspire,
-			embodying the steadfast love of God and the nurturing presence of Our
-			Blessed Mother.
-		</p>
-		<p class="text-md mt-4 text-justify leading-7 text-slate-700">
-			As the Bethany Sisters reflect on this journey of faith and dedication, we
-			remain unwavering in our commitment to serve. Though the doors of Pompei
-			Primary School have closed, our mission endures. Today, we continue to be
-			a vital presence in the church through pastoral apostolate—answering the
-			urgent call of our times with the same compassion, faith, and devotion
-			that have been our foundation for generations. Our legacy of love and
-			service shines on as a beacon of hope, guiding us to share God’s grace
-			with every heart we touch. May this legacy inspire each of you to embrace
-			a life of purpose, service, and profound impact—living for others as we
-			walk together in faith.
-		</p>
-	</div>
+  <h2
+    class={cn("font-roboto mt-4 pb-2 text-2xl font-bold", {
+      "font-noto-sans-kannada": lang === "kok",
+    })}
+  >
+    {t("pompeiconvent.title")}
+  </h2>
+  <Image
+    src={pompeiConvent}
+    alt="Pompei Convent at Our Lady of Pompei Church, Gurpur Kaikamba"
+    class="mt-2 rounded-sm md:float-right md:ml-5 md:w-1/2 lg:mt-5"
+  />
+  <div class="font-geist pb-4">
+    <p class="mt-4 text-justify leading-7 text-slate-700">
+      In the quiet heart of Kowdoor, nestled within the embrace of nature, lies
+      the cherished legacy of the Bethany Sisters under the mantle of Our Lady
+      of Pompei. This is not just a story of a place; it is a story of faith,
+      dedication, and a melody of gratitude that resounds through the years,
+      honoring God's unfailing love.
+    </p>
+    <p class="mt-4 text-justify leading-7 text-slate-700">
+      Since the year 1965, when Rev. Fr. J.S.T. Rodrigues, then the Parish
+      Priest of Pompei Church, envisioned the growth of Pompei Primary School,
+      the Bethany Sisters have become an unwavering presence in the lives of
+      countless students and families in this rural community. Answering his
+      call, Rev. Mother Macrina, Superior General of the Bethany Congregation at
+      the time, sent Sr. Patricia, Sr. Florita, and Sr. Susanna to establish
+      this new mission of education. With courage and compassion, they began
+      sowing the seeds of knowledge, faith, and service—a mission that would
+      flourish over the decades.
+    </p>
+    <p class="mt-4 text-justify leading-7 text-slate-700">
+      Their presence was a living testament to the power of grace, their
+      dedication unwavering even as challenges arose. With each passing year,
+      the school became not only a center for education but a beacon of hope.
+      Led by the dynamic guidance of Superiors and Headmistresses who succeeded
+      them, the Sisters nurtured generations, their teachings backed by the
+      strength of their faith. Like a cloud by day and fire by night, the Lord’s
+      hand guided their every step, allowing them to make a meaningful impact on
+      thousands of lives.
+    </p>
+    <p class="mt-4 text-justify leading-7 text-slate-700">
+      Throughout the years, the Sisters' bond with their students extended far
+      beyond the classroom walls. The convent, positioned in the heart of the
+      parish, became a sanctuary of powerful spiritual resonance. Here, among
+      the rhythms of parish life, the Sisters found both strength and solace,
+      partaking actively in all parish activities and enriching the lives of the
+      community. Their commitment to education and service shaped not only young
+      minds but the spirit of an entire community, creating a lasting legacy
+      that reflects the beauty of their purpose.
+    </p>
+    <p class="mt-4 text-justify leading-7 text-slate-700">
+      In March 2021, after years of heartfelt service, circumstances required
+      the closing of the school under CBE management due to a decrease in
+      enrollment. While this brought an end to a chapter, it did not diminish
+      the profound impact that the Bethany Sisters left in Kowdoor. Each Sister
+      who walked these halls carried a light that will continue to inspire,
+      embodying the steadfast love of God and the nurturing presence of Our
+      Blessed Mother.
+    </p>
+    <p class="mt-4 text-justify leading-7 text-slate-700">
+      As the Bethany Sisters reflect on this journey of faith and dedication, we
+      remain unwavering in our commitment to serve. Though the doors of Pompei
+      Primary School have closed, our mission endures. Today, we continue to be
+      a vital presence in the church through pastoral apostolate—answering the
+      urgent call of our times with the same compassion, faith, and devotion
+      that have been our foundation for generations. Our legacy of love and
+      service shines on as a beacon of hope, guiding us to share God’s grace
+      with every heart we touch. May this legacy inspire each of you to embrace
+      a life of purpose, service, and profound impact—living for others as we
+      walk together in faith.
+    </p>
+  </div>
 </div>

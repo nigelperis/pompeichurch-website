@@ -1,54 +1,58 @@
 ---
-import { Image } from 'astro:assets';
-import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+import { Image } from "astro:assets";
+import { getLangFromUrl, useTranslations } from "~/i18n/utils";
+import { cn } from "~/helpers/cn";
 
 //Images
-import snehasadan from '~/assets/institutions/snehasadan.jpg';
+import snehasadan from "~/assets/institutions/snehasadan.jpg";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<div class="mx-auto">
-	<h2 class="font-poppins mt-4 text-2xl font-bold">{t('snehasadan.title')}</h2>
-	<Image
-		src={snehasadan}
-		alt="Snehasadan institute at Gurpur Kaikamba "
-		class="mt-6 rounded-sm md:float-right md:ml-5 md:w-1/2"
-	/>
-	<div class="font-geist mb-2 mt-4">
-		<p class="text-md text-justify leading-7 text-slate-700">
-			Snehasadan is a comprehensive care and support centre for children living
-			with HIV, managed by Sneha Charitable Trust. A 60-bedded centre,
-			Snehasadan has been a Home of Love for people living with HIV since 2001.
-			It is the third initiative of Camillians in India. The orphan and
-			vulnerable children are provided with a platform that ensures their growth
-			in an atmosphere of love, care, and compassion. Snehasadan envisions total
-			health for all by promoting a culture of life and ensuring human dignity
-			in the given reality.
-		</p>
-		<h4 class="text-slate mt-4 text-justify text-xl font-semibold">Mission</h4>
-		<p class="text-md mt-4 text-justify leading-7 text-slate-700">
-			The specific mission of Snehasadan is to provide comprehensive care to
-			people living with HIV, with a priority for infected children and those in
-			the end stage of their disease, by motivating, caring, supporting, and
-			rehabilitating them.
-		</p>
-		<h4 class="text-slate mt-4 text-xl font-semibold">
-			Major goals of Snehasadan are:
-		</h4>
-		<ul class="text-md mt-4 list-inside list-disc leading-7 text-slate-800">
-			<li>To provide quality care for the neglected and the poor sick;</li>
-			<li>
-				To provide treatment, nutrition, and relaxation for the wellbeing of the
-				persons;
-			</li>
-			<li>
-				To restore self-confidence and encourage changes in life-styles through
-				behavioral interventions;
-			</li>
-			<li>To provide self-employment through rehabilitation services;</li>
-			<li>To provide information and education through outreach programs.</li>
-		</ul>
-	</div>
+<div
+  class={cn("font-roboto mx-auto", {
+    "font-noto-sans-kannada": lang === "kok",
+  })}
+>  <h2 class="mt-4 text-2xl font-bold">{t("snehasadan.title")}</h2>
+  <Image
+    src={snehasadan}
+    alt="Snehasadan institute at Gurpur Kaikamba "
+    class="mt-6 rounded-sm md:float-right md:ml-5 md:w-1/2"
+  />
+  <div class="mb-2 mt-4">
+    <p class="text-justify leading-7 text-slate-700">
+      Snehasadan is a comprehensive care and support centre for children living
+      with HIV, managed by Sneha Charitable Trust. A 60-bedded centre,
+      Snehasadan has been a Home of Love for people living with HIV since 2001.
+      It is the third initiative of Camillians in India. The orphan and
+      vulnerable children are provided with a platform that ensures their growth
+      in an atmosphere of love, care, and compassion. Snehasadan envisions total
+      health for all by promoting a culture of life and ensuring human dignity
+      in the given reality.
+    </p>
+    <h4 class="text-slate mt-4 text-justify text-xl font-semibold">Mission</h4>
+    <p class="mt-4 text-justify leading-7 text-slate-700">
+      The specific mission of Snehasadan is to provide comprehensive care to
+      people living with HIV, with a priority for infected children and those in
+      the end stage of their disease, by motivating, caring, supporting, and
+      rehabilitating them.
+    </p>
+    <h4 class="text-slate mt-4 text-xl font-semibold">
+      Major goals of Snehasadan are:
+    </h4>
+    <ul class="mt-4 list-inside list-disc leading-7 text-slate-800">
+      <li>To provide quality care for the neglected and the poor sick;</li>
+      <li>
+        To provide treatment, nutrition, and relaxation for the wellbeing of the
+        persons;
+      </li>
+      <li>
+        To restore self-confidence and encourage changes in life-styles through
+        behavioral interventions;
+      </li>
+      <li>To provide self-employment through rehabilitation services;</li>
+      <li>To provide information and education through outreach programs.</li>
+    </ul>
+  </div>
 </div>

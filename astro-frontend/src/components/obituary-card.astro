@@ -1,123 +1,106 @@
 ---
-import { cn } from '~/helpers/cn';
-import NetworkImage from './ui/network-image.astro';
-import ShareLink from './ui/share-link.astro';
-import { getLangFromUrl } from '~/i18n/utils';
-import { Locale } from '~/enums/locale';
+import { cn } from "~/helpers/cn";
+import NetworkImage from "./ui/network-image.astro";
+import ShareLink from "./ui/share-link.astro";
+import { getLangFromUrl } from "~/i18n/utils";
+import { Locale } from "~/enums/locale";
 
 interface Props {
-	id: string;
-	name: string;
-	imageUrl: string;
-	imageWidth: number;
-	imageHeight: number;
-	age: number;
-	description: string;
-	ward: string;
-	dateOfDeath: string;
-	class?: string;
+  id: string;
+  name: string;
+  imageUrl: string;
+  imageWidth: number;
+  imageHeight: number;
+  age: number;
+  description: string;
+  ward: string;
+  dateOfDeath: string;
+  class?: string;
 }
 
 const {
-	id,
-	name,
-	description,
-	age,
-	ward,
-	dateOfDeath,
-	imageWidth,
-	imageHeight,
-	class: className,
-	imageUrl,
-	...rest
+  id,
+  name,
+  description,
+  age,
+  ward,
+  dateOfDeath,
+  imageWidth,
+  imageHeight,
+  class: className,
+  imageUrl,
+  ...rest
 } = Astro.props;
 
 const lang = getLangFromUrl(Astro.url);
 const obituaryUrl = new URL(
-	lang === Locale.EN
-		? `/obituary?id=${id.replace(/\s+/g, '-').toLowerCase()}`
-		: `/kok/obituary?id=${id.replace(/\s+/g, '-').toLowerCase()}`,
-	Astro.url,
+  lang === Locale.EN
+    ? `/obituary?id=${id.replace(/\s+/g, "-").toLowerCase()}`
+    : `/kok/obituary?id=${id.replace(/\s+/g, "-").toLowerCase()}`,
+  Astro.url
 ).href;
 ---
 
 <div
-	id={id.replace(/\s+/g, '-').toLowerCase()}
-	class={cn(
-		'hover:scale-[1.01] snap-start h-full first:snap-align-none border duration-500 ease-in-out rounded-sm sm:w-[95%] md:w-[85%] lg:w-[75%] relative',
-		className,
-	)}
-	{...rest}
-	style={{ maxWidth: '350px' }}
+  id={id.replace(/\s+/g, "-").toLowerCase()}
+  class={cn(
+    "hover:scale-[1.01] snap-start h-full first:snap-align-none border border-gray-200 duration-500 ease-in-out rounded-sm sm:w-[95%] md:w-[85%] lg:w-[75%] relative",
+    className
+  )}
+  {...rest}
+  style={{ maxWidth: "350px" }}
 >
-	<div class="card-image aspect-[2.3/3] w-full overflow-hidden rounded-sm">
-		<NetworkImage
-			src={imageUrl}
-			alt={`Image of ${name}`}
-			width={imageWidth}
-			height={imageHeight}
-			class="h-full max-h-[500px] w-full object-cover"
-		/>
-	</div>
-	<div
-		class="card-content font-noto-sans-kannada mt-2 flex flex-1 flex-col justify-end space-y-1 p-4"
-	>
-		<h3
-			class="card-title line-clamp-1 text-xl font-extrabold text-slate-900"
-			title={name}
-		>
-			{name}
-		</h3>
-		{
-			description && (
-				<p class="card-description line-clamp-3 text-lg text-slate-700">
-					{description}
-				</p>
-			)
-		}
-		{
-			age && (
-				<p class="card-age line-clamp-3 text-lg text-slate-700">
-					ಪ್ರಾಯ್ : {age}
-				</p>
-			)
-		}
-		{
-			ward && (
-				<p class="card-ward line-clamp-3 text-lg text-slate-700">
-					ವಾಡೊ : {ward}
-				</p>
-			)
-		}
-		{
-			dateOfDeath && (
-				<p class="card-ward line-clamp-3 text-lg text-slate-700">
-					ಮರಣ್ : {dateOfDeath}
-				</p>
-			)
-		}
-	</div>
-	<ShareLink
-		class="absolute bottom-4 right-4"
-		shareData={{
-			url: obituaryUrl,
-			title: `${name} - ${ward}`,
-		}}
-	/>
+  <div class="card-image aspect-[2.3/3] w-full overflow-hidden rounded-sm">
+    <NetworkImage
+      src={imageUrl}
+      alt={`Image of ${name}`}
+      width={imageWidth}
+      height={imageHeight}
+      class="h-full max-h-[500px] w-full object-cover"
+    />
+  </div>
+
+  <div
+    class="font-noto-sans-kannada mt-2 flex flex-1 flex-col justify-end space-y-1 p-4"
+  >
+    <h3 class="line-clamp-1 text-xl font-bold text-slate-900" title={name}>
+      {name}
+    </h3>
+    {
+      description && (
+        <p class="line-clamp-3 text-lg text-slate-700">{description}</p>
+      )
+    }
+    {age && <p class="line-clamp-3 text-lg text-slate-700">ಪ್ರಾಯ್ : {age}</p>}
+    {ward && <p class="line-clamp-3 text-lg text-slate-700">ವಾಡೊ : {ward}</p>}
+    {
+      dateOfDeath && (
+        <p class="line-clamp-3 text-lg text-slate-700">ಮರಣ್ : {dateOfDeath}</p>
+      )
+    }
+  </div>
+  <ShareLink
+    class="absolute bottom-4 right-4"
+    shareData={{
+      url: obituaryUrl,
+      title: `${name} - ${ward}`,
+    }}
+  />
 </div>
+
 <script>
-	document.addEventListener('DOMContentLoaded', () => {
-		const params = new URLSearchParams(window.location.search);
-		const obituaryId = params.get('id');
+  document.addEventListener("DOMContentLoaded", () => {
+    const params = new URLSearchParams(window.location.search);
+    const obituaryId = params.get("id");
 
-		if (obituaryId) {
-			const targetElement = document.getElementById(obituaryId);
+    if (obituaryId) {
+      const targetElement = document.getElementById(obituaryId);
 
-			if (targetElement) {
-				setTimeout(() => {
-					targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-				}, 300);
-			}
-		}
-	});
+      if (targetElement) {
+        setTimeout(() => {
+          targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 300);
+      }
+    }
+  });
 </script>
