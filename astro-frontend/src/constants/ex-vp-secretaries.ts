@@ -1,5 +1,5 @@
 //Administrators
-import placeholderImage from '~/assets/parish-priests/blank.jpeg';
+import placeholderImage from '~/assets/static-assets/blank.jpeg';
 import alexLobo from '~/assets/vice-presidents/alex-lobo.jpeg';
 import baptistRasquinha from '~/assets/vice-presidents/baptist-rasquinha.jpeg';
 import hilaryPinto from '~/assets/vice-presidents/hilary-pinto.jpeg';
@@ -18,7 +18,7 @@ import romansLobo from '~/assets/vice-presidents/romans-lobo.jpg';
 import wilfredPinto from '~/assets/vice-presidents/wilfred-pinto.jpeg';
 
 //Secretaries
-import praveenLobo from '~/assets/finance-committee/mr-praveen-lobo.jpg';
+import praveenLobo from '~/assets/secretaries/mr-praveen-lobo.jpg';
 import agnesRodrigues from '~/assets/secretaries/agnes-rodrigues.jpeg';
 import alexDsouza from '~/assets/secretaries/alex-dsouza.jpeg';
 import benedictPeris from '~/assets/secretaries/benedict-peris.jpeg';
