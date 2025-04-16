@@ -4,10 +4,6 @@ import EmblaCarousel from "./ui/embla-carousel.astro";
 import { Image } from "astro:assets";
 import YtThumbnail from "~/assets/gallery/yt-thumbnail.jpg";
 import HoverableLink from "./ui/hoverable-link.astro";
-import { getLangFromUrl, useTranslations } from "~/i18n/utils";
-
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
 
 const videos = [
 	{

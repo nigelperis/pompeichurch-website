@@ -8,7 +8,7 @@
 //     const message = document.getElementById('message-section');
 //     if (!message) return;
 
-//     message.innerText = lang == 'kok' ? "ಭಾಂಗ್ರಾಳ್ಯಾ ಜಲ್ಮಾ ದಿಸಾಚೆ ರಾಸ್ ರಾಸ್ ಉಲ್ಲಾಸ್, ತುಮ್ಕಾಂ ವಿಗಾರ್ ಬಾಪಾನೊ 🎉🎂" : "Happy 50th Birthday, Dear Father! 🎉🎂";
+//     message.innerText = lang == 'kok' ? "ಭಾಂಗ್ರಾಳ್ಯಾ ಜಲ್ಮಾ ದಿಸಾಚೆ ಆನಿ 21 ವ್ಯಾ ಯಾಜಕೀ ದೀಕ್ಷೆಚೆ ರಾಸ್ ರಾಸ್ ಉಲ್ಲಾಸ್, ತುಮ್ಕಾಂ ವಿಗಾರ್ ಬಾಪಾನೊ 🎉🎂" : "Happy 50th Birthday and 21st Priestly Ordination, Dear Father! 🎉🎂";
 //     message.className = "bg-[#e74141] font-noto-sans-kannada rounded-xl my-3 text-center text-[#ffd700] p-3 text-2xl md:text-4xl font-bold scale-95 opacity-100 transform transition-all duration-900 ease-out";
 
 //     setTimeout(() => {

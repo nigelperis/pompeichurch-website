@@ -4,7 +4,7 @@ import { Locale } from "~/enums/locale";
 import { cn } from "~/helpers/cn";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import NetworkImage from "./ui/network-image.astro";
-import blankImage from "~/assets/parish-priests/blank.jpeg";
+import placeholderImage from "~/assets/static-assets/blank.jpeg";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -49,7 +49,7 @@ const {
         />
       ) : (
         <Image
-          src={blankImage}
+          src={placeholderImage}
           alt="Blank Profile Image"
           class="h-[300px] w-full object-cover"
           width={width}

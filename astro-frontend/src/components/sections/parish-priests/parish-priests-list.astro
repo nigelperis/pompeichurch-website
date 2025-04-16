@@ -1,10 +1,6 @@
 ---
 import ProfileCard from '~/components/profile-card.astro';
-import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 import type { ParishPriests } from '~/models/parish-priest';
-
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
 
 const { parishPriests } = Astro.props;
 ---
