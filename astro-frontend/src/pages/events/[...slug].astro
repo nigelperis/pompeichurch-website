@@ -11,6 +11,8 @@ import StrapiBlocksRenderer from "~/components/ui/strapi-blocks-renderer";
 import { listEvents } from "~/services/events/list-events";
 import { Locale } from "~/enums/locale";
 import { SITE_URL } from "~/constants/constants";
+import ChevronLeft from "@lucide/astro/icons/chevron-left";
+import ChevronRight from "@lucide/astro/icons/chevron-right";
 
 const { slug } = Astro.params;
 const lang = getLangFromUrl(Astro.url);
@@ -103,7 +105,7 @@ const socialLinks = [
                 class={`flex items-center gap-3 rounded-lg border border-gray-300 px-4 py-3 shadow-md transition-colors hover:border-black ${nextEvent ? "sm:w-1/2" : "w-full"}`}
               >
                 <div class="shrink-0 text-3xl text-gray-800">
-                  <Icon name="chevron-left" class="stroke-2" />
+                  <ChevronLeft class="stroke-2" />
                 </div>
                 <span class="flex-1">
                   <div class="pb-1 text-gray-500">Previous Event</div>
@@ -121,7 +123,7 @@ const socialLinks = [
                 class={`flex flex-row-reverse items-center gap-3 rounded-lg border border-gray-300 px-4 py-3 text-right shadow-md transition-colors hover:border-black ${prevEvent ? "sm:w-1/2" : "w-full"}`}
               >
                 <div class="shrink-0 text-3xl text-gray-800">
-                  <Icon name="chevron-right" class="stroke-2" />
+                  <ChevronRight class="stroke-2" />
                 </div>
                 <span class="flex-1">
                   <div class="pb-1 text-gray-500">Next Event</div>
@@ -135,6 +137,5 @@ const socialLinks = [
         </section>
       )
     }
-
   </main>
 </Layout>

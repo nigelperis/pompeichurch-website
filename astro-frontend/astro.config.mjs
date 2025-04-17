@@ -11,7 +11,6 @@ export default defineConfig({
   adapter: node({ mode: "standalone" }),
   prefetch: true,
   compressHTML: true,
-
   site: "https://pompeichurch.in",
   integrations: [
     icon({

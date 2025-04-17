@@ -8,7 +8,7 @@ const psalms = {
 				<sup>2</sup> I will say of the Lord, “He is my refuge and my fortress,
 				my God, in whom I trust.”<br>
 				<sup>3</sup> Surely he will save you<br>
-				from the fowler’s snare<br>
+				from the fowle's snare<br>
 				and from the deadly pestilence.<br>
 				<sup>4</sup> He will cover you with his feathers,<br>
 				and under his wings you will find refuge;<br>

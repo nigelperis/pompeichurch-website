@@ -1,44 +1,52 @@
 ---
-import { cn } from '~/helpers/cn';
-import { Icon } from 'astro-icon/components';
-import NetworkImage from './ui/network-image.astro';
+import { cn } from "~/helpers/cn";
+import Download from "@lucide/astro/icons/download";
+import NetworkImage from "./ui/network-image.astro";
 interface Props {
-	title: string;
-	imageUrl: string;
-	imageWidth: number;
-	imageHeight: number;
-	googleDriveLink: string;
-	class?: string;
+  title: string;
+  imageUrl: string;
+  imageWidth: number;
+  imageHeight: number;
+  googleDriveLink: string;
+  class?: string;
 }
 
-const { title, imageUrl, googleDriveLink, imageWidth, imageHeight, class: className, ...rest } = Astro.props;
+const {
+  title,
+  imageUrl,
+  googleDriveLink,
+  imageWidth,
+  imageHeight,
+  class: className,
+  ...rest
+} = Astro.props;
 ---
 
 <div
-	class={cn(
-		'hover:scale-[1.01] transform overflow-hidden rounded-md border border-gray-200 duration-300 ease-in-out transition-all max-w-md mx-auto bg-white shadow-lg',
-		className,
-	)}
-	{...rest}
+  class={cn(
+    "hover:scale-[1.01] transform overflow-hidden rounded-md border border-gray-200 duration-300 ease-in-out transition-all max-w-md mx-auto bg-white shadow-lg",
+    className
+  )}
+  {...rest}
 >
-	<div class="magazine-image relative">
-		<NetworkImage
-			src={imageUrl}
-			alt={title}
-			width={imageWidth}
-			height={imageHeight}
-			class="w-full rounded-t-md object-cover lg:h-[480px]"
-		/>
-	</div>
+  <div class="magazine-image relative">
+    <NetworkImage
+      src={imageUrl}
+      alt={title}
+      width={imageWidth}
+      height={imageHeight}
+      class="w-full rounded-t-md object-cover lg:h-[480px]"
+    />
+  </div>
 
-	<div class="p-4 text-center">
-		<a
-			href={googleDriveLink}
-			download
-			class="mt-1 inline-flex items-center gap-2 rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-md hover:bg-blue-700"
-		>
-			<Icon name="download" size={20} />
-			Download
-		</a>
-	</div>
+  <div class="p-4 text-center">
+    <a
+      href={googleDriveLink}
+      download
+      class="mt-1 inline-flex items-center gap-2 rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-md hover:bg-blue-700"
+    >
+      <Download size={20} />
+      Download
+    </a>
+  </div>
 </div>

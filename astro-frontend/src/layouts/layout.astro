@@ -63,22 +63,6 @@ const { title, description, image, url } = Astro.props;
 		<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
 		<link rel="manifest" href="/site.webmanifest" />
 
-		<!-- // TODO: Preload these two fonts -->
-		<!-- <link
-			rel="preload"
-			as="font"
-			type="font/woff2"
-			href={robotoFont}
-			crossorigin="anonymous"
-		/>
-		<link
-			rel="preload"
-			as="font"
-			type="font/woff2"
-			href={notoFont}
-			crossorigin="anonymous"
-		/> -->
-
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		{import.meta.env.MODE === 'production' && (
@@ -104,23 +88,6 @@ const { title, description, image, url } = Astro.props;
 		<slot />
 		<Footer />
 		<ScrollTop />
-		<style>
-			:global(::-webkit-scrollbar) {
-				width: 0.15em;
-			}
-
-			:global(::-webkit-scrollbar-track) {
-				box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
-			}
-
-			:global(::-webkit-scrollbar-thumb) {
-				background-color: #ffdd00;
-				outline: 1px solid slategrey;
-				border-radius: 10px;
-			}
-
-		</style>
-
 		<script>
 			import { aosInit } from '~/helpers/aos-config';
 			aosInit();

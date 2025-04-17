@@ -1,6 +1,6 @@
 ---
-import { Icon } from "astro-icon/components";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
+import ChevronRight from "@lucide/astro/icons/chevron-right";
 
 interface Subtitle {
   commission: string;
@@ -26,14 +26,15 @@ const t = useTranslations(lang);
     data-dropdown-id={uniqueId}
   >
     <h3 class="text-xl font-bold">{t(`commissions.${title}`)}</h3>
-    <Icon
-      name="chevron-right"
+    <ChevronRight
       class="arrow h-6 w-6 transform stroke-2 text-yellow-600 transition-transform"
-      data-icon-name="chevron-right"
     />
   </div>
 
-  <div class="dropdown-content overflow-hidden pl-4 pr-4 text-left" data-dropdown-id={uniqueId}>
+  <div
+    class="dropdown-content overflow-hidden pl-4 pr-4 text-left"
+    data-dropdown-id={uniqueId}
+  >
     <div class="mt-4">
       <p class="text-xl text-gray-800">
         <strong>{t("commissions.convenor")} : </strong>
