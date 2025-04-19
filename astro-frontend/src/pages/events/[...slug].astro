@@ -59,18 +59,19 @@ const socialLinks = [
   >
     <section class="flex flex-col p-6">
       <h1
-        class="border-natgeo-yellow mb-4 border-l-4 pl-3 text-left text-2xl font-bold lg:text-4xl"
-      >
-        {event?.konkaniTitle}
-      </h1>
+      class="border-natgeo-yellow border-l-4 pl-3 pt-[13px] text-left text-2xl font-bold lg:text-4xl"
+    >
+      {event?.konkaniTitle}
+    </h1>
+
 
       <NetworkImage
         src={eventImage?.url}
         width={eventImage?.width}
         height={eventImage?.height}
-        class="mx-auto mt-1 rounded-sm md:w-3/4"
+        class="mx-auto mt-5  md:w-3/4"
       />
-
+      
       <p class="mt-4 leading-7 text-slate-700">
         <StrapiBlocksRenderer content={event?.description ?? []} />
       </p>
