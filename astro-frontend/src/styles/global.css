@@ -46,7 +46,9 @@
 
   --animation-slidein: slidein 1s ease-out var(--slidein-delay, 0) forwards;
 }
-
+html {
+  scroll-behavior: smooth;
+}
 .scrollbar-none::-webkit-scrollbar {
   display: none;
 }

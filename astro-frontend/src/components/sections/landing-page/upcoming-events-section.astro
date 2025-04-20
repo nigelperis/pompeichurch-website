@@ -32,7 +32,8 @@ const filteredEvents = upcomingEvents.filter((event) => {
 ---
 
 <section
-  class="mx-6 mb-6 mt-3 flex flex-col lg:mx-28 lg:min-h-[70svh] lg:justify-evenly"
+  id="upcoming-events"
+  class="mx-6 mb-6 mt-3 flex flex-col lg:mx-28 lg:min-h-[70svh] lg:justify-evenly "
 >
   <h1
     data-aos="fade-right"
@@ -223,4 +224,18 @@ const filteredEvents = upcomingEvents.filter((event) => {
   });
 
   eventLightbox.init();
+
+  document.addEventListener("DOMContentLoaded", function () {
+  const hash = window.location.hash;
+  if (hash) {
+    const target = document.querySelector(hash);
+    if (target) {
+      window.scrollTo(0, 0);
+      setTimeout(() => {
+        target.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    }
+  }
+});
+
 </script>
