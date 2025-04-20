@@ -33,7 +33,7 @@ const filteredEvents = upcomingEvents.filter((event) => {
 
 <section
   id="upcoming-events"
-  class="mx-6 mb-6 mt-3 flex flex-col lg:mx-28 lg:min-h-[70svh] lg:justify-evenly "
+  class="mx-6 mb-6 mt-3 flex flex-col lg:mx-28 lg:min-h-[70svh] lg:justify-evenly"
 >
   <h1
     data-aos="fade-right"
@@ -211,7 +211,6 @@ const filteredEvents = upcomingEvents.filter((event) => {
     )
   }
 </section>
-
 <script>
   import "photoswipe/style.css";
   import PhotoSwipeLightbox from "photoswipe/lightbox";
@@ -225,17 +224,42 @@ const filteredEvents = upcomingEvents.filter((event) => {
 
   eventLightbox.init();
 
-  document.addEventListener("DOMContentLoaded", function () {
-  const hash = window.location.hash;
-  if (hash) {
-    const target = document.querySelector(hash);
-    if (target) {
-      window.scrollTo(0, 0);
+  document.addEventListener('DOMContentLoaded', () => {
+
+    document.querySelectorAll('a[href="#upcoming-events"]').forEach((anchor) => {
+      anchor.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        const anchorElement = e.currentTarget as HTMLAnchorElement;
+        const href = anchorElement.getAttribute('href');
+        if (!href) return;
+
+        const targetId = href.substring(1);
+        const targetElement = document.getElementById(targetId);
+
+        if (targetElement) {
+
+          targetElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+
+
+          history.pushState(null, '', `#${targetId}`);
+        }
+      });
+    });
+
+    if (window.location.hash === '#upcoming-events') {
       setTimeout(() => {
-        target.scrollIntoView({ behavior: "smooth" });
+        const targetElement = document.getElementById('upcoming-events');
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
       }, 100);
     }
-  }
-});
-
+  });
 </script>
