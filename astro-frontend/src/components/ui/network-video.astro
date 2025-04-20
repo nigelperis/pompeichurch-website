@@ -1,0 +1,42 @@
+---
+interface Props {
+  src: string;
+  baseUrl?: string;
+  width?: number;
+  height?: number;
+  class?: string;
+  controls?: boolean;
+  autoplay?: boolean;
+  muted?: boolean;
+  loop?: boolean;
+}
+
+const {
+  src,
+  baseUrl,
+  width,
+  height,
+  class: className,
+  controls = true,
+  autoplay = false,
+  muted = false,
+  loop = false,
+  ...rest
+} = Astro.props;
+
+const urlToUse = baseUrl
+  ? new URL(src, baseUrl)
+  : new URL(src, import.meta.env.STRAPI_URL);
+---
+
+<video
+  src={urlToUse.toString()}
+  width={width}
+  height={height}
+	class={className}
+  controls={controls}
+  autoplay={autoplay}
+  muted={muted}
+  loop={loop}
+  {...rest}
+/>
