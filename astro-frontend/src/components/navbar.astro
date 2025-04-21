@@ -8,10 +8,6 @@ import ScrollProgress from "~/components/ui/scroll-progress.astro";
 import LanguageSwitcher from "~/components/language-switcher.astro";
 import { Locale } from "~/enums/locale";
 
-// Icons
-import Menu from "@lucide/astro/icons/menu";
-import Cancel from "@lucide/astro/icons/x";
-
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
@@ -38,7 +34,7 @@ const t = useTranslations(lang);
       >
         {
           navLinks
-            .filter((link) => link.title !== "nav.home")
+            .filter((link) => link.title !== "nav.home") // Exclude the 'Home' link
             .map((link) => (
               <li
                 class={cn("group relative", {
@@ -84,7 +80,7 @@ const t = useTranslations(lang);
         id="hamburger"
         class="ml-3 flex cursor-pointer flex-col items-end lg:hidden"
       >
-        <Menu size={35} class="mt-1" />
+        <Icon name="menu" class="mt-1" size={35} />
       </div>
       <div class="ml-5">
         <LanguageSwitcher />
@@ -97,8 +93,11 @@ const t = useTranslations(lang);
   class="fixed inset-0 z-[101] w-full overflow-y-auto bg-white px-6 py-6 transition-transform duration-500 ease-out"
   id="navbar"
 >
-  <Cancel id="hamburger-close" size={30} class="relative ml-auto" />
-
+  <Icon
+    name="cancel"
+    id="hamburger-close"
+    class="relative ml-auto cursor-pointer rounded-full text-3xl"
+  />
   <!-- Navbar for mobile -->
   <ul
     class={cn("font-roboto flex flex-col gap-y-5", {

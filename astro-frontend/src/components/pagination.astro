@@ -1,8 +1,6 @@
 ---
+import { Icon } from "astro-icon/components";
 import { getPaginationRange } from "~/helpers/get-pagination-range";
-
-import ChevronLeft from "@lucide/astro/icons/chevron-left";
-import ChevronRight from "@lucide/astro/icons/chevron-right";
 
 const { currentPage, totalPages } = Astro.props;
 const paginationRange = getPaginationRange(currentPage, totalPages);
@@ -17,7 +15,7 @@ const paginationRange = getPaginationRange(currentPage, totalPages);
         aria-label="Previous Page (Disabled)"
         tabindex="-1"
       >
-        <ChevronLeft />
+        <Icon name="chevron-left" class="stroke-2 text-2xl text-black" />
       </span>
     ) : (
       <a
@@ -25,7 +23,7 @@ const paginationRange = getPaginationRange(currentPage, totalPages);
         class="flex h-10 w-10 items-center justify-center rounded font-bold transition-all duration-200 hover:bg-gray-200"
         aria-label="Previous Page"
       >
-        <ChevronLeft />
+        <Icon name="chevron-left" class="stroke-2 text-2xl text-black" />
       </a>
     )
   }
@@ -63,7 +61,7 @@ const paginationRange = getPaginationRange(currentPage, totalPages);
         aria-label="Next Page (Disabled)"
         tabindex="-1"
       >
-        <ChevronRight />
+        <Icon name="chevron-right" class="stroke-2 text-2xl text-black" />
       </span>
     ) : (
       <a
@@ -71,7 +69,7 @@ const paginationRange = getPaginationRange(currentPage, totalPages);
         class="flex h-10 w-10 items-center justify-center rounded font-bold transition-all duration-200 hover:bg-gray-200"
         aria-label="Next Page"
       >
-        <ChevronRight />
+        <Icon name="chevron-right" class="stroke-2 text-2xl text-black" />
       </a>
     )
   }

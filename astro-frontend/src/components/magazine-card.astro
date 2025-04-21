@@ -1,6 +1,6 @@
 ---
 import { cn } from "~/helpers/cn";
-import Download from "@lucide/astro/icons/download";
+import { Icon } from "astro-icon/components";
 import NetworkImage from "./ui/network-image.astro";
 interface Props {
   title: string;
@@ -45,7 +45,7 @@ const {
       download
       class="mt-1 inline-flex items-center gap-2 rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-md hover:bg-blue-700"
     >
-      <Download size={20} />
+      <Icon name="download" size={20} />
       Download
     </a>
   </div>

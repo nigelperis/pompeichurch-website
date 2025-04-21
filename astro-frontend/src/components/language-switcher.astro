@@ -1,12 +1,10 @@
 ---
-
-import { cn } from "~/helpers/cn";
-import { getLangFromUrl } from "~/i18n/utils";
-import ChevronDown from "@lucide/astro/icons/chevron-down"
-import { Locale } from "~/enums/locale";
-
 const languages = ["English", "ಕೊಂಕಣಿ"];
 const currentLocale = Astro.currentLocale;
+import { cn } from "~/helpers/cn";
+import { getLangFromUrl } from "~/i18n/utils";
+import { Icon } from "astro-icon/components";
+import { Locale } from "~/enums/locale";
 
 const selectedLanguage = currentLocale === Locale.KOK ? "ಕೊಂಕಣಿ" : "English";
 const lang = getLangFromUrl(Astro.url);
@@ -25,7 +23,8 @@ const lang = getLangFromUrl(Astro.url);
       aria-label="Click here to switch language"
     >
       {selectedLanguage}
-      <ChevronDown
+      <Icon
+        name="chevron-down"
         id="lang-arrow"
         class={cn(
           "-mr-1.5 mt-1 h-5 w-5 transition-transform duration-300 ease-in-out",
