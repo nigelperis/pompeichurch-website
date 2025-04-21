@@ -1,9 +1,5 @@
 ---
-import Phone from "@lucide/astro/icons/phone";
-import { Facebook } from "simple-icons-astro";
-import { Youtube } from "simple-icons-astro";
-import { Instagram } from "simple-icons-astro";
-import Mail from "@lucide/astro/icons/mail";
+import { Icon } from "astro-icon/components";
 
 const currentYear = new Date().getFullYear();
 ---
@@ -16,8 +12,7 @@ const currentYear = new Date().getFullYear();
       <p class="text-sm text-gray-100">
         &copy;{currentYear}, Our Lady of Pompei Church. All Rights Reserved.
       </p>
-      <p class="mt-6 text-sm
-      text-gray-100">
+      <p class="mt-6 text-sm text-gray-100">
         Crafted with ✝️ using
         <a
           href="https://docs.astro.build/"
@@ -32,14 +27,19 @@ const currentYear = new Date().getFullYear();
         <b>Powered by</b>: Commission for Social Communication, Gurpur Kaikamba.
       </p>
     </div>
-    <div class="mt-6 flex items-center space-x-5">
+    <div class="mt-6 flex items-center space-x-4">
       <a
         href="mailto:pompeichurchgurpur@gmail.com"
         target="_blank"
         class="transition-transform hover:scale-110"
         aria-label="Email pompeichurchgurpur@gmail.com"
       >
-        <Mail size={24} />
+        <Icon
+          name="mail"
+          size={24}
+          class="text-xl text-white"
+          aria-hidden="true"
+        />
       </a>
       <a
         href="https://www.facebook.com/ladyofpompeichurch.gurpur/"
@@ -47,7 +47,12 @@ const currentYear = new Date().getFullYear();
         class="transition-transform hover:scale-110"
         aria-label="Visit our Facebook page"
       >
-        <Facebook size={24} />
+        <Icon
+          name="facebook"
+          size={24}
+          class="text-xl text-white"
+          aria-hidden="true"
+        />
       </a>
       <a
         href="https://www.instagram.com/our_lady_of_pompei_church/"
@@ -55,7 +60,12 @@ const currentYear = new Date().getFullYear();
         class="transition-transform hover:scale-110"
         aria-label="Follow us on Instagram"
       >
-        <Instagram size={24} />
+        <Icon
+          name="instagram"
+          size={24}
+          class="text-xl text-white"
+          aria-hidden="true"
+        />
       </a>
       <a
         href="https://www.youtube.com/@pompeichurchmedia8386"
@@ -63,7 +73,12 @@ const currentYear = new Date().getFullYear();
         class="transition-transform hover:scale-110"
         aria-label="Subscribe to our YouTube channel"
       >
-        <Youtube size={24} />
+        <Icon
+          name="youtube"
+          size={24}
+          class="text-xl text-white"
+          aria-hidden="true"
+        />
       </a>
       <a
         href="tel:+918277939340"
@@ -71,7 +86,12 @@ const currentYear = new Date().getFullYear();
         class="transition-transform hover:scale-110"
         aria-label="Call +91 82779 39340"
       >
-        <Phone size={24} />
+        <Icon
+          name="phone"
+          size={24}
+          class="text-xl text-white"
+          aria-hidden="true"
+        />
       </a>
     </div>
   </div>

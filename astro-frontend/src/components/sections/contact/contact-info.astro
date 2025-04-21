@@ -1,14 +1,8 @@
 ---
+import { Icon } from "astro-icon/components";
 import { Locale } from "~/enums/locale";
 import { cn } from "~/helpers/cn";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
-
-// Icons
-import Phone from "@lucide/astro/icons/phone";
-import User from "@lucide/astro/icons/user";
-import MapPinHouse from "@lucide/astro/icons/map-pin-house";
-import Clock from "@lucide/astro/icons/clock";
-import Mail from "@lucide/astro/icons/mail";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -19,12 +13,10 @@ const t = useTranslations(lang);
     "font-noto-sans-kannada font-bold": lang === Locale.KOK,
   })}
 >
-  <div
-    class="text-gray-800 mb-4 flex items-center border-gray-200 border-b-2 pb-4"
-  >
-    <MapPinHouse />
+  <div class="mb-4 flex items-center border-gray-200 border-b-2 pb-4">
+    <Icon name="map-pin" size={22} class="text-gray-900" />
     <p
-      class={cn("ml-4 font-semibold", {
+      class={cn("ml-4 font-semibold text-gray-800", {
         "mt-[6px]": lang === Locale.KOK,
       })}
     >
@@ -32,12 +24,10 @@ const t = useTranslations(lang);
     </p>
   </div>
 
-  <div
-    class="text-gray-800 mb-6 flex items-center border-gray-200 border-b-2 pb-4"
-  >
-    <Phone />
+  <div class="mb-6 flex items-center border-gray-200 border-b-2 pb-4">
+    <Icon name="contact-phone" size={22} class="text-gray-900" />
     <p
-      class={cn("ml-4 font-semibold ", {
+      class={cn("ml-4 font-semibold text-gray-800", {
         "mt-[6px]": lang === Locale.KOK,
       })}
     >
@@ -45,12 +35,10 @@ const t = useTranslations(lang);
     </p>
   </div>
 
-  <div
-    class="text-gray-800 mb-6 flex items-center border-gray-200 border-b-2 pb-4"
-  >
-    <User />
+  <div class="mb-6 flex items-center border-gray-200 border-b-2 pb-4">
+    <Icon name="user" size={22} class="text-gray-900" />
     <p
-      class={cn("ml-4 font-semibold", {
+      class={cn("ml-4 font-semibold text-gray-800", {
         "mt-2": lang === Locale.KOK,
       })}
     >
@@ -58,12 +46,10 @@ const t = useTranslations(lang);
     </p>
   </div>
 
-  <div
-    class="text-gray-800 mb-6 flex items-center border-gray-200 border-b-2 pb-4"
-  >
-    <Clock />
+  <div class="mb-6 flex items-center border-gray-200 border-b-2 pb-4">
+    <Icon name="clock" size={22} class="text-gray-900" />
     <p
-      class={cn("ml-4 font-semibold", {
+      class={cn("ml-4 font-semibold text-gray-800", {
         "mt-[6px]": lang === Locale.KOK,
       })}
     >
@@ -71,10 +57,10 @@ const t = useTranslations(lang);
     </p>
   </div>
 
-  <div class="mb-6 flex items-center pb-4 text-gray-800">
-    <Mail />
+  <div class="mb-6 flex items-center pb-4">
+    <Icon name="contact-mail" size={22} class="text-gray-900" />
     <p
-      class={cn("ml-4 font-semibold", {
+      class={cn("ml-4 font-semibold text-gray-800", {
         "mt-1": lang === Locale.KOK,
       })}
     >

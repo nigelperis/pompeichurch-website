@@ -26,9 +26,6 @@ importers:
       '@fontsource/geist-sans':
         specifier: 5.2.5
         version: 5.2.5
-      '@lucide/astro':
-        specifier: 0.488.0
-        version: 0.488.0(astro@5.7.2(@netlify/blobs@8.1.1)(@types/node@22.13.10)(jiti@2.4.2)(lightningcss@1.29.2)(rollup@4.36.0)(terser@5.39.0)(typescript@5.8.2)(yaml@2.7.0))
       '@strapi/blocks-react-renderer':
         specifier: 1.0.2
         version: 1.0.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -665,11 +662,6 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.25':
     resolution: {integrity: sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ==}
-
-  '@lucide/astro@0.488.0':
-    resolution: {integrity: sha512-kJ9kpHr8khwpOmbYKtWrRwB563Gu6RIv94QAbMJ60f5NSIoxcWkV4nijjijFeE24EJ/mXiGQZO4p9P5S+E5iSg==}
-    peerDependencies:
-      astro: ^4 || ^5
 
   '@netlify/blobs@8.1.1':
     resolution: {integrity: sha512-7Dg3PzArvQ0Owq4wpkLECC9iaDBOxuWUN2uwbQtUF6tZssyez2QN+eO0CjuIhhZUivbw+X9bwsyiEjWkdJnv/A==}
@@ -3844,10 +3836,6 @@ snapshots:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
-
-  '@lucide/astro@0.488.0(astro@5.7.2(@netlify/blobs@8.1.1)(@types/node@22.13.10)(jiti@2.4.2)(lightningcss@1.29.2)(rollup@4.36.0)(terser@5.39.0)(typescript@5.8.2)(yaml@2.7.0))':
-    dependencies:
-      astro: 5.7.2(@netlify/blobs@8.1.1)(@types/node@22.13.10)(jiti@2.4.2)(lightningcss@1.29.2)(rollup@4.36.0)(terser@5.39.0)(typescript@5.8.2)(yaml@2.7.0)
 
   '@netlify/blobs@8.1.1':
     optional: true
