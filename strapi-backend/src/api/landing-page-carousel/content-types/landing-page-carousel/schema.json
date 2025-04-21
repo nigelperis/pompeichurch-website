@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "landing_page_carousels",
+  "info": {
+    "singularName": "landing-page-carousel",
+    "pluralName": "landing-page-carousels",
+    "displayName": "Landing Page Carousel"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "carouselImage": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    }
+  }
+}

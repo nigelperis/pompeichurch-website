@@ -750,6 +750,38 @@ export interface ApiEventEvent extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiLandingPageCarouselLandingPageCarousel
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'landing_page_carousels';
+  info: {
+    displayName: 'Landing Page Carousel';
+    pluralName: 'landing-page-carousels';
+    singularName: 'landing-page-carousel';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    carouselImage: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::landing-page-carousel.landing-page-carousel'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiObituaryObituary extends Struct.CollectionTypeSchema {
   collectionName: 'obituaries';
   info: {
@@ -1737,6 +1769,7 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::association-office-bearer.association-office-bearer': ApiAssociationOfficeBearerAssociationOfficeBearer;
       'api::event.event': ApiEventEvent;
+      'api::landing-page-carousel.landing-page-carousel': ApiLandingPageCarouselLandingPageCarousel;
       'api::obituary.obituary': ApiObituaryObituary;
       'api::parish-finance-committee.parish-finance-committee': ApiParishFinanceCommitteeParishFinanceCommittee;
       'api::parish-pastoral-council-core-committee.parish-pastoral-council-core-committee': ApiParishPastoralCouncilCoreCommitteeParishPastoralCouncilCoreCommittee;
