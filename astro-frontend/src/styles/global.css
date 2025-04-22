@@ -60,3 +60,16 @@ html {
 .rich-content strong {
   @apply font-semibold text-black tracking-wide;
 }
+
+/* Hero section animation */
+@keyframes animatedBackground {
+  from {
+    transform: scale(1.2);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+.animated-background {
+  animation: animatedBackground 2s ease-out forwards;
+}
