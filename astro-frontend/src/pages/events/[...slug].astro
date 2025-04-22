@@ -11,6 +11,7 @@ import StrapiBlocksRenderer from "~/components/ui/strapi-blocks-renderer";
 import { listEvents } from "~/services/events/list-events";
 import { Locale } from "~/enums/locale";
 import { SITE_URL } from "~/constants/constants";
+import HeartComponent from "~/components/heart-component";
 
 const { slug } = Astro.params;
 const lang = getLangFromUrl(Astro.url);
@@ -83,6 +84,10 @@ const socialLinks = [
               </div>
             ))
           }
+        </div>
+
+        <div class="mt-2 flex h-12 items-center">
+          <HeartComponent client:load />
         </div>
 
         <ShareLink
