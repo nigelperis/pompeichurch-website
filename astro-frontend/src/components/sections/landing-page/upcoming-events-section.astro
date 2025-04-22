@@ -64,7 +64,9 @@ const filteredEvents = upcomingEvents.filter((event) => {
                 />
               ) : (
                 <a
-                  href="javascript:void(0);"
+                  href="#"
+                  role="button"
+                  aria-label="Upcoming event"
                   data-pswp-src={
                     filteredEvents[0].eventImage?.url
                       ? new URL(
@@ -109,7 +111,9 @@ const filteredEvents = upcomingEvents.filter((event) => {
                       />
                     ) : (
                       <a
-                        href="javascript:void(0);"
+                        href="#"
+                        role="button"
+                        aria-label="Upcoming event"
                         data-pswp-src={
                           event.eventImage?.url
                             ? new URL(
@@ -158,7 +162,9 @@ const filteredEvents = upcomingEvents.filter((event) => {
               </div>
             ) : (
               <a
-                href="javascript:void(0);"
+                href="#"
+                role="button"
+                aria-label="Upcoming event"
                 data-pswp-src={
                   event.eventImage?.url
                     ? new URL(
@@ -211,7 +217,8 @@ const filteredEvents = upcomingEvents.filter((event) => {
     )
   }
 </section>
+
 <script>
-  import { eventLightbox } from "~/scripts/lightbox.ts";
-  eventLightbox();
+  import { upcomingEventsLightbox } from "~/scripts/upcoming-events-lightbox";
+  upcomingEventsLightbox();
 </script>
