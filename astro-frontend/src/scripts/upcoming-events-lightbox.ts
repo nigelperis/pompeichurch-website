@@ -1,7 +1,7 @@
 import "photoswipe/style.css";
 import PhotoSwipeLightbox from "photoswipe/lightbox";
 
-export const eventLightbox = () => {
+export const upcomingEventsLightbox = () => {
   const lightbox = new PhotoSwipeLightbox({
     mainClass: "pswp--custom-icon-colors",
     gallery: ".event-gallery",

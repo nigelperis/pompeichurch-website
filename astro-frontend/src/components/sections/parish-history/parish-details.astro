@@ -62,7 +62,9 @@ const images = [history1, history2, history3, history4, history5, history6];
         {
           images.map((image) => (
             <a
-              href="javascript:void(0);"
+              href="#"
+              role="button"
+              aria-label="View historic image of our parish"
               data-pswp-src={image.src}
               data-pswp-width={image.width}
               data-pswp-height={image.height}
@@ -82,7 +84,9 @@ const images = [history1, history2, history3, history4, history5, history6];
             images.map((image) => (
               <EmblaCarouselItem>
                 <a
-                  href="javascript:void(0);"
+                  href="#"
+                  role="button"
+                  aria-label="View historic image of our parish"
                   data-pswp-src={image.src}
                   data-pswp-width={image.width}
                   data-pswp-height={image.height}

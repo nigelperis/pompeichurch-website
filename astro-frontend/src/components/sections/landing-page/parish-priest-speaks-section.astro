@@ -68,7 +68,7 @@ const parishPriestName =
                 parishPriestImage?.url
                   ? new URL(
                       parishPriestImage?.url,
-                      import.meta.env.STRAPI_URL
+                      import.meta.env.PUBLIC_STRAPI_URL
                     ).toString()
                   : getPlaceholderImage()
               }

@@ -721,7 +721,7 @@ export interface ApiEventEvent extends Struct.CollectionTypeSchema {
     singularName: 'event';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     createdAt: Schema.Attribute.DateTime;
@@ -738,6 +738,7 @@ export interface ApiEventEvent extends Struct.CollectionTypeSchema {
     facebookLink: Schema.Attribute.String;
     instagramLink: Schema.Attribute.String;
     konkaniTitle: Schema.Attribute.String & Schema.Attribute.Required;
+    likes: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::event.event'> &
       Schema.Attribute.Private;

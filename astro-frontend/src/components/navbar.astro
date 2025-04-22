@@ -45,8 +45,14 @@ const t = useTranslations(lang);
                   href={
                     link.type === "link"
                       ? getRelativeLocaleUrl(lang, link.href || "")
-                      : "javascript:void(0);"
+                      : "#"
                   }
+                  role={link.type === "expandable" ? "button" : undefined}
+                  aria-haspopup={
+                    link.type === "expandable" ? "true" : undefined
+                  }
+                  aria-expanded="false"
+                  aria-label={t(link.title)}
                   class="font-semibold transition-all duration-200 p-2 rounded-md hover:bg-natgeo-yellow"
                 >
                   {t(link.title)}
