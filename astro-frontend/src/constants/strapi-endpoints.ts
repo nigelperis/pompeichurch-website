@@ -4,6 +4,7 @@ export const ROUTES = {
   UPCOMING_EVENTS: '/upcoming-events',
   OBITUARIES: '/obituaries',
   EVENTS: '/events',
+  LIKE_EVENTS: (slug: string) => `/events/${slug}/like` as const,
   POPES_INTENTION: '/popes-intentions',
   PARISH_PASTORAL_COUNCIL: '/parish-pastoral-councils',
   PARISH_PASTORAL_COUNCIL_IMAGE: '/parish-pastoral-council-image',
