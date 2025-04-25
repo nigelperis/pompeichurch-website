@@ -880,6 +880,46 @@ export interface ApiParishFinanceCommitteeParishFinanceCommittee
   };
 }
 
+export interface ApiParishPastoral21CommissionParishPastoral21Commission
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'parish_pastoral_21_commissions';
+  info: {
+    description: '';
+    displayName: 'Parish Pastoral 21 Commissions';
+    pluralName: 'parish-pastoral-21-commissions';
+    singularName: 'parish-pastoral-21-commission';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    commission: Schema.Attribute.Component<'shared.commission-block', true> &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::parish-pastoral-21-commission.parish-pastoral-21-commission'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiParishPastoralCouncilCoreCommitteeParishPastoralCouncilCoreCommittee
   extends Struct.CollectionTypeSchema {
   collectionName: 'parish_pastoral_council_core_committees';
@@ -1773,6 +1813,7 @@ declare module '@strapi/strapi' {
       'api::landing-page-carousel.landing-page-carousel': ApiLandingPageCarouselLandingPageCarousel;
       'api::obituary.obituary': ApiObituaryObituary;
       'api::parish-finance-committee.parish-finance-committee': ApiParishFinanceCommitteeParishFinanceCommittee;
+      'api::parish-pastoral-21-commission.parish-pastoral-21-commission': ApiParishPastoral21CommissionParishPastoral21Commission;
       'api::parish-pastoral-council-core-committee.parish-pastoral-council-core-committee': ApiParishPastoralCouncilCoreCommitteeParishPastoralCouncilCoreCommittee;
       'api::parish-pastoral-council-image.parish-pastoral-council-image': ApiParishPastoralCouncilImageParishPastoralCouncilImage;
       'api::parish-pastoral-council.parish-pastoral-council': ApiParishPastoralCouncilParishPastoralCouncil;
