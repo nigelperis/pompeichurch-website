@@ -23,7 +23,7 @@ const {
 
 const urlToUse = baseUrl
 	? new URL(src, baseUrl)
-	: new URL(src, import.meta.env.PUBLIC_STRAPI_URL);
+	: new URL(src, import.meta.env.STRAPI_URL);
 ---
 
 <Image

@@ -1,6 +1,5 @@
-FROM node:22-alpine AS base
+FROM node:22-slim AS base
 WORKDIR /app
-RUN apk add --no-cache libc6-compat
 RUN npm i -g corepack
 COPY package.json pnpm-lock.yaml ./
 
@@ -13,8 +12,8 @@ RUN pnpm install
 
 FROM build-deps AS build
 WORKDIR /app
-ARG PUBLIC_STRAPI_URL
-ENV PUBLIC_STRAPI_URL=${PUBLIC_STRAPI_URL}
+ARG STRAPI_URL
+ENV STRAPI_URL=${STRAPI_URL}
 COPY . .
 RUN pnpm build
 
