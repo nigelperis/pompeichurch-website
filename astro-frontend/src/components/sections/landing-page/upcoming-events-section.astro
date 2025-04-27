@@ -64,7 +64,9 @@ const filteredEvents = upcomingEvents.filter((event) => {
                 />
               ) : (
                 <a
-                  href="javascript:void(0);"
+                  href="#"
+                  role="button"
+                  aria-label="Upcoming event"
                   data-pswp-src={
                     filteredEvents[0].eventImage?.url
                       ? new URL(
@@ -109,7 +111,9 @@ const filteredEvents = upcomingEvents.filter((event) => {
                       />
                     ) : (
                       <a
-                        href="javascript:void(0);"
+                        href="#"
+                        role="button"
+                        aria-label="Upcoming event"
                         data-pswp-src={
                           event.eventImage?.url
                             ? new URL(
@@ -158,7 +162,9 @@ const filteredEvents = upcomingEvents.filter((event) => {
               </div>
             ) : (
               <a
-                href="javascript:void(0);"
+                href="#"
+                role="button"
+                aria-label="Upcoming event"
                 data-pswp-src={
                   event.eventImage?.url
                     ? new URL(
@@ -211,55 +217,8 @@ const filteredEvents = upcomingEvents.filter((event) => {
     )
   }
 </section>
+
 <script>
-  import "photoswipe/style.css";
-  import PhotoSwipeLightbox from "photoswipe/lightbox";
-
-  const eventLightbox = new PhotoSwipeLightbox({
-    mainClass: "pswp--custom-icon-colors",
-    gallery: ".event-gallery",
-    children: "a",
-    pswpModule: () => import("photoswipe"),
-  });
-
-  eventLightbox.init();
-
-  document.addEventListener('DOMContentLoaded', () => {
-
-    document.querySelectorAll('a[href="#upcoming-events"]').forEach((anchor) => {
-      anchor.addEventListener('click', (e) => {
-        e.preventDefault();
-
-        const anchorElement = e.currentTarget as HTMLAnchorElement;
-        const href = anchorElement.getAttribute('href');
-        if (!href) return;
-
-        const targetId = href.substring(1);
-        const targetElement = document.getElementById(targetId);
-
-        if (targetElement) {
-
-          targetElement.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-
-
-          history.pushState(null, '', `#${targetId}`);
-        }
-      });
-    });
-
-    if (window.location.hash === '#upcoming-events') {
-      setTimeout(() => {
-        const targetElement = document.getElementById('upcoming-events');
-        if (targetElement) {
-          targetElement.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-        }
-      }, 100);
-    }
-  });
+  import { upcomingEventsLightbox } from "~/scripts/upcoming-events-lightbox";
+  upcomingEventsLightbox();
 </script>
