@@ -24,7 +24,7 @@ const { obituaries, pagination } = await listObituaries({
 
 const totalPages = pagination.pageCount;
 
-const baseURL = import.meta.env.PUBLIC_STRAPI_URL;
+const baseURL = import.meta.env.STRAPI_URL;
 
 const id = url.searchParams.get("id") || null;
 const selectedObituary = id
