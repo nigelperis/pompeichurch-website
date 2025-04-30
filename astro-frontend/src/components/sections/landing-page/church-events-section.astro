@@ -43,7 +43,7 @@ const data = (await listEvents({ page: 1, pageSize: 3 })) || [];
               event?.eventImage?.url
                 ? new URL(
                     event?.eventImage?.url,
-                    import.meta.env.PUBLIC_STRAPI_URL
+                    import.meta.env.STRAPI_URL
                   ).toString()
                 : getPlaceholderImage()
             }

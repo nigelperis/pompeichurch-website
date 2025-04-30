@@ -99,7 +99,6 @@ interface Event {
 	updatedAt: string;
 	publishedAt: string;
 	eventImage: EventImage;
-	likes: number;
 }
 
 interface EventData {

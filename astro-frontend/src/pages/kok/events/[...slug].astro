@@ -11,7 +11,6 @@ import StrapiBlocksRenderer from "~/components/ui/strapi-blocks-renderer";
 import { listEvents } from "~/services/events/list-events";
 import { Locale } from "~/enums/locale";
 import { SITE_URL } from "~/constants/constants";
-import HeartComponent from "~/components/heart-component";
 
 const { slug } = Astro.params;
 const lang = getLangFromUrl(Astro.url);
@@ -22,7 +21,7 @@ const { events: allEvents } = await listEvents();
 const eventUrl =
   lang === Locale.EN ? `/events/${slug}/` : `/kok/events/${slug}/`;
 
-const baseURL = import.meta.env.PUBLIC_STRAPI_URL;
+const baseURL = import.meta.env.STRAPI_URL;
 
 const absoluteImageURL = new URL(
   event?.eventImage?.url ?? getPlaceholderImage(),
@@ -86,11 +85,6 @@ const socialLinks = [
               </div>
             ))
           }
-        </div>
-
-
-        <div class="mt-2 flex h-12 items-center">
-          <HeartComponent slug={event?.slug ?? ""} initialCount={event?.likes ?? 0} client:only="react"/>
         </div>
 
         <ShareLink
