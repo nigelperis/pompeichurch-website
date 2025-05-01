@@ -897,7 +897,14 @@ export interface ApiParishPastoral21CommissionParishPastoral21Commission
     };
   };
   attributes: {
-    commission: Schema.Attribute.Component<'shared.commission-block', true> &
+    commissionTitle: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    convenor: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -913,6 +920,21 @@ export interface ApiParishPastoral21CommissionParishPastoral21Commission
       'api::parish-pastoral-21-commission.parish-pastoral-21-commission'
     >;
     publishedAt: Schema.Attribute.DateTime;
+    sNo: Schema.Attribute.Integer &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    subCommissions: Schema.Attribute.Component<'shared.commission', true> &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

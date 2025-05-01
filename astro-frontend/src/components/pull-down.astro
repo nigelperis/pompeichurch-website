@@ -2,18 +2,18 @@
 import { Icon } from "astro-icon/components";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 
-interface Subtitle {
-  commission: string;
-  name: string;
+interface SubCommissions {
+  title?: string;
+  secretary?: string;
 }
 
 interface Props {
-  convenor: string;
-  title: string;
-  subtitles?: Subtitle[];
+  convenor?: string;
+  title?: string;
+  subCommissions?: SubCommissions[];
 }
 
-const { convenor, title, subtitles } = Astro.props;
+const { convenor, title, subCommissions } = Astro.props;
 const uniqueId = Math.random().toString(36).substring(2, 9);
 
 const lang = getLangFromUrl(Astro.url);
@@ -25,7 +25,7 @@ const t = useTranslations(lang);
     class="dropdown-toggle flex cursor-pointer items-center justify-between rounded-md bg-yellow-100 p-4"
     data-dropdown-id={uniqueId}
   >
-    <h3 class="text-xl font-bold">{t(`commissions.${title}`)}</h3>
+    <h3 class="text-xl font-bold">{title}</h3>
     <Icon
       name="chevron-right"
       class="arrow h-6 w-6 transform stroke-2 text-yellow-600 transition-transform"
@@ -33,12 +33,15 @@ const t = useTranslations(lang);
     />
   </div>
 
-  <div class="dropdown-content overflow-hidden pl-4 pr-4 text-left" data-dropdown-id={uniqueId}>
+  <div
+    class="dropdown-content overflow-hidden pl-4 pr-4 text-left"
+    data-dropdown-id={uniqueId}
+  >
     <div class="mt-4">
       <p class="text-xl text-gray-800">
         <strong>{t("commissions.convenor")} : </strong>
         <span class="whitespace-nowrap font-normal text-gray-600">
-          {t(`commissions.${convenor}`)}
+          {convenor}
         </span>
       </p>
     </div>
@@ -57,13 +60,13 @@ const t = useTranslations(lang);
       </thead>
       <tbody>
         {
-          subtitles?.map((subtitle) => (
+          subCommissions?.map((subCommission) => (
             <tr>
               <td class="py-2 text-sm font-normal">
-                <strong>{t(`commissions.${subtitle.commission}`)}</strong>
+                <strong>{subCommission.title}</strong>
               </td>
               <td class="py-2 text-sm font-normal text-gray-600">
-                {t(`commissions.${subtitle.name}`)}
+                {subCommission.secretary}
               </td>
             </tr>
           ))

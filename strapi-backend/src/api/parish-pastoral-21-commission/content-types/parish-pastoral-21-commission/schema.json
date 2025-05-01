@@ -16,7 +16,25 @@
     }
   },
   "attributes": {
-    "commission": {
+    "commissionTitle": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string",
+      "required": true
+    },
+    "convenor": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string",
+      "required": true
+    },
+    "subCommissions": {
       "type": "component",
       "repeatable": true,
       "pluginOptions": {
@@ -24,8 +42,18 @@
           "localized": true
         }
       },
-      "component": "shared.commission-block",
+      "component": "shared.commission",
       "required": true
+    },
+    "sNo": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "integer",
+      "required": true,
+      "unique": true
     }
   }
 }

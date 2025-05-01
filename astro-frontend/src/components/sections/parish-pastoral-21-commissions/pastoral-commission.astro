@@ -2,13 +2,28 @@
 import PullDown from "~/components/pull-down.astro";
 import { cn } from "~/helpers/cn";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
-import { commissions } from "~/constants/commissions";
 import { Locale } from "~/enums/locale";
+import type { CommissionBlock } from "~/models/parish-pastoral-21-commission";
+import { listPastoralCoreCommitteeData } from "~/services/parish-pastoral-council/parish-pastoral-council-core-committee-data";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const fontClass = lang === Locale.KOK ? "font-noto-sans-kannada" : "font-roboto";
+const fontClass =
+  lang === Locale.KOK ? "font-noto-sans-kannada" : "font-roboto";
+
+const { pastoral21Commissions } = Astro.props;
+
+const coordinatorDataKok = (await listPastoralCoreCommitteeData({ locale: Locale.KOK }))[3];
+const coordinatorDataEn = (await listPastoralCoreCommitteeData())[3];
+const coordinatorData =
+  lang === Locale.KOK
+    ? coordinatorDataKok !== undefined
+      ? coordinatorDataKok
+      : coordinatorDataEn
+    : coordinatorDataEn !== undefined
+      ? coordinatorDataEn
+      : coordinatorDataKok;
 ---
 
 <h2
@@ -16,16 +31,16 @@ const fontClass = lang === Locale.KOK ? "font-noto-sans-kannada" : "font-roboto"
     "font-noto-sans-kannada": lang === Locale.KOK,
   })}
 >
-  <strong>{t("landing.pastoral-commission-coordinator")}</strong> :
-  {t("landing.pastoral-commission-coordinator-name")}
+  <strong>{coordinatorData?.position}</strong> :
+  {coordinatorData?.name}
 </h2>
 <div class={`mx-auto mb-2 max-w-4xl ${fontClass}`}>
   {
-    commissions.map((commission) => (
+    pastoral21Commissions.map((c: CommissionBlock) => (
       <PullDown
-        title={commission.title}
-        subtitles={commission.subtitles}
-        convenor={commission.convenor}
+        title={c.commissionTitle}
+        subCommissions={c.subCommissions}
+        convenor={c.convenor}
       />
     ))
   }
