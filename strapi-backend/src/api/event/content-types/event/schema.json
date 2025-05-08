@@ -8,7 +8,7 @@
     "description": ""
   },
   "options": {
-    "draftAndPublish": false
+    "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
@@ -51,10 +51,6 @@
     "slug": {
       "type": "uid",
       "targetField": "englishTitle"
-    },
-    "likes": {
-      "type": "integer",
-      "default": 0
     }
   }
 }
