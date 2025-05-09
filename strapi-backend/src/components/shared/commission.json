@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_shared_commissions",
+  "info": {
+    "displayName": "commission",
+    "icon": "apps"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "secretary": {
+      "type": "string"
+    }
+  }
+}

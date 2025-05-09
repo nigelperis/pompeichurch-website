@@ -8,4 +8,5 @@ export class Message {
   public static readonly CORE_COMMITTEE_NOT_FOUND = 'No Core Committee Found!';
   public static readonly FINANCE_COMMITTEE_NOT_FOUND = 'No Finance Committee Found!';
   public static readonly PARISH_PRIESTS_NOT_FOUND = 'No Parish Priests Found!';
+  public static readonly COMMISSIONS_NOT_FOUND = 'No Pastoral 21 Commissions Found!';
 }
