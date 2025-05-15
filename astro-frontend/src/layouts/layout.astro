@@ -30,8 +30,13 @@ const { title, description, image, url } = Astro.props;
 		<GoogleAnalytics measurementId={'G-4HPXW69JQV'} />
 		<meta charset="UTF-8" />
 		<meta
-			name="description"
-			content={description || "Gurpur Parish, also known as Kowdur, is 19 km from Mangalore on the Moodbidri road, with deep historical and spiritual roots."}		/>
+		name="description"
+		content={
+			lang === 'kok'
+				? "ಕೊಡ್ಯಾಳ್ ಥಾವ್ನ್ ಮೂಡಬಿದ್ರಿ ವೆಚ್ಯಾ ವಾಟೆರ್, ಲಗ್ಬಗ್ ೨೦ ಕಿ.ಮೀ ಪರಿಧಿ ಭಿತರ್ ಅಸ್ತಿತ್ವಾರ್ ಆಸ್ಚಿ ಪೊಂಪಯ್ ಮಾಯೆಕ್ ಸಮರ್ಪಿಲ್ಲಿ ಗುರ್ಪುರ್ ವ ಕೌಡೂರ್ ಫಿರ್ಗಜ್ ಆಪ್ಲ್ಯಾ ಗೂಂಡ್ ಐತಿಹಾಸಿಕ್ ಆನಿ ಆಧ್ಯಾತ್ಮಿಕ್ ಸಂಗ್ತಿನಿ ಭರೊನ್ ಜಿವಾಳ್ ಜಾವ್ನ್ ಆಸಾ"
+				: description || "Gurpur Parish, also known as Kowdur, is 19 km from Mangalore on the Moodbidri road, with deep historical and spiritual roots."
+		}
+	/>
 		<meta name="viewport" content="width=device-width" />
 		<meta
 			name="viewport"
@@ -56,6 +61,7 @@ const { title, description, image, url } = Astro.props;
 
 		<meta name="apple-mobile-web-app-title" content="PompeiChurch" />
 		<meta name="msvalidate.01" content="BEA18465C48B90A839493EB6EE14A0BD" />
+		<meta name="keywords" content="Gurpur Church, Pompei Church, Kaikamba Church" />
 
 		<link rel="icon" href="/favicon.ico" type="image/x-icon" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
