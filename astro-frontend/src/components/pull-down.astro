@@ -3,14 +3,14 @@ import { Icon } from "astro-icon/components";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 
 interface SubCommissions {
-  title?: string;
-  secretary?: string;
+  title: string;
+  secretary: string;
 }
 
 interface Props {
-  convenor?: string;
-  title?: string;
-  subCommissions?: SubCommissions[];
+  convenor: string;
+  title: string;
+  subCommissions: SubCommissions[];
 }
 
 const { convenor, title, subCommissions } = Astro.props;

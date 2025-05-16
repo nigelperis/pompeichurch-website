@@ -12,9 +12,9 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 const pastoral21CommissionsEn: ParishPastoral21Commission[] =
-  (await listPastoral21CommissionsData({ page: 1, pageSize: 100 })) || [];
+  (await listPastoral21CommissionsData()) || [];
 const pastoral21CommissionsKok: ParishPastoral21Commission[] =
-  (await listPastoral21CommissionsData({ page: 1, pageSize: 100, locale: Locale.KOK })) || [];
+  (await listPastoral21CommissionsData({ locale: Locale.KOK })) || [];
 ---
 
 <Layout title="Pompei Church | Parish Pastoral 21 Commissions  ">

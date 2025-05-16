@@ -4,7 +4,6 @@ import { cn } from "~/helpers/cn";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import { Locale } from "~/enums/locale";
 import type { CommissionBlock } from "~/models/parish-pastoral-21-commission";
-import { listPastoralCoreCommitteeData } from "~/services/parish-pastoral-council/parish-pastoral-council-core-committee-data";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -14,16 +13,7 @@ const fontClass =
 
 const { pastoral21Commissions } = Astro.props;
 
-const coordinatorDataKok = (await listPastoralCoreCommitteeData({ locale: Locale.KOK }))[3];
-const coordinatorDataEn = (await listPastoralCoreCommitteeData())[3];
-const coordinatorData =
-  lang === Locale.KOK
-    ? coordinatorDataKok !== undefined
-      ? coordinatorDataKok
-      : coordinatorDataEn
-    : coordinatorDataEn !== undefined
-      ? coordinatorDataEn
-      : coordinatorDataKok;
+const coordinatorData = pastoral21Commissions[0].coordinatorName;
 ---
 
 <h2
@@ -31,12 +21,14 @@ const coordinatorData =
     "font-noto-sans-kannada": lang === Locale.KOK,
   })}
 >
-  <strong>{coordinatorData?.position}</strong> :
-  {coordinatorData?.name}
+  {
+      <strong>{coordinatorData?.position}</strong>
+      <span>: {coordinatorData?.name}</span>
+  }
 </h2>
 <div class={`mx-auto mb-2 max-w-4xl ${fontClass}`}>
   {
-    pastoral21Commissions.map((c: CommissionBlock) => (
+    pastoral21Commissions[0].commissions.map((c: CommissionBlock) => (
       <PullDown
         title={c.commissionTitle}
         subCommissions={c.subCommissions}

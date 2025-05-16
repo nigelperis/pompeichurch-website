@@ -2,15 +2,22 @@ import { Locale } from "~/enums/locale";
 
 export interface SubCommission {
   id: number;
-  title?: string;
-  secretary?: string;
+  title: string;
+  secretary: string;
 }
 
 export interface CommissionBlock {
   id: number;
-  commissionTitle?: string;
-  convenor?: string;
-  subCommissions?: SubCommission[];
+  commissionTitle: string;
+  convenor: string;
+  subCommissions: SubCommission[];
+}
+
+export interface CoordinatorName {
+  id: number;
+  name: string;
+  position: string;
+  locale: Locale;
 }
 
 interface ParishPastoral21Commission {
@@ -19,21 +26,14 @@ interface ParishPastoral21Commission {
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
-  locale?: Locale;
-  sNo: number;
-  commission: CommissionBlock[];
+  locale: Locale;
+  coordinatorName: CoordinatorName[];
+  commissions: CommissionBlock[];
 }
 
 interface ParishPastoral21CommissionData {
   data: ParishPastoral21Commission[];
-  meta: {
-    pagination: {
-      page: number;
-      pageSize: number;
-      pageCount: number;
-      total: number;
-    };
-  };
+  meta: {};
 }
 
 export type { ParishPastoral21Commission, ParishPastoral21CommissionData };
