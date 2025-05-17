@@ -1,6 +1,6 @@
 const parishHistory = [
-	{
-		history: `The Gurpur Parish is situated 19 km from Mangalore on the Mangalore-Moodbidri road. The parish is also known as Kowdur, but it is designated in the registered Diocesan Directory as Gurpur Parish. It is commonly referred to as Kowdur because, in the Kowdur ward of the parish, there is a place called ‘Kodi’, where a spring of water flows in all seasons. Hence, the location was named Kodi-ooru or Kowdur. It is said that since this location of Kowdur was near the present Church, it was named Kowdur Parish. According to the revenue department's classification, the parish belongs to the Gurpur zone, and most of the parishioners reside in this area; therefore, the parish is recognized under the name Gurpur. <br><br>
+  {
+    history: `The Gurpur Parish is situated 19 km from Mangalore on the Mangalore-Moodbidri road. The parish is also known as Kowdur, but it is designated in the registered Diocesan Directory as Gurpur Parish. It is commonly referred to as Kowdur because, in the Kowdur ward of the parish, there is a place called ‘Kodi’, where a spring of water flows in all seasons. Hence, the location was named Kodi-ooru or Kowdur. It is said that since this location of Kowdur was near the present Church, it was named Kowdur Parish. According to the revenue department's classification, the parish belongs to the Gurpur zone, and most of the parishioners reside in this area; therefore, the parish is recognized under the name Gurpur. <br><br>
 
 		The church land structure is located in a village called ‘Kandavar’. Apart from Kowdur, the villages of Mulur, Badaga, Ulipadi, Paduperar, Mooduperar, Kolambe, Gurpur, and Addur are included within the area of Gurpur Parish. Geographically, the area of the parish is characterized by numerous fields and hills. To the south of the parish flows the Gurpur River, whose sand is famous in Mangalore city. Part of the parish area consists of rocky terrain. <br><br>
 
@@ -9,9 +9,9 @@ const parishHistory = [
 		Before the establishment of Gurpur Parish, the families living in this locality belonged to Fezar Parish. The people of Gurpur would attend the Ferar Church for Eucharistic celebrations and spiritual benefits. The population was doubling each year, creating an urgent need for new parishes to accommodate such rapid growth.<br><br>
 
 		On October 7, 1915, Parish Priest Rev. Fr. Reginald Pinto laid the foundation for the chapel. The building was completed by Fr. J. M. Menezes and blessed by Rt. Rev. Bishop Paul Ferini S. J. on October 29, 1918. In the Diocese of Mangalore, this parish is uniquely dedicated to Our Lady of Pompei. A holy picture of the image of Our Lady of Pompei was brought from a city called ‘Pompei’ in Italy and was honored in this parish. Due to the number of miracles attributed to Our Lady of Pompei, the once-barren Kowdur has blossomed like a beautiful garden in God’s vineyard.`,
-	},
-	{
-		priestInfo: `<br><strong>Rev. Fr. Reginald Pinto</strong><br>
+  },
+  {
+    priestInfo: `<br><strong>Rev. Fr. Reginald Pinto</strong><br>
 		Father Reginald Pinto served as the first parish priest and laid the foundation for the church. The cornerstone was blessed and placed by Bishop Perrin on October 7, 1915. The parishioners gathered in large numbers for the event, making it a memorable occasion. <br><br>
 		<strong>Rev. Fr. J. M. Menezes</strong><br>
 		18.30 acres of land, owned by Ignatius Sequeira from Kandar, was given by the government to the church. Rev. J. M. Menezes, started the work of building a chapel. Facing various hardships and obstacles, Catholics and non-Catholics from Gurpur and the surrounding areas gathered together, and with the support of 125 families from Kandar, Gurpur, and Monel wards, the foundation for this chapel was laid. On 11-11-1918, the government granted permanent and specific land rights for the chapel. The Parish priest of Urwa, Rev. Fr. Lewis John Sequeira, began the devotion to Our Lady of Pompei at Urwa. In 1920, he went to the city of Pompei in Italy and obtained a registered statue of Our Lady of Pompei. After acquiring this statue, a decision was made to dedicate the church to the honor of Our Lady of Pompei. This led to the establishment of a place of veneration, and everything was officially recorded. <br><br>
@@ -75,7 +75,7 @@ const parishHistory = [
 
 		The Centenary Year was inaugurated on November 4, 2020, by Most Rev. Bishop Francis Serrao of the Diocese of Shivamogga, with a solemn Mass and the unveiling of a symbolic centenary banner to mark the occasion. With this, our parish embarked on a new path with new plans, renovation of the church, and the blessing of the newly renovated temple on August 27, 2021.
 		`,
-	},
+  },
 ];
 
 export { parishHistory };

@@ -4,11 +4,12 @@ import type { AssociationOfficeBearers } from "~/models/association-bearers";
 
 export function getGroupImage(
   associationDetails: AssociationOfficeBearers | undefined,
-  slug: keyof typeof slugMappings
+  slug: keyof typeof slugMappings,
 ): string {
   if (!associationDetails) return getPlaceholderImage();
 
-  const groupPictureField = slugMappings[slug]?.groupPicture as keyof AssociationOfficeBearers;
+  const groupPictureField = slugMappings[slug]
+    ?.groupPicture as keyof AssociationOfficeBearers;
 
   const image = associationDetails[groupPictureField];
 

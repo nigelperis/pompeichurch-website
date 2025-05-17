@@ -56,4 +56,4 @@ interface LandingCarouselResponse {
   };
 }
 
-export type { LandingCarouselResponse }
+export type { LandingCarouselResponse };

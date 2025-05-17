@@ -39,11 +39,7 @@ function StrapiBlocksRenderer(props: StrapiBlocksProps) {
         },
 
         paragraph: ({ children }) => {
-          return (
-            <p className="leading-7 text-slate-900">
-              {children}
-            </p>
-          );
+          return <p className="leading-7 text-slate-900">{children}</p>;
         },
 
         image: ({ image }) => {

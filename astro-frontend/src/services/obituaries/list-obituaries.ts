@@ -1,6 +1,6 @@
-import { ROUTES } from '~/constants/strapi-endpoints';
-import { strapiFetch } from '~/helpers/strapi-fetch';
-import type { ObituaryData, ObituaryPagination } from '~/models/obituary';
+import { ROUTES } from "~/constants/strapi-endpoints";
+import { strapiFetch } from "~/helpers/strapi-fetch";
+import type { ObituaryData, ObituaryPagination } from "~/models/obituary";
 
 /**
  * Fetches a paginated list of obituaries from Strapi.
@@ -12,30 +12,33 @@ import type { ObituaryData, ObituaryPagination } from '~/models/obituary';
  * @returns {Promise<ObituaryPagination>} A promise that resolves to an object containing obituaries and pagination details.
  */
 async function listObituaries(args?: {
-	page?: number;
-	pageSize?: number;
-	sortBy?: string;
+  page?: number;
+  pageSize?: number;
+  sortBy?: string;
 }): Promise<ObituaryPagination> {
-	const { page = 1, pageSize = 25, sortBy = 'dateOfDeath:desc' } = args ?? {};
+  const { page = 1, pageSize = 25, sortBy = "dateOfDeath:desc" } = args ?? {};
 
-	const queryParams = new URLSearchParams({
-		'populate[0]': 'image',
-		'sort[0]': sortBy,
-		'pagination[page]': String(page),
-		'pagination[pageSize]': String(pageSize),
-	});
+  const queryParams = new URLSearchParams({
+    "populate[0]": "image",
+    "sort[0]": sortBy,
+    "pagination[page]": String(page),
+    "pagination[pageSize]": String(pageSize),
+  });
 
-	const data = await strapiFetch<ObituaryData>({ endpoint: ROUTES.OBITUARIES, queryParams });
+  const data = await strapiFetch<ObituaryData>({
+    endpoint: ROUTES.OBITUARIES,
+    queryParams,
+  });
 
-	return {
-		obituaries: data?.data ?? [],
-		pagination: data?.meta?.pagination ?? {
-			total: 0,
-			page,
-			pageSize,
-			pageCount: 0,
-		},
-	};
+  return {
+    obituaries: data?.data ?? [],
+    pagination: data?.meta?.pagination ?? {
+      total: 0,
+      page,
+      pageSize,
+      pageCount: 0,
+    },
+  };
 }
 
 export { listObituaries };

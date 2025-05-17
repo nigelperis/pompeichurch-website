@@ -10,7 +10,6 @@ const popesIntentionEn = [
   {
     month: 3,
     title: `Pope's Intention for the month of March`,
-
   },
   {
     month: 4,

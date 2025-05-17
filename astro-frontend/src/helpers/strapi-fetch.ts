@@ -1,6 +1,6 @@
 interface StrapiFetchProps {
-	endpoint: `/${string}`;
-	queryParams?: URLSearchParams;
+  endpoint: `/${string}`;
+  queryParams?: URLSearchParams;
 }
 
 /**
@@ -18,23 +18,23 @@ interface StrapiFetchProps {
 				);
  */
 export async function strapiFetch<T>({
-	endpoint,
-	queryParams,
+  endpoint,
+  queryParams,
 }: StrapiFetchProps): Promise<T | undefined> {
-	if (!import.meta.env.STRAPI_URL) {
-		throw new Error('Strapi Base URL not found!');
-	}
+  if (!import.meta.env.STRAPI_URL) {
+    throw new Error("Strapi Base URL not found!");
+  }
 
-	const url = new URL(`/api${endpoint}`, import.meta.env.STRAPI_URL);
+  const url = new URL(`/api${endpoint}`, import.meta.env.STRAPI_URL);
 
-	if (queryParams) {
-		for (const [key, value] of queryParams) {
-			url.searchParams.append(key, value);
-		}
-	}
+  if (queryParams) {
+    for (const [key, value] of queryParams) {
+      url.searchParams.append(key, value);
+    }
+  }
 
-	const res = await fetch(url.toString());
-	const data = (await res.json()) as unknown as T;
+  const res = await fetch(url.toString());
+  const data = (await res.json()) as unknown as T;
 
-	return data as unknown as T;
+  return data as unknown as T;
 }

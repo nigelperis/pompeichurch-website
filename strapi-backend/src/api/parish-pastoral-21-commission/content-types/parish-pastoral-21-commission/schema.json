@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "parish_pastoral_21_commissions",
+  "info": {
+    "singularName": "parish-pastoral-21-commission",
+    "pluralName": "parish-pastoral-21-commissions",
+    "displayName": "Parish Pastoral 21 Commissions",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "commissions": {
+      "type": "component",
+      "repeatable": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "shared.commission-block",
+      "required": true
+    },
+    "coordinatorName": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::parish-pastoral-council-core-committee.parish-pastoral-council-core-committee",
+      "inversedBy": "positionRelation"
+    }
+  }
+}
