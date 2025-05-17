@@ -799,8 +799,8 @@ export interface ApiObituaryObituary extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     dateOfDeath: Schema.Attribute.Date;
-    description: Schema.Attribute.String;
     englishName: Schema.Attribute.String;
+    gender: Schema.Attribute.Enumeration<['Male', 'Female']>;
     image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     konkaniName: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
@@ -811,10 +811,24 @@ export interface ApiObituaryObituary extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.UID<'englishName'>;
+    spouseName: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    ward: Schema.Attribute.String;
+    ward: Schema.Attribute.Enumeration<
+      [
+        'Addoor',
+        'Church',
+        'Gurpur',
+        'Kandar A',
+        'Kandar B',
+        'Kowdoor A',
+        'Kowdoor B',
+        'Monel',
+        'Pompei A',
+        'Pompei B',
+      ]
+    >;
   };
 }
 

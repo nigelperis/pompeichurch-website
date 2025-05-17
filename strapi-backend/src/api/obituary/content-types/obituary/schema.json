@@ -13,19 +13,16 @@
   "pluginOptions": {},
   "attributes": {
     "konkaniName": {
-      "type": "string"
-    },
-    "description": {
-      "type": "string"
+      "type": "string",
+      "pluginOptions": {}
     },
     "age": {
-      "type": "integer"
-    },
-    "ward": {
-      "type": "string"
+      "type": "integer",
+      "pluginOptions": {}
     },
     "dateOfDeath": {
-      "type": "date"
+      "type": "date",
+      "pluginOptions": {}
     },
     "image": {
       "type": "media",
@@ -36,14 +33,44 @@
         "files",
         "videos",
         "audios"
-      ]
+      ],
+      "pluginOptions": {}
     },
     "englishName": {
-      "type": "string"
+      "type": "string",
+      "pluginOptions": {}
     },
     "slug": {
       "type": "uid",
       "targetField": "englishName"
+    },
+    "gender": {
+      "type": "enumeration",
+      "enum": [
+        "Male",
+        "Female"
+      ],
+      "pluginOptions": {}
+    },
+    "spouseName": {
+      "type": "string",
+      "pluginOptions": {}
+    },
+    "ward": {
+      "type": "enumeration",
+      "enum": [
+        "Addoor",
+        "Church",
+        "Gurpur",
+        "Kandar A",
+        "Kandar B",
+        "Kowdoor A",
+        "Kowdoor B",
+        "Monel",
+        "Pompei A",
+        "Pompei B"
+      ],
+      "pluginOptions": {}
     }
   }
 }
