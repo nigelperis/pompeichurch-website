@@ -29,7 +29,7 @@
     },
     "coordinatorName": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "oneToOne",
       "target": "api::parish-pastoral-council-core-committee.parish-pastoral-council-core-committee",
       "inversedBy": "positionRelation"
     }

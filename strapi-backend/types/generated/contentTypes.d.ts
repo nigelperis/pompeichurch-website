@@ -905,7 +905,7 @@ export interface ApiParishPastoral21CommissionParishPastoral21Commission
         };
       }>;
     coordinatorName: Schema.Attribute.Relation<
-      'manyToOne',
+      'oneToOne',
       'api::parish-pastoral-council-core-committee.parish-pastoral-council-core-committee'
     >;
     createdAt: Schema.Attribute.DateTime;
@@ -970,9 +970,10 @@ export interface ApiParishPastoralCouncilCoreCommitteeParishPastoralCouncilCoreC
         };
       }>;
     positionRelation: Schema.Attribute.Relation<
-      'oneToMany',
+      'oneToOne',
       'api::parish-pastoral-21-commission.parish-pastoral-21-commission'
-    >;
+    > &
+      Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
     sNo: Schema.Attribute.Integer &
       Schema.Attribute.Required &

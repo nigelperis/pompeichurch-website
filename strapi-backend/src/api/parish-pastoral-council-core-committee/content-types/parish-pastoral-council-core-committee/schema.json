@@ -59,8 +59,9 @@
     },
     "positionRelation": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "oneToOne",
       "target": "api::parish-pastoral-21-commission.parish-pastoral-21-commission",
+      "private": true,
       "mappedBy": "coordinatorName"
     }
   }

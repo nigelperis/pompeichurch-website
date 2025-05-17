@@ -12,5 +12,5 @@ export const ROUTES = {
   PARISH_FINANCE_COMMITTEE: '/parish-finance-committees',
   PARISH_PRIESTS: '/parish-priests',
   LANDING_PAGE_CAROUSEL: '/landing-page-carousels',
-  PARISH_PASTORAL_21_COMMISSION: '/parish-pastoral-21-commissions',
+  PARISH_PASTORAL_21_COMMISSION: '/parish-pastoral-21-commissions'
 } as const;
