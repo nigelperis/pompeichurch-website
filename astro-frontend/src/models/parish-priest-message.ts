@@ -58,4 +58,4 @@ interface ParishPriestMessageData {
   meta: Record<string, unknown>;
 }
 
-export type { ParishPriestMessageData }
+export type { ParishPriestMessageData };

@@ -1,4 +1,4 @@
-import type { Locale } from '~/enums/locale';
+import type { Locale } from "~/enums/locale";
 
 interface MediaFormat {
   ext: string;

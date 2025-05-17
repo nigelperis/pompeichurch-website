@@ -1,7 +1,9 @@
 import { ROUTES } from "~/constants/strapi-endpoints";
 import { strapiFetch } from "~/helpers/strapi-fetch";
-import type { PompeichemFalkem, PompeichemFalkemData } from "~/models/pompeichem-falkem";
-
+import type {
+  PompeichemFalkem,
+  PompeichemFalkemData,
+} from "~/models/pompeichem-falkem";
 
 /**
  * Fetches a paginated list of "Pompeichem Falkem" magazines from the Strapi CMS.
@@ -13,22 +15,25 @@ import type { PompeichemFalkem, PompeichemFalkemData } from "~/models/pompeichem
  * @returns {Promise<PompeichemFalkem[]>} A promise resolving to an array of magazines.
  */
 async function listMagazines(args?: {
-	page?: number;
-	pageSize?: number;
-	sortBy?: string;
+  page?: number;
+  pageSize?: number;
+  sortBy?: string;
 }): Promise<PompeichemFalkem[]> {
-	const { page = 1, pageSize = 25, sortBy = 'dateOfPublish:desc' } = args ?? {};
+  const { page = 1, pageSize = 25, sortBy = "dateOfPublish:desc" } = args ?? {};
 
-	const queryParams = new URLSearchParams({
-		'populate[0]': 'coverImage',
-		'sort[0]': sortBy,
-		'pagination[page]': String(page),
-		'pagination[pageSize]': String(pageSize),
-	});
+  const queryParams = new URLSearchParams({
+    "populate[0]": "coverImage",
+    "sort[0]": sortBy,
+    "pagination[page]": String(page),
+    "pagination[pageSize]": String(pageSize),
+  });
 
-	const data = await strapiFetch<PompeichemFalkemData>({ endpoint: ROUTES.POMPEICHEM_FALKEM, queryParams });
+  const data = await strapiFetch<PompeichemFalkemData>({
+    endpoint: ROUTES.POMPEICHEM_FALKEM,
+    queryParams,
+  });
 
-	return data?.data ?? [];
+  return data?.data ?? [];
 }
 
 export { listMagazines };

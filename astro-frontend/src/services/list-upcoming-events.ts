@@ -1,9 +1,9 @@
-import { ROUTES } from '~/constants/strapi-endpoints';
-import { strapiFetch } from '~/helpers/strapi-fetch';
+import { ROUTES } from "~/constants/strapi-endpoints";
+import { strapiFetch } from "~/helpers/strapi-fetch";
 import type {
-	UpcomingEvent,
-	UpcomingEventsData,
-} from '~/models/upcoming-event';
+  UpcomingEvent,
+  UpcomingEventsData,
+} from "~/models/upcoming-event";
 
 /**
  * Fetches a paginated list of upcoming events from the Strapi CMS.
@@ -15,22 +15,25 @@ import type {
  * @returns {Promise<UpcomingEvent[]>} A promise resolving to an array of upcoming events.
  */
 async function listUpcomingEvents(args?: {
-	page?: number;
-	pageSize?: number;
-	sortBy?: string;
+  page?: number;
+  pageSize?: number;
+  sortBy?: string;
 }): Promise<UpcomingEvent[]> {
-	const { page = 1, pageSize = 25, sortBy = 'eventEndDate:asc' } = args ?? {};
+  const { page = 1, pageSize = 25, sortBy = "eventEndDate:asc" } = args ?? {};
 
-	const queryParams = new URLSearchParams({
-		'populate[0]': 'eventImage',
-		'sort[0]': sortBy,
-		'pagination[page]': String(page),
-		'pagination[pageSize]': String(pageSize),
-	});
+  const queryParams = new URLSearchParams({
+    "populate[0]": "eventImage",
+    "sort[0]": sortBy,
+    "pagination[page]": String(page),
+    "pagination[pageSize]": String(pageSize),
+  });
 
-	const data = await strapiFetch<UpcomingEventsData>({ endpoint: ROUTES.UPCOMING_EVENTS, queryParams });
+  const data = await strapiFetch<UpcomingEventsData>({
+    endpoint: ROUTES.UPCOMING_EVENTS,
+    queryParams,
+  });
 
-	return data?.data ?? [];
+  return data?.data ?? [];
 }
 
 export { listUpcomingEvents };

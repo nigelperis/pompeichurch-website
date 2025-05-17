@@ -1,5 +1,5 @@
-import type { BlocksContent } from '@strapi/blocks-react-renderer';
-import type { Locale } from '~/enums/locale';
+import type { BlocksContent } from "@strapi/blocks-react-renderer";
+import type { Locale } from "~/enums/locale";
 
 export interface PopesIntention {
   id: number;

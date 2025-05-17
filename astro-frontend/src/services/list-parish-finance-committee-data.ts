@@ -22,15 +22,19 @@ async function listParishFinanceCommitteeData(args?: {
   sortBy?: string;
   locale?: Locale;
 }): Promise<ParishFinanceCommittee[]> {
-
-  const { page = 1, pageSize = 25, sortBy = "sNo:asc", locale = Locale.EN } = args ?? {};
+  const {
+    page = 1,
+    pageSize = 25,
+    sortBy = "sNo:asc",
+    locale = Locale.EN,
+  } = args ?? {};
 
   const queryParams = new URLSearchParams({
-    'populate[0]': 'image',
-    'pagination[page]': String(page),
-    'pagination[pageSize]': String(pageSize),
-    'sort[0]': sortBy,
-    'locale': locale,
+    "populate[0]": "image",
+    "pagination[page]": String(page),
+    "pagination[pageSize]": String(pageSize),
+    "sort[0]": sortBy,
+    locale: locale,
   });
 
   const data = await strapiFetch<ParishFinanceCommitteeData>({

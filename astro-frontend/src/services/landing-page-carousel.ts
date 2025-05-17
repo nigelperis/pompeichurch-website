@@ -1,6 +1,9 @@
 import { ROUTES } from "~/constants/strapi-endpoints";
 import { strapiFetch } from "~/helpers/strapi-fetch";
-import type { CarouselItem, LandingCarouselResponse, } from "~/models/landing-page-carousel";
+import type {
+  CarouselItem,
+  LandingCarouselResponse,
+} from "~/models/landing-page-carousel";
 
 /**
  * Get carousel images from Strapi.
@@ -9,11 +12,12 @@ import type { CarouselItem, LandingCarouselResponse, } from "~/models/landing-pa
  */
 async function fetchCarouselImages(): Promise<CarouselItem[] | null> {
   const queryParams = new URLSearchParams({
-    'populate[0]': 'carouselImage',
+    "populate[0]": "carouselImage",
   });
 
   const data = await strapiFetch<LandingCarouselResponse>({
-    endpoint: ROUTES.LANDING_PAGE_CAROUSEL, queryParams
+    endpoint: ROUTES.LANDING_PAGE_CAROUSEL,
+    queryParams,
   });
 
   if (!data?.data) {
@@ -23,4 +27,4 @@ async function fetchCarouselImages(): Promise<CarouselItem[] | null> {
   return data.data;
 }
 
-export { fetchCarouselImages }
+export { fetchCarouselImages };
