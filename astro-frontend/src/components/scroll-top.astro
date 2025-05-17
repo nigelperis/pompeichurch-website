@@ -1,23 +1,50 @@
 ---
 import { Icon } from "astro-icon/components";
+const props = Astro.props
 ---
 
 <aside>
   <button
     id="scrollToTop"
-    class="fixed bottom-[30px] right-4 flex items-center justify-center rounded-full cursor-pointer"
+    class="fixed bottom-[30px]  right-4 flex items-center justify-center rounded-full cursor-pointer"
     aria-label="Scroll to top"
     title="Scroll to top"
   >
-    <Icon name="scrolltop" size={60} />
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  class="scroll-progress-icon w-14 h-14 sm:w-[60px] sm:h-[60px]"
+  viewBox="0 0 24 24"
+>
+
+  <circle
+    class="progress-ring"
+    cx="12"
+    cy="12"
+    r="10"
+    fill="none"
+    stroke="#fcc200"
+    stroke-width="2"
+    stroke-linecap="round"
+  />
+  <circle cx="12" cy="12" r="10" fill="#ffdb58" />
+
+  <path
+    d="M9 13l3-3 3 3"
+    fill="none"
+    stroke="#f8f8ff"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+</svg>
+
+
+
   </button>
 </aside>
 
-<style>
-  svg {
-    background-color: transparent;
-  }
-</style>
+
 
 <script>
   const scrollToTopButton = document.querySelector("#scrollToTop");
@@ -29,3 +56,42 @@ import { Icon } from "astro-icon/components";
     });
   });
 </script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const el = document.querySelector(".progress-ring") as SVGCircleElement | null;
+
+    if (!el) return;
+
+    const progressCircle = el;
+    const radius = progressCircle.r.baseVal.value;
+    const circumference = 2 * Math.PI * radius;
+
+    progressCircle.style.strokeDasharray = `${circumference}`;
+    progressCircle.style.strokeDashoffset = `${circumference}`;
+
+    function updateScrollProgress() {
+      const scrollTop = window.scrollY;
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollFraction = scrollTop / scrollHeight;
+      const offset = circumference - scrollFraction * circumference;
+      progressCircle.style.strokeDashoffset = `${offset}`;
+    }
+
+    window.addEventListener("scroll", updateScrollProgress);
+    updateScrollProgress();
+  });
+</script>
+
+
+<style>
+  .scroll-progress-icon .progress-ring {
+    transition: stroke-dashoffset 0.2s ease;
+    transform: rotate(-90deg);
+    transform-origin: center;
+  }
+
+
+  svg.scroll-progress-icon {
+    background-color: transparent;
+  }
+</style>
