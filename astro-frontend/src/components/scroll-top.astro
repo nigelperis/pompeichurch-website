@@ -1,97 +1,93 @@
 ---
 import { Icon } from "astro-icon/components";
-const props = Astro.props
+const props = Astro.props;
 ---
-
 <aside>
   <button
     id="scrollToTop"
-    class="fixed bottom-[30px]  right-4 flex items-center justify-center rounded-full cursor-pointer"
+    class="scroll-to-top"
     aria-label="Scroll to top"
     title="Scroll to top"
   >
-
-<svg
-  xmlns="http://www.w3.org/2000/svg"
-  class="scroll-progress-icon w-14 h-14 sm:w-[60px] sm:h-[60px]"
-  viewBox="0 0 24 24"
->
-
-  <circle
-    class="progress-ring"
-    cx="12"
-    cy="12"
-    r="10"
-    fill="none"
-    stroke="#fcc200"
-    stroke-width="2"
-    stroke-linecap="round"
-  />
-  <circle cx="12" cy="12" r="10" fill="#ffdb58" />
-
-  <path
-    d="M9 13l3-3 3 3"
-    fill="none"
-    stroke="#f8f8ff"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-  />
-</svg>
-
-
-
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="scroll-progress-icon"
+      viewBox="0 0 24 24"
+    >
+      <circle
+        class="progress-ring"
+        cx="12"
+        cy="12"
+        r="10"
+        fill="none"
+        stroke="#fcc200"
+        stroke-width="2"
+        stroke-linecap="round"
+      />
+      <circle cx="12" cy="12" r="10" fill="#ffdb58" />
+      <path
+        d="M9 13l3-3 3 3"
+        fill="none"
+        stroke="#f8f8ff"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
   </button>
+
+  <div class="scroll-tracker"></div>
 </aside>
 
-
-
 <script>
-  const scrollToTopButton = document.querySelector("#scrollToTop");
-
-  scrollToTopButton?.addEventListener("click", () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+  document.querySelector("#scrollToTop")?.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
   });
 </script>
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const el = document.querySelector(".progress-ring") as SVGCircleElement | null;
-
-    if (!el) return;
-
-    const progressCircle = el;
-    const radius = progressCircle.r.baseVal.value;
-    const circumference = 2 * Math.PI * radius;
-
-    progressCircle.style.strokeDasharray = `${circumference}`;
-    progressCircle.style.strokeDashoffset = `${circumference}`;
-
-    function updateScrollProgress() {
-      const scrollTop = window.scrollY;
-      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const scrollFraction = scrollTop / scrollHeight;
-      const offset = circumference - scrollFraction * circumference;
-      progressCircle.style.strokeDashoffset = `${offset}`;
-    }
-
-    window.addEventListener("scroll", updateScrollProgress);
-    updateScrollProgress();
-  });
-</script>
-
 
 <style>
-  .scroll-progress-icon .progress-ring {
-    transition: stroke-dashoffset 0.2s ease;
-    transform: rotate(-90deg);
-    transform-origin: center;
-  }
+.scroll-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 9999px;
+  background: transparent;
+  z-index: 100;
+}
 
+.scroll-progress-icon {
+  width: 56px;
+  height: 56px;
+  background-color: transparent;
+}
 
-  svg.scroll-progress-icon {
-    background-color: transparent;
+.progress-ring {
+  stroke-dasharray: 62.83;
+  stroke-dashoffset: 62.83;
+  transform: rotate(-90deg);
+  transform-origin: center;
+  animation: progressAnim linear forwards;
+  animation-timeline: scroll();
+}
+
+@keyframes progressAnim {
+  from {
+    stroke-dashoffset: 62.83;
   }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.scroll-tracker {
+  position: absolute;
+  top: 0;
+  height: 200vh;
+  pointer-events: none;
+  opacity: 0;
+}
 </style>
