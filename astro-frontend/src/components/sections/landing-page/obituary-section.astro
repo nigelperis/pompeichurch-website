@@ -24,7 +24,8 @@ const obituaryDataFormatted = obituaries.map((obituary) => ({
     : 'Unknown Date',
 }));
 
-const featuredObituary = obituaries.length === 5 ? obituaries[4] : null;
+const featuredObituary = obituaryDataFormatted[4];
+
 ---
 
 <section class="mt-1 flex flex-col lg:mx-28 lg:mb-3 lg:min-h-[70svh] lg:justify-evenly">
@@ -44,12 +45,17 @@ const featuredObituary = obituaries.length === 5 ? obituaries[4] : null;
 		<>
 			<div class="my-4 flex w-full space-x-8 overflow-x-auto pl-6 pr-3 scrollbar-none lg:flex-wrap lg:justify-center lg:space-x-8 lg:overflow-x-visible xl:space-x-10">
 				{obituaryDataFormatted.slice(0, 4).map((obituary) => (
-					<div class="flex-none relative">
+					<div class="flex-none relative h-full">
 						<Card
-							imageUrl={obituary.image?.url}
-							title={`${obituary.konkaniName} (${obituary.age})`}
-							subtitle={`ಮರಣ್ : ${obituary.formattedDate}`}
-						/>
+              imageUrl={obituary.image?.url}
+              title={`${lang === 'kok' ? obituary.konkaniName : obituary.englishName} (${obituary.age})`}
+              subtitle={
+              lang === 'kok'
+              ? `ಮರಣ್ : ${obituary.formattedDate}`
+              : `Death: ${obituary.formattedDate}`
+                }
+              />
+
 						<ShareLink
 							class="absolute bottom-4 right-4"
 							shareData={{
@@ -67,13 +73,17 @@ const featuredObituary = obituaries.length === 5 ? obituaries[4] : null;
 				))}
 
 				{featuredObituary && (
-					<div class="flex-none relative lg:hidden overflow-hidden border border-gray-200 shadow-sm">
+					<div class="flex-none relative h-full lg:hidden overflow-hidden border border-gray-200 shadow-sm">
 						<div class="opacity-50 blur-md rounded-lg">
 							<Card
-								imageUrl={featuredObituary.image?.url}
-								title={`${featuredObituary.konkaniName} (${featuredObituary.age})`}
-								subtitle={`ಮರಣ್ : ${featuredObituary.dateOfDeath}`}
-							/>
+  imageUrl={featuredObituary.image?.url}
+  title={`${lang === 'kok' ? featuredObituary.konkaniName : featuredObituary.englishName} (${featuredObituary.age})`}
+  subtitle={
+    lang === 'kok'
+      ? `ಮರಣ್ : ${featuredObituary.formattedDate}`
+      : `Death: ${featuredObituary.formattedDate}`
+  }
+/>
 						</div>
 						<div class="absolute inset-0 flex items-center justify-center">
 							<HoverableLink href={obituaryLink} class="mb-2 mt-2 inline-block text-xl font-bold text-black">
