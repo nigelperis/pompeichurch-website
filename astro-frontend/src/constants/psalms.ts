@@ -1,8 +1,8 @@
 const psalms = {
-	en: [
-		{
-			title: 'Psalm 91',
-			content: `
+  en: [
+    {
+      title: "Psalm 91",
+      content: `
 				<sup>1</sup> Whoever dwells in the shelter of the Most High<br>
 				will rest in the shadow of the Almighty.<br>
 				<sup>2</sup> I will say of the Lord, “He is my refuge and my fortress,
@@ -40,12 +40,12 @@ const psalms = {
 				<sup>16</sup> With long life I will satisfy him<br>
 				and show him my salvation.
 			`,
-		},
-	],
-	kok: [
-		{
-			title: 'ಕೀರ್ತನ್ 91',
-			content: `
+    },
+  ],
+  kok: [
+    {
+      title: "ಕೀರ್ತನ್ 91",
+      content: `
 				<sup>1</sup> ಜೊ ಮನಿಸ್ ಪರಮೋನ್ನತ್ ದೆವಾಚ್ಯಾ ಆಸ್ರ್ಯಾಂತ್ ರಾವ್ತಾ, ಆನಿ ಸರ್ವ್ ಪದ್ವೆದಾರಾಚೆ ಸಾವ್ಳೆಂತ್ ವಸ್ತಿ ಕರ್ತಾ,<br>
 				<sup>2</sup> ತೊ ಸರ್ವೆಸ್ಪರಾಕ್ ಮ್ಹಣ್ತಾ: “ತುಂ ಮ್ಹಜೊ ಆಸ್ರೊ ಆನಿ ಮ್ಹಜೆಂ ಕೊಟೆಂ, ತುಂ ಮ್ಹಜೊ ದೇವ್, ತುಜೆರ್ ದವರ್ತಾಂ ಮ್ಹಜೊ ವಿಶ್ವಾಸ್.<br>
 				<sup>3</sup> ತೊ ತುಕಾ ನಿವಾರ್ತಲೊ ಶಿಕಾರ್ಯಾಚ್ಯಾ ಪಾಸಾಂತ್ಲೊ ಆನಿ ಮರ್ಣಾಂತಿಕ್ ಪಿಡೆಂತ್ಲೊ.<br>
@@ -63,8 +63,8 @@ const psalms = {
 				<sup>15</sup> ತೊ ಮ್ಹಾಕಾ ಉಲೊ ಮಾರ್ತಾನಾ ಹಾಂವ್ ತಾಕಾ ಜಾಪ್ ದಿತಾಂ, ಆಕಾಂತಾಂತ್ ಹಾಂವ್ ತಾಚೆ ಲಾಗಿಂ ಆಸಾಂ, ತಾಕಾ ನಿವಾರ್ತಾಂ ಆನಿ ತಾಕಾ ಸನ್ಮಾನ್ ಕರ್ತಾಂ.<br>
 				<sup>16</sup> ಲಾಂಬ್ ಆವ್ಕ್ ದಿವ್ನ್ ತಾಕಾ ಧಾದೊಶಿ ಕರ್ತಾಂ, ಮ್ಹಜೆಂ ತಾರಣ್ ಪಳೆಂವ್ಕ್ ತಾಕಾ ಫಾವೊ ಕರ್ತಾಂ.
 			`,
-		},
-	],
+    },
+  ],
 };
 
 export { psalms };

@@ -41,7 +41,6 @@ async function listPastoralCouncilData(args?: {
   });
 
   return data?.data ?? [];
-
 }
 
 export { listPastoralCouncilData };

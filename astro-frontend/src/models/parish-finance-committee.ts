@@ -1,4 +1,4 @@
-import { Locale } from '~/enums/locale';
+import { Locale } from "~/enums/locale";
 
 interface ImageFormat {
   ext: string;

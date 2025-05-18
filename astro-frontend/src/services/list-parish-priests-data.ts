@@ -1,6 +1,6 @@
 import { ROUTES } from "~/constants/strapi-endpoints";
 import { strapiFetch } from "~/helpers/strapi-fetch";
-import type { ParishPriests, ParishPriestsData  } from "~/models/parish-priest";
+import type { ParishPriests, ParishPriestsData } from "~/models/parish-priest";
 import { Locale } from "~/enums/locale";
 
 /**
@@ -14,42 +14,49 @@ import { Locale } from "~/enums/locale";
  */
 
 async function listParishPriests(args?: {
-	page?: number;
-	pageSize?: number;
-	sortBy?: string;
-	locale?: Locale;
+  page?: number;
+  pageSize?: number;
+  sortBy?: string;
+  locale?: Locale;
 }): Promise<ParishPriests[]> {
-	const batchSize = 100;
-	let page = 1;
-	let priests: ParishPriests[] = [];
-	let hasMore = true;
+  const batchSize = 100;
+  let page = 1;
+  let priests: ParishPriests[] = [];
+  let hasMore = true;
 
-	while (hasMore) {
-		const { pageSize = 25, sortBy = 'sNo:asc', locale = Locale.EN } = args ?? {};
+  while (hasMore) {
+    const {
+      pageSize = 25,
+      sortBy = "sNo:asc",
+      locale = Locale.EN,
+    } = args ?? {};
 
-		const queryParams = new URLSearchParams({
-			'populate[0]': 'image',
-			'sort[0]': sortBy,
-			'pagination[page]': String(page),
-			'pagination[pageSize]': String(pageSize),
-			'locale': locale
-		});
+    const queryParams = new URLSearchParams({
+      "populate[0]": "image",
+      "sort[0]": sortBy,
+      "pagination[page]": String(page),
+      "pagination[pageSize]": String(pageSize),
+      locale: locale,
+    });
 
-		const data = await strapiFetch<ParishPriestsData>({ endpoint: ROUTES.PARISH_PRIESTS, queryParams });
+    const data = await strapiFetch<ParishPriestsData>({
+      endpoint: ROUTES.PARISH_PRIESTS,
+      queryParams,
+    });
 
-		if(data?.data?.length){
-			priests = [...priests, ...data?.data];
-			page++;
+    if (data?.data?.length) {
+      priests = [...priests, ...data?.data];
+      page++;
 
-			if(data?.data?.length < batchSize){
-				hasMore = false;
-			}
-		} else {
-			hasMore = false;
-		}
-	}
+      if (data?.data?.length < batchSize) {
+        hasMore = false;
+      }
+    } else {
+      hasMore = false;
+    }
+  }
 
-	return priests;
+  return priests;
 }
 
 export { listParishPriests };

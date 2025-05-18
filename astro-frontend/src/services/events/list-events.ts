@@ -1,6 +1,6 @@
 import { ROUTES } from "~/constants/strapi-endpoints";
 import { strapiFetch } from "~/helpers/strapi-fetch";
-import type { EventData, EventsPagination } from '~/models/event';
+import type { EventData, EventsPagination } from "~/models/event";
 
 /**
  * Fetches a paginated list of events from the Strapi CMS.
@@ -18,19 +18,24 @@ async function listEvents(args?: {
   sortBy?: string[];
   filters?: Record<string, any>;
 }): Promise<EventsPagination> {
-  const { page = 1, pageSize = 25, sortBy = ['eventDate:desc'], filters } = args ?? {};
+  const {
+    page = 1,
+    pageSize = 25,
+    sortBy = ["eventDate:desc"],
+    filters,
+  } = args ?? {};
 
   const queryParams = new URLSearchParams({
-    'populate[0]': 'eventImage',
-    'pagination[page]': String(page),
-    'pagination[pageSize]': String(pageSize),
+    "populate[0]": "eventImage",
+    "pagination[page]": String(page),
+    "pagination[pageSize]": String(pageSize),
   });
 
   sortBy.forEach((s, i) => queryParams.append(`sort[${i}]`, s));
 
   if (filters) {
     Object.entries(filters).forEach(([key, value]) => {
-      if (typeof value === 'object') {
+      if (typeof value === "object") {
         Object.entries(value).forEach(([op, val]) => {
           queryParams.append(`filters[${key}][${op}]`, String(val));
         });
@@ -40,7 +45,10 @@ async function listEvents(args?: {
     });
   }
 
-  const data = await strapiFetch<EventData>({ endpoint: ROUTES.EVENTS, queryParams });
+  const data = await strapiFetch<EventData>({
+    endpoint: ROUTES.EVENTS,
+    queryParams,
+  });
 
   return {
     events: data?.data ?? [],
