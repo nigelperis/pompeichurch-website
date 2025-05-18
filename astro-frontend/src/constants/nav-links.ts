@@ -30,8 +30,8 @@ export const navLinks = [
         href: "/parish-history",
       },
       {
-        title: "nav.parish-priests",
-        href: "/parish-priests",
+        title: "nav.parish-priests-and-deacons",
+        href: "/parish-priests-and-deacons",
       },
       {
         title: "nav.parish-pastoral-council",

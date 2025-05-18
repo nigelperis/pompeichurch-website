@@ -1,0 +1,21 @@
+---
+import ProfileCard from "~/components/profile-card.astro";
+import type { ParishPriestsAndDeacons } from "~/models/parish-priest-and-deacon";
+
+const { parishPriestsAndDeacons } = Astro.props;
+---
+
+<div
+  class="grid-cols-1 mx-auto grid w-full gap-x-20 gap-y-10 pt-10 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+>
+  {
+    parishPriestsAndDeacons.map((priestOrDeacon: ParishPriestsAndDeacons) => (
+      <ProfileCard
+        class="m-auto"
+        url={priestOrDeacon.image?.url}
+        name={priestOrDeacon.name}
+        date={priestOrDeacon.servicePeriod}
+      />
+    ))
+  }
+</div>

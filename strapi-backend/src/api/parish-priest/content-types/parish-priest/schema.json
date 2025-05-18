@@ -4,7 +4,8 @@
   "info": {
     "singularName": "parish-priest",
     "pluralName": "parish-priests",
-    "displayName": "Parish Priests"
+    "displayName": "Parish Priests And Deacons",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -16,11 +17,12 @@
   },
   "attributes": {
     "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images"
       ],
-      "type": "media",
-      "multiple": false,
       "pluginOptions": {
         "i18n": {
           "localized": true
@@ -53,6 +55,19 @@
         }
       },
       "type": "string",
+      "required": true
+    },
+    "role": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "enumeration",
+      "enum": [
+        "Parish Priest",
+        "Deacon"
+      ],
       "required": true
     }
   }

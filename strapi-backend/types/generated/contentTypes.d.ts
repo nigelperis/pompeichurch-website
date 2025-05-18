@@ -1138,7 +1138,8 @@ export interface ApiParishPriestParishPriest
   extends Struct.CollectionTypeSchema {
   collectionName: 'parish_priests';
   info: {
-    displayName: 'Parish Priests';
+    description: '';
+    displayName: 'Parish Priests And Deacons';
     pluralName: 'parish-priests';
     singularName: 'parish-priest';
   };
@@ -1173,6 +1174,13 @@ export interface ApiParishPriestParishPriest
         };
       }>;
     publishedAt: Schema.Attribute.DateTime;
+    role: Schema.Attribute.Enumeration<['Parish Priest', 'Deacon']> &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     servicePeriod: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
