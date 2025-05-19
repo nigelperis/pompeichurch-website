@@ -47,14 +47,14 @@
     "relationType": {
       "type": "enumeration",
       "enum": [
-        "S/o",
-        "D/o",
-        "H/o",
-        "W/o"
+        "S/O",
+        "D/O",
+        "H/O",
+        "W/O"
       ],
       "pluginOptions": {}
     },
-    "relNameEn": {
+    "relationNameEn": {
       "type": "string",
       "pluginOptions": {}
     },
@@ -64,17 +64,17 @@
         "Addoor",
         "Church",
         "Gurpur",
+        "Monel",
         "Kandar A",
         "Kandar B",
         "Kowdoor A",
         "Kowdoor B",
-        "Monel",
         "Pompei A",
         "Pompei B"
       ],
       "pluginOptions": {}
     },
-    "relNameKok": {
+    "relationNameKok": {
       "type": "string"
     }
   }
