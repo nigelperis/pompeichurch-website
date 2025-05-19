@@ -44,8 +44,10 @@ export interface Obituary {
   konkaniName: string;
   englishName: string;
   slug: string;
-  description: string;
   age: number;
+  relationType?: string;
+  relNameEn?: string;
+  relNameKok?: string;
   ward: string;
   dateOfDeath: Date;
   createdAt: string;
