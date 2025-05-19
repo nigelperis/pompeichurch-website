@@ -22,17 +22,19 @@ const pastoral21CommissionsKok: ParishPastoral21Commission[] =
     <section id="pastoral-commissions" class="flex flex-col p-6">
       <h1
         class={cn(
-          "font-roboto font-black border-l-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl lg:text-4xl",
+          " font-black border-l-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl lg:text-4xl",
           {
-            "font-noto-sans-kannada font-bold pt-2": lang === Locale.KOK,
-          }
+            "font-bold pt-2": lang === Locale.KOK,
+          },
         )}
       >
         {t("nav.parish-pastoral-21-commissions")}
       </h1>
       {
         pastoral21CommissionsKok.length > 0 ? (
-          <PastoralCommission pastoral21Commissions={pastoral21CommissionsKok} />
+          <PastoralCommission
+            pastoral21Commissions={pastoral21CommissionsKok}
+          />
         ) : pastoral21CommissionsEn.length > 0 ? (
           <PastoralCommission pastoral21Commissions={pastoral21CommissionsEn} />
         ) : (

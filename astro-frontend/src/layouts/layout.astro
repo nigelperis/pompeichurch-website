@@ -1,16 +1,15 @@
 ---
-import '@fontsource/geist-sans';
 import '@fontsource-variable/noto-sans-kannada';
 import '@fontsource-variable/roboto';
-
 import 'aos/dist/aos.css';
-
-import { getLangFromUrl } from '~/i18n/utils';
 import Navbar from '~/components/navbar.astro';
 import Footer from '~/components/footer.astro';
 import ScrollTop from '~/components/scroll-top.astro';
 import GoogleAnalytics from '~/components/google-analytics.astro';
 import "~/styles/global.css";
+import { getLangFromUrl } from '~/i18n/utils';
+import { cn } from '~/helpers/cn';
+import { Locale } from '~/enums/locale';
 
 const lang = getLangFromUrl(Astro.url);
 
@@ -72,7 +71,7 @@ const { title, description, image, url } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		{import.meta.env.MODE === 'production' && (
-	<script type="text/javascript">
+		<script type="text/javascript">
 		(function (c, l, a, r, i, t, y) {
 			c[a] =
 				c[a] ||
@@ -89,13 +88,16 @@ const { title, description, image, url } = Astro.props;
 
 	)}
 	</head>
-	<body class="w-screen overflow-x-hidden">
+	<body class={cn(
+		"w-screen overflow-x-hidden font-roboto", {
+      "font-noto-sans-kannada": lang === Locale.KOK,
+	})}>
 		<Navbar />
 		<slot />
 		<Footer />
 		<ScrollTop />
 		<script>
-			console.log("Est Nov, 2024 🥃 www.nigelperis.dev")
+			console.log("Est Nov, 2024. www.nigelperis.dev, www.reevan.dev")
 			import { aosInit } from '~/helpers/aos-config';
 			aosInit();
 		</script>

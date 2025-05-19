@@ -25,8 +25,8 @@ const historyUrl =
 >
   <h1
     data-aos="fade-right"
-    class={cn("font-roboto font-black text-5xl leading-tight tracking-wider", {
-      "font-noto-sans-kannada	font-bold": lang === Locale.KOK,
+    class={cn("font-black text-5xl leading-tight tracking-wider", {
+      "font-bold": lang === Locale.KOK,
     })}
   >
     {t("landing.about-church")}
@@ -36,7 +36,7 @@ const historyUrl =
       class="lg:gap-18 relative flex w-full flex-col gap-12 bg-cover bg-center pb-2 xl:gap-20"
     >
       <p
-        class={`max-w-2xl text-justify ${lang === Locale.KOK ? "font-noto-sans-kannada" : "font-geist"} text-base leading-7 drop-shadow-xl lg:max-w-fit`}
+        class="max-w-2xl text-justify text-base leading-7 drop-shadow-xl lg:max-w-fit"
       >
         {lang === Locale.KOK ? historyExcerpt.kok : historyExcerpt.en}
       </p>

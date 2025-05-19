@@ -34,29 +34,19 @@ const subtitle =
 ---
 
 <h2
-  class={cn(
-    "font-roboto mb-4 mt-4 border-b-2 border-b-natgeo-yellow pb-2 text-2xl font-bold lg:text-3xl",
-    {
-      "font-noto-sans-kannada": lang === Locale.KOK,
-    }
-  )}
+  class="mb-4 mt-4 border-b-2 border-b-natgeo-yellow pb-2 text-2xl font-bold lg:text-3xl"
 >
   {t("prayer.pope-intention")}
 </h2>
 
-<div
-  class={cn("text-justify font-roboto", {
-    "font-noto-sans-kannada": lang === Locale.KOK,
-  })}
->
-  {subtitle && <h1 class="font-roboto text-xl font-bold mb-2">{subtitle}</h1>}
-  {
-    currentIntention ? (
-      <p>
-        <StrapiBlocksRenderer content={currentIntention.monthlyIntention} />
-      </p>
-    ) : (
-      <p>{Message.POPES_INTENTION_NOT_FOUND}</p>
-    )
-  }
-</div>
+<div class="text-justify"></div>
+{subtitle && <h1 class=" text-xl font-bold mb-2">{subtitle}</h1>}
+{
+  currentIntention ? (
+    <p>
+      <StrapiBlocksRenderer content={currentIntention.monthlyIntention} />
+    </p>
+  ) : (
+    <p>{Message.POPES_INTENTION_NOT_FOUND}</p>
+  )
+}

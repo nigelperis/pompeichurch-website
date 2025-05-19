@@ -19,10 +19,10 @@ const magazines: PompeichemFalkem[] = (await listMagazines()) || [];
     <section class="flex flex-col p-6">
       <h1
         class={cn(
-          "font-roboto font-black border-natgeo-yellow border-l-4 pl-3 text-3xl lg:text-4xl",
+          " font-black border-natgeo-yellow border-l-4 pl-3 text-3xl lg:text-4xl",
           {
-            "font-noto-sans-kannada pt-2 font-bold": lang === Locale.KOK,
-          }
+            "pt-2 font-bold": lang === Locale.KOK,
+          },
         )}
       >
         {t("nav.pompeichem-falkem")}

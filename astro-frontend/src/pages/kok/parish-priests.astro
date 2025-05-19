@@ -23,19 +23,15 @@ const parishPriestsEn: ParishPriests[] =
     <section id="parish-priests" class="flex flex-col p-6 pb-4">
       <h1
         class={cn(
-          "font-roboto font-black border-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl lg:text-4xl",
+          " font-black border-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl lg:text-4xl",
           {
-            "font-noto-sans-kannada font-bold": lang === Locale.KOK,
-          }
+            "font-bold": lang === Locale.KOK,
+          },
         )}
       >
         {t("nav.parish-priests")}
       </h1>
-      <p
-        class={cn("text-justify text-lg text-slate-700", {
-          "font-noto-sans-kannada": lang === Locale.KOK,
-        })}
-      >
+      <p class="text-justify text-lg text-slate-700">
         {t("pp.subtitle")}
       </p>
       {

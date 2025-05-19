@@ -28,8 +28,8 @@ const t = useTranslations(lang);
     <div class="ml-auto hidden items-center lg:flex">
       <!-- Navbar for Web -->
       <ul
-        class={cn("font-roboto flex items-center gap-2", {
-          "font-noto-sans-kannada lg:pt-[0.5rem]": lang === Locale.KOK,
+        class={cn("flex items-center gap-2", {
+          "lg:pt-[0.5rem]": lang === Locale.KOK,
         })}
       >
         {
@@ -67,7 +67,7 @@ const t = useTranslations(lang);
                             "hover:bg-natgeo-yellow block rounded-md px-2 py-2 text-sm transition-all font-normal",
                             {
                               "font-[350]": lang === Locale.KOK,
-                            }
+                            },
                           )}
                         >
                           {t(sublink.title)}
@@ -105,11 +105,7 @@ const t = useTranslations(lang);
     class="relative ml-auto cursor-pointer rounded-full text-3xl"
   />
   <!-- Navbar for mobile -->
-  <ul
-    class={cn("font-roboto flex flex-col gap-y-5", {
-      "font-noto-sans-kannada": lang === Locale.KOK,
-    })}
-  >
+  <ul class="flex flex-col gap-y-5">
     {
       navLinks.map((link) => (
         <li>
@@ -124,16 +120,13 @@ const t = useTranslations(lang);
               "group flex items-center justify-between font-bold text-xl text-black",
               {
                 "font-extrablack": lang === Locale.EN,
-              }
+              },
             )}
           >
             <span
-              class={cn(
-                "font-roboto font-extrablack transition-all duration-150",
-                {
-                  "font-noto-sans-kannada mt-[4px]": lang === Locale.KOK,
-                }
-              )}
+              class={cn("font-extrablack transition-all duration-150", {
+                "mt-[4px]": lang === Locale.KOK,
+              })}
             >
               {t(link.title)}
             </span>
@@ -159,7 +152,7 @@ const t = useTranslations(lang);
                         "text-lg font-normal transition-all duration-150",
                         {
                           "font-[350]": lang === Locale.KOK,
-                        }
+                        },
                       )}
                     >
                       {t(sublinks.title)}
@@ -240,82 +233,6 @@ const t = useTranslations(lang);
 </style>
 
 <script>
-  const hamburgerMenu = document.querySelector("#hamburger");
-  const hamburgerClose = document.querySelector("#hamburger-close");
-  const navbar = document.querySelector("#navbar");
-  const expandableLinks = document.querySelectorAll(
-    "[data-expandable-links=true]"
-  );
-  const allNavigationLinks = document.querySelectorAll(
-    "nav a:not([data-expandable-links=true])"
-  );
-
-  hamburgerMenu?.addEventListener("click", () => {
-    navbar?.classList.add("open");
-  });
-
-  hamburgerClose?.addEventListener("click", () => {
-    expandableLinks.forEach((element) => {
-      const expandableContent =
-        element.parentElement?.querySelector<HTMLUListElement>("a + ul");
-      expandableContent?.style?.setProperty("max-height", "0");
-      element.setAttribute("data-is-submenu-expanded", "false");
-    });
-
-    navbar?.classList.remove("open");
-  });
-
-  expandableLinks.forEach((element) => {
-    element.addEventListener("click", (e) => {
-      e.preventDefault();
-      const subMenuStatus = element.getAttribute("data-is-submenu-expanded");
-      const expandableContent =
-        element?.parentElement?.querySelector<HTMLUListElement>("a + ul");
-
-      expandableLinks.forEach((otherElement) => {
-        if (otherElement !== element) {
-          otherElement.setAttribute("data-is-submenu-expanded", "false");
-          otherElement.parentElement
-            ?.querySelector<HTMLUListElement>("a + ul")
-            ?.style.setProperty("max-height", "0");
-        }
-      });
-
-      if (subMenuStatus === "true") {
-        element.setAttribute("data-is-submenu-expanded", "false");
-        expandableContent?.style?.setProperty("max-height", "0");
-      } else {
-        element.setAttribute("data-is-submenu-expanded", "true");
-        const elementHeight = expandableContent?.scrollHeight;
-        expandableContent?.style?.setProperty(
-          "max-height",
-          `${elementHeight ?? 500}px`
-        );
-      }
-    });
-  });
-
-  allNavigationLinks.forEach((link) => {
-    link.addEventListener("click", (e) => {
-      e.preventDefault(); // Prevent the default behavior
-
-      // Close all expandable submenus
-      expandableLinks.forEach((element) => {
-        const expandableContent = element.parentElement?.querySelector(
-          "a + ul"
-        ) as HTMLElement;
-        expandableContent?.style.setProperty("max-height", "0");
-        element.setAttribute("data-is-submenu-expanded", "false");
-      });
-
-      // Close the navbar menu on mobile
-      navbar?.classList?.remove("open");
-
-      // Redirect to the link's href
-      const anchorElement = link as HTMLAnchorElement;
-      if (anchorElement.href) {
-        window.location.href = anchorElement.href; // Trigger the redirect
-      }
-    });
-  });
+  import { expandableNav } from "~/scripts/expandable-nav";
+  expandableNav();
 </script>

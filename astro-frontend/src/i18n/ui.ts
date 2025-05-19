@@ -84,6 +84,8 @@ export const ui = {
     "ui.show-more-events": "Show More Events",
     "ui.view-all": "View All",
     "contact.title": "Contact Us",
+    "contact.subtitle":
+      "Contact us for more information about our church activities, hall bookings, and other details",
     "history.title": "Our History",
     "history.subtitle":
       "A Glimpse on the history of Our Lady of Pompei Church Gurpur",
@@ -561,11 +563,13 @@ export const ui = {
     "ui.show-more-events": "ಚಡಿತ್ ಘಡಿತಾಂ",
     "ui.view-all": "ಚಡಿತ್ ಮಾಹೆತ್",
     "contact.title": "ಸಂಪರ್ಕ್ ಕರಾ",
+    "contact.subtitle":
+      "ಇಗರ್ಜೆಚ್ಯೊ ಚಟುವಟಿಕೊ ಆನಿಂ ಹೆರ್ ಮಾಹಿತಿ ಖಾತಿರ್ ಆಮ್ಕಾಂ ಸಂಪರ್ಕ್ ಕರಾ.",
     "history.title": "ಆಮ್ಚಿ ಚರಿತ್ರಾ",
     "history.subtitle": "ಪೊಂಪೈ ಮಾಯೆಚಿ ಫಿರ್ಗಜ್, ಗುರ್ಪುರ್ - ಚರಿತ್ರೆಚೆರ್ ಏಕ್ ನದರ್",
     "history.sweet-memories": "ಮಧುರ್ ಉಗ್ಡಾಸ್",
     "gallery.title": "ಗ್ಯಾಲರಿ",
-    "gallery.subtitle": "Capturing moments of grace",
+    "gallery.subtitle": "ಪಿಂತುರಾನಿ ದಾದೊಸ್ಕಾಯೆಚ್ಯೊ ಘಡ್ಯೊ",
     "priest.service-period": "ಅವ್ದಿ",
     "bethany.title": "ಬೆಥನಿ ಸ್ಕೂಲ್ (ಸಿ.ಬಿ.ಎಸ್.ಸಿ)",
     "jeevadaan.title": "ಜೀವದಾನ",

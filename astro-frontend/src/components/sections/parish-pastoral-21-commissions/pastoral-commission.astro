@@ -7,8 +7,7 @@ import type { CommissionBlock } from "~/models/parish-pastoral-21-commission";
 
 const lang = getLangFromUrl(Astro.url);
 
-const fontClass =
-  lang === Locale.KOK ? "font-noto-sans-kannada" : "font-roboto";
+const fontClass = lang === Locale.KOK ? "font-noto-sans-kannada" : "";
 
 const { pastoral21Commissions } = Astro.props;
 
@@ -16,14 +15,14 @@ const coordinatorData = pastoral21Commissions[0].coordinatorName;
 ---
 
 <h2
-  class={cn("font-roboto text-xl font-normal text-gray-800", {
+  class={cn("text-xl font-normal text-gray-800", {
     "font-noto-sans-kannada": lang === Locale.KOK,
   })}
 >
-  {
-      <strong>{coordinatorData?.position}</strong>
-      <span>: {coordinatorData?.name}</span>
-  }
+  <span>
+    <strong>{coordinatorData?.position}</strong>
+    <span>: {coordinatorData?.name}</span>
+  </span>
 </h2>
 <div class={`mx-auto mb-2 max-w-4xl ${fontClass}`}>
   {

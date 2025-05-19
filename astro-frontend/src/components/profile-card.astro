@@ -35,7 +35,7 @@ const {
     "hover:scale-[1.01] snap-start first:snap-align-none max-w-xs flex-shrink-0 rounded-md border border-gray-200 sm:w-64",
     className,
     "w-[230px] h-[410px]",
-    "transition-transform duration-200 ease-in-out"
+    "transition-transform duration-200 ease-in-out",
   )}
 >
   <div class="flex-none">
@@ -60,8 +60,8 @@ const {
   </div>
 
   <div
-    class={cn("flex flex-1 flex-col justify-end space-y-1 p-3 font-roboto", {
-      "font-noto-sans-kannada font-bold": lang === Locale.KOK,
+    class={cn("flex flex-1 flex-col justify-end space-y-1 p-3 ", {
+      "font-bold": lang === Locale.KOK,
     })}
   >
     <h3

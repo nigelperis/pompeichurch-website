@@ -1,107 +1,114 @@
 ---
-import { getLangFromUrl, useTranslations } from '~/i18n/utils';
-import { cn } from '~/helpers/cn';
+import { getLangFromUrl, useTranslations } from "~/i18n/utils";
+import { cn } from "~/helpers/cn";
 
-import HoverableLink from '~/components/ui/hoverable-link.astro';
-import Card from '~/components/normal-card.astro';
-import { listObituaries } from '~/services/obituaries/list-obituaries';
-import ShareLink from '~/components/ui/share-link.astro';
+import HoverableLink from "~/components/ui/hoverable-link.astro";
+import Card from "~/components/normal-card.astro";
+import { listObituaries } from "~/services/obituaries/list-obituaries";
+import ShareLink from "~/components/ui/share-link.astro";
 import { Message } from "~/constants/message.ts";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const obituaryLink = lang === Locale.EN ? '/obituary' : '/kok/obituary';
+const obituaryLink = lang === Locale.EN ? "/obituary" : "/kok/obituary";
 
-import { format } from 'date-fns';
-import { Locale } from '~/enums/locale';
+import { format } from "date-fns";
+import { Locale } from "~/enums/locale";
 
 const { obituaries } = await listObituaries({ page: 1, pageSize: 5 });
 
 const obituaryDataFormatted = obituaries.map((obituary) => ({
   ...obituary,
   formattedDate: obituary.dateOfDeath
-    ? format(new Date(obituary.dateOfDeath), 'dd-MM-yyyy')
-    : 'Unknown Date',
+    ? format(new Date(obituary.dateOfDeath), "dd-MM-yyyy")
+    : "Unknown Date",
 }));
 
 const featuredObituary = obituaryDataFormatted[4];
-
 ---
 
-<section class="mt-1 flex flex-col lg:mx-28 lg:mb-3 lg:min-h-[70svh] lg:justify-evenly">
-	<h1
-		data-aos="fade-right"
-		class={cn(
-			'font-roboto font-black mx-6 mb-4 inline-block border-l-4 border-natgeo-yellow pl-3 text-2xl lg:mx-0 lg:text-4xl',
-			{
-				'font-noto-sans-kannada font-extrabold pt-2': lang === Locale.KOK,
-			},
-		)}
-	>
-		{t('nav.obituary')}
-	</h1>
+<section
+  class="mt-1 flex flex-col lg:mx-28 lg:mb-3 lg:min-h-[70svh] lg:justify-evenly"
+>
+  <h1
+    data-aos="fade-right"
+    class={cn(
+      " font-black mx-6 mb-4 inline-block border-l-4 border-natgeo-yellow pl-3 text-2xl lg:mx-0 lg:text-4xl",
+      {
+        "font-extrabold pt-2": lang === Locale.KOK,
+      },
+    )}
+  >
+    {t("nav.obituary")}
+  </h1>
 
-	{obituaryDataFormatted.length > 0 ? (
-		<>
-			<div class="my-4 flex w-full space-x-8 overflow-x-auto pl-6 pr-3 scrollbar-none lg:flex-wrap lg:justify-center lg:space-x-8 lg:overflow-x-visible xl:space-x-10">
-				{obituaryDataFormatted.slice(0, 4).map((obituary) => (
-					<div class="flex-none relative h-full">
-						<Card
-              imageUrl={obituary.image?.url}
-              title={`${lang === 'kok' ? obituary.konkaniName : obituary.englishName} (${obituary.age})`}
-              subtitle={
-              lang === 'kok'
-              ? `ಮರಣ್ : ${obituary.formattedDate}`
-              : `Death: ${obituary.formattedDate}`
+  {
+    obituaryDataFormatted.length > 0 ? (
+      <>
+        <div class="my-4 flex w-full space-x-8 overflow-x-auto pl-6 pr-3 scrollbar-none lg:flex-wrap lg:justify-center lg:space-x-8 lg:overflow-x-visible xl:space-x-10">
+          {obituaryDataFormatted.slice(0, 4).map((obituary) => (
+            <div class="flex-none relative h-full">
+              <Card
+                imageUrl={obituary.image?.url}
+                title={`${lang === Locale.KOK ? obituary.konkaniName : obituary.englishName} (${obituary.age})`}
+                subtitle={
+                  lang === Locale.KOK
+                    ? `ಮರಣ್ : ${obituary.formattedDate}`
+                    : `Death: ${obituary.formattedDate}`
                 }
               />
 
-						<ShareLink
-							class="absolute bottom-4 right-4"
-							shareData={{
-								url: `${new URL(
-									lang === Locale.EN
-										? `/obituary?id=${obituary.englishName.replace(/\s+/g, '-').toLowerCase()}`
-										: `/kok/obituary?id=${obituary.englishName.replace(/\s+/g, '-').toLowerCase()}`,
-									Astro.url
-								).href}`,
-								title: `${obituary.konkaniName} - ${obituary.ward}`,
-							}}
-							size={24}
-						/>
-					</div>
-				))}
+              <ShareLink
+                class="absolute bottom-4 right-4"
+                shareData={{
+                  url: `${
+                    new URL(
+                      lang === Locale.EN
+                        ? `/obituary?id=${obituary.englishName.replace(/\s+/g, "-").toLowerCase()}`
+                        : `/kok/obituary?id=${obituary.englishName.replace(/\s+/g, "-").toLowerCase()}`,
+                      Astro.url,
+                    ).href
+                  }`,
+                  title: `${obituary.konkaniName} - ${obituary.ward}`,
+                }}
+                size={24}
+              />
+            </div>
+          ))}
 
-				{featuredObituary && (
-					<div class="flex-none relative h-full lg:hidden overflow-hidden border border-gray-200 shadow-sm">
-						<div class="opacity-50 blur-md rounded-lg">
-							<Card
-  imageUrl={featuredObituary.image?.url}
-  title={`${lang === 'kok' ? featuredObituary.konkaniName : featuredObituary.englishName} (${featuredObituary.age})`}
-  subtitle={
-    lang === 'kok'
-      ? `ಮರಣ್ : ${featuredObituary.formattedDate}`
-      : `Death: ${featuredObituary.formattedDate}`
+          {featuredObituary && (
+            <div class="flex-none relative h-full lg:hidden overflow-hidden border border-gray-200 shadow-sm">
+              <div class="opacity-50 blur-md rounded-lg">
+                <Card
+                  imageUrl={featuredObituary.image?.url}
+                  title={`${lang === "kok" ? featuredObituary.konkaniName : featuredObituary.englishName} (${featuredObituary.age})`}
+                  subtitle={
+                    lang === "kok"
+                      ? `ಮರಣ್ : ${featuredObituary.formattedDate}`
+                      : `Death: ${featuredObituary.formattedDate}`
+                  }
+                />
+              </div>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <HoverableLink
+                  href={obituaryLink}
+                  class="mb-2 mt-2 inline-block text-xl font-bold text-black"
+                >
+                  {t("ui.view-all")}
+                </HoverableLink>
+              </div>
+            </div>
+          )}
+        </div>
+
+        <div class="hidden justify-center pb-2 lg:flex">
+          <HoverableLink href={obituaryLink}>{t("ui.view-all")}</HoverableLink>
+        </div>
+      </>
+    ) : (
+      <p class="py-8 text-center text-3xl font-semibold">
+        {Message.OBITUARIES_NOT_FOUND}
+      </p>
+    )
   }
-/>
-						</div>
-						<div class="absolute inset-0 flex items-center justify-center">
-							<HoverableLink href={obituaryLink} class="mb-2 mt-2 inline-block text-xl font-bold text-black">
-								{t('ui.view-all')}
-							</HoverableLink>
-						</div>
-					</div>
-				)}
-			</div>
-
-			<!-- View All Button -->
-			<div class="hidden justify-center pb-2 lg:flex">
-				<HoverableLink href={obituaryLink}>
-					{t('ui.view-all')}
-				</HoverableLink>
-			</div>
-		</>
-	) : (
-	<p class="py-8 text-center text-3xl font-semibold">{Message.OBITUARIES_NOT_FOUND}</p>
-	)}
 </section>
