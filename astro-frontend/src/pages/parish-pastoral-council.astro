@@ -13,7 +13,11 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 const parishPastoralCouncilDataKok: ParishPastoralCouncil[] =
-  (await listPastoralCouncilData({ page: 1, pageSize: 100, locale: Locale.KOK })) || [];
+  (await listPastoralCouncilData({
+    page: 1,
+    pageSize: 100,
+    locale: Locale.KOK,
+  })) || [];
 const parishPastoralCouncilData: ParishPastoralCouncil[] =
   (await listPastoralCouncilData({ page: 1, pageSize: 100 })) || [];
 const parishPastoralCouncilImage = await getPastoralCouncilImage();
@@ -23,10 +27,11 @@ const parishPastoralCouncilImage = await getPastoralCouncilImage();
   <main class="mx-auto max-w-4xl overflow-hidden bg-white">
     <section id="pastoral-council" class="flex flex-col p-6 pb-4">
       <h1
-        class={cn("font-roboto border-natgeo-yellow border-l-4 pl-3 text-3xl font-black lg:text-4xl",
-        {
-          "font-noto-sans-kannada font-bold": lang === Locale.KOK,
-        }
+        class={cn(
+          "border-natgeo-yellow border-l-4 pl-3 text-3xl font-black lg:text-4xl",
+          {
+            "font-bold": lang === Locale.KOK,
+          },
         )}
       >
         {t("parish.pastoral-parishad")}
@@ -43,13 +48,18 @@ const parishPastoralCouncilImage = await getPastoralCouncilImage();
             pastoralCouncilImage={parishPastoralCouncilImage}
           />
         ) : (
-          <ParishPastoralCouncilList
-            pastoralCouncilData={parishPastoralCouncilData}
-            pastoralCouncilImage={parishPastoralCouncilImage}
-          />
-          <p class="py-8 text-center text-3xl font-semibold">
-            {Message.COUNCIL_MEMBERS_NOT_FOUND}
-          </p>
+          <>
+            {" "}
+            (
+            <ParishPastoralCouncilList
+              pastoralCouncilData={parishPastoralCouncilData}
+              pastoralCouncilImage={parishPastoralCouncilImage}
+            />
+            <p class="py-8 text-center text-3xl font-semibold">
+              {Message.COUNCIL_MEMBERS_NOT_FOUND}
+            </p>
+            )
+          </>
         )
       }
     </section>

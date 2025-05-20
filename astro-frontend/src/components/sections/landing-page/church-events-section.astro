@@ -23,10 +23,10 @@ const data = (await listEvents({ page: 1, pageSize: 3 })) || [];
   <h1
     data-aos="fade-right"
     class={cn(
-      "font-roboto font-black mb-6 inline-block border-l-4 border-natgeo-yellow pl-3 text-2xl lg:text-4xl",
+      "font-black mb-6 inline-block border-l-4 border-natgeo-yellow pl-3 text-2xl lg:text-4xl",
       {
-        "font-noto-sans-kannada font-extrabold pt-2": lang === Locale.KOK,
-      }
+        "font-extrabold pt-2": lang === Locale.KOK,
+      },
     )}
   >
     {t("nav.events")}
@@ -43,7 +43,7 @@ const data = (await listEvents({ page: 1, pageSize: 3 })) || [];
               event?.eventImage?.url
                 ? new URL(
                     event?.eventImage?.url,
-                    import.meta.env.STRAPI_URL
+                    import.meta.env.STRAPI_URL,
                   ).toString()
                 : getPlaceholderImage()
             }

@@ -30,10 +30,12 @@ const pastoralCoreCommittee =
       ? pastoralCoreCommitteeEn
       : pastoralCoreCommitteeKok;
 
-const financeCommitteeKok = (await listParishFinanceCommitteeData({locale: Locale.KOK}))[3];
+const financeCommitteeKok = (
+  await listParishFinanceCommitteeData({ locale: Locale.KOK })
+)[3];
 const financeCommitteeEn = (await listParishFinanceCommitteeData())[3];
 const financeCommitteeMember =
-   lang === Locale.KOK
+  lang === Locale.KOK
     ? financeCommitteeKok !== undefined
       ? financeCommitteeKok
       : financeCommitteeEn
@@ -48,68 +50,71 @@ const financeCommitteeMember =
   <h1
     data-aos="fade-right"
     class={cn(
-      "font-roboto font-black mx-6 mb-4 inline-block border-l-4 border-natgeo-yellow pl-3 text-2xl lg:mx-0 lg:text-4xl",
+      "font-black mx-6 mb-4 inline-block border-l-4 border-natgeo-yellow pl-3 text-2xl lg:mx-0 lg:text-4xl",
       {
-        "font-noto-sans-kannada font-extrabold pt-2": lang === Locale.KOK,
-      }
+        "font-extrabold pt-2": lang === Locale.KOK,
+      },
     )}
   >
     {t("landing.pastoral-parishad")}
   </h1>
+
   {
-		pastoralCoreCommittee.length > 0 ? (
-  <div
-    class="scrollbar-none my-4 flex w-full scroll-ml-6 space-x-8 overflow-x-auto overflow-y-hidden pl-6 pr-3 lg:justify-center xl:space-x-10"
-  >
-    {pastoralCoreCommittee.slice(0, 4).map((member) => (
-					<ParishPastoralCard
-						src={member?.image?.url}
-						name={member.name}
-						position={member.position}
-						width={300}
-						height={300}
-					/>
-				))}
-    <div
-      class="flex-shrink-0 transform snap-start overflow-hidden border border-gray-200 transition-all duration-200 ease-in-out lg:hidden"
-    >
-      	<div class="opacity-50 blur-md">
-							{
-								financeCommitteeMember === undefined ? (
-								<ParishPastoralCard src={''} name={''} position={''} width={300} height={300}/>) : (
-								<ParishPastoralCard
-										src={financeCommitteeMember?.image.url}
-										name={financeCommitteeMember.name}
-										position={financeCommitteeMember.position}
-										width={300}
-										height={300}
-									/>
-								)
-							}
-						</div>
+    pastoralCoreCommittee.length > 0 ? (
+      <>
+        <div class="scrollbar-none my-4 flex w-full scroll-ml-6 space-x-8 overflow-x-auto overflow-y-hidden pl-6 pr-3 lg:justify-center xl:space-x-10">
+          {pastoralCoreCommittee.slice(0, 4).map((member) => (
+            <ParishPastoralCard
+              src={member?.image?.url}
+              name={member.name}
+              position={member.position}
+              width={300}
+              height={300}
+            />
+          ))}
 
-      <div class="absolute inset-0 flex items-center justify-center">
-        <HoverableLink
-          href={councilUrl}
-          class="mb-2 mt-2 inline-block text-xl font-bold text-black"
-        >
-          {t("ui.view-all")}
-        </HoverableLink>
+          <div class="relative flex-shrink-0 transform snap-start overflow-hidden border border-gray-200 transition-all duration-200 ease-in-out lg:hidden">
+            <div class="opacity-50 blur-md">
+              {financeCommitteeMember === undefined ? (
+                <ParishPastoralCard
+                  src=""
+                  name=""
+                  position=""
+                  width={300}
+                  height={300}
+                />
+              ) : (
+                <ParishPastoralCard
+                  src={financeCommitteeMember?.image?.url}
+                  name={financeCommitteeMember.name}
+                  position={financeCommitteeMember.position}
+                  width={300}
+                  height={300}
+                />
+              )}
+            </div>
+
+            <div class="absolute inset-0 flex items-center justify-center">
+              <HoverableLink
+                href={councilUrl}
+                class="mb-2 mt-2 inline-block text-xl font-bold text-black"
+              >
+                {t("ui.view-all")}
+              </HoverableLink>
+            </div>
+          </div>
+        </div>
+
+        <div class="hidden justify-center lg:flex">
+          <HoverableLink href={councilUrl}>{t("ui.view-all")}</HoverableLink>
+        </div>
+      </>
+    ) : (
+      <div class="m-auto">
+        <p class="py-8 text-center text-3xl font-semibold">
+          {Message.CORE_COMMITTEE_NOT_FOUND}
+        </p>
       </div>
-    </div>
-  </div>
-
-  <div class="hidden justify-center lg:flex">
-    <HoverableLink href={councilUrl}>
-      {t("ui.view-all")}
-    </HoverableLink>
-  </div>
-  ) : (
-			<div class="m-auto">
-				<p class="py-8 text-center text-3xl font-semibold">
-        	{Message.CORE_COMMITTEE_NOT_FOUND}
-      	</p>
-			</div>
     )
   }
 </section>

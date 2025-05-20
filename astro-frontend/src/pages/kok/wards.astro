@@ -14,10 +14,10 @@ const t = useTranslations(lang);
     <section class="flex flex-col p-6">
       <h1
         class={cn(
-          "font-roboto font-black border-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl lg:text-4xl",
+          "font-black border-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl lg:text-4xl",
           {
-            "font-noto-sans-kannada font-bold": lang === Locale.KOK,
-          }
+            "font-bold": lang === Locale.KOK,
+          },
         )}
       >
         {t("nav.wards")}

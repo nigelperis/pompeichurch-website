@@ -30,78 +30,70 @@ const priestsData =
     ? parishHistoryKok[1].priestInfo
     : parishHistory[1].priestInfo;
 
-const fontClass =
-  lang === Locale.KOK ? "font-noto-sans-kannada font-normal" : "font-geist";
 const images = [history1, history2, history3, history4, history5, history6];
 ---
 
 <div class="mx-auto">
-  <div class={fontClass}>
-    <div class="md:float-right md:ml-5 lg:mt-2">
-      <Image src={churchBannerImage} alt="Church Banner Image" />
-    </div>
+  <div class="md:float-right md:ml-5 lg:mt-2">
+    <Image src={churchBannerImage} alt="Church Banner Image" />
+  </div>
+  <div
+    class="rich-content mt-1 text-justify leading-7 text-slate-700"
+    set:html={historyData}
+  />
+  <div
+    class="rich-content pb-4 text-justify leading-7 text-slate-700"
+    set:html={priestsData}
+  />
+  <h1 class="mb-4 mt-2 text-2xl font-bold lg:text-3xl">
+    {t("history.sweet-memories")}
+  </h1>
+  <div class="mt-4 pb-4">
     <div
-      class="rich-content mt-1 text-justify leading-7 text-slate-700"
-      set:html={historyData}
-    />
-    <div
-      class="rich-content pb-4 text-justify leading-7 text-slate-700"
-      set:html={priestsData}
-    />
-    <h1
-      class={cn("font-roboto mb-4 mt-2 text-2xl font-bold lg:text-3xl", {
-        "font-noto-sans-kannada": lang === Locale.KOK,
-      })}
+      class="hidden grid-cols-1 gap-4 md:grid md:grid-cols-2 history-gallery"
     >
-      {t("history.sweet-memories")}
-    </h1>
-    <div class="mt-4 pb-4">
-      <div
-        class="hidden grid-cols-1 gap-4 md:grid md:grid-cols-2 history-gallery"
-      >
+      {
+        images.map((image) => (
+          <a
+            href="#"
+            role="button"
+            aria-label="View historic image of our parish"
+            data-pswp-src={image.src}
+            data-pswp-width={image.width}
+            data-pswp-height={image.height}
+          >
+            <Image
+              src={image}
+              alt="Historic Image of Our Parish"
+              class="w-full cursor-pointer"
+            />
+          </a>
+        ))
+      }
+    </div>
+    <div class="mx-[-1.5rem] block md:hidden history-gallery">
+      <EmblaCarousel autoScroll={true} showArrows={true}>
         {
           images.map((image) => (
-            <a
-              href="#"
-              role="button"
-              aria-label="View historic image of our parish"
-              data-pswp-src={image.src}
-              data-pswp-width={image.width}
-              data-pswp-height={image.height}
-            >
-              <Image
-                src={image}
-                alt="Historic Image of Our Parish"
-                class="w-full cursor-pointer"
-              />
-            </a>
+            <EmblaCarouselItem>
+              <a
+                href="#"
+                role="button"
+                aria-label="View historic image of our parish"
+                data-pswp-src={image.src}
+                data-pswp-width={image.width}
+                data-pswp-height={image.height}
+              >
+                <Image
+                  src={image}
+                  alt="Historic Image of Our Parish"
+                  class="w-full object-cover cursor-pointer"
+                />
+              </a>
+            </EmblaCarouselItem>
           ))
         }
-      </div>
-      <div class="mx-[-1.5rem] block md:hidden history-gallery">
-        <EmblaCarousel autoScroll={true} showArrows={true}>
-          {
-            images.map((image) => (
-              <EmblaCarouselItem>
-                <a
-                  href="#"
-                  role="button"
-                  aria-label="View historic image of our parish"
-                  data-pswp-src={image.src}
-                  data-pswp-width={image.width}
-                  data-pswp-height={image.height}
-                >
-                  <Image
-                    src={image}
-                    alt="Historic Image of Our Parish"
-                    class="w-full object-cover cursor-pointer"
-                  />
-                </a>
-              </EmblaCarouselItem>
-            ))
-          }
-        </EmblaCarousel>
-      </div>
+      </EmblaCarousel>
     </div>
   </div>
 </div>

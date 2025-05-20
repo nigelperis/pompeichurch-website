@@ -15,15 +15,15 @@ const t = useTranslations(lang);
     <section id="parish-priests" class="flex flex-col p-6 pb-4">
       <h1
         class={cn(
-          "font-roboto font-black border-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl lg:text-4xl",
+          "font-black border-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl lg:text-4xl",
           {
-            "font-noto-sans-kannada font-bold": lang === Locale.KOK,
-          }
+            "font-bold": lang === Locale.KOK,
+          },
         )}
       >
         {t("nav.religious-vocations")}
       </h1>
-      <p class="font-geist text-justify text-lg text-slate-700">
+      <p class="text-justify text-lg text-slate-700">
         {t("vocation.title")}
       </p>
       <h2 class="mt-6 text-3xl font-semibold italic text-red-600 lg:text-3xl">

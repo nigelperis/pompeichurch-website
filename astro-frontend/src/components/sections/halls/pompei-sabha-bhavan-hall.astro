@@ -16,9 +16,12 @@ const t = useTranslations(lang);
 ---
 
 <h1
-  class={cn("font-roboto font-black border-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl lg:text-4xl",{
-    "font-noto-sans-kannada font-bold sm:pt-2": lang === Locale.KOK,
-  })}
+  class={cn(
+    "font-black border-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl lg:text-4xl",
+    {
+      "font-bold sm:pt-2": lang === Locale.KOK,
+    },
+  )}
 >
   {t("hall.title")}
 </h1>
@@ -29,7 +32,7 @@ const t = useTranslations(lang);
     class="pb-2 text-center"
   />
 </div>
-<div class="font-roboto pb-4">
+<div class="pb-4">
   <p class="mb-4 text-lg font-bold">Capacity: 500</p>
 
   <h4 class="mb-2 text-lg font-bold">Timings:</h4>
@@ -48,7 +51,7 @@ const t = useTranslations(lang);
     </ul>
   </div>
 </div>
-<h2 class="font-roboto pb-4 text-lg font-bold text-slate-800">
+<h2 class="pb-4 text-lg font-bold text-slate-800">
   Pompei Sabha Bhavan Interior
 </h2>
 <div class="flex flex-col gap-4 pb-4 md:flex-row">
@@ -63,7 +66,7 @@ const t = useTranslations(lang);
     class="w-full md:w-1/2"
   />
 </div>
-<h2 class="font-roboto pb-4 text-lg font-bold text-slate-800">
+<h2 class="pb-4 text-lg font-bold text-slate-800">
   Pompei Sabha Bhavan Exterior
 </h2>
 <div class="flex flex-col gap-4 md:flex-row">

@@ -3,7 +3,7 @@ const socials = [
     name: "icym-pyc",
     links: [
       {
-        key: "instagram1",
+        key: "instagram2",
         value: "https://www.instagram.com/pompei_youngsters_club/",
       },
       {
@@ -15,7 +15,7 @@ const socials = [
   {
     name: "ycs",
     links: [
-      { key: "instagram1", value: "https://www.instagram.com/ycs_gurpur/" },
+      { key: "instagram2", value: "https://www.instagram.com/ycs_gurpur/" },
     ],
   },
 ];

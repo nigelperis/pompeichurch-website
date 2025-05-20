@@ -13,8 +13,8 @@ interface Props {
   imageHeight: number;
   age: string | number;
   relationType?: string;
-  relNameEn?: string;
-  relNameKok?: string;
+  relationNameEn?: string;
+  relationNameKok?: string;
   ward: string;
   dateOfDeath: string;
   class?: string;
@@ -25,22 +25,23 @@ const {
   name,
   age,
   relationType,
-  relNameEn,
-  relNameKok,
+  relationNameEn,
+  relationNameKok,
   ward,
   dateOfDeath,
   imageWidth,
   imageHeight,
   class: className,
   imageUrl,
-  } = Astro.props;
+} = Astro.props;
 
 const lang = getLangFromUrl(Astro.url);
+
 const relationMapKok: Record<string, string> = {
-  "H/o": "ಪತಿ",
-  "W/o": "ಪತಿಣ್",
-  "D/o": "ಧುವ್",
-  "S/o": "ಪುತ್",
+  "H/O": "ಪತಿ",
+  "W/O": "ಪತಿಣ್",
+  "D/O": "ಧುವ್",
+  "S/O": "ಪುತ್",
 };
 
 const relationLabel =
@@ -48,18 +49,19 @@ const relationLabel =
     ? relationMapKok[relationType ?? ""] || "ಸಾತೀ"
     : relationType || "Relation";
 
-const activeLabels = {
-  [Locale.EN]: {
-    age: "Age",
-    ward: "Ward",
-    death: "Death",
-  },
-  [Locale.KOK]: {
-    age: "ಪ್ರಾಯ್",
-    ward: "ವಾಡೊ",
-    death: "ಮರಣ್",
-  },
-}[lang] ?? {};
+const activeLabels =
+  {
+    [Locale.EN]: {
+      age: "Age",
+      ward: "Ward",
+      death: "Death",
+    },
+    [Locale.KOK]: {
+      age: "ಪ್ರಾಯ್",
+      ward: "ವಾಡೊ",
+      death: "ಮರಣ್",
+    },
+  }[lang] ?? {};
 
 const wardMap: Record<string, { en: string; kok: string }> = {
   "Kowdoor A": { en: "Kowdoor A", kok: "ಕೌಡೂರ್ ಎ" },
@@ -68,10 +70,10 @@ const wardMap: Record<string, { en: string; kok: string }> = {
   "Pompei B": { en: "Pompei B", kok: "ಪೊಂಪೈ ಬಿ" },
   "Kandar A": { en: "Kandar A", kok: "ಕಂದಾರ್ ಎ" },
   "Kandar B": { en: "Kandar B", kok: "ಕಂದಾರ್ ಬಿ" },
-  "Monel": { en: "Monel", kok: "ಮಣೆಲ್" },
-  "Gurpur": { en: "Gurpur", kok: "ಗುರ್ಪುರ್" },
-  "Church": { en: "Church", kok: "ಇಗರ್ಜೆ" },
-  "Addoor": { en: "Addoor", kok: "ಅಡ್ಡೂರ್" },
+  Monel: { en: "Monel", kok: "ಮಣೆಲ್" },
+  Gurpur: { en: "Gurpur", kok: "ಗುರ್ಪುರ್" },
+  Church: { en: "Church", kok: "ಇಗರ್ಜೆ" },
+  Addoor: { en: "Addoor", kok: "ಅಡ್ಡೂರ್" },
 };
 
 const localizedWard = wardMap[ward]?.[lang === "kok" ? "kok" : "en"] ?? ward;
@@ -80,15 +82,15 @@ const obituaryUrl = new URL(
   lang === Locale.EN
     ? `/obituary?id=${id.replace(/\s+/g, "-").toLowerCase()}`
     : `/kok/obituary?id=${id.replace(/\s+/g, "-").toLowerCase()}`,
-  Astro.url
+  Astro.url,
 ).href;
 ---
 
 <div
   id={id.replace(/\s+/g, "-").toLowerCase()}
   class={cn(
-     "bg-white border border-gray-200 overflow-hidden rounded-md w-[250px] mx-1 flex flex-col transition-transform duration-200 ease-in-out",
-    className
+    "bg-white border border-gray-200 overflow-hidden w-[280px] md:w-[250px] mx-1 flex flex-col transition-transform duration-200 ease-in-out md:h-[510px]",
+    className,
   )}
 >
   <div class="aspect-[3/4] bg-gray-100">
@@ -101,43 +103,54 @@ const obituaryUrl = new URL(
     />
   </div>
 
-  <div class="flex flex-col justify-between p-3 font-noto-sans-kannada h-full min-h-[180px] relative">
+  <div class="flex flex-col justify-between p-3 h-full min-h-[180px] relative">
     <div class="space-y-1">
-      <h3 class="line-clamp-1 text-xl font-bold text-slate-900">{name}</h3>
+      <h3 class="text-xl font-bold text-slate-900 line-clamp-2">
+        {name}
+      </h3>
 
-      {(relNameEn || relNameKok) && (
-        <p class="line-clamp-1 md:text-base text-lg text-slate-700">
-          <strong>{relationLabel}:</strong> {lang === "kok" ? relNameKok : relNameEn}
-        </p>
-      )}
+      {
+        (relationNameEn || relationNameKok) && (
+          <p class="line-clamp-2 md:text-base text-lg text-slate-700">
+            <strong>{relationLabel}:</strong>{" "}
+            {lang === "kok" ? relationNameKok : relationNameEn}
+          </p>
+        )
+      }
 
-      {age && (
-        <p class="md:text-base text-lg text-slate-700">
-          <strong>{activeLabels.age}:</strong> {age}
-        </p>
-      )}
+      {
+        age && (
+          <p class="md:text-base text-lg text-slate-700">
+            <strong>{activeLabels.age}:</strong> {age}
+          </p>
+        )
+      }
 
-      {ward && (
-        <p class="md:text-base text-lg text-slate-700">
-          <strong>{activeLabels.ward}:</strong> {localizedWard}
-        </p>
-      )}
+      {
+        ward && (
+          <p class="md:text-base text-lg text-slate-700">
+            <strong>{activeLabels.ward}:</strong> {localizedWard}
+          </p>
+        )
+      }
 
-      {dateOfDeath && (
-        <p class="md:text-base text-lg text-slate-700">
-          <strong>{activeLabels.death}:</strong>{" "}
-          {new Intl.DateTimeFormat("en-GB", {
-            day: "2-digit",
-            month: "2-digit",
-            year: "numeric",
-          })
-            .format(new Date(dateOfDeath))
-            .replace(/\//g, "-")}
-        </p>
-      )}
+      {
+        dateOfDeath && (
+          <p class="md:text-base text-lg text-slate-700">
+            <strong>{activeLabels.death}:</strong>{" "}
+            {new Intl.DateTimeFormat("en-GB", {
+              day: "2-digit",
+              month: "2-digit",
+              year: "numeric",
+            })
+              .format(new Date(dateOfDeath))
+              .replace(/\//g, "-")}
+          </p>
+        )
+      }
     </div>
 
-    <div class="absolute bottom-4 right-4">
+    <div class="absolute bottom-1 right-1">
       <ShareLink
         class="px-3 py-2 text-sm"
         shareData={{

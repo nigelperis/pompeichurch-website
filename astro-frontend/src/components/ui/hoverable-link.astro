@@ -1,39 +1,37 @@
 ---
-import { Locale } from '~/enums/locale';
-import { cn } from '~/helpers/cn';
+import { cn } from "~/helpers/cn";
 
-import { getLangFromUrl } from '~/i18n/utils';
+import { getLangFromUrl } from "~/i18n/utils";
 const lang = getLangFromUrl(Astro.url);
 
 interface Props {
-	href?: string;
-	class?: string;
-	target?: string;
+  href?: string;
+  class?: string;
+  target?: string;
 }
 const { href, class: className, target, ...rest } = Astro.props;
 ---
 
 <a
-	href={href}
-	class={cn(
-		'font-roboto from-natgeo-yellow font-medium  to-natgeo-yellow hoverable-link border-natgeo-yellow border-b-2 bg-gradient-to-r px-2 py-1 hover:border-transparent hover:text-black',
-		{ 'font-noto-sans-kannada': lang === Locale.KOK },
-		className,
-	)}
-	{...rest}
-	target={target}
+  href={href}
+  class={cn(
+    "from-natgeo-yellow font-medium  to-natgeo-yellow hoverable-link border-natgeo-yellow border-b-2 bg-gradient-to-r px-2 py-1 hover:border-transparent hover:text-black",
+    className,
+  )}
+  {...rest}
+  target={target}
 >
-	<slot />
+  <slot />
 </a>
 
 <style is:global>
-	.hoverable-link {
-		background-position: 0 100%;
-		background-repeat: no-repeat;
-		background-size: 100% 0;
-		transition: background-size 230ms ease-out;
-	}
-	.hoverable-link:hover {
-		background-size: 100% 100%;
-	}
+  .hoverable-link {
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 100% 0;
+    transition: background-size 230ms ease-out;
+  }
+  .hoverable-link:hover {
+    background-size: 100% 100%;
+  }
 </style>

@@ -1,7 +1,6 @@
 ---
 import { Image } from "astro:assets";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
-import { cn } from "~/helpers/cn";
 
 //Images
 import rosaMysticaConvent from "~/assets/convents/rosa-mystica-convent.jpg";
@@ -11,11 +10,7 @@ const t = useTranslations(lang);
 ---
 
 <div class="mx-auto max-w-4xl">
-  <h2
-    class={cn("font-roboto mt-4 pb-2 text-2xl font-bold", {
-      "font-noto-sans-kannada": lang === "kok",
-    })}
-  >
+  <h2 class="mt-4 pb-2 text-2xl font-bold">
     {t("rosamysticaconvent.title")}
   </h2>
 
@@ -24,7 +19,7 @@ const t = useTranslations(lang);
     alt="Rosa Mystica Convent at Our Lady of Pompei Church, Gurpur Kaikamba"
     class="mt-6 rounded-sm md:float-left md:mr-5 md:w-1/2"
   />
-  <div class="font-geist mb-2 mt-6">
+  <div class="mb-2 mt-6">
     <p class="mt-4 text-justify leading-7">
       The Congregation of the Sisters of the Little Flower of Bethany was
       founded in the year 1921 on 16th July by Rev. Fr RFC Mascarenhas, the then
@@ -49,7 +44,7 @@ const t = useTranslations(lang);
       supported by 7 trained formators.
     </p>
     <br />
-    <h3 class="font-roboto font-bold">
+    <h3 class="font-bold">
       <strong>FORMATION HOUSES:</strong>
     </h3>
     <p class="text-justify leading-7">
@@ -59,7 +54,7 @@ const t = useTranslations(lang);
       committed to a life of service and faith and provide a structured
       environment for spiritual growth.
     </p><br />
-    <h3 class="font-roboto font-bold">
+    <h3 class="font-bold">
       <strong>SPIRITUAL LIFE OF THE COMMUNITY:</strong>
     </h3>
     <p class="text-justify leading-7 text-slate-700">
@@ -73,7 +68,7 @@ const t = useTranslations(lang);
       spiritual and community activities. This association fosters a deep sense
       of fellowship and commitment among its members.
     </p><br />
-    <h3 class="font-roboto font-bold">
+    <h3 class="font-bold">
       <strong>EDUCATIONAL INSTITUTIONS:</strong>
     </h3>
     <p class="text-justify leading-7 text-slate-700">
@@ -85,7 +80,7 @@ const t = useTranslations(lang);
       our students come from economically disadvantaged backgrounds, facing
       numerous financial challenges.
     </p><br />
-    <h3 class="font-roboto font-bold">
+    <h3 class="font-bold">
       <strong>HEALTH CARE MINISTRY:</strong>
     </h3>
     <p class="text-justify leading-7 text-slate-700">
@@ -93,7 +88,7 @@ const t = useTranslations(lang);
       centre for the poor people of the locality. One sister provides counseling
       to all the students of the campus.
     </p><br />
-    <h3 class="font-roboto font-bold">
+    <h3 class="font-bold">
       <strong>CHURCH MINISTRY:</strong>
     </h3>
     <p class="text-justify leading-7 text-slate-700">

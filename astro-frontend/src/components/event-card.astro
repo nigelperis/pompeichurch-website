@@ -41,7 +41,7 @@ const eventUrl =
 <div
   class={cn(
     "hover:scale-[1.01] flex flex-col transform rounded-sm border border-gray-200 transition-all duration-300 ease-in-out",
-    className
+    className,
   )}
   {...rest}
 >
@@ -55,11 +55,7 @@ const eventUrl =
     />
   </div>
 
-  <div
-    class={cn("font-noto-sans-kannada p-4", {
-      "font-noto-sans-kannada": lang === Locale.KOK,
-    })}
-  >
+  <div class="p-4 font-noto-sans-kannada">
     <div class="flex flex-col gap-2">
       <h3 class="text-xl font-bold text-slate-900">
         {eventNameKok}

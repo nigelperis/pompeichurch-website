@@ -1,12 +1,7 @@
 ---
 import NetworkImage from "~/components/ui/network-image.astro";
-import { cn } from "~/helpers/cn";
-import { Locale } from "~/enums/locale";
-import { getLangFromUrl } from "~/i18n/utils";
 import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
 import type { ParishPastoralCouncil } from "~/models/parish-pastoral-council";
-
-const lang = getLangFromUrl(Astro.url);
 
 const { pastoralCouncilData } = Astro.props as {
   pastoralCouncilData: ParishPastoralCouncil[];
@@ -19,18 +14,14 @@ const { pastoralCouncilImage } = Astro.props;
     src={pastoralCouncilImage?.pastoralCouncilImage?.url
       ? new URL(
           pastoralCouncilImage?.pastoralCouncilImage?.url,
-          import.meta.env.STRAPI_URL
+          import.meta.env.STRAPI_URL,
         ).toString()
       : getPlaceholderImage()}
     width={pastoralCouncilImage?.pastoralCouncilImage?.width || 600}
     height={pastoralCouncilImage?.pastoralCouncilImage?.height || 400}
     class="w-full rounded-sm object-contain pb-4 pt-4"
   />
-  <table
-    class={cn("mx-auto w-full max-w-4xl border border-gray-200 font-roboto", {
-      "font-noto-sans-kannada": lang === Locale.KOK,
-    })}
-  >
+  <table class="mx-auto w-full max-w-4xl border border-gray-200">
     <tbody>
       {
         pastoralCouncilData.map((member) => (

@@ -34,13 +34,8 @@ const { imageUrl, name, ward, dob, dod, congregation, parents, role } =
     />
   </div>
 
-  <div
-    class={cn("font-roboto", {
-      "font-noto-sans-kannada font-bold": lang === "kok",
-    })}
-  >
+  <div class={cn({ "font-bold": lang === "kok" })}>
     <h3 class="mb-2 text-lg font-semibold text-red-700 lg:text-xl">{name}</h3>
-
     {
       congregation && role && (
         <p class="mb-2 font-medium text-blue-700 lg:text-sm">{congregation}</p>

@@ -47,22 +47,15 @@ const optimizedChurchHeroImage = await getImage({ src: churchHeroImage });
     data-aos="fade-up"
     data-aos-delay="700"
     class={cn(
-      "mt-6 text-center font-roboto text-4xl lg:text-5xl font-semibold tracking-wide",
+      "mt-6 text-center text-4xl lg:text-5xl font-semibold tracking-wide",
       {
-        "font-noto-sans-kannada font-semibold tracking-wide":
-          lang === Locale.KOK,
-      }
+        "font-semibold tracking-wide": lang === Locale.KOK,
+      },
     )}
   >
     {t("landing.church-name")}
   </h1>
-  <p
-    data-aos="fade-up"
-    data-aos-delay="900"
-    class={cn("mt-2 text-center font-roboto text-3xl", {
-      "font-noto-sans-kannada": lang === Locale.KOK,
-    })}
-  >
+  <p data-aos="fade-up" data-aos-delay="900" class="mt-2 text-center text-3xl">
     {t("landing.town-name")}
   </p>
   <div class="mx-auto">

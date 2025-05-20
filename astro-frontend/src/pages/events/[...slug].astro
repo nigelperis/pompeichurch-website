@@ -25,7 +25,7 @@ const baseURL = import.meta.env.STRAPI_URL;
 
 const absoluteImageURL = new URL(
   event?.eventImage?.url ?? getPlaceholderImage(),
-  baseURL
+  baseURL,
 ).href;
 
 const ogUrl = new URL(eventUrl, SITE_URL).href;
@@ -53,7 +53,7 @@ const socialLinks = [
   url={ogUrl}
 >
   <main
-    class="font-noto-sans-kannada mx-auto max-w-4xl overflow-hidden bg-white text-justify"
+    class="mx-auto max-w-4xl overflow-hidden bg-white text-justify font-noto-sans-kannada"
   >
     <section class="flex flex-col p-6">
       <h1
