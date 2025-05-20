@@ -30,13 +30,10 @@ const priestsData =
     ? parishHistoryKok[1].priestInfo
     : parishHistory[1].priestInfo;
 
-const fontClass =
-  lang === Locale.KOK ? "font-normal" : "font-geist";
 const images = [history1, history2, history3, history4, history5, history6];
 ---
 
 <div class="mx-auto">
-  <div class={fontClass}>
     <div class="md:float-right md:ml-5 lg:mt-2">
       <Image src={churchBannerImage} alt="Church Banner Image" />
     </div>
@@ -99,7 +96,6 @@ const images = [history1, history2, history3, history4, history5, history6];
         </EmblaCarousel>
       </div>
     </div>
-  </div>
 </div>
 
 <script>
