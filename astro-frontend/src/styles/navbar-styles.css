@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+#navbar {
+  transform: translateX(100%);
+  transition: transform 200ms ease-out;
+}
+#navbar.open {
+  transform: translateX(0);
+}
+
+a[data-expandable-links="true"] + ul.expandable-links {
+  max-height: 0;
+  padding: 0;
+  margin: 0;
+}
+a[data-is-submenu-expanded="true"] + ul.expandable-links {
+  padding: 10px 0 0;
+  margin: 0;
+}
+svg[data-icon-name="chevron-right"] {
+  transition: transform 200ms ease-out;
+}
+a[data-is-submenu-expanded="true"] > svg[data-icon-name="chevron-right"] {
+  transform: rotate(90deg);
+}
+
+@media (min-width: 768px) {
+  ul > li.group {
+    position: relative;
+    border: 2px solid transparent;
+    z-index: 20;
+  }
+
+  ul > li.group > ul {
+    z-index: 30;
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    margin-top: 7px;
+    background-color: white;
+    border-radius: 4px;
+    padding: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  ul > li.group:hover > ul,
+  ul > li.group > ul:hover {
+    display: block;
+  }
+
+  ul > li.group:hover,
+  ul > li.group:focus-within {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  ul > li.group:hover > ul,
+  ul > li.group:focus-within > ul {
+    opacity: 1;
+    visibility: visible;
+  }
+}

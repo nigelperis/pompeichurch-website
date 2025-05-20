@@ -27,7 +27,7 @@ const { name, class: className, imageUrl, term, term1, term2 } = Astro.props;
     "transition-transform duration-300 ease-in-out",
   )}
 >
-  <div class="card-image flex-none">
+  <div class="flex-none">
     <Image
       src={imageUrl}
       alt={`Image of ${name}`}
@@ -36,12 +36,12 @@ const { name, class: className, imageUrl, term, term1, term2 } = Astro.props;
   </div>
 
   <div
-    class={cn("card-content flex flex-1 flex-col justify-end space-y-1 p-3", {
+    class={cn("flex flex-1 flex-col justify-end space-y-1 p-3", {
       "font-bold": lang === Locale.KOK,
     })}
   >
     <h3
-      class="card-title pt-1 font-bold leading-snug text-blue-800 sm:text-lg"
+      class="pt-1 font-bold leading-snug text-blue-800 sm:text-lg"
       title={name}
     >
       {name}

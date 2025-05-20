@@ -121,11 +121,11 @@ const groupPicture = associationDetails?.[groupPictureField];
         >
           {t("landing.follow-our-journey")}
         </h2>
-        <div class="flex gap-12">
+        <div class="flex gap-8 md:gap-12">
           {currentSocial.links.map((link) => (
-            <div class="mb-9 mt-4 h-5 w-5 transition-transform hover:scale-110">
+            <div class="mb-9 mt-4 h-5 w-5 transition-transform hover:scale-105 duration-300">
               <a href={link.value} target="_blank" rel="noopener noreferrer">
-                <Icon name={link.key} size={52} />
+                <Icon name={link.key} class="size-10 md:size-13" />
               </a>
             </div>
           ))}
