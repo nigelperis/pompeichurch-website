@@ -5,9 +5,9 @@ import ObituaryForm from '~/components/ObituaryForm.astro';
 const labels = {
 title: "Submit an Obituary",
 nameEn: "Full Name (English)",
-nameEnPH: "Enter Deceased Name in English",
+nameEnPH: "Enter Name in English",
 nameKok: "Full Name (Konkani)",
-nameKokPH: "Enter Deceased Name in Konkani",
+nameKokPH: "Enter Name in Konkani",
 age: "Age",
 agePH: "Enter Age",
 ward: "Ward",
@@ -31,5 +31,5 @@ imageError: "Image must be less than 500KB",
 };
 ---
 <Layout title={labels.title}>
-  <ObituaryForm labels={labels} />
+  <ObituaryForm labels={labels} lang="en"/>
 </Layout>

@@ -18,8 +18,8 @@ const currentPage = Number(url.searchParams.get("p")) || 1;
 
 // Fetch only the required page of obituaries
 const { obituaries, pagination } = await listObituaries({
-  page: currentPage,
-  pageSize: obituariesPerPage,
+page: currentPage,
+pageSize: obituariesPerPage,
 });
 
 const totalPages = pagination.pageCount;
@@ -28,65 +28,51 @@ const baseURL = import.meta.env.STRAPI_URL;
 
 const id = url.searchParams.get("id") || null;
 const selectedObituary = id
-  ? obituaries.find((item) => item.slug === id)
-  : null;
+? obituaries.find((item) => item.slug === id)
+: null;
 
 const absoluteImageURL = selectedObituary?.image?.url
-  ? new URL(selectedObituary.image.url, baseURL).href
-  : undefined;
+? new URL(selectedObituary.image.url, baseURL).href
+: undefined;
 
 const pageTitle = selectedObituary
-  ? `${selectedObituary.konkaniName}`
-  : `Page ${currentPage} | Obituaries | Pompei Church`;
+? `${selectedObituary.konkaniName}`
+: `Page ${currentPage} | Obituaries | Pompei Church`;
 
 const obituaryUrl = new URL(
-  lang === Locale.EN
-    ? `/obituary?id=${id?.replace(/\s+/g, "-").toLowerCase()}`
-    : `/kok/obituary?id=${id?.replace(/\s+/g, "-").toLowerCase()}`,
-  Astro.url,
+lang === Locale.EN
+? `/obituary?id=${id?.replace(/\s+/g, "-").toLowerCase()}`
+: `/kok/obituary?id=${id?.replace(/\s+/g, "-").toLowerCase()}`,
+Astro.url,
 ).href;
 ---
 
-<Layout
-  title={`${pageTitle} ${selectedObituary?.age ? `(${selectedObituary.age})` : ""}`}
-  description={`${selectedObituary?.ward}`}
-  image={absoluteImageURL}
-  url={obituaryUrl}
->
-  <main class="mx-auto max-w-4xl overflow-hidden bg-white">
-    <section id="obituary" class="flex flex-col p-6 pb-4">
-      <h1
-        class={cn(
-          "font-black border-natgeo-yellow  mb-4 border-l-4 pl-3 text-3xl lg:text-4xl",
-          { "pt-2 font-bold": lang === Locale.KOK },
-        )}
-      >
-        {t("nav.obituary")}
-      </h1>
-      <p
-        class={cn("p-3 pb-6 text-2xl font-bold italic text-red-600", {
-          "font-semibold": lang === Locale.KOK,
-        })}
-      >
-        {t("obituary.subtitle")}
-      </p>
-
+<Layout title={`${pageTitle} ${selectedObituary?.age ? `(${selectedObituary.age})` : "" }`}
+  description={`${selectedObituary?.ward}`} image={absoluteImageURL} url={obituaryUrl}>
+  <main class="mx-auto max-w-4xl bg-white">
+    <section id="obituary" class="px-6 sm:px-6 md:px-0 pt-6 pb-6">
+      <div class="flex items-start justify-between mb-4 gap-4 w-full">
+        <h1 class="font-black border-natgeo-yellow border-l-4 pl-3 text-3xl lg:text-4xl m-0">{t("nav.obituary")}</h1>
+        <a href="/submit-obituary"
+          class="submit-animate-btn border-2 border-natgeo-yellow bg-natgeo-yellow text-black px-4 py-2 font-semibold transition hover:bg-natgeo-yellow hover:text-black"
+          style="min-width: 180px; text-align: center;">
+          Submit an Obituary
+        </a>
+      </div>
+      <p class={cn("p-3 pb-6 text-2xl font-bold italic text-red-600", { "font-semibold" : lang===Locale.KOK, })}>
+        {t("obituary.subtitle")}</p>
       {
-        obituaries.length > 0 ? (
-          <>
-            <ObituaryList obituaries={obituaries} />
-            <Pagination currentPage={currentPage} totalPages={totalPages} />
-          </>
-        ) : (
-          <p class="py-8 text-center text-3xl font-semibold">
-            {Message.OBITUARIES_NOT_FOUND}
-          </p>
-        )
+      obituaries.length > 0 ? (
+      <>
+        <ObituaryList obituaries={obituaries} />
+        <Pagination currentPage={currentPage} totalPages={totalPages} />
+      </>
+      ) : (
+      <p class="py-8 text-center text-3xl font-semibold">
+        {Message.OBITUARIES_NOT_FOUND}
+      </p>
+      )
       }
     </section>
-    <a href="/submit-obituary"
-      class="block mx-auto my-6 w-fit rounded-md border border-gray-500 px-4 py-2 hover:bg-natgeo-yellow transition">
-      Submit an Obituary
-    </a>
   </main>
 </Layout>

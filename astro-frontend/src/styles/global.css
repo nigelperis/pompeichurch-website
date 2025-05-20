@@ -81,3 +81,8 @@ html {
   height: 100%;
   cursor: pointer;
 }
+
+.submit-animate-btn:hover {
+  border-color: #facc15; /* natgeo yellow */
+}
+

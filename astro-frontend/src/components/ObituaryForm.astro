@@ -143,9 +143,11 @@ const t = labels;
         <!-- Submit Button -->
         <div>
           <button type="submit"
-            class="w-full border border-gray-700 font-medium py-3 px-4 hover:bg-natgeo-yellow transition">
+            class="submit-animate-btn w-full font-semibold border-2 border-natgeo-yellow bg-natgeo-yellow text-black transition-all duration-200 py-3 px-6 relative overflow-hidden hover:text-black">
             {t.submit}
           </button>
+
+
         </div>
 
         <p id="submit-status" class="text-center text-sm text-gray-600"></p>
@@ -154,14 +156,14 @@ const t = labels;
       <!-- Preview(Used REACT) -->
       <div class="w-full lg:w-[260px] space-y-2">
         <h2 class="text-lg font-semibold text-gray-700">{t.preview}</h2>
-        <ObituaryPreview client:load labels={t} />
+        <ObituaryPreview labels={Astro.props.labels} lang={Astro.props.lang} client:load />
       </div>
     </div>
   </div>
 
   <!-- Toast Notification -->
   <div id="toast"
-    class="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-green-600 text-white px-4 py-3 text-sm font-semibold shadow-lg rounded z-50 opacity-0 transition-opacity duration-300 pointer-events-none">
+    class="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-green-600 text-white px-4 py-3 text-sm font-semibold z-50 opacity-0 transition-opacity duration-300 pointer-events-none">
     {t.toastMsg}
   </div>
 
@@ -173,14 +175,17 @@ const t = labels;
       const formData = new FormData(form);
       const detail = {
         englishName: formData.get("englishName") || "",
+        konkaniName: formData.get("konkaniName") || "",
         relationType: formData.get("relationType") || "",
         relNameEn: formData.get("relNameEn") || "",
+        relNameKok: formData.get("relNameKok") || "",
         age: formData.get("age") || "",
         ward: formData.get("ward") || "",
         dateOfDeath: formData.get("dateOfDeath") || "",
       };
       window.dispatchEvent(new CustomEvent("obituary-form-update", { detail }));
     }
+
     // Handle image file input
     function handleImageInput(event: Event) {
       const input = event.target;
