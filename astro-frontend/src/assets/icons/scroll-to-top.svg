@@ -3,33 +3,7 @@
   class="scroll-progress-icon"
   viewBox="0 0 24 24"
 >
-  <!-- Gray background track -->
-  <circle
-    class="progress-track"
-    cx="12"
-    cy="12"
-    r="10"
-    fill="none"
-    stroke="#ccc"
-    stroke-width="2"
-  ></circle>
-
-  <!-- Yellow progress ring (animated via stroke-dashoffset) -->
-  <circle
-    class="progress-ring"
-    cx="12"
-    cy="12"
-    r="10"
-    fill="none"
-    stroke="#fcc200"
-    stroke-width="2"
-    stroke-linecap="round"
-  ></circle>
-
-  <!-- Inner filled circle for background of the arrow -->
-  <circle cx="12" cy="12" r="9.2" fill="#ffdb58"></circle>
-
-  <!-- Arrow -->
+  <circle cx="12" cy="12" r="10" fill="#ffdb58"></circle>
   <path
     d="M9 13l3-3 3 3"
     fill="none"
@@ -37,5 +11,6 @@
     stroke-width="2"
     stroke-linecap="round"
     stroke-linejoin="round"
-  ></path>
+  >
+  </path>
 </svg>
