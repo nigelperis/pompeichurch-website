@@ -41,7 +41,7 @@ const parishPriestName =
       "font-roboto font-black mb-4 inline-block border-l-4 border-natgeo-yellow pl-3 text-2xl lg:text-4xl",
       {
         "font-noto-sans-kannada font-extrabold": lang === Locale.KOK,
-      }
+      },
     )}
   >
     {t("landing.priest-speaks")}
@@ -68,7 +68,7 @@ const parishPriestName =
                 parishPriestImage?.url
                   ? new URL(
                       parishPriestImage?.url,
-                      import.meta.env.STRAPI_URL
+                      import.meta.env.STRAPI_URL,
                     ).toString()
                   : getPlaceholderImage()
               }

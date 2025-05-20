@@ -46,8 +46,8 @@ export interface Obituary {
   slug: string;
   age: number;
   relationType?: string;
-  relNameEn?: string;
-  relNameKok?: string;
+  relationNameEn?: string;
+  relationNameKok?: string;
   ward: string;
   dateOfDeath: Date;
   createdAt: string;

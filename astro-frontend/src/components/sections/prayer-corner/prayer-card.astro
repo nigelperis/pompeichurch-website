@@ -15,7 +15,7 @@ const prayer = lang === Locale.KOK ? prayersKok : prayers;
     "font-roboto mb-4 border-b-2 border-b-natgeo-yellow pb-2 text-2xl font-bold lg:text-3xl",
     {
       "font-noto-sans-kannada font-semibold": lang === Locale.KOK,
-    }
+    },
   )}
 >
   {t("prayer.lets-join-hands-in-prayer")}
@@ -32,13 +32,13 @@ const prayer = lang === Locale.KOK ? prayersKok : prayers;
             {
               "font-noto-sans-kannada xs:font-normal": lang === Locale.KOK,
               "font-serif": lang !== Locale.KOK,
-            }
+            },
           )}
         >
           <h3
             class={cn(
               "card-title text-center text-xl font-semibold tracking-wide",
-              { "font-noto-sans-kannada font-bold": lang === Locale.KOK }
+              { "font-noto-sans-kannada font-bold": lang === Locale.KOK },
             )}
           >
             {p.title}

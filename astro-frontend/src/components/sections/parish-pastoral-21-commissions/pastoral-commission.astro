@@ -21,8 +21,12 @@ const coordinatorData = pastoral21Commissions[0].coordinatorName;
   })}
 >
   {
-      <strong>{coordinatorData?.position}</strong>
-      <span>: {coordinatorData?.name}</span>
+    (
+      <span>
+        <strong>{coordinatorData?.position}</strong>
+        <span>: {coordinatorData?.name}</span>
+      </span>
+    )
   }
 </h2>
 <div class={`mx-auto mb-2 max-w-4xl ${fontClass}`}>

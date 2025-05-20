@@ -1,0 +1,4 @@
+# temporarily ignore these files
+# until we can get them to format correctly
+google-analytics.astro
+layout.astro

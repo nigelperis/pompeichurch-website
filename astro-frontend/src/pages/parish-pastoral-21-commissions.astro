@@ -25,7 +25,7 @@ const pastoral21CommissionsKok: ParishPastoral21Commission[] =
           "font-roboto font-black border-l-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl lg:text-4xl",
           {
             "font-noto-sans-kannada font-bold pt-2": lang === Locale.KOK,
-          }
+          },
         )}
       >
         {t("nav.parish-pastoral-21-commissions")}
@@ -34,7 +34,9 @@ const pastoral21CommissionsKok: ParishPastoral21Commission[] =
         pastoral21CommissionsEn.length > 0 ? (
           <PastoralCommission pastoral21Commissions={pastoral21CommissionsEn} />
         ) : pastoral21CommissionsKok.length > 0 ? (
-          <PastoralCommission pastoral21Commissions={pastoral21CommissionsKok} />
+          <PastoralCommission
+            pastoral21Commissions={pastoral21CommissionsKok}
+          />
         ) : (
           <p class="py-8 text-center text-3xl font-semibold">
             {Message.COMMISSIONS_NOT_FOUND}

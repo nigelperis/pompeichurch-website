@@ -1,32 +1,32 @@
 ---
-import EventCard from '~/components/event-card.astro';
-import type { Event } from '~/models/event';
-import { getPlaceholderImage } from '~/helpers/get-placeholder-image';
+import EventCard from "~/components/event-card.astro";
+import type { Event } from "~/models/event";
+import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
 
 const { events } = Astro.props as { events: Event[] };
 ---
 
 <div class="grid grid-cols-1 gap-8 sm:grid-cols-2">
-	{
-		events?.map((event) => (
-			<EventCard
-				eventName={event.englishTitle}
-				eventNameKok={event.konkaniTitle}
-				imageUrl={
-					event.eventImage?.url
-						? new URL(
-								event.eventImage?.url,
-								import.meta.env.STRAPI_URL,
-							).toString()
-						: getPlaceholderImage()
-				}
-				imageWidth={event.eventImage?.width || 600}
-				imageHeight={event.eventImage?.height || 400}
-				shortDescription={event.shortDescription}
-				facebookLink={event.facebookLink}
-				slug={event.slug}
-				instagramLink={event.instagramLink}
-			/>
-		))
-	}
+  {
+    events?.map((event) => (
+      <EventCard
+        eventName={event.englishTitle}
+        eventNameKok={event.konkaniTitle}
+        imageUrl={
+          event.eventImage?.url
+            ? new URL(
+                event.eventImage?.url,
+                import.meta.env.STRAPI_URL,
+              ).toString()
+            : getPlaceholderImage()
+        }
+        imageWidth={event.eventImage?.width || 600}
+        imageHeight={event.eventImage?.height || 400}
+        shortDescription={event.shortDescription}
+        facebookLink={event.facebookLink}
+        slug={event.slug}
+        instagramLink={event.instagramLink}
+      />
+    ))
+  }
 </div>

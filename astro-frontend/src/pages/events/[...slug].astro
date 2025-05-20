@@ -25,7 +25,7 @@ const baseURL = import.meta.env.STRAPI_URL;
 
 const absoluteImageURL = new URL(
   event?.eventImage?.url ?? getPlaceholderImage(),
-  baseURL
+  baseURL,
 ).href;
 
 const ogUrl = new URL(eventUrl, SITE_URL).href;

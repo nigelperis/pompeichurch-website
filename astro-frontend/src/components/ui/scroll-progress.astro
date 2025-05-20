@@ -1,46 +1,46 @@
 <div class="scroll-progress-bar">
-	<div class="scroll-progress-indicator"></div>
+  <div class="scroll-progress-indicator"></div>
 </div>
 
 <style>
-	.scroll-progress-bar {
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 2px;
-		background-color: rgba(200, 200, 200, 0.5);
-		z-index: 100;
-	}
-	.scroll-progress-indicator {
-		height: 100%;
-		background-color: #ffdd00;
-		width: 0%;
-		transition: width 0.3s ease-out;
-	}
+  .scroll-progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: rgba(200, 200, 200, 0.5);
+    z-index: 100;
+  }
+  .scroll-progress-indicator {
+    height: 100%;
+    background-color: #ffdd00;
+    width: 0%;
+    transition: width 0.3s ease-out;
+  }
 </style>
 
 <script>
-	function calculateScrollProgress() {
-		requestAnimationFrame(() => {
-			const scrollTop = window.scrollY;
-			const docHeight = document.documentElement.scrollHeight;
-			const windowHeight = window.innerHeight;
+  function calculateScrollProgress() {
+    requestAnimationFrame(() => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight;
+      const windowHeight = window.innerHeight;
 
-			const scrollPercent = (scrollTop / (docHeight - windowHeight)) * 100;
-			const scrollProgress = Math.min(scrollPercent, 100);
+      const scrollPercent = (scrollTop / (docHeight - windowHeight)) * 100;
+      const scrollProgress = Math.min(scrollPercent, 100);
 
-			const progressBar = document.querySelector(
-				'.scroll-progress-indicator',
-			) as HTMLElement;
-			if (progressBar) {
-				progressBar.style.width = `${scrollProgress}%`;
-			}
-		});
-	}
+      const progressBar = document.querySelector(
+        ".scroll-progress-indicator",
+      ) as HTMLElement;
+      if (progressBar) {
+        progressBar.style.width = `${scrollProgress}%`;
+      }
+    });
+  }
 
-	document.addEventListener('scroll', calculateScrollProgress);
-	window.addEventListener('resize', calculateScrollProgress);
+  document.addEventListener("scroll", calculateScrollProgress);
+  window.addEventListener("resize", calculateScrollProgress);
 
-	calculateScrollProgress();
+  calculateScrollProgress();
 </script>

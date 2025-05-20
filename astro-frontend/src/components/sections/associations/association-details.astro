@@ -73,7 +73,7 @@ const groupPicture = associationDetails?.[groupPictureField];
       "font-roboto mt-6 text-justify text-2xl font-bold text-slate-900",
       {
         "font-noto-sans-kannada font-bold": lang === Locale.KOK,
-      }
+      },
     )}
   >
     {t("associations.about-us")}
@@ -83,7 +83,7 @@ const groupPicture = associationDetails?.[groupPictureField];
       "rich-content mt-4 text-justify font-geist font-light leading-7 text-slate-600 mb-4",
       {
         "font-noto-sans-kannada font-normal": lang === Locale.KOK,
-      }
+      },
     )}
     set:html={description}
   />
@@ -96,7 +96,7 @@ const groupPicture = associationDetails?.[groupPictureField];
             "font-roboto font-bold mt-2 text-left text-2xl text-slate-900",
             {
               "font-noto-sans-kannada font-bold sm:pt-1": lang === Locale.KOK,
-            }
+            },
           )}
         >
           {t("associations.office-bearers")}
@@ -106,7 +106,7 @@ const groupPicture = associationDetails?.[groupPictureField];
             "font-roboto my-4 list-inside list-disc text-base text-slate-600",
             {
               "font-noto-sans-kannada font-normal sm:pt-1": lang === Locale.KOK,
-            }
+            },
           )}
         >
           {officeBearers.map((bearer) => (
@@ -124,9 +124,12 @@ const groupPicture = associationDetails?.[groupPictureField];
     currentSocial && (
       <>
         <h2
-          class={cn("font-roboto mt-6 text-left text-2xl font-bold text-slate-900", {
-            "font-noto-sans-kannada font-bold sm:pt-1": lang === Locale.KOK,
-          })}
+          class={cn(
+            "font-roboto mt-6 text-left text-2xl font-bold text-slate-900",
+            {
+              "font-noto-sans-kannada font-bold sm:pt-1": lang === Locale.KOK,
+            },
+          )}
         >
           {t("landing.follow-our-journey")}
         </h2>

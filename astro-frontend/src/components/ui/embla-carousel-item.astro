@@ -1,20 +1,20 @@
 ---
-import { cn } from '~/helpers/cn';
+import { cn } from "~/helpers/cn";
 
 interface Props {
-	class?: string;
-	style?: astroHTML.JSX.CSSProperties | undefined;
+  class?: string;
+  style?: astroHTML.JSX.CSSProperties | undefined;
 }
 const { class: className, style, ...rest } = Astro.props;
 ---
 
 <div
-	class={cn(
-		'mx-3 flex aspect-video w-5/6 lg:w-4/6 min-w-0 flex-none items-center justify-center rounded-lg',
-		className,
-	)}
-	style={style}
-	{...rest}
+  class={cn(
+    "mx-3 flex aspect-video w-5/6 lg:w-4/6 min-w-0 flex-none items-center justify-center rounded-lg",
+    className,
+  )}
+  style={style}
+  {...rest}
 >
-	<slot />
+  <slot />
 </div>

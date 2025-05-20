@@ -47,14 +47,14 @@
     "relationType": {
       "type": "enumeration",
       "enum": [
-        "S/o",
-        "D/o",
-        "H/o",
-        "W/o"
+        "H/O",
+        "W/O",
+        "S/O",
+        "D/O"
       ],
       "pluginOptions": {}
     },
-    "relNameEn": {
+    "relationNameEn": {
       "type": "string",
       "pluginOptions": {}
     },
@@ -74,7 +74,7 @@
       ],
       "pluginOptions": {}
     },
-    "relNameKok": {
+    "relationNameKok": {
       "type": "string"
     }
   }
