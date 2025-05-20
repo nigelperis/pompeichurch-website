@@ -82,7 +82,7 @@ const obituaryUrl = new URL(
   lang === Locale.EN
     ? `/obituary?id=${id.replace(/\s+/g, "-").toLowerCase()}`
     : `/kok/obituary?id=${id.replace(/\s+/g, "-").toLowerCase()}`,
-  Astro.url
+  Astro.url,
 ).href;
 ---
 
@@ -90,7 +90,7 @@ const obituaryUrl = new URL(
   id={id.replace(/\s+/g, "-").toLowerCase()}
   class={cn(
     "bg-white border border-gray-200 overflow-hidden w-[280px] md:w-[250px] mx-1 flex flex-col transition-transform duration-200 ease-in-out md:h-[510px]",
-    className
+    className,
   )}
 >
   <div class="aspect-[3/4] bg-gray-100">

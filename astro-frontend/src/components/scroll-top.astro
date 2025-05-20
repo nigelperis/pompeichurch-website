@@ -2,6 +2,7 @@
 import { Icon } from "astro-icon/components";
 const props = Astro.props;
 ---
+
 <aside>
   <button
     id="scrollToTop"
@@ -22,17 +23,15 @@ const props = Astro.props;
         fill="none"
         stroke="#fcc200"
         stroke-width="2"
-        stroke-linecap="round"
-      />
-      <circle cx="12" cy="12" r="10" fill="#ffdb58" />
+        stroke-linecap="round"></circle>
+      <circle cx="12" cy="12" r="10" fill="#ffdb58"></circle>
       <path
         d="M9 13l3-3 3 3"
         fill="none"
         stroke="#f8f8ff"
         stroke-width="2"
         stroke-linecap="round"
-        stroke-linejoin="round"
-      />
+        stroke-linejoin="round"></path>
     </svg>
   </button>
 
@@ -46,48 +45,48 @@ const props = Astro.props;
 </script>
 
 <style>
-.scroll-to-top {
-  position: fixed;
-  bottom: 30px;
-  right: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  border-radius: 9999px;
-  background: transparent;
-  z-index: 100;
-}
+  .scroll-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 9999px;
+    background: transparent;
+    z-index: 100;
+  }
 
-.scroll-progress-icon {
-  width: 56px;
-  height: 56px;
-  background-color: transparent;
-}
+  .scroll-progress-icon {
+    width: 56px;
+    height: 56px;
+    background-color: transparent;
+  }
 
-.progress-ring {
-  stroke-dasharray: 62.83;
-  stroke-dashoffset: 62.83;
-  transform: rotate(-90deg);
-  transform-origin: center;
-  animation: progressAnim linear forwards;
-  animation-timeline: scroll();
-}
-
-@keyframes progressAnim {
-  from {
+  .progress-ring {
+    stroke-dasharray: 62.83;
     stroke-dashoffset: 62.83;
+    transform: rotate(-90deg);
+    transform-origin: center;
+    animation: progressAnim linear forwards;
+    animation-timeline: scroll();
   }
-  to {
-    stroke-dashoffset: 0;
-  }
-}
 
-.scroll-tracker {
-  position: absolute;
-  top: 0;
-  height: 200vh;
-  pointer-events: none;
-  opacity: 0;
-}
+  @keyframes progressAnim {
+    from {
+      stroke-dashoffset: 62.83;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  .scroll-tracker {
+    position: absolute;
+    top: 0;
+    height: 200vh;
+    pointer-events: none;
+    opacity: 0;
+  }
 </style>

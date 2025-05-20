@@ -1,36 +1,36 @@
 ---
-import { Image } from 'astro:assets';
-import { cn } from '~/helpers/cn';
+import { Image } from "astro:assets";
+import { cn } from "~/helpers/cn";
 
 interface Props {
-	src: string;
-	baseUrl?: string;
-	width: number;
-	height: number;
-	alt?: string;
-	class?: string;
+  src: string;
+  baseUrl?: string;
+  width: number;
+  height: number;
+  alt?: string;
+  class?: string;
 }
 
 const {
-	src,
-	baseUrl,
-	width,
-	height,
-	alt,
-	class: className,
-	...rest
+  src,
+  baseUrl,
+  width,
+  height,
+  alt,
+  class: className,
+  ...rest
 } = Astro.props;
 
 const urlToUse = baseUrl
-	? new URL(src, baseUrl)
-	: new URL(src, import.meta.env.STRAPI_URL);
+  ? new URL(src, baseUrl)
+  : new URL(src, import.meta.env.STRAPI_URL);
 ---
 
 <Image
-	src={urlToUse.toString()}
-	width={width}
-	height={height}
-	alt={alt ?? 'no alternative  text found'}
-	class={cn('', className)}
-	{...rest}
+  src={urlToUse.toString()}
+  width={width}
+  height={height}
+  alt={alt ?? "no alternative  text found"}
+  class={cn("", className)}
+  {...rest}
 />

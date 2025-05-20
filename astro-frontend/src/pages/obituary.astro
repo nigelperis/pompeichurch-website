@@ -43,7 +43,7 @@ const obituaryUrl = new URL(
   lang === Locale.EN
     ? `/obituary?id=${id?.replace(/\s+/g, "-").toLowerCase()}`
     : `/kok/obituary?id=${id?.replace(/\s+/g, "-").toLowerCase()}`,
-  Astro.url
+  Astro.url,
 ).href;
 ---
 
@@ -58,7 +58,7 @@ const obituaryUrl = new URL(
       <h1
         class={cn(
           "font-roboto font-black border-natgeo-yellow  mb-4 border-l-4 pl-3 text-3xl lg:text-4xl",
-          { "font-noto-sans-kannada pt-2 font-bold": lang === Locale.KOK }
+          { "font-noto-sans-kannada pt-2 font-bold": lang === Locale.KOK },
         )}
       >
         {t("nav.obituary")}
@@ -68,7 +68,7 @@ const obituaryUrl = new URL(
           "font-roboto p-3 pb-6 text-2xl font-bold italic text-red-600",
           {
             "font-noto-sans-kannada font-semibold": lang === Locale.KOK,
-          }
+          },
         )}
       >
         {t("obituary.subtitle")}

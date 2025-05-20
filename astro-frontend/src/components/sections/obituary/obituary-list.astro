@@ -1,50 +1,52 @@
 ---
-import { format } from 'date-fns-tz';
-import ObituaryCard from '~/components/obituary-card.astro';
-import { getLangFromUrl } from '~/i18n/utils';
-import { getPlaceholderImage } from '~/helpers/get-placeholder-image';
-import type { Obituary } from '~/models/obituary';
+import { format } from "date-fns-tz";
+import ObituaryCard from "~/components/obituary-card.astro";
+import { getLangFromUrl } from "~/i18n/utils";
+import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
+import type { Obituary } from "~/models/obituary";
 
 const { obituaries } = Astro.props as { obituaries: Obituary[] };
 const lang = getLangFromUrl(Astro.url);
 const obituaryDataFormatted = obituaries
   ?.map((obituary) => {
-    const rawDate = obituary.dateOfDeath ? new Date(obituary.dateOfDeath) : new Date(0);
+    const rawDate = obituary.dateOfDeath
+      ? new Date(obituary.dateOfDeath)
+      : new Date(0);
 
     return {
       ...obituary,
       formattedDate: obituary.dateOfDeath
-        ? format(rawDate, 'dd MMMM, yyyy')
-        : 'Unknown Date',
+        ? format(rawDate, "dd MMMM, yyyy")
+        : "Unknown Date",
       dateSort: rawDate,
     };
   })
   .sort((a, b) => b.dateSort.getTime() - a.dateSort.getTime()); // latest first
 ---
 
-
-  <div class="grid-cols-1 mx-auto grid w-full gap-x-20 gap-y-10 pt-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-    {
-  obituaryDataFormatted?.map((item) => (
-    <ObituaryCard
-      id={item.englishName}
-      name={lang === 'en' ? item.englishName : item.konkaniName}
-      imageUrl={
-        item.image?.url
-          ? new URL(item.image.url, import.meta.env.STRAPI_URL).toString()
-          : getPlaceholderImage()
-      }
-      imageWidth={item.image?.width ?? 0}
-      imageHeight={item.image?.height ?? 0}
-      age={item.age}
-      ward={item.ward}
-      dateOfDeath={item.formattedDate}
-      relationType={item.relationType}
-      relationNameEn={item.relationNameEn}
-      relationNameKok={item.relationNameKok}
-      class="m-auto"
-    />
-  ))
-}
-
-  </div>
+<div
+  class="grid-cols-1 mx-auto grid w-full gap-x-20 gap-y-10 pt-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+>
+  {
+    obituaryDataFormatted?.map((item) => (
+      <ObituaryCard
+        id={item.englishName}
+        name={lang === "en" ? item.englishName : item.konkaniName}
+        imageUrl={
+          item.image?.url
+            ? new URL(item.image.url, import.meta.env.STRAPI_URL).toString()
+            : getPlaceholderImage()
+        }
+        imageWidth={item.image?.width ?? 0}
+        imageHeight={item.image?.height ?? 0}
+        age={item.age}
+        ward={item.ward}
+        dateOfDeath={item.formattedDate}
+        relationType={item.relationType}
+        relationNameEn={item.relationNameEn}
+        relationNameKok={item.relationNameKok}
+        class="m-auto"
+      />
+    ))
+  }
+</div>

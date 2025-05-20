@@ -1,8 +1,8 @@
 ---
-import EmblaCarosuel from '~/components/ui/embla-carousel.astro';
-import EmblaCarosuelItem from '~/components/ui/embla-carousel-item.astro';
-import { fetchCarouselImages } from '~/services/landing-page-carousel';
-import NetworkImage from '~/components/ui/network-image.astro';
+import EmblaCarosuel from "~/components/ui/embla-carousel.astro";
+import EmblaCarosuelItem from "~/components/ui/embla-carousel-item.astro";
+import { fetchCarouselImages } from "~/services/landing-page-carousel";
+import NetworkImage from "~/components/ui/network-image.astro";
 
 const landingCarouselImages = await fetchCarouselImages();
 ---
@@ -20,7 +20,7 @@ const landingCarouselImages = await fetchCarouselImages();
             class="object-cover h-full"
           />
         </EmblaCarosuelItem>
-      ))
+      )),
     )
   }
 </EmblaCarosuel>

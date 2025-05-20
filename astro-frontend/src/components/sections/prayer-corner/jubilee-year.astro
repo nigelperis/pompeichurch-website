@@ -1,47 +1,47 @@
 ---
-import { getLangFromUrl, useTranslations } from '~/i18n/utils';
-import { Image } from 'astro:assets';
-import { cn } from '~/helpers/cn';
+import { getLangFromUrl, useTranslations } from "~/i18n/utils";
+import { Image } from "astro:assets";
+import { cn } from "~/helpers/cn";
 
 //Images
-import jublieeLogo from '~/assets/prayer-corner/jubliee-logo.jpeg';
-import jublieePrayer from '~/assets/prayer-corner/jubliee-prayer.jpeg';
-import { Locale } from '~/enums/locale';
+import jublieeLogo from "~/assets/prayer-corner/jubliee-logo.jpeg";
+import jublieePrayer from "~/assets/prayer-corner/jubliee-prayer.jpeg";
+import { Locale } from "~/enums/locale";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
 <h2
-	class={cn(
-		'font-roboto font-bold mb-4 mt-4 border-b-2 border-b-natgeo-yellow pb-2 text-2xl lg:text-3xl',
-		{
-			'font-noto-sans-kannada': lang === Locale.KOK,
-		},
-	)}
+  class={cn(
+    "font-roboto font-bold mb-4 mt-4 border-b-2 border-b-natgeo-yellow pb-2 text-2xl lg:text-3xl",
+    {
+      "font-noto-sans-kannada": lang === Locale.KOK,
+    },
+  )}
 >
-	{t('prayer.jubliee-2025')}
+  {t("prayer.jubliee-2025")}
 </h2>
 <div class="mt-2 grid justify-center gap-y-6 pb-4">
-	<Image
-		src={jublieeLogo}
-		alt="Logo of the Jubliee Year 2025"
-		class="mx-auto w-full max-w-xs sm:max-w-sm"
-	/>
-	<Image
-		src={jublieePrayer}
-		alt="Prayer for the Jubliee Year 2025"
-		class="mx-auto w-full max-w-xs sm:max-w-md"
-	/>
+  <Image
+    src={jublieeLogo}
+    alt="Logo of the Jubliee Year 2025"
+    class="mx-auto w-full max-w-xs sm:max-w-sm"
+  />
+  <Image
+    src={jublieePrayer}
+    alt="Prayer for the Jubliee Year 2025"
+    class="mx-auto w-full max-w-xs sm:max-w-md"
+  />
 </div>
 <div class="mx-auto h-auto w-full max-w-lg pt-4 md:max-w-2xl">
-	<iframe
-		class="aspect-video h-full w-full rounded-lg shadow-lg"
-		loading="lazy"
-		src="https://youtube.com/embed/BmlwTFV_lF8"
-		allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
-		allowfullscreen
-		title="Yotube video of Jubliee Year 2025"
-	>
-	</iframe>
+  <iframe
+    class="aspect-video h-full w-full rounded-lg shadow-lg"
+    loading="lazy"
+    src="https://youtube.com/embed/BmlwTFV_lF8"
+    allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen
+    title="Yotube video of Jubliee Year 2025"
+  >
+  </iframe>
 </div>

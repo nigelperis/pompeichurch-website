@@ -110,7 +110,7 @@ const t = useTranslations(lang);
       function (this: HTMLButtonElement) {
         const dropdownId = this.getAttribute("data-dropdown-id");
         const dropdownContent = document.querySelector(
-          `.dropdown-content[data-dropdown-id="${dropdownId}"]`
+          `.dropdown-content[data-dropdown-id="${dropdownId}"]`,
         );
 
         if (dropdownContent instanceof HTMLElement) {
@@ -131,7 +131,7 @@ const t = useTranslations(lang);
             if (arrow) arrow.classList.add("rotate");
           }
         }
-      }
+      },
     );
   });
 </script>
