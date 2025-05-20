@@ -18,7 +18,7 @@ const lang = getLangFromUrl(Astro.url);
       class={cn(
         "inline-flex font-roboto font-semibold justify-center rounded-md border border-gray-500 px-2 lg:py-1 pt-1 pb-1 mt-1 md:hover:bg-natgeo-yellow lg:pb-[0.4rem]",
         lang === Locale.KOK &&
-          "font-noto-sans-kannada pt-2 font-semibold lg:pb-[0.2rem] lg:pt-[0.6rem]"
+          "font-noto-sans-kannada pt-2 font-semibold lg:pb-[0.2rem] lg:pt-[0.6rem]",
       )}
       aria-label="Click here to switch language"
     >
@@ -28,7 +28,7 @@ const lang = getLangFromUrl(Astro.url);
         id="lang-arrow"
         class={cn(
           "-mr-1.5 mt-1 h-5 w-5 transition-transform duration-300 ease-in-out",
-          lang === Locale.KOK && "mt-0"
+          lang === Locale.KOK && "mt-0",
         )}
       />
     </button>
@@ -49,7 +49,7 @@ const lang = getLangFromUrl(Astro.url);
               "hover:bg-natgeo-yellow w-full rounded-md py-2 text-sm transition-all",
               lang === Locale.KOK
                 ? "font-noto-sans-kannada lg:font-[350]"
-                : "font-roboto font-normal"
+                : "font-roboto font-normal",
             )}
             aria-label="Language label"
           >
@@ -66,10 +66,10 @@ const lang = getLangFromUrl(Astro.url);
 
   document.addEventListener("DOMContentLoaded", () => {
     const button = document.getElementById(
-      "lang-button"
+      "lang-button",
     ) as HTMLButtonElement | null;
     const dropdown = document.getElementById(
-      "lang-dropdown"
+      "lang-dropdown",
     ) as HTMLElement | null;
     const arrow = document.getElementById("lang-arrow") as HTMLElement | null;
 
