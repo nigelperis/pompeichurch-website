@@ -1,20 +1,24 @@
 ---
-import "~/styles/scroll-top.css";
-import { Icon } from "astro-icon/components";
+import ScrollToTopIcon from '~/assets/icons/scroll-to-top.svg';
+import "../styles/scroll-top.css";
 ---
 
-<aside>
-  <button
-    id="scrollToTop"
-    class="scroll-to-top"
-    aria-label="Scroll to top"
-    title="Scroll to top"
-  >
-    <Icon name="scroll-to-top" class="size-14" />
-  </button>
-</aside>
+<button
+  id="scrollToTopBtn"
+  class="scroll-to-top"
+  aria-label="Scroll to top"
+  title="Scroll to top"
+>
+  <svg class="scroll-progress-icon" width="56" height="56" style="position: absolute;">
+    <circle class="progress-ring" r="26" cx="28" cy="28" />
+  </svg>
+  <ScrollToTopIcon />
+</button>
+
 
 <script>
-  import { scrollToTop } from "~/scripts/scroll-top.ts";
-  scrollToTop();
+  import { scrollToTopInit } from "../scripts/scroll-top.ts";
+  if (typeof window !== "undefined") {
+    document.addEventListener("DOMContentLoaded", scrollToTopInit);
+  }
 </script>
