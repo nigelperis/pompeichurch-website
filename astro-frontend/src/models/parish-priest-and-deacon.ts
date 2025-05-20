@@ -1,4 +1,6 @@
 import { Locale } from "~/enums/locale";
+import { Role } from "~/enums/role";
+
 interface ImageFormat {
   ext: string;
   url: string;
@@ -50,7 +52,7 @@ interface ParishPriestsAndDeacons {
   publishedAt: string;
   locale: Locale;
   image?: Image;
-  role: string;
+  role: Role;
 }
 
 interface ParishPriestsAndDeaconsData {

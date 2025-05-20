@@ -6,6 +6,7 @@ import type { ParishPriestsAndDeacons } from "~/models/parish-priest-and-deacon"
 import { listParishPriestsAndDeacons } from "~/services/list-parish-priests-and-deacons-data.ts";
 import { Message } from "~/constants/message.ts";
 import { Locale } from "~/enums/locale";
+import { Role } from "~/enums/role";
 import { cn } from "~/helpers/cn";
 
 const lang = getLangFromUrl(Astro.url);
@@ -16,13 +17,13 @@ const parishPriestsKok: ParishPriestsAndDeacons[] =
     page: 1,
     pageSize: 100,
     locale: Locale.KOK,
-    filters: "Parish Priest",
+    filters: { field: "role", value: Role.PARISH_PRIEST },
   })) || [];
 const parishPriestsEn: ParishPriestsAndDeacons[] =
   (await listParishPriestsAndDeacons({
     page: 1,
     pageSize: 100,
-    filters: "Parish Priest",
+    filters: { field: "role", value: Role.PARISH_PRIEST },
   })) || [];
 
 const deaconsKok: ParishPriestsAndDeacons[] =
@@ -30,13 +31,13 @@ const deaconsKok: ParishPriestsAndDeacons[] =
     page: 1,
     pageSize: 100,
     locale: Locale.KOK,
-    filters: "Deacon",
+    filters: { field: "role", value: Role.DEACON },
   })) || [];
 const deaconsEn: ParishPriestsAndDeacons[] =
   (await listParishPriestsAndDeacons({
     page: 1,
     pageSize: 100,
-    filters: "Deacon",
+    filters: { field: "role", value: Role.DEACON },
   })) || [];
 ---
 
@@ -48,7 +49,7 @@ const deaconsEn: ParishPriestsAndDeacons[] =
           "font-roboto font-black border-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl lg:text-4xl",
           {
             "font-noto-sans-kannada font-bold": lang === Locale.KOK,
-          }
+          },
         )}
       >
         {t("nav.parish-priests-and-deacons")}
@@ -61,9 +62,13 @@ const deaconsEn: ParishPriestsAndDeacons[] =
       </h2>
       {
         parishPriestsKok.length > 0 ? (
-          <ParishPriestsAndDeaconsList parishPriestsAndDeacons={parishPriestsKok} />
+          <ParishPriestsAndDeaconsList
+            parishPriestsAndDeacons={parishPriestsKok}
+          />
         ) : parishPriestsEn.length > 0 ? (
-          <ParishPriestsAndDeaconsList parishPriestsAndDeacons={parishPriestsEn} />
+          <ParishPriestsAndDeaconsList
+            parishPriestsAndDeacons={parishPriestsEn}
+          />
         ) : (
           <p class="py-8 text-center text-3xl font-semibold">
             {Message.PARISH_PRIESTS_NOT_FOUND}
