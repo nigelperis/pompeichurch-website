@@ -1,7 +1,6 @@
 ---
 import { Image } from "astro:assets";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
-import { cn } from "~/helpers/cn";
 
 //Images
 import snehasadan from "~/assets/institutions/snehasadan.jpg";
@@ -10,11 +9,7 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<div
-  class={cn("font-roboto mx-auto", {
-    "font-noto-sans-kannada": lang === "kok",
-  })}
->
+<div class="mx-auto">
   <h2 class="mt-4 text-2xl font-bold">{t("snehasadan.title")}</h2>
   <Image
     src={snehasadan}

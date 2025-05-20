@@ -17,23 +17,16 @@ const t = useTranslations(lang);
   <h1
     data-aos="fade-right"
     class={cn(
-      "font-roboto font-black mb-4 border-l-4 border-natgeo-yellow pl-3 text-2xl lg:text-4xl",
+      "font-black mb-4 border-l-4 border-natgeo-yellow pl-3 text-2xl lg:text-4xl",
       {
-        "font-noto-sans-kannada font-extrabold pt-2": lang === Locale.KOK,
+        "font-extrabold pt-2": lang === Locale.KOK,
       },
     )}
   >
     {t("landing.mass-timings")}
   </h1>
 
-  <ul
-    class={cn(
-      "font-roboto space-y-3 lg:space-y-4  text-sm lg:text-xl text-white leading-relaxed",
-      {
-        "font-noto-sans-kannada": lang === Locale.KOK,
-      },
-    )}
-  >
+  <ul class="space-y-3 lg:space-y-4  text-sm lg:text-xl text-white leading-relaxed">
     <li>
       <strong>{t("landing.mon-sat")}</strong> 6:45 AM ({
         t("landing.daily-mass")

@@ -13,14 +13,7 @@ const t = useTranslations(lang);
 const optimizedBgImage = await getImage({ src: psalmBg });
 ---
 
-<h2
-  class={cn(
-    "font-roboto mt-4 border-b-2 border-b-natgeo-yellow pb-2 text-2xl font-bold lg:text-3xl",
-    {
-      "font-noto-sans-kannada": lang === Locale.KOK,
-    },
-  )}
->
+<h2 class="mt-4 border-b-2 border-b-natgeo-yellow pb-2 text-2xl font-bold lg:text-3xl">
   {t("prayer.psalms")}
 </h2>
 
@@ -32,8 +25,8 @@ const optimizedBgImage = await getImage({ src: psalmBg });
     psalms[lang].map((psalm) => (
       <div class="bg-opacity-80">
         <h3
-          class={cn("font-roboto text-center font-extrabold sm:text-xl", {
-            "font-noto-sans-kannada font-bold": lang === Locale.KOK,
+          class={cn("text-center font-extrabold sm:text-xl", {
+            "font-bold": lang === Locale.KOK,
           })}
         >
           {psalm.title}
@@ -41,10 +34,7 @@ const optimizedBgImage = await getImage({ src: psalmBg });
         <br />
         <p
           set:html={psalm.content}
-          class={cn("text-center leading-relaxed", {
-            "font-noto-sans-kannada": lang === Locale.KOK,
-            "font-geist": lang !== Locale.KOK,
-          })}
+          class="text-center leading-relaxed"
         />
       </div>
     ))

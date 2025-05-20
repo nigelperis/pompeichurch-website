@@ -1,25 +1,13 @@
 ---
 import PullDown from "~/components/pull-down.astro";
-import { cn } from "~/helpers/cn";
-import { getLangFromUrl } from "~/i18n/utils";
-import { Locale } from "~/enums/locale";
 import type { CommissionBlock } from "~/models/parish-pastoral-21-commission";
-
-const lang = getLangFromUrl(Astro.url);
-
-const fontClass =
-  lang === Locale.KOK ? "font-noto-sans-kannada" : "font-roboto";
 
 const { pastoral21Commissions } = Astro.props;
 
 const coordinatorData = pastoral21Commissions[0].coordinatorName;
 ---
 
-<h2
-  class={cn("font-roboto text-xl font-normal text-gray-800", {
-    "font-noto-sans-kannada": lang === Locale.KOK,
-  })}
->
+<h2 class="text-xl font-normal text-gray-800">
   {
     (
       <span>
@@ -29,7 +17,7 @@ const coordinatorData = pastoral21Commissions[0].coordinatorName;
     )
   }
 </h2>
-<div class={`mx-auto mb-2 max-w-4xl ${fontClass}`}>
+<div class="mx-auto mb-2 max-w-4xl">
   {
     pastoral21Commissions[0].commissions.map((c: CommissionBlock) => (
       <PullDown

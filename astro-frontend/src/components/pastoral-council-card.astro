@@ -1,8 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import { Locale } from "~/enums/locale";
 import { cn } from "~/helpers/cn.ts";
-import { getLangFromUrl } from "~/i18n/utils";
 import NetworkImage from "./ui/network-image.astro";
 import placeholderImage from "~/assets/static-assets/blank.jpeg";
 
@@ -16,7 +14,6 @@ interface Props {
   position: string;
 }
 
-const lang = getLangFromUrl(Astro.url);
 const { src, width, height, class: className, name, position } = Astro.props;
 ---
 
@@ -48,11 +45,7 @@ const { src, width, height, class: className, name, position } = Astro.props;
     }
   </div>
 
-  <div
-    class={cn("font-roboto flex flex-1 flex-col justify-end space-y-1 p-3", {
-      "font-noto-sans-kannada": lang === Locale.KOK,
-    })}
-  >
+  <div class="flex flex-1 flex-col justify-end space-y-1 p-3">
     <h3 class="text-lg font-bold leading-snug text-gray-800">
       {name}
     </h3>

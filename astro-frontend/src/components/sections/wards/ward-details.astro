@@ -9,19 +9,11 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<div
-  class={cn("font-roboto", {
-    "font-noto-sans-kannada": lang === Locale.KOK,
-  })}
->
+<div>
   {
     wards.map((ward) => (
       <div class="mb-6 text-left">
-        <h2
-          class={cn("text-3xl font-bold text-slate-900", {
-            "font-noto-sans-kannada": lang === Locale.KOK,
-          })}
-        >
+        <h2 class="text-3xl font-bold text-slate-900">
           {t(`nav.${ward.name}`)}
         </h2>
         <p

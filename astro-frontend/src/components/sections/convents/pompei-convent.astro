@@ -1,7 +1,6 @@
 ---
 import { Image } from "astro:assets";
 import pompeiConvent from "~/assets/convents/pompei-convent.jpg";
-import { cn } from "~/helpers/cn";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
@@ -9,11 +8,7 @@ const t = useTranslations(lang);
 ---
 
 <div class="mx-auto max-w-4xl">
-  <h2
-    class={cn("font-roboto mt-4 pb-2 text-2xl font-bold", {
-      "font-noto-sans-kannada": lang === "kok",
-    })}
-  >
+  <h2 class="mt-4 pb-2 text-2xl font-bold">
     {t("pompeiconvent.title")}
   </h2>
   <Image
