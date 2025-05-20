@@ -64,12 +64,9 @@ const obituaryUrl = new URL(
         {t("nav.obituary")}
       </h1>
       <p
-        class={cn(
-          "p-3 pb-6 text-2xl font-bold italic text-red-600",
-          {
-            "font-semibold": lang === Locale.KOK,
-          },
-        )}
+        class={cn("p-3 pb-6 text-2xl font-bold italic text-red-600", {
+          "font-semibold": lang === Locale.KOK,
+        })}
       >
         {t("obituary.subtitle")}
       </p>

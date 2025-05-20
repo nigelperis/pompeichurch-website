@@ -124,12 +124,9 @@ const t = useTranslations(lang);
             )}
           >
             <span
-              class={cn(
-                "font-extrablack transition-all duration-150",
-                {
-                  "mt-[4px]": lang === Locale.KOK,
-                },
-              )}
+              class={cn("font-extrablack transition-all duration-150", {
+                "mt-[4px]": lang === Locale.KOK,
+              })}
             >
               {t(link.title)}
             </span>

@@ -13,7 +13,9 @@ const t = useTranslations(lang);
 const optimizedBgImage = await getImage({ src: psalmBg });
 ---
 
-<h2 class="mt-4 border-b-2 border-b-natgeo-yellow pb-2 text-2xl font-bold lg:text-3xl">
+<h2
+  class="mt-4 border-b-2 border-b-natgeo-yellow pb-2 text-2xl font-bold lg:text-3xl"
+>
   {t("prayer.psalms")}
 </h2>
 
@@ -32,10 +34,7 @@ const optimizedBgImage = await getImage({ src: psalmBg });
           {psalm.title}
         </h3>
         <br />
-        <p
-          set:html={psalm.content}
-          class="text-center leading-relaxed"
-        />
+        <p set:html={psalm.content} class="text-center leading-relaxed" />
       </div>
     ))
   }
