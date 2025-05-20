@@ -38,20 +38,16 @@ const parishPriestName =
   <h2
     data-aos="fade-right"
     class={cn(
-      "font-roboto font-black mb-4 inline-block border-l-4 border-natgeo-yellow pl-3 text-2xl lg:text-4xl",
+      "font-black mb-4 inline-block border-l-4 border-natgeo-yellow pl-3 text-2xl lg:text-4xl",
       {
-        "font-noto-sans-kannada font-extrabold": lang === Locale.KOK,
+        "font-extrabold": lang === Locale.KOK,
       },
     )}
   >
     {t("landing.priest-speaks")}
   </h2>
 
-  <div
-    class={cn("flex flex-col gap-x-10 lg:flex-row font-geist", {
-      "font-noto-sans-kannada": lang === Locale.KOK,
-    })}
-  >
+  <div class="flex flex-col gap-x-10 lg:flex-row">
     <div class="lg:min-w-72 xl:min-w-96">
       <div
         data-aos="fade-in"

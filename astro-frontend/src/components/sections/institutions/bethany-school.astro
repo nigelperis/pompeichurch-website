@@ -10,11 +10,7 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<div
-  class={cn("font-roboto mx-auto", {
-    "font-noto-sans-kannada": lang === "kok",
-  })}
->
+<div class="mx-auto">
   <h2 class="mt-4 text-2xl font-bold">
     {t("bethany.title")}
   </h2>

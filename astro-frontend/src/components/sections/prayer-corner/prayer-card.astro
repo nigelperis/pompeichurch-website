@@ -12,9 +12,9 @@ const prayer = lang === Locale.KOK ? prayersKok : prayers;
 
 <h2
   class={cn(
-    "font-roboto mb-4 border-b-2 border-b-natgeo-yellow pb-2 text-2xl font-bold lg:text-3xl",
+    "mb-4 border-b-2 border-b-natgeo-yellow pb-2 text-2xl font-bold lg:text-3xl",
     {
-      "font-noto-sans-kannada font-semibold": lang === Locale.KOK,
+      "font-semibold": lang === Locale.KOK,
     },
   )}
 >
@@ -30,7 +30,7 @@ const prayer = lang === Locale.KOK ? prayersKok : prayers;
           class={cn(
             "card-content text-sl flex flex-1 flex-col items-center space-y-4 p-5",
             {
-              "font-noto-sans-kannada xs:font-normal": lang === Locale.KOK,
+              "xs:font-normal": lang === Locale.KOK,
               "font-serif": lang !== Locale.KOK,
             },
           )}
@@ -38,7 +38,7 @@ const prayer = lang === Locale.KOK ? prayersKok : prayers;
           <h3
             class={cn(
               "card-title text-center text-xl font-semibold tracking-wide",
-              { "font-noto-sans-kannada font-bold": lang === Locale.KOK },
+              { "font-bold": lang === Locale.KOK },
             )}
           >
             {p.title}

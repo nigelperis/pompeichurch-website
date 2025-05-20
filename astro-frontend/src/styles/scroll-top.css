@@ -1,0 +1,30 @@
+.scroll-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 9999px;
+  background: transparent;
+  z-index: 100;
+}
+
+.scroll-progress-icon {
+  width: 56px;
+  height: 56px;
+  background-color: transparent;
+}
+
+.progress-ring {
+  stroke: #fcc200;
+  stroke-width: 2;
+  fill: none;
+  stroke-linecap: round;
+  stroke-dasharray: 62.83;
+  stroke-dashoffset: 62.83;
+  transform: rotate(-90deg);
+  transform-origin: center;
+  transition: stroke-dashoffset 0.2s linear;
+}

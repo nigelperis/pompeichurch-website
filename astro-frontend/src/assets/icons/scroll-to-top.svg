@@ -1,0 +1,16 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  class="scroll-progress-icon"
+  viewBox="0 0 24 24"
+>
+  <circle cx="12" cy="12" r="10" fill="#ffdb58"></circle>
+  <path
+    d="M9 13l3-3 3 3"
+    fill="none"
+    stroke="#f8f8ff"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+  </path>
+</svg>

@@ -14,15 +14,15 @@ const t = useTranslations(lang);
     <section id="gallery" class="flex flex-col p-6 pb-4">
       <h1
         class={cn(
-          "font-black font-roboto border-natgeo-yellow mb-2 border-l-4 pl-3 text-3xl lg:text-4xl",
+          "font-black border-natgeo-yellow mb-2 border-l-4 pl-3 text-3xl lg:text-4xl",
           {
-            "font-noto-sans-kannada font-bold pt-2": lang === Locale.KOK,
+            "font-bold pt-2": lang === Locale.KOK,
           },
         )}
       >
         {t("gallery.title")}
       </h1>
-      <p class="font-geist text-justify text-lg text-slate-700">
+      <p class="text-justify text-lg text-slate-700">
         ಪಿಂತುರಾನಿ ದಾದೊಸ್ಕಾಯೆಚ್ಯೊ ಘಡ್ಯೊ
       </p>
       <MasonryGallery />

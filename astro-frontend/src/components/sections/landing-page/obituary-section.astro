@@ -33,9 +33,9 @@ const featuredObituary = obituaryDataFormatted[4];
   <h1
     data-aos="fade-right"
     class={cn(
-      "font-roboto font-black mx-6 mb-4 inline-block border-l-4 border-natgeo-yellow pl-3 text-2xl lg:mx-0 lg:text-4xl",
+      "font-black mx-6 mb-4 inline-block border-l-4 border-natgeo-yellow pl-3 text-2xl lg:mx-0 lg:text-4xl",
       {
-        "font-noto-sans-kannada font-extrabold pt-2": lang === Locale.KOK,
+        "font-extrabold pt-2": lang === Locale.KOK,
       },
     )}
   >
@@ -77,7 +77,7 @@ const featuredObituary = obituaryDataFormatted[4];
           ))}
 
           {featuredObituary && (
-            <div class="flex-none relative h-full lg:hidden overflow-hidden border border-gray-200 shadow-sm">
+            <div class="flex-none relative h-full lg:hidden overflow-hidden border border-gray-200">
               <div class="opacity-50 blur-md rounded-lg">
                 <Card
                   imageUrl={featuredObituary.image?.url}
