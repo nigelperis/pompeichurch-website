@@ -1,6 +1,8 @@
 export const initScrollToTop = () => {
-  const btn = document.getElementById('scrollToTop');
-  const ring = document.getElementById('progressRing') as SVGCircleElement | null;
+  const btn = document.getElementById("scrollToTop");
+  const ring = document.getElementById(
+    "progressRing",
+  ) as SVGCircleElement | null;
   const circ = 2 * Math.PI * 28; // r=28
 
   function updateProgress() {
@@ -14,20 +16,20 @@ export const initScrollToTop = () => {
     }
     if (btn) {
       if (scrollTop > 120) {
-        btn.classList.add('visible');
+        btn.classList.add("visible");
       } else {
-        btn.classList.remove('visible');
+        btn.classList.remove("visible");
       }
     }
   }
 
-  window.addEventListener('scroll', updateProgress);
-  window.addEventListener('resize', updateProgress);
+  window.addEventListener("scroll", updateProgress);
+  window.addEventListener("resize", updateProgress);
   updateProgress();
 
   if (btn) {
-    btn.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+    btn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
     });
   }
-}
+};
