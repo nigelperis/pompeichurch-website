@@ -1,0 +1,35 @@
+---
+import Layout from '~/layouts/layout.astro';
+import ObituaryForm from '~/components/ObituaryForm.astro';
+
+const labels = {
+title: "Submit an Obituary",
+nameEn: "Full Name (English)",
+nameEnPH: "Enter Name in English",
+nameKok: "Full Name (Konkani)",
+nameKokPH: "Enter Name in Konkani",
+age: "Age",
+agePH: "Enter Age",
+ward: "Ward",
+wardPH: "Select Ward",
+death: "Date of Death",
+relType: "Relation Type",
+relTypePH: "Select Relation",
+relNameEn: "Relation Name (English)",
+relNameEnPH: "Enter Relation Name in English",
+relNameKok: "Relation Name (Konkani)",
+relNameKokPH: "Enter Relation Name in Konkani",
+sender: "Sender's Name",
+senderPH: "Enter Your Name",
+image: "Upload Image",
+imageHelp: "* Image should be less than 500KB, .jpg/.png only",
+submit: "Submit",
+preview: "Preview",
+toastMsg: "Your submission was successful!",
+spam: "Spam detected.",
+imageError: "Image must be less than 500KB",
+};
+---
+<Layout title={labels.title}>
+  <ObituaryForm labels={labels} lang="en"/>
+</Layout>
