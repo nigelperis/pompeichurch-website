@@ -1,4 +1,4 @@
-export default function initScrollToTop() {
+export const initScrollToTop = () => {
   const btn = document.getElementById('scrollToTop');
   const ring = document.getElementById('progressRing') as SVGCircleElement | null;
   const circ = 2 * Math.PI * 28; // r=28
