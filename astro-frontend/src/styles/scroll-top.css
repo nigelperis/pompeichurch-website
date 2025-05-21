@@ -24,19 +24,29 @@
 }
 
 .scroll-progress-icon {
-  width: 56px;
-  height: 56px;
-  background: transparent;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .progress-ring {
-  stroke: #fcc200;
-  stroke-width: 4;
-  fill: none;
-  stroke-linecap: round;
-  stroke-dasharray: 163.36;
-  stroke-dashoffset: 163.36;
-  transition: stroke-dashoffset 0.2s linear;
   transform: rotate(-90deg);
-  transform-origin: center;
+  transform-origin: 50% 50%;
+  transition: stroke-dashoffset 0.2s linear;
 }
+
+.arrow-icon {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+

@@ -1,32 +1,27 @@
-export function scrollToTopInit() {
-  const btn = document.getElementById("scrollToTopBtn");
-  const ring = document.querySelector(".progress-ring") as SVGCircleElement | null;
-  const r = 26;
-  const circumference = 2 * Math.PI * r;
+export default function initScrollToTop() {
+  const btn = document.getElementById('scrollToTop');
+  const ring = document.getElementById('progressRing');
+  const circ = 2 * Math.PI * 28; // r=28
 
   function updateProgress() {
-    if (!ring || !btn) return;
     const scrollTop = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const progress = docHeight > 0 ? scrollTop / docHeight : 0;
-    ring.style.strokeDashoffset = `${circumference - progress * circumference}`;
-
-
+    const docHeight = document.documentElement.scrollHeight;
+    const windowHeight = window.innerHeight;
+    const scrollPercent = (scrollTop / (docHeight - windowHeight));
+    const offset = circ - scrollPercent * circ;
+    ring.style.strokeDashoffset = offset;
     if (scrollTop > 120) {
-      btn.classList.add("visible");
+      btn.classList.add('visible');
     } else {
-      btn.classList.remove("visible");
+      btn.classList.remove('visible');
     }
   }
 
-  window.addEventListener("scroll", updateProgress);
-  window.addEventListener("resize", updateProgress);
-
-  if (btn) {
-    btn.addEventListener("click", () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-  }
-
+  window.addEventListener('scroll', updateProgress);
+  window.addEventListener('resize', updateProgress);
   updateProgress();
+
+  btn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
 }
