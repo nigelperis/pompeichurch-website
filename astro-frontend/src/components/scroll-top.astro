@@ -1,5 +1,5 @@
 ---
-import ScrollToTopIcon from '~/assets/icons/scroll-to-top.svg';
+import { Icon } from "astro-icon/components";
 import "../styles/scroll-top.css";
 ---
 
@@ -10,9 +10,9 @@ import "../styles/scroll-top.css";
         cx="32"
         cy="32"
         r="28"
-        fill="#fff"
-        stroke="#d1d5db"
-        stroke-width="7"
+        fill="#ffdd00"
+        stroke="#dfe1e5"
+        stroke-width="4"
       />
       <circle
         class="progress-ring"
@@ -20,18 +20,19 @@ import "../styles/scroll-top.css";
         cx="32"
         cy="32"
         r="28"
-        stroke="var(--color-natgeo-yellow)"
-        stroke-width="7"
+        stroke="#ffae00"
+        stroke-width="4"
         fill="none"
         stroke-linecap="round"
         stroke-dasharray="175.84"
         stroke-dashoffset="175.84"
       />
     </svg>
-    <span class="arrow-icon">
-      <ScrollToTopIcon />
-    </span>
-  </span>
+    <Icon
+      name="chevron-up"
+      class="arrow-icon"
+      data-icon-name="chevron-up"
+    />
 </button>
 
 <script>

@@ -42,11 +42,15 @@
   top: 50%;
   transform: translate(-50%, -50%);
   z-index: 1;
-  width: 56px;
-  height: 56px;
+  width: 28px;
+  height: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+.arrow-icon path {
+  stroke-width: 4;
+  stroke: #fff;
+}
 
