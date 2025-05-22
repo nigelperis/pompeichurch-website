@@ -29,11 +29,7 @@ async function listParishPriestsAndDeacons(args?: {
   let priests: ParishPriestsAndDeacons[] = [];
   let hasMore = true;
 
-  const {
-    pageSize = 25,
-    sortBy = "sNo:asc",
-    locale = Locale.EN,
-  } = args ?? {};
+  const { pageSize = 25, sortBy = "sNo:asc", locale = Locale.EN } = args ?? {};
 
   while (hasMore) {
     const queryParams = new URLSearchParams({
@@ -44,18 +40,20 @@ async function listParishPriestsAndDeacons(args?: {
       locale,
     });
 
-    for (const [field, operatorObject] of Object.entries(args?.filters)) {
+    for (const [field, operatorObject] of Object.entries(
+      args?.filters as Record<string, any>,
+    )) {
       const operator = Object.keys(operatorObject)[0];
       const value = operatorObject[operator];
 
       if (typeof value === "string" || typeof value === "number") {
-        queryParams.append(`filters[${field}][${operator}]`, value);
-      } else if (Array.isArray(value) && typeof value[0] != Object) {
+        queryParams.append(`filters[${field}][${operator}]`, String(value));
+      } else if (Array.isArray(value) && typeof value[0] != "object") {
         value.forEach((val) => {
-          queryParams.append(`filters[${field}][${operator}]`, val);
+          queryParams.append(`filters[${field}][${operator}]`, String(val));
         });
       } else {
-        operatorObject.map((val, i = 0) => {
+        operatorObject.map((val: Record<string, any>, i = 0) => {
           const fieldKey = Object.keys(val)[0];
           const op = Object.keys(val[fieldKey])[0];
 
