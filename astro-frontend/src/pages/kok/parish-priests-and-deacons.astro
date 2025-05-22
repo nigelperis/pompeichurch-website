@@ -6,7 +6,7 @@ import type { ParishPriestsAndDeacons } from "~/models/parish-priest-and-deacon"
 import { listParishPriestsAndDeacons } from "~/services/list-parish-priests-and-deacons-data.ts";
 import { Message } from "~/constants/message.ts";
 import { Locale } from "~/enums/locale";
-import { Role } from "~/enums/role";
+import { ClergyRole } from "~/enums/clergy-role";
 import { cn } from "~/helpers/cn";
 
 const lang = getLangFromUrl(Astro.url);
@@ -17,13 +17,13 @@ const parishPriestsKok: ParishPriestsAndDeacons[] =
     page: 1,
     pageSize: 100,
     locale: Locale.KOK,
-    filters: { field: "role", value: Role.PARISH_PRIEST },
+    filters: { role: { $eq: ClergyRole.PARISH_PRIEST } },
   })) || [];
 const parishPriestsEn: ParishPriestsAndDeacons[] =
   (await listParishPriestsAndDeacons({
     page: 1,
     pageSize: 100,
-    filters: { field: "role", value: Role.PARISH_PRIEST },
+    filters: { role: { $eq: ClergyRole.PARISH_PRIEST } },
   })) || [];
 
 const deaconsKok: ParishPriestsAndDeacons[] =
@@ -31,13 +31,13 @@ const deaconsKok: ParishPriestsAndDeacons[] =
     page: 1,
     pageSize: 100,
     locale: Locale.KOK,
-    filters: { field: "role", value: Role.DEACON },
+    filters: { role: { $eq: ClergyRole.DEACON } },
   })) || [];
 const deaconsEn: ParishPriestsAndDeacons[] =
   (await listParishPriestsAndDeacons({
     page: 1,
     pageSize: 100,
-    filters: { field: "role", value: Role.DEACON },
+    filters: { role: { $eq: ClergyRole.DEACON } },
   })) || [];
 ---
 

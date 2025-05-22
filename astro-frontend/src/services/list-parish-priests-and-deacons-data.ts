@@ -5,28 +5,24 @@ import type {
   ParishPriestsAndDeaconsData,
 } from "~/models/parish-priest-and-deacon";
 import { Locale } from "~/enums/locale";
-import { Role } from "~/enums/role";
 
 /**
- * Fetches a paginated list of parish priests and deacons from Strapi.
+ * Fetches a paginated list of priests and deacons from Strapi.
  *
- * @param {Object} [args] - Optional parameters for fetching the list.
- * @param {number} [args.page=1] - The initial page number to retrieve.
- * @param {number} [args.pageSize=25] - The number of items per page.
- * @param {string} [args.sortBy='sNo:asc'] - The sorting order of the items.
+ * @param {Object} [args] - Optional parameters for fetching the list of priests and deacons.
+ * @param {number} [args.page=1] - The page number to retrieve.
+ * @param {number} [args.pageSize=25] - The number of priests and deacons per page.
+ * @param {string} [args.sortBy='sNo:asc'] - The sorting order of the priests and deacons.
  * @param {Locale} [args.locale=Locale.EN] - The locale of the content to retrieve.
- * @param {Object} [args.filters] - Filters for the query, including field and value.
- * @param {string} args.filters.field - The field to filter by.
- * @param {Role} args.filters.value - The role value to filter.
+ * @param {Record<string, Record<string, any>>} [args.filters] - Filters to apply when fetching the list of priests and deacons.
  * @returns {Promise<ParishPriestsAndDeacons[]>} A promise that resolves to an array of ParishPriestsAndDeacons objects.
  */
-
 async function listParishPriestsAndDeacons(args?: {
   page?: number;
   pageSize?: number;
   sortBy?: string;
   locale?: Locale;
-  filters: { field: string; value: Role };
+  filters: Record<string, Record<string, any>>;
 }): Promise<ParishPriestsAndDeacons[]> {
   const batchSize = 100;
   let page = 1;
@@ -37,10 +33,6 @@ async function listParishPriestsAndDeacons(args?: {
     pageSize = 25,
     sortBy = "sNo:asc",
     locale = Locale.EN,
-    filters = {
-      field: "role",
-      value: Role.PARISH_PRIEST,
-    },
   } = args ?? {};
 
   while (hasMore) {
@@ -52,7 +44,28 @@ async function listParishPriestsAndDeacons(args?: {
       locale,
     });
 
-    queryParams.append(`filters[${filters.field}][$eq]`, filters.value);
+    for (const [field, operatorObject] of Object.entries(args?.filters)) {
+      const operator = Object.keys(operatorObject)[0];
+      const value = operatorObject[operator];
+
+      if (typeof value === "string" || typeof value === "number") {
+        queryParams.append(`filters[${field}][${operator}]`, value);
+      } else if (Array.isArray(value) && typeof value[0] != Object) {
+        value.forEach((val) => {
+          queryParams.append(`filters[${field}][${operator}]`, val);
+        });
+      } else {
+        operatorObject.map((val, i = 0) => {
+          const fieldKey = Object.keys(val)[0];
+          const op = Object.keys(val[fieldKey])[0];
+
+          queryParams.append(
+            `filters[${field}][${i}][${fieldKey}][${op}]`,
+            val[fieldKey][op],
+          );
+        });
+      }
+    }
 
     const data = await strapiFetch<ParishPriestsAndDeaconsData>({
       endpoint: ROUTES.PARISH_PRIESTS_AND_DEACONS,
@@ -60,7 +73,7 @@ async function listParishPriestsAndDeacons(args?: {
     });
 
     if (data?.data?.length) {
-      priests = [...priests, ...data?.data];
+      priests.push(...data?.data);
       page++;
 
       if (data?.data?.length < batchSize) {
