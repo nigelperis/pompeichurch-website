@@ -1,0 +1,94 @@
+---
+import Layout from "~/layouts/layout.astro";
+import { getLangFromUrl, useTranslations } from "~/i18n/utils";
+import ParishPriestsAndDeaconsList from "~/components/sections/parish-priests-and-deacons/parish-priests-and-deacons-list.astro";
+import type { ParishPriestsAndDeacons } from "~/models/parish-priest-and-deacon";
+import { listParishPriestsAndDeacons } from "~/services/list-parish-priests-and-deacons-data.ts";
+import { Message } from "~/constants/message.ts";
+import { Locale } from "~/enums/locale";
+import { ClergyRole } from "~/enums/clergy-role";
+import { cn } from "~/helpers/cn";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const parishPriestsKok: ParishPriestsAndDeacons[] =
+  (await listParishPriestsAndDeacons({
+    page: 1,
+    pageSize: 100,
+    locale: Locale.KOK,
+    filters: { role: { $eq: ClergyRole.PARISH_PRIEST } },
+  })) || [];
+const parishPriestsEn: ParishPriestsAndDeacons[] =
+  (await listParishPriestsAndDeacons({
+    page: 1,
+    pageSize: 100,
+    filters: { role: { $eq: ClergyRole.PARISH_PRIEST } },
+  })) || [];
+
+const deaconsKok: ParishPriestsAndDeacons[] =
+  (await listParishPriestsAndDeacons({
+    page: 1,
+    pageSize: 100,
+    locale: Locale.KOK,
+    filters: { role: { $eq: ClergyRole.DEACON } },
+  })) || [];
+const deaconsEn: ParishPriestsAndDeacons[] =
+  (await listParishPriestsAndDeacons({
+    page: 1,
+    pageSize: 100,
+    filters: { role: { $eq: ClergyRole.DEACON } },
+  })) || [];
+---
+
+<Layout title="Pompei Church | Parish Priests And Deacons">
+  <main class="mx-auto max-w-4xl overflow-hidden bg-white">
+    <section id="parish-priests-and-deacons" class="flex flex-col p-6 pb-4">
+      <h1
+        class={cn(
+          "font-roboto font-black border-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl lg:text-4xl",
+          {
+            "font-noto-sans-kannada font-bold": lang === Locale.KOK,
+          },
+        )}
+      >
+        {t("nav.parish-priests-and-deacons")}
+      </h1>
+      <p class="font-roboto text-justify text-lg text-slate-700">
+        {t("pp.subtitle")}
+      </p>
+      <h2 class="mt-10 text-2xl font-semibold italic text-red-600 lg:text-3xl">
+        {t("parish-priests")}
+      </h2>
+      {
+        parishPriestsKok.length > 0 ? (
+          <ParishPriestsAndDeaconsList
+            parishPriestsAndDeacons={parishPriestsKok}
+          />
+        ) : parishPriestsEn.length > 0 ? (
+          <ParishPriestsAndDeaconsList
+            parishPriestsAndDeacons={parishPriestsEn}
+          />
+        ) : (
+          <p class="py-8 text-center text-3xl font-semibold">
+            {Message.PARISH_PRIESTS_NOT_FOUND}
+          </p>
+        )
+      }
+      <h2 class="mt-10 text-2xl font-semibold italic text-red-600 lg:text-3xl">
+        {t("deacons")}
+      </h2>
+      {
+        deaconsKok.length > 0 ? (
+          <ParishPriestsAndDeaconsList parishPriestsAndDeacons={deaconsKok} />
+        ) : deaconsEn.length > 0 ? (
+          <ParishPriestsAndDeaconsList parishPriestsAndDeacons={deaconsEn} />
+        ) : (
+          <p class="py-8 text-center text-3xl font-semibold">
+            {Message.DEACONS_NOT_FOUND}
+          </p>
+        )
+      }
+    </section>
+  </main>
+</Layout>
