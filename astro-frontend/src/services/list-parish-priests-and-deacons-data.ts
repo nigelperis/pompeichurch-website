@@ -5,6 +5,7 @@ import type {
   ParishPriestsAndDeaconsData,
 } from "~/models/parish-priest-and-deacon";
 import { Locale } from "~/enums/locale";
+import { ClergyRole } from "~/enums/clergy-role";
 
 /**
  * Fetches a paginated list of priests and deacons from Strapi.
@@ -22,14 +23,19 @@ async function listParishPriestsAndDeacons(args?: {
   pageSize?: number;
   sortBy?: string;
   locale?: Locale;
-  filters: Record<string, Record<string, any>>;
+  filters: Record<string, any>;
 }): Promise<ParishPriestsAndDeacons[]> {
   const batchSize = 100;
   let page = 1;
   let priests: ParishPriestsAndDeacons[] = [];
   let hasMore = true;
 
-  const { pageSize = 25, sortBy = "sNo:asc", locale = Locale.EN } = args ?? {};
+  const {
+    pageSize = 25,
+    sortBy = "sNo:asc",
+    locale = Locale.EN,
+    filters = { role: { $eq: ClergyRole.PARISH_PRIEST } },
+  } = args ?? {};
 
   while (hasMore) {
     const queryParams = new URLSearchParams({
@@ -40,28 +46,14 @@ async function listParishPriestsAndDeacons(args?: {
       locale,
     });
 
-    for (const [field, operatorObject] of Object.entries(
-      args?.filters as Record<string, any>,
-    )) {
-      const operator = Object.keys(operatorObject)[0];
-      const value = operatorObject[operator];
-
-      if (typeof value === "string" || typeof value === "number") {
-        queryParams.append(`filters[${field}][${operator}]`, String(value));
-      } else if (Array.isArray(value) && typeof value[0] != "object") {
-        value.forEach((val) => {
-          queryParams.append(`filters[${field}][${operator}]`, String(val));
-        });
+    for (const field in filters) {
+      const condition = filters[field];
+      if (typeof condition === "object") {
+        for (const operator in condition) {
+          queryParams.append(`filters[${field}][${operator}]`, String(condition[operator]));
+        }
       } else {
-        operatorObject.map((val: Record<string, any>, i = 0) => {
-          const fieldKey = Object.keys(val)[0];
-          const op = Object.keys(val[fieldKey])[0];
-
-          queryParams.append(
-            `filters[${field}][${i}][${fieldKey}][${op}]`,
-            val[fieldKey][op],
-          );
-        });
+        queryParams.append(`filters[${field}][$eq]`, String(condition));
       }
     }
 
