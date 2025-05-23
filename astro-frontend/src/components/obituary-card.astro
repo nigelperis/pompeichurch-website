@@ -4,6 +4,7 @@ import NetworkImage from "./ui/network-image.astro";
 import ShareLink from "./ui/share-link.astro";
 import { getLangFromUrl } from "~/i18n/utils";
 import { Locale } from "~/enums/locale";
+import { WardNamesKok } from "~/enums/ward-names-kok";
 
 interface Props {
   id: string;
@@ -63,20 +64,9 @@ const activeLabels =
     },
   }[lang] ?? {};
 
-const wardMap: Record<string, { en: string; kok: string }> = {
-  "Kowdoor A": { en: "Kowdoor A", kok: "ಕೌಡೂರ್ ಎ" },
-  "Kowdoor B": { en: "Kowdoor B", kok: "ಕೌಡೂರ್ ಬಿ" },
-  "Pompei A": { en: "Pompei A", kok: "ಪೊಂಪೈ ಎ" },
-  "Pompei B": { en: "Pompei B", kok: "ಪೊಂಪೈ ಬಿ" },
-  "Kandar A": { en: "Kandar A", kok: "ಕಂದಾರ್ ಎ" },
-  "Kandar B": { en: "Kandar B", kok: "ಕಂದಾರ್ ಬಿ" },
-  Monel: { en: "Monel", kok: "ಮಣೆಲ್" },
-  Gurpur: { en: "Gurpur", kok: "ಗುರ್ಪುರ್" },
-  Church: { en: "Church", kok: "ಇಗರ್ಜೆ" },
-  Addoor: { en: "Addoor", kok: "ಅಡ್ಡೂರ್" },
-};
-
-const localizedWard = wardMap[ward]?.[lang === "kok" ? "kok" : "en"] ?? ward;
+function getWardNameKok(ward: string): string {
+  return WardNamesKok[ward as keyof typeof WardNamesKok] ?? ward;
+}
 
 const obituaryUrl = new URL(
   lang === Locale.EN
@@ -129,7 +119,7 @@ const obituaryUrl = new URL(
       {
         ward && (
           <p class="md:text-base text-lg text-slate-700">
-            <strong>{activeLabels.ward}:</strong> {localizedWard}
+            <strong>{activeLabels.ward}:</strong> {getWardNameKok(ward)}
           </p>
         )
       }
@@ -155,7 +145,7 @@ const obituaryUrl = new URL(
         class="px-3 py-2 text-sm"
         shareData={{
           url: obituaryUrl,
-          title: `${name} - ${ward}`,
+          title: `${name} - ${getWardNameKok(ward)}`,
         }}
       />
     </div>
