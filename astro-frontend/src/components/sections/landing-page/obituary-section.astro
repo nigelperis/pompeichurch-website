@@ -1,7 +1,6 @@
 ---
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import { cn } from "~/helpers/cn";
-
 import HoverableLink from "~/components/ui/hoverable-link.astro";
 import Card from "~/components/normal-card.astro";
 import { listObituaries } from "~/services/obituaries/list-obituaries";
@@ -49,7 +48,7 @@ const featuredObituary = obituaryDataFormatted[4];
           {obituaryDataFormatted.slice(0, 4).map((obituary) => (
             <div class="flex-none relative h-full">
               <Card
-                imageUrl={obituary.image?.url}
+                imageUrl={obituary.image?.url ?? "blank.jpg"}
                 title={`${lang === "kok" ? obituary.konkaniName : obituary.englishName} (${obituary.age})`}
                 subtitle={
                   lang === "kok"
@@ -80,7 +79,7 @@ const featuredObituary = obituaryDataFormatted[4];
             <div class="flex-none relative h-full lg:hidden overflow-hidden border border-gray-200">
               <div class="opacity-50 blur-md rounded-lg">
                 <Card
-                  imageUrl={featuredObituary.image?.url}
+                  imageUrl={featuredObituary.image?.url || "blank.jpg"}
                   title={`${lang === "kok" ? featuredObituary.konkaniName : featuredObituary.englishName} (${featuredObituary.age})`}
                   subtitle={
                     lang === "kok"

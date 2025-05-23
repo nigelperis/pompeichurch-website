@@ -800,6 +800,7 @@ export interface ApiObituaryObituary extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     dateOfDeath: Schema.Attribute.Date;
     englishName: Schema.Attribute.String;
+    funeralDetails: Schema.Attribute.Text;
     image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     konkaniName: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
@@ -830,6 +831,7 @@ export interface ApiObituaryObituary extends Struct.CollectionTypeSchema {
         'Pompei B',
       ]
     >;
+    youtubeLink: Schema.Attribute.String;
   };
 }
 

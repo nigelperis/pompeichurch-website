@@ -1,5 +1,5 @@
 ---
-import ObituaryList from "~/components/sections/obituary/obituary-list.astro";
+import ObituaryListWithWidePanel from "~/components/ObituaryListWithDetails.tsx";
 import Layout from "~/layouts/layout.astro";
 import Pagination from "~/components/pagination.astro";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
@@ -46,7 +46,6 @@ lang === Locale.EN
 Astro.url,
 ).href;
 ---
-
 <Layout title={`${pageTitle} ${selectedObituary?.age ? `(${selectedObituary.age})` : "" }`}
   description={`${selectedObituary?.ward}`} image={absoluteImageURL} url={obituaryUrl}>
   <main class="mx-auto max-w-4xl overflow-hidden bg-white">
@@ -62,7 +61,30 @@ Astro.url,
       {
       obituaries.length > 0 ? (
       <>
-        <ObituaryList obituaries={obituaries} />
+        <ObituaryListWithWidePanel obituaries={
+  obituaries.map(o => ({
+    id: o.id,
+    lang: o.lang || "en",
+    englishName: o.englishName,
+    konkaniName: o.konkaniName,
+    image: o.image ?? null,
+    age: o.age,
+    relationType: o.relationType,
+    relationNameEn: o.relationNameEn,
+    relationNameKok: o.relationNameKok,
+    ward: o.ward,
+    dateOfDeath: (() => {
+      if (!o.dateOfDeath) return undefined;
+      if (typeof o.dateOfDeath === "string") return o.dateOfDeath;
+      if (typeof o.dateOfDeath === "object" && typeof (o.dateOfDeath as any).toISOString === "function") {
+        return (o.dateOfDeath as Date).toISOString().split("T")[0];
+      }
+      return undefined;
+    })(),
+    funeralDetails: o.funeralDetails,
+  }))
+} lang={lang} client:load />
+
         <Pagination currentPage={currentPage} totalPages={totalPages} />
       </>
       ) : (
