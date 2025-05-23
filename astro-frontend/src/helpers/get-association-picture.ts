@@ -14,7 +14,7 @@ export function getGroupImage(
   const image = associationDetails[groupPictureField];
 
   if (typeof image === "object" && image !== null && "url" in image) {
-    return new URL(image.url, import.meta.env.STRAPI_URL).toString();
+    return new URL(image.url, import.meta.env.PUBLIC_STRAPI_URL).toString();
   }
 
   return getPlaceholderImage();

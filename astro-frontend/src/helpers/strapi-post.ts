@@ -18,18 +18,22 @@ export async function strapiPost<T>({
   endpoint,
   body = {},
 }: StrapiPostProps): Promise<T | undefined> {
-  if (!import.meta.env.STRAPI_URL) {
+  if (!import.meta.env.PUBLIC_STRAPI_URL) {
     throw new Error("Strapi Base URL not found!");
   }
 
-  const url = new URL(`/api${endpoint}`, import.meta.env.STRAPI_URL);
+  const url = new URL(`/api${endpoint}`, import.meta.env.PUBLIC_STRAPI_URL);
+
+  const isFormData = body instanceof FormData;
 
   const res = await fetch(url.toString(), {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: body ? JSON.stringify(body) : undefined,
+    headers: isFormData
+      ? undefined
+      : {
+        "Content-Type": "application/json",
+      },
+    body: isFormData ? body : JSON.stringify(body),
   });
 
   if (!res.ok) {

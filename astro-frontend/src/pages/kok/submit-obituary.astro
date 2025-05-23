@@ -1,0 +1,11 @@
+---
+import Layout from '~/layouts/layout.astro';
+import { ui } from '~/i18n/ui.ts';
+import ObituaryForm from '~/components/obituary-form/ObituaryForm.astro';
+
+const lang = "kok";
+const labels = ui[lang];
+---
+<Layout title={labels.title}>
+  <ObituaryForm labels={labels} lang={lang} />
+</Layout>
