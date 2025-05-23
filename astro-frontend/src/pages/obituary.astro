@@ -24,7 +24,7 @@ pageSize: obituariesPerPage,
 
 const totalPages = pagination.pageCount;
 
-const baseURL = import.meta.env.STRAPI_URL;
+const baseURL = import.meta.env.PUBLIC_STRAPI_URL;
 
 const id = url.searchParams.get("id") || null;
 const selectedObituary = id
@@ -79,5 +79,4 @@ Astro.url,
       </a>
     </div>
   </main>
-
 </Layout>

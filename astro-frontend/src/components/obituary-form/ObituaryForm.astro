@@ -1,7 +1,8 @@
 ---
 import ChevronDown from '~/assets/icons/chevron-down.svg';
 import CalendarDays from '~/assets/icons/calendar-days.svg';
-import ObituaryPreview from '~/components/ObituaryPreview.tsx';
+import ObituaryPreview from './ObituaryPreview';
+
 const { labels } = Astro.props;
 const t = labels;
 ---
@@ -165,7 +166,9 @@ const t = labels;
     {t.toastMsg}
   </div>
 
-  <script>
+<script>
+    import { sendReviewWithAttachment } from "~/helpers/send-obituary-mail";
+
     // Emit form update event
     function emitFormUpdate() {
       const form = document.getElementById("obituaryForm");
@@ -208,7 +211,7 @@ const t = labels;
     }
 
     // Show toast on form submission
-    document.addEventListener("DOMContentLoaded", () => {
+    document.addEventListener("DOMContentLoaded", async () => {
       const form = document.getElementById("obituaryForm");
       if (form instanceof HTMLFormElement) {
         form.addEventListener("input", emitFormUpdate);
@@ -221,7 +224,7 @@ const t = labels;
         }
 
         // showToast on submit
-        form.addEventListener("submit", (event) => {
+        form.addEventListener("submit", async (event) => {
           event.preventDefault();
 
           // Honeypot check
@@ -234,17 +237,31 @@ const t = labels;
           const formData = new FormData(form);
           const imageFile = formData.get("imageFile");
           if (imageFile instanceof File && imageFile.size > 500 * 1024) {
+            console.log("Image file detected:", imageFile.name, imageFile.size, imageFile.type);
             alert("Image must be less than 500KB");
             return;
           }
 
-          // Show Toast
-          showToast();
+          try {
+            for (const [key, value] of formData.entries()) {
+  console.log(`${key}:`, value);
+  if (value instanceof File) {
+    console.log("File details:", value.name, value.size, value.type);
+  }
+}
+            await sendReviewWithAttachment(formData);
+            // Show Toast
+            showToast();
 
-          // Reset form and preview
-          form.reset();
-          emitFormUpdate();
-          window.dispatchEvent(new CustomEvent("obituary-image-preview", { detail: { imageUrl: "" } }));
+            // Reset form and preview
+            form.reset();
+            emitFormUpdate();
+            window.dispatchEvent(new CustomEvent("obituary-image-preview", { detail: { imageUrl: "" } }));
+          }
+          catch (err) {
+            console.error(err);
+            alert("There was an error submitting the form.");
+          }
         });
       }
     });
@@ -262,5 +279,5 @@ const t = labels;
         }, 6000);
       }
     }
-  </script>
+</script>
 </main>

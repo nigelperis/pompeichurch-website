@@ -13,4 +13,5 @@ export const ROUTES = {
   PARISH_PRIESTS: "/parish-priests",
   LANDING_PAGE_CAROUSEL: "/landing-page-carousels",
   PARISH_PASTORAL_21_COMMISSION: "/parish-pastoral-21-commissions",
+  SEND_REVIEW: "/send-review",
 } as const;

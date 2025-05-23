@@ -14,7 +14,7 @@ const { pastoralCouncilImage } = Astro.props;
     src={pastoralCouncilImage?.pastoralCouncilImage?.url
       ? new URL(
           pastoralCouncilImage?.pastoralCouncilImage?.url,
-          import.meta.env.STRAPI_URL,
+          import.meta.env.PUBLIC_STRAPI_URL,
         ).toString()
       : getPlaceholderImage()}
     width={pastoralCouncilImage?.pastoralCouncilImage?.width || 600}
