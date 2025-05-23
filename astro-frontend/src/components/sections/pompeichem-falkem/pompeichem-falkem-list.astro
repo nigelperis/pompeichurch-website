@@ -17,7 +17,7 @@ const { magazines } = Astro.props as { magazines: PompeichemFalkem[] };
           magazine.coverImage.url
             ? new URL(
                 magazine.coverImage.url,
-                import.meta.env.STRAPI_URL,
+                import.meta.env.PUBLIC_STRAPI_URL,
               ).toString()
             : getPlaceholderImage()
         }
