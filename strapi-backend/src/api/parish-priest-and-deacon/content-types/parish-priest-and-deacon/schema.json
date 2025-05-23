@@ -1,9 +1,9 @@
 {
   "kind": "collectionType",
-  "collectionName": "parish_priests",
+  "collectionName": "parish_priests_and_deacons",
   "info": {
-    "singularName": "parish-priest",
-    "pluralName": "parish-priests",
+    "singularName": "parish-priest-and-deacon",
+    "pluralName": "parish-priests-and-deacons",
     "displayName": "Parish Priests And Deacons",
     "description": ""
   },

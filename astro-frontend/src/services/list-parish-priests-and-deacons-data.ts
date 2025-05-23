@@ -8,14 +8,13 @@ import { Locale } from "~/enums/locale";
 import { ClergyRole } from "~/enums/clergy-role";
 
 /**
- * Fetches a paginated list of priests and deacons from Strapi.
- *
- * @param {Object} [args] - Optional parameters for fetching the list of priests and deacons.
+ * Fetches a paginated list of members of the Parish Priests and Deacons from Strapi.
+ * @param {Object} [args] - Optional parameters for fetching the list of members.
  * @param {number} [args.page=1] - The page number to retrieve.
- * @param {number} [args.pageSize=25] - The number of priests and deacons per page.
- * @param {string} [args.sortBy='sNo:asc'] - The sorting order of the priests and deacons.
+ * @param {number} [args.pageSize=25] - The number of members per page.
+ * @param {string} [args.sortBy='sNo:asc'] - The sorting order of the members.
  * @param {Locale} [args.locale=Locale.EN] - The locale of the content to retrieve.
- * @param {Record<string, Record<string, any>>} [args.filters] - Filters to apply when fetching the list of priests and deacons.
+ * @param {Record<string, any>} [args.filters] - Additional filters to apply to the query.
  * @returns {Promise<ParishPriestsAndDeacons[]>} A promise that resolves to an array of ParishPriestsAndDeacons objects.
  */
 async function listParishPriestsAndDeacons(args?: {
@@ -23,7 +22,7 @@ async function listParishPriestsAndDeacons(args?: {
   pageSize?: number;
   sortBy?: string;
   locale?: Locale;
-  filters: Record<string, any>;
+  filters?: Record<string, any>;
 }): Promise<ParishPriestsAndDeacons[]> {
   const batchSize = 100;
   let page = 1;
@@ -50,7 +49,10 @@ async function listParishPriestsAndDeacons(args?: {
       const condition = filters[field];
       if (typeof condition === "object") {
         for (const operator in condition) {
-          queryParams.append(`filters[${field}][${operator}]`, String(condition[operator]));
+          queryParams.append(
+            `filters[${field}][${operator}]`,
+            String(condition[operator]),
+          );
         }
       } else {
         queryParams.append(`filters[${field}][$eq]`, String(condition));
