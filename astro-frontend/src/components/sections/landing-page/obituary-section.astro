@@ -40,8 +40,9 @@ const wardMap: Record<string, { en: string; kok: string }> = {
 };
 
 const localizedWard =
-  wardMap[obituaryDataFormatted[0]?.ward]?.[lang === "kok" ? "kok" : "en"] ??
-  obituaryDataFormatted[0]?.ward;
+  wardMap[obituaryDataFormatted[0]?.ward]?.[
+    lang === Locale.KOK ? Locale.KOK : Locale.EN
+  ] ?? obituaryDataFormatted[0]?.ward;
 ---
 
 <section

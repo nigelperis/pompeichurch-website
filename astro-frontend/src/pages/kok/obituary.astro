@@ -8,10 +8,10 @@ import type { Obituary } from "~/models/obituary";
 import { Message } from "~/constants/message.ts";
 import { Locale } from "~/enums/locale";
 import { cn } from "~/helpers/cn";
-import { getWardNameKok } from "~/components/obituary-card.astro";
+import { getWardNameKok } from "~/helpers/get-ward-names-kok";
 
 const url = new URL(Astro.url);
-const lang = getLangFromUrl(Astro.url);
+const lang = getLangFromUrl(Astro.url) as Locale;
 const t = useTranslations(lang);
 
 const obituariesPerPage = 6;
