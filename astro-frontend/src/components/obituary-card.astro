@@ -64,8 +64,8 @@ const activeLabels =
     },
   }[lang] ?? {};
 
-function getWardNameKok(ward: string): string {
-  return WardNamesKok[ward as keyof typeof WardNamesKok] ?? ward;
+export function getWardNameKok(ward: string, lang: string): string {
+  return lang === Locale.KOK ? WardNamesKok[ward as keyof typeof WardNamesKok] : ward;
 }
 
 const obituaryUrl = new URL(
@@ -119,7 +119,7 @@ const obituaryUrl = new URL(
       {
         ward && (
           <p class="md:text-base text-lg text-slate-700">
-            <strong>{activeLabels.ward}:</strong> {getWardNameKok(ward)}
+            <strong>{activeLabels.ward}:</strong> {getWardNameKok(ward, lang)}
           </p>
         )
       }
@@ -145,7 +145,7 @@ const obituaryUrl = new URL(
         class="px-3 py-2 text-sm"
         shareData={{
           url: obituaryUrl,
-          title: `${name} - ${getWardNameKok(ward)}`,
+          title: `${name} - ${getWardNameKok(ward, lang)}`,
         }}
       />
     </div>
