@@ -1,13 +1,34 @@
 ---
 import ChevronDown from '~/assets/icons/chevron-down.svg';
 import CalendarDays from '~/assets/icons/calendar-days.svg';
+import CheckMark from '~/assets/icons/check.svg';
 import ObituaryPreview from './ObituaryPreview';
 
-const { labels } = Astro.props;
+const { labels, lang } = Astro.props;
 const t = labels;
+const wards = [
+{ key: "ward.addoor-ward", value: "Addoor" },
+{ key: "ward.church-ward", value: "Church" },
+{ key: "ward.gurpur-ward", value: "Gurpur" },
+{ key: "ward.kandar-a-ward", value: "Kandar A" },
+{ key: "ward.kandar-b-ward", value: "Kandar B" },
+{ key: "ward.kowdoor-a-ward", value: "Kowdoor A" },
+{ key: "ward.kowdoor-b-ward", value: "Kowdoor B" },
+{ key: "ward.monel-ward", value: "Monel" },
+{ key: "ward.pompei-a-ward", value: "Pompei A" },
+{ key: "ward.pompei-b-ward", value: "Pompei B" },
+];
+
+const relationTypes = [
+{ key: "wifeOf", value: "W/O", label: "Wife of" },
+{ key: "husbandOf", value: "H/O", label: "Husband of" },
+{ key: "sonOf", value: "S/O", label: "Son of" },
+{ key: "daughterOf", value: "D/O", label: "Daughter of" },
+];
+
 ---
 
-<main class="mx-auto max-w-5xl bg-white">
+<main data-lang={lang} class="mx-auto max-w-5xl bg-white">
   <div class="px-4 py-10 sm:px-6 lg:px-8">
     <h1 class="font-roboto font-black border-natgeo-yellow mb-6 border-l-4 pl-3 text-3xl lg:text-4xl">
       {t.title}
@@ -17,19 +38,21 @@ const t = labels;
         <!-- Full Name English -->
         <div>
           <label for="englishName" class="block text-sm font-medium text-gray-700 mb-1">
-            {t.nameEn} <span class="text-red-600">*</span>
+            {t.nameEn} {lang === 'en' && <span class="text-red-600" id="en-required">*</span>}
           </label>
-          <input type="text" name="englishName" id="englishName" required placeholder={t.nameEnPH}
-            class="block w-full border border-gray-300 p-3 focus:outline-none placeholder-gray-600" />
+          <input type="text" name="englishName" id="englishName" placeholder={t.nameEnPH}
+            class="block w-full border border-gray-300 p-3 focus:outline-none placeholder-gray-600"
+            required={lang==='en' ? true : undefined} />
         </div>
 
         <!-- Full Name Konkani -->
         <div>
           <label for="konkaniName" class="block text-sm font-medium text-gray-700 mb-1">
-            {t.nameKok}
+            {t.nameKok} {lang === 'kok' && <span class="text-red-600" id="kok-required">*</span>}
           </label>
           <input type="text" name="konkaniName" id="konkaniName" placeholder={t.nameKokPH}
-            class="block w-full border border-gray-300 p-3 focus:outline-none placeholder-gray-600" />
+            class="block w-full border border-gray-300 p-3 focus:outline-none placeholder-gray-600"
+            required={lang==='kok' ? true : undefined} />
         </div>
 
         <!-- Age -->
@@ -42,27 +65,29 @@ const t = labels;
         </div>
 
         <!-- Ward -->
-        <div class="relative">
-          <label for="ward" class="block text-sm font-medium text-gray-700 mb-1">
+        <div class="relative" id="ward-dropdown-wrap">
+          <label for="ward-btn" class="block text-sm font-medium text-gray-700 mb-1">
             {t.ward} <span class="text-red-600">*</span>
           </label>
-          <select name="ward" id="ward" required
-            class="block w-full border border-gray-300 p-3 pr-10 appearance-none focus:outline-none text-gray-700">
-            <option value="" disabled selected>{t.wardPH}</option>
-            <option value="Addoor">Addoor</option>
-            <option value="Church">Church</option>
-            <option value="Gurpur">Gurpur</option>
-            <option value="Kandar A">Kandar A</option>
-            <option value="Kandar B">Kandar B</option>
-            <option value="Kowdoor A">Kowdoor A</option>
-            <option value="Kowdoor B">Kowdoor B</option>
-            <option value="Monel">Monel</option>
-            <option value="Pompei A">Pompei A</option>
-            <option value="Pompei B">Pompei B</option>
-          </select>
-          <!-- Dropdown Icon -->
-          <div class="pointer-events-none absolute right-3 top-1/2 text-gray-600">
-            <ChevronDown class="w-6 h-6" />
+          <button id="ward-btn" type="button"
+            class="w-full border border-gray-300 p-3 pr-10 appearance-none focus:outline-none text-gray-700 bg-white flex justify-between items-center">
+            <span id="ward-btn-label">{t.wardPH}</span>
+            <span class="pointer-events-none flex items-center">
+              <!-- Dropdown Icon -->
+              <div class="pointer-events-none absolute right-3 top-1/2 text-gray-600">
+                <ChevronDown class="w-6 h-6" />
+              </div>
+            </span>
+          </button>
+          <div id="ward-menu"
+            class="absolute left-0 right-0 mt-1 z-20 bg-white border border-gray-300 max-h-26 overflow-y-auto hidden"
+            style="max-height: 7.5rem;">
+            {wards.map(ward => (
+            <div class="px-4 py-2 cursor-pointer hover:bg-gray-100" data-ward={ward.value}>
+              {t[ward.key] ?? ward.value}
+            </div>
+            ))}
+            <input type="hidden" name="ward" id="ward-input" required>
           </div>
         </div>
 
@@ -81,21 +106,30 @@ const t = labels;
         </div>
 
         <!-- Relation Type -->
-        <div class="relative">
-          <label for="relationType" class="block text-sm font-medium text-gray-700 mb-1">
+        <div class="relative" id="reltype-dropdown-wrap">
+          <label for="reltype-btn" class="block text-sm font-medium text-gray-700 mb-1">
             {t.relType}
           </label>
-          <select name="relationType" id="relationType"
-            class="block text-gray-700 w-full border border-gray-300 p-3 pr-10 appearance-none focus:outline-none placeholder-gray-600">
-            <option value="" disabled selected>{t.relTypePH}</option>
-            <option value="W/O">Wife of</option>
-            <option value="H/O">Husband of</option>
-            <option value="S/O">Son of</option>
-            <option value="D/O">Daughter of</option>
-          </select>
-          <!-- Dropdown Icon -->
-          <div class="pointer-events-none absolute right-3 top-1/2 text-gray-600">
-            <ChevronDown class="w-6 h-6" />
+          <button id="reltype-btn" type="button"
+            class="w-full border border-gray-300 p-3 pr-10 appearance-none focus:outline-none text-gray-700 bg-white flex justify-between items-center">
+            <span id="reltype-btn-label">{t.relTypePH}</span>
+            <span class="pointer-events-none flex items-center">
+              <!-- Dropdown Icon -->
+              <div class="pointer-events-none absolute right-3 top-1/2 text-gray-600">
+                <ChevronDown class="w-6 h-6" />
+              </div>
+            </span>
+          </button>
+          <div id="reltype-menu"
+            class="absolute left-0 right-0 mt-1 z-20 bg-white border border-gray-300 max-h-26 overflow-y-auto hidden"
+            style="max-height: 7.5rem;">
+            <!-- Relation Type options -->
+            {relationTypes.map(rt => (
+            <div class="px-4 py-2 cursor-pointer hover:bg-gray-100" data-reltype={rt.value}>
+              {t[rt.key] ?? rt.label}
+            </div>
+            ))}
+            <input type="hidden" name="relationType" id="reltype-input">
           </div>
         </div>
 
@@ -134,9 +168,9 @@ const t = labels;
         <!-- Upload Image -->
         <div>
           <label for="imageFile" class="block text-sm font-medium text-gray-600 mb-1">
-            {t.image} <span class="text-red-600">*</span>
+            {t.image}
           </label>
-          <input type="file" name="imageFile" id="imageFile" accept="image/*" required
+          <input type="file" name="imageFile" id="imageFile" accept="image/*"
             class="w-full text-gray-600 font-medium text-sm bg-white border border-gray-300 file:cursor-pointer cursor-pointer file:border-0 file:py-3 file:px-4 file:mr-4 file:bg-gray-100 file:hover:bg-gray-200 file:text-gray-600" />
           <p class="text-xs text-red-600 mt-1">{t.imageHelp}</p>
         </div>
@@ -155,21 +189,31 @@ const t = labels;
       <!-- Preview(Used REACT) -->
       <div class="w-full lg:w-[260px] space-y-2">
         <h2 class="text-lg font-semibold text-gray-700">{t.preview}</h2>
-        <ObituaryPreview labels={Astro.props.labels} lang={Astro.props.lang} client:load />
+        <ObituaryPreview labels={Astro.props.labels} lang={Astro.props.lang} wards={wards} relationTypes={relationTypes}
+          client:load />
       </div>
     </div>
   </div>
 
   <!-- Toast Notification -->
   <div id="toast"
-    class="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-green-600 text-white px-4 py-3 text-sm font-semibold z-50 opacity-0 transition-opacity duration-300 pointer-events-none">
-    {t.toastMsg}
+    class="fixed top-6 left-1/2 transform -translate-x-1/2 bg-green-600 text-white px-6 py-4 text-lg font-bold z-50 rounded-xl shadow-lg opacity-0 transition-opacity duration-300 pointer-events-none flex items-center gap-3">
+    <CheckMark class="w-6 h-6" />
+    <span id="toast-text">{t.toastMsg}</span>
   </div>
 
-<script>
+  <script>
+    declare global {
+      interface Window {
+        isObituaryFormDirty?: boolean;
+      }
+    }
     import { sendReviewWithAttachment } from "~/helpers/send-obituary-mail";
 
-    // Emit form update event
+    // Helper to get language from main
+    function getPageLang() {
+      return document.querySelector('main[data-lang]')?.getAttribute('data-lang') || 'en';
+    }
     function emitFormUpdate() {
       const form = document.getElementById("obituaryForm");
       if (!(form instanceof HTMLFormElement)) return;
@@ -211,8 +255,78 @@ const t = labels;
     }
 
     // Show toast on form submission
+    function showToast(message = "Your submission was successful!") {
+      const toast = document.getElementById("toast");
+      if (toast) {
+        const textSpan = document.getElementById("toast-text");
+        if (textSpan) textSpan.textContent = message;
+        toast.classList.remove("opacity-0");
+        toast.classList.add("opacity-100");
+        toast.style.pointerEvents = "auto";
+        setTimeout(() => {
+          toast.classList.remove("opacity-100");
+          toast.classList.add("opacity-0");
+          toast.style.pointerEvents = "none";
+        }, 4000);
+      }
+    }
+
+    // Dropdown Logic
+    function setupDropdown({ btnId, menuId, wrapId, labelId, inputId, dataAttr }:
+      { btnId: string; menuId: string; wrapId: string; labelId: string; inputId: string; dataAttr: string; }
+    ) {
+      const btn = document.getElementById(btnId);
+      const menu = document.getElementById(menuId);
+      const wrap = document.getElementById(wrapId);
+      const label = document.getElementById(labelId);
+      const input = document.getElementById(inputId);
+
+      if (!(btn && menu && wrap && label && input)) return;
+
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        menu.classList.toggle('hidden');
+      });
+
+      Array.from(menu.querySelectorAll(`[${dataAttr}]`)).forEach(item => {
+        item.addEventListener('click', (event) => {
+          const target = event.currentTarget as HTMLElement;
+          label.textContent = target.textContent;
+          (input as HTMLInputElement).value = target.getAttribute(dataAttr) || "";
+          const inputEvent = new Event('input', { bubbles: true });
+          input.dispatchEvent(inputEvent);
+          menu.classList.add('hidden');
+        });
+      });
+
+      document.addEventListener('mousedown', function (e) {
+        if (!wrap.contains(e.target as Node)) {
+          menu.classList.add('hidden');
+        }
+      });
+    }
+
+    setupDropdown({
+      btnId: 'ward-btn',
+      menuId: 'ward-menu',
+      wrapId: 'ward-dropdown-wrap',
+      labelId: 'ward-btn-label',
+      inputId: 'ward-input',
+      dataAttr: 'data-ward'
+    });
+
+    setupDropdown({
+      btnId: 'reltype-btn',
+      menuId: 'reltype-menu',
+      wrapId: 'reltype-dropdown-wrap',
+      labelId: 'reltype-btn-label',
+      inputId: 'reltype-input',
+      dataAttr: 'data-reltype'
+    });
+
     document.addEventListener("DOMContentLoaded", async () => {
-      const form = document.getElementById("obituaryForm");
+      const form = document.getElementById("obituaryForm") as HTMLFormElement;
+      const pageLang = getPageLang();
       if (form instanceof HTMLFormElement) {
         form.addEventListener("input", emitFormUpdate);
         emitFormUpdate(); // initial
@@ -235,24 +349,33 @@ const t = labels;
           }
 
           const formData = new FormData(form);
+
+          // Konkani script check
+          const konkaniName = formData.get("konkaniName")?.toString() || "";
+          function isKonkaniScript(text: string) {
+            // Kannada Unicode block
+            return /[\u0C80-\u0CFF]/.test(text);
+          }
+          if (pageLang === "kok" && konkaniName.trim() !== "" && !isKonkaniScript(konkaniName)) {
+            alert("Please enter the full name in Konkani script (Kannada letters).");
+            return;
+          }
+
           const imageFile = formData.get("imageFile");
           if (imageFile instanceof File && imageFile.size > 500 * 1024) {
-            console.log("Image file detected:", imageFile.name, imageFile.size, imageFile.type);
             alert("Image must be less than 500KB");
             return;
           }
 
           try {
             for (const [key, value] of formData.entries()) {
-  console.log(`${key}:`, value);
-  if (value instanceof File) {
-    console.log("File details:", value.name, value.size, value.type);
-  }
-}
+              if (value instanceof File) {
+                console.log("File details:", value.name, value.size, value.type);
+              }
+            }
             await sendReviewWithAttachment(formData);
             // Show Toast
             showToast();
-
             // Reset form and preview
             form.reset();
             emitFormUpdate();
@@ -266,18 +389,49 @@ const t = labels;
       }
     });
 
-    // Toast logic
-    function showToast(message = "Your submission was successful!") {
-      const toast = document.getElementById("toast");
-      if (toast) {
-        toast.textContent = message;
-        toast.classList.remove("opacity-0");
-        toast.classList.add("opacity-100");
-        setTimeout(() => {
-          toast.classList.remove("opacity-100");
-          toast.classList.add("opacity-0");
-        }, 6000);
-      }
+    // Track initial form data to check for changes
+    let initialData: string | null = null;
+
+    // Function to get current form data as JSON string
+    function getCurrentFormData() {
+      const form = document.getElementById("obituaryForm") as HTMLFormElement;
+      if (!form) return "";
+      const fd = new FormData(form);
+      const obj: Record<string, any> = {};
+      for (const [k, v] of fd.entries()) obj[k as string] = v;
+      return JSON.stringify(obj);
     }
-</script>
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const form = document.getElementById("obituaryForm");
+      if (!form) return;
+
+      // Save initial state
+      initialData = getCurrentFormData();
+
+      function checkDirty() {
+        window.isObituaryFormDirty = getCurrentFormData() !== initialData;
+      }
+
+      form.addEventListener("input", checkDirty);
+      form.addEventListener("change", checkDirty);
+
+      // On successful submit or reset, mark as not dirty
+      form.addEventListener("submit", () => {
+        setTimeout(() => {
+          initialData = getCurrentFormData();
+          window.isObituaryFormDirty = false;
+        }, 50);
+      });
+      form.addEventListener("reset", () => {
+        setTimeout(() => {
+          initialData = getCurrentFormData();
+          window.isObituaryFormDirty = false;
+        }, 50);
+      });
+
+      // On initial load
+      window.isObituaryFormDirty = false;
+    });
+  </script>
 </main>

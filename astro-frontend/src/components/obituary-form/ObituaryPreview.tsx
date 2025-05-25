@@ -9,6 +9,7 @@ type Labels = {
   age: string;
   ward: string;
   death: string;
+  [key: string]: string;
 };
 
 type FormState = {
@@ -26,9 +27,11 @@ type FormState = {
 type ObituaryPreviewProps = {
   labels: Labels;
   lang: "en" | "kok";
+  wards: { key: string, value: string }[];
+  relationTypes: { key: string, value: string, label: string }[];
 };
 
-export default function ObituaryPreview({ labels, lang }: ObituaryPreviewProps) {
+export default function ObituaryPreview({ labels, lang, wards, relationTypes }: ObituaryPreviewProps) {
   const [form, setForm] = useState<FormState>({
     englishName: "",
     konkaniName: "",
@@ -62,26 +65,44 @@ export default function ObituaryPreview({ labels, lang }: ObituaryPreviewProps) 
     return () => window.removeEventListener("obituary-image-preview", handleImagePreview as EventListener);
   }, []);
 
+  // Lookup for user-friendly label/text
+  const relation = relationTypes.find(rt => rt.value === form.relationType);
+  const wardObj = wards.find(w => w.value === form.ward);
+
+  // Show localized label if present, else fallback
+  const relationLabel = relation
+    ? (lang === "kok" && labels[relation.key])
+      ? labels[relation.key]
+      : relation.label
+    : (form.relationType || "");
+
+  const wardLabel = wardObj
+    ? labels[wardObj.key] || wardObj.value
+    : (form.ward || labels.ward);
+
   return (
     <div className="bg-white border border-gray-200 overflow-hidden w-[280px] md:w-[250px] flex flex-col transition-transform duration-200 ease-in-out md:h-[490px] m-auto">
       <div className="aspect-[4/5] bg-gray-100">
-        {form.imageUrl ? (<img src={form.imageUrl} alt="Image Preview" className="object-cover w-full h-full" />) : null}
+        {form.imageUrl ? (
+          <img src={form.imageUrl} alt="Image Preview" className="object-cover w-full h-full" />
+        ) : null}
       </div>
       <div className="p-3 font-noto-sans-kannada space-y-1 text-slate-800 text-sm">
         <h3 className="line-clamp-1 text-xl font-bold text-slate-900">
           {lang === "kok" ? form.konkaniName || labels.nameKok : form.englishName || labels.nameEn}
         </h3>
         <p className="line-clamp-1 md:text-base text-lg text-slate-700">
-          {(form.relationType ? form.relationType + ": " : "") + (lang === "kok" ? form.relNameKok || labels.relNameKok : form.relNameEn || labels.relNameEn)}
+          {relation && (<>              <strong>{relation.value}:</strong>&nbsp;            </>)}
+          {lang === "kok" ? (form.relNameKok || labels.relNameKok) : (form.relNameEn || labels.relNameEn)}
         </p>
         <p className="line-clamp-1 md:text-base text-lg text-slate-700">
-          {(form.age ? labels.age + ": " : "") + (form.age || labels.age)}
+          {form.age && (<>      <strong>{labels.age}:</strong>&nbsp;    </>)}  {form.age || labels.age}
         </p>
         <p className="line-clamp-1 md:text-base text-lg text-slate-700">
-          {(form.ward ? labels.ward + ": " : "") + (form.ward || labels.ward)}
+          {wardObj && (<>      <strong>{labels.ward}:</strong>&nbsp;    </>)}  {wardLabel}
         </p>
         <p className="line-clamp-1 md:text-base text-lg text-slate-700">
-          {(form.dateOfDeath ? labels.death + ": " : "") + (form.dateOfDeath ? formatDate(form.dateOfDeath) : labels.death)}
+          {form.dateOfDeath && (<>      <strong>{labels.death}:</strong>&nbsp;    </>)}  {form.dateOfDeath ? formatDate(form.dateOfDeath) : labels.death}
         </p>
       </div>
     </div>
