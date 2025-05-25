@@ -76,6 +76,12 @@
     },
     "relationNameKok": {
       "type": "string"
+    },
+    "funeralDetails": {
+      "type": "text"
+    },
+    "youtubeLink": {
+      "type": "string"
     }
   }
 }
