@@ -28,7 +28,7 @@ export default defineConfig({
         i18n: {
           defaultLocale: "en",
           locales: {
-            en: "en-US",
+            en: "en-IN",
             kok: "kok-IN",
           },
         },
@@ -38,7 +38,7 @@ export default defineConfig({
           const setUrl = [
             { pattern: /\/obituary/, changefreq: "weekly", priority: 0.9 },
             { pattern: /\/events/, changefreq: "weekly", priority: 0.9 },
-            { pattern: /\/index/, changefreq: "weekly", priority: 0.9 },
+            { pattern: /\/index/, changefreq: "weekly", priority: 1.0 },
           ];
 
           for (const url of setUrl) {
