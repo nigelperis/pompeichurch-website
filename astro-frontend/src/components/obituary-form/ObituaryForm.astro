@@ -41,7 +41,7 @@ const relationTypes = [
             {t.nameEn} {lang === 'en' && <span class="text-red-600" id="en-required">*</span>}
           </label>
           <input type="text" name="englishName" id="englishName" placeholder={t.nameEnPH}
-            class="block w-full border border-gray-300 p-3 focus:outline-none placeholder-gray-600"
+            class="block w-full border border-gray-300 p-3 focus:outline-gray-300 placeholder-gray-600"
             required={lang==='en' ? true : undefined} />
         </div>
 
@@ -51,7 +51,7 @@ const relationTypes = [
             {t.nameKok} {lang === 'kok' && <span class="text-red-600" id="kok-required">*</span>}
           </label>
           <input type="text" name="konkaniName" id="konkaniName" placeholder={t.nameKokPH}
-            class="block w-full border border-gray-300 p-3 focus:outline-none placeholder-gray-600"
+            class="block w-full border border-gray-300 p-3 focus:outline-gray-300 placeholder-gray-600"
             required={lang==='kok' ? true : undefined} />
         </div>
 
@@ -61,7 +61,7 @@ const relationTypes = [
             {t.age} <span class="text-red-600">*</span>
           </label>
           <input type="number" name="age" id="age" required min="0" placeholder={t.agePH}
-            class="block w-full border border-gray-300 p-3 focus:outline-none placeholder-gray-600" />
+            class="block w-full border border-gray-300 p-3 focus:outline-gray-300 placeholder-gray-600" />
         </div>
 
         <!-- Ward -->
@@ -70,7 +70,7 @@ const relationTypes = [
             {t.ward} <span class="text-red-600">*</span>
           </label>
           <button id="ward-btn" type="button"
-            class="w-full border border-gray-300 p-3 pr-10 appearance-none focus:outline-none text-gray-700 bg-white flex justify-between items-center">
+            class="cursor-pointer w-full border border-gray-300 p-3 pr-10 appearance-none focus:outline-none text-gray-700 bg-white flex justify-between items-center">
             <span id="ward-btn-label">{t.wardPH}</span>
             <span class="pointer-events-none flex items-center">
               <!-- Dropdown Icon -->
@@ -111,7 +111,7 @@ const relationTypes = [
             {t.relType}
           </label>
           <button id="reltype-btn" type="button"
-            class="w-full border border-gray-300 p-3 pr-10 appearance-none focus:outline-none text-gray-700 bg-white flex justify-between items-center">
+            class="cursor-pointer w-full border border-gray-300 p-3 pr-10 appearance-none focus:outline-none text-gray-700 bg-white flex justify-between items-center">
             <span id="reltype-btn-label">{t.relTypePH}</span>
             <span class="pointer-events-none flex items-center">
               <!-- Dropdown Icon -->
@@ -139,7 +139,7 @@ const relationTypes = [
             {t.relNameEn}
           </label>
           <input type="text" name="relNameEn" id="relNameEn" placeholder={t.relNameEnPH}
-            class="block w-full border border-gray-300 p-3 focus:outline-none placeholder-gray-600" />
+            class="block w-full border border-gray-300 p-3 focus:outline-gray-300 placeholder-gray-600" />
         </div>
 
         <div>
@@ -147,7 +147,7 @@ const relationTypes = [
             {t.relNameKok}
           </label>
           <input type="text" name="relNameKok" id="relNameKok" placeholder={t.relNameKokPH}
-            class="block w-full border border-gray-300 p-3 focus:outline-none placeholder-gray-600" />
+            class="block w-full border border-gray-300 p-3 focus:outline-gray-300 placeholder-gray-600" />
         </div>
 
         <!-- Sender Name -->
@@ -156,7 +156,7 @@ const relationTypes = [
             {t.sender} <span class="text-red-600">*</span>
           </label>
           <input type="text" name="senderName" id="senderName" required placeholder={t.senderPH}
-            class="block w-full border border-gray-300 p-3 focus:outline-none placeholder-gray-600" />
+            class="block w-full border border-gray-300 p-3 focus:outline-gray-300 placeholder-gray-600" />
         </div>
 
         <!-- Honeypot Spam Trap (hidden) -->

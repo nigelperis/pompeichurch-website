@@ -79,7 +79,7 @@ const lang = getLangFromUrl(Astro.url);
 
     const handleLanguageChange = (lang: string): void => {
       if (window.isObituaryFormDirty) {
-        const confirmed = window.confirm("You have unsaved changes. Are you sure you want to switch language and lose them?");
+        const confirmed = window.confirm("You've entered some information. Switching the language will clear it. Do you want to continue?");
         if (!confirmed) return;
       }
       const currentPath = window.location.pathname;
