@@ -15,7 +15,7 @@ export const ui = {
     "nav.gallery": "Gallery",
     "nav.contact": "Contact",
     "nav.parish-history": "Parish History",
-    "nav.parish-priests": "Parish Priests",
+    "nav.parish-priests-and-deacons": "Parish Priests and Deacons",
     "nav.parish-pastoral-council": "Parish Pastoral Council",
     "nav.parish-finance-committee": "Parish Finance Committee",
     "nav.pompei-sabha-bhavan": "Pompei Sabha Bhavan",
@@ -76,8 +76,10 @@ export const ui = {
     "landing.novena-note": "Saturday and Sunday after Mass",
     "landing.follow-our-journey": "Follow Our Journey",
     "landing.upcoming-events": "Upcoming Events",
+    "parish-priests": "Parish Priests",
+    deacons: "Deacons",
     "pp.subtitle":
-      "Here is a glimpse of the esteemed former parish priests who have nurtured our faith, enriched our community and individual lives, and upheld the cherished legacy of our church throughout these years.",
+      "Here is a glimpse of the esteemed former parish priests and deacons who have nurtured our faith, enriched our community and individual lives, and upheld the cherished legacy of our church throughout these years.",
     "ui.more-button-know": "KNOW MORE",
     "ui.more-button-show": "SHOW MORE",
     "ui.more-button-read": "Read More",
@@ -109,75 +111,6 @@ export const ui = {
     "commissions.convenor": "Convenor ",
     "commissions.heading": "Commission",
     "commissions.secretary": "Secretary",
-    "commissions.liturgy-word-proclamation": " Liturgy-Word-Proclamation",
-    "commissions.witness": "Witness (Martyira)",
-    "commissions.service": "Service (Diakonia) ",
-    "commissions.unity": "Unity (Koinonia)",
-    "commissions.commission-for-bible-apostolate":
-      "Commission for Bible Apostolate",
-    "commissions.commission-for-catechetics-apostolate":
-      "Commission for Catechetics Apostolate",
-    "commissions.commission-for-proclamation-apostolate":
-      "Commission for Proclamation Apostolate",
-    "commissions.commission-for-liturgy": "Commission for Liturgy",
-    "commissions.commission-for-social-development-apostolate":
-      "Commission for Social Development Apostolate",
-    "commissions.commission-for-social-communication":
-      "Commission for Social Communication",
-    "commissions.commission-for-justice-and-peace-apostolate":
-      "Commission for Justice and Peace Apostolate",
-    "commissions.commission-for-formation-of-the-priests-and-the-religious":
-      " Commission for Formation of the Priests and the Religious",
-    "commissions.commission-for-environment-apostolate":
-      "Commission for Environment Apostolate",
-    "commissions.commission-for-education-apostolate":
-      "Commission for Education Apostolate",
-    "commissions.commission-for-health-apostolate":
-      "Commission for Health Apostolate",
-    "commissions.commission-for-labour-apostolate":
-      "Commission for Labour Apostolate",
-    "commissions.commission-for-family-apostolate":
-      "Commission for Family Apostolate",
-    "commissions.commission-for-migrants-apostolate":
-      " Commission for Migrants Apostolate",
-    "commissions.commission-for-apostolate-to-specially-abled":
-      "Commission for Apostolate to Specially Abled",
-    "commissions.commission-for-basic-ecclesial-communities":
-      "Commission for Basic Ecclesial Communities",
-    "commissions.commission-for-laity-apostolate":
-      "Commission for Laity Apostolate",
-    "commissions.commission-for-women": "Commission for Women",
-    "commissions.commission-for-youth-apostolate":
-      " Commission for Youth Apostolate ",
-    "commissions.commission-for-ecumenism-apostolate":
-      "Commission for Ecumenism Apostolate",
-    "commissions.commission-for-inter-religious-dialogue-apostolate":
-      "Commission for Inter-Religious Dialogue Apostolate",
-    "commissions.mrs-linet-monteiro": "Mrs. Linet Monteiro",
-    "commissions.mr-roshan-dcunha": "Mr. Roshan DCunha",
-    "commissions.mrs-vijaya-dcosta": "Mrs. Vijaya DCosta",
-    "commissions.sr-dr-sadhana": "Sr. Dr. Sadhana",
-    "commissions.mrs-violet-peris": "Mrs. Violet Peris",
-    "commissions.mr-henry-sequeira": "Mr. Henry Sequeira",
-    "commissions.mrs-jacintha-peris": "Mrs. Jacintha Peris",
-    "commissions.mrs-gretta-lobo": " Mrs. Gretta Lobo",
-    "commissions.mrs-praveena-dsilva": "Mrs. Praveena DSilva",
-    "commissions.mrs-laveena-andrade": "Mrs. Laveena Andrade",
-    "commissions.mr-jerald-lobo": "Mr. Jerald Lobo",
-    "commissions.sr-jaya": "Sr. Jaya",
-    "commissions.mr-charles-sequeira": "Mr. Charles Sequeira",
-    "commissions.mrs-gretta-nazareth": "Mrs. Gretta Nazareth",
-    "commissions.mrs-wilma-crasta": " Mrs. Wilma Crasta",
-    "commissions.mrs-laveena-rosario": "Mrs. Laveena Rosario",
-    "commissions.sr-leena-pereira": "Sr. Leena Pereira",
-    "commissions.mr-melwin-saldanha": "Mr. Melwin Saldanha",
-    "commissions.mrs-delcy-rodrigues": "Mrs. Delcy Rodrigues",
-    "commissions.mr-ivan-dsouza": "Mr. Ivan DSouza",
-    "commissions.mr-alwyn-pinto": "Mr. Alwyn Pinto",
-    "commissions.mrs-juliet-serrao": "Mrs. Juliet Serrao",
-    "commissions.mr-godwin-tauro": "Mr. Godwin Tauro",
-    "commissions.mrs-margaret-andrade": "Mrs. Margaret Andrade",
-    "commissions.mr-rajesh-noronha": "Mr. Rajesh Noronha",
     "associations.about-us": "About our Association",
     "associations.office-bearers": "Office Bearers",
     "ward.kowdoor-a-ward": "Kowdoor A",
@@ -521,7 +454,7 @@ export const ui = {
     "nav.gallery": "ಗ್ಯಾಲರಿ",
     "nav.contact": "ಸಂಪರ್ಕ್",
     "nav.parish-history": "ಫಿರ್ಗಜೆಚಿ ಚರಿತ್ರಾ",
-    "nav.parish-priests": "ಫಿರ್ಗಜೆಚೆ ವಿಗಾರ್",
+    "nav.parish-priests-and-deacons": "ಫಿರ್ಗಜೆಚೆ ವಿಗಾರ್ ಅನಿ ದಿಯಾಕೊನ್",
     "nav.parish-pastoral-council": "ಫಿರ್ಗಜ್ ಗೊವ್ಳಿಕ್ ಪರಿಷಧ್",
     "nav.parish-finance-committee": "ಫಿರ್ಗಜ್ ಆರ್ಥಿಕ್ ಸಮಿತಿ",
     "nav.parish-pastoral-21-commissions": "21 ಆಯೋಗ್",
@@ -582,8 +515,10 @@ export const ui = {
     "landing.novena-note": "ಸನ್ವಾರಾ ಸಾಂಜೆರ್ ಆನಿ ಆಯ್ತಾರಾ ಸಕಾಳಿಂ ಮಿಸಾ ಉಪ್ರಾಂತ್",
     "landing.follow-our-journey": "ಮಾಧ್ಯಮನಿಂ ಆಮ್ಚಿಂ ಪಾವ್ಲಾಂ",
     "landing.upcoming-events": "ಫುಡ್ಲಿಂ ಕಾರ್ಯಿಂ",
+    "parish-priests": "ಫಿರ್ಗಜೆಚೆ ವಿಗಾರ್",
+    deacons: "ದಿಯಾಕೊನ್",
     "pp.subtitle":
-      "ಫಿರ್ಗಜೆಚೊ ಶತಮಾನೋತ್ಸವ್ ಸಂಭ್ರಮ್ ಆಚರಣ್ ಕರ್ತನಾ ಪಾಟ್ಲ್ಯಾ ಶೆಂಬೊರ್ ವರ್ಸಾನಿಂ ಫಿರ್ಗಜೆಚ್ಯಾ ಭಾವಾರ್ಥಾಚಾ ಆತ್ಮಿಕ್ ಪಯ್ಣಾರ್ ತಶೆಂಚ್ ಸಾಮಾಜಿಕ್ ಆನಿ ಲೌಕಿಕ್ ಜಿಣಿಯೆಕ್ ಆಧಾರ್ ಜಾಲ್ಲ್ಯಾ ಫಿರ್ಗಜೆಚೆಂ ಸುಂಕಾಣ್ ಹಾತಿಂ ಘೆವ್ನ್ ಫಿರ್ಗಜ್ ಕುಟ್ಮಾo ಬರ‍್ಯಾ ರಿತಿನ್ ಚಲವ್ನ್ ವ್ಹರ್ನ್ ಆಮ್ಕಾಂ ಶತಮಾನೋತ್ಸವಾಚೆಂ ಭಾಗ್ ಪಳೆoವ್ಕ್ ಫಾವೊ ಕೆಲ್ಲ್ಯಾ ಸರ್ವ್ ಫಿರ್ಗಜ್ ವಿಗಾರಾಂಚಿ ಮೊಟ್ವಿ ಝಳಕ್.",
+      "ಫಿರ್ಗಜೆಚೊ ಶತಮಾನೋತ್ಸವ್ ಸಂಭ್ರಮ್ ಆಚರಣ್ ಕರ್ತನಾ ಪಾಟ್ಲ್ಯಾ ಶೆಂಬೊರ್ ವರ್ಸಾನಿಂ ಫಿರ್ಗಜೆಚ್ಯಾ ಭಾವಾರ್ಥಾಚಾ ಆತ್ಮಿಕ್ ಪಯ್ಣಾರ್ ತಶೆಂಚ್ ಸಾಮಾಜಿಕ್ ಆನಿ ಲೌಕಿಕ್ ಜಿಣಿಯೆಕ್ ಆಧಾರ್ ಜಾಲ್ಲ್ಯಾ ಫಿರ್ಗಜೆಚೆಂ ಸುಂಕಾಣ್ ಹಾತಿಂ ಘೆವ್ನ್ ಫಿರ್ಗಜ್ ಕುಟ್ಮಾo ಬರ‍್ಯಾ ರಿತಿನ್ ಚಲವ್ನ್ ವ್ಹರ್ನ್ ಆಮ್ಕಾಂ ಶತಮಾನೋತ್ಸವಾಚೆಂ ಭಾಗ್ ಪಳೊಂವ್ಕ್ ಫಾವೊ ಕೆಲ್ಲ್ಯಾ ಸರ್ವ್ ಫಿರ್ಗಜ್ ವಿಗಾರಾಂಚಿ ಅನಿ ದಿಯಾಕೊನಾಂಚಿ ಮೊಟ್ವಿ ಝಳಕ್.",
     "ui.more-button-know": "ಚಡಿತ್ ಮಾಹೆತ್",
     "ui.more-button-show": "ಚಡಿತ್ ಮಾಹೆತ್",
     "ui.more-button-read": "ಚಡಿತ್ ಮಾಹೆತ್",
@@ -613,73 +548,6 @@ export const ui = {
     "commissions.convenor": " ಸಂಚಾಲಕಿ/ಕ್ ",
     "commissions.heading": "ಆಯೋಗ್",
     "commissions.secretary": "ಕಾರ್ಯದರ್ಶಿ",
-    "commissions.liturgy-word-proclamation":
-      "ಆಯೋಗ್ ಪಂಗಡ್: ದೇವ್‌ಸ್ತುತಿ - ಸುವರ್ತಾ - ಪರ್ಗಟ್ಣಿ ",
-    "commissions.witness": "ಆಯೋಗ್ ಪಂಗಡ್: ಸಾಕ್ಸ್ ",
-    "commissions.service": "ಆಯೋಗ್ ಪಂಗಡ್: ಸೆವಾ ",
-    "commissions.unity": "ಆಯೋಗ್ ಪಂಗಡ್: ಎಕ್ತಾರ್ ",
-    "commissions.commission-for-bible-apostolate":
-      "ಪವಿತ್ರ್ ಪುಸ್ತಕಾಚಾ ಅಪಸ್ತಲಾದಿಚೊ ಆಯೋಗ್",
-    "commissions.commission-for-catechetics-apostolate":
-      "ಕ್ರಿಸ್ತಿ ಶಿಕ್ಷಣ್ ಅಪಸ್ತಲಾದಿಚೊ ಆಯೋಗ್",
-    "commissions.commission-for-proclamation-apostolate":
-      "ಪರ್ಗಟ್ಣಿ ಆನಿ ಸುವಾರ್ತಾ ಪ್ರಸಾರ್ ಅಪಸ್ತಲಾದಿಚೊ ಆಯೋಗ್",
-    "commissions.commission-for-liturgy": "ದೇವ್-ಸ್ತುತಿ ಅಪಸ್ತಲಾದಿಚೊ ಆಯೋಗ್ ",
-    "commissions.commission-for-social-development-apostolate":
-      "ಸಮಾಜ್ ಅಭಿವೃದ್ಧಿಚಾ ಅಪಸ್ತಲಾದಿಚೊ ಆಯೋಗ್			",
-    "commissions.commission-for-social-communication":
-      "ಸಾಮಾಜಿಕ್ ಸಂವಹನ್ ಅಪಸ್ತಲಾದಿಚೊ ಆಯೋಗ್ ",
-    "commissions.commission-for-justice-and-peace-apostolate":
-      "ನೀತ್ ಆನಿ ಶಾಂತಿಚಾ ಅಪಸ್ತಲಾದಿಚೊ ಆಯೋಗ್",
-    "commissions.commission-for-formation-of-the-priests-and-the-religious":
-      "ದೇವ್ ಆಪವ್ಣೆಂ ಆನಿ ಯಾಜಕೀ ತರ‍್ಬೆತಿ ಅಪಸ್ತಲಾದಿಚೊ ಆಯೋಗ್ ",
-    "commissions.commission-for-environment-apostolate":
-      "ಪರಿಸರ್ ಅಪಸ್ತಲಾದಿಚೊ ಆಯೋಗ್",
-    "commissions.commission-for-education-apostolate":
-      "ಶಿಕ್ಪಾ ಅಪಸ್ತಲಾದಿಚೊ ಆಯೋಗ್ ",
-    "commissions.commission-for-health-apostolate": "ಭಲಾಯ್ಕೆ ಅಪಸ್ತಲಾದಿಚೊ ಆಯೋಗ್",
-    "commissions.commission-for-labour-apostolate":
-      "ವಾವ್ರಾಡ್ಯಾಂಚಾ ಅಪಸ್ತಲಾದಿಚೊ ಆಯೋಗ್",
-    "commissions.commission-for-family-apostolate": "ಕುಟ್ಮಾ ಅಪಸ್ತಲಾದಿಚೊ ಆಯೋಗ್",
-    "commissions.commission-for-migrants-apostolate":
-      "ಥಳಾಂತರ್‌ಕಾರಾಂಚಾ ‌ಅಪಸ್ತಲಾದಿಚೊ ಆಯೋಗ್ ",
-    "commissions.commission-for-apostolate-to-specially-abled":
-      "ವಿಶೇಸ್ - ಸಕ್ತೆ ವ್ಯಕ್ತಿಂಚಾ ಅಪಸ್ತವಾದಿಚೊ ಆಯೋಗ್ ",
-    "commissions.commission-for-basic-ecclesial-communities":
-      "ಮುಳಾವ್ಯಾ ಕ್ರಿಸ್ತಾಂವ್ ಸಮುದಾಯಾಂಚಾ ಅಪಸ್ತಲಾದಿಚೊ ಆಯೋಗ್ ",
-    "commissions.commission-for-laity-apostolate": "ಲಾಯಿಕ್ ಅಪಸ್ತಲಾದಿಚೊ ಆಯೋಗ್ ",
-    "commissions.commission-for-women": "ಸ್ತ್ರೀ ಅಭಿವೃದ್ಧಿ ಅಪಸ್ತಲಾದಿಚೊ ಆಯೋಗ್",
-    "commissions.commission-for-youth-apostolate":
-      " ಯುವಜಣಾಂಚಾ ಅಪಸ್ತಲಾದಿಚೊ ಆಯೋಗ್",
-    "commissions.commission-for-ecumenism-apostolate":
-      "ಕ್ರಿಸ್ತಿ ಎಕ್ವಟಾಚಾ ಅಪಸ್ತಲಾದಿಚೊ ಆಯೋಗ್",
-    "commissions.commission-for-inter-religious-dialogue-apostolate":
-      "ಅಂತರ್ ಧರ್ಮೀಯ ಸಂವಾದ್ ಅಪಸ್ತಲಾದಿಚೊ ಆಯೋಗ್",
-    "commissions.mrs-linet-monteiro": "ಶ್ರೀಮತಿ ಲಿನೆಟ್ ಮೊಂತೆರೊ ",
-    "commissions.mr-roshan-dcunha": "ಶ್ರೀಮಾನ್ ರೋಶನ್ ಡಿಕುನ್ಹಾ",
-    "commissions.mrs-vijaya-dcosta": "ಶ್ರೀಮತಿ ವಿಜಯಾ ಡಿಕೋಸ್ತಾ",
-    "commissions.sr-dr-sadhana": "ಸಿ.ದೊ ಸಾದನ",
-    "commissions.mrs-violet-peris": "ಶ್ರೀಮತಿ ವಾಯ್ಲೆಟ್ ಪೆರಿಸ್",
-    "commissions.mr-henry-sequeira": "ಶ್ರೀಮಾನ್ ಹೆನ್ರಿ ಸಿಕ್ವೇರಾ",
-    "commissions.mrs-jacintha-peris": "ಶ್ರೀಮತಿ ಜೆಸಿಂತಾ ಪೆರಿಸ್",
-    "commissions.mrs-gretta-lobo": " ಶ್ರೀಮತಿ ಗ್ರೆಟ್ಟಾ ಲೋಬೊ",
-    "commissions.mrs-praveena-dsilva": "ಶ್ರೀಮತಿ ಪ್ರವೀಣಾ ಡಿಸಿಲ್ವಾ",
-    "commissions.mrs-laveena-andrade": "ಶ್ರೀಮತಿ ಲವೀನಾ ಅಂದ್ರಾದೆ",
-    "commissions.mr-jerald-lobo": "ಶ್ರೀಮಾನ್ ಜೆರಾಲ್ಡ್ ಲೋಬೊ",
-    "commissions.sr-jaya": "ಸಿ. ಜಯಾ",
-    "commissions.mr-charles-sequeira": "ಶ್ರೀಮಾನ್ ಚಾರ್ಲ್ಸ್ ಸಿಕ್ವೇರಾ",
-    "commissions.mrs-gretta-nazareth": "ಶ್ರೀಮತಿ ಗ್ರೆಟ್ಟಾ ನಜ್ರೆತ್",
-    "commissions.mrs-wilma-crasta": " ಶ್ರೀಮತಿ ವಿಲ್ಮಾ ಕ್ರಾಸ್ತಾ",
-    "commissions.mrs-laveena-rosario": "ಶ್ರೀಮತಿ ಲವೀನಾ ರೊಜಾರಿಯೊ ",
-    "commissions.sr-leena-pereira": "ಸಿ. ಲೀನಾ ಪಿರೇರಾ",
-    "commissions.mr-melwin-saldanha": "ಶ್ರೀಮಾನ್ ಮೆಲ್ವಿನ್ ಸಲ್ಡಾನ್ಹಾ",
-    "commissions.mrs-delcy-rodrigues": "ಶ್ರೀಮತಿ ಡೆಲ್ಸಿ ರೊಡ್ರಿಗಸ್",
-    "commissions.mr-ivan-dsouza": "ಶ್ರೀಮಾನ್ ಐವನ್ ಡಿಸೋಜಾ",
-    "commissions.mr-alwyn-pinto": "ಶ್ರೀಮಾನ್ ಅಲ್ವಿನ್ ಪಿಂಟೊ",
-    "commissions.mrs-juliet-serrao": "ಶ್ರೀಮತಿ ಜ್ಯುಲಿಯೆಟ್ ಸೆರಾವೊ	",
-    "commissions.mr-godwin-tauro": "ಶ್ರೀಮಾನ್ ಗೊಡ್ವಿನ್ ತಾವ್ರೊ",
-    "commissions.mrs-margaret-andrade": " ಶ್ರೀಮತಿ ಮಾರ್ಗರೆಟ್ ಅಂದ್ರಾದೆ",
-    "commissions.mr-rajesh-noronha": "ಶ್ರೀಮಾನ್ ರಾಜೇಶ್ ನೊರೊನ್ಹಾ",
     "associations.about-us": "ಆಮ್ಚ್ಯಾ ಸಂಘಾ ವಿಶ್ಯಾoತ್",
     "associations.office-bearers": "ಪದಾಧಿಕಾರಿ",
     "ward.kowdoor-a-ward": "ಕೌಡೂರ್ ಎ",

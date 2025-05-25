@@ -11,6 +11,7 @@ export class Message {
   public static readonly FINANCE_COMMITTEE_NOT_FOUND =
     "No Finance Committee Found!";
   public static readonly PARISH_PRIESTS_NOT_FOUND = "No Parish Priests Found!";
+  public static readonly DEACONS_NOT_FOUND = "No Deacons Found!";
   public static readonly COMMISSIONS_NOT_FOUND =
     "No Pastoral 21 Commissions Found!";
 }

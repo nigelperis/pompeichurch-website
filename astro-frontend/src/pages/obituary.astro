@@ -8,9 +8,10 @@ import type { Obituary } from "~/models/obituary";
 import { Message } from "~/constants/message.ts";
 import { Locale } from "~/enums/locale";
 import { cn } from "~/helpers/cn";
+import { getWardNameKok } from "~/helpers/get-ward-names-kok";
 
 const url = new URL(Astro.url);
-const lang = getLangFromUrl(Astro.url);
+const lang = getLangFromUrl(Astro.url) as Locale;
 const t = useTranslations(lang);
 
 const obituariesPerPage = 6;
@@ -36,8 +37,15 @@ const absoluteImageURL = selectedObituary?.image?.url
 : undefined;
 
 const pageTitle = selectedObituary
-? `${selectedObituary.konkaniName}`
+? lang === Locale.EN
+    ? `${selectedObituary.englishName}`
+    : `${selectedObituary.konkaniName}`
 : `Page ${currentPage} | Obituaries | Pompei Church`;
+
+const ward =
+  lang === Locale.KOK
+    ? selectedObituary?.ward && getWardNameKok(selectedObituary?.ward, lang)
+    : selectedObituary?.ward;
 
 const obituaryUrl = new URL(
 lang === Locale.EN
@@ -47,8 +55,12 @@ Astro.url,
 ).href;
 ---
 
-<Layout title={`${pageTitle} ${selectedObituary?.age ? `(${selectedObituary.age})` : "" }`}
-  description={`${selectedObituary?.ward}`} image={absoluteImageURL} url={obituaryUrl}>
+<Layout
+  title={`${pageTitle} ${selectedObituary?.age ? `(${selectedObituary.age})` : ""}`}
+  description={`${ward}`}
+  image={absoluteImageURL}
+  url={obituaryUrl}
+>
   <main class="mx-auto max-w-4xl overflow-hidden bg-white">
     <section id="obituary" class="flex flex-col p-6 pb-4">
       <h1 class={cn( "font-black border-natgeo-yellow  mb-4 border-l-4 pl-3 text-3xl lg:text-4xl" , { "pt-2 font-bold" :

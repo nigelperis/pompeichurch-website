@@ -1,4 +1,6 @@
 import { Locale } from "~/enums/locale";
+import { ClergyRole } from "~/enums/clergy-role";
+
 interface ImageFormat {
   ext: string;
   url: string;
@@ -39,7 +41,7 @@ interface Image {
   publishedAt: string;
 }
 
-interface ParishPriests {
+interface ParishPriestsAndDeacons {
   id: number;
   documentId: string;
   name: string;
@@ -50,10 +52,11 @@ interface ParishPriests {
   publishedAt: string;
   locale: Locale;
   image?: Image;
+  role: ClergyRole;
 }
 
-interface ParishPriestsData {
-  data: ParishPriests[];
+interface ParishPriestsAndDeaconsData {
+  data: ParishPriestsAndDeacons[];
   meta: {
     pagination: {
       page: number;
@@ -64,4 +67,4 @@ interface ParishPriestsData {
   };
 }
 
-export type { ParishPriests, ParishPriestsData };
+export type { ParishPriestsAndDeacons, ParishPriestsAndDeaconsData };
