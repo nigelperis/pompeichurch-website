@@ -15,6 +15,7 @@
   "dependencies": {
     "@astrojs/node": "^9.2.0",
     "@astrojs/react": "4.2.4",
+    "@astrojs/sitemap": "^3.4.0",
     "@fontsource-variable/lora": "5.2.5",
     "@fontsource-variable/noto-sans-kannada": "5.2.5",
     "@fontsource-variable/roboto": "5.2.5",
