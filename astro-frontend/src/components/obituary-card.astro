@@ -4,7 +4,7 @@ import NetworkImage from "./ui/network-image.astro";
 import ShareLink from "./ui/share-link.astro";
 import { getLangFromUrl } from "~/i18n/utils";
 import { Locale } from "~/enums/locale";
-import { WardNamesKok } from "~/enums/ward-names-kok";
+import { getWardNameKok } from "~/helpers/get-ward-names-kok";
 
 interface Props {
   id: string;
@@ -36,7 +36,7 @@ const {
   imageUrl,
 } = Astro.props;
 
-const lang = getLangFromUrl(Astro.url);
+const lang = getLangFromUrl(Astro.url) as Locale;
 
 const relationMapKok: Record<string, string> = {
   "H/O": "ಪತಿ",
@@ -46,7 +46,7 @@ const relationMapKok: Record<string, string> = {
 };
 
 const relationLabel =
-  lang === "kok"
+  lang === Locale.KOK
     ? relationMapKok[relationType ?? ""] || "ಸಾತೀ"
     : relationType || "Relation";
 
@@ -63,10 +63,6 @@ const activeLabels =
       death: "ಮರಣ್",
     },
   }[lang] ?? {};
-
-function getWardNameKok(ward: string): string {
-  return WardNamesKok[ward as keyof typeof WardNamesKok] ?? ward;
-}
 
 const obituaryUrl = new URL(
   lang === Locale.EN
@@ -103,7 +99,7 @@ const obituaryUrl = new URL(
         (relationNameEn || relationNameKok) && (
           <p class="line-clamp-2 md:text-base text-lg text-slate-700">
             <strong>{relationLabel}:</strong>{" "}
-            {lang === "kok" ? relationNameKok : relationNameEn}
+            {lang === Locale.KOK? relationNameKok : relationNameEn}
           </p>
         )
       }
@@ -119,7 +115,7 @@ const obituaryUrl = new URL(
       {
         ward && (
           <p class="md:text-base text-lg text-slate-700">
-            <strong>{activeLabels.ward}:</strong> {getWardNameKok(ward)}
+            <strong>{activeLabels.ward}:</strong> {getWardNameKok(ward, lang)}
           </p>
         )
       }
@@ -145,7 +141,7 @@ const obituaryUrl = new URL(
         class="px-3 py-2 text-sm"
         shareData={{
           url: obituaryUrl,
-          title: `${name} - ${getWardNameKok(ward)}`,
+          title: `${name} - ${getWardNameKok(ward, lang)}`,
         }}
       />
     </div>
