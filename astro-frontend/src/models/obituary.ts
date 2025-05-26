@@ -54,6 +54,7 @@ export interface Obituary {
   youtubeLink?: string;
   ward: string;
   dateOfDeath: Date;
+  funeralDetailsUpdatedAt?: Date;
   createdAt: string;
   updatedAt: string;
   publishedAt: string;

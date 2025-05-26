@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Locale } from "~/enums/locale";
 import { useTranslations } from "~/i18n/utils";
 import { cn } from "~/helpers/cn";
@@ -19,6 +19,7 @@ interface Props {
   ward: string;
   dateOfDeath: string;
   funeralDetails?: string;
+  funeralDetailsUpdatedAt?: Date;
   youtubeLink?: string;
   className?: string;
 }
@@ -50,6 +51,8 @@ const activeLabels = {
   },
 };
 
+const ONE_DAY_MS = 24 * 60 * 60 * 1000; // milliseconds in one day
+
 export default function ObituaryCard({
   id,
   name,
@@ -65,8 +68,29 @@ export default function ObituaryCard({
   funeralDetails,
   youtubeLink,
   className,
+  funeralDetailsUpdatedAt,
 }: Props) {
   const [flipped, setFlipped] = useState(false);
+
+  const updatedAt = funeralDetailsUpdatedAt
+    ? new Date(funeralDetailsUpdatedAt)
+    : null;
+  const now = new Date();
+
+  // check if details are fresh (within one day)
+  const isFuneralDetailsFresh = updatedAt
+    ? now.getTime() - updatedAt.getTime() < ONE_DAY_MS
+    : false;
+
+  useEffect(() => {
+    if (funeralDetails && isFuneralDetailsFresh) {
+      const timer = setTimeout(() => {
+        setFlipped(true);
+      }, 2000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [funeralDetails, isFuneralDetailsFresh]);
 
   const t = useTranslations(lang);
 
@@ -117,7 +141,7 @@ export default function ObituaryCard({
               loading="lazy"
             />
 
-            {funeralDetails && (
+            {funeralDetails && isFuneralDetailsFresh && (
               <div className="group">
                 <button
                   type="button"
@@ -228,7 +252,7 @@ export default function ObituaryCard({
             </p>
             <p
               className={cn(
-                "text-gray-500 text-lg md:text-[16px] md:p-2 text-center mt-2",
+                "text-black text-lg md:text-[16px] md:p-2 text-center mt-2",
                 {
                   "text-xl md:text-[17px]": lang === Locale.EN,
                 },
@@ -238,7 +262,7 @@ export default function ObituaryCard({
             </p>
             <p
               className={cn(
-                "text-black font-bold text-[16px] md:text-lg md:text-[16px] mt-6 text-center",
+                "text-gray-500 font-bold text-[16px] md:text-lg md:text-[16px] mt-6 text-center",
                 { "md:text-sm": lang === Locale.EN },
               )}
             >

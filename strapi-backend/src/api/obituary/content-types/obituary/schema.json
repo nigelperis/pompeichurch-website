@@ -82,6 +82,9 @@
     },
     "youtubeLink": {
       "type": "string"
+    },
+    "funeralDetailsUpdatedAt": {
+      "type": "date"
     }
   }
 }

@@ -8,6 +8,7 @@ import ObituaryCard from "~/components/ObituaryCard";
 import { Locale } from "~/enums/locale";
 
 const { obituaries } = Astro.props as { obituaries: Obituary[] };
+
 const lang = getLangFromUrl(Astro.url);
 const obituaryDataFormatted = obituaries
   ?.map((obituary) => {
@@ -31,7 +32,7 @@ const obituaryDataFormatted = obituaries
 >
   {
     obituaryDataFormatted?.map((item) => (
-      <ObituaryCard client:only
+      <ObituaryCard client:only="ObituaryCard"
         id={item.englishName}
         name={lang === Locale.EN ? item.englishName : item.konkaniName}
         imageUrl={
@@ -49,6 +50,7 @@ const obituaryDataFormatted = obituaries
         relationNameKok={item.relationNameKok}
         funeralDetails={item.funeralDetails}
         youtubeLink={item.youtubeLink}
+        funeralDetailsUpdatedAt={item.funeralDetailsUpdatedAt}
       />
     ))
   }
