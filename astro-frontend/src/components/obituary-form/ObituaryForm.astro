@@ -30,7 +30,7 @@ const relationTypes = [
 
 <main data-lang={lang} class="mx-auto max-w-5xl bg-white">
   <div class="px-4 py-10 sm:px-6 lg:px-8">
-    <h1 class="font-roboto font-black border-natgeo-yellow mb-6 border-l-4 pl-3 text-3xl lg:text-4xl">
+    <h1 class="font-bold border-natgeo-yellow mb-6 border-l-4 pl-3 text-3xl lg:text-4xl">
       {t.title}
     </h1>
     <div class="flex flex-col lg:flex-row gap-10">
@@ -70,7 +70,7 @@ const relationTypes = [
             {t.ward} <span class="text-red-600">*</span>
           </label>
           <button id="ward-btn" type="button"
-            class="cursor-pointer w-full border border-gray-300 p-3 pr-10 appearance-none focus:outline-none text-gray-700 bg-white flex justify-between items-center">
+            class="cursor-pointer w-full border border-gray-300 p-3 pr-10 appearance-none text-gray-700 bg-white flex justify-between items-center group-hover:outline-gray-300">
             <span id="ward-btn-label">{t.wardPH}</span>
             <span class="pointer-events-none flex items-center">
               <!-- Dropdown Icon -->
