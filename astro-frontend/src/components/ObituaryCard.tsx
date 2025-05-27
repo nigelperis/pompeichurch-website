@@ -6,14 +6,14 @@ import { getFuneralPrayer } from "~/helpers/get-funeral-prayer";
 import { getWardNameKok } from "~/helpers/get-ward-names-kok";
 import { RelationType } from "~/enums/obituary";
 import ShareLink from "~/components/ui/ShareLink";
-import CloseIcon from '~/assets/react-icons/x.svg?react';
-import YoutubeIcon from '~/assets/react-icons/youtube.svg?react';
-import CoffinIcon from '~/assets/react-icons/coffin.svg?react';
-import InfoIcon from '~/assets/react-icons/info.svg?react';
+import CloseIcon from "~/assets/react-icons/x.svg?react";
+import YoutubeIcon from "~/assets/react-icons/youtube.svg?react";
+import CoffinIcon from "~/assets/react-icons/coffin.svg?react";
+import InfoIcon from "~/assets/react-icons/info.svg?react";
 
 interface Props {
-  id: string | number;
-  name: string;
+  id?: string | number;
+  name?: string;
   imageUrl: string;
   imageWidth: number;
   imageHeight: number;
@@ -30,6 +30,7 @@ interface Props {
   className?: string;
   minimal?: boolean;
   autoFlip?: boolean;
+  blurred?: boolean;
 }
 
 // Simple lang detection from URL
@@ -67,7 +68,11 @@ type FuneralInfoButtonProps = {
   onClick: () => void;
 };
 
-export function FuneralInfoButton({ label, lang, onClick }: FuneralInfoButtonProps) {
+export function FuneralInfoButton({
+  label,
+  lang,
+  onClick,
+}: FuneralInfoButtonProps) {
   const [showFullLabel, setShowFullLabel] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -90,9 +95,8 @@ export function FuneralInfoButton({ label, lang, onClick }: FuneralInfoButtonPro
       className={[
         "absolute top-4 right-0 flex items-center px-4 py-1.5 rounded-l-full",
         "bg-white/80 backdrop-blur-md shadow-md border border-white/40 font-semibold text-black",
-        "transition-all duration-300 hover:bg-white/90 z-10",
-        "cursor-pointer",
-        isExpanded ? "gap-2" : ""
+        "transition-all duration-300 hover:bg-white/90 z-10 cursor-pointer",
+        "gap-1",
       ].join(" ")}
       onClick={onClick}
       onMouseEnter={expandLabel}
@@ -104,7 +108,9 @@ export function FuneralInfoButton({ label, lang, onClick }: FuneralInfoButtonPro
       <span
         className={[
           "overflow-hidden transition-all duration-300",
-          isExpanded ? "max-w-[200px] opacity-100 ml-1" : "max-w-0 opacity-0 ml-0"
+          isExpanded
+            ? "max-w-[200px] opacity-100 ml-1"
+            : "max-w-0 opacity-0 ml-0",
         ].join(" ")}
         style={{ whiteSpace: "nowrap" }}
       >
@@ -140,11 +146,14 @@ export default function ObituaryCard({
   className,
   funeralDetailsUpdatedAt,
   minimal = false,
+  autoFlip = false,
+  blurred = false,
 }: Props) {
   const [flipped, setFlipped] = useState(false);
-  const shareUrl = typeof window !== "undefined"
-    ? `${window.location.origin}/obituary?id=${slug}`
-    : `/obituary?id=${slug}`;
+  const shareUrl =
+    typeof window !== "undefined"
+      ? `${window.location.origin}/obituary?id=${slug}`
+      : `/obituary?id=${slug}`;
   const cardId = typeof id === "string" ? id : String(id ?? "no-id");
 
   let updatedAt: Date | null = null;
@@ -195,10 +204,46 @@ export default function ObituaryCard({
   }
 
   // Debug for missing props
-  if (!id) return <div style={{ color: 'red' }}>Missing ID</div>;
+  if (!blurred && !id) return <div style={{ color: "red" }}>Missing ID</div>;
   const blankImage = "/assets/static-assets/blank.jpeg"; // use your path
   const displayImage = imageUrl || blankImage;
-  if (!name) return <div style={{ color: 'red' }}>Missing name</div>;
+  if (!name) return <div style={{ color: "red" }}>Missing name</div>;
+
+  // If blurred mode is enabled, show a blurred image with overlay
+  if (blurred) {
+    return (
+      <div
+        className={cn(
+          "relative flex-none w-[280px] md:w-[250px] border border-gray-200 overflow-hidden",
+          className,
+        )}
+      >
+        <img
+          src={displayImage}
+          alt={name}
+          className="w-full aspect-[3/4] object-cover blur-sm"
+        />
+        <div className="absolute bottom-6 left-0 w-full flex flex-col items-center px-2 blur-sm select-none">
+          <h3 className="text-xl font-bold text-slate-900 line-clamp-2">
+            {name}
+          </h3>
+          {dateOfDeath && (
+            <p className="text-lg text-slate-700">
+              <strong>Death:</strong> {dateOfDeath}
+            </p>
+          )}
+        </div>
+        <div className="absolute inset-0 flex items-center justify-center z-10">
+          <a
+            href={lang === "kok" ? "/kok/obituary" : "/obituary"}
+            className="from-natgeo-yellow font-medium to-natgeo-yellow hoverable-link border-natgeo-yellow border-b-2 bg-gradient-to-r px-2 py-1 hover:border-transparent hover:text-black"
+          >
+            {t ? t("ui.view-all") : "View All"}
+          </a>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div
@@ -210,12 +255,15 @@ export default function ObituaryCard({
       style={{ perspective: 1000 }}
     >
       <div
-        className={`relative w-full ${minimal ? "h-[460px] md:h-[420px]" : "h-[550px] md:h-[510px]"} transition-transform duration-700 transform-style preserve-3d ${flipped ? "rotate-y-180" : ""
+        className={`relative w-full ${minimal ? "h-[420px] md:h-[390px]" : "h-[550px] md:h-[510px]"} transition-transform duration-700 transform-style preserve-3d ${flipped ? "rotate-y-180" : ""
           }`}
       >
         {/* Front side */}
         <div className="absolute w-full h-full backface-hidden bg-white border border-gray-200 flex flex-col overflow-hidden">
-          <div className="relative aspect-[3/4] bg-gray-100">
+          <div className={cn(
+            "relative w-full bg-gray-100",
+            minimal ? "aspect-[3/3]" : "aspect-[3/4]"
+          )}>
             <img
               src={displayImage}
               alt={`Image of ${name}`}
@@ -238,7 +286,9 @@ export default function ObituaryCard({
             )}
           </div>
 
-          <div className={`flex flex-col justify-between p-3 h-full min-h-[${minimal ? "120px" : "180px"}] relative`}>
+          <div
+            className={`flex flex-col justify-between p-3 h-full min-h-[${minimal ? "120px" : "180px"}] relative`}
+          >
             <div className="space-y-1">
               <h3 className="text-xl font-bold text-slate-900 line-clamp-2">
                 {name}
@@ -262,22 +312,36 @@ export default function ObituaryCard({
               )}
 
               {dateOfDeath && (
-                <p className="md:text-base text-lg text-slate-700">
-                  <>
-                    <strong>{labels.death}:</strong> {formattedDate}
-                  </>
+                <p className={cn(
+                  "text-lg",
+                  minimal ? "text-gray-600" : "md:text-base text-slate-700"
+                )}>
+                  {minimal ? (
+                    // Minimal: all plain, gray
+                    <>
+                      {labels.death}: {formattedDate}
+                    </>
+                  ) : (
+                    // Normal: bold label, slate
+                    <>
+                      <strong>{labels.death}:</strong> {formattedDate}
+                    </>
+                  )}
                 </p>
               )}
+
             </div>
+
             <div className="absolute bottom-3 right-3">
               <ShareLink
                 shareData={{
-                  title: minimal ? name : `${name} - ${ward}`,
+                  title: name,
                   url: shareUrl,
                 }}
-                size={minimal ? 28 : 30}
+                size={24}
               />
             </div>
+
           </div>
         </div>
 
@@ -294,23 +358,31 @@ export default function ObituaryCard({
 
           {/* Funeral details content */}
           <div className="flex-1 pt-4 pb-2">
-            <h4 className={cn(
-              "flex items-center gap-2 justify-center font-bold mb-2",
-              lang === Locale.KOK
-                ? "font-noto-sans-kannada text-xl"
-                : "font-roboto text-xl"
-            )}>
+            <h4
+              className={cn(
+                "flex items-center gap-2 justify-center font-bold mb-2",
+                lang === Locale.KOK
+                  ? "font-noto-sans-kannada text-xl mt-2"
+                  : "font-roboto text-xl",
+              )}
+            >
               <CoffinIcon className="w-7 h-7" />
               <span>{t("funeral.rites")}</span>
             </h4>
             <div className="mb-2">
-              <p className={cn(
-                "whitespace-pre-line",
-                lang === Locale.KOK
-                  ? "font-noto-sans-kannada text-xl md:text-[18px] text-center mt-6"
-                  : "font-noto-sans-kannada text-xl md:text-[18px] text-center mt-6"
-              )}>
-                {funeralDetails ? funeralDetails : <em>No details available.</em>}
+              <p
+                className={cn(
+                  "whitespace-pre-line",
+                  lang === Locale.KOK
+                    ? "font-noto-sans-kannada text-xl md:text-[18px] text-center mt-6"
+                    : "font-noto-sans-kannada text-xl md:text-[18px] text-center mt-6",
+                )}
+              >
+                {funeralDetails ? (
+                  funeralDetails
+                ) : (
+                  <em>No details available.</em>
+                )}
               </p>
             </div>
           </div>
@@ -333,21 +405,25 @@ export default function ObituaryCard({
           {!minimal && (
             <div className="flex flex-col items-center mt-2">
               {funeralPrayer && (
-                <blockquote className={cn(
-                  "text-gray-700 my-6",
-                  lang === Locale.KOK
-                    ? "font-noto-sans-kannada text-base text-center"
-                    : "font-roboto text-[1rem] text-center"
-                )}>
+                <blockquote
+                  className={cn(
+                    "text-gray-700 my-6",
+                    lang === Locale.KOK
+                      ? "font-noto-sans-kannada text-base text-center"
+                      : "font-roboto text-[1.08rem] text-center",
+                  )}
+                >
                   “{funeralPrayer}”
                 </blockquote>
               )}
-              <p className={cn(
-                "font-semibold text-center mb-4",
-                lang === Locale.KOK
-                  ? "font-noto-sans-kannada text-gray-800 text-[15px]"
-                  : "font-roboto text-gray-800 text-[15px]"
-              )}>
+              <p
+                className={cn(
+                  "font-semibold text-center mb-4",
+                  lang === Locale.KOK
+                    ? "font-noto-sans-kannada text-gray-800 text-[15px]"
+                    : "font-roboto text-gray-800 text-[15px]",
+                )}
+              >
                 {t("funeral.subtitle")}
               </p>
               {youtubeLink && (

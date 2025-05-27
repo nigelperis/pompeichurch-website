@@ -1,6 +1,5 @@
 ---
 import { format } from "date-fns-tz";
-// import ObituaryCard from "~/components/obituary-card.astro";
 import { getLangFromUrl } from "~/i18n/utils";
 import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
 import type { Obituary } from "~/models/obituary";
@@ -32,7 +31,8 @@ const obituaryDataFormatted = obituaries
 >
   {
     obituaryDataFormatted?.map((item) => (
-      <ObituaryCard client:only="ObituaryCard"
+      <ObituaryCard
+        client:only="ObituaryCard"
         id={item.englishName}
         name={lang === Locale.EN ? item.englishName : item.konkaniName}
         imageUrl={

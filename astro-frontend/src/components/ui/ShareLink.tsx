@@ -1,5 +1,5 @@
 import React from "react";
-import ShareIcon from '~/assets/react-icons/share.svg?react';
+import ShareIcon from "~/assets/react-icons/share.svg?react";
 import { cn } from "~/helpers/cn";
 
 type ShareLinkProps = {
@@ -12,13 +12,16 @@ type ShareLinkProps = {
   };
 };
 
-const ShareLink: React.FC<ShareLinkProps> = ({ className, shareData, size = 30 }) => {
+const ShareLink: React.FC<ShareLinkProps> = ({
+  className,
+  shareData,
+  size = 30,
+}) => {
   const handleShare = async () => {
     if (navigator.share) {
       try {
         await navigator.share(shareData);
-      } catch (e) {
-      }
+      } catch (e) {}
     } else {
       alert("Sharing not supported on this device.");
     }

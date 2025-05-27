@@ -17,11 +17,11 @@ const konkaniPronouns = {
 const englishPronouns = {
   male: {
     pronoun1: "him",
-    pronoun2: "his"
+    pronoun2: "his",
   },
   female: {
     pronoun1: "her",
-    pronoun2: "her"
+    pronoun2: "her",
   },
 };
 
@@ -38,7 +38,10 @@ function getGenderFromRelation(relationType?: RelationType): Gender {
   }
 }
 
-export function getFuneralPrayer(lang: Locale, relationType?: RelationType): string {
+export function getFuneralPrayer(
+  lang: Locale,
+  relationType?: RelationType,
+): string {
   const gender = getGenderFromRelation(relationType);
 
   if (lang === Locale.EN) {

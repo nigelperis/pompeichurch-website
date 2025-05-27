@@ -826,6 +826,6 @@ export const ui = {
     "nun.denisdcunha": "ದೆ| ಡೆನಿಸ್ ಡಿಕುನ್ಹಾ, ದೆ| ಮೇರಿ ಡಿಕುನ್ಹಾ",
     "events.subtitle": "ಫಿರ್ಗಜ್ ಕುಟ್ಮಾಚ್ಯಾ ಎಕ್ವಟ್ಪಣಾಚ್ಯೊ ಘಡಿಯೊ",
     "funeral.rites": "ಮೊರ್ಣಾಚಿ ರೀತ್",
-    "funeral.subtitle": "ವಿಗಾರ್ ಆನಿ ಫಿರ್ಗಜ್ ಕುಟಾಮ್"
+    "funeral.subtitle": "ವಿಗಾರ್ ಆನಿ ಫಿರ್ಗಜ್ ಕುಟಾಮ್",
   },
 } as const;
