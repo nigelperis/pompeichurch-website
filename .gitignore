@@ -21,6 +21,3 @@ yarn-error.log*
 
 # jetbrains setting folder
 .idea/
-
-# bun lock file
-bun.lock
