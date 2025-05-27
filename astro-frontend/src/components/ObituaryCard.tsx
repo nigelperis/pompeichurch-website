@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { Locale } from "~/enums/locale";
 import { useTranslations } from "~/i18n/utils";
@@ -5,6 +6,7 @@ import { cn } from "~/helpers/cn";
 import { getFuneralPrayer } from "~/helpers/get-funeral-prayer";
 import { getWardNameKok } from "~/helpers/get-ward-names-kok";
 import { RelationType } from "~/enums/obituary";
+import BlankImg from "~/assets/static-assets/blank.jpeg";
 import ShareLink from "~/components/ui/ShareLink";
 import CloseIcon from "~/assets/react-icons/x.svg?react";
 import YoutubeIcon from "~/assets/react-icons/youtube.svg?react";
@@ -203,25 +205,22 @@ export default function ObituaryCard({
     }
   }
 
-  // Debug for missing props
-  if (!blurred && !id) return <div style={{ color: "red" }}>Missing ID</div>;
-  const blankImage = "/assets/static-assets/blank.jpeg"; // use your path
-  const displayImage = imageUrl || blankImage;
-  if (!name) return <div style={{ color: "red" }}>Missing name</div>;
+  const displayImage = imageUrl || BlankImg.src;
+
 
   // If blurred mode is enabled, show a blurred image with overlay
   if (blurred) {
     return (
       <div
         className={cn(
-          "relative flex-none w-[280px] md:w-[250px] border border-gray-200 overflow-hidden",
+          "relative flex-none w-[250px] md:w-[250px] border border-gray-200 overflow-hidden",
           className,
         )}
       >
         <img
           src={displayImage}
           alt={name}
-          className="w-full aspect-[3/4] object-cover blur-sm"
+          className="w-full aspect-[3/4] object-cover opacity-50 blur-md"
         />
         <div className="absolute bottom-6 left-0 w-full flex flex-col items-center px-2 blur-sm select-none">
           <h3 className="text-xl font-bold text-slate-900 line-clamp-2">
@@ -236,7 +235,7 @@ export default function ObituaryCard({
         <div className="absolute inset-0 flex items-center justify-center z-10">
           <a
             href={lang === "kok" ? "/kok/obituary" : "/obituary"}
-            className="from-natgeo-yellow font-medium to-natgeo-yellow hoverable-link border-natgeo-yellow border-b-2 bg-gradient-to-r px-2 py-1 hover:border-transparent hover:text-black"
+            className="from-natgeo-yellow to-natgeo-yellow hoverable-link border-natgeo-yellow border-b-2 bg-gradient-to-r px-2 py-1 hover:border-transparent hover:text-black mb-2 mt-2 inline-block text-xl font-bold text-black"
           >
             {t ? t("ui.view-all") : "View All"}
           </a>
@@ -249,27 +248,30 @@ export default function ObituaryCard({
     <div
       id={cardId.replace(/\s+/g, "-").toLowerCase()}
       className={cn(
-        "relative w-[280px] md:w-[250px] mx-auto perspective",
+        "relative mx-auto perspective",
+        minimal
+          ? "w-[250px] md:w-[250px]"
+          : "w-[280px] md:w-[250px]",
         className,
       )}
       style={{ perspective: 1000 }}
     >
       <div
-        className={`relative w-full ${minimal ? "h-[420px] md:h-[390px]" : "h-[550px] md:h-[510px]"} transition-transform duration-700 transform-style preserve-3d ${flipped ? "rotate-y-180" : ""
+        className={`relative w-full ${minimal ? "h-[420px] md:h-[390px]" : "h-[550px] md:h-[490px]"} transition-transform duration-700 transform-style preserve-3d ${flipped ? "rotate-y-180" : ""
           }`}
       >
         {/* Front side */}
         <div className="absolute w-full h-full backface-hidden bg-white border border-gray-200 flex flex-col overflow-hidden">
           <div className={cn(
             "relative w-full bg-gray-100",
-            minimal ? "aspect-[3/3]" : "aspect-[3/4]"
+            minimal ? "aspect-[3/3]" : "aspect-[3/3]",
           )}>
             <img
               src={displayImage}
               alt={`Image of ${name}`}
               width={imageWidth}
               height={imageHeight}
-              className="object-cover w-full h-full"
+              className="h-[330px] md:h-[300px] w-full object-cover"
               loading="lazy"
             />
 
@@ -292,6 +294,7 @@ export default function ObituaryCard({
             <div className="space-y-1">
               <h3 className="text-xl font-bold text-slate-900 line-clamp-2">
                 {name}
+                {minimal && age ? ` (${age})` : ""}
               </h3>
               {/* Hide all these in minimal mode */}
               {!minimal && (relationNameEn || relationNameKok) && (
@@ -338,8 +341,9 @@ export default function ObituaryCard({
                   title: name,
                   url: shareUrl,
                 }}
-                size={24}
+                size={minimal ? 24 : 30}
               />
+
             </div>
 
           </div>
@@ -403,14 +407,14 @@ export default function ObituaryCard({
 
           {/* Full mode: Prayer and subtitle */}
           {!minimal && (
-            <div className="flex flex-col items-center mt-2">
+            <div className="flex flex-col items-center">
               {funeralPrayer && (
                 <blockquote
                   className={cn(
-                    "text-gray-700 my-6",
+                    "text-gray-700 my-4",
                     lang === Locale.KOK
                       ? "font-noto-sans-kannada text-base text-center"
-                      : "font-roboto text-[1.08rem] text-center",
+                      : "font-roboto text-xl sm:text-xl md:text-base text-center",
                   )}
                 >
                   “{funeralPrayer}”
@@ -435,7 +439,7 @@ export default function ObituaryCard({
                   style={{ letterSpacing: "0.04em" }}
                 >
                   <YoutubeIcon className="w-6 h-6" />
-                  Watch On YouTube
+                  {t("funeral.watchOnYT")}
                 </a>
               )}
             </div>

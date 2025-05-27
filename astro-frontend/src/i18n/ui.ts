@@ -416,6 +416,7 @@ export const ui = {
       "Celebrating the moments that unite our parish community.",
     "funeral.rites": "Funeral Rites",
     "funeral.subtitle": "Parish Priest and Parishioners",
+    "funeral.watchOnYT": "Watch on YouTube",
   },
   kok: {
     "nav.home": "ಹೋಮ್",
@@ -827,5 +828,6 @@ export const ui = {
     "events.subtitle": "ಫಿರ್ಗಜ್ ಕುಟ್ಮಾಚ್ಯಾ ಎಕ್ವಟ್ಪಣಾಚ್ಯೊ ಘಡಿಯೊ",
     "funeral.rites": "ಮೊರ್ಣಾಚಿ ರೀತ್",
     "funeral.subtitle": "ವಿಗಾರ್ ಆನಿ ಫಿರ್ಗಜ್ ಕುಟಾಮ್",
+    "funeral.watchOnYT": "ಯೌಟ್ಯುಬರ್ ಪೊಳೆಯಾ",
   },
 } as const;

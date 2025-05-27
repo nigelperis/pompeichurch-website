@@ -18,9 +18,9 @@ const { obituaries } = await listObituaries({ page: 1, pageSize: 5 });
 
 const obituaryDataFormatted = obituaries.map((obituary) => ({
   ...obituary,
-  formattedDate: obituary.dateOfDeath
-    ? format(new Date(obituary.dateOfDeath), "dd-MM-yyyy")
-    : "Unknown Date",
+  dateOfDeath: obituary.dateOfDeath
+    ? new Date(obituary.dateOfDeath).toISOString()
+    : "",
   slug:
     obituary.slug ??
     `${(obituary.englishName ?? "").replace(/\s+/g, "-").toLowerCase()}-${obituary.id}`,
@@ -53,6 +53,7 @@ const obituaryDataFormatted = obituaries.map((obituary) => ({
               <ObituaryCard
                 client:only="react"
                 id={`${o.id}`}
+                age={o.age}
                 name={lang === "kok" ? o.konkaniName : o.englishName}
                 imageUrl={
                   o.image?.url
@@ -64,7 +65,7 @@ const obituaryDataFormatted = obituaries.map((obituary) => ({
                 }
                 imageWidth={o.image?.width ?? 0}
                 imageHeight={o.image?.height ?? 0}
-                dateOfDeath={o.formattedDate}
+                dateOfDeath={o.dateOfDeath}
                 slug={o.slug}
                 funeralDetails={o.funeralDetails}
                 funeralDetailsUpdatedAt={o.funeralDetailsUpdatedAt}
@@ -82,6 +83,7 @@ const obituaryDataFormatted = obituaries.map((obituary) => ({
               <ObituaryCard
                 client:only="react"
                 id={`${obituaryDataFormatted[3].id}`}
+                age={obituaryDataFormatted[3].age}
                 slug={obituaryDataFormatted[3].slug}
                 blurred={true}
                 imageUrl={
@@ -99,7 +101,7 @@ const obituaryDataFormatted = obituaries.map((obituary) => ({
                 }
                 imageWidth={obituaryDataFormatted[3]?.image?.width ?? 0}
                 imageHeight={obituaryDataFormatted[3]?.image?.height ?? 0}
-                dateOfDeath={obituaryDataFormatted[3]?.formattedDate}
+                dateOfDeath={obituaryDataFormatted[3]?.dateOfDeath}
                 minimal={true}
                 className="h-full"
               />
@@ -108,7 +110,7 @@ const obituaryDataFormatted = obituaries.map((obituary) => ({
         </div>
 
         {/* Desktop */}
-        <div class="hidden lg:flex flex-wrap gap-6 w-full">
+        <div class="hidden lg:flex flex-wrap justify-center gap-6 w-full">
           {obituaryDataFormatted.slice(0, 4).map((obituary, i) => (
             <div class="flex-none w-72 max-w-xs">
               <ObituaryCard
@@ -127,7 +129,8 @@ const obituaryDataFormatted = obituaries.map((obituary) => ({
                 }
                 imageWidth={obituary.image?.width ?? 0}
                 imageHeight={obituary.image?.height ?? 0}
-                dateOfDeath={obituary.formattedDate}
+                dateOfDeath={obituary.dateOfDeath}
+                age={obituary.age}
                 slug={obituary.slug}
                 funeralDetails={obituary.funeralDetails}
                 funeralDetailsUpdatedAt={obituary.funeralDetailsUpdatedAt}
