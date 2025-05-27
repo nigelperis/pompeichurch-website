@@ -16,12 +16,12 @@ Thank you for considering contributing to the Our Lady of Pompei Church Website!
 Ensure you have the required dependencies installed.
 
 ```sh
-pnpm install
+bun install
 ```
 
 For development, run:
 ```sh
-pnpm run dev
+bun run dev
 ```
 
 ### 4. Create a Branch

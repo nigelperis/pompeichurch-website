@@ -44,10 +44,8 @@ cd astro-frontend
 
 Make sure you have all the necessary dependencies installed. You can use the following command:
 
-For **pnpm**:
-
 ```bash
-pnpm install
+bun install
 ```
 
 ### 4. Run the Project
@@ -57,7 +55,7 @@ Now, you can run the project on your localhost. Use the following command:
 For **pnpm**:
 
 ```bash
-pnpm run dev
+bun run dev
 ```
 Once the development server starts, the application will typically be available at http://localhost:3000 (or another port if specified). You can Ctrl+click on the link to open it in your browser.
 
