@@ -29,6 +29,7 @@ interface Props {
   youtubeLink?: string;
   className?: string;
   minimal?: boolean;
+  autoFlip?: boolean;
 }
 
 // Simple lang detection from URL

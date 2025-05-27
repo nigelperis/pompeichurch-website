@@ -3,7 +3,7 @@ import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import { cn } from "~/helpers/cn";
 
 import HoverableLink from "~/components/ui/hoverable-link.astro";
-import ObituaryCard from "~/components/ObituaryCard.tsx";
+import ObituaryCard from "~/components/ObituaryCard"
 import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
 import Card from "~/components/normal-card.astro";
 import { listObituaries } from "~/services/obituaries/list-obituaries";
@@ -27,7 +27,6 @@ formattedDate: obituary.dateOfDeath
 slug: obituary.slug ?? `${(obituary.englishName ?? '').replace(/\s+/g, "-").toLowerCase()}-${obituary.id}`,
 }));
 
-const featuredObituary = obituaryDataFormatted[4];
 ---
 
 <section class="mt-1 flex flex-col lg:mx-28 lg:mb-3 lg:min-h-[70svh] lg:justify-evenly">
@@ -46,8 +45,8 @@ const featuredObituary = obituaryDataFormatted[4];
       {/* Mobile: 3 real cards, 1 blurred "View All" card */}
       <div class="flex w-full flex-nowrap space-x-4 lg:hidden">
         {obituaryDataFormatted.slice(0, 3).map((obituary, i) => (
-        <div class="flex-none w-72 max-w-xs" key={obituary.id}>
-          <ObituaryCard client:only="react" id={obituary.id} name={lang==="kok" ? obituary.konkaniName :
+        <div class="flex-none w-72 max-w-xs">
+          <ObituaryCard client:only="react" id={`${obituary.id}`} name={lang==="kok" ? obituary.konkaniName :
             obituary.englishName} imageUrl={ obituary.image?.url ? new URL(obituary.image.url,
             import.meta.env.STRAPI_URL).toString() : getPlaceholderImage() } imageWidth={obituary.image?.width ?? 0}
             imageHeight={obituary.image?.height ?? 0} dateOfDeath={obituary.formattedDate} slug={obituary.slug}
@@ -56,7 +55,7 @@ const featuredObituary = obituaryDataFormatted[4];
             className="h-full" />
         </div>
         ))}
-
+        </div>
         {/* Blurred "View All" Card */}
         <div class="flex-none w-72 max-w-xs relative overflow-hidden border border-gray-200 group"
           aria-label="View all obituaries">
@@ -79,8 +78,8 @@ const featuredObituary = obituaryDataFormatted[4];
       {/* For Desktop */}
       <div class="hidden lg:flex flex-wrap gap-6 w-full">
         {obituaryDataFormatted.slice(0, 4).map((obituary, i) => (
-        <div class="flex-none w-72 max-w-xs" key={obituary.id}>
-          <ObituaryCard client:only="react" id={obituary.id} name={lang==="kok" ? obituary.konkaniName :
+        <div class="flex-none w-72 max-w-xs">
+          <ObituaryCard client:only="react" id={`${obituary.id}`} name={lang==="kok" ? obituary.konkaniName :
             obituary.englishName} imageUrl={ obituary.image?.url ? new URL(obituary.image.url,
             import.meta.env.STRAPI_URL).toString() : getPlaceholderImage() } imageWidth={obituary.image?.width ?? 0}
             imageHeight={obituary.image?.height ?? 0} dateOfDeath={obituary.formattedDate} slug={obituary.slug}
@@ -90,7 +89,6 @@ const featuredObituary = obituaryDataFormatted[4];
         </div>
         ))}
       </div>
-    </div>
     <div class="hidden lg:flex justify-center pb-2">
       <HoverableLink href={obituaryLink}>{t("ui.view-all")}</HoverableLink>
     </div>
