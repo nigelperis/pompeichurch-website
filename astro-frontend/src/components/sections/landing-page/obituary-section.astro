@@ -3,9 +3,11 @@ import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import { cn } from "~/helpers/cn";
 
 import HoverableLink from "~/components/ui/hoverable-link.astro";
+import ObituaryCard from "~/components/ObituaryCard.tsx";
+import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
 import Card from "~/components/normal-card.astro";
 import { listObituaries } from "~/services/obituaries/list-obituaries";
-import ShareLink from "~/components/ui/share-link.astro";
+
 import { Message } from "~/constants/message.ts";
 
 const lang = getLangFromUrl(Astro.url);
@@ -18,118 +20,86 @@ import { Locale } from "~/enums/locale";
 const { obituaries } = await listObituaries({ page: 1, pageSize: 5 });
 
 const obituaryDataFormatted = obituaries.map((obituary) => ({
-  ...obituary,
-  formattedDate: obituary.dateOfDeath
-    ? format(new Date(obituary.dateOfDeath), "dd-MM-yyyy")
-    : "Unknown Date",
+...obituary,
+formattedDate: obituary.dateOfDeath
+? format(new Date(obituary.dateOfDeath), "dd-MM-yyyy")
+: "Unknown Date",
+slug: obituary.slug ?? `${(obituary.englishName ?? '').replace(/\s+/g, "-").toLowerCase()}-${obituary.id}`,
 }));
 
 const featuredObituary = obituaryDataFormatted[4];
-
-const wardMap: Record<string, { en: string; kok: string }> = {
-  "Kowdoor A": { en: "Kowdoor A", kok: "ಕೌಡೂರ್ ಎ" },
-  "Kowdoor B": { en: "Kowdoor B", kok: "ಕೌಡೂರ್ ಬಿ" },
-  "Pompei A": { en: "Pompei A", kok: "ಪೊಂಪೈ ಎ" },
-  "Pompei B": { en: "Pompei B", kok: "ಪೊಂಪೈ ಬಿ" },
-  "Kandar A": { en: "Kandar A", kok: "ಕಂದಾರ್ ಎ" },
-  "Kandar B": { en: "Kandar B", kok: "ಕಂದಾರ್ ಬಿ" },
-  Monel: { en: "Monel", kok: "ಮಣೆಲ್" },
-  Gurpur: { en: "Gurpur", kok: "ಗುರ್ಪುರ್" },
-  Church: { en: "Church", kok: "ಇಗರ್ಜೆ" },
-  Addoor: { en: "Addoor", kok: "ಅಡ್ಡೂರ್" },
-};
-
-const localizedWard =
-  wardMap[obituaryDataFormatted[0]?.ward]?.[
-    lang === Locale.KOK ? Locale.KOK : Locale.EN
-  ] ?? obituaryDataFormatted[0]?.ward;
 ---
 
-<section
-  class="mt-1 flex flex-col lg:mx-28 lg:mb-3 lg:min-h-[70svh] lg:justify-evenly"
->
-  <h1
-    data-aos="fade-right"
-    class={cn(
-      "font-black mx-6 mb-4 inline-block border-l-4 border-natgeo-yellow pl-3 text-2xl lg:mx-0 lg:text-4xl",
-      {
-        "font-extrabold pt-2": lang === Locale.KOK,
-      },
-    )}
-  >
+<section class="mt-1 flex flex-col lg:mx-28 lg:mb-3 lg:min-h-[70svh] lg:justify-evenly">
+  <h1 data-aos="fade-right"
+    class={cn( "font-black mx-6 mb-4 inline-block border-l-4 border-natgeo-yellow pl-3 text-2xl lg:mx-0 lg:text-4xl" ,
+    { "font-extrabold pt-2" : lang===Locale.KOK, }, )}>
     {t("nav.obituary")}
   </h1>
 
   {
-    obituaryDataFormatted.length > 0 ? (
-      <>
-        <div class="my-4 flex w-full space-x-8 overflow-x-auto pl-6 pr-3 scrollbar-none lg:flex-wrap lg:justify-center lg:space-x-8 lg:overflow-x-visible xl:space-x-10">
-          {obituaryDataFormatted.slice(0, 4).map((obituary) => (
-            <div class="flex-none relative h-full">
-              <Card
-                imageUrl={obituary.image?.url}
-                title={`${lang === "kok" ? obituary.konkaniName : obituary.englishName} (${obituary.age})`}
-                subtitle={
-                  lang === "kok"
-                    ? `ಮರಣ್ : ${obituary.formattedDate}`
-                    : `Death: ${obituary.formattedDate}`
-                }
-              />
-
-              <ShareLink
-                class="absolute bottom-4 right-4"
-                shareData={{
-                  url: `${
-                    new URL(
-                      lang === Locale.EN
-                        ? `/obituary?id=${obituary.englishName.replace(/\s+/g, "-").toLowerCase()}`
-                        : `/kok/obituary?id=${obituary.englishName.replace(/\s+/g, "-").toLowerCase()}`,
-                      Astro.url,
-                    ).href
-                  }`,
-                  title:
-                    lang === Locale.EN
-                      ? `${obituary.englishName} - ${localizedWard}`
-                      : `${obituary.konkaniName} - ${localizedWard}`,
-                }}
-                size={24}
-              />
-            </div>
-          ))}
-
-          {featuredObituary && (
-            <div class="flex-none relative h-full lg:hidden overflow-hidden border border-gray-200">
-              <div class="opacity-50 blur-md rounded-lg">
-                <Card
-                  imageUrl={featuredObituary.image?.url}
-                  title={`${lang === "kok" ? featuredObituary.konkaniName : featuredObituary.englishName} (${featuredObituary.age})`}
-                  subtitle={
-                    lang === "kok"
-                      ? `ಮರಣ್ : ${featuredObituary.formattedDate}`
-                      : `Death: ${featuredObituary.formattedDate}`
-                  }
-                />
-              </div>
-              <div class="absolute inset-0 flex items-center justify-center">
-                <HoverableLink
-                  href={obituaryLink}
-                  class="mb-2 mt-2 inline-block text-xl font-bold text-black"
-                >
-                  {t("ui.view-all")}
-                </HoverableLink>
-              </div>
-            </div>
-          )}
+  obituaryDataFormatted.length > 0 ? (
+  <>
+    <div
+      class="my-4 flex w-full space-x-8 overflow-x-auto pl-6 pr-3 scrollbar-none lg:flex-wrap lg:justify-center lg:space-x-8 lg:overflow-x-visible xl:space-x-10"
+      style="scrollbar-width: none; -ms-overflow-style: none;">
+      {/* Mobile: 3 real cards, 1 blurred "View All" card */}
+      <div class="flex w-full flex-nowrap space-x-4 lg:hidden">
+        {obituaryDataFormatted.slice(0, 3).map((obituary, i) => (
+        <div class="flex-none w-72 max-w-xs" key={obituary.id}>
+          <ObituaryCard client:only="react" id={obituary.id} name={lang==="kok" ? obituary.konkaniName :
+            obituary.englishName} imageUrl={ obituary.image?.url ? new URL(obituary.image.url,
+            import.meta.env.STRAPI_URL).toString() : getPlaceholderImage() } imageWidth={obituary.image?.width ?? 0}
+            imageHeight={obituary.image?.height ?? 0} dateOfDeath={obituary.formattedDate} slug={obituary.slug}
+            funeralDetails={obituary.funeralDetails} funeralDetailsUpdatedAt={obituary.funeralDetailsUpdatedAt}
+            youtubeLink={obituary.youtubeLink} minimal={true} autoFlip={!!obituary.funeralDetails && i===0}
+            className="h-full" />
         </div>
+        ))}
 
-        <div class="hidden justify-center pb-2 lg:flex">
-          <HoverableLink href={obituaryLink}>{t("ui.view-all")}</HoverableLink>
+        {/* Blurred "View All" Card */}
+        <div class="flex-none w-72 max-w-xs relative overflow-hidden border border-gray-200 group"
+          aria-label="View all obituaries">
+          <div class="absolute inset-0 opacity-60 blur-[4px] pointer-events-none select-none z-0">
+            <Card imageUrl={ obituaryDataFormatted[3]?.image?.url ? new URL(obituaryDataFormatted[3].image.url,
+              import.meta.env.STRAPI_URL).toString() : getPlaceholderImage() } title={ obituaryDataFormatted[3] ?
+              (lang==="kok" ? obituaryDataFormatted[3].konkaniName : obituaryDataFormatted[3].englishName) +
+              `(${obituaryDataFormatted[3].age ?? "" })` : "" } subtitle={ obituaryDataFormatted[3] ? (lang==="kok" ?
+              `ಮರಣ್ : ${obituaryDataFormatted[3].formattedDate}` : `Death:
+              ${obituaryDataFormatted[3].formattedDate}`): "" } />
+          </div>
+          <div class="absolute inset-0 flex items-center justify-center z-10">
+            <HoverableLink href={obituaryLink} class="lg:flex justify-center pb-2">
+              {t("ui.view-all")}
+            </HoverableLink>
+          </div>
         </div>
-      </>
-    ) : (
-      <p class="py-8 text-center text-3xl font-semibold">
-        {Message.OBITUARIES_NOT_FOUND}
-      </p>
-    )
+      </div>
+
+      {/* For Desktop */}
+      <div class="hidden lg:flex flex-wrap gap-6 w-full">
+        {obituaryDataFormatted.slice(0, 4).map((obituary, i) => (
+        <div class="flex-none w-72 max-w-xs" key={obituary.id}>
+          <ObituaryCard client:only="react" id={obituary.id} name={lang==="kok" ? obituary.konkaniName :
+            obituary.englishName} imageUrl={ obituary.image?.url ? new URL(obituary.image.url,
+            import.meta.env.STRAPI_URL).toString() : getPlaceholderImage() } imageWidth={obituary.image?.width ?? 0}
+            imageHeight={obituary.image?.height ?? 0} dateOfDeath={obituary.formattedDate} slug={obituary.slug}
+            funeralDetails={obituary.funeralDetails} funeralDetailsUpdatedAt={obituary.funeralDetailsUpdatedAt}
+            youtubeLink={obituary.youtubeLink} minimal={true} autoFlip={!!obituary.funeralDetails && i===0}
+            className="h-full" />
+        </div>
+        ))}
+      </div>
+    </div>
+    <div class="hidden lg:flex justify-center pb-2">
+      <HoverableLink href={obituaryLink}>{t("ui.view-all")}</HoverableLink>
+    </div>
+
+  </>
+  ) : (
+  <p class="py-8 text-center text-3xl font-semibold">
+    {Message.OBITUARIES_NOT_FOUND}
+  </p>
+  )
   }
 </section>

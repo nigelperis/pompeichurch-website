@@ -12,25 +12,26 @@ import CoffinIcon from '~/assets/react-icons/coffin.svg?react';
 import InfoIcon from '~/assets/react-icons/info.svg?react';
 
 interface Props {
-  id: string;
+  id: string | number;
   name: string;
   imageUrl: string;
   imageWidth: number;
   imageHeight: number;
-  age: string | number;
+  age?: string | number;
   relationType?: RelationType;
   relationNameEn?: string;
   relationNameKok?: string;
-  ward: string;
+  ward?: string;
   dateOfDeath: string;
   slug: string;
   funeralDetails?: string;
-  funeralDetailsUpdatedAt?: Date;
+  funeralDetailsUpdatedAt?: Date | string;
   youtubeLink?: string;
   className?: string;
+  minimal?: boolean;
 }
 
-// Simple lang detection from URL (you can improve)
+// Simple lang detection from URL
 const lang =
   typeof window !== "undefined" &&
     window.location.pathname.startsWith(`/${Locale.KOK}`)
@@ -61,7 +62,7 @@ const ONE_DAY_MS = 24 * 60 * 60 * 1000; // milliseconds in one day
 
 type FuneralInfoButtonProps = {
   label: string;
-  lang: Locale; // or `string` if not using the enum
+  lang: Locale;
   onClick: () => void;
 };
 
@@ -99,7 +100,6 @@ export function FuneralInfoButton({ label, lang, onClick }: FuneralInfoButtonPro
       onBlur={collapseLabel}
     >
       <InfoIcon className="w-5 h-5 opacity-80" />
-
       <span
         className={[
           "overflow-hidden transition-all duration-300",
@@ -118,8 +118,6 @@ export function FuneralInfoButton({ label, lang, onClick }: FuneralInfoButtonPro
         </span>
       </span>
     </button>
-
-
   );
 }
 
@@ -140,14 +138,20 @@ export default function ObituaryCard({
   youtubeLink,
   className,
   funeralDetailsUpdatedAt,
+  minimal = false,
 }: Props) {
   const [flipped, setFlipped] = useState(false);
-  const shareUrl = `${window.location.origin}/obituary?id=${slug}`;
-  const updatedAt = funeralDetailsUpdatedAt
-    ? new Date(funeralDetailsUpdatedAt)
-    : null;
-  const now = new Date();
+  const shareUrl = typeof window !== "undefined"
+    ? `${window.location.origin}/obituary?id=${slug}`
+    : `/obituary?id=${slug}`;
+  const cardId = typeof id === "string" ? id : String(id ?? "no-id");
 
+  let updatedAt: Date | null = null;
+  if (funeralDetailsUpdatedAt) {
+    updatedAt = new Date(funeralDetailsUpdatedAt);
+    if (isNaN(updatedAt.getTime())) updatedAt = null;
+  }
+  const now = new Date();
   // check if details are fresh (within one day)
   const isFuneralDetailsFresh = updatedAt
     ? now.getTime() - updatedAt.getTime() < ONE_DAY_MS
@@ -158,7 +162,6 @@ export default function ObituaryCard({
       const timer = setTimeout(() => {
         setFlipped(true);
       }, 2000);
-
       return () => clearTimeout(timer);
     }
   }, [funeralDetails, isFuneralDetailsFresh]);
@@ -173,22 +176,32 @@ export default function ObituaryCard({
   const labels = activeLabels[lang as keyof typeof activeLabels];
   const relationLabel =
     lang === Locale.KOK
-      ? relationMapKok[relationType ?? ""] || "ಸಾತೀ"
+      ? relationMapKok[relationType ?? ""] || "Spouse"
       : relationType || "Relation";
 
-  const formattedDate = dateOfDeath
-    ? new Intl.DateTimeFormat("en-GB", {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric",
-    })
-      .format(new Date(dateOfDeath))
-      .replace(/\//g, "-")
-    : "";
+  let formattedDate = "";
+  if (dateOfDeath) {
+    const dateObj = new Date(dateOfDeath);
+    if (!isNaN(dateObj.getTime())) {
+      formattedDate = new Intl.DateTimeFormat("en-GB", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+      })
+        .format(dateObj)
+        .replace(/\//g, "-");
+    }
+  }
+
+  // Debug for missing props
+  if (!id) return <div style={{ color: 'red' }}>Missing ID</div>;
+  const blankImage = "/assets/static-assets/blank.jpeg"; // use your path
+  const displayImage = imageUrl || blankImage;
+  if (!name) return <div style={{ color: 'red' }}>Missing name</div>;
 
   return (
     <div
-      id={id.replace(/\s+/g, "-").toLowerCase()}
+      id={cardId.replace(/\s+/g, "-").toLowerCase()}
       className={cn(
         "relative w-[280px] md:w-[250px] mx-auto perspective",
         className,
@@ -196,14 +209,14 @@ export default function ObituaryCard({
       style={{ perspective: 1000 }}
     >
       <div
-        className={`relative w-full h-[550px] md:h-[510px] transition-transform duration-700 transform-style preserve-3d ${flipped ? "rotate-y-180" : ""
+        className={`relative w-full ${minimal ? "h-[460px] md:h-[420px]" : "h-[550px] md:h-[510px]"} transition-transform duration-700 transform-style preserve-3d ${flipped ? "rotate-y-180" : ""
           }`}
       >
         {/* Front side */}
         <div className="absolute w-full h-full backface-hidden bg-white border border-gray-200 flex flex-col overflow-hidden">
           <div className="relative aspect-[3/4] bg-gray-100">
             <img
-              src={imageUrl}
+              src={displayImage}
               alt={`Image of ${name}`}
               width={imageWidth}
               height={imageHeight}
@@ -213,38 +226,35 @@ export default function ObituaryCard({
 
             {funeralDetails && isFuneralDetailsFresh && (
               <div className="group">
-                {!flipped && funeralDetails && isFuneralDetailsFresh && (
+                {!flipped && (
                   <FuneralInfoButton
                     label={t("funeral.rites")}
                     lang={lang}
                     onClick={() => setFlipped(true)}
                   />
                 )}
-
               </div>
             )}
           </div>
 
-          <div className="flex flex-col justify-between p-3 h-full min-h-[180px] relative">
+          <div className={`flex flex-col justify-between p-3 h-full min-h-[${minimal ? "120px" : "180px"}] relative`}>
             <div className="space-y-1">
               <h3 className="text-xl font-bold text-slate-900 line-clamp-2">
                 {name}
               </h3>
-
-              {(relationNameEn || relationNameKok) && (
+              {/* Hide all these in minimal mode */}
+              {!minimal && (relationNameEn || relationNameKok) && (
                 <p className="line-clamp-2 md:text-base text-lg text-slate-700">
                   <strong>{relationLabel}:</strong>{" "}
                   {lang === "kok" ? relationNameKok : relationNameEn}
                 </p>
               )}
-
-              {age && (
+              {!minimal && age && (
                 <p className="md:text-base text-lg text-slate-700">
                   <strong>{labels.age}:</strong> {age}
                 </p>
               )}
-
-              {ward && (
+              {!minimal && ward && (
                 <p className="md:text-base text-lg text-slate-700">
                   <strong>{labels.ward}:</strong> {getWardNameKok(ward, lang)}
                 </p>
@@ -252,17 +262,19 @@ export default function ObituaryCard({
 
               {dateOfDeath && (
                 <p className="md:text-base text-lg text-slate-700">
-                  <strong>{labels.death}:</strong> {formattedDate}
+                  <>
+                    <strong>{labels.death}:</strong> {formattedDate}
+                  </>
                 </p>
               )}
             </div>
             <div className="absolute bottom-3 right-3">
               <ShareLink
                 shareData={{
-                  title: `${name} - ${ward}`,
+                  title: minimal ? name : `${name} - ${ward}`,
                   url: shareUrl,
                 }}
-                size={30}
+                size={minimal ? 28 : 30}
               />
             </div>
           </div>
@@ -290,7 +302,6 @@ export default function ObituaryCard({
               <CoffinIcon className="w-7 h-7" />
               <span>{t("funeral.rites")}</span>
             </h4>
-
             <div className="mb-2">
               <p className={cn(
                 "whitespace-pre-line",
@@ -303,60 +314,63 @@ export default function ObituaryCard({
             </div>
           </div>
 
-          {/* Bottom block: prayer, subtitle, YouTube link */}
-          <div className="flex flex-col items-center mt-2">
-            {funeralPrayer && (
-              <blockquote className={cn(
-                "text-gray-700 my-6",
+          {/* Minimal mode: show only YouTube button*/}
+          {minimal && youtubeLink && (
+            <a
+              href={youtubeLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-roboto flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white text-base py-2 w-full mt-2"
+              style={{ letterSpacing: "0.04em" }}
+            >
+              <YoutubeIcon className="w-6 h-6" />
+              Watch On YouTube
+            </a>
+          )}
+
+          {/* Full mode: Prayer and subtitle */}
+          {!minimal && (
+            <div className="flex flex-col items-center mt-2">
+              {funeralPrayer && (
+                <blockquote className={cn(
+                  "text-gray-700 my-6",
+                  lang === Locale.KOK
+                    ? "font-noto-sans-kannada text-base text-center"
+                    : "font-roboto text-[1rem] text-center"
+                )}>
+                  “{funeralPrayer}”
+                </blockquote>
+              )}
+              <p className={cn(
+                "font-semibold text-center mb-4",
                 lang === Locale.KOK
-                  ? "font-noto-sans-kannada text-base text-center"
-                  : "font-roboto text-[1rem] text-center"
+                  ? "font-noto-sans-kannada text-gray-800 text-[15px]"
+                  : "font-roboto text-gray-800 text-[15px]"
               )}>
-                “{funeralPrayer}”
-              </blockquote>
-            )}
-            <p className={cn(
-              "font-semibold text-center mb-4",
-              lang === Locale.KOK
-                ? "font-noto-sans-kannada text-gray-800 text-[15px]"
-                : "font-roboto text-gray-800 text-[15px]"
-            )}>
-              {t("funeral.subtitle")}
-            </p>
-            {youtubeLink && (
-              <a
-                href={youtubeLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-roboto flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white  text-base py-2 w-full"
-                style={{ letterSpacing: "0.04em" }}
-              >
-                <YoutubeIcon className="w-6 h-6" />
-                Watch On YouTube
-              </a>
-            )}
-          </div>
+                {t("funeral.subtitle")}
+              </p>
+              {youtubeLink && (
+                <a
+                  href={youtubeLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-roboto flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white text-base py-2 w-full mt-2"
+                  style={{ letterSpacing: "0.04em" }}
+                >
+                  <YoutubeIcon className="w-6 h-6" />
+                  Watch On YouTube
+                </a>
+              )}
+            </div>
+          )}
         </div>
-
-
       </div>
-
-
       <style>{`
-  .perspective {
-    perspective: 1000px;
-  }
-  .transform-style {
-    transform-style: preserve-3d;
-  }
-  .backface-hidden {
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-  }
-  .rotate-y-180 {
-    transform: rotateY(180deg);
-  }
-`}</style>
+        .perspective { perspective: 1000px; }
+        .transform-style { transform-style: preserve-3d; }
+        .backface-hidden { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+        .rotate-y-180 { transform: rotateY(180deg); }
+      `}</style>
     </div>
   );
 }
