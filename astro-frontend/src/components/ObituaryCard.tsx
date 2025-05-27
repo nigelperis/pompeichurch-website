@@ -5,6 +5,11 @@ import { cn } from "~/helpers/cn";
 import { getFuneralPrayer } from "~/helpers/get-funeral-prayer";
 import { getWardNameKok } from "~/helpers/get-ward-names-kok";
 import { RelationType } from "~/enums/obituary";
+import ShareLink from "~/components/ui/ShareLink";
+import CloseIcon from '~/assets/react-icons/x.svg?react';
+import YoutubeIcon from '~/assets/react-icons/youtube.svg?react';
+import CoffinIcon from '~/assets/react-icons/coffin.svg?react';
+import InfoIcon from '~/assets/react-icons/info.svg?react';
 
 interface Props {
   id: string;
@@ -18,6 +23,7 @@ interface Props {
   relationNameKok?: string;
   ward: string;
   dateOfDeath: string;
+  slug: string;
   funeralDetails?: string;
   funeralDetailsUpdatedAt?: Date;
   youtubeLink?: string;
@@ -27,7 +33,7 @@ interface Props {
 // Simple lang detection from URL (you can improve)
 const lang =
   typeof window !== "undefined" &&
-  window.location.pathname.startsWith(`/${Locale.KOK}`)
+    window.location.pathname.startsWith(`/${Locale.KOK}`)
     ? Locale.KOK
     : Locale.EN;
 
@@ -53,6 +59,70 @@ const activeLabels = {
 
 const ONE_DAY_MS = 24 * 60 * 60 * 1000; // milliseconds in one day
 
+type FuneralInfoButtonProps = {
+  label: string;
+  lang: Locale; // or `string` if not using the enum
+  onClick: () => void;
+};
+
+export function FuneralInfoButton({ label, lang, onClick }: FuneralInfoButtonProps) {
+  const [showFullLabel, setShowFullLabel] = useState(true);
+  const [isHovered, setIsHovered] = useState(false);
+
+  useEffect(() => {
+    if (!showFullLabel) return;
+    const timer = setTimeout(() => setShowFullLabel(false), 3000);
+    return () => clearTimeout(timer);
+  }, [showFullLabel]);
+
+  // Show full label on hover/focus
+  const expandLabel = () => setIsHovered(true);
+  const collapseLabel = () => setIsHovered(false);
+
+  const isExpanded = showFullLabel || isHovered;
+
+  return (
+    <button
+      type="button"
+      aria-label={label}
+      className={[
+        "absolute top-4 right-0 flex items-center px-4 py-1.5 rounded-l-full",
+        "bg-white/80 backdrop-blur-md shadow-md border border-white/40 font-semibold text-black",
+        "transition-all duration-300 hover:bg-white/90 z-10",
+        "cursor-pointer",
+        isExpanded ? "gap-2" : ""
+      ].join(" ")}
+      onClick={onClick}
+      onMouseEnter={expandLabel}
+      onMouseLeave={collapseLabel}
+      onFocus={expandLabel}
+      onBlur={collapseLabel}
+    >
+      <InfoIcon className="w-5 h-5 opacity-80" />
+
+      <span
+        className={[
+          "overflow-hidden transition-all duration-300",
+          isExpanded ? "max-w-[200px] opacity-100 ml-1" : "max-w-0 opacity-0 ml-0"
+        ].join(" ")}
+        style={{ whiteSpace: "nowrap" }}
+      >
+        <span
+          className={
+            lang === "kok"
+              ? "font-noto-sans-kannada text-[16px] relative -top-[-3px]"
+              : "font-roboto"
+          }
+        >
+          {label}
+        </span>
+      </span>
+    </button>
+
+
+  );
+}
+
 export default function ObituaryCard({
   id,
   name,
@@ -65,13 +135,14 @@ export default function ObituaryCard({
   imageWidth,
   imageHeight,
   imageUrl,
+  slug,
   funeralDetails,
   youtubeLink,
   className,
   funeralDetailsUpdatedAt,
 }: Props) {
   const [flipped, setFlipped] = useState(false);
-
+  const shareUrl = `${window.location.origin}/obituary?id=${slug}`;
   const updatedAt = funeralDetailsUpdatedAt
     ? new Date(funeralDetailsUpdatedAt)
     : null;
@@ -107,12 +178,12 @@ export default function ObituaryCard({
 
   const formattedDate = dateOfDeath
     ? new Intl.DateTimeFormat("en-GB", {
-        day: "2-digit",
-        month: "2-digit",
-        year: "numeric",
-      })
-        .format(new Date(dateOfDeath))
-        .replace(/\//g, "-")
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+    })
+      .format(new Date(dateOfDeath))
+      .replace(/\//g, "-")
     : "";
 
   return (
@@ -125,9 +196,8 @@ export default function ObituaryCard({
       style={{ perspective: 1000 }}
     >
       <div
-        className={`relative w-full h-[550px] md:h-[510px] transition-transform duration-700 transform-style preserve-3d ${
-          flipped ? "rotate-y-180" : ""
-        }`}
+        className={`relative w-full h-[550px] md:h-[510px] transition-transform duration-700 transform-style preserve-3d ${flipped ? "rotate-y-180" : ""
+          }`}
       >
         {/* Front side */}
         <div className="absolute w-full h-full backface-hidden bg-white border border-gray-200 flex flex-col overflow-hidden">
@@ -143,37 +213,14 @@ export default function ObituaryCard({
 
             {funeralDetails && isFuneralDetailsFresh && (
               <div className="group">
-                <button
-                  type="button"
-                  aria-label="Funeral Details"
-                  className="absolute top-4 right-2 flex items-center gap-1 px-2 bg-black/40 text-white border border-white/30 backdrop-blur-sm font-medium rounded-md shadow-md transform transition-all duration-200 animate-bounce cursor-pointer"
-                  onClick={() => setFlipped(true)}
-                >
-                  <span
-                    className={cn("mt-2", {
-                      "mt-0 p-1 gap-2": lang === Locale.EN,
-                    })}
-                  >
-                    {t("funeral.rites")}
-                  </span>
+                {!flipped && funeralDetails && isFuneralDetailsFresh && (
+                  <FuneralInfoButton
+                    label={t("funeral.rites")}
+                    lang={lang}
+                    onClick={() => setFlipped(true)}
+                  />
+                )}
 
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="15"
-                    height="15"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="flex-shrink-0"
-                  >
-                    <circle cx="12" cy="12" r="10" />
-                    <line x1="12" y1="16" x2="12" y2="12" />
-                    <line x1="12" y1="8" x2="12.01" y2="8" />
-                  </svg>
-                </button>
               </div>
             )}
           </div>
@@ -209,87 +256,91 @@ export default function ObituaryCard({
                 </p>
               )}
             </div>
-
-            {/* Share Link */}
+            <div className="absolute bottom-3 right-3">
+              <ShareLink
+                shareData={{
+                  title: `${name} - ${ward}`,
+                  url: shareUrl,
+                }}
+                size={30}
+              />
+            </div>
           </div>
         </div>
 
         {/* Back side */}
-        <div className="absolute flex items-center w-full h-full backface-hidden bg-white border border-gray-200 p-4 rotate-y-180 flex-col">
+        <div className="absolute flex justify-between w-full h-full backface-hidden bg-white border border-gray-200 p-4 rotate-y-180 flex-col">
           {/* Close (X) button top-right */}
           <button
             type="button"
             className="absolute top-2 right-2 p-1 rounded-full hover:scale-115 cursor-pointer transition"
             onClick={() => setFlipped(false)}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 text-red-600"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
+            <CloseIcon className="h-6 w-6 text-red-600" />
           </button>
 
-          <div className="overflow-auto text-justify text-black whitespace-pre-line pt-8">
-            <h4 className="font-bold mb-2 text-center text-2xl md:text-xl">
-              {t("funeral.rites")}
+          {/* Funeral details content */}
+          <div className="flex-1 pt-4 pb-2">
+            <h4 className={cn(
+              "flex items-center gap-2 justify-center font-bold mb-2",
+              lang === Locale.KOK
+                ? "font-noto-sans-kannada text-xl"
+                : "font-roboto text-xl"
+            )}>
+              <CoffinIcon className="w-7 h-7" />
+              <span>{t("funeral.rites")}</span>
             </h4>
-            <p
-              className={cn("text-slate-800 text-xl md:text-lg p-2", {
-                "font-noto-sans-kannada text-xl md:text-[18px]":
-                  lang === Locale.EN,
-              })}
-            >
-              {funeralDetails ? funeralDetails : <em>No details available.</em>}
-            </p>
-            <p
-              className={cn(
-                "text-black text-lg md:text-[16px] md:p-2 text-center mt-2",
-                {
-                  "text-xl md:text-[17px]": lang === Locale.EN,
-                },
-              )}
-            >
-              {funeralPrayer}
-            </p>
-            <p
-              className={cn(
-                "text-gray-500 font-bold text-[16px] md:text-lg md:text-[16px] mt-6 text-center",
-                { "md:text-sm": lang === Locale.EN },
-              )}
-            >
-              {t("funeral.subtitle")}
-            </p>
+
+            <div className="mb-2">
+              <p className={cn(
+                "whitespace-pre-line",
+                lang === Locale.KOK
+                  ? "font-noto-sans-kannada text-xl md:text-[18px] text-center mt-6"
+                  : "font-noto-sans-kannada text-xl md:text-[18px] text-center mt-6"
+              )}>
+                {funeralDetails ? funeralDetails : <em>No details available.</em>}
+              </p>
+            </div>
           </div>
 
-          {youtubeLink && (
-            <a
-              href={youtubeLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center bg-red-600 text-white px-4 hover:bg-red-700 transition mt-6"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5 mr-2"
-                fill="currentColor"
-                viewBox="0 0 24 24"
+          {/* Bottom block: prayer, subtitle, YouTube link */}
+          <div className="flex flex-col items-center mt-2">
+            {funeralPrayer && (
+              <blockquote className={cn(
+                "text-gray-700 my-6",
+                lang === Locale.KOK
+                  ? "font-noto-sans-kannada text-base text-center"
+                  : "font-roboto text-[1rem] text-center"
+              )}>
+                “{funeralPrayer}”
+              </blockquote>
+            )}
+            <p className={cn(
+              "font-semibold text-center mb-4",
+              lang === Locale.KOK
+                ? "font-noto-sans-kannada text-gray-800 text-[15px]"
+                : "font-roboto text-gray-800 text-[15px]"
+            )}>
+              {t("funeral.subtitle")}
+            </p>
+            {youtubeLink && (
+              <a
+                href={youtubeLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-roboto flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white  text-base py-2 w-full"
+                style={{ letterSpacing: "0.04em" }}
               >
-                <path d="M23.498 6.186a2.88 2.88 0 00-2.028-2.034C19.648 3.75 12 3.75 12 3.75s-7.648 0-9.47.402a2.88 2.88 0 00-2.027 2.034A30.176 30.176 0 000 12a30.176 30.176 0 00.503 5.814 2.88 2.88 0 002.027 2.034c1.823.4 9.47.4 9.47.4s7.648 0 9.47-.4a2.88 2.88 0 002.028-2.034A30.176 30.176 0 0024 12a30.176 30.176 0 00-.502-5.814zM9.75 15.02v-6.04l5.25 3.02-5.25 3.02z" />
-              </svg>
-              <p className="font-roboto p-1">Watch on YouTube</p>
-            </a>
-          )}
+                <YoutubeIcon className="w-6 h-6" />
+                Watch On YouTube
+              </a>
+            )}
+          </div>
         </div>
+
+
       </div>
+
 
       <style>{`
   .perspective {

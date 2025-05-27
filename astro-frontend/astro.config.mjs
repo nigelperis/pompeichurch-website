@@ -5,6 +5,7 @@ import icon from "astro-icon";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
 import sitemap from "@astrojs/sitemap";
+import svgr from "vite-plugin-svgr";
 
 // https://astro.build/config
 export default defineConfig({
@@ -42,7 +43,7 @@ export default defineConfig({
           ];
 
           for (const url of setUrl) {
-            if (url.pattern.test(item.url)){
+            if (url.pattern.test(item.url)) {
               item.changefreq = url.changefreq;
               item.priority = url.priority;
               item.lastmod = new Date();
@@ -67,7 +68,7 @@ export default defineConfig({
     enabled: false,
   },
   vite: {
-    plugins: [tailwindcss()],
+    plugins: [tailwindcss(), svgr()],
     ssr: {
       noExternal: ["aos"],
     },
