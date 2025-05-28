@@ -206,7 +206,7 @@ export default function ObituaryCard({
     <div
       id={cardId.replace(/\s+/g, "-").toLowerCase()}
       className={cn(
-        "relative mx-auto w-[280px] h-[510px] md:w-[250px] md:h-[510px] m-auto perspective",
+        "relative mx-auto w-[280px] h-[580px] md:w-[250px] md:h-[510px] m-auto perspective",
         className
       )}
       style={{ perspective: 1000 }}
@@ -328,7 +328,7 @@ export default function ObituaryCard({
             {funeralPrayer && (
               <blockquote
                 className={cn(
-                  "text-gray-700 my-4",
+                  "text-gray-800 my-4",
                   lang === Locale.KOK
                     ? "font-noto-sans-kannada text-base text-center"
                     : "font-roboto text-xl sm:text-xl md:text-base text-center",
@@ -339,10 +339,10 @@ export default function ObituaryCard({
             )}
             <p
               className={cn(
-                "font-semibold text-center mb-4",
+                "font-semibold text-gray-600 text-center mb-4",
                 lang === Locale.KOK
-                  ? "font-noto-sans-kannada text-gray-800 text-[15px]"
-                  : "font-roboto text-gray-800 text-[15px]",
+                  ? "font-noto-sans-kannada text-gray-600 text-[15px]"
+                  : "font-roboto text-gray-600 text-[15px]",
               )}
             >
               {t("funeral.subtitle")}
@@ -352,7 +352,12 @@ export default function ObituaryCard({
                 href={youtubeLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-roboto flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white text-base py-2 w-full mt-2"
+                className={cn(
+                  "flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white text-base py-2 w-full mt-2",
+                  lang === Locale.KOK
+                    ? "font-noto-sans-kannada "
+                    : "font-roboto"
+                )}
                 style={{ letterSpacing: "0.04em" }}
               >
                 <YoutubeIcon className="w-6 h-6" />

@@ -321,7 +321,7 @@ export default function ObituaryCardMin({
             />
             {showFlip && !flipped && (
               <FuneralInfoButton
-                label="Funeral Info"
+                label={t("funeral.rites")}
                 lang={lang}
                 onClick={() => setFlipped(true)}
               />

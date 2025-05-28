@@ -83,7 +83,7 @@ const obituaryUrl = new URL(
         obituaries.length > 0 ? (
           <>
             <ObituaryList obituaries={obituaries} />
-            <Pagination currentPage={currentPage} totalPages={totalPages} />
+            <Pagination class currentPage={currentPage} totalPages={totalPages} />
           </>
         ) : (
           <p class="py-8 text-center text-3xl font-semibold">
