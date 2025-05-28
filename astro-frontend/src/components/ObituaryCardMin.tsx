@@ -192,11 +192,11 @@ export default function ObituaryCardMin({
         <div
           className={cn(
             // consistent height for all
-            "flex-none relative h-full lg:hidden overflow-hidden",
+            "flex-none relative h-full",
             className
           )}
         >
-          <div className="w-64 snap-start first:snap-align-none max-w-xs flex-shrink-0 border border-gray-200 duration-200 ease-in-out sm:w-64">
+          <div className="w-64 snap-start first:snap-align-none max-w-xs flex-shrink-0 border border-gray-200 duration-200 ease-in-out sm:w-64 min-h-[370px] h-[370px]">
 
             <div className="opacity-50 blur-md">
               <div className="card-image flex-none">
@@ -332,7 +332,7 @@ export default function ObituaryCardMin({
         </div>
         {/* --- BACK SIDE (Funeral Details) --- */}
         {showFlip && (
-          <div className="absolute flex flex-col justify-between w-full h-full backface-hidden bg-white border border-gray-200 p-4 rotate-y-180">
+          <div className="absolute flex flex-col justify-between w-full h-full backface-hidden bg-white p-4 rotate-y-180">
             {/* Close (X) button top-right */}
             <button
               type="button"
