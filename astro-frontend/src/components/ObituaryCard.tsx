@@ -92,7 +92,7 @@ export function FuneralInfoButton({
       type="button"
       aria-label={label}
       className={[
-        "absolute top-4 right-0 flex items-center px-4 py-1.5 rounded-l-full",
+        "flex items-center px-4 py-1.5 rounded-l-full",
         "bg-white/80 backdrop-blur-md shadow-md border border-white/40 font-semibold text-black",
         "transition-all duration-300 hover:bg-white/90 z-10 cursor-pointer",
         "gap-1",
@@ -165,13 +165,13 @@ export default function ObituaryCard({
     : false;
 
   useEffect(() => {
-    if (funeralDetails && isFuneralDetailsFresh) {
+    if (autoFlip && funeralDetails && isFuneralDetailsFresh) {
       const timer = setTimeout(() => {
         setFlipped(true);
       }, 2000);
       return () => clearTimeout(timer);
     }
-  }, [funeralDetails, isFuneralDetailsFresh]);
+  }, [funeralDetails, isFuneralDetailsFresh, autoFlip]);
 
   const t = useTranslations(lang);
 
@@ -206,45 +206,47 @@ export default function ObituaryCard({
     <div
       id={cardId.replace(/\s+/g, "-").toLowerCase()}
       className={cn(
-        "relative mx-auto perspective w-[280px] md:w-[250px]",
-        className,
+        "relative mx-auto w-[280px] md:w-[250px] md:h-[510px] m-auto perspective",
+        className
       )}
       style={{ perspective: 1000 }}
     >
       <div
-        className={`relative w-full h-[550px] md:h-[490px] transition-transform duration-700 transform-style preserve-3d ${flipped ? "rotate-y-180" : ""
-          }`}
+        className={cn(
+          "w-full h-full transition-transform duration-1000 transform-style preserve-3d relative",
+          flipped ? "rotate-y-180" : ""
+        )}
+        style={{
+          transformStyle: "preserve-3d",
+          transition: "transform 0.7s",
+          height: "100%",
+          width: "100%",
+          position: "relative",
+        }}
       >
-        {/* Front side */}
-        <div className="absolute w-full h-full backface-hidden bg-white border border-gray-200 flex flex-col overflow-hidden">
-          <div className={cn(
-            "relative w-full bg-gray-100 aspect-[3/3]"
-          )}>
+        {/* Front Side */}
+        <div className="absolute inset-0 backface-hidden bg-white border border-gray-200 flex flex-col overflow-hidden">
+          <div className="aspect-[3/4] bg-gray-100 relative">
             <img
               src={displayImage}
               alt={`Image of ${name}`}
               width={imageWidth}
               height={imageHeight}
-              className="h-[330px] md:h-[300px] w-full object-cover"
+              className="object-cover w-full h-full"
               loading="lazy"
             />
-
-            {funeralDetails && isFuneralDetailsFresh && (
-              <div className="group">
-                {!flipped && (
-                  <FuneralInfoButton
-                    label={t("funeral.rites")}
-                    lang={lang}
-                    onClick={() => setFlipped(true)}
-                  />
-                )}
+            {funeralDetails && isFuneralDetailsFresh && !flipped && (
+              <div className="absolute top-2 right-0 z-10">
+                <FuneralInfoButton
+                  label={t("funeral.rites")}
+                  lang={lang}
+                  onClick={() => setFlipped(true)}
+                />
               </div>
             )}
           </div>
-
-          <div
-            className={`flex flex-col justify-between p-3 h-full min-h-[180px] relative`}
-          >
+          {/* Details Section */}
+          <div className="flex flex-col justify-between p-3 h-full min-h-[180px] relative">
             <div className="space-y-1">
               <h3 className="text-xl font-bold text-slate-900 line-clamp-2">
                 {name}
@@ -265,17 +267,15 @@ export default function ObituaryCard({
                   <strong>{labels.ward}:</strong> {getWardNameKok(ward, lang)}
                 </p>
               )}
-
               {dateOfDeath && (
-                <p className={cn(
-                  "md:text-base text-slate-700"
-                )}>
+                <p className="md:text-base text-lg text-slate-700">
                   <strong>{labels.death}:</strong> {formattedDate}
                 </p>
               )}
             </div>
-            <div className="absolute bottom-3 right-3">
+            <div className="absolute bottom-1 right-1">
               <ShareLink
+                className="share-button cursor-pointer transform transition-transform duration-1000 hover:scale-110 px-3 py-2 text-sm"
                 shareData={{
                   title: name,
                   url: shareUrl,
@@ -285,10 +285,8 @@ export default function ObituaryCard({
             </div>
           </div>
         </div>
-
         {/* Back side */}
-        <div className="absolute flex justify-between w-full h-full backface-hidden bg-white border border-gray-200 p-4 rotate-y-180 flex-col">
-          {/* Close (X) button top-right */}
+        <div className="absolute inset-0 backface-hidden bg-white border border-gray-200 p-4 rotate-y-180 flex flex-col">
           <button
             type="button"
             className="absolute top-2 right-2 p-1 rounded-full hover:scale-115 cursor-pointer transition"
@@ -296,7 +294,6 @@ export default function ObituaryCard({
           >
             <CloseIcon className="h-6 w-6 text-red-600" />
           </button>
-
           {/* Funeral details content */}
           <div className="flex-1 pt-4 pb-2">
             <h4

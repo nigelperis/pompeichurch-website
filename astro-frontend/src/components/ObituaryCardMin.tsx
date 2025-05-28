@@ -24,6 +24,7 @@ interface Props {
   funeralDetailsUpdatedAt?: Date | string;
   youtubeLink?: string;
   className?: string;
+  autoFlip?: boolean;
 }
 
 // Simple lang detection from URL for label localization
@@ -127,6 +128,7 @@ export default function ObituaryCardMin({
   youtubeLink,
   className = "",
   funeralDetailsUpdatedAt,
+  autoFlip = true,
 }: Props) {
   const [flipped, setFlipped] = useState(false);
   const shareUrl =
@@ -196,7 +198,7 @@ export default function ObituaryCardMin({
             className
           )}
         >
-          <div className="w-64 snap-start first:snap-align-none max-w-xs flex-shrink-0 border border-gray-200 duration-200 ease-in-out sm:w-64 min-h-[370px] h-[370px]">
+          <div className="w-64 snap-start first:snap-align-none max-w-xs flex-shrink-0 border border-gray-200 duration-200 ease-in-out sm:w-64 min-h-[380px] h-[380px]">
 
             <div className="opacity-50 blur-md">
               <div className="card-image flex-none">
@@ -257,7 +259,7 @@ export default function ObituaryCardMin({
                 </p>
               )}
             </div>
-            <ShareLink className="cursor-pointer transform transition-transform duration-300 hover:scale-110"
+            <ShareLink className="cursor-pointer transform transition-transform duration-1000 hover:scale-110"
               shareData={{
                 title: name,
                 url: shareUrl,
@@ -284,12 +286,12 @@ export default function ObituaryCardMin({
     >
       <div
         className={cn(
-          "relative w-64 max-w-xs flex-shrink-0 border border-gray-200 duration-200 ease-in-out sm:w-64 transition-transform transform-style",
+          "relative w-64 max-w-xs flex-shrink-0 border border-gray-200 duration-200 ease-in-out sm:w-64 transition-transform duration-1000 transform-style",
           flipped ? "rotate-y-180" : ""
         )}
         style={{
-          minHeight: 370,
-          height: 370,
+          minHeight: 380,
+          height: 380,
         }}
       >
         {/* --- FRONT SIDE --- */}
@@ -322,7 +324,7 @@ export default function ObituaryCardMin({
             )}
           </div>
           {/* Share Icon */}
-          <ShareLink className="share-button cursor-pointer transition-transform duration-300 hover:scale-110 absolute bottom-4 right-4"
+          <ShareLink className="share-button cursor-pointer transition-transform duration-1000 hover:scale-110 absolute bottom-4 right-4"
             shareData={{
               title: name,
               url: shareUrl,
