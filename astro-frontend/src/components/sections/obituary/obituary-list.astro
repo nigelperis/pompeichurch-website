@@ -1,11 +1,13 @@
 ---
 import { format } from "date-fns-tz";
-import ObituaryCard from "~/components/obituary-card.astro";
 import { getLangFromUrl } from "~/i18n/utils";
 import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
 import type { Obituary } from "~/models/obituary";
+import ObituaryCard from "~/components/ObituaryCard";
+import { Locale } from "~/enums/locale";
 
 const { obituaries } = Astro.props as { obituaries: Obituary[] };
+
 const lang = getLangFromUrl(Astro.url);
 const obituaryDataFormatted = obituaries
   ?.map((obituary) => {
@@ -30,8 +32,9 @@ const obituaryDataFormatted = obituaries
   {
     obituaryDataFormatted?.map((item) => (
       <ObituaryCard
+        client:only="ObituaryCard"
         id={item.englishName}
-        name={lang === "en" ? item.englishName : item.konkaniName}
+        name={lang === Locale.EN ? item.englishName : item.konkaniName}
         imageUrl={
           item.image?.url
             ? new URL(item.image.url, import.meta.env.STRAPI_URL).toString()
@@ -45,7 +48,11 @@ const obituaryDataFormatted = obituaries
         relationType={item.relationType}
         relationNameEn={item.relationNameEn}
         relationNameKok={item.relationNameKok}
-        class="m-auto"
+        slug={item.slug}
+        funeralDetails={item.funeralDetails}
+        youtubeLink={item.youtubeLink}
+        funeralDetailsUpdatedAt={item.funeralDetailsUpdatedAt}
+        autoFlip={true}
       />
     ))
   }

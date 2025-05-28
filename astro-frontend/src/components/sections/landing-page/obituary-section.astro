@@ -1,48 +1,29 @@
 ---
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import { cn } from "~/helpers/cn";
-
 import HoverableLink from "~/components/ui/hoverable-link.astro";
-import Card from "~/components/normal-card.astro";
+import ObituaryCardMin from "~/components/ObituaryCardMin.tsx";
+import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
 import { listObituaries } from "~/services/obituaries/list-obituaries";
-import ShareLink from "~/components/ui/share-link.astro";
 import { Message } from "~/constants/message.ts";
+
+import { Locale } from "~/enums/locale";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const obituaryLink = lang === Locale.EN ? "/obituary" : "/kok/obituary";
 
-import { format } from "date-fns";
-import { Locale } from "~/enums/locale";
-
 const { obituaries } = await listObituaries({ page: 1, pageSize: 5 });
 
 const obituaryDataFormatted = obituaries.map((obituary) => ({
   ...obituary,
-  formattedDate: obituary.dateOfDeath
-    ? format(new Date(obituary.dateOfDeath), "dd-MM-yyyy")
-    : "Unknown Date",
+  dateOfDeath: obituary.dateOfDeath
+    ? new Date(obituary.dateOfDeath).toISOString()
+    : "",
+  slug:
+    obituary.slug ??
+    `${(obituary.englishName ?? "").replace(/\s+/g, "-").toLowerCase()}-${obituary.id}`,
 }));
-
-const featuredObituary = obituaryDataFormatted[4];
-
-const wardMap: Record<string, { en: string; kok: string }> = {
-  "Kowdoor A": { en: "Kowdoor A", kok: "ಕೌಡೂರ್ ಎ" },
-  "Kowdoor B": { en: "Kowdoor B", kok: "ಕೌಡೂರ್ ಬಿ" },
-  "Pompei A": { en: "Pompei A", kok: "ಪೊಂಪೈ ಎ" },
-  "Pompei B": { en: "Pompei B", kok: "ಪೊಂಪೈ ಬಿ" },
-  "Kandar A": { en: "Kandar A", kok: "ಕಂದಾರ್ ಎ" },
-  "Kandar B": { en: "Kandar B", kok: "ಕಂದಾರ್ ಬಿ" },
-  Monel: { en: "Monel", kok: "ಮಣೆಲ್" },
-  Gurpur: { en: "Gurpur", kok: "ಗುರ್ಪುರ್" },
-  Church: { en: "Church", kok: "ಇಗರ್ಜೆ" },
-  Addoor: { en: "Addoor", kok: "ಅಡ್ಡೂರ್" },
-};
-
-const localizedWard =
-  wardMap[obituaryDataFormatted[0]?.ward]?.[
-    lang === Locale.KOK ? Locale.KOK : Locale.EN
-  ] ?? obituaryDataFormatted[0]?.ward;
 ---
 
 <section
@@ -52,9 +33,7 @@ const localizedWard =
     data-aos="fade-right"
     class={cn(
       "font-black mx-6 mb-4 inline-block border-l-4 border-natgeo-yellow pl-3 text-2xl lg:mx-0 lg:text-4xl",
-      {
-        "font-extrabold pt-2": lang === Locale.KOK,
-      },
+      { "font-extrabold pt-2": lang === Locale.KOK },
     )}
   >
     {t("nav.obituary")}
@@ -63,65 +42,43 @@ const localizedWard =
   {
     obituaryDataFormatted.length > 0 ? (
       <>
-        <div class="my-4 flex w-full space-x-8 overflow-x-auto pl-6 pr-3 scrollbar-none lg:flex-wrap lg:justify-center lg:space-x-8 lg:overflow-x-visible xl:space-x-10">
-          {obituaryDataFormatted.slice(0, 4).map((obituary) => (
-            <div class="flex-none relative h-full">
-              <Card
-                imageUrl={obituary.image?.url}
-                title={`${lang === "kok" ? obituary.konkaniName : obituary.englishName} (${obituary.age})`}
-                subtitle={
-                  lang === "kok"
-                    ? `ಮರಣ್ : ${obituary.formattedDate}`
-                    : `Death: ${obituary.formattedDate}`
+        <div class="my-4 flex w-full space-x-8 overflow-x-auto pl-6 pr-3 scrollbar-none lg:flex-wrap lg:justify-center lg:space-x-8 lg:overflow-x-visible xl:space-x-10 overflow-y-visible">
+          {obituaryDataFormatted.slice(0, 5).map((o, i) => (
+            <div
+              class={cn(
+                "flex-none relative h-full", // width is important for horizontal scroll!
+                i === 4 ? "lg:hidden overflow-hidden" : "",
+              )}
+            >
+              <ObituaryCardMin
+                client:only="ObituaryCardMin"
+                id={o.id}
+                name={lang === "kok" ? o.konkaniName : o.englishName}
+                imageUrl={
+                  o.image?.url
+                    ? new URL(
+                        o.image.url,
+                        import.meta.env.STRAPI_URL,
+                      ).toString()
+                    : getPlaceholderImage()
                 }
-              />
-
-              <ShareLink
-                class="absolute bottom-4 right-4"
-                shareData={{
-                  url: `${
-                    new URL(
-                      lang === Locale.EN
-                        ? `/obituary?id=${obituary.englishName.replace(/\s+/g, "-").toLowerCase()}`
-                        : `/kok/obituary?id=${obituary.englishName.replace(/\s+/g, "-").toLowerCase()}`,
-                      Astro.url,
-                    ).href
-                  }`,
-                  title:
-                    lang === Locale.EN
-                      ? `${obituary.englishName} - ${localizedWard}`
-                      : `${obituary.konkaniName} - ${localizedWard}`,
-                }}
-                size={24}
+                imageWidth={o.image?.width ?? 0}
+                imageHeight={o.image?.height ?? 0}
+                dateOfDeath={o.dateOfDeath}
+                age={o.age}
+                slug={o.slug}
+                funeralDetails={o.funeralDetails}
+                youtubeLink={o.youtubeLink}
+                blurred={i === 4}
+                className="h-full"
+                funeralDetailsUpdatedAt={o.funeralDetailsUpdatedAt}
+                autoFlip={true}
               />
             </div>
           ))}
-
-          {featuredObituary && (
-            <div class="flex-none relative h-full lg:hidden overflow-hidden border border-gray-200">
-              <div class="opacity-50 blur-md rounded-lg">
-                <Card
-                  imageUrl={featuredObituary.image?.url}
-                  title={`${lang === "kok" ? featuredObituary.konkaniName : featuredObituary.englishName} (${featuredObituary.age})`}
-                  subtitle={
-                    lang === "kok"
-                      ? `ಮರಣ್ : ${featuredObituary.formattedDate}`
-                      : `Death: ${featuredObituary.formattedDate}`
-                  }
-                />
-              </div>
-              <div class="absolute inset-0 flex items-center justify-center">
-                <HoverableLink
-                  href={obituaryLink}
-                  class="mb-2 mt-2 inline-block text-xl font-bold text-black"
-                >
-                  {t("ui.view-all")}
-                </HoverableLink>
-              </div>
-            </div>
-          )}
         </div>
 
+        {/* Only on desktop, show a View All button below */}
         <div class="hidden justify-center pb-2 lg:flex">
           <HoverableLink href={obituaryLink}>{t("ui.view-all")}</HoverableLink>
         </div>

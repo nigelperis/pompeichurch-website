@@ -26,9 +26,9 @@ async function maybeSendEventEmail(result: any) {
       <li><strong>English Title:</strong> ${englishTitle}</li>
       <li><strong>Konkani Title:</strong> ${konkaniTitle}</li>
       <li><strong>Event Date:</strong> ${eventDate}</li>
-      <li><strong>Short Description:</strong> ${shortDescription || 'N/A'}</li>
-      ${facebookLink ? `<li><strong>Facebook Link:</strong> <a href="${facebookLink}">${facebookLink}</a></li>` : ''}
-      ${instagramLink ? `<li><strong>Instagram Link:</strong> <a href="${instagramLink}">${instagramLink}</a></li>` : ''}
+      <li><strong>Short Description:</strong> ${shortDescription || "N/A"}</li>
+      ${facebookLink ? `<li><strong>Facebook Link:</strong> <a href="${facebookLink}">${facebookLink}</a></li>` : ""}
+      ${instagramLink ? `<li><strong>Instagram Link:</strong> <a href="${instagramLink}">${instagramLink}</a></li>` : ""}
       <li><strong>View Event:</strong> <a href="${eventLink}">${eventLink}</a></li>
     </ul>
   `;
