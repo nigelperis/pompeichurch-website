@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Locale } from "~/enums/locale";
 import { useTranslations } from "~/i18n/utils";
 import { cn } from "~/helpers/cn";
@@ -47,7 +47,7 @@ const activeLabels = {
   },
 };
 
-const ONE_DAY_MS = 24 * 60 * 60 * 1000; // milliseconds in one day
+const ONE_DAY_MS = 24 * 60 * 60 * 1000 * 3; // milliseconds in one day
 
 type FuneralInfoButtonProps = {
   label: string;
@@ -136,6 +136,7 @@ export default function ObituaryCardMin({
       ? `${window.location.origin}/obituary?id=${slug}`
       : `/obituary?id=${slug}`;
 
+
   let updatedAt: Date | null = null;
   if (funeralDetailsUpdatedAt) {
     updatedAt = new Date(funeralDetailsUpdatedAt);
@@ -147,14 +148,27 @@ export default function ObituaryCardMin({
     ? now.getTime() - updatedAt.getTime() < ONE_DAY_MS
     : false;
 
+  const cardRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    if (funeralDetails && isFuneralDetailsFresh) {
-      const timer = setTimeout(() => {
-        setFlipped(true);
-      }, 2000);
-      return () => clearTimeout(timer);
+    if (!autoFlip || !funeralDetails || !isFuneralDetailsFresh) return;
+
+    const observer = new window.IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setFlipped(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (cardRef.current) {
+      observer.observe(cardRef.current);
     }
-  }, [funeralDetails, isFuneralDetailsFresh]);
+
+    return () => observer.disconnect();
+  }, [autoFlip, funeralDetails, isFuneralDetailsFresh]);
+
 
   const t = useTranslations?.(lang);
   const labels = activeLabels[lang as keyof typeof activeLabels];
@@ -181,7 +195,6 @@ export default function ObituaryCardMin({
   // BLURRED Minimal Card (View All)
   if (blurred) {
     return (
-      console.log("Rendering blurred card"),
       < div
         className={
           cn(
@@ -205,7 +218,7 @@ export default function ObituaryCardMin({
                 <img
                   src={displayImage}
                   alt={`Image of ${name}`}
-                  className="h-[300px] w-full object-cover"
+                  className="h-[300px] w-full object-cover border-none"
                   loading="lazy"
                 />
               </div>
@@ -243,7 +256,7 @@ export default function ObituaryCardMin({
               alt={`Image of ${name}`}
               width={300}
               height={300}
-              className="h-[300px] w-full object-cover"
+              className="h-[300px] w-full object-cover border-none"
               loading="lazy"
             />
           </div >
@@ -285,6 +298,7 @@ export default function ObituaryCardMin({
       id={cardId}
     >
       <div
+        ref={cardRef}
         className={cn(
           "relative w-64 max-w-xs flex-shrink-0 border border-gray-200 duration-200 ease-in-out sm:w-64 transition-transform duration-1000 transform-style",
           flipped ? "rotate-y-180" : ""
@@ -302,7 +316,7 @@ export default function ObituaryCardMin({
               alt={`Image of ${name}`}
               width={300}
               height={300}
-              className="h-[300px] w-full object-cover"
+              className="h-[300px] w-full object-cover border-none"
               loading="lazy"
             />
             {showFlip && !flipped && (

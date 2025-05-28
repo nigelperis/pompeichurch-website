@@ -59,7 +59,7 @@ const activeLabels = {
   },
 };
 
-const ONE_DAY_MS = 24 * 60 * 60 * 1000; // milliseconds in one day
+const ONE_DAY_MS = 24 * 60 * 60 * 1000 * 3; // milliseconds in one day
 
 type FuneralInfoButtonProps = {
   label: string;
@@ -206,7 +206,7 @@ export default function ObituaryCard({
     <div
       id={cardId.replace(/\s+/g, "-").toLowerCase()}
       className={cn(
-        "relative mx-auto w-[280px] md:w-[250px] md:h-[510px] m-auto perspective",
+        "relative mx-auto w-[280px] h-[510px] md:w-[250px] md:h-[510px] m-auto perspective",
         className
       )}
       style={{ perspective: 1000 }}

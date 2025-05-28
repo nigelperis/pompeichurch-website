@@ -828,6 +828,6 @@ export const ui = {
     "events.subtitle": "ಫಿರ್ಗಜ್ ಕುಟ್ಮಾಚ್ಯಾ ಎಕ್ವಟ್ಪಣಾಚ್ಯೊ ಘಡಿಯೊ",
     "funeral.rites": "ಮೊರ್ಣಾಚಿ ರೀತ್",
     "funeral.subtitle": "ವಿಗಾರ್ ಆನಿ ಫಿರ್ಗಜ್ ಕುಟಾಮ್",
-    "funeral.watchOnYT": "ಯೌಟ್ಯುಬರ್ ಪೊಳೆಯಾ",
+    "funeral.watchOnYT": "ಯೂಟೂಬಾರ್ ಪೊಳೆಯಾ",
   },
 } as const;

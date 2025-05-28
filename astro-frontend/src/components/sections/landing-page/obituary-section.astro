@@ -50,7 +50,7 @@ const obituaryDataFormatted = obituaries.map((obituary) => ({
       )}
     >
       <ObituaryCardMin
-        client:only="react"
+        client:only="ObituaryCardMin"
         id={o.id}
         name={lang === "kok" ? o.konkaniName : o.englishName}
         imageUrl={
@@ -67,6 +67,8 @@ const obituaryDataFormatted = obituaries.map((obituary) => ({
         youtubeLink={o.youtubeLink}
         blurred={i === 4}
         className="h-full"
+        funeralDetailsUpdatedAt={o.funeralDetailsUpdatedAt}
+        autoFlip={true}
       /></div>
   ))}
 </div>
