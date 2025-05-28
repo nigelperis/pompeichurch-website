@@ -1,7 +1,14 @@
+import { SITE_URL } from "../../../../constants";
 import { sendEmail } from "../../../../utils/send-email";
 
+/**
+ * Lifecycle hooks for the Event content type
+ * Handles sending an email notification when an event is created or updated
+ */
 async function maybeSendObituaryEmail(result: any) {
   if (!result.publishedAt) return;
+
+  const obituaryLink = `${SITE_URL}/obituary?${result.slug}`;
 
   const {
     englishName,
@@ -25,6 +32,7 @@ async function maybeSendObituaryEmail(result: any) {
       <li><strong>Date of Death:</strong> ${dateOfDeath}</li>
       <li><strong>Relation:</strong> ${relationType} ${relationNameEn} / ${relationNameKok}</li>
       <li><strong>Ward:</strong> ${ward}</li>
+      <li><strong>View Obituary:</strong> <a href="${obituaryLink}">${obituaryLink}</a></li>
     </ul>
   `;
 
