@@ -1,0 +1,384 @@
+import { useState, useEffect } from "react";
+import { Locale } from "~/enums/locale";
+import { useTranslations } from "~/i18n/utils";
+import { cn } from "~/helpers/cn";
+import BlankImg from "~/assets/static-assets/blank.jpeg";
+import ShareLink from "~/components/ui/ShareLink";
+import CoffinIcon from "~/assets/react-icons/coffin.svg?react";
+import InfoIcon from "~/assets/react-icons/info.svg?react";
+import CloseIcon from "~/assets/react-icons/x.svg?react";
+import YoutubeIcon from "~/assets/react-icons/youtube.svg?react";
+
+
+interface Props {
+  id?: string | number;
+  name?: string;
+  age?: string | number;
+  dateOfDeath?: string;
+  imageUrl: string;
+  imageWidth?: number;
+  imageHeight?: number;
+  slug?: string;
+  blurred?: boolean;
+  funeralDetails?: string;
+  funeralDetailsUpdatedAt?: Date | string;
+  youtubeLink?: string;
+  className?: string;
+}
+
+// Simple lang detection from URL for label localization
+const lang =
+  typeof window !== "undefined" &&
+    window.location.pathname.startsWith(`/${Locale.KOK}`)
+    ? Locale.KOK
+    : Locale.EN;
+
+const activeLabels = {
+  en: {
+    age: "Age",
+    ward: "Ward",
+    death: "Death",
+  },
+  kok: {
+    age: "ಪ್ರಾಯ್",
+    ward: "ವಾಡೊ",
+    death: "ಮರಣ್",
+  },
+};
+
+const ONE_DAY_MS = 24 * 60 * 60 * 1000; // milliseconds in one day
+
+type FuneralInfoButtonProps = {
+  label: string;
+  lang: Locale;
+  onClick: () => void;
+};
+
+export function FuneralInfoButton({
+  label,
+  lang,
+  onClick,
+}: FuneralInfoButtonProps) {
+  const [showFullLabel, setShowFullLabel] = useState(true);
+  const [isHovered, setIsHovered] = useState(false);
+
+  useEffect(() => {
+    if (!showFullLabel) return;
+    const timer = setTimeout(() => setShowFullLabel(false), 3000);
+    return () => clearTimeout(timer);
+  }, [showFullLabel]);
+
+  // Show full label on hover/focus
+  const expandLabel = () => setIsHovered(true);
+  const collapseLabel = () => setIsHovered(false);
+
+  const isExpanded = showFullLabel || isHovered;
+
+  return (
+    <button
+      type="button"
+      aria-label={label}
+      className={[
+        "absolute top-4 right-0 flex items-center px-4 py-1.5 rounded-l-full",
+        "bg-white/80 backdrop-blur-md shadow-md border border-white/40 font-semibold text-black",
+        "transition-all duration-300 hover:bg-white/90 z-10 cursor-pointer",
+        "gap-1",
+      ].join(" ")}
+      onClick={onClick}
+      onMouseEnter={expandLabel}
+      onMouseLeave={collapseLabel}
+      onFocus={expandLabel}
+      onBlur={collapseLabel}
+    >
+      <InfoIcon className="w-5 h-5 opacity-80" />
+      <span
+        className={[
+          "overflow-hidden transition-all duration-300",
+          isExpanded
+            ? "max-w-[200px] opacity-100 ml-1"
+            : "max-w-0 opacity-0 ml-0",
+        ].join(" ")}
+        style={{ whiteSpace: "nowrap" }}
+      >
+        <span
+          className={
+            lang === "kok"
+              ? "font-noto-sans-kannada text-[16px] relative -top-[-3px]"
+              : "font-roboto"
+          }
+        >
+          {label}
+        </span>
+      </span>
+    </button>
+  );
+}
+
+
+export default function ObituaryCardMin({
+  id,
+  name,
+  age,
+  dateOfDeath,
+  imageUrl,
+  slug,
+  blurred = false,
+  funeralDetails,
+  youtubeLink,
+  className = "",
+  funeralDetailsUpdatedAt,
+}: Props) {
+  const [flipped, setFlipped] = useState(false);
+  const shareUrl =
+    typeof window !== "undefined"
+      ? `${window.location.origin}/obituary?id=${slug}`
+      : `/obituary?id=${slug}`;
+
+  let updatedAt: Date | null = null;
+  if (funeralDetailsUpdatedAt) {
+    updatedAt = new Date(funeralDetailsUpdatedAt);
+    if (isNaN(updatedAt.getTime())) updatedAt = null;
+  }
+  const now = new Date();
+  // check if details are fresh (within one day)
+  const isFuneralDetailsFresh = updatedAt
+    ? now.getTime() - updatedAt.getTime() < ONE_DAY_MS
+    : false;
+
+  useEffect(() => {
+    if (funeralDetails && isFuneralDetailsFresh) {
+      const timer = setTimeout(() => {
+        setFlipped(true);
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [funeralDetails, isFuneralDetailsFresh]);
+
+  const t = useTranslations?.(lang);
+  const labels = activeLabels[lang as keyof typeof activeLabels];
+
+  // Format date
+  let formattedDate = "";
+  if (dateOfDeath) {
+    const dateObj = new Date(dateOfDeath);
+    if (!isNaN(dateObj.getTime())) {
+      formattedDate = new Intl.DateTimeFormat("en-GB", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+      })
+        .format(dateObj)
+        .replace(/\//g, "-");
+    }
+  }
+
+  const displayImage = imageUrl || BlankImg.src;
+
+  const cardId = typeof id === "string" ? id : String(id ?? "no-id");
+
+  // BLURRED Minimal Card (View All)
+  if (blurred) {
+    return (
+      console.log("Rendering blurred card"),
+      < div
+        className={
+          cn(
+            "flex-none relative h-full",
+            className,
+          )
+        }
+      >
+        {/* This div and its children are only visible on mobile */}
+        <div
+          className={cn(
+            // consistent height for all
+            "flex-none relative h-full lg:hidden overflow-hidden",
+            className
+          )}
+        >
+          <div className="w-64 snap-start first:snap-align-none max-w-xs flex-shrink-0 border border-gray-200 duration-200 ease-in-out sm:w-64">
+
+            <div className="opacity-50 blur-md">
+              <div className="card-image flex-none">
+                <img
+                  src={displayImage}
+                  alt={`Image of ${name}`}
+                  className="h-[300px] w-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+              <div className="flex flex-1 flex-col justify-start space-y-1 p-3">
+                <div className="space-y-1">
+                  <h3 className="text-lg font-bold leading-snug text-gray-800">
+                    {name}
+                    {age ? ` (${age})` : ""}
+                  </h3>
+                  {dateOfDeath && (
+                    <p className="text-gray-600">
+                      {labels.death}: {formattedDate}
+                    </p>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div >
+        </div >
+        {/* Overlay button also mobile only */}
+        < div className="absolute inset-0 z-10 flex items-center justify-center lg:hidden" >
+          <a
+            href={lang === "kok" ? "/kok/obituary" : "/obituary"}
+            className="from-natgeo-yellow to-natgeo-yellow hoverable-link border-natgeo-yellow border-b-2 bg-gradient-to-r px-2 py-1 inline-block text-xl font-bold text-black hover:border-transparent hover:text-black"
+          >
+            {t ? t("ui.view-all") : "View All"}
+          </a>
+        </div >
+        {/* For desktop, just render a normal card underneath */}
+        < div className="hidden lg:block" >
+          {/* render the standard minimal card */}
+          < div className="card-image flex-none" >
+            <img
+              src={displayImage}
+              alt={`Image of ${name}`}
+              width={300}
+              height={300}
+              className="h-[300px] w-full object-cover"
+              loading="lazy"
+            />
+          </div >
+          <div className="flex flex-1 flex-col justify-start space-y-1 p-3">
+            <div className="space-y-1">
+              <h3 className="text-lg font-bold leading-snug text-gray-800">
+                {name}
+                {age ? ` (${age})` : ""}
+              </h3>
+              {dateOfDeath && (
+                <p className="text-gray-600">
+                  {labels.death}: {formattedDate}
+                </p>
+              )}
+            </div>
+            <ShareLink className="cursor-pointer transform transition-transform duration-300 hover:scale-110"
+              shareData={{
+                title: name,
+                url: shareUrl,
+              }}
+              size={24}
+            />
+          </div>
+        </div >
+      </div >
+    );
+  }
+
+  // ---- Flippable Minimal Card (Funeral Info) ----
+  const showFlip = funeralDetails && funeralDetails.trim().length > 0;
+
+  return (
+    <div
+      className={cn(
+        "flex-none relative h-full perspective",
+        className
+      )}
+      style={{ perspective: "800px" }}
+      id={cardId}
+    >
+      <div
+        className={cn(
+          "relative w-64 max-w-xs flex-shrink-0 border border-gray-200 duration-200 ease-in-out sm:w-64 transition-transform transform-style",
+          flipped ? "rotate-y-180" : ""
+        )}
+        style={{
+          minHeight: 370,
+          height: 370,
+        }}
+      >
+        {/* --- FRONT SIDE --- */}
+        <div className="absolute w-full h-full backface-hidden bg-white flex flex-col overflow-hidden">
+          <div className="card-image flex-none relative">
+            <img
+              src={displayImage}
+              alt={`Image of ${name}`}
+              width={300}
+              height={300}
+              className="h-[300px] w-full object-cover"
+              loading="lazy"
+            />
+            {showFlip && !flipped && (
+              <FuneralInfoButton
+                label="Funeral Info"
+                lang={lang}
+                onClick={() => setFlipped(true)}
+              />
+            )}
+          </div>
+          <div className="flex flex-1 flex-col justify-start space-y-1 p-3">
+            <h3 className="text-lg font-bold leading-snug text-gray-800">
+              {name}{age ? ` (${age})` : ""}
+            </h3>
+            {dateOfDeath && (
+              <p className="text-gray-600">
+                {labels.death}: {formattedDate}
+              </p>
+            )}
+          </div>
+          {/* Share Icon */}
+          <ShareLink className="share-button cursor-pointer transition-transform duration-300 hover:scale-110 absolute bottom-4 right-4"
+            shareData={{
+              title: name,
+              url: shareUrl,
+            }}
+            size={24}
+          />
+        </div>
+        {/* --- BACK SIDE (Funeral Details) --- */}
+        {showFlip && (
+          <div className="absolute flex flex-col justify-between w-full h-full backface-hidden bg-white border border-gray-200 p-4 rotate-y-180">
+            {/* Close (X) button top-right */}
+            <button
+              type="button"
+              className="absolute top-2 right-2 p-1 rounded-full hover:scale-115 cursor-pointer transition"
+              onClick={() => setFlipped(false)}
+            >
+              <CloseIcon className="h-6 w-6 text-red-600" />
+            </button>
+            <div className="flex-1 flex flex-col items-center justify-center text-center pt-6 pb-4">
+              <h4
+                className={cn(
+                  "flex items-center gap-2 justify-center font-bold mb-2",
+                  lang === Locale.KOK
+                    ? "font-noto-sans-kannada text-xl mt-2"
+                    : "font-roboto text-xl",
+                )}
+              >
+                <CoffinIcon className="w-7 h-7" />
+                <span>{t("funeral.rites")}</span>
+              </h4>
+              <p className="text-gray-700 text-base whitespace-pre-line">
+                {funeralDetails}
+              </p>
+            </div>
+            {youtubeLink && (
+              <a
+                href={youtubeLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-roboto flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white text-base py-2 w-full mt-2"
+                style={{ letterSpacing: "0.04em" }}
+              >
+                <YoutubeIcon className="w-6 h-6" />
+                {t("funeral.watchOnYT")}
+              </a>
+            )}
+          </div>
+        )}
+      </div>
+      {/* Minimal card flip effect */}
+      <style>{`
+        .perspective { perspective: 800px; }
+        .transform-style { transform-style: preserve-3d; }
+        .backface-hidden { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+        .rotate-y-180 { transform: rotateY(180deg); }
+      `}</style>
+    </div>
+  );
+}

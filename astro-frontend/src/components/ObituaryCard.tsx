@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { Locale } from "~/enums/locale";
 import { useTranslations } from "~/i18n/utils";
@@ -30,9 +29,7 @@ interface Props {
   funeralDetailsUpdatedAt?: Date | string;
   youtubeLink?: string;
   className?: string;
-  minimal?: boolean;
   autoFlip?: boolean;
-  blurred?: boolean;
 }
 
 // Simple lang detection from URL
@@ -147,9 +144,7 @@ export default function ObituaryCard({
   youtubeLink,
   className,
   funeralDetailsUpdatedAt,
-  minimal = false,
   autoFlip = false,
-  blurred = false,
 }: Props) {
   const [flipped, setFlipped] = useState(false);
   const shareUrl =
@@ -207,64 +202,23 @@ export default function ObituaryCard({
 
   const displayImage = imageUrl || BlankImg.src;
 
-
-  // If blurred mode is enabled, show a blurred image with overlay
-  if (blurred) {
-    return (
-      <div
-        className={cn(
-          "relative flex-none w-[250px] md:w-[250px] border border-gray-200 overflow-hidden",
-          className,
-        )}
-      >
-        <img
-          src={displayImage}
-          alt={name}
-          className="w-full aspect-[3/4] object-cover opacity-50 blur-md"
-        />
-        <div className="absolute bottom-6 left-0 w-full flex flex-col items-center px-2 blur-sm select-none">
-          <h3 className="text-xl font-bold text-slate-900 line-clamp-2">
-            {name}
-          </h3>
-          {dateOfDeath && (
-            <p className="text-lg text-slate-700">
-              <strong>Death:</strong> {dateOfDeath}
-            </p>
-          )}
-        </div>
-        <div className="absolute inset-0 flex items-center justify-center z-10">
-          <a
-            href={lang === "kok" ? "/kok/obituary" : "/obituary"}
-            className="from-natgeo-yellow to-natgeo-yellow hoverable-link border-natgeo-yellow border-b-2 bg-gradient-to-r px-2 py-1 hover:border-transparent hover:text-black mb-2 mt-2 inline-block text-xl font-bold text-black"
-          >
-            {t ? t("ui.view-all") : "View All"}
-          </a>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div
       id={cardId.replace(/\s+/g, "-").toLowerCase()}
       className={cn(
-        "relative mx-auto perspective",
-        minimal
-          ? "w-[250px] md:w-[250px]"
-          : "w-[280px] md:w-[250px]",
+        "relative mx-auto perspective w-[280px] md:w-[250px]",
         className,
       )}
       style={{ perspective: 1000 }}
     >
       <div
-        className={`relative w-full ${minimal ? "h-[420px] md:h-[390px]" : "h-[550px] md:h-[490px]"} transition-transform duration-700 transform-style preserve-3d ${flipped ? "rotate-y-180" : ""
+        className={`relative w-full h-[550px] md:h-[490px] transition-transform duration-700 transform-style preserve-3d ${flipped ? "rotate-y-180" : ""
           }`}
       >
         {/* Front side */}
         <div className="absolute w-full h-full backface-hidden bg-white border border-gray-200 flex flex-col overflow-hidden">
           <div className={cn(
-            "relative w-full bg-gray-100",
-            minimal ? "aspect-[3/3]" : "aspect-[3/3]",
+            "relative w-full bg-gray-100 aspect-[3/3]"
           )}>
             <img
               src={displayImage}
@@ -289,26 +243,24 @@ export default function ObituaryCard({
           </div>
 
           <div
-            className={`flex flex-col justify-between p-3 h-full min-h-[${minimal ? "120px" : "180px"}] relative`}
+            className={`flex flex-col justify-between p-3 h-full min-h-[180px] relative`}
           >
             <div className="space-y-1">
               <h3 className="text-xl font-bold text-slate-900 line-clamp-2">
                 {name}
-                {minimal && age ? ` (${age})` : ""}
               </h3>
-              {/* Hide all these in minimal mode */}
-              {!minimal && (relationNameEn || relationNameKok) && (
+              {(relationNameEn || relationNameKok) && (
                 <p className="line-clamp-2 md:text-base text-lg text-slate-700">
                   <strong>{relationLabel}:</strong>{" "}
                   {lang === "kok" ? relationNameKok : relationNameEn}
                 </p>
               )}
-              {!minimal && age && (
+              {age && (
                 <p className="md:text-base text-lg text-slate-700">
                   <strong>{labels.age}:</strong> {age}
                 </p>
               )}
-              {!minimal && ward && (
+              {ward && (
                 <p className="md:text-base text-lg text-slate-700">
                   <strong>{labels.ward}:</strong> {getWardNameKok(ward, lang)}
                 </p>
@@ -316,36 +268,21 @@ export default function ObituaryCard({
 
               {dateOfDeath && (
                 <p className={cn(
-                  "text-lg",
-                  minimal ? "text-gray-600" : "md:text-base text-slate-700"
+                  "md:text-base text-slate-700"
                 )}>
-                  {minimal ? (
-                    // Minimal: all plain, gray
-                    <>
-                      {labels.death}: {formattedDate}
-                    </>
-                  ) : (
-                    // Normal: bold label, slate
-                    <>
-                      <strong>{labels.death}:</strong> {formattedDate}
-                    </>
-                  )}
+                  <strong>{labels.death}:</strong> {formattedDate}
                 </p>
               )}
-
             </div>
-
             <div className="absolute bottom-3 right-3">
               <ShareLink
                 shareData={{
                   title: name,
                   url: shareUrl,
                 }}
-                size={minimal ? 24 : 30}
+                size={30}
               />
-
             </div>
-
           </div>
         </div>
 
@@ -390,60 +327,42 @@ export default function ObituaryCard({
               </p>
             </div>
           </div>
-
-          {/* Minimal mode: show only YouTube button*/}
-          {minimal && youtubeLink && (
-            <a
-              href={youtubeLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-roboto flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white text-base py-2 w-full mt-2"
-              style={{ letterSpacing: "0.04em" }}
-            >
-              <YoutubeIcon className="w-6 h-6" />
-              Watch On YouTube
-            </a>
-          )}
-
-          {/* Full mode: Prayer and subtitle */}
-          {!minimal && (
-            <div className="flex flex-col items-center">
-              {funeralPrayer && (
-                <blockquote
-                  className={cn(
-                    "text-gray-700 my-4",
-                    lang === Locale.KOK
-                      ? "font-noto-sans-kannada text-base text-center"
-                      : "font-roboto text-xl sm:text-xl md:text-base text-center",
-                  )}
-                >
-                  “{funeralPrayer}”
-                </blockquote>
-              )}
-              <p
+          <div className="flex flex-col items-center">
+            {funeralPrayer && (
+              <blockquote
                 className={cn(
-                  "font-semibold text-center mb-4",
+                  "text-gray-700 my-4",
                   lang === Locale.KOK
-                    ? "font-noto-sans-kannada text-gray-800 text-[15px]"
-                    : "font-roboto text-gray-800 text-[15px]",
+                    ? "font-noto-sans-kannada text-base text-center"
+                    : "font-roboto text-xl sm:text-xl md:text-base text-center",
                 )}
               >
-                {t("funeral.subtitle")}
-              </p>
-              {youtubeLink && (
-                <a
-                  href={youtubeLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-roboto flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white text-base py-2 w-full mt-2"
-                  style={{ letterSpacing: "0.04em" }}
-                >
-                  <YoutubeIcon className="w-6 h-6" />
-                  {t("funeral.watchOnYT")}
-                </a>
+                “{funeralPrayer}”
+              </blockquote>
+            )}
+            <p
+              className={cn(
+                "font-semibold text-center mb-4",
+                lang === Locale.KOK
+                  ? "font-noto-sans-kannada text-gray-800 text-[15px]"
+                  : "font-roboto text-gray-800 text-[15px]",
               )}
-            </div>
-          )}
+            >
+              {t("funeral.subtitle")}
+            </p>
+            {youtubeLink && (
+              <a
+                href={youtubeLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-roboto flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white text-base py-2 w-full mt-2"
+                style={{ letterSpacing: "0.04em" }}
+              >
+                <YoutubeIcon className="w-6 h-6" />
+                {t("funeral.watchOnYT")}
+              </a>
+            )}
+          </div>
         </div>
       </div>
       <style>{`
