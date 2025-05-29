@@ -50,8 +50,7 @@ const obituaryDataFormatted = obituaries.map((obituary) => ({
                 i === 4 ? "lg:hidden overflow-hidden" : "",
               )}
             >
-              <ObituaryCardMin
-                client:only="ObituaryCardMin"
+              <ObituaryCardMin client:load
                 id={o.id}
                 name={lang === "kok" ? o.konkaniName : o.englishName}
                 imageUrl={

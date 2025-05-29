@@ -31,8 +31,7 @@ const obituaryDataFormatted = obituaries
 >
   {
     obituaryDataFormatted?.map((item) => (
-      <ObituaryCard
-        client:only="ObituaryCard"
+      <ObituaryCard client:load
         id={item.englishName}
         name={lang === Locale.EN ? item.englishName : item.konkaniName}
         imageUrl={
