@@ -1300,6 +1300,37 @@ export interface ApiPopesIntentionPopesIntention
   };
 }
 
+export interface ApiPushNotificationPushNotification
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'push_notifications';
+  info: {
+    displayName: 'Push Notification';
+    pluralName: 'push-notifications';
+    singularName: 'push-notification';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    auth: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    endpoint: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::push-notification.push-notification'
+    > &
+      Schema.Attribute.Private;
+    p256dh: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiUpcomingEventUpcomingEvent
   extends Struct.CollectionTypeSchema {
   collectionName: 'upcoming_events';
@@ -1855,6 +1886,7 @@ declare module '@strapi/strapi' {
       'api::parish-priest-message.parish-priest-message': ApiParishPriestMessageParishPriestMessage;
       'api::pompeichem-falkem.pompeichem-falkem': ApiPompeichemFalkemPompeichemFalkem;
       'api::popes-intention.popes-intention': ApiPopesIntentionPopesIntention;
+      'api::push-notification.push-notification': ApiPushNotificationPushNotification;
       'api::upcoming-event.upcoming-event': ApiUpcomingEventUpcomingEvent;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;

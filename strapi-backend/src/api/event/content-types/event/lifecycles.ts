@@ -1,5 +1,6 @@
 import { SITE_URL } from "../../../../constants";
 import { sendEmail } from "../../../../utils/send-email";
+import { sendPushNotification } from "../../../../utils/send-push-notifications";
 
 /**
  * Lifecycle hooks for the Event content type
@@ -33,7 +34,16 @@ async function maybeSendEventEmail(result: any) {
     </ul>
   `;
 
-  await sendEmail({ subject, html });
+  // await sendEmail({ subject, html });
+
+  await sendPushNotification(strapi, {
+    title: '📅 New Event',
+    body: englishTitle,
+    icon: '/icons/pwa-icon.png', // optional icon URL
+    data: {
+      url: '/events', // where to go on click
+    },
+  });
 }
 
 export default {

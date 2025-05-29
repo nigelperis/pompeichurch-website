@@ -1,0 +1,30 @@
+import webPush from 'web-push';
+
+webPush.setVapidDetails(
+  process.env.VAPID_EMAIL!,
+  process.env.VAPID_PUBLIC_KEY!,
+  process.env.VAPID_PRIVATE_KEY!
+);
+
+export async function sendPushNotification(strapi: any, payload: any) {
+  const subs = await strapi.entityService.findMany('api::push-notification.push-notification');
+
+  const sendAll = subs.map((sub: any) => {
+    const subscription = {
+      endpoint: sub.endpoint,
+      keys: {
+        p256dh: sub.p256dh,
+        auth: sub.auth,
+      },
+    };
+
+    return webPush.sendNotification(subscription, JSON.stringify(payload)).catch((err) => {
+      console.log('Sending push to', subs.length, 'subscribers');
+      console.log('Payload:', payload);
+      console.log('First sub:', subs[0]);
+      console.error('Push Error', err);
+    });
+  });
+
+  await Promise.all(sendAll);
+}
