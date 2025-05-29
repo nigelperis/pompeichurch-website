@@ -1,3 +1,5 @@
+import type { RelationType } from "~/enums/obituary";
+
 interface ObituaryImage {
   id: number;
   documentId: string;
@@ -45,11 +47,14 @@ export interface Obituary {
   englishName: string;
   slug: string;
   age: number;
-  relationType?: string;
+  relationType?: RelationType;
   relationNameEn?: string;
   relationNameKok?: string;
+  funeralDetails?: string;
+  youtubeLink?: string;
   ward: string;
   dateOfDeath: Date;
+  funeralDetailsUpdatedAt?: Date;
   createdAt: string;
   updatedAt: string;
   publishedAt: string;

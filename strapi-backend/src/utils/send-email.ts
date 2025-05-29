@@ -1,5 +1,5 @@
-import { Resend } from 'resend';
-import { ADMIN_EMAIL, RECEPIENT_EMAILS } from '../constants';
+import { Resend } from "resend";
+import { ADMIN_EMAIL, RECEPIENT_EMAILS } from "../constants";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -19,6 +19,11 @@ export async function sendEmail({
   to?: string[];
 }) {
   try {
+    if (process.env.NODE_ENV === "development") {
+      console.info("[DEV MODE] Skipped sending email");
+      return;
+    }
+
     const res = await resend.emails.send({
       from: `Pompei Church <${ADMIN_EMAIL}>`,
       to,
@@ -27,11 +32,11 @@ export async function sendEmail({
     });
 
     if (res.error) {
-      console.error('Resend Email Error:', res.error);
+      console.error("Resend Email Error:", res.error);
     } else {
-      console.log('Email sent successfully:', res.data);
+      console.log("Email sent successfully:", res.data);
     }
   } catch (err) {
-    console.error('Failed to send email:', err);
+    console.error("Failed to send email:", err);
   }
 }
