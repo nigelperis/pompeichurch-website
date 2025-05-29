@@ -57,7 +57,7 @@ const obituaryDataFormatted = obituaries.map((obituary) => ({
                   o.image?.url
                     ? new URL(
                         o.image.url,
-                        import.meta.env.STRAPI_URL,
+                        import.meta.env.PUBLIC_STRAPI_URL,
                       ).toString()
                     : getPlaceholderImage()
                 }

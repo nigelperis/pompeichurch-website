@@ -71,7 +71,7 @@ const filteredEvents = upcomingEvents.filter((event) => {
                     filteredEvents[0].eventImage?.url
                       ? new URL(
                           filteredEvents[0].eventImage.url,
-                          import.meta.env.STRAPI_URL,
+                          import.meta.env.PUBLIC_STRAPI_URL,
                         ).toString()
                       : getPlaceholderImage()
                   }
@@ -83,7 +83,7 @@ const filteredEvents = upcomingEvents.filter((event) => {
                       filteredEvents[0].eventImage?.url
                         ? new URL(
                             filteredEvents[0].eventImage.url,
-                            import.meta.env.STRAPI_URL,
+                            import.meta.env.PUBLIC_STRAPI_URL,
                           ).toString()
                         : getPlaceholderImage()
                     }
@@ -118,7 +118,7 @@ const filteredEvents = upcomingEvents.filter((event) => {
                           event.eventImage?.url
                             ? new URL(
                                 event.eventImage.url,
-                                import.meta.env.STRAPI_URL,
+                                import.meta.env.PUBLIC_STRAPI_URL,
                               ).toString()
                             : getPlaceholderImage()
                         }
@@ -130,7 +130,7 @@ const filteredEvents = upcomingEvents.filter((event) => {
                             event.eventImage?.url
                               ? new URL(
                                   event.eventImage.url,
-                                  import.meta.env.STRAPI_URL,
+                                  import.meta.env.PUBLIC_STRAPI_URL,
                                 ).toString()
                               : getPlaceholderImage()
                           }
@@ -169,7 +169,7 @@ const filteredEvents = upcomingEvents.filter((event) => {
                   event.eventImage?.url
                     ? new URL(
                         event.eventImage.url,
-                        import.meta.env.STRAPI_URL,
+                        import.meta.env.PUBLIC_STRAPI_URL,
                       ).toString()
                     : getPlaceholderImage()
                 }
@@ -182,7 +182,7 @@ const filteredEvents = upcomingEvents.filter((event) => {
                     event.eventImage?.url
                       ? new URL(
                           event.eventImage.url,
-                          import.meta.env.STRAPI_URL,
+                          import.meta.env.PUBLIC_STRAPI_URL,
                         ).toString()
                       : getPlaceholderImage()
                   }

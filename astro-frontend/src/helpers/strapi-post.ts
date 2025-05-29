@@ -18,11 +18,11 @@ export async function strapiPost<T>({
   endpoint,
   body = {},
 }: StrapiPostProps): Promise<T | undefined> {
-  if (!import.meta.env.STRAPI_URL) {
+  if (!import.meta.env.PUBLIC_STRAPI_URL) {
     throw new Error("Strapi Base URL not found!");
   }
 
-  const url = new URL(`/api${endpoint}`, import.meta.env.STRAPI_URL);
+  const url = new URL(`/api${endpoint}`, import.meta.env.PUBLIC_STRAPI_URL);
 
   const res = await fetch(url.toString(), {
     method: "POST",

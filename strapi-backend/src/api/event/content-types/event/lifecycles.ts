@@ -34,14 +34,14 @@ async function maybeSendEventEmail(result: any) {
     </ul>
   `;
 
-  // await sendEmail({ subject, html });
+  await sendEmail({ subject, html });
 
   await sendPushNotification(strapi, {
-    title: '📅 New Event',
-    body: englishTitle,
-    icon: '/icons/pwa-icon.png', // optional icon URL
+    title: '📅New Event Added',
+    body: konkaniTitle,
+    icon: '/temp-logo.webp',
     data: {
-      url: '/events', // where to go on click
+      url: eventLink,
     },
   });
 }
