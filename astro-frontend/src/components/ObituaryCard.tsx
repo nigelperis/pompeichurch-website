@@ -59,7 +59,7 @@ const activeLabels = {
   },
 };
 
-const ONE_DAY_MS = 24 * 60 * 60 * 1000 * 3; // milliseconds in one day
+const EXPIRE_TIME = 24 * 60 * 60 * 1000 * 3; // milliseconds in three days
 
 type FuneralInfoButtonProps = {
   label: string;
@@ -160,18 +160,18 @@ export default function ObituaryCard({
   }
   const now = new Date();
   // check if details are fresh (within one day)
-  const isFuneralDetailsFresh = updatedAt
-    ? now.getTime() - updatedAt.getTime() < ONE_DAY_MS
-    : false;
+
+  const isDetailsFresh =
+    updatedAt && now.getTime() - updatedAt.getTime() <= EXPIRE_TIME;
 
   useEffect(() => {
-    if (autoFlip && funeralDetails && isFuneralDetailsFresh) {
+    if (autoFlip && funeralDetails) {
       const timer = setTimeout(() => {
         setFlipped(true);
       }, 2000);
       return () => clearTimeout(timer);
     }
-  }, [funeralDetails, isFuneralDetailsFresh, autoFlip]);
+  }, [funeralDetails, autoFlip]);
 
   const t = useTranslations(lang);
 
@@ -203,7 +203,8 @@ export default function ObituaryCard({
   const displayImage = imageUrl || BlankImg.src;
 
   // Show flip button if funeralDetails exists, regardless of freshness
-  const showFlip = funeralDetails && funeralDetails.trim().length > 0;
+  const showFlip =
+    funeralDetails && funeralDetails.trim().length > 0 && isDetailsFresh;
 
   return (
     <div
@@ -212,7 +213,7 @@ export default function ObituaryCard({
         "relative mx-auto w-[280px] h-[580px] md:w-[250px] md:h-[510px] m-auto perspective",
         className,
       )}
-      style={{ perspective: 1000 }}
+      style={{ perspective: "1000px" }}
     >
       <div
         className={cn(
@@ -221,7 +222,7 @@ export default function ObituaryCard({
         )}
         style={{
           transformStyle: "preserve-3d",
-          transition: "transform 0.7s",
+          transition: "transform 1s ease-in-out",
           height: "100%",
           width: "100%",
           position: "relative",
@@ -230,7 +231,7 @@ export default function ObituaryCard({
         {/* Front Side */}
         <div
           className={cn(
-            "absolute inset-0 backface-hidden bg-white border border-gray-200 flex flex-col transition-opacity duration-500 overflow-hidden",
+            "absolute inset-0 backface-hidden bg-white border border-gray-200 flex flex-col overflow-hidden transition-opacity duration-500",
             flipped ? "opacity-0 delay-0" : "opacity-100 delay-500",
           )}
         >
@@ -294,91 +295,86 @@ export default function ObituaryCard({
           </div>
         </div>
         {/* Back side */}
-        <div
-          className={cn(
-            "absolute inset-0 backface-hidden bg-white border border-gray-200 p-4 rotate-y-180 flex flex-col transition-opacity duration-500",
-            flipped ? "opacity-100 delay-500" : "opacity-0 delay-0",
-          )}
-        >
-          <button
-            type="button"
-            className="absolute top-2 right-2 p-1 rounded-full hover:scale-115 cursor-pointer transition"
-            onClick={() => setFlipped(false)}
+        {showFlip && (
+          <div
+            className={cn(
+              "absolute inset-0 backface-hidden bg-white border border-gray-200 p-4 rotate-y-180 flex flex-col transition-opacity duration-500",
+              flipped ? "opacity-100 delay-500" : "opacity-0 delay-0",
+            )}
           >
-            <CloseIcon className="h-8 w-8 md:h-6 md:w-6 text-red-600" />
-          </button>
-          {/* Funeral details content */}
-          <div className="flex-1 pt-4 pb-2">
-            <h4
-              className={cn(
-                "flex items-center gap-2 justify-center font-bold mb-2",
-                lang === Locale.KOK
-                  ? "font-noto-sans-kannada text-xl mt-2"
-                  : "font-roboto text-xl",
-              )}
+            <button
+              type="button"
+              className="absolute top-2 right-2 p-1 rounded-full hover:scale-115 cursor-pointer transition"
+              onClick={() => setFlipped(false)}
             >
-              <CoffinIcon className="w-7 h-7" />
-              <span>{t("funeral.rites")}</span>
-            </h4>
-            <div className="mb-2">
+              <CloseIcon className="h-8 w-8 md:h-6 md:w-6 text-red-600" />
+            </button>
+            {/* Funeral details content */}
+            <div className="flex-1 pt-4 pb-2">
+              <h4
+                className={cn(
+                  "flex items-center gap-2 justify-center font-bold mb-2",
+                  lang === Locale.KOK
+                    ? "font-noto-sans-kannada text-xl mt-2"
+                    : "font-roboto text-xl",
+                )}
+              >
+                <CoffinIcon className="w-7 h-7" />
+                <span>{t("funeral.rites")}</span>
+              </h4>
+              <div className="mb-2">
+                <p className="font-noto-sans-kannada text-xl md:text-[18px] text-center mt-6">
+                  {funeralDetails ? (
+                    funeralDetails
+                  ) : (
+                    <em>No details available.</em>
+                  )}
+                </p>
+              </div>
+            </div>
+            <div className="flex flex-col items-center">
+              {funeralPrayer && (
+                <blockquote
+                  className={cn(
+                    "text-gray-800",
+                    lang === Locale.KOK
+                      ? "font-noto-sans-kannada text-lg md:text-base text-center mb-12 md:mb-8"
+                      : "font-roboto text-xl sm:text-xl md:text-base text-center mb-14",
+                  )}
+                >
+                  "{funeralPrayer}"
+                </blockquote>
+              )}
               <p
                 className={cn(
-                  "whitespace-pre-line",
+                  "font-semibold text-gray-600 text-center mb-4",
                   lang === Locale.KOK
-                    ? "font-noto-sans-kannada text-xl md:text-[18px] text-center mt-6"
-                    : "font-noto-sans-kannada text-xl md:text-[18px] text-center mt-6",
+                    ? "font-noto-sans-kannada text-gray-600 text-lg md:text-base"
+                    : "font-roboto text-gray-600 text-lg md:text-[15px]",
                 )}
               >
-                {funeralDetails ? (
-                  funeralDetails
-                ) : (
-                  <em>No details available.</em>
-                )}
+                {t("funeral.subtitle")}
               </p>
+              {youtubeLink && (
+                <a
+                  href={youtubeLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={cn(
+                    "flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white text-base py-2 w-full mt-2",
+                    lang === Locale.KOK
+                      ? "font-noto-sans-kannada "
+                      : "font-roboto",
+                  )}
+                  style={{ letterSpacing: "0.04em" }}
+                >
+                  <YoutubeIcon className="w-6 h-6" />
+                  {t("funeral.youtube")}
+                </a>
+              )}
             </div>
           </div>
-          <div className="flex flex-col items-center">
-            {funeralPrayer && (
-              <blockquote
-                className={cn(
-                  "text-gray-800 my-4",
-                  lang === Locale.KOK
-                    ? "font-noto-sans-kannada text-base text-center"
-                    : "font-roboto text-xl sm:text-xl md:text-base text-center",
-                )}
-              >
-                “{funeralPrayer}”
-              </blockquote>
-            )}
-            <p
-              className={cn(
-                "font-semibold text-gray-600 text-center mb-4",
-                lang === Locale.KOK
-                  ? "font-noto-sans-kannada text-gray-600 text-[15px]"
-                  : "font-roboto text-gray-600 text-[15px]",
-              )}
-            >
-              {t("funeral.subtitle")}
-            </p>
-            {youtubeLink && (
-              <a
-                href={youtubeLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={cn(
-                  "flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white text-base py-2 w-full mt-2",
-                  lang === Locale.KOK
-                    ? "font-noto-sans-kannada "
-                    : "font-roboto",
-                )}
-                style={{ letterSpacing: "0.04em" }}
-              >
-                <YoutubeIcon className="w-6 h-6" />
-                {t("funeral.youtube")}
-              </a>
-            )}
-          </div>
-        </div>
+        )}
       </div>
       <style>{`
         .perspective { perspective: 1000px; }

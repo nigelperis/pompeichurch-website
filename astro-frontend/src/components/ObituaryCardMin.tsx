@@ -46,7 +46,7 @@ const activeLabels = {
   },
 };
 
-const ONE_DAY_MS = 24 * 60 * 60 * 1000 * 3; // milliseconds in one day
+const EXPIRE_TIME = 24 * 60 * 60 * 1000 * 3; // milliseconds in three days
 
 type FuneralInfoButtonProps = {
   label: string;
@@ -142,7 +142,7 @@ export default function ObituaryCardMin({
   const now = new Date();
   // check if details are fresh (within one day)
   const isFuneralDetailsFresh = updatedAt
-    ? now.getTime() - updatedAt.getTime() < ONE_DAY_MS
+    ? now.getTime() - updatedAt.getTime() < EXPIRE_TIME
     : false;
 
   const cardRef = useRef<HTMLDivElement>(null);
@@ -272,7 +272,8 @@ export default function ObituaryCardMin({
   }
 
   // ---- Flippable Minimal Card (Funeral Info) ----
-  const showFlip = funeralDetails && funeralDetails.trim().length > 0;
+  const showFlip =
+    funeralDetails && funeralDetails.trim().length > 0 && isFuneralDetailsFresh;
 
   return (
     <div
