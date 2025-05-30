@@ -40,7 +40,7 @@ const eventUrl =
 
 <div
   class={cn(
-    "hover:scale-[1.01] flex flex-col transform rounded-sm border border-gray-200 transition-all duration-300 ease-in-out",
+    "group hover:scale-[1.01] flex flex-col transform rounded-sm border border-gray-200 transition-all duration-300 ease-in-out",
     className,
   )}
   {...rest}
@@ -55,8 +55,8 @@ const eventUrl =
     />
   </div>
 
-  <div class="p-4 font-noto-sans-kannada">
-    <div class="flex flex-col gap-2">
+  <div class="relative p-4 font-noto-sans-kannada flex flex-col flex-grow">
+    <div class="flex flex-col gap-2 flex-grow pb-12">
       <h3 class="text-xl font-bold text-slate-900">
         {eventNameKok}
       </h3>
@@ -64,12 +64,17 @@ const eventUrl =
         {shortDescription}
       </p>
     </div>
-    <HoverableLink href={eventUrl}>
-      {t("ui.more-button-read")}
-    </HoverableLink>
-    <ShareLink
-      class="absolute bottom-4 right-4"
-      shareData={{ url: eventUrl, title: eventName }}
-    />
+
+    <div
+      class={cn(
+        "absolute bottom-4 left-4 right-4 flex justify-between items-center",
+        lang === Locale.KOK ? "font-noto-sans-kannada" : "font-roboto",
+      )}
+    >
+      <HoverableLink href={eventUrl}>
+        {t("ui.more-button-read")}
+      </HoverableLink>
+      <ShareLink class="" shareData={{ url: eventUrl, title: eventName }} />
+    </div>
   </div>
 </div>
