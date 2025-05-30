@@ -64,7 +64,7 @@ const eventUrl =
       </p>
     </div>
 
-    <div class="absolute bottom-4 left-4 right-4 flex justify-between items-center">
+    <div class={cn("absolute bottom-4 left-4 right-4 flex justify-between items-center",lang === Locale.KOK ? "font-noto-sans-kannada" : "font-roboto")}>
       <HoverableLink href={eventUrl}>
         {t("ui.more-button-read")}
       </HoverableLink>
