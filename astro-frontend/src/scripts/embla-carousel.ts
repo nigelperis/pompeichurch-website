@@ -1,4 +1,8 @@
-import type { EmblaCarouselType, EmblaEventType, EmblaOptionsType } from "embla-carousel";
+import type {
+  EmblaCarouselType,
+  EmblaEventType,
+  EmblaOptionsType,
+} from "embla-carousel";
 import EmblaCarousel from "embla-carousel";
 
 function numberWithinRange(number: number, min: number, max: number): number {
@@ -12,7 +16,7 @@ function setTweenFactor(emblaApi: EmblaCarouselType, base: number): number {
 function tweenOpacity(
   emblaApi: EmblaCarouselType,
   tweenFactor: number,
-  eventName?: EmblaEventType
+  eventName?: EmblaEventType,
 ): void {
   const engine = emblaApi.internalEngine();
   const scrollProgress = emblaApi.scrollProgress();
@@ -52,7 +56,7 @@ function tweenOpacity(
 }
 
 export const setupTweenOpacity = (
-  emblaApi: EmblaCarouselType
+  emblaApi: EmblaCarouselType,
 ): (() => void) => {
   const TWEEN_FACTOR_BASE = 0.84;
   const slideNodes = emblaApi.slideNodes();
@@ -93,7 +97,7 @@ export const emblaCarousel = async () => {
             delay: 3000,
             stopOnInteraction: false,
             jump: false,
-          })
+          }),
         );
       }
 

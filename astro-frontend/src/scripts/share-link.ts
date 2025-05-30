@@ -1,5 +1,5 @@
 export const shareLink = () => {
-    function init() {
+  function init() {
     const buttons =
       document.querySelectorAll<HTMLButtonElement>(".share-button");
 
@@ -18,4 +18,4 @@ export const shareLink = () => {
     }
   }
   init();
-}
+};

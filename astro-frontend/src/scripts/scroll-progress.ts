@@ -1,5 +1,5 @@
 export const scrollProgress = () => {
-    function calculateScrollProgress() {
+  function calculateScrollProgress() {
     requestAnimationFrame(() => {
       const scrollTop = window.scrollY;
       const docHeight = document.documentElement.scrollHeight;
@@ -21,4 +21,4 @@ export const scrollProgress = () => {
   window.addEventListener("resize", calculateScrollProgress);
 
   calculateScrollProgress();
-}
+};

@@ -37,6 +37,7 @@ const {
 const eventUrl =
   lang === Locale.EN ? `/events/${slug}/` : `/kok/events/${slug}/`;
 ---
+
 <div
   class={cn(
     "group hover:scale-[1.01] flex flex-col transform rounded-sm border border-gray-200 transition-all duration-300 ease-in-out",
@@ -64,14 +65,16 @@ const eventUrl =
       </p>
     </div>
 
-    <div class={cn("absolute bottom-4 left-4 right-4 flex justify-between items-center",lang === Locale.KOK ? "font-noto-sans-kannada" : "font-roboto")}>
+    <div
+      class={cn(
+        "absolute bottom-4 left-4 right-4 flex justify-between items-center",
+        lang === Locale.KOK ? "font-noto-sans-kannada" : "font-roboto",
+      )}
+    >
       <HoverableLink href={eventUrl}>
         {t("ui.more-button-read")}
       </HoverableLink>
-      <ShareLink
-        class=""
-        shareData={{ url: eventUrl, title: eventName }}
-      />
+      <ShareLink class="" shareData={{ url: eventUrl, title: eventName }} />
     </div>
   </div>
 </div>
