@@ -1,3 +1,5 @@
+import { registerPush } from "./service-worker";
+
 export const pushNotification = () => {
   const prompt = document.getElementById("notification-prompt");
   const enableBtn = document.getElementById("enable-notifications");
@@ -57,6 +59,7 @@ export const pushNotification = () => {
 
     const permission = await Notification.requestPermission();
     if (permission === "granted") {
+      registerPush();
       alert("Thanks for enabling notifications!");
       hidePrompt();
     } else {
