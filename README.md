@@ -17,7 +17,6 @@
 ✨ Rich Gallery
 ✨ Social Media Integration
 
-
 ## 🚀 Getting Started
 
 *To get [pompeichurch.in](https://pompeichurch.in/) on your local machine follow the steps given below :*
@@ -44,21 +43,18 @@ cd astro-frontend
 
 Make sure you have all the necessary dependencies installed. You can use the following command:
 
-For **pnpm**:
-
 ```bash
-pnpm install
+bun install
 ```
 
 ### 4. Run the Project
 
 Now, you can run the project on your localhost. Use the following command:
 
-For **pnpm**:
-
 ```bash
-pnpm run dev
+bun dev
 ```
+
 Once the development server starts, the application will typically be available at http://localhost:3000 (or another port if specified). You can Ctrl+click on the link to open it in your browser.
 
 # For strapi - backend
@@ -75,8 +71,6 @@ cd strapi-backend
 
 Install the required dependencies for the backend.  You can use the following command:
 
-For **pnpm**:
-
 ```bash
 pnpm i
 ```
@@ -89,14 +83,11 @@ Create a `.env` file based on the [`.env.example`](strapi-backend/.env.example) 
 
 Start the backend server on your localhost:
 
-For **pnpm**:
-
 ```bash
 pnpm run develop
 ```
 
 Once the server is running, it will be available at http://localhost:1337 (or another port if specified). You can Ctrl+click on the link to open it in your browser.
-
 
 ## ⚙️ Technologies Used
 
@@ -112,7 +103,6 @@ This project utilizes the following technologies:
 ## 👀 Explore our site [pompeichurch.in](https://pompeichurch.in/)
 
 This website is more than just a digital presence; it’s a step towards making church life more accessible to everyone, everywhere. 😀
-
 
 ## 📜 License
 This project is licensed under the [MIT License](LICENSE).

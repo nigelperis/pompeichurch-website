@@ -44,12 +44,14 @@ const paginationRange = getPaginationRange(currentPage, totalPages);
         return (
           <a
             href={`?p=${page}`}
-            class={cn(`flex h-10 w-10 items-center justify-center rounded transition-all duration-200 ${
-              currentPage === page
-                ? "bg-natgeo-yellow font-semibold text-black shadow-md"
-                : "hover:bg-gray-200"
-            }`,
-          lang === Locale.KOK ? "pt-[6px]" : "")}
+            class={cn(
+              `flex h-10 w-10 items-center justify-center rounded transition-all duration-200 ${
+                currentPage === page
+                  ? "bg-natgeo-yellow font-semibold text-black shadow-md"
+                  : "hover:bg-gray-200"
+              }`,
+              lang === Locale.KOK ? "pt-[6px]" : "",
+            )}
             aria-label={`Page ${page}`}
           >
             {page}
