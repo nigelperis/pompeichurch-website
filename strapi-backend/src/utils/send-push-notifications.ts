@@ -19,10 +19,12 @@ export async function sendPushNotification(strapi: any, payload: any) {
     };
 
     return webPush.sendNotification(subscription, JSON.stringify(payload)).catch((err) => {
-      console.error('Error sending push notification:', err);
+      console.error('Error sending push notification:', err.message);
+
       if (err.statusCode === 410 || err.statusCode === 404) {
         return strapi.entityService.delete('api::push-notification.push-notification', sub.id);
       }
+
       return Promise.resolve();
     });
   });

@@ -1,19 +1,21 @@
-module.exports = {
+export default {
   async create(ctx) {
     const { endpoint, keys } = ctx.request.body;
 
-    if (!endpoint || !keys || !keys.p256dh || !keys.auth) {
-      return ctx.badRequest("Missing subscription data");
-    }
-
-    const entry = await strapi.entityService.create('api::push-notification.push-notification', {
-      data: {
-        endpoint,
-        p256dh: keys.p256dh,
-        auth: keys.auth,
-      },
+    const existing = await strapi.entityService.findMany('api::push-notification.push-notification', {
+      filters: { endpoint },
     });
 
-    ctx.send(entry);
-  }
+    if (existing.length === 0) {
+      return await strapi.entityService.create('api::push-notification.push-notification', {
+        data: {
+          endpoint,
+          p256dh: keys.p256dh,
+          auth: keys.auth,
+        },
+      });
+    }
+
+    return { message: 'Subscription already exists' };
+  },
 };

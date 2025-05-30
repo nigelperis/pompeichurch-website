@@ -6,3 +6,4 @@ export const RECEPIENT_EMAILS = [
   "avinashvalder7@gmail.com",
 ];
 export const SITE_URL = "https://pompeichurch.in";
+export const UPCOMING_EVENTS = "https://www.pompeichurch.in/#upcoming-events"
