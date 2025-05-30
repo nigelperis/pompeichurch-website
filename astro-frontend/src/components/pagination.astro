@@ -1,6 +1,11 @@
 ---
 import { Icon } from "astro-icon/components";
+import { Locale } from "~/enums/locale";
+import { cn } from "~/helpers/cn";
 import { getPaginationRange } from "~/helpers/get-pagination-range";
+import { getLangFromUrl } from "~/i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
 
 const { currentPage, totalPages } = Astro.props;
 const paginationRange = getPaginationRange(currentPage, totalPages);
@@ -39,11 +44,14 @@ const paginationRange = getPaginationRange(currentPage, totalPages);
         return (
           <a
             href={`?p=${page}`}
-            class={`flex h-10 w-10 items-center justify-center rounded transition-all duration-200 ${
-              currentPage === page
-                ? "bg-natgeo-yellow font-semibold text-black shadow-md" // font-bold text-white
-                : "hover:bg-gray-200"
-            }`}
+            class={cn(
+              `flex h-10 w-10 items-center justify-center rounded transition-all duration-200 ${
+                currentPage === page
+                  ? "bg-natgeo-yellow font-semibold text-black shadow-md"
+                  : "hover:bg-gray-200"
+              }`,
+              lang === Locale.KOK ? "pt-[6px]" : "",
+            )}
             aria-label={`Page ${page}`}
           >
             {page}

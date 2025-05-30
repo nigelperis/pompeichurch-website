@@ -1,12 +1,8 @@
 {
   "search.exclude": {
     // Avoid polluting search results with lockfile content
-    "pnpm-lock.yaml": true
+    "bun.lock": true
   },
-  // Ensure VSCode uses pnpm instead of npm
-  "npm.packageManager": "pnpm",
-  // For those using file-nesting, nest the new files. E.g.:
-  "explorer.fileNesting.patterns": {
-    "package.json": "pnpm-workspace.yaml, pnpm-lock.yaml"
-  }
+  // Ensure VSCode uses bun instead of npm
+  "npm.packageManager": "bun"
 }

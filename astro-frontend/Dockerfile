@@ -1,21 +1,21 @@
 FROM node:22-slim AS base
 WORKDIR /app
-RUN npm i -g corepack
-COPY package.json pnpm-lock.yaml ./
+RUN npm i -g bun
+COPY package.json bun.lock ./
 
 FROM base AS prod-deps
-RUN pnpm install --prod
+RUN bun install --prod
 
 FROM base AS build-deps
 WORKDIR /app
-RUN pnpm install
+RUN bun install
 
 FROM build-deps AS build
 WORKDIR /app
 ARG PUBLIC_STRAPI_URL
 ENV PUBLIC_STRAPI_URL=${PUBLIC_STRAPI_URL}
 COPY . .
-RUN pnpm build
+RUN bun run build
 
 FROM base AS runtime
 WORKDIR /app

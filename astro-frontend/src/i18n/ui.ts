@@ -443,6 +443,9 @@ export const ui = {
     husbandOf: "Husband of",
     sonOf: "Son of",
     daughterOf: "Daughter of",
+    "funeral.rites": "Funeral Rites",
+    "funeral.subtitle": "Parish Priest and Parishioners",
+    "funeral.youtube": "Watch on YouTube",
   },
   kok: {
     "nav.home": "ಹೋಮ್",
@@ -881,5 +884,8 @@ export const ui = {
     husbandOf: "ಪತಿ",
     sonOf: "ಪುತ್",
     daughterOf: "ಧುವ್",
+    "funeral.rites": "ಮೊರ್ಣಾಚಿ ರೀತ್",
+    "funeral.subtitle": "ವಿಗಾರ್ ಆನಿ ಫಿರ್ಗಜ್ ಕುಟಾಮ್",
+    "funeral.youtube": "ಯೂಟೂಬಾರ್ ಪೊಳೆಯಾ",
   },
 } as const;

@@ -1,7 +1,7 @@
 {
-  "name": "church-website",
+  "name": "pompei-church-website",
   "type": "module",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "scripts": {
     "dev": "astro dev --host",
     "start": "node ./dist/server/entry.mjs",
@@ -38,12 +38,11 @@
     "react-dom": "19.0.0",
     "sharp": "0.33.5",
     "simple-icons-astro": "14.12.2",
-    "tailwind-merge": "3.2.0"
+    "tailwind-merge": "3.2.0",
+    "vite-plugin-svgr": "4.3.0"
   },
-  "packageManager": "pnpm@10.4.1",
   "engines": {
-    "node": ">=18.0.0 <=22.16.0",
-    "pnpm": ">=8.x.x"
+    "node": ">=18.0.0 <=22.16.0"
   },
   "devDependencies": {
     "@astrojs/check": "0.9.4",
@@ -63,16 +62,8 @@
     "tailwindcss": "4.1.2",
     "terser": "5.39.0",
     "typescript": "5.8.2",
-    "typescript-eslint": "8.24.1"
+    "typescript-eslint": "8.24.1",
+    "@types/bun": "latest"
   },
-  "pnpm": {
-    "ignoredBuiltDependencies": [
-      "esbuild",
-      "sharp"
-    ],
-    "onlyBuiltDependencies": [
-      "@tsparticles/engine",
-      "sharp"
-    ]
-  }
+  "private": true
 }
