@@ -9,24 +9,32 @@ function urlBase64ToUint8Array(base64String: string) {
 }
 
 export async function registerPush() {
-  if (!('serviceWorker' in navigator)) return;
+  if (!('serviceWorker' in navigator)) {
+    console.warn('Service workers are not supported.');
+    return;
+  }
 
-  const sw = await navigator.serviceWorker.register('/sw.js');
+  try {
+    const sw = await navigator.serviceWorker.register('/sw.js');
 
-  const permission = await Notification.requestPermission();
-  if (permission !== 'granted') return;
+    const permission = await Notification.requestPermission();
+    if (permission !== 'granted') {
+      console.log('Notification permission not granted.');
+      return;
+    }
 
-  const subscription = await sw.pushManager.subscribe({
-    userVisibleOnly: true,
-    applicationServerKey: urlBase64ToUint8Array(
-      import.meta.env.PUBLIC_VAPID_PUBLIC_KEY
-    ),
-  });
+    const subscription = await sw.pushManager.subscribe({
+      userVisibleOnly: true,
+      applicationServerKey: urlBase64ToUint8Array(import.meta.env.PUBLIC_VAPID_PUBLIC_KEY),
+    });
 
-  console.log('Push subscription:', subscription);
+    console.log('Push subscription:', subscription);
 
-  await strapiPost({
-    endpoint: ROUTES.PUSH_NOTIFICATIONS,
-    body: subscription,
-  });
+    await strapiPost({
+      endpoint: ROUTES.PUSH_NOTIFICATIONS,
+      body: subscription,
+    });
+  } catch (error) {
+    console.error('Failed to register push notifications:', error);
+  }
 }
