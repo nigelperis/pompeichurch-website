@@ -1304,6 +1304,7 @@ export interface ApiPushNotificationPushNotification
   extends Struct.CollectionTypeSchema {
   collectionName: 'push_notifications';
   info: {
+    description: '';
     displayName: 'Push Notification';
     pluralName: 'push-notifications';
     singularName: 'push-notification';
@@ -1312,18 +1313,18 @@ export interface ApiPushNotificationPushNotification
     draftAndPublish: true;
   };
   attributes: {
-    auth: Schema.Attribute.String;
+    auth: Schema.Attribute.Text;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    endpoint: Schema.Attribute.String;
+    endpoint: Schema.Attribute.Text;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::push-notification.push-notification'
     > &
       Schema.Attribute.Private;
-    p256dh: Schema.Attribute.String;
+    p256dh: Schema.Attribute.Text;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &

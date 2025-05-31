@@ -8,22 +8,22 @@ export const pushNotification = () => {
 
   if (!prompt || !enableBtn || !dismissBtn || !eventsSection) return;
 
+  if (Notification.permission === "granted") {
+    return;
+  }
+
   const deferredUntil = parseInt(localStorage.getItem("notificationPromptDeferredUntil") || "0", 10);
   const now = Date.now();
   let promptShown = false;
 
-  // Function to show prompt with animation
   const showPrompt = () => {
     prompt.classList.remove("hidden");
-    // Trigger reflow to ensure the element is rendered
-    prompt.offsetHeight;
+    prompt.offsetHeight; // trigger reflow
     prompt.classList.add("slide-in");
   };
 
-  // Function to hide prompt with animation
   const hidePrompt = () => {
     prompt.classList.add("slide-out");
-    // Wait for animation to complete before hiding
     setTimeout(() => {
       prompt.classList.add("hidden");
       prompt.classList.remove("slide-in", "slide-out");
@@ -59,7 +59,7 @@ export const pushNotification = () => {
 
     const permission = await Notification.requestPermission();
     if (permission === "granted") {
-      registerPush();
+      await registerPush();
       alert("Thanks for enabling notifications!");
       hidePrompt();
     } else {
@@ -72,4 +72,4 @@ export const pushNotification = () => {
     localStorage.setItem("notificationPromptDeferredUntil", nextPromptTime.toString());
     hidePrompt();
   });
-}
+};

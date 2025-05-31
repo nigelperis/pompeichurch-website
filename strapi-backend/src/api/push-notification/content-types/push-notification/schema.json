@@ -4,7 +4,8 @@
   "info": {
     "singularName": "push-notification",
     "pluralName": "push-notifications",
-    "displayName": "Push Notification"
+    "displayName": "Push Notification",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -12,13 +13,13 @@
   "pluginOptions": {},
   "attributes": {
     "endpoint": {
-      "type": "string"
+      "type": "text"
     },
     "p256dh": {
-      "type": "string"
+      "type": "text"
     },
     "auth": {
-      "type": "string"
+      "type": "text"
     }
   }
 }
