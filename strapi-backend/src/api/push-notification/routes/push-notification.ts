@@ -8,6 +8,15 @@ module.exports = {
         policies: [],
         auth: false,
       },
+    },
+    {
+      method: 'POST',
+      path: '/push-notifications/check',
+      handler: 'push-notification.check',
+      config: {
+        policies: [],
+        auth: false,
+      },
     }
   ],
 };

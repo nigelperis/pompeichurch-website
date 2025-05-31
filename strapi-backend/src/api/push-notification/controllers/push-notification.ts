@@ -18,4 +18,14 @@ export default {
 
     return { message: 'Subscription already exists' };
   },
+
+  async check(ctx) {
+    const { endpoint } = ctx.request.body;
+
+    const existing = await strapi.entityService.findMany('api::push-notification.push-notification', {
+      filters: { endpoint },
+    });
+
+    return { exists: existing.length > 0 };
+  },
 };

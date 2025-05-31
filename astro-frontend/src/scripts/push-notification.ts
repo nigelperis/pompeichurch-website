@@ -1,6 +1,31 @@
+import { strapiPost } from "~/helpers/strapi-post";
 import { registerPush } from "./service-worker";
+import { ROUTES } from "~/constants/strapi-endpoints";
 
-export const pushNotification = () => {
+interface SubscriptionCheckResponse {
+  exists: boolean;
+}
+
+const checkBackendSubscription = async (): Promise<boolean> => {
+  try {
+    const registration = await navigator.serviceWorker.ready;
+    const subscription = await registration.pushManager.getSubscription();
+
+    if (!subscription) return false;
+
+    const response = await strapiPost<SubscriptionCheckResponse>({
+      endpoint: ROUTES.PUSH_NOTIFICATIONS_CHECK,
+      body: { endpoint: subscription.endpoint }
+    });
+
+    return response?.exists ?? false;
+  } catch (error) {
+    console.error('Error checking subscription:', error);
+    return false;
+  }
+};
+
+export const pushNotification = async () => {
   const prompt = document.getElementById("notification-prompt");
   const enableBtn = document.getElementById("enable-notifications");
   const dismissBtn = document.getElementById("dismiss-notifications");
@@ -8,8 +33,14 @@ export const pushNotification = () => {
 
   if (!prompt || !enableBtn || !dismissBtn || !eventsSection) return;
 
+  // Check both browser permission AND backend subscription
   if (Notification.permission === "granted") {
-    return;
+    const hasActiveSubscription = await checkBackendSubscription();
+    if (hasActiveSubscription) {
+      return; // Don't show prompt - everything is working
+    }
+    // If no backend subscription exists, continue to show prompt
+    console.log("Permission granted but no backend subscription found - showing prompt");
   }
 
   const deferredUntil = parseInt(localStorage.getItem("notificationPromptDeferredUntil") || "0", 10);
@@ -18,7 +49,7 @@ export const pushNotification = () => {
 
   const showPrompt = () => {
     prompt.classList.remove("hidden");
-    prompt.offsetHeight; // trigger reflow
+    prompt.offsetHeight;
     prompt.classList.add("slide-in");
   };
 
