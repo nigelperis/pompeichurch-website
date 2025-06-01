@@ -1,5 +1,6 @@
 import { SITE_URL } from "../../../../constants";
 import { sendEmail } from "../../../../utils/send-email";
+import { sendPushNotification } from "../../../../utils/send-push-notifications";
 
 /**
  * Lifecycle hooks for the Event content type
@@ -37,6 +38,15 @@ async function maybeSendObituaryEmail(result: any) {
   `;
 
   await sendEmail({ subject, html });
+
+  await sendPushNotification(strapi, {
+    title: '🕊️ Obituary Added',
+    body: konkaniName,
+    icon: '/temp-logo.webp',
+    data: {
+      url: obituaryLink,
+    },
+  });
 }
 
 export default {

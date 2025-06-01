@@ -1,4 +1,6 @@
 import { sendEmail } from "../../../../utils/send-email";
+import { UPCOMING_EVENTS } from "../../../../constants";
+import { sendPushNotification } from "../../../../utils/send-push-notifications";
 
 async function maybeSendUpcomingEventEmail(result: any) {
   if (!result.publishedAt) return;
@@ -12,10 +14,19 @@ async function maybeSendUpcomingEventEmail(result: any) {
     <h2>New Upcoming Event</h2>
     <ul>
       <li><strong>Event End Date:</strong> ${eventEndDate}</li>
+      <li><strong>View Upcoming Event:</strong> <a href="${UPCOMING_EVENTS}">${UPCOMING_EVENTS}</a></li>
     </ul>
   `;
 
   await sendEmail({ subject, html });
+
+  await sendPushNotification(strapi, {
+    title: '📢 New Upcoming Event Added',
+    icon: '/temp-logo.webp',
+    data: {
+      url: UPCOMING_EVENTS,
+    },
+  });
 }
 
 export default {

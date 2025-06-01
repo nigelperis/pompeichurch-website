@@ -9,23 +9,23 @@ interface StrapiFetchProps {
  * @param query - The query parameters to add to the url
  * @returns
  * @example
-		 const searchParam = new URLSearchParams();
-			searchParam.append('populate[0]', 'signature');
-			searchParam.append('populate[1]', 'coverImage');
-			strapiFetch(\{
-				endpoint: '/landing-page-priest-message',
-				queryParams:searchParam,
-				);
+     const searchParam = new URLSearchParams();
+      searchParam.append('populate[0]', 'signature');
+      searchParam.append('populate[1]', 'coverImage');
+      strapiFetch(\{
+        endpoint: '/landing-page-priest-message',
+        queryParams:searchParam,
+        );
  */
 export async function strapiFetch<T>({
   endpoint,
   queryParams,
 }: StrapiFetchProps): Promise<T | undefined> {
-  if (!import.meta.env.STRAPI_URL) {
+  if (!import.meta.env.PUBLIC_STRAPI_URL) {
     throw new Error("Strapi Base URL not found!");
   }
 
-  const url = new URL(`/api${endpoint}`, import.meta.env.STRAPI_URL);
+  const url = new URL(`/api${endpoint}`, import.meta.env.PUBLIC_STRAPI_URL);
 
   if (queryParams) {
     for (const [key, value] of queryParams) {

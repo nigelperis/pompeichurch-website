@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "push_notifications",
+  "info": {
+    "singularName": "push-notification",
+    "pluralName": "push-notifications",
+    "displayName": "Push Notification",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "endpoint": {
+      "type": "text"
+    },
+    "p256dh": {
+      "type": "text"
+    },
+    "auth": {
+      "type": "text"
+    }
+  }
+}
