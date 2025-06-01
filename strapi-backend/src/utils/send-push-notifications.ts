@@ -7,6 +7,10 @@ webPush.setVapidDetails(
 );
 
 export async function sendPushNotification(strapi: any, payload: any) {
+  if (process.env.NOTIFY_PUSH !== 'true') {
+    return;
+  }
+
   const subs = await strapi.entityService.findMany('api::push-notification.push-notification');
 
   const sendAll = subs.map((sub: any) => {

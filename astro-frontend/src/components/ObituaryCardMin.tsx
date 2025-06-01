@@ -102,7 +102,7 @@ export function FuneralInfoButton({
       >
         <span
           className={
-            lang === "kok"
+            lang === Locale.KOK
               ? "font-noto-sans-kannada text-[16px] relative -top-[-3px]"
               : "font-roboto"
           }
@@ -225,7 +225,7 @@ export default function ObituaryCardMin({
         {/* Overlay button also mobile only */}
         <div className="absolute inset-0 z-10 flex items-center justify-center lg:hidden">
           <a
-            href={lang === "kok" ? "/kok/obituary" : "/obituary"}
+            href={lang === Locale.KOK ? "/kok/obituary" : "/obituary"}
             className="from-natgeo-yellow to-natgeo-yellow hoverable-link border-natgeo-yellow border-b-2 bg-gradient-to-r px-2 py-1 inline-block text-xl font-bold text-black hover:border-transparent hover:text-black"
           >
             {t ? t("ui.view-all") : "View All"}
