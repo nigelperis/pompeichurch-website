@@ -147,8 +147,7 @@ export default function ObituaryCardMin({
 
   const cardRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    // Auto-flip should work only if autoFlip is true AND funeralDetails is present
-    if (!autoFlip || !funeralDetails) return;
+    if (!autoFlip || !funeralDetails || !isFuneralDetailsFresh) return;
 
     const observer = new window.IntersectionObserver(
       (entries) => {
@@ -168,7 +167,7 @@ export default function ObituaryCardMin({
     }
 
     return () => observer.disconnect();
-  }, [autoFlip, funeralDetails]); // Removed isFuneralDetailsFresh from dependencies
+  }, [autoFlip, funeralDetails, isFuneralDetailsFresh]);
 
   const t = useTranslations?.(lang);
   const labels = activeLabels[lang as keyof typeof activeLabels];

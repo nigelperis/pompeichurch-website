@@ -165,13 +165,13 @@ export default function ObituaryCard({
     updatedAt && now.getTime() - updatedAt.getTime() <= EXPIRE_TIME;
 
   useEffect(() => {
-    if (autoFlip && funeralDetails) {
+    if (autoFlip && funeralDetails && isDetailsFresh) {
       const timer = setTimeout(() => {
         setFlipped(true);
       }, 2000);
       return () => clearTimeout(timer);
     }
-  }, [funeralDetails, autoFlip]);
+  }, [funeralDetails, autoFlip, isDetailsFresh]);
 
   const t = useTranslations(lang);
 
