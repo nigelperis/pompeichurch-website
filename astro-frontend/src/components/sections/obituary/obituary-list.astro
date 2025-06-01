@@ -37,7 +37,10 @@ const obituaryDataFormatted = obituaries
         name={lang === Locale.EN ? item.englishName : item.konkaniName}
         imageUrl={
           item.image?.url
-            ? new URL(item.image.url, import.meta.env.PUBLIC_STRAPI_URL).toString()
+            ? new URL(
+                item.image.url,
+                import.meta.env.PUBLIC_STRAPI_URL,
+              ).toString()
             : getPlaceholderImage()
         }
         imageWidth={item.image?.width ?? 0}

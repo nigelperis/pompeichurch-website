@@ -417,7 +417,8 @@ export const ui = {
     "funeral.rites": "Funeral Rites",
     "funeral.subtitle": "Parish Priest and Parishioners",
     "funeral.youtube": "Watch on YouTube",
-    "push.notification": "Stay informed about upcoming events, event highlights, and obituaries",
+    "push.notification":
+      "Stay informed about upcoming events, event highlights, and obituaries",
     "push.enable": "Enable",
     "push.disable": "Not Now!",
   },
@@ -832,7 +833,8 @@ export const ui = {
     "funeral.rites": "ಮೊರ್ಣಾಚಿ ರೀತ್",
     "funeral.subtitle": "ವಿಗಾರ್ ಆನಿ ಫಿರ್ಗಜ್ ಕುಟಾಮ್",
     "funeral.youtube": "ಯೂಟೂಬಾರ್ ಪೊಳೆಯಾ",
-    "push.notification": "ಫಿರ್ಗಜೆಂತ್ಲಿ ಫುಡ್ಲಿಂ ಕಾರ್ಯಿಂ, ಘಡಿತಾಂಚಿ ಝಳಕ್ ಆನಿ ಮೊರ್ಣಾಚಿ ಖಬರ್ ಅಪ್ಣಾಂವ್ಕ್",
+    "push.notification":
+      "ಫಿರ್ಗಜೆಂತ್ಲಿ ಫುಡ್ಲಿಂ ಕಾರ್ಯಿಂ, ಘಡಿತಾಂಚಿ ಝಳಕ್ ಆನಿ ಮೊರ್ಣಾಚಿ ಖಬರ್ ಅಪ್ಣಾಂವ್ಕ್",
     "push.enable": "ಅನ್ಕೂಲ್ ಕರಾ",
     "push.disable": "ಆತಾಂ ನಾಕಾ!",
   },
