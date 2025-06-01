@@ -19,24 +19,26 @@ const { pastoralCouncilImage } = Astro.props;
       : getPlaceholderImage()}
     width={pastoralCouncilImage?.pastoralCouncilImage?.width || 600}
     height={pastoralCouncilImage?.pastoralCouncilImage?.height || 400}
-    class="w-full rounded-sm object-contain pb-4 pt-4"
+    class="w-full object-contain pb-4 pt-4"
   />
   <table class="mx-auto w-full max-w-4xl border border-gray-200">
     <tbody>
       {
-        pastoralCouncilData.map((member) => (
-          <tr class="hover:bg-gray-50">
-            <td class="border-b border-gray-200 px-4 py-2 text-sm lg:text-lg lg:text-gray-800">
-              {member.name}
-            </td>
-            <td class="border-b border-gray-200 px-4 py-2 text-sm lg:text-lg lg:text-gray-800">
-              {member.association}
-            </td>
-            <td class="border-b border-gray-200 px-4 py-2 text-sm lg:text-lg lg:text-gray-800">
-              {member.position}
-            </td>
-          </tr>
-        ))
+        pastoralCouncilData.map((member) => {
+          return (
+            <tr class="hover:bg-gray-50">
+              <td class="border-b border-gray-200 px-4 py-2 text-sm lg:text-lg lg:text-gray-800">
+                {member.name}
+              </td>
+              <td class="border-b border-gray-200 px-4 py-2 text-sm lg:text-lg lg:text-gray-800">
+                {member.association}
+              </td>
+              <td class="border-b border-gray-200 px-4 py-2 text-sm lg:text-lg lg:text-gray-800">
+                {member.position}
+              </td>
+            </tr>
+          );
+        })
       }
     </tbody>
   </table>
