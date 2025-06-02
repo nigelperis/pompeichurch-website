@@ -13,13 +13,16 @@ const eventsUrl = lang === Locale.EN ? "/events" : "/kok/events";
 import { listEvents } from "~/services/events/list-events";
 import { Locale } from "~/enums/locale";
 import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
+import PushNotification from "~/components/push-notification.astro";
 
 const data = (await listEvents({ page: 1, pageSize: 3 })) || [];
 ---
 
 <section
   class="mx-6 mt-4 flex flex-col lg:mx-28 lg:min-h-[70svh] lg:justify-evenly"
+  id="events"
 >
+  <PushNotification />
   <h1
     data-aos="fade-right"
     class={cn(

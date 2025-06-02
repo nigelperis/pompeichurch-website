@@ -11,6 +11,10 @@
     "strapi": "strapi"
   },
   "dependencies": {
+    "@codemirror/autocomplete": "^6.18.6",
+    "@codemirror/lint": "^6.8.5",
+    "@codemirror/search": "^6.5.11",
+    "@codemirror/theme-one-dark": "^6.1.2",
     "@strapi/plugin-cloud": "5.9.0",
     "@strapi/plugin-users-permissions": "5.9.0",
     "@strapi/strapi": "5.9.0",
@@ -19,7 +23,8 @@
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.0.0",
     "resend": "^4.5.1",
-    "styled-components": "^6.0.0"
+    "styled-components": "^6.0.0",
+    "web-push": "^3.6.7"
   },
   "devDependencies": {
     "@types/node": "^20",

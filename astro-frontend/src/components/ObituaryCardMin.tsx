@@ -102,7 +102,7 @@ export function FuneralInfoButton({
       >
         <span
           className={
-            lang === "kok"
+            lang === Locale.KOK
               ? "font-noto-sans-kannada text-[16px] relative -top-[-3px]"
               : "font-roboto"
           }
@@ -147,8 +147,7 @@ export default function ObituaryCardMin({
 
   const cardRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    // Auto-flip should work only if autoFlip is true AND funeralDetails is present
-    if (!autoFlip || !funeralDetails) return;
+    if (!autoFlip || !funeralDetails || !isFuneralDetailsFresh) return;
 
     const observer = new window.IntersectionObserver(
       (entries) => {
@@ -168,7 +167,7 @@ export default function ObituaryCardMin({
     }
 
     return () => observer.disconnect();
-  }, [autoFlip, funeralDetails]); // Removed isFuneralDetailsFresh from dependencies
+  }, [autoFlip, funeralDetails, isFuneralDetailsFresh]);
 
   const t = useTranslations?.(lang);
   const labels = activeLabels[lang as keyof typeof activeLabels];
@@ -226,7 +225,7 @@ export default function ObituaryCardMin({
         {/* Overlay button also mobile only */}
         <div className="absolute inset-0 z-10 flex items-center justify-center lg:hidden">
           <a
-            href={lang === "kok" ? "/kok/obituary" : "/obituary"}
+            href={lang === Locale.KOK ? "/kok/obituary" : "/obituary"}
             className="from-natgeo-yellow to-natgeo-yellow hoverable-link border-natgeo-yellow border-b-2 bg-gradient-to-r px-2 py-1 inline-block text-xl font-bold text-black hover:border-transparent hover:text-black"
           >
             {t ? t("ui.view-all") : "View All"}

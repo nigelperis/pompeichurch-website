@@ -1,5 +1,6 @@
 import { SITE_URL } from "../../../../constants";
 import { sendEmail } from "../../../../utils/send-email";
+import { sendPushNotification } from "../../../../utils/send-push-notifications";
 
 /**
  * Lifecycle hooks for the Event content type
@@ -34,6 +35,15 @@ async function maybeSendEventEmail(result: any) {
   `;
 
   await sendEmail({ subject, html });
+
+  await sendPushNotification(strapi, {
+    title: '📅New Event Added',
+    body: konkaniTitle,
+    icon: '/temp-logo.webp',
+    data: {
+      url: eventLink,
+    },
+  });
 }
 
 export default {

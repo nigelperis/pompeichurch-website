@@ -31,8 +31,8 @@ export async function strapiPost<T>({
     headers: isFormData
       ? undefined
       : {
-        "Content-Type": "application/json",
-      },
+          "Content-Type": "application/json",
+        },
     body: isFormData ? body : JSON.stringify(body),
   });
 
