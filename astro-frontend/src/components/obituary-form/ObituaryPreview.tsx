@@ -81,18 +81,18 @@ export default function ObituaryPreview({ labels, lang, wards, relationTypes }: 
     : (form.ward || labels.ward);
 
   return (
-    <div className="bg-white border border-gray-200 overflow-hidden w-[280px] md:w-[250px] flex flex-col transition-transform duration-200 ease-in-out md:h-[490px] m-auto">
+    <div className="bg-white border border-gray-200 overflow-hidden w-[280px] md:w-[250px] flex flex-col transition-transform duration-200 ease-in-out md:h-auto m-auto">
       <div className="aspect-[4/5] bg-gray-100">
         {form.imageUrl ? (
           <img src={form.imageUrl} alt="Image Preview" className="object-cover w-full h-full" />
         ) : null}
       </div>
-      <div className="p-3 font-noto-sans-kannada space-y-1 text-slate-800 text-sm">
-        <h3 className="line-clamp-1 text-xl font-bold text-slate-900">
+      <div className="p-3 space-y-1 text-slate-800 text-base">
+        <h3 className="line-clamp-3 text-xl font-bold text-slate-900">
           {lang === "kok" ? form.konkaniName || labels.nameKok : form.englishName || labels.nameEn}
         </h3>
-        <p className="line-clamp-1 md:text-base text-lg text-slate-700">
-          {relation && (<>              <strong>{relation.value}:</strong>&nbsp;            </>)}
+        <p className="line-clamp-3 md:text-base text-lg text-slate-700">
+          {relation && (<>              <strong>{relationLabel}:</strong>&nbsp;            </>)}
           {lang === "kok" ? (form.relNameKok || labels.relNameKok) : (form.relNameEn || labels.relNameEn)}
         </p>
         <p className="line-clamp-1 md:text-base text-lg text-slate-700">

@@ -143,6 +143,10 @@ export const navLinks = [
         title: "nav.events",
         href: "/events",
       },
+      {
+        title: "nav.obituary-form",
+        href: "/submit-obituary",
+      },
     ],
   },
   {

@@ -31,13 +31,13 @@ const relationTypes = [
 <main data-lang={lang} class="mx-auto max-w-5xl bg-white">
   <div class="px-4 py-10 sm:px-6 lg:px-8">
     <h1 class="font-bold border-natgeo-yellow mb-6 border-l-4 pl-3 text-3xl lg:text-4xl">
-      {t.title}
+      {t.obituaryPageTitle}
     </h1>
     <div class="flex flex-col lg:flex-row gap-10">
       <form class="flex-1 space-y-6" enctype="multipart/form-data" id="obituaryForm">
         <!-- Full Name English -->
         <div>
-          <label for="englishName" class="block text-sm font-medium text-gray-700 mb-1">
+          <label for="englishName" class="block text-base font-medium text-gray-700 mb-1">
             {t.nameEn} {lang === 'en' && <span class="text-red-600" id="en-required">*</span>}
           </label>
           <input
@@ -52,7 +52,7 @@ const relationTypes = [
 
         <!-- Full Name Konkani -->
         <div>
-          <label for="konkaniName" class="block text-sm font-medium text-gray-700 mb-1">
+          <label for="konkaniName" class="block text-base font-medium text-gray-700 mb-1">
             {t.nameKok} {lang === 'kok' && <span class="text-red-600" id="kok-required">*</span>}
           </label>
           <input
@@ -67,7 +67,7 @@ const relationTypes = [
 
         <!-- Age -->
         <div>
-          <label for="age" class="block text-sm font-medium text-gray-700 mb-1">
+          <label for="age" class="block text-base font-medium text-gray-700 mb-1">
             {t.age} <span class="text-red-600">*</span>
           </label>
           <input
@@ -83,7 +83,7 @@ const relationTypes = [
 
         <!-- Ward -->
         <div class="relative" id="ward-dropdown-wrap">
-          <label for="ward-btn" class="block text-sm font-medium text-gray-700 mb-1">
+          <label for="ward-btn" class="block text-base font-medium text-gray-700 mb-1">
             {t.ward} <span class="text-red-600">*</span>
           </label>
           <button
@@ -117,7 +117,7 @@ const relationTypes = [
 
         <!-- Date of Death -->
         <div class="relative">
-          <label for="dateOfDeath" class="block text-sm font-medium text-gray-700 mb-1">
+          <label for="dateOfDeath" class="block text-base font-medium text-gray-700 mb-1">
             {t.death} <span class="text-red-600">*</span>
           </label>
           <input
@@ -135,7 +135,7 @@ const relationTypes = [
 
         <!-- Relation Type -->
         <div class="relative" id="reltype-dropdown-wrap">
-          <label for="reltype-btn" class="block text-sm font-medium text-gray-700 mb-1">
+          <label for="reltype-btn" class="block text-base font-medium text-gray-700 mb-1">
             {t.relType}
           </label>
           <button
@@ -169,7 +169,7 @@ const relationTypes = [
 
         <!-- Relative's Name -->
         <div>
-          <label for="relNameEn" class="block text-sm font-medium text-gray-700 mb-1">
+          <label for="relNameEn" class="block text-base font-medium text-gray-700 mb-1">
             {t.relNameEn}
           </label>
           <input
@@ -182,7 +182,7 @@ const relationTypes = [
         </div>
 
         <div>
-          <label for="relNameKok" class="block text-sm font-medium text-gray-700 mb-1">
+          <label for="relNameKok" class="block text-base font-medium text-gray-700 mb-1">
             {t.relNameKok}
           </label>
           <input
@@ -196,7 +196,7 @@ const relationTypes = [
 
         <!-- Sender Name -->
         <div>
-          <label for="senderName" class="block text-sm font-medium text-gray-700 mb-1">
+          <label for="senderName" class="block text-base font-medium text-gray-700 mb-1">
             {t.sender} <span class="text-red-600">*</span>
           </label>
           <input
@@ -217,7 +217,7 @@ const relationTypes = [
 
         <!-- Upload Image -->
         <div>
-          <label for="imageFile" class="block text-sm font-medium text-gray-600 mb-1">
+          <label for="imageFile" class="block text-base font-medium text-gray-600 mb-1">
             {t.image}
           </label>
           <input
@@ -225,7 +225,7 @@ const relationTypes = [
             name="imageFile"
             id="imageFile"
             accept="image/*"
-            class="w-full text-gray-600 font-medium text-sm bg-white border border-gray-300 file:cursor-pointer cursor-pointer file:border-0 file:py-3 file:px-4 file:mr-4 file:bg-gray-100 file:hover:bg-gray-200 file:text-gray-600"
+            class="w-full text-gray-600 font-medium text-base bg-white border border-gray-300 file:cursor-pointer cursor-pointer file:border-0 file:py-3 file:px-4 file:mr-4 file:bg-gray-100 file:hover:bg-gray-200 file:text-gray-600"
           />
           <p class="text-xs text-red-600 mt-1">{t.imageHelp}</p>
         </div>
@@ -240,7 +240,7 @@ const relationTypes = [
           </button>
         </div>
 
-        <p id="submit-status" class="text-center text-sm text-gray-600"></p>
+        <p id="submit-status" class="text-center text-base text-gray-600"></p>
       </form>
 
       <!-- Preview -->
@@ -267,121 +267,170 @@ const relationTypes = [
   </div>
 
   <script>
-    declare global {
-      interface Window {
-        isObituaryFormDirty?: boolean;
+  declare global {
+    interface Window {
+      isObituaryFormDirty?: boolean;
+    }
+  }
+
+  import { sendReviewWithAttachment } from "~/helpers/send-obituary-mail";
+
+  // Helper to get language from <main data-lang>
+  function getPageLang() {
+    return document.querySelector("main[data-lang]")?.getAttribute("data-lang") || "en";
+  }
+
+  function emitFormUpdate() {
+    const form = document.getElementById("obituaryForm");
+    if (!(form instanceof HTMLFormElement)) return;
+    const formData = new FormData(form);
+    const detail = {
+      englishName: formData.get("englishName")?.toString() || "",
+      konkaniName: formData.get("konkaniName")?.toString() || "",
+      relationType: formData.get("relationType")?.toString() || "",
+      relNameEn: formData.get("relNameEn")?.toString() || "",
+      relNameKok: formData.get("relNameKok")?.toString() || "",
+      age: formData.get("age")?.toString() || "",
+      ward: formData.get("ward")?.toString() || "",
+      dateOfDeath: formData.get("dateOfDeath")?.toString() || "",
+    };
+    window.dispatchEvent(new CustomEvent("obituary-form-update", { detail }));
+  }
+
+  function handleImageInput(event: Event) {
+    const input = event.target;
+    if (!(input instanceof HTMLInputElement) || !input.files || !input.files[0]) {
+      window.dispatchEvent(new CustomEvent("obituary-image-preview", { detail: { imageUrl: "" } }));
+      return;
+    }
+    const file = input.files[0];
+    if (file.size > 500 * 1024) {
+      alert("Image must be less than 500KB");
+      input.value = "";
+      window.dispatchEvent(new CustomEvent("obituary-image-preview", { detail: { imageUrl: "" } }));
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (typeof reader.result === "string") {
+        window.dispatchEvent(
+          new CustomEvent("obituary-image-preview", { detail: { imageUrl: reader.result } })
+        );
       }
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function showToast(message = "Your submission was successful!") {
+    const toast = document.getElementById("toast");
+    if (toast) {
+      const textSpan = document.getElementById("toast-text");
+      if (textSpan) textSpan.textContent = message;
+      toast.classList.remove("opacity-0");
+      toast.classList.add("opacity-100");
+      toast.style.pointerEvents = "auto";
+      setTimeout(() => {
+        toast.classList.remove("opacity-100");
+        toast.classList.add("opacity-0");
+        toast.style.pointerEvents = "none";
+      }, 4000);
     }
-    import { sendReviewWithAttachment } from "~/helpers/send-obituary-mail";
+  }
 
-    // Helper to get language from <main data-lang>
-    function getPageLang() {
-      return document.querySelector("main[data-lang]")?.getAttribute("data-lang") || "en";
-    }
+  function setupDropdown({
+    btnId,
+    menuId,
+    wrapId,
+    labelId,
+    inputId,
+    dataAttr,
+  }: {
+    btnId: string;
+    menuId: string;
+    wrapId: string;
+    labelId: string;
+    inputId: string;
+    dataAttr: string;
+  }) {
+    const btn = document.getElementById(btnId);
+    const menu = document.getElementById(menuId);
+    const wrap = document.getElementById(wrapId);
+    const label = document.getElementById(labelId);
+    const input = document.getElementById(inputId);
 
-    function emitFormUpdate() {
-      const form = document.getElementById("obituaryForm");
-      if (!(form instanceof HTMLFormElement)) return;
-      const formData = new FormData(form);
-      const detail = {
-        englishName: formData.get("englishName")?.toString() || "",
-        konkaniName: formData.get("konkaniName")?.toString() || "",
-        relationType: formData.get("relationType")?.toString() || "",
-        relNameEn: formData.get("relNameEn")?.toString() || "",
-        relNameKok: formData.get("relNameKok")?.toString() || "",
-        age: formData.get("age")?.toString() || "",
-        ward: formData.get("ward")?.toString() || "",
-        dateOfDeath: formData.get("dateOfDeath")?.toString() || "",
-      };
-      window.dispatchEvent(new CustomEvent("obituary-form-update", { detail }));
-    }
+    if (!(btn && menu && wrap && label && input)) return;
 
-    function handleImageInput(event: Event) {
-      const input = event.target;
-      if (!(input instanceof HTMLInputElement) || !input.files || !input.files[0]) {
-        window.dispatchEvent(new CustomEvent("obituary-image-preview", { detail: { imageUrl: "" } }));
-        return;
-      }
-      const file = input.files[0];
-      if (file.size > 500 * 1024) {
-        alert("Image must be less than 500KB");
-        input.value = "";
-        window.dispatchEvent(new CustomEvent("obituary-image-preview", { detail: { imageUrl: "" } }));
-        return;
-      }
-      const reader = new FileReader();
-      reader.onload = () => {
-        if (typeof reader.result === "string") {
-          window.dispatchEvent(
-            new CustomEvent("obituary-image-preview", { detail: { imageUrl: reader.result } })
-          );
-        }
-      };
-      reader.readAsDataURL(file);
-    }
+    btn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      menu.classList.toggle("hidden");
+    });
 
-    function showToast(message = "Your submission was successful!") {
-      const toast = document.getElementById("toast");
-      if (toast) {
-        const textSpan = document.getElementById("toast-text");
-        if (textSpan) textSpan.textContent = message;
-        toast.classList.remove("opacity-0");
-        toast.classList.add("opacity-100");
-        toast.style.pointerEvents = "auto";
-        setTimeout(() => {
-          toast.classList.remove("opacity-100");
-          toast.classList.add("opacity-0");
-          toast.style.pointerEvents = "none";
-        }, 4000);
-      }
-    }
-
-    function setupDropdown({
-      btnId,
-      menuId,
-      wrapId,
-      labelId,
-      inputId,
-      dataAttr,
-    }: {
-      btnId: string;
-      menuId: string;
-      wrapId: string;
-      labelId: string;
-      inputId: string;
-      dataAttr: string;
-    }) {
-      const btn = document.getElementById(btnId);
-      const menu = document.getElementById(menuId);
-      const wrap = document.getElementById(wrapId);
-      const label = document.getElementById(labelId);
-      const input = document.getElementById(inputId);
-
-      if (!(btn && menu && wrap && label && input)) return;
-
-      btn.addEventListener("click", function (e) {
-        e.stopPropagation();
-        menu.classList.toggle("hidden");
+    Array.from(menu.querySelectorAll(`[${dataAttr}]`)).forEach((item) => {
+      item.addEventListener("click", (event) => {
+        const target = event.currentTarget as HTMLElement;
+        label.textContent = target.textContent;
+        (input as HTMLInputElement).value = target.getAttribute(dataAttr) || "";
+        input.dispatchEvent(new Event("input", { bubbles: true }));
+        menu.classList.add("hidden");
       });
+    });
 
-      Array.from(menu.querySelectorAll(`[${dataAttr}]`)).forEach((item) => {
-        item.addEventListener("click", (event) => {
-          const target = event.currentTarget as HTMLElement;
-          label.textContent = target.textContent;
-          (input as HTMLInputElement).value = target.getAttribute(dataAttr) || "";
-          const inputEvent = new Event("input", { bubbles: true });
-          input.dispatchEvent(inputEvent);
-          menu.classList.add("hidden");
-        });
-      });
+    document.addEventListener("mousedown", function (e) {
+      if (!wrap.contains(e.target as Node)) {
+        menu.classList.add("hidden");
+      }
+    });
+  }
 
-      document.addEventListener("mousedown", function (e) {
-        if (!wrap.contains(e.target as Node)) {
-          menu.classList.add("hidden");
-        }
-      });
+  // Dirty Form Logic
+  function getCurrentFormData(): string {
+    const form = document.getElementById("obituaryForm") as HTMLFormElement;
+    if (!form) return "";
+    const fd = new FormData(form);
+    const obj: Record<string, any> = {};
+    for (const [k, v] of fd.entries()) {
+      obj[k as string] = v;
     }
+    return JSON.stringify(obj);
+  }
 
+  let initialData: string | null = null;
+
+  window.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("obituaryForm") as HTMLFormElement;
+    if (!form) return;
+
+    initialData = getCurrentFormData();
+    window.isObituaryFormDirty = false;
+
+    function checkDirty() {
+      window.isObituaryFormDirty = getCurrentFormData() !== initialData;
+    }
+    form.addEventListener("input", checkDirty);
+    form.addEventListener("change", checkDirty);
+
+    form.addEventListener("submit", () => {
+      setTimeout(() => {
+        initialData = getCurrentFormData();
+        window.isObituaryFormDirty = false;
+      }, 50);
+    });
+
+    form.addEventListener("reset", () => {
+      setTimeout(() => {
+        initialData = getCurrentFormData();
+        window.isObituaryFormDirty = false;
+      }, 50);
+    });
+
+    window.addEventListener("beforeunload", (e) => {
+      if (window.isObituaryFormDirty) {
+        e.preventDefault();
+        e.returnValue = "";
+      }
+    });
+
+    // Dropdowns
     setupDropdown({
       btnId: "ward-btn",
       menuId: "ward-menu",
@@ -390,7 +439,6 @@ const relationTypes = [
       inputId: "ward-input",
       dataAttr: "data-ward",
     });
-
     setupDropdown({
       btnId: "reltype-btn",
       menuId: "reltype-menu",
@@ -400,111 +448,62 @@ const relationTypes = [
       dataAttr: "data-reltype",
     });
 
-    document.addEventListener("DOMContentLoaded", async () => {
-      const form = document.getElementById("obituaryForm") as HTMLFormElement;
-      const pageLang = getPageLang();
-      if (form instanceof HTMLFormElement) {
-        form.addEventListener("input", emitFormUpdate);
-        emitFormUpdate(); // initial
+    // Emit initial form data once for the preview component
+    form.addEventListener("input", emitFormUpdate);
+    emitFormUpdate();
 
-        // Image input listener
-        const imageInput = form.querySelector('input[name="imageFile"]');
-        if (imageInput instanceof HTMLInputElement) {
-          imageInput.addEventListener("change", handleImageInput);
-        }
-
-        // Show toast on submit
-        form.addEventListener("submit", async (event) => {
-          event.preventDefault();
-
-          // Honeypot check
-          const websiteInput = form.querySelector('input[name="website"]');
-          if (websiteInput instanceof HTMLInputElement && websiteInput.value !== "") {
-            alert("Spam detected.");
-            return false;
-          }
-
-          const formData = new FormData(form);
-
-          // Konkani script check
-          const konkaniName = formData.get("konkaniName")?.toString() || "";
-          function isKonkaniScript(text: string) {
-            // Unicode block for Kannada: U+0C80–U+0CFF
-            return /[\u0C80-\u0CFF]/.test(text);
-          }
-          if (pageLang === "kok" && konkaniName.trim() !== "" && !isKonkaniScript(konkaniName)) {
-            alert("Please enter the full name in Konkani script (Kannada letters).");
-            return;
-          }
-
-
-
-  // Validate file size by grabbing just “imageFile”
-  const maybeFile = formData.get("imageFile");
-  if (maybeFile instanceof File && maybeFile.size > 500 * 1024) {
-    alert("Image must be less than 500KB");
-    return;
-  }
-
-  try {
-   if (maybeFile instanceof File) {
-     console.log("File details:", maybeFile.name, maybeFile.size, maybeFile.type);
-   }
-
-    await sendReviewWithAttachment(formData);
-            showToast();
-
-            // Reset form and preview
-            form.reset();
-            emitFormUpdate();
-            window.dispatchEvent(new CustomEvent("obituary-image-preview", { detail: { imageUrl: "" } }));
-          } catch (err) {
-            console.error(err);
-            alert("There was an error submitting the form.");
-          }
-        });
-      }
-    });
-
-    // Track initial form data to check for unsaved changes
-    let initialData: string | null = null;
-
-    function getCurrentFormData(): string {
-      const form = document.getElementById("obituaryForm") as HTMLFormElement;
-      if (!form) return "";
-      const fd = new FormData(form);
-      const obj: Record<string, any> = {};
-      for (const [k, v] of fd.entries()) obj[k as string] = v;
-      return JSON.stringify(obj);
+    // Image preview logic
+    const imageInput = form.querySelector('input[name="imageFile"]');
+    if (imageInput instanceof HTMLInputElement) {
+      imageInput.addEventListener("change", handleImageInput);
     }
 
-    document.addEventListener("DOMContentLoaded", () => {
-      const form = document.getElementById("obituaryForm");
-      if (!form) return;
+    // Form submission logic
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
 
-      initialData = getCurrentFormData();
-
-      function checkDirty() {
-        window.isObituaryFormDirty = getCurrentFormData() !== initialData;
+      // Honeypot check
+      const websiteInput = form.querySelector('input[name="website"]');
+      if (websiteInput instanceof HTMLInputElement && websiteInput.value !== "") {
+        alert("Spam detected.");
+        return false;
       }
 
-      form.addEventListener("input", checkDirty);
-      form.addEventListener("change", checkDirty);
+      const formData = new FormData(form);
+      const pageLang = getPageLang();
+      const konkaniName = formData.get("konkaniName")?.toString() || "";
 
-      form.addEventListener("submit", () => {
-        setTimeout(() => {
-          initialData = getCurrentFormData();
-          window.isObituaryFormDirty = false;
-        }, 50);
-      });
-      form.addEventListener("reset", () => {
-        setTimeout(() => {
-          initialData = getCurrentFormData();
-          window.isObituaryFormDirty = false;
-        }, 50);
-      });
+      function isKonkaniScript(text: string) {
+        return /[\u0C80-\u0CFF]/.test(text); // Kannada block
+      }
+      if (pageLang === "kok" && konkaniName.trim() !== "" && !isKonkaniScript(konkaniName)) {
+        alert("Please enter the full name in Konkani script (Kannada letters).");
+        return;
+      }
 
-      window.isObituaryFormDirty = false;
+      // Validate file size
+      const maybeFile = formData.get("imageFile");
+      if (maybeFile instanceof File && maybeFile.size > 500 * 1024) {
+        alert("Image must be less than 500KB");
+        return;
+      }
+
+      try {
+        if (maybeFile instanceof File) {
+          console.log("File details:", maybeFile.name, maybeFile.size, maybeFile.type);
+        }
+        await sendReviewWithAttachment(formData);
+        showToast();
+
+        // Reset form + preview
+        form.reset();
+        emitFormUpdate();
+        window.dispatchEvent(new CustomEvent("obituary-image-preview", { detail: { imageUrl: "" } }));
+      } catch (err) {
+        console.error(err);
+        alert("There was an error submitting the form.");
+      }
     });
-  </script>
+  });
+</script>
 </main>
