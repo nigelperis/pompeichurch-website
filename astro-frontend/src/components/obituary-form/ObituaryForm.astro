@@ -6,26 +6,26 @@ import ObituaryPreview from './ObituaryPreview';
 
 const { labels, lang } = Astro.props;
 const t = labels;
+
 const wards = [
-{ key: "ward.addoor-ward", value: "Addoor" },
-{ key: "ward.church-ward", value: "Church" },
-{ key: "ward.gurpur-ward", value: "Gurpur" },
-{ key: "ward.kandar-a-ward", value: "Kandar A" },
-{ key: "ward.kandar-b-ward", value: "Kandar B" },
-{ key: "ward.kowdoor-a-ward", value: "Kowdoor A" },
-{ key: "ward.kowdoor-b-ward", value: "Kowdoor B" },
-{ key: "ward.monel-ward", value: "Monel" },
-{ key: "ward.pompei-a-ward", value: "Pompei A" },
-{ key: "ward.pompei-b-ward", value: "Pompei B" },
+  { key: "ward.addoor-ward", value: "Addoor" },
+  { key: "ward.church-ward", value: "Church" },
+  { key: "ward.gurpur-ward", value: "Gurpur" },
+  { key: "ward.kandar-a-ward", value: "Kandar A" },
+  { key: "ward.kandar-b-ward", value: "Kandar B" },
+  { key: "ward.kowdoor-a-ward", value: "Kowdoor A" },
+  { key: "ward.kowdoor-b-ward", value: "Kowdoor B" },
+  { key: "ward.monel-ward", value: "Monel" },
+  { key: "ward.pompei-a-ward", value: "Pompei A" },
+  { key: "ward.pompei-b-ward", value: "Pompei B" },
 ];
 
 const relationTypes = [
-{ key: "wifeOf", value: "W/O", label: "Wife of" },
-{ key: "husbandOf", value: "H/O", label: "Husband of" },
-{ key: "sonOf", value: "S/O", label: "Son of" },
-{ key: "daughterOf", value: "D/O", label: "Daughter of" },
+  { key: "wifeOf", value: "W/O", label: "Wife of" },
+  { key: "husbandOf", value: "H/O", label: "Husband of" },
+  { key: "sonOf", value: "S/O", label: "Son of" },
+  { key: "daughterOf", value: "D/O", label: "Daughter of" },
 ];
-
 ---
 
 <main data-lang={lang} class="mx-auto max-w-5xl bg-white">
@@ -40,9 +40,14 @@ const relationTypes = [
           <label for="englishName" class="block text-sm font-medium text-gray-700 mb-1">
             {t.nameEn} {lang === 'en' && <span class="text-red-600" id="en-required">*</span>}
           </label>
-          <input type="text" name="englishName" id="englishName" placeholder={t.nameEnPH}
+          <input
+            type="text"
+            name="englishName"
+            id="englishName"
+            placeholder={t.nameEnPH}
             class="block w-full border border-gray-300 p-3 focus:outline-gray-300 placeholder-gray-600"
-            required={lang==='en' ? true : undefined} />
+            required={lang==='en' ? true : undefined}
+          />
         </div>
 
         <!-- Full Name Konkani -->
@@ -50,9 +55,14 @@ const relationTypes = [
           <label for="konkaniName" class="block text-sm font-medium text-gray-700 mb-1">
             {t.nameKok} {lang === 'kok' && <span class="text-red-600" id="kok-required">*</span>}
           </label>
-          <input type="text" name="konkaniName" id="konkaniName" placeholder={t.nameKokPH}
+          <input
+            type="text"
+            name="konkaniName"
+            id="konkaniName"
+            placeholder={t.nameKokPH}
             class="block w-full border border-gray-300 p-3 focus:outline-gray-300 placeholder-gray-600"
-            required={lang==='kok' ? true : undefined} />
+            required={lang==='kok' ? true : undefined}
+          />
         </div>
 
         <!-- Age -->
@@ -60,8 +70,15 @@ const relationTypes = [
           <label for="age" class="block text-sm font-medium text-gray-700 mb-1">
             {t.age} <span class="text-red-600">*</span>
           </label>
-          <input type="number" name="age" id="age" required min="0" placeholder={t.agePH}
-            class="block w-full border border-gray-300 p-3 focus:outline-gray-300 placeholder-gray-600" />
+          <input
+            type="number"
+            name="age"
+            id="age"
+            required
+            min="0"
+            placeholder={t.agePH}
+            class="block w-full border border-gray-300 p-3 focus:outline-gray-300 placeholder-gray-600"
+          />
         </div>
 
         <!-- Ward -->
@@ -69,25 +86,32 @@ const relationTypes = [
           <label for="ward-btn" class="block text-sm font-medium text-gray-700 mb-1">
             {t.ward} <span class="text-red-600">*</span>
           </label>
-          <button id="ward-btn" type="button"
-            class="cursor-pointer w-full border border-gray-300 p-3 pr-10 appearance-none text-gray-700 bg-white flex justify-between items-center group-hover:outline-gray-300">
+          <button
+            id="ward-btn"
+            type="button"
+            class="cursor-pointer w-full border border-gray-300 p-3 pr-10 appearance-none text-gray-700 bg-white flex justify-between items-center group-hover:outline-gray-300"
+          >
             <span id="ward-btn-label">{t.wardPH}</span>
             <span class="pointer-events-none flex items-center">
-              <!-- Dropdown Icon -->
               <div class="pointer-events-none absolute right-3 top-1/2 text-gray-600">
                 <ChevronDown class="w-6 h-6" />
               </div>
             </span>
           </button>
-          <div id="ward-menu"
+          <div
+            id="ward-menu"
             class="absolute left-0 right-0 mt-1 z-20 bg-white border border-gray-300 max-h-26 overflow-y-auto hidden"
-            style="max-height: 7.5rem;">
-            {wards.map(ward => (
-            <div class="px-4 py-2 cursor-pointer hover:bg-gray-100" data-ward={ward.value}>
-              {t[ward.key] ?? ward.value}
-            </div>
+            style="max-height: 7.5rem;"
+          >
+            {wards.map((ward) => (
+              <div
+                class="px-4 py-2 cursor-pointer hover:bg-gray-100"
+                data-ward={ward.value}
+              >
+                {t[ward.key] ?? ward.value}
+              </div>
             ))}
-            <input type="hidden" name="ward" id="ward-input" required>
+            <input type="hidden" name="ward" id="ward-input" required />
           </div>
         </div>
 
@@ -96,10 +120,14 @@ const relationTypes = [
           <label for="dateOfDeath" class="block text-sm font-medium text-gray-700 mb-1">
             {t.death} <span class="text-red-600">*</span>
           </label>
-          <input type="date" name="dateOfDeath" id="dateOfDeath"
+          <input
+            type="date"
+            name="dateOfDeath"
+            id="dateOfDeath"
             class="custom-date-picker block w-full text-gray-700 border border-gray-300 p-3 pr-10 appearance-none focus:outline-none"
-            required placeholder="DD/MM/YYYY" />
-          <!-- Dropdown Icon -->
+            required
+            placeholder="DD/MM/YYYY"
+          />
           <div class="pointer-events-none absolute right-3 top-1/2 text-gray-600">
             <CalendarDays class="w-5 h-5" />
           </div>
@@ -110,26 +138,32 @@ const relationTypes = [
           <label for="reltype-btn" class="block text-sm font-medium text-gray-700 mb-1">
             {t.relType}
           </label>
-          <button id="reltype-btn" type="button"
-            class="cursor-pointer w-full border border-gray-300 p-3 pr-10 appearance-none focus:outline-none text-gray-700 bg-white flex justify-between items-center">
+          <button
+            id="reltype-btn"
+            type="button"
+            class="cursor-pointer w-full border border-gray-300 p-3 pr-10 appearance-none focus:outline-none text-gray-700 bg-white flex justify-between items-center"
+          >
             <span id="reltype-btn-label">{t.relTypePH}</span>
             <span class="pointer-events-none flex items-center">
-              <!-- Dropdown Icon -->
               <div class="pointer-events-none absolute right-3 top-1/2 text-gray-600">
                 <ChevronDown class="w-6 h-6" />
               </div>
             </span>
           </button>
-          <div id="reltype-menu"
+          <div
+            id="reltype-menu"
             class="absolute left-0 right-0 mt-1 z-20 bg-white border border-gray-300 max-h-26 overflow-y-auto hidden"
-            style="max-height: 7.5rem;">
-            <!-- Relation Type options -->
-            {relationTypes.map(rt => (
-            <div class="px-4 py-2 cursor-pointer hover:bg-gray-100" data-reltype={rt.value}>
-              {t[rt.key] ?? rt.label}
-            </div>
+            style="max-height: 7.5rem;"
+          >
+            {relationTypes.map((rt) => (
+              <div
+                class="px-4 py-2 cursor-pointer hover:bg-gray-100"
+                data-reltype={rt.value}
+              >
+                {t[rt.key] ?? rt.label}
+              </div>
             ))}
-            <input type="hidden" name="relationType" id="reltype-input">
+            <input type="hidden" name="relationType" id="reltype-input" />
           </div>
         </div>
 
@@ -138,16 +172,26 @@ const relationTypes = [
           <label for="relNameEn" class="block text-sm font-medium text-gray-700 mb-1">
             {t.relNameEn}
           </label>
-          <input type="text" name="relNameEn" id="relNameEn" placeholder={t.relNameEnPH}
-            class="block w-full border border-gray-300 p-3 focus:outline-gray-300 placeholder-gray-600" />
+          <input
+            type="text"
+            name="relNameEn"
+            id="relNameEn"
+            placeholder={t.relNameEnPH}
+            class="block w-full border border-gray-300 p-3 focus:outline-gray-300 placeholder-gray-600"
+          />
         </div>
 
         <div>
           <label for="relNameKok" class="block text-sm font-medium text-gray-700 mb-1">
             {t.relNameKok}
           </label>
-          <input type="text" name="relNameKok" id="relNameKok" placeholder={t.relNameKokPH}
-            class="block w-full border border-gray-300 p-3 focus:outline-gray-300 placeholder-gray-600" />
+          <input
+            type="text"
+            name="relNameKok"
+            id="relNameKok"
+            placeholder={t.relNameKokPH}
+            class="block w-full border border-gray-300 p-3 focus:outline-gray-300 placeholder-gray-600"
+          />
         </div>
 
         <!-- Sender Name -->
@@ -155,8 +199,14 @@ const relationTypes = [
           <label for="senderName" class="block text-sm font-medium text-gray-700 mb-1">
             {t.sender} <span class="text-red-600">*</span>
           </label>
-          <input type="text" name="senderName" id="senderName" required placeholder={t.senderPH}
-            class="block w-full border border-gray-300 p-3 focus:outline-gray-300 placeholder-gray-600" />
+          <input
+            type="text"
+            name="senderName"
+            id="senderName"
+            required
+            placeholder={t.senderPH}
+            class="block w-full border border-gray-300 p-3 focus:outline-gray-300 placeholder-gray-600"
+          />
         </div>
 
         <!-- Honeypot Spam Trap (hidden) -->
@@ -170,15 +220,22 @@ const relationTypes = [
           <label for="imageFile" class="block text-sm font-medium text-gray-600 mb-1">
             {t.image}
           </label>
-          <input type="file" name="imageFile" id="imageFile" accept="image/*"
-            class="w-full text-gray-600 font-medium text-sm bg-white border border-gray-300 file:cursor-pointer cursor-pointer file:border-0 file:py-3 file:px-4 file:mr-4 file:bg-gray-100 file:hover:bg-gray-200 file:text-gray-600" />
+          <input
+            type="file"
+            name="imageFile"
+            id="imageFile"
+            accept="image/*"
+            class="w-full text-gray-600 font-medium text-sm bg-white border border-gray-300 file:cursor-pointer cursor-pointer file:border-0 file:py-3 file:px-4 file:mr-4 file:bg-gray-100 file:hover:bg-gray-200 file:text-gray-600"
+          />
           <p class="text-xs text-red-600 mt-1">{t.imageHelp}</p>
         </div>
 
         <!-- Submit Button -->
         <div class="flex justify-center">
-          <button type="submit"
-            class="min-w-48 w-fit font-semibold bg-natgeo-yellow border-3 border-amber-300 hover:bg-amber-300 py-2 px-6 cursor-pointer">
+          <button
+            type="submit"
+            class="min-w-48 w-fit font-semibold bg-natgeo-yellow border-3 border-amber-300 hover:bg-amber-300 py-2 px-6 cursor-pointer"
+          >
             {t.submit}
           </button>
         </div>
@@ -186,18 +243,25 @@ const relationTypes = [
         <p id="submit-status" class="text-center text-sm text-gray-600"></p>
       </form>
 
-      <!-- Preview(Used REACT) -->
+      <!-- Preview -->
       <div class="w-full lg:w-[260px] space-y-2">
         <h2 class="text-lg font-semibold text-gray-700">{t.preview}</h2>
-        <ObituaryPreview labels={Astro.props.labels} lang={Astro.props.lang} wards={wards} relationTypes={relationTypes}
-          client:load />
+        <ObituaryPreview
+          labels={Astro.props.labels}
+          lang={Astro.props.lang}
+          wards={wards}
+          relationTypes={relationTypes}
+          client:load
+        />
       </div>
     </div>
   </div>
 
   <!-- Toast Notification -->
-  <div id="toast"
-    class="fixed top-6 left-1/2 transform -translate-x-1/2 bg-green-600 text-white px-6 py-4 text-lg font-bold z-50 rounded-xl shadow-lg opacity-0 transition-opacity duration-300 pointer-events-none flex items-center gap-3">
+  <div
+    id="toast"
+    class="fixed top-6 left-1/2 transform -translate-x-1/2 bg-green-600 text-white px-6 py-4 text-lg font-bold z-50 rounded-xl shadow-lg opacity-0 transition-opacity duration-300 pointer-events-none flex items-center gap-3"
+  >
     <CheckMark class="w-6 h-6" />
     <span id="toast-text">{t.toastMsg}</span>
   </div>
@@ -210,28 +274,28 @@ const relationTypes = [
     }
     import { sendReviewWithAttachment } from "~/helpers/send-obituary-mail";
 
-    // Helper to get language from main
+    // Helper to get language from <main data-lang>
     function getPageLang() {
-      return document.querySelector('main[data-lang]')?.getAttribute('data-lang') || 'en';
+      return document.querySelector("main[data-lang]")?.getAttribute("data-lang") || "en";
     }
+
     function emitFormUpdate() {
       const form = document.getElementById("obituaryForm");
       if (!(form instanceof HTMLFormElement)) return;
       const formData = new FormData(form);
       const detail = {
-        englishName: formData.get("englishName") || "",
-        konkaniName: formData.get("konkaniName") || "",
-        relationType: formData.get("relationType") || "",
-        relNameEn: formData.get("relNameEn") || "",
-        relNameKok: formData.get("relNameKok") || "",
-        age: formData.get("age") || "",
-        ward: formData.get("ward") || "",
-        dateOfDeath: formData.get("dateOfDeath") || "",
+        englishName: formData.get("englishName")?.toString() || "",
+        konkaniName: formData.get("konkaniName")?.toString() || "",
+        relationType: formData.get("relationType")?.toString() || "",
+        relNameEn: formData.get("relNameEn")?.toString() || "",
+        relNameKok: formData.get("relNameKok")?.toString() || "",
+        age: formData.get("age")?.toString() || "",
+        ward: formData.get("ward")?.toString() || "",
+        dateOfDeath: formData.get("dateOfDeath")?.toString() || "",
       };
       window.dispatchEvent(new CustomEvent("obituary-form-update", { detail }));
     }
 
-    // Handle image file input
     function handleImageInput(event: Event) {
       const input = event.target;
       if (!(input instanceof HTMLInputElement) || !input.files || !input.files[0]) {
@@ -248,13 +312,14 @@ const relationTypes = [
       const reader = new FileReader();
       reader.onload = () => {
         if (typeof reader.result === "string") {
-          window.dispatchEvent(new CustomEvent("obituary-image-preview", { detail: { imageUrl: reader.result } }));
+          window.dispatchEvent(
+            new CustomEvent("obituary-image-preview", { detail: { imageUrl: reader.result } })
+          );
         }
       };
       reader.readAsDataURL(file);
     }
 
-    // Show toast on form submission
     function showToast(message = "Your submission was successful!") {
       const toast = document.getElementById("toast");
       if (toast) {
@@ -271,10 +336,21 @@ const relationTypes = [
       }
     }
 
-    // Dropdown Logic
-    function setupDropdown({ btnId, menuId, wrapId, labelId, inputId, dataAttr }:
-      { btnId: string; menuId: string; wrapId: string; labelId: string; inputId: string; dataAttr: string; }
-    ) {
+    function setupDropdown({
+      btnId,
+      menuId,
+      wrapId,
+      labelId,
+      inputId,
+      dataAttr,
+    }: {
+      btnId: string;
+      menuId: string;
+      wrapId: string;
+      labelId: string;
+      inputId: string;
+      dataAttr: string;
+    }) {
       const btn = document.getElementById(btnId);
       const menu = document.getElementById(menuId);
       const wrap = document.getElementById(wrapId);
@@ -283,45 +359,45 @@ const relationTypes = [
 
       if (!(btn && menu && wrap && label && input)) return;
 
-      btn.addEventListener('click', function (e) {
+      btn.addEventListener("click", function (e) {
         e.stopPropagation();
-        menu.classList.toggle('hidden');
+        menu.classList.toggle("hidden");
       });
 
-      Array.from(menu.querySelectorAll(`[${dataAttr}]`)).forEach(item => {
-        item.addEventListener('click', (event) => {
+      Array.from(menu.querySelectorAll(`[${dataAttr}]`)).forEach((item) => {
+        item.addEventListener("click", (event) => {
           const target = event.currentTarget as HTMLElement;
           label.textContent = target.textContent;
           (input as HTMLInputElement).value = target.getAttribute(dataAttr) || "";
-          const inputEvent = new Event('input', { bubbles: true });
+          const inputEvent = new Event("input", { bubbles: true });
           input.dispatchEvent(inputEvent);
-          menu.classList.add('hidden');
+          menu.classList.add("hidden");
         });
       });
 
-      document.addEventListener('mousedown', function (e) {
+      document.addEventListener("mousedown", function (e) {
         if (!wrap.contains(e.target as Node)) {
-          menu.classList.add('hidden');
+          menu.classList.add("hidden");
         }
       });
     }
 
     setupDropdown({
-      btnId: 'ward-btn',
-      menuId: 'ward-menu',
-      wrapId: 'ward-dropdown-wrap',
-      labelId: 'ward-btn-label',
-      inputId: 'ward-input',
-      dataAttr: 'data-ward'
+      btnId: "ward-btn",
+      menuId: "ward-menu",
+      wrapId: "ward-dropdown-wrap",
+      labelId: "ward-btn-label",
+      inputId: "ward-input",
+      dataAttr: "data-ward",
     });
 
     setupDropdown({
-      btnId: 'reltype-btn',
-      menuId: 'reltype-menu',
-      wrapId: 'reltype-dropdown-wrap',
-      labelId: 'reltype-btn-label',
-      inputId: 'reltype-input',
-      dataAttr: 'data-reltype'
+      btnId: "reltype-btn",
+      menuId: "reltype-menu",
+      wrapId: "reltype-dropdown-wrap",
+      labelId: "reltype-btn-label",
+      inputId: "reltype-input",
+      dataAttr: "data-reltype",
     });
 
     document.addEventListener("DOMContentLoaded", async () => {
@@ -331,13 +407,13 @@ const relationTypes = [
         form.addEventListener("input", emitFormUpdate);
         emitFormUpdate(); // initial
 
-        // Add handler for image file input
+        // Image input listener
         const imageInput = form.querySelector('input[name="imageFile"]');
         if (imageInput instanceof HTMLInputElement) {
           imageInput.addEventListener("change", handleImageInput);
         }
 
-        // showToast on submit
+        // Show toast on submit
         form.addEventListener("submit", async (event) => {
           event.preventDefault();
 
@@ -353,7 +429,7 @@ const relationTypes = [
           // Konkani script check
           const konkaniName = formData.get("konkaniName")?.toString() || "";
           function isKonkaniScript(text: string) {
-            // Kannada Unicode block
+            // Unicode block for Kannada: U+0C80–U+0CFF
             return /[\u0C80-\u0CFF]/.test(text);
           }
           if (pageLang === "kok" && konkaniName.trim() !== "" && !isKonkaniScript(konkaniName)) {
@@ -361,27 +437,28 @@ const relationTypes = [
             return;
           }
 
-          const imageFile = formData.get("imageFile");
-          if (imageFile instanceof File && imageFile.size > 500 * 1024) {
-            alert("Image must be less than 500KB");
-            return;
-          }
 
-          try {
-            for (const [key, value] of formData.entries()) {
-              if (value instanceof File) {
-                console.log("File details:", value.name, value.size, value.type);
-              }
-            }
-            await sendReviewWithAttachment(formData);
-            // Show Toast
+
+  // Validate file size by grabbing just “imageFile”
+  const maybeFile = formData.get("imageFile");
+  if (maybeFile instanceof File && maybeFile.size > 500 * 1024) {
+    alert("Image must be less than 500KB");
+    return;
+  }
+
+  try {
+   if (maybeFile instanceof File) {
+     console.log("File details:", maybeFile.name, maybeFile.size, maybeFile.type);
+   }
+
+    await sendReviewWithAttachment(formData);
             showToast();
+
             // Reset form and preview
             form.reset();
             emitFormUpdate();
             window.dispatchEvent(new CustomEvent("obituary-image-preview", { detail: { imageUrl: "" } }));
-          }
-          catch (err) {
+          } catch (err) {
             console.error(err);
             alert("There was an error submitting the form.");
           }
@@ -389,11 +466,10 @@ const relationTypes = [
       }
     });
 
-    // Track initial form data to check for changes
+    // Track initial form data to check for unsaved changes
     let initialData: string | null = null;
 
-    // Function to get current form data as JSON string
-    function getCurrentFormData() {
+    function getCurrentFormData(): string {
       const form = document.getElementById("obituaryForm") as HTMLFormElement;
       if (!form) return "";
       const fd = new FormData(form);
@@ -406,7 +482,6 @@ const relationTypes = [
       const form = document.getElementById("obituaryForm");
       if (!form) return;
 
-      // Save initial state
       initialData = getCurrentFormData();
 
       function checkDirty() {
@@ -416,7 +491,6 @@ const relationTypes = [
       form.addEventListener("input", checkDirty);
       form.addEventListener("change", checkDirty);
 
-      // On successful submit or reset, mark as not dirty
       form.addEventListener("submit", () => {
         setTimeout(() => {
           initialData = getCurrentFormData();
@@ -430,7 +504,6 @@ const relationTypes = [
         }, 50);
       });
 
-      // On initial load
       window.isObituaryFormDirty = false;
     });
   </script>

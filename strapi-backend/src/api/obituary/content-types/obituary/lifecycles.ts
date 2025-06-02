@@ -1,4 +1,4 @@
-import { SITE_URL } from "../../../../constants";
+import { SITE_URL } from "../../../../constants/index";
 import { sendEmail } from "../../../../utils/send-email";
 import { sendPushNotification } from "../../../../utils/send-push-notifications";
 
@@ -40,9 +40,9 @@ async function maybeSendObituaryEmail(result: any) {
   await sendEmail({ subject, html });
 
   await sendPushNotification(strapi, {
-    title: '🕊️ Obituary Added',
+    title: "🕊️ Obituary Added",
     body: konkaniName,
-    icon: '/temp-logo.webp',
+    icon: "/temp-logo.webp",
     data: {
       url: obituaryLink,
     },

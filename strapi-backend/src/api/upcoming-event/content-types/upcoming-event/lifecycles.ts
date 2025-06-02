@@ -1,13 +1,11 @@
 import { sendEmail } from "../../../../utils/send-email";
-import { UPCOMING_EVENTS } from "../../../../constants";
+import { UPCOMING_EVENTS } from "../../../../constants/index";
 import { sendPushNotification } from "../../../../utils/send-push-notifications";
 
 async function maybeSendUpcomingEventEmail(result: any) {
   if (!result.publishedAt) return;
 
-  const {
-    eventEndDate,
-  } = result;
+  const { eventEndDate } = result;
 
   const subject = `📢 New Upcoming Event Published`;
   const html = `
@@ -21,8 +19,8 @@ async function maybeSendUpcomingEventEmail(result: any) {
   await sendEmail({ subject, html });
 
   await sendPushNotification(strapi, {
-    title: '📢 New Upcoming Event Added',
-    icon: '/temp-logo.webp',
+    title: "📢 New Upcoming Event Added",
+    icon: "/temp-logo.webp",
     data: {
       url: UPCOMING_EVENTS,
     },

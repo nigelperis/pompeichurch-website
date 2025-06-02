@@ -1,4 +1,4 @@
-import { SITE_URL } from "../../../../constants";
+import { SITE_URL } from "../../../../constants/index";
 import { sendEmail } from "../../../../utils/send-email";
 import { sendPushNotification } from "../../../../utils/send-push-notifications";
 
@@ -37,9 +37,9 @@ async function maybeSendEventEmail(result: any) {
   await sendEmail({ subject, html });
 
   await sendPushNotification(strapi, {
-    title: '📅New Event Added',
+    title: "📅New Event Added",
     body: konkaniTitle,
-    icon: '/temp-logo.webp',
+    icon: "/temp-logo.webp",
     data: {
       url: eventLink,
     },
