@@ -9,6 +9,7 @@ import { Message } from "~/constants/message.ts";
 import { Locale } from "~/enums/locale";
 import { cn } from "~/helpers/cn";
 import { getWardNameKok } from "~/helpers/get-ward-names-kok";
+import PushNotification from "~/components/push-notification.astro";
 
 const url = new URL(Astro.url);
 const lang = getLangFromUrl(Astro.url) as Locale;
@@ -63,6 +64,7 @@ const obituaryUrl = new URL(
 >
   <main class="mx-auto max-w-4xl overflow-hidden bg-white">
     <section id="obituary" class="flex flex-col p-6 pb-4">
+      <PushNotification />
       <h1
         class={cn(
           "font-black border-natgeo-yellow  mb-4 border-l-4 pl-3 text-3xl lg:text-4xl",
