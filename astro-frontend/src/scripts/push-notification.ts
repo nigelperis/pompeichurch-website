@@ -30,8 +30,10 @@ export const pushNotification = async () => {
   const enableBtn = document.getElementById("enable-notifications");
   const dismissBtn = document.getElementById("dismiss-notifications");
   const eventsSection = document.getElementById("events");
+  const obituarySection = document.getElementById("obituary");
+  const targetSection = eventsSection || obituarySection;
 
-  if (!prompt || !enableBtn || !dismissBtn || !eventsSection) return;
+  if (!prompt || !enableBtn || !dismissBtn || !targetSection) return;
 
   // Check both browser permission AND backend subscription
   if (Notification.permission === "granted") {
@@ -75,7 +77,7 @@ export const pushNotification = async () => {
           !promptShown &&
           now >= deferredUntil
         ) {
-          console.log("Events section visible – showing notification prompt");
+          console.log("Target section visible – showing notification prompt");
           showPrompt();
           promptShown = true;
           observer.disconnect();
@@ -88,7 +90,7 @@ export const pushNotification = async () => {
     },
   );
 
-  observer.observe(eventsSection);
+  observer.observe(targetSection);
 
   enableBtn.addEventListener("click", async () => {
     if (!("Notification" in window)) {
