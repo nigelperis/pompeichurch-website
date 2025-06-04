@@ -25,7 +25,7 @@ COPY . .
 RUN pnpm run build
 
 # RUNNER STAGE
-FROM node:20-alpine3.20 as runner
+FROM node:22.16.0-alpine as runner
 RUN apk add --no-cache vips-dev
 RUN npm install --global -y corepack@latest
 ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0
