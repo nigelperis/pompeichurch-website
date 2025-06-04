@@ -28,8 +28,8 @@ const pageTitle = `Page ${currentPage} | Events | Pompei Church`;
 
 <Layout title={pageTitle}>
   <main class="mx-auto max-w-4xl overflow-hidden bg-white">
+    <PushNotification targetId="events"/>
     <section id="events" class="flex flex-col p-6">
-      <PushNotification />
       <h1
         class={cn(
           "font-black border-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl lg:text-4xl",

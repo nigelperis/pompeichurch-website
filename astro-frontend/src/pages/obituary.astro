@@ -63,8 +63,8 @@ const obituaryUrl = new URL(
   url={obituaryUrl}
 >
   <main class="mx-auto max-w-4xl overflow-hidden bg-white">
+    <PushNotification targetId="obituary"/>
     <section id="obituary" class="flex flex-col p-6 pb-4">
-      <PushNotification />
       <h1
         class={cn(
           "font-black border-natgeo-yellow  mb-4 border-l-4 pl-3 text-3xl lg:text-4xl",
