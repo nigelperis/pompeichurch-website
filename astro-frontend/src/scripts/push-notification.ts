@@ -33,62 +33,64 @@ export const pushNotification = async (): Promise<void> => {
     return;
   }
 
-  if (Notification.permission === "granted") {
-    const hasActiveSubscription = await checkBackendSubscription();
-    if (hasActiveSubscription) {
-      return;
+  setTimeout(async () => {
+    if (Notification.permission === "granted") {
+      const hasActiveSubscription = await checkBackendSubscription();
+      if (hasActiveSubscription) {
+        return;
+      }
+      console.log(
+        "Permission granted but no backend subscription found - showing prompt",
+      );
     }
-    console.log(
-      "Permission granted but no backend subscription found - showing prompt",
+
+    const deferredUntil = parseInt(
+      localStorage.getItem("notificationPromptDeferredUntil") || "0",
+      10,
     );
-  }
-
-  const deferredUntil = parseInt(
-    localStorage.getItem("notificationPromptDeferredUntil") || "0",
-    10,
-  );
-  const now = Date.now();
-  if (now < deferredUntil) {
-    return;
-  }
-
-  const showPrompt = () => {
-    prompt.classList.remove("hidden");
-    void prompt.offsetHeight;
-    prompt.classList.add("slide-in");
-  };
-
-  const hidePrompt = () => {
-    prompt.classList.add("slide-out");
-    setTimeout(() => {
-      prompt.classList.add("hidden");
-      prompt.classList.remove("slide-in", "slide-out");
-    }, 500);
-  };
-
-  showPrompt();
-  enableBtn.addEventListener("click", async () => {
-    if (!("Notification" in window)) {
-      alert("This browser does not support desktop notification.");
+    const now = Date.now();
+    if (now < deferredUntil) {
       return;
     }
 
-    const permission = await Notification.requestPermission();
-    if (permission === "granted") {
-      await registerPush();
-      alert("Thanks for enabling notifications!");
+    const showPrompt = () => {
+      prompt.classList.remove("hidden");
+      void prompt.offsetHeight;
+      prompt.classList.add("slide-in");
+    };
+
+    const hidePrompt = () => {
+      prompt.classList.add("slide-out");
+      setTimeout(() => {
+        prompt.classList.add("hidden");
+        prompt.classList.remove("slide-in", "slide-out");
+      }, 500);
+    };
+
+    showPrompt();
+    enableBtn.addEventListener("click", async () => {
+      if (!("Notification" in window)) {
+        alert("This browser does not support desktop notification.");
+        return;
+      }
+
+      const permission = await Notification.requestPermission();
+      if (permission === "granted") {
+        await registerPush();
+        alert("Thanks for enabling notifications!");
+        hidePrompt();
+      } else {
+        alert("Notifications permission denied.");
+      }
+    });
+
+    dismissBtn.addEventListener("click", () => {
+      const nextPromptTime = Date.now() + 2 * 24 * 60 * 60 * 1000; // 2 days
+      localStorage.setItem(
+        "notificationPromptDeferredUntil",
+        nextPromptTime.toString(),
+      );
       hidePrompt();
-    } else {
-      alert("Notifications permission denied.");
-    }
-  });
-
-  dismissBtn.addEventListener("click", () => {
-    const nextPromptTime = Date.now() + 2 * 24 * 60 * 60 * 1000; // 2 days
-    localStorage.setItem(
-      "notificationPromptDeferredUntil",
-      nextPromptTime.toString(),
-    );
-    hidePrompt();
-  });
+    });
+  }, 3000);
 };
