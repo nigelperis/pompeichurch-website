@@ -42,7 +42,7 @@ const t = useTranslations(lang);
     </div>
   </div>
 
-  <script type="module">
+  <script>
     import { pushNotification } from "~/scripts/push-notification";
     pushNotification({ targetId: Astro.props.targetId });
   </script>
