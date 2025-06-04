@@ -25,23 +25,19 @@ const checkBackendSubscription = async (): Promise<boolean> => {
   }
 };
 
-export const pushNotification = async () => {
+export const pushNotification = async (): Promise<void> => {
   const prompt = document.getElementById("notification-prompt");
   const enableBtn = document.getElementById("enable-notifications");
   const dismissBtn = document.getElementById("dismiss-notifications");
-  const eventsSection = document.getElementById("events");
-  const obituarySection = document.getElementById("obituary");
-  const targetSection = eventsSection || obituarySection;
+  if (!prompt || !enableBtn || !dismissBtn) {
+    return;
+  }
 
-  if (!prompt || !enableBtn || !dismissBtn || !targetSection) return;
-
-  // Check both browser permission AND backend subscription
   if (Notification.permission === "granted") {
     const hasActiveSubscription = await checkBackendSubscription();
     if (hasActiveSubscription) {
-      return; // Don't show prompt - everything is working
+      return;
     }
-    // If no backend subscription exists, continue to show prompt
     console.log(
       "Permission granted but no backend subscription found - showing prompt",
     );
@@ -52,11 +48,13 @@ export const pushNotification = async () => {
     10,
   );
   const now = Date.now();
-  let promptShown = false;
+  if (now < deferredUntil) {
+    return;
+  }
 
   const showPrompt = () => {
     prompt.classList.remove("hidden");
-    prompt.offsetHeight;
+    void prompt.offsetHeight;
     prompt.classList.add("slide-in");
   };
 
@@ -68,30 +66,7 @@ export const pushNotification = async () => {
     }, 500);
   };
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (
-          entry.isIntersecting &&
-          entry.intersectionRatio >= 0.3 &&
-          !promptShown &&
-          now >= deferredUntil
-        ) {
-          console.log("Target section visible – showing notification prompt");
-          showPrompt();
-          promptShown = true;
-          observer.disconnect();
-        }
-      });
-    },
-    {
-      threshold: [0.3],
-      rootMargin: "-20% 0px -20% 0px",
-    },
-  );
-
-  observer.observe(targetSection);
-
+  showPrompt();
   enableBtn.addEventListener("click", async () => {
     if (!("Notification" in window)) {
       alert("This browser does not support desktop notification.");
