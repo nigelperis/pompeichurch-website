@@ -15,9 +15,9 @@
     "@codemirror/lint": "^6.8.5",
     "@codemirror/search": "^6.5.11",
     "@codemirror/theme-one-dark": "^6.1.2",
-    "@strapi/plugin-cloud": "5.9.0",
-    "@strapi/plugin-users-permissions": "5.9.0",
-    "@strapi/strapi": "5.9.0",
+    "@strapi/plugin-cloud": "5.14.0",
+    "@strapi/plugin-users-permissions": "5.14.0",
+    "@strapi/strapi": "5.14.0",
     "pg": "8.8.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
@@ -33,7 +33,7 @@
     "typescript": "^5"
   },
   "engines": {
-    "node": ">=18.0.0",
+    "node": ">=22.16.0",
     "pnpm": ">=8.x.x"
   },
   "license": "MIT",
