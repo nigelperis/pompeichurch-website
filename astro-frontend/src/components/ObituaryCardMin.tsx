@@ -29,7 +29,7 @@ interface Props {
 // Simple lang detection from URL for label localization
 const lang =
   typeof window !== "undefined" &&
-  window.location.pathname.startsWith(`/${Locale.KOK}`)
+    window.location.pathname.startsWith(`/${Locale.KOK}`)
     ? Locale.KOK
     : Locale.EN;
 
@@ -81,7 +81,7 @@ export function FuneralInfoButton({
       className={[
         "absolute top-4 right-0 flex items-center px-4 py-1.5 rounded-l-full",
         "bg-white/80 backdrop-blur-md shadow-md border border-white/40 font-semibold text-black",
-        "transition-all duration-300 hover:bg-white/90 z-10 cursor-pointer",
+        "transition-all duration-300 hover:bg-white/90 z-5 cursor-pointer",
         "gap-1",
       ].join(" ")}
       onClick={onClick}
@@ -223,7 +223,7 @@ export default function ObituaryCardMin({
           </div>
         </div>
         {/* Overlay button also mobile only */}
-        <div className="absolute inset-0 z-10 flex items-center justify-center lg:hidden">
+        <div className="absolute inset-0 z-5 flex items-center justify-center lg:hidden">
           <a
             href={lang === Locale.KOK ? "/kok/obituary" : "/obituary"}
             className="from-natgeo-yellow to-natgeo-yellow hoverable-link border-natgeo-yellow border-b-2 bg-gradient-to-r px-2 py-1 inline-block text-xl font-bold text-black hover:border-transparent hover:text-black"
