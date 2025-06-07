@@ -72,3 +72,15 @@ html {
 .animated-background {
   animation: animatedBackground 2s ease-out forwards;
 }
+
+/* Hoverable link styles */
+.hoverable-link {
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 0;
+  transition: background-size 230ms ease-out;
+}
+
+.hoverable-link:hover {
+  background-size: 100% 100%;
+}
