@@ -44,19 +44,25 @@ const { title, description, image, url } = Astro.props;
 			content="width=device-width, initial-scale=1.0"
 		/>
 
-		<!-- Open Graph / Facebook -->
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content={url || "https://pompeichurch.in/"} />
 		<meta property="og:title" content={title || "Our Lady of Pompei Church | Gurpur Kaikamba"} />
-		<meta property="og:description" content={description || "Gurpur Parish, also known as Kowdur, is 19 km from Mangalore on the Moodbidri road, with deep historical and spiritual roots."} />
+		<meta property="og:description"		content={
+			lang === 'kok'
+				? "ಕೊಡ್ಯಾಳ್ ಥಾವ್ನ್ ಮೂಡಬಿದ್ರಿ ವೆಚ್ಯಾ ವಾಟೆರ್, ಲಗ್ಬಗ್ ೨೦ ಕಿ.ಮೀ ಪರಿಧಿ ಭಿತರ್ ಅಸ್ತಿತ್ವಾರ್ ಆಸ್ಚಿ ಪೊಂಪಯ್ ಮಾಯೆಕ್ ಸಮರ್ಪಿಲ್ಲಿ ಗುರ್ಪುರ್ ವ ಕೌಡೂರ್ ಫಿರ್ಗಜ್ ಆಪ್ಲ್ಯಾ ಗೂಂಡ್ ಐತಿಹಾಸಿಕ್ ಆನಿ ಆಧ್ಯಾತ್ಮಿಕ್ ಸಂಗ್ತಿನಿ ಭರೊನ್ ಜಿವಾಳ್ ಜಾವ್ನ್ ಆಸಾ"
+				: description || "Gurpur Parish, also known as Kowdur, is 19 km from Mangalore on the Moodbidri road, with deep historical and spiritual roots."
+		} />
 		<meta property="og:image" content={image || "https://pompeichurch.in/church-hero.jpg"} />
 		<meta property="og:image:alt" content={title || "Image of Our Lady of Pompei Church, Gurpur Kaikamba"} />
 
-		<!-- Twitter -->
 		<meta property="twitter:card" content="summary_large_image" />
 		<meta property="twitter:url" content={url || "https://pompeichurch.in/"} />
 		<meta property="twitter:title" content={title || "Our Lady of Pompei Church | Gurpur Kaikamba"} />
-		<meta property="twitter:description" content={description || "Gurpur Parish, also known as Kowdur, is 19 km from Mangalore on the Moodbidri road, with deep historical and spiritual roots."} />
+		<meta property="twitter:description" content={
+			lang === 'kok'
+				? "ಕೊಡ್ಯಾಳ್ ಥಾವ್ನ್ ಮೂಡಬಿದ್ರಿ ವೆಚ್ಯಾ ವಾಟೆರ್, ಲಗ್ಬಗ್ ೨೦ ಕಿ.ಮೀ ಪರಿಧಿ ಭಿತರ್ ಅಸ್ತಿತ್ವಾರ್ ಆಸ್ಚಿ ಪೊಂಪಯ್ ಮಾಯೆಕ್ ಸಮರ್ಪಿಲ್ಲಿ ಗುರ್ಪುರ್ ವ ಕೌಡೂರ್ ಫಿರ್ಗಜ್ ಆಪ್ಲ್ಯಾ ಗೂಂಡ್ ಐತಿಹಾಸಿಕ್ ಆನಿ ಆಧ್ಯಾತ್ಮಿಕ್ ಸಂಗ್ತಿನಿ ಭರೊನ್ ಜಿವಾಳ್ ಜಾವ್ನ್ ಆಸಾ"
+				: description || "Gurpur Parish, also known as Kowdur, is 19 km from Mangalore on the Moodbidri road, with deep historical and spiritual roots."
+		} />
 		<meta property="twitter:image" content={image || "https://pompeichurch.in/church-hero.jpg"} />
 		<meta property="twitter:image:alt" content={title || "Image of Our Lady of Pompei Church, Gurpur Kaikamba"} />
 
