@@ -55,7 +55,7 @@ const filteredEvents = upcomingEvents.filter((event) => {
               {filteredEvents[0].eventImage?.mime?.startsWith("video/") ? (
                 <NetworkVideo
                   src={filteredEvents[0].eventImage.url}
-                  class="w-full rounded-sm"
+                  class="w-full"
                   width={filteredEvents[0].eventImage.width || 0}
                   height={filteredEvents[0].eventImage.height || 0}
                   controls
@@ -87,7 +87,7 @@ const filteredEvents = upcomingEvents.filter((event) => {
                           ).toString()
                         : getPlaceholderImage()
                     }
-                    class="w-full rounded-sm"
+                    class="w-full"
                     width={filteredEvents[0].eventImage?.width || 0}
                     height={filteredEvents[0].eventImage?.height || 0}
                   />
@@ -154,7 +154,7 @@ const filteredEvents = upcomingEvents.filter((event) => {
               <div class="transition-transform duration-300 ease-in-out hover:[transform:scale(1.02)] hover:shadow-md max-h-[400px] flex items-center justify-center">
                 <NetworkVideo
                   src={event.eventImage.url}
-                  class="max-h-[400px] w-auto object-contain rounded-sm"
+                  class="max-h-[400px] w-auto object-contain"
                   width={event.eventImage.width || 0}
                   height={event.eventImage.height || 0}
                   controls
@@ -186,7 +186,7 @@ const filteredEvents = upcomingEvents.filter((event) => {
                         ).toString()
                       : getPlaceholderImage()
                   }
-                  class="max-h-[400px] w-auto object-contain rounded-sm"
+                  class="max-h-[400px] w-auto object-contain"
                   width={event.eventImage?.width || 0}
                   height={event.eventImage?.height || 0}
                 />
@@ -202,7 +202,7 @@ const filteredEvents = upcomingEvents.filter((event) => {
           <Image
             src={lang === Locale.KOK ? stayTunedKok : stayTuned}
             alt="Stay Tuned"
-            class="w-full rounded-lg"
+            class="w-full"
           />
         </div>
 
@@ -210,7 +210,7 @@ const filteredEvents = upcomingEvents.filter((event) => {
           <Image
             src={lang === Locale.KOK ? stayTunedKok : stayTuned}
             alt="Stay Tuned"
-            class="h-80 w-auto rounded-lg"
+            class="h-80 w-auto"
           />
         </div>
       </>

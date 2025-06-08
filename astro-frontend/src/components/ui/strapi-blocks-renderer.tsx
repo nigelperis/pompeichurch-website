@@ -45,7 +45,7 @@ function StrapiBlocksRenderer(props: StrapiBlocksProps) {
         image: ({ image }) => {
           return (
             <img
-              className="h-auto max-w-lg overflow-hidden rounded-md"
+              className="h-auto max-w-lg overflow-hidden"
               src={image.url}
               alt={image.alternativeText ?? undefined}
               width={image.width}

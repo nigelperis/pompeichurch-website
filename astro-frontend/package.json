@@ -13,9 +13,9 @@
     "lint:fix": "eslint ./src --fix"
   },
   "dependencies": {
-    "@astrojs/node": "^9.2.0",
-    "@astrojs/react": "4.2.4",
-    "@astrojs/sitemap": "^3.4.0",
+    "@astrojs/node": "9.2.2",
+    "@astrojs/react": "4.3.0",
+    "@astrojs/sitemap": "3.4.1",
     "@fontsource-variable/lora": "5.2.5",
     "@fontsource-variable/noto-sans-kannada": "5.2.5",
     "@fontsource-variable/roboto": "5.2.5",
@@ -23,7 +23,7 @@
     "@tailwindcss/vite": "^4.1.2",
     "@tsparticles/confetti": "3.8.1",
     "aos": "2.3.4",
-    "astro": "5.7.2",
+    "astro": "5.9.1",
     "astro-icon": "1.1.5",
     "clsx": "2.1.1",
     "date-fns": "4.1.0",

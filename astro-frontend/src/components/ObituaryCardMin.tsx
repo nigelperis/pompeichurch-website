@@ -208,10 +208,10 @@ export default function ObituaryCardMin({
               </div>
               <div className="flex flex-1 flex-col justify-start space-y-1 p-3">
                 <div className="space-y-1">
-                  <h3 className="text-lg font-bold leading-snug text-gray-800">
+                  <p className="text-lg font-bold leading-snug text-gray-800">
                     {name}
                     {age ? ` (${age})` : ""}
-                  </h3>
+                  </p>
                   {dateOfDeath && (
                     <p className="text-gray-600">
                       {labels.death}: {formattedDate}
@@ -246,10 +246,10 @@ export default function ObituaryCardMin({
           </div>
           <div className="flex flex-1 flex-col justify-start space-y-1 p-3">
             <div className="space-y-1">
-              <h3 className="text-lg font-bold leading-snug text-gray-800">
+              <p className="text-lg font-bold leading-snug text-gray-800">
                 {name}
                 {age ? ` (${age})` : ""}
-              </h3>
+              </p>
               {dateOfDeath && (
                 <p className="text-gray-600">
                   {labels.death}: {formattedDate}
@@ -316,10 +316,10 @@ export default function ObituaryCardMin({
             )}
           </div>
           <div className="flex flex-1 flex-col justify-start space-y-1 p-3">
-            <h3 className="text-lg font-bold leading-snug text-gray-800">
+            <p className="text-lg font-bold leading-snug text-gray-800">
               {name}
               {age ? ` (${age})` : ""}
-            </h3>
+            </p>
             {dateOfDeath && (
               <p className="text-gray-600">
                 {labels.death}: {formattedDate}

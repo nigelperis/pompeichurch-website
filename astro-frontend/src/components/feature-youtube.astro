@@ -32,7 +32,7 @@ const videos = [
               title="Youtube vidoes about History of Pompei Church"
               allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
               allowfullscreen
-              class="aspect-video rounded-xl"
+              class="aspect-video"
             />
           </div>
         </EmblaCarouselItem>
@@ -40,9 +40,9 @@ const videos = [
     }
 
     <EmblaCarouselItem>
-      <div class="relative h-full w-full flex-shrink-0 rounded-xl text-center">
-        <Image src={YtThumbnail} alt="Watch more" class="h-full rounded-xl" />
-        <div class="absolute inset-0 rounded-xl bg-black/60"></div>
+      <div class="relative h-full w-full flex-shrink-0 text-center">
+        <Image src={YtThumbnail} alt="Watch more" class="h-full" />
+        <div class="absolute inset-0 bg-black/60"></div>
         <div class="absolute inset-0 flex h-[200] items-center justify-center">
           <HoverableLink
             href="https://www.youtube.com/@pompeichurchmedia8386"
@@ -69,7 +69,6 @@ const videos = [
           title="YouTube Video"
           allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen
-          class="rounded-xl"
         />
       </div>
     ))
@@ -79,9 +78,9 @@ const videos = [
     <Image
       src={YtThumbnail}
       alt="Watch more"
-      class="h-full w-full rounded-xl object-cover"
+      class="h-full w-full object-cover"
     />
-    <div class="absolute inset-0 rounded-xl bg-black/65"></div>
+    <div class="absolute inset-0 bg-black/65"></div>
     <div class="absolute inset-0 flex items-center justify-center">
       <HoverableLink
         href="https://www.youtube.com/@pompeichurchmedia8386"

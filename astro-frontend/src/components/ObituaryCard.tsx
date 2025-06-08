@@ -257,9 +257,9 @@ export default function ObituaryCard({
           {/* Details Section */}
           <div className="flex flex-col justify-between p-3 h-full min-h-[180px] relative">
             <div className="space-y-1">
-              <h3 className="text-xl font-bold text-slate-900 line-clamp-2">
+              <p className="text-xl font-bold text-slate-900 line-clamp-2">
                 {name}
-              </h3>
+              </p>
               {(relationNameEn || relationNameKok) && (
                 <p className="line-clamp-2 md:text-base text-lg text-slate-700">
                   <strong>{relationLabel}:</strong>{" "}
