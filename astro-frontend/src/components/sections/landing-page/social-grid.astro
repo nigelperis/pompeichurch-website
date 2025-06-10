@@ -2,7 +2,6 @@
 import { Icon } from "astro-icon/components";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import { cn } from "~/helpers/cn";
-import FeatureYoutube from "~/components/feature-youtube.astro";
 import { Locale } from "~/enums/locale";
 
 const lang = getLangFromUrl(Astro.url);
@@ -21,8 +20,6 @@ const t = useTranslations(lang);
   >
     {t("landing.follow-our-journey")}
   </h1>
-
-  <FeatureYoutube />
 
   <div
     class="mt-6 flex w-full max-w-2xl flex-col items-center justify-between gap-4 md:mx-auto md:flex-row md:items-center lg:mx-auto"

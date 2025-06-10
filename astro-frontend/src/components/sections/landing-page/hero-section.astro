@@ -1,5 +1,5 @@
 ---
-import { getImage } from "astro:assets";
+import { Image } from "astro:assets";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import skyImage from "~/assets/landing-page/sky-bg.webp";
 import churchHeroImage from "~/assets/landing-page/church-hero.webp";
@@ -8,44 +8,36 @@ import { Locale } from "~/enums/locale";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const optimizedSkyImage = await getImage({ src: skyImage });
-const optimizedChurchHeroImage = await getImage({ src: churchHeroImage });
 ---
 
 <head>
-  <link
-    rel="preload"
-    as="image"
-    href={optimizedSkyImage.src}
-    type="image/webp"
-  />
-  <link
-    rel="preload"
-    as="image"
-    href={optimizedChurchHeroImage.src}
-    type="image/webp"
-  />
+  <link rel="preload" as="image" href={skyImage.src} type="image/webp" />
+  <link rel="preload" as="image" href={churchHeroImage.src} type="image/webp" />
 </head>
 <section
   class="relative h-screen w-screen bg-black/20 bg-cover bg-blend-darken"
-  style={{
-    backgroundImage: `url(${optimizedSkyImage.src})`,
-  }}
 >
+  <Image
+    src={skyImage}
+    alt="Background sky"
+    class="absolute inset-0 h-full w-full object-cover -z-10"
+  />
+
   <div class="absolute inset-0 bg-white opacity-70 bg-blend-darken"></div>
 
   <div
     class="relative mx-4 h-[30vh] overflow-hidden rounded-b-full bg-yellow-50 sm:mx-auto sm:h-[40vh] sm:w-[80vw] md:h-80 md:w-96 xl:h-96 xl:w-5/12"
   >
-    <div
-      class="animated-background mx-auto h-full w-full bg-cover bg-center bg-no-repeat"
-      style={{ backgroundImage: `url(${optimizedChurchHeroImage.src})` }}
-    >
-    </div>
+    <Image
+      src={churchHeroImage}
+      alt="Church hero image"
+      class="animated-background mx-auto h-full w-full object-cover"
+      loading="lazy"
+      decoding="async"
+    />
   </div>
   <h1
     data-aos="fade-up"
-    data-aos-delay="700"
     class={cn(
       "mt-6 text-center text-4xl lg:text-5xl font-semibold tracking-wide",
       {
@@ -55,17 +47,16 @@ const optimizedChurchHeroImage = await getImage({ src: churchHeroImage });
   >
     {t("landing.church-name")}
   </h1>
-  <p data-aos="fade-up" data-aos-delay="900" class="mt-2 text-center text-3xl">
+  <p data-aos="fade-up" class="mt-2 text-center text-3xl">
     {t("landing.town-name")}
   </p>
   <div class="mx-auto">
-    <img
+    <Image
       src="/temp-logo.webp"
       alt="Our Lady of Pompei Church logo"
       width={190}
       height={190}
       data-aos="fade-up"
-      data-aos-delay="1100"
       class="mx-auto my-4 opacity-0"
     />
   </div>

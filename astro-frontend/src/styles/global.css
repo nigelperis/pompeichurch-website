@@ -70,7 +70,7 @@ html {
   }
 }
 .animated-background {
-  animation: animatedBackground 2s ease-out forwards;
+  animation: animatedBackground 0.8s ease-out forwards;
 }
 
 /* Hoverable link styles */
