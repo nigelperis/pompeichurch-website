@@ -14,13 +14,14 @@ const t = useTranslations(lang);
 <section
   class="relative h-screen w-screen bg-black/20 bg-cover bg-blend-darken"
 >
-  <Image
-    src={skyImage}
+<img
+    src={skyImage.src}
     alt="Background sky"
     class="absolute inset-0 h-full w-full object-cover -z-10"
+    loading="eager"
     fetchpriority="high"
+    decoding="sync"
   />
-
   <div class="absolute inset-0 bg-white opacity-70 bg-blend-darken"></div>
 
   <div
