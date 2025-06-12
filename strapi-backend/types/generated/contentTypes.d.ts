@@ -735,7 +735,7 @@ export interface ApiContactContact extends Struct.SingleTypeSchema {
     contactNumber: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
-          localized: true;
+          localized: false;
         };
       }>;
     createdAt: Schema.Attribute.DateTime;
@@ -744,7 +744,7 @@ export interface ApiContactContact extends Struct.SingleTypeSchema {
     email: Schema.Attribute.Email &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
-          localized: true;
+          localized: false;
         };
       }>;
     locale: Schema.Attribute.String;
@@ -753,7 +753,12 @@ export interface ApiContactContact extends Struct.SingleTypeSchema {
       'api::contact.contact'
     >;
     publishedAt: Schema.Attribute.DateTime;
-    secretaryName: Schema.Attribute.String;
+    secretaryName: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1413,6 +1418,86 @@ export interface ApiUpcomingEventUpcomingEvent
   };
 }
 
+export interface ApiWardWard extends Struct.CollectionTypeSchema {
+  collectionName: 'wards';
+  info: {
+    displayName: 'Ward';
+    pluralName: 'wards';
+    singularName: 'ward';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    familyCount: Schema.Attribute.Integer &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::ward.ward'>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    wardLeader: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    wardLeaderImage: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    > &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    wardLeaderSex: Schema.Attribute.Enumeration<['Male', 'Female']> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    wardName: Schema.Attribute.Enumeration<
+      [
+        'Kowdoor A',
+        'Kowdoor B',
+        'Pompei A',
+        'Pompei B',
+        'Kandar A',
+        'Kandar B',
+        'Monel',
+        'Gurpur',
+        'Addoor',
+        'Church',
+      ]
+    >;
+    wardRepresentative1: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    wardRepresentative2: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+  };
+}
+
 export interface PluginContentReleasesRelease
   extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_releases';
@@ -1938,6 +2023,7 @@ declare module '@strapi/strapi' {
       'api::popes-intention.popes-intention': ApiPopesIntentionPopesIntention;
       'api::push-notification.push-notification': ApiPushNotificationPushNotification;
       'api::upcoming-event.upcoming-event': ApiUpcomingEventUpcomingEvent;
+      'api::ward.ward': ApiWardWard;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

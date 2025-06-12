@@ -1,30 +1,43 @@
 ---
-import { wards } from "~/constants/wards";
 import { Image } from "astro:assets";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import { cn } from "~/helpers/cn";
 import { Locale } from "~/enums/locale";
+import { fetchWardDetails } from "~/services/get-ward-info";
+import NetworkImage from "~/components/ui/network-image.astro";
+import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
+import { getGurkarTitle } from "~/helpers/get-gurkar-title";
+import { getWardNameKok } from "~/helpers/get-ward-names-kok";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+const wardDetails =
+  lang === Locale.EN
+    ? await fetchWardDetails()
+    : await fetchWardDetails(Locale.KOK);
 ---
 
 <div>
   {
-    wards.map((ward) => (
+    wardDetails?.map((ward, idx) => (
       <div class="mb-6 text-left">
         <h2 class="text-3xl font-bold text-slate-900">
-          {t(`nav.${ward.name}`)}
+          {lang === Locale.KOK
+            ? getWardNameKok(ward.wardName, lang as Locale)
+            : ward.wardName}
         </h2>
+
         <p
           class={cn(
             "text-xm mb-6 mt-4 text-justify font-semibold leading-7 text-gray-800",
           )}
         >
           {lang === Locale.KOK
-            ? `${t(`ward.${ward.patronName}`)} ${t("ward.patron")}`
+            ? `${t(`ward.${ward?.patronName}`)} ${t("ward.patron")}`
             : `${t("ward.patron")} ${t(`ward.${ward.patronName}`)}`}
         </p>
+
         <div class="mb-6 flex flex-col items-center justify-center gap-4 rounded-md md:flex-row lg:flex-row">
           <Image
             src={ward.patronImage}
@@ -38,18 +51,27 @@ const t = useTranslations(lang);
             )}
           >
             <div>
-              <Image
-                src={ward.gurkarImage}
-                alt="Gurkar or Gurkarn of the Ward"
-                class="h-[365px] w-full object-cover "
+              <NetworkImage
+                src={
+                  ward.wardLeaderImage?.url
+                    ? new URL(
+                        ward.wardLeaderImage.url,
+                        import.meta.env.PUBLIC_STRAPI_URL,
+                      ).toString()
+                    : getPlaceholderImage()
+                }
+                alt={ward.wardLeader || "Ward Leader"}
+                width={ward.wardLeaderImage?.width ?? 365}
+                height={ward.wardLeaderImage?.height ?? 365}
+                class="h-[365px] w-full object-cover"
               />
             </div>
             <div class="flex flex-1 flex-col justify-end space-y-1 p-3">
               <h3 class="pt-1 font-bold leading-snug text-slate-900 text-lg md:text-lg">
-                {t(`ward.${ward.gurkarName}`)}
+                {ward.wardLeader}
               </h3>
               <p class="line-clamp-3 text-slate-600 text-lg md:text-lg">
-                {t(`ward.${ward.gurkarTitle}`)}
+                {getGurkarTitle(ward.wardLeaderSex, lang as Locale)}
               </p>
             </div>
           </div>
@@ -59,13 +81,15 @@ const t = useTranslations(lang);
           {t("ward.pratinidi")}
         </h2>
         <ul class="my-4 list-inside list-disc text-base text-slate-700">
-          <li class="mx-4 text-left">{t(`ward.${ward.pratinidiName1}`)}</li>
-          {ward.pratinidiName2 && (
-            <li class="mx-4 text-left">{t(`ward.${ward.pratinidiName2}`)}</li>
+          {ward.wardRepresentative1 && (
+            <li class="mx-4 text-left">{ward.wardRepresentative1}</li>
+          )}
+          {ward.wardRepresentative2 && (
+            <li class="mx-4 text-left">{ward.wardRepresentative2}</li>
           )}
         </ul>
         <p class="mx-4 mt-6 text-left text-xl font-bold text-slate-900">
-          {t("ward.family")} : {ward.family}
+          {t("ward.family")} : {ward.familyCount}
         </p>
         <div class="border-b-natgeo-yellow mt-4 border-b-2" />
       </div>
