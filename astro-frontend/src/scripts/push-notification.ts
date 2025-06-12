@@ -37,9 +37,6 @@ export const pushNotification = async (): Promise<void> => {
       if (hasActiveSubscription) {
         return;
       }
-      console.log(
-        "Permission granted but no backend subscription found - showing prompt",
-      );
     }
     const deferredUntil = parseInt(
       localStorage.getItem("notificationPromptDeferredUntil") || "0",

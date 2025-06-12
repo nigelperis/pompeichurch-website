@@ -3,9 +3,15 @@ import { Icon } from "astro-icon/components";
 import { Locale } from "~/enums/locale";
 import { cn } from "~/helpers/cn";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
+import { fetchContactInfo } from "~/services/get-contact-info";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+const contactDetails =
+  lang === Locale.EN
+    ? await fetchContactInfo()
+    : await fetchContactInfo(Locale.KOK);
 ---
 
 <div
@@ -31,7 +37,7 @@ const t = useTranslations(lang);
         "mt-[6px]": lang === Locale.KOK,
       })}
     >
-      8277939340
+      {contactDetails?.contactNumber}
     </p>
   </div>
 
@@ -53,7 +59,7 @@ const t = useTranslations(lang);
         "mt-[6px]": lang === Locale.KOK,
       })}
     >
-      {t("contact.clerk-name")}
+      {contactDetails?.secretaryName}
     </p>
   </div>
 
@@ -64,7 +70,7 @@ const t = useTranslations(lang);
         "mt-1": lang === Locale.KOK,
       })}
     >
-      pompeichurchgurpur@gmail.com
+      {contactDetails?.email}
     </p>
   </div>
 </div>

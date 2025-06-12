@@ -33,8 +33,6 @@ export async function registerPush() {
       });
     }
 
-    console.log("Push subscription:", subscription);
-
     await strapiPost({
       endpoint: ROUTES.PUSH_NOTIFICATIONS,
       body: subscription,

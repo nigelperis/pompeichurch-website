@@ -13,6 +13,7 @@ export const ROUTES = {
   PARISH_PRIESTS_AND_DEACONS: "/parish-priests-and-deacons",
   LANDING_PAGE_CAROUSEL: "/landing-page-carousels",
   PARISH_PASTORAL_21_COMMISSION: "/parish-pastoral-21-commissions",
+  CONTACT: "/contact",
   PUSH_NOTIFICATIONS: "/push-notifications",
   PUSH_NOTIFICATIONS_CHECK: "/push-notifications/check",
 } as const;
