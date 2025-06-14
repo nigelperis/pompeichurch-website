@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as Radix from "@radix-ui/react-select";
-import { ChevronDown } from "lucide-react";
+import ChevronDown from "~/assets/icons/chevron-down.svg?react";
 
 export interface SelectWardProps {
   wards: Array<{ name: string; label: string }>;
@@ -9,7 +9,7 @@ export interface SelectWardProps {
 
 export default function SelectWard({
   wards,
-  placeholder = "Select a Ward…",
+  placeholder = "Select Ward…",
 }: SelectWardProps) {
   const [value, setValue] = React.useState("");
 
@@ -27,11 +27,11 @@ export default function SelectWard({
   return (
     <Radix.Root value={value} onValueChange={setValue}>
       <Radix.Trigger
-        className="border border-gray-300 px-4 py-2 flex justify-between items-center w-full"
+        className="border border-gray-300 px-4 py-2 flex justify-between items-center w-full hover:cursor-pointer"
         aria-label={placeholder}
       >
         <Radix.Value placeholder={placeholder} />
-        <ChevronDown className="ml-2" />
+        <ChevronDown width={24} height={24} className="text-slate-600" />
       </Radix.Trigger>
 
       <Radix.Portal>

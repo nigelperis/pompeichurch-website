@@ -13,26 +13,28 @@ const t = useTranslations(lang);
 const { details } = Astro.props as unknown as { details: MergedWardDetails[] };
 
 const slug = (name: string) =>
-  name.toLowerCase().replace(/\s+/g, '-');
+  name.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "");
 ---
 
-{details.map((ward) => (
-  <div id={`ward-${slug(ward.wardName)}`} class="mb-12">
-
-    <h2 class="text-3xl font-bold text-slate-900 md:text-left">
+{details.map((ward) => {
+  const hasSecondRep = Boolean(ward.wardRepresentative2);
+  return (
+  <div class="mb-12">
+    <h2
+      id={`ward-${slug(ward.wardName)}`}
+      class="scroll-mt-24 text-3xl font-bold"
+    >
       {lang === Locale.KOK
         ? getWardNameKok(ward.wardName, lang)
         : ward.wardName}
     </h2>
 
-    <p class="mt-2 font-semibold leading-7 text-gray-800 md:text-left">
-      {lang === Locale.KOK
-        ? `${t(`ward.${ward.patronName}`)} ${t("ward.patron")}`
-        : `${t("ward.patron")} ${t(`ward.${ward.patronName}`)}`}
+    <p class="mt-2 font-semibold text-lg text-gray-800">
+      {t("ward.family")} : {ward.familyCount}
     </p>
 
-    <div class="mt-6 grid grid-cols-2 gap-4 md:grid-cols-[4fr_3fr_3fr]">
-      <div class="border border-gray-200 overflow-hidden">
+    <div class="mt-6 grid grid-cols-2 gap-2 md:grid-cols-3 md:grid-rows-2">
+      <div class="border border-gray-200 overflow-hidden md:row-span-2">
         <div class="w-full aspect-[1/1.4] overflow-hidden">
           <Image
             src={ward.patronImage}
@@ -40,15 +42,16 @@ const slug = (name: string) =>
             class="w-full h-full object-cover"
           /></div>
 
-        <div class="p-4 md:hidden text-center">
-          <p class="font-semibold text-base text-slate-900 mb-1">
-            {t("ward.family")}
+        <div class="p-2 text-center">
+          <p class="font-semibold text-base md:text-lg">
+            {lang === Locale.KOK
+              ? `${t(`ward.${ward.patronName}`)} ${t("ward.patron")}`
+              : `${t("ward.patron")} ${t(`ward.${ward.patronName}`)}`}
           </p>
-          <p class="text-sm text-gray-600">{ward.familyCount}</p>
         </div>
       </div>
 
-      <div class="border border-gray-200 overflow-hidden">
+      <div class="border border-gray-200 overflow-hidden md:row-span-2">
         <div class="w-full aspect-[1/1.4]">
           <NetworkImage
             src={
@@ -66,45 +69,42 @@ const slug = (name: string) =>
           />
         </div>
         <div class="p-3 text-center">
-          <h3 class="font-bold text-base text-slate-900 mb-1">
+          <h3 class="font-bold text-base md:text-lg text-slate-900 mb-1">
             {ward.wardLeader}
           </h3>
-          <p class="text-base text-slate-600">
+          <p class="text-base md:text-lg text-slate-600">
             {getGurkarTitle(ward.wardLeaderSex, lang)}
           </p>
         </div>
       </div>
 
-      <div class="col-span-2 grid grid-cols-2 gap-4 md:col-span-1 md:grid-cols-1">
-        <div class="hidden md:flex border border-gray-200 p-4 items-center justify-center text-center">
-          <div>
-            <p class="font-semibold text-base text-slate-900 mb-1">
-              {t("ward.family")}
+      {ward.wardRepresentative1 && (
+        <div
+          class={
+            `border border-gray-200 p-2 flex items-center justify-center text-center md:col-start-3 ` +
+            (hasSecondRep
+              ? "md:row-start-1"
+              : "md:row-span-2")
+          }
+        >
+          <div class="w-full">
+            <p class="font-semibold text-base md:text-lg text-slate-900 mb-1">
+              {ward.wardRepresentative1}
             </p>
-            <p class="text-sm text-gray-600">{ward.familyCount}</p>
+            <p class="text-base md:text-lg text-slate-600">{t("ward.pratinidi")}</p>
           </div>
         </div>
-        {ward.wardRepresentative1 && (
-          <div class="border border-gray-200 p-2 flex items-center justify-center text-center">
-            <div>
-              <p class="font-semibold text-base text-slate-900 mb-1">
-                {ward.wardRepresentative1}
-              </p>
-              <p class="text-base text-slate-600">{t("ward.pratinidi")}</p>
-            </div>
+      )}
+      {ward.wardRepresentative2 && (
+        <div class="border border-gray-200 p-2 flex items-center justify-center text-center md:col-start-3 md:row-start-2">
+          <div class="w-full">
+            <p class="font-semibold text-base md:text-lg text-slate-900 mb-1">
+              {ward.wardRepresentative2}
+            </p>
+            <p class="text-base md:text-lg text-slate-600">{t("ward.pratinidi")}</p>
           </div>
-        )}
-        {ward.wardRepresentative2 && (
-          <div class="border border-gray-200 p-2 flex items-center justify-center text-center">
-            <div>
-              <p class="font-semibold text-base text-slate-900 mb-1">
-                {ward.wardRepresentative2}
-              </p>
-              <p class="text-base text-slate-600">{t("ward.pratinidi")}</p>
-            </div>
-          </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   </div>
-))}
+);})}
