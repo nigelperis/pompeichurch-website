@@ -1,98 +1,93 @@
 ---
 import { Image } from "astro:assets";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
-import { cn } from "~/helpers/cn";
 import { Locale } from "~/enums/locale";
-import { fetchWardDetails } from "~/services/get-ward-info";
+import type { MergedWardDetails } from "~/models/ward-details";
 import NetworkImage from "~/components/ui/network-image.astro";
 import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
 import { getGurkarTitle } from "~/helpers/get-gurkar-title";
 import { getWardNameKok } from "~/helpers/get-ward-names-kok";
 
-const lang = getLangFromUrl(Astro.url);
+const lang = getLangFromUrl(Astro.url) as Locale;
 const t = useTranslations(lang);
-
-const wardDetails =
-  lang === Locale.EN
-    ? await fetchWardDetails()
-    : await fetchWardDetails(Locale.KOK);
+const { details } = Astro.props as unknown as { details: MergedWardDetails[] };
 ---
 
-<div>
-  {
-    wardDetails?.map((ward, idx) => (
-      <div class="mb-6 text-left">
-        <h2 class="text-3xl font-bold text-slate-900">
-          {lang === Locale.KOK
-            ? getWardNameKok(ward.wardName, lang as Locale)
-            : ward.wardName}
-        </h2>
+{details.map((ward) => (
+  <div class="mb-12">
 
-        <p
-          class={cn(
-            "text-xm mb-6 mt-4 text-justify font-semibold leading-7 text-gray-800",
-          )}
-        >
-          {lang === Locale.KOK
-            ? `${t(`ward.${ward?.patronName}`)} ${t("ward.patron")}`
-            : `${t("ward.patron")} ${t(`ward.${ward.patronName}`)}`}
-        </p>
+    <h2 class="text-3xl font-bold text-slate-900">
+      {lang === Locale.KOK
+        ? getWardNameKok(ward.wardName, lang)
+        : ward.wardName}
+    </h2>
+      <div class="mt-4 mb-6 flex flex-col md:flex-row md:justify-between md:items-center">
+    <p class="text-justify font-semibold leading-7 text-gray-800 md:pr-4">
+       {lang === Locale.KOK
+         ? `${t(`ward.${ward.patronName}`)} ${t("ward.patron")}`
+         : `${t("ward.patron")} ${t(`ward.${ward.patronName}`)}`}
+     </p>
+     <p class="mt-2 md:mt-0 text-base font-semibold text-slate-900">
+       {t("ward.family")}: {ward.familyCount}
+     </p>
+   </div>
 
-        <div class="mb-6 flex flex-col items-center justify-center gap-4 rounded-md md:flex-row lg:flex-row">
-          <Image
-            src={ward.patronImage}
-            alt="Patron of the Ward"
-            class="w-full max-w-xl sm:w-1/2 md:h-[450px] lg:h-[450px]"
-          />
-          <div
-            class={cn(
-              "max-w-xs flex-shrink-0 snap-start border border-gray-200 first:snap-align-none sm:w-64",
-              "h-[460px] md:h-[450px] w-[250px]",
-            )}
-          >
-            <div>
-              <NetworkImage
-                src={
-                  ward.wardLeaderImage?.url
-                    ? new URL(
-                        ward.wardLeaderImage.url,
-                        import.meta.env.PUBLIC_STRAPI_URL,
-                      ).toString()
-                    : getPlaceholderImage()
-                }
-                alt={ward.wardLeader || "Ward Leader"}
-                width={ward.wardLeaderImage?.width ?? 365}
-                height={ward.wardLeaderImage?.height ?? 365}
-                class="h-[365px] w-full object-cover"
-              />
-            </div>
-            <div class="flex flex-1 flex-col justify-end space-y-1 p-3">
-              <h3 class="pt-1 font-bold leading-snug text-slate-900 text-lg md:text-lg">
-                {ward.wardLeader}
-              </h3>
-              <p class="line-clamp-3 text-slate-600 text-lg md:text-lg">
-                {getGurkarTitle(ward.wardLeaderSex, lang as Locale)}
+    <div class="grid grid-cols-[2fr_2fr] md:grid-cols-[4fr_3fr_3fr] gap-4">
+      <div class="min-w-0 w-full aspect-[1/1.5] overflow-hidden">
+      <Image
+        src={ward.patronImage}
+        alt={t("ward.patronAlt")}
+        class="w-full h-full object-cover"
+      /></div>
+
+      <div class="border border-gray-200 min-w-0 overflow-hidden">
+        <div class="w-full aspect-[1/1.5]">
+        <NetworkImage
+          src={
+            ward.wardLeaderImage?.url
+              ? new URL(
+                  ward.wardLeaderImage.url,
+                  import.meta.env.PUBLIC_STRAPI_URL
+                ).toString()
+              : getPlaceholderImage()
+          }
+          alt={ward.wardLeader || t("ward.leaderAlt")}
+          width={ward.wardLeaderImage?.width ?? 365}
+          height={ward.wardLeaderImage?.height ?? 365}
+          class="w-full h-full object-cover"
+        /></div>
+        <div class="p-3">
+          <h3 class="font-bold text-base text-slate-900 mb-1">
+            {ward.wardLeader}
+          </h3>
+          <p class="text-base text-slate-600">
+            {getGurkarTitle(ward.wardLeaderSex, lang)}
+          </p>
+        </div>
+      </div>
+
+      <div class="col-span-2 md:col-span-1 grid grid-cols-2 md:grid-cols-1 gap-4">
+        {ward.wardRepresentative1 && (
+          <div class="bg-gray-100 p-4 flex items-center justify-center">
+            <div class="text-center">
+              <p class="font-semibold text-base text-slate-900 mb-1">
+                {ward.wardRepresentative1}
               </p>
+              <p class="text-base text-slate-600">{t("ward.pratinidi")}</p>
             </div>
           </div>
-        </div>
-
-        <h2 class="mx-4 mt-6 text-left text-xl font-bold text-slate-900">
-          {t("ward.pratinidi")}
-        </h2>
-        <ul class="my-4 list-inside list-disc text-base text-slate-700">
-          {ward.wardRepresentative1 && (
-            <li class="mx-4 text-left">{ward.wardRepresentative1}</li>
-          )}
-          {ward.wardRepresentative2 && (
-            <li class="mx-4 text-left">{ward.wardRepresentative2}</li>
-          )}
-        </ul>
-        <p class="mx-4 mt-6 text-left text-xl font-bold text-slate-900">
-          {t("ward.family")} : {ward.familyCount}
-        </p>
-        <div class="border-b-natgeo-yellow mt-4 border-b-2" />
+        )}
+        {ward.wardRepresentative2 && (
+          <div class="bg-gray-100 p-4 flex items-center justify-center">
+            <div class="text-center">
+              <p class="font-semibold text-base text-slate-900 mb-1">
+                {ward.wardRepresentative2}
+              </p>
+              <p class="text-base text-slate-600">{t("ward.pratinidi")}</p>
+            </div>
+          </div>
+        )}
       </div>
-    ))
-  }
-</div>
+    </div>
+  </div>
+))}
