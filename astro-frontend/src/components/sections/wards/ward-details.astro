@@ -22,7 +22,7 @@ const slug = (name: string) =>
   <div class="mb-12">
     <h2
       id={`ward-${slug(ward.wardName)}`}
-      class="scroll-mt-24 text-3xl font-bold"
+      class="scroll-mt-24 text-3xl font-bold text-slate-900"
     >
       {lang === Locale.KOK
         ? getWardNameKok(ward.wardName, lang)
@@ -34,16 +34,16 @@ const slug = (name: string) =>
     </p>
 
     <div class="mt-6 grid grid-cols-2 gap-2 md:grid-cols-3 md:grid-rows-2">
-      <div class="border border-gray-200 overflow-hidden md:row-span-2">
-        <div class="w-full aspect-[1/1.4] overflow-hidden">
+      <div class="border border-gray-200 overflow-hidden flex flex-col md:row-span-2">
+        <div class="w-full aspect-[1/1.4] flex-shrink-0 overflow-hidden">
           <Image
             src={ward.patronImage}
             alt={t("ward.patronAlt")}
             class="w-full h-full object-cover"
           /></div>
 
-        <div class="p-2 text-center">
-          <p class="font-semibold text-base md:text-lg">
+        <div class="p-4 flex-1 flex items-center text-center justify-center">
+          <p class="font-semibold text-base md:text-lg text-slate-900">
             {lang === Locale.KOK
               ? `${t(`ward.${ward.patronName}`)} ${t("ward.patron")}`
               : `${t("ward.patron")} ${t(`ward.${ward.patronName}`)}`}
@@ -69,10 +69,10 @@ const slug = (name: string) =>
           />
         </div>
         <div class="p-3 text-center">
-          <h3 class="font-bold text-base md:text-lg text-slate-900 mb-1">
+          <h3 class="font-semibold text-base md:text-lg text-slate-900 mb-1">
             {ward.wardLeader}
           </h3>
-          <p class="text-base md:text-lg text-slate-600">
+          <p class="text-base text-slate-600">
             {getGurkarTitle(ward.wardLeaderSex, lang)}
           </p>
         </div>
@@ -91,7 +91,7 @@ const slug = (name: string) =>
             <p class="font-semibold text-base md:text-lg text-slate-900 mb-1">
               {ward.wardRepresentative1}
             </p>
-            <p class="text-base md:text-lg text-slate-600">{t("ward.pratinidi")}</p>
+            <p class="text-base text-slate-600">{t("ward.pratinidi")}</p>
           </div>
         </div>
       )}
@@ -101,7 +101,7 @@ const slug = (name: string) =>
             <p class="font-semibold text-base md:text-lg text-slate-900 mb-1">
               {ward.wardRepresentative2}
             </p>
-            <p class="text-base md:text-lg text-slate-600">{t("ward.pratinidi")}</p>
+            <p class="text-base text-slate-600">{t("ward.pratinidi")}</p>
           </div>
         </div>
       )}

@@ -12,6 +12,24 @@ export default function SelectWard({
   placeholder = "Select Ward…",
 }: SelectWardProps) {
   const [value, setValue] = React.useState("");
+  const triggerRef = React.useRef<HTMLButtonElement>(null);
+  const [triggerWidth, setTriggerWidth] = React.useState(0);
+
+  React.useLayoutEffect(() => {
+    if (triggerRef.current) {
+      setTriggerWidth(triggerRef.current.getBoundingClientRect().width);
+    }
+  }, []);
+
+  React.useEffect(() => {
+    const handleResize = () => {
+      if (triggerRef.current) {
+        setTriggerWidth(triggerRef.current.getBoundingClientRect().width);
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   React.useEffect(() => {
     if (value) {
@@ -27,6 +45,7 @@ export default function SelectWard({
   return (
     <Radix.Root value={value} onValueChange={setValue}>
       <Radix.Trigger
+        ref={triggerRef}
         className="border border-gray-300 px-4 py-2 flex justify-between items-center w-full hover:cursor-pointer"
         aria-label={placeholder}
       >
@@ -36,12 +55,13 @@ export default function SelectWard({
 
       <Radix.Portal>
         <Radix.Content
-          side="bottom"
+          side="top"
           align="start"
-          sideOffset={5}
+          sideOffset={0}
           avoidCollisions
-          collisionPadding={8}
-          className="mt-1 w-full border border-gray-300 bg-white shadow-lg"
+          collisionPadding={0}
+          style={{ width: triggerWidth * 1.1 }}
+          className="mb-2 border border-gray-300 bg-white shadow-lg overflow-hidden"
         >
           <Radix.Viewport className="p-1">
             {wards.map((w) => (
