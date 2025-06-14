@@ -6,6 +6,7 @@ import { Locale } from "~/enums/locale";
 import { cn } from "~/helpers/cn";
 import { fetchWardDetails } from "~/services/get-ward-info";
 import { getWardNameKok } from "~/helpers/get-ward-names-kok";
+import SelectWard from '~/components/ui/SelectWard.tsx';
 
 const lang = getLangFromUrl(Astro.url) as Locale;
 const t = useTranslations(lang);
@@ -31,19 +32,19 @@ const wardDetails = rawWardDetails ?? [];
           {t("nav.wards")}
         </h1>
 
-        <select
-          class="w-full md:w-auto border border-gray-300 p-2 text-base"
-          aria-label={t("ward.selectAria")}
-        >
-          <option value="">{t("ward.selectLabel")}</option>
-          {wardDetails.map((w) => (
-            <option value={w.wardName}>
-              {lang === Locale.KOK
-                ? getWardNameKok(w.wardName, lang)
-                : w.wardName}
-            </option>
-          ))}
-        </select>
+        <div class="w-1/2 mx-auto md:mx-0 md:w-auto flex justify-center md:justify-start">
+          <SelectWard
+            client:load
+            placeholder={t("ward.select-label")}
+            wards={wardDetails.map((w) => ({
+              name: w.wardName,
+              label:
+                lang === Locale.KOK
+                  ? getWardNameKok(w.wardName, lang)
+                  : w.wardName,
+            }))}
+          />
+        </div>
       </div>
 
       <WardDetails details={wardDetails} />
