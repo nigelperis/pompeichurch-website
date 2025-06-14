@@ -19,6 +19,7 @@
     "@fontsource-variable/lora": "5.2.5",
     "@fontsource-variable/noto-sans-kannada": "5.2.5",
     "@fontsource-variable/roboto": "5.2.5",
+    "@radix-ui/react-select": "2.2.5",
     "@strapi/blocks-react-renderer": "1.0.2",
     "@tailwindcss/vite": "^4.1.10",
     "@tsparticles/confetti": "3.8.1",
@@ -48,6 +49,7 @@
     "@astrojs/check": "^0.9.4",
     "@astrojs/partytown": "^2.1.4",
     "@types/aos": "^3.0.7",
+    "@types/bun": "latest",
     "@types/imagesloaded": "^4.1.7",
     "@types/masonry-layout": "^4.2.8",
     "@types/photoswipe": "^4.1.6",
@@ -62,8 +64,7 @@
     "tailwindcss": "^4.1.10",
     "terser": "^5.42.0",
     "typescript": "^5.8.3",
-    "typescript-eslint": "^8.34.0",
-    "@types/bun": "latest"
+    "typescript-eslint": "^8.34.0"
   },
   "private": true
 }
