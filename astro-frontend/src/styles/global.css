@@ -84,3 +84,7 @@ html {
 .hoverable-link:hover {
   background-size: 100% 100%;
 }
+
+html {
+  scroll-behavior: smooth;
+}
