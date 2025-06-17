@@ -364,7 +364,7 @@ export default function ObituaryCardMin({
                 <CoffinIcon className="w-7 h-7" />
                 <span>{t("funeral.rites")}</span>
               </h4>
-              <p className="text-gray-700 text-base whitespace-pre-line">
+              <p className="font-noto-sans-kannada text-xl md:text-[18px] text-center mt-6">
                 {funeralDetails}
               </p>
             </div>
@@ -377,7 +377,13 @@ export default function ObituaryCardMin({
                 style={{ letterSpacing: "0.04em" }}
               >
                 <YoutubeIcon className="w-6 h-6" />
-                {t("funeral.youtube")}
+                <span
+                  className={
+                    lang === Locale.KOK ? "block leading-none mt-1.5" : "block"
+                  }
+                >
+                  {t("funeral.youtube")}
+                </span>
               </a>
             )}
           </div>
