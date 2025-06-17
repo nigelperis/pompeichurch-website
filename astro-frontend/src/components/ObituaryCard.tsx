@@ -369,7 +369,15 @@ export default function ObituaryCard({
                   style={{ letterSpacing: "0.04em" }}
                 >
                   <YoutubeIcon className="w-6 h-6" />
-                  {t("funeral.youtube")}
+                  <span
+                    className={
+                      lang === Locale.KOK
+                        ? "block leading-none mt-1.5"
+                        : "block"
+                    }
+                  >
+                    {t("funeral.youtube")}
+                  </span>
                 </a>
               )}
             </div>
