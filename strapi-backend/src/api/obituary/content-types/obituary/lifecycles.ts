@@ -22,6 +22,12 @@ async function maybeSendObituaryEmail(result: any) {
     ward,
   } = result;
 
+  const publisher = result.updatedBy || result.createdBy || null;
+
+  const publisherName = publisher
+    ? `${publisher.firstname || publisher.firstName || ""} ${publisher.lastname || publisher.lastName || ""}`.trim()
+    : "Unknown";
+
   const subject = `🕊️ New Obituary: ${englishName}`;
 
   const html = `
@@ -35,14 +41,15 @@ async function maybeSendObituaryEmail(result: any) {
       <li><strong>Ward:</strong> ${ward}</li>
       <li><strong>View Obituary:</strong> <a href="${obituaryLink}">${obituaryLink}</a></li>
     </ul>
+    <p><strong>Published By:</strong> ${publisherName}</p>
   `;
 
   await sendEmail({ subject, html });
 
   await sendPushNotification(strapi, {
-    title: '🕊️ Obituary Added',
+    title: "🕊️ Obituary Added",
     body: konkaniName,
-    icon: '/temp-logo.webp',
+    icon: "/temp-logo.webp",
     data: {
       url: obituaryLink,
     },
