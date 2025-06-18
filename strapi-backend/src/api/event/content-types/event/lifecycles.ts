@@ -20,6 +20,12 @@ async function maybeSendEventEmail(result: any) {
     instagramLink,
   } = result;
 
+  const publisher = result.updatedBy || result.createdBy || null;
+
+  const publisherName = publisher
+    ? `${publisher.firstname || publisher.firstName || ""} ${publisher.lastname || publisher.lastName || ""}`.trim()
+    : "Unknown";
+
   const subject = `📅 New Event Published: ${englishTitle}`;
   const html = `
     <h2>New Event Published</h2>
@@ -32,14 +38,15 @@ async function maybeSendEventEmail(result: any) {
       ${instagramLink ? `<li><strong>Instagram Link:</strong> <a href="${instagramLink}">${instagramLink}</a></li>` : ""}
       <li><strong>View Event:</strong> <a href="${eventLink}">${eventLink}</a></li>
     </ul>
+    <p><strong>Published By:</strong> ${publisherName}</p>
   `;
 
   await sendEmail({ subject, html });
 
   await sendPushNotification(strapi, {
-    title: '📅New Event Added',
+    title: "📅New Event Added",
     body: konkaniTitle,
-    icon: '/temp-logo.webp',
+    icon: "/temp-logo.webp",
     data: {
       url: eventLink,
     },
