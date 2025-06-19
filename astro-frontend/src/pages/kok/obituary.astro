@@ -6,10 +6,10 @@ import SelectWardRedirect from "~/components/ui/SelectWardRedirect";
 import Pagination from "~/components/pagination.astro";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import { listObituaries } from "~/services/obituaries/list-obituaries";
-import { getWardNameKok } from "~/helpers/get-ward-names-kok";
 import { Message } from "~/constants/message.ts";
 import { Locale } from "~/enums/locale";
 import { cn } from "~/helpers/cn";
+import { getWardNameKok } from "~/helpers/get-ward-names-kok";
 import { wards as allWards } from "~/constants/wards";
 
 const url = new URL(Astro.url);
@@ -23,7 +23,6 @@ const obituariesPerPage = 6;
 
 
 const { obituaries } = await listObituaries({ pageSize: 1000 });
-
 
 const filteredObituaries = normalizedWard
   ? obituaries.filter((item) => item.ward?.toLowerCase() === normalizedWard)
@@ -46,24 +45,20 @@ const formattedObituaries = filteredObituaries
   })
   .sort((a, b) => b.dateSort.getTime() - a.dateSort.getTime());
 
-
 const totalPages = Math.ceil(formattedObituaries.length / obituariesPerPage);
-const paginatedObituaries = formattedObituaries.slice(
-  (currentPage - 1) * obituariesPerPage,
-  currentPage * obituariesPerPage
-);
-
-const displayWard = selectedWard
-  ? lang === Locale.KOK
-    ? getWardNameKok(normalizedWard, lang)
-    : selectedWard
-  : "All";
-const pageTitle = `Obituary`;
+const paginatedObituaries = !selectedWard
+  ? formattedObituaries.slice(
+      (currentPage - 1) * obituariesPerPage,
+      currentPage * obituariesPerPage
+    )
+  : formattedObituaries;
 
 const uniqueWards = allWards.map((ward) => ({
   name: ward.wardName,
   label: lang === Locale.KOK ? getWardNameKok(ward.wardName, lang) : ward.wardName,
 }));
+
+const pageTitle = "Obituary";
 ---
 <Layout title={pageTitle}>
   <main class="mx-auto max-w-4xl bg-white">
@@ -71,22 +66,25 @@ const uniqueWards = allWards.map((ward) => ({
       <PushNotification />
 
       <div class="flex flex-col gap-2 md:flex-row md:items-center md:justify-between mb-4">
-        <h1 class={cn(
-          "font-black border-natgeo-yellow mb-2 md:mb-0 border-l-4 pl-3 text-3xl lg:text-4xl",
-          { "pt-2 font-bold": lang === Locale.KOK }
-        )}>
+        <h1
+          class={cn(
+            "font-black border-natgeo-yellow mb-2 md:mb-0 border-l-4 pl-3 text-3xl lg:text-4xl",
+            { "pt-2 font-bold": lang === Locale.KOK },
+          )}
+        >
           Obituary
         </h1>
 
-        <div class="w-full  md:w-64">
+        <div class="w-full md:w-64">
           <SelectWardRedirect
             client:only="react"
-            wards={[...uniqueWards]}
+            wards={uniqueWards}
             placeholder={t("ward.select-label")}
           />
         </div>
       </div>
-  <p
+
+      <p
         class={cn("p-3 pb-6 text-2xl font-bold italic text-red-600", {
           "font-semibold": lang === Locale.KOK,
         })}
@@ -98,11 +96,14 @@ const uniqueWards = allWards.map((ward) => ({
         paginatedObituaries.length > 0 ? (
           <>
             <ObituaryList obituaries={paginatedObituaries} />
-            <Pagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              basePath={`/obituary${selectedWard ? `?ward=${selectedWard.toLowerCase().replace(/\s+/g, "-")}&` : "?"}`}
-            />
+
+            {!selectedWard && (
+              <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                basePath={`/obituary?`}
+              />
+            )}
           </>
         ) : (
           <p class="py-8 text-center text-2xl font-semibold text-gray-700">
