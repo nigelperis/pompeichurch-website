@@ -70,7 +70,7 @@ if (wardParam) {
     <Radix.Root value={value} onValueChange={setValue}>
       <Radix.Trigger
         ref={triggerRef}
-        className="border border-gray-300 px-4 py-2 md:ml-5 flex justify-between items-center md:w-full hover:cursor-pointer"
+        className="border border-gray-300 px-4 py-2 md:ml-5 flex justify-between items-center w-[50%] md:w-full hover:cursor-pointer"
         aria-label={dynamicPlaceholder}
       >
         <Radix.Value placeholder={dynamicPlaceholder} />
