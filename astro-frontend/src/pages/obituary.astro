@@ -109,7 +109,7 @@ const pageTitle = selectedObituary
 
         <div class="w-full md:w-64">
           <SelectWardRedirect
-            client:only="react"
+            client:load
             wards={uniqueWards}
             placeholder={t("ward.select-label")}
           />
@@ -137,7 +137,7 @@ const pageTitle = selectedObituary
             )}
           </>
         ) : (
-          <div >
+          <div class="h-screen lg:h-full" >
             <p class="py-8 text-center text-2xl font-semibold text-gray-700">
               {Message.OBITUARIES_NOT_FOUND}
             </p>

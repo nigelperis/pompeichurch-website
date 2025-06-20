@@ -13,27 +13,29 @@ export default function SelectWardRedirect({
 }: SelectWardRedirectProps) {
   const [value, setValue] = React.useState("");
   const [dynamicPlaceholder, setDynamicPlaceholder] = React.useState(placeholder);
+  const [isKonkani, setIsKonkani] = React.useState(false);
   const triggerRef = React.useRef<HTMLButtonElement>(null);
   const [triggerWidth, setTriggerWidth] = React.useState(0);
 
   React.useEffect(() => {
+    setIsKonkani(window.location.pathname.startsWith("/kok"));
+
     const urlParams = new URLSearchParams(window.location.search);
     const wardParam = urlParams.get("ward");
 
-if (wardParam) {
-  const wardName = wardParam.replace(/-/g, " ");
-  const matchingWard = wards.find(
-    ward => ward.name.toLowerCase() === wardName.toLowerCase()
-  );
-  if (matchingWard) {
-    setDynamicPlaceholder(matchingWard.label);
-  } else {
-    setDynamicPlaceholder(wardName.replace(/\b\w/g, l => l.toUpperCase()));
-  }
-} else {
-  setDynamicPlaceholder(placeholder); // <-- fallback to "Select Ward…"
-}
-
+    if (wardParam) {
+      const wardName = wardParam.replace(/-/g, " ");
+      const matchingWard = wards.find(
+        ward => ward.name.toLowerCase() === wardName.toLowerCase()
+      );
+      if (matchingWard) {
+        setDynamicPlaceholder(matchingWard.label);
+      } else {
+        setDynamicPlaceholder(wardName.replace(/\b\w/g, l => l.toUpperCase()));
+      }
+    } else {
+      setDynamicPlaceholder(placeholder);
+    }
   }, [wards, placeholder]);
 
   React.useLayoutEffect(() => {
@@ -54,20 +56,16 @@ if (wardParam) {
 
   React.useEffect(() => {
     if (value) {
-      const isKonkani = window.location.pathname.startsWith("/kok");
       const basePath = isKonkani ? "/kok/obituary" : "/obituary";
       const query = value === "__all__" ? "" : `?ward=${value.toLowerCase().replace(/\s+/g, "-")}`;
       window.location.href = `${basePath}${query}`;
     }
-  }, [value]);
+  }, [value, isKonkani]);
 
-const isKonkani = window.location.pathname.startsWith("/kok");
-
-const options = [
-  { name: "__all__", label: isKonkani ? "ಸಗ್ಳೆಂ" : "All" },
-  ...wards,
-];
-
+  const options = React.useMemo(() => [
+    { name: "__all__", label: isKonkani ? "ಸಗ್ಳೆಂ" : "All" },
+    ...wards,
+  ], [isKonkani, wards]);
 
   return (
     <Radix.Root value={value} onValueChange={setValue}>
@@ -77,7 +75,7 @@ const options = [
         aria-label={dynamicPlaceholder}
       >
         <Radix.Value placeholder={dynamicPlaceholder} />
-        <ChevronDown width={24} height={24} className="text-slate-600 " />
+        <ChevronDown width={24} height={24} className="text-slate-600" />
       </Radix.Trigger>
 
       <Radix.Portal>
