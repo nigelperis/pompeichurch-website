@@ -15,8 +15,9 @@ async function listObituaries(args?: {
   page?: number;
   pageSize?: number;
   sortBy?: string;
+  ward?: string;
 }): Promise<ObituaryPagination> {
-  const { page = 1, pageSize = 25, sortBy = "dateOfDeath:desc" } = args ?? {};
+  const { page = 1, pageSize = 25, sortBy = "dateOfDeath:desc", ward } = args ?? {};
 
   const queryParams = new URLSearchParams({
     "populate[0]": "image",
@@ -24,6 +25,10 @@ async function listObituaries(args?: {
     "pagination[page]": String(page),
     "pagination[pageSize]": String(pageSize),
   });
+
+  if (ward) {
+    queryParams.append("filters[ward][$eqi]", ward); // case-insensitive
+  }
 
   const data = await strapiFetch<ObituaryData>({
     endpoint: ROUTES.OBITUARIES,
@@ -40,5 +45,6 @@ async function listObituaries(args?: {
     },
   };
 }
+
 
 export { listObituaries };

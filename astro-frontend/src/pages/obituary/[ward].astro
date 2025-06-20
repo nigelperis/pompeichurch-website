@@ -1,0 +1,111 @@
+---
+import Layout from "~/layouts/layout.astro";
+import ObituaryList from "~/components/sections/obituary/obituary-list.astro";
+import PushNotification from "~/components/push-notification.astro";
+import SelectWardRedirect from "~/components/ui/SelectWardRedirect";
+import Pagination from "~/components/pagination.astro";
+import { getLangFromUrl, useTranslations } from "~/i18n/utils";
+import { listObituaries } from "~/services/obituaries/list-obituaries";
+import { Message } from "~/constants/message.ts";
+import { Locale } from "~/enums/locale";
+import { cn } from "~/helpers/cn";
+import { getWardNameKok } from "~/helpers/get-ward-names-kok";
+import { wards as allWards } from "~/constants/wards";
+
+const url = new URL(Astro.url);
+const lang = getLangFromUrl(Astro.url) as Locale;
+const t = useTranslations(lang);
+const { ward } = Astro.params;
+
+const currentPage = Number(url.searchParams.get("p")) || 1;
+const obituariesPerPage = 6;
+
+const { obituaries } = await listObituaries({ pageSize: 1000 });
+
+const normalizedWard = decodeURIComponent(ward ?? "").toLowerCase().replace(/-/g, " ");
+const filteredObituaries = obituaries.filter((item) =>
+  item.ward?.toLowerCase() === normalizedWard,
+);
+
+const formattedObituaries = filteredObituaries.map((obit) => {
+  const rawDate = obit.dateOfDeath ? new Date(obit.dateOfDeath) : new Date(0);
+  return {
+    ...obit,
+    formattedDate: obit.dateOfDeath
+      ? rawDate.toLocaleDateString(lang === Locale.KOK ? "kok-IN" : "en-IN", {
+          day: "2-digit",
+          month: "long",
+          year: "numeric",
+        })
+      : "Unknown Date",
+    dateSort: rawDate,
+  };
+}).sort((a, b) => b.dateSort.getTime() - a.dateSort.getTime());
+
+const totalPages = Math.ceil(formattedObituaries.length / obituariesPerPage);
+const paginatedObituaries = formattedObituaries.slice(
+  (currentPage - 1) * obituariesPerPage,
+  currentPage * obituariesPerPage
+);
+
+const pageTitle = lang === Locale.KOK
+  ? `Obituary`
+  : `Obituary`;
+
+const uniqueWards = allWards.map((ward) => ({
+  name: ward.wardName,
+  label: lang === Locale.KOK ? getWardNameKok(ward.wardName, lang) : ward.wardName,
+}));
+
+const basePath = `${Astro.url.pathname}?`;
+---
+
+<Layout title={pageTitle} >
+  <main class="mx-auto max-w-4xl bg-white">
+    <section class="flex flex-col p-6 pb-4">
+      <PushNotification />
+
+      <div class="flex flex-col gap-2 md:flex-row md:items-center md:justify-between mb-4">
+        <h1 class={cn(
+          "font-black border-natgeo-yellow mb-2 md:mb-0 border-l-4 pl-3 text-3xl lg:text-4xl",
+          { "pt-2 font-bold": lang === Locale.KOK },
+        )}>
+             {t("nav.obituary")}
+        </h1>
+
+        <div class="w-full md:w-64">
+          <SelectWardRedirect client:only="react" wards={uniqueWards} placeholder={t("ward.select-label")}/>
+        </div>
+      </div>
+
+      <p
+        class={cn("p-3 pb-6 text-2xl font-bold italic text-red-600", {
+          "font-semibold": lang === Locale.KOK,
+        })}
+      >
+        {t("obituary.subtitle")}
+      </p>
+
+      {
+        paginatedObituaries.length > 0 ? (
+          <>
+            <ObituaryList obituaries={paginatedObituaries} />
+
+
+            {totalPages > 1 && (
+              <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                basePath={basePath}
+              />
+            )}
+          </>
+        ) : (
+          <p class="py-8 text-center text-2xl font-semibold text-gray-700">
+            {Message.OBITUARIES_NOT_FOUND}
+          </p>
+        )
+      }
+    </section>
+  </main>
+</Layout>
