@@ -20,20 +20,20 @@ export default function SelectWardRedirect({
     const urlParams = new URLSearchParams(window.location.search);
     const wardParam = urlParams.get("ward");
 
-    if (wardParam) {
+if (wardParam) {
+  const wardName = wardParam.replace(/-/g, " ");
+  const matchingWard = wards.find(
+    ward => ward.name.toLowerCase() === wardName.toLowerCase()
+  );
+  if (matchingWard) {
+    setDynamicPlaceholder(matchingWard.label);
+  } else {
+    setDynamicPlaceholder(wardName.replace(/\b\w/g, l => l.toUpperCase()));
+  }
+} else {
+  setDynamicPlaceholder(placeholder); // <-- fallback to "Select Ward…"
+}
 
-      const wardName = wardParam.replace(/-/g, " ");
-      const matchingWard = wards.find(
-        ward => ward.name.toLowerCase() === wardName.toLowerCase()
-      );
-      if (matchingWard) {
-        setDynamicPlaceholder(matchingWard.label);
-      } else {
-        setDynamicPlaceholder(wardName.replace(/\b\w/g, l => l.toUpperCase()));
-      }
-    } else {
-      setDynamicPlaceholder("All");
-    }
   }, [wards, placeholder]);
 
   React.useLayoutEffect(() => {

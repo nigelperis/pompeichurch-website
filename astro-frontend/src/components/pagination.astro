@@ -5,10 +5,26 @@ import { cn } from "~/helpers/cn";
 import { getPaginationRange } from "~/helpers/get-pagination-range";
 import { getLangFromUrl } from "~/i18n/utils";
 
+const url = new URL(Astro.url);
 const lang = getLangFromUrl(Astro.url);
 
-const { currentPage, totalPages } = Astro.props;
+const { currentPage, totalPages } = Astro.props as {
+  currentPage: number;
+  totalPages: number;
+};
+
 const paginationRange = getPaginationRange(currentPage, totalPages);
+
+const wardParam = url.searchParams.get("ward");
+
+const basePath = lang === Locale.KOK ? "/kok/obituary" : "/obituary";
+
+const buildHref = (page: number) => {
+  const query = new URLSearchParams();
+  if (wardParam) query.set("ward", wardParam);
+  query.set("p", String(page));
+  return `${basePath}?${query.toString()}`;
+};
 ---
 
 <div class="mt-10 flex items-center justify-center gap-2 text-lg lg:mt-10">
@@ -24,7 +40,7 @@ const paginationRange = getPaginationRange(currentPage, totalPages);
       </span>
     ) : (
       <a
-        href={`?p=${currentPage - 1}`}
+        href={buildHref(currentPage - 1)}
         class="flex h-10 w-10 items-center justify-center rounded font-bold transition-all duration-200 hover:bg-gray-200"
         aria-label="Previous Page"
       >
@@ -36,28 +52,28 @@ const paginationRange = getPaginationRange(currentPage, totalPages);
   <!-- Page Numbers -->
   {
     paginationRange.map((page) => {
-      if (page === "...") {
+      if (typeof page === "string") {
         return (
           <span class="flex h-10 w-10 items-center justify-center">...</span>
         );
-      } else {
-        return (
-          <a
-            href={`?p=${page}`}
-            class={cn(
-              `flex h-10 w-10 items-center justify-center rounded transition-all duration-200 ${
-                currentPage === page
-                  ? "bg-natgeo-yellow font-semibold text-black shadow-md"
-                  : "hover:bg-gray-200"
-              }`,
-              lang === Locale.KOK ? "pt-[6px]" : "",
-            )}
-            aria-label={`Page ${page}`}
-          >
-            {page}
-          </a>
-        );
       }
+
+      return (
+        <a
+          href={buildHref(page)}
+          class={cn(
+            `flex h-10 w-10 items-center justify-center rounded transition-all duration-200 ${
+              currentPage === page
+                ? "bg-natgeo-yellow font-semibold text-black shadow-md"
+                : "hover:bg-gray-200"
+            }`,
+            lang === Locale.KOK ? "pt-[6px]" : "",
+          )}
+          aria-label={`Page ${page}`}
+        >
+          {page}
+        </a>
+      );
     })
   }
 
@@ -73,7 +89,7 @@ const paginationRange = getPaginationRange(currentPage, totalPages);
       </span>
     ) : (
       <a
-        href={`?p=${currentPage + 1}`}
+        href={buildHref(currentPage + 1)}
         class="flex h-10 w-10 items-center justify-center rounded font-bold transition-all duration-200 hover:bg-gray-200"
         aria-label="Next Page"
       >

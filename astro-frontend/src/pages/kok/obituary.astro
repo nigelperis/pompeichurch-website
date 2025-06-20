@@ -21,7 +21,6 @@ const normalizedWard = selectedWard?.toLowerCase().replace(/-/g, " ") ?? "";
 const currentPage = Number(url.searchParams.get("p")) || 1;
 const obituariesPerPage = 6;
 
-
 const { obituaries } = await listObituaries({ pageSize: 1000 });
 
 const filteredObituaries = normalizedWard
@@ -46,12 +45,11 @@ const formattedObituaries = filteredObituaries
   .sort((a, b) => b.dateSort.getTime() - a.dateSort.getTime());
 
 const totalPages = Math.ceil(formattedObituaries.length / obituariesPerPage);
-const paginatedObituaries = !selectedWard
-  ? formattedObituaries.slice(
-      (currentPage - 1) * obituariesPerPage,
-      currentPage * obituariesPerPage
-    )
-  : formattedObituaries;
+
+const paginatedObituaries = formattedObituaries.slice(
+  (currentPage - 1) * obituariesPerPage,
+  currentPage * obituariesPerPage
+);
 
 const uniqueWards = allWards.map((ward) => ({
   name: ward.wardName,
@@ -59,6 +57,8 @@ const uniqueWards = allWards.map((ward) => ({
 }));
 
 const pageTitle = "Obituary";
+
+const basePath = selectedWard ? `/obituary?ward=${selectedWard}&` : `/obituary?`;
 ---
 <Layout title={pageTitle}>
   <main class="mx-auto max-w-4xl bg-white">
@@ -97,18 +97,21 @@ const pageTitle = "Obituary";
           <>
             <ObituaryList obituaries={paginatedObituaries} />
 
-            {!selectedWard && (
+
+            {totalPages >= 1 && (
               <Pagination
                 currentPage={currentPage}
                 totalPages={totalPages}
-                basePath={`/obituary?`}
+                basePath={basePath}
               />
             )}
           </>
         ) : (
+          <div class="h-screen">
           <p class="py-8 text-center text-2xl font-semibold text-gray-700">
             {Message.OBITUARIES_NOT_FOUND}
           </p>
+          </div>
         )
       }
     </section>
