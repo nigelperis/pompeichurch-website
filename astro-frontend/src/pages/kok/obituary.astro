@@ -104,7 +104,7 @@ const pageTitle = selectedObituary
             { "pt-2 font-bold": lang === Locale.KOK },
           )}
         >
-          Obituary
+           {t("nav.obituary")}
         </h1>
 
         <div class="w-full md:w-64">
@@ -137,9 +137,9 @@ const pageTitle = selectedObituary
             )}
           </>
         ) : (
-          <div class="h-screen">
+          <div >
             <p class="py-8 text-center text-2xl font-semibold text-gray-700">
-              {Message.OBITUARIES_NOT_FOUND}
+              {Message.OBITUARIES_NOT_FOUND_KOK}
             </p>
           </div>
         )

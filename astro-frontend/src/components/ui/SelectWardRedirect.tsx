@@ -61,10 +61,13 @@ if (wardParam) {
     }
   }, [value]);
 
-  const options = [
-    { name: "__all__", label: "All" },
-    ...wards,
-  ];
+const isKonkani = window.location.pathname.startsWith("/kok");
+
+const options = [
+  { name: "__all__", label: isKonkani ? "ಸಗ್ಳೆಂ" : "All" },
+  ...wards,
+];
+
 
   return (
     <Radix.Root value={value} onValueChange={setValue}>
