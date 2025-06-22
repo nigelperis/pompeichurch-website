@@ -7,6 +7,7 @@ import { getLangFromUrl } from "~/i18n/utils";
 
 const url = new URL(Astro.url);
 const lang = getLangFromUrl(Astro.url);
+const pathname = url.pathname.split("?")[0].replace(/\/$/, ""); 
 
 const { currentPage, totalPages } = Astro.props as {
   currentPage: number;
@@ -15,15 +16,11 @@ const { currentPage, totalPages } = Astro.props as {
 
 const paginationRange = getPaginationRange(currentPage, totalPages);
 
-const wardParam = url.searchParams.get("ward");
-
-const basePath = lang === Locale.KOK ? "/kok/obituary" : "/obituary";
-
+const preservedParams = url.searchParams;
 const buildHref = (page: number) => {
-  const query = new URLSearchParams();
-  if (wardParam) query.set("ward", wardParam);
+  const query = new URLSearchParams(preservedParams);
   query.set("p", String(page));
-  return `${basePath}?${query.toString()}`;
+  return `${pathname}?${query.toString()}`;
 };
 ---
 
