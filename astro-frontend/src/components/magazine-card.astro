@@ -7,14 +7,14 @@ interface Props {
   imageUrl: string;
   imageWidth: number;
   imageHeight: number;
-  googleDriveLink: string;
+  fileUrl: string | null;
   class?: string;
 }
 
 const {
   title,
   imageUrl,
-  googleDriveLink,
+  fileUrl,
   imageWidth,
   imageHeight,
   class: className,
@@ -41,7 +41,7 @@ const {
 
   <div class="p-4 text-center">
     <a
-      href={googleDriveLink}
+      href={fileUrl}
       download
       class="mt-1 inline-flex items-center gap-2 rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-md hover:bg-blue-700"
     >

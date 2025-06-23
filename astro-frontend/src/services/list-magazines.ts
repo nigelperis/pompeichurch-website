@@ -23,6 +23,7 @@ async function listMagazines(args?: {
 
   const queryParams = new URLSearchParams({
     "populate[0]": "coverImage",
+    "populate[1]": "pdfFile",
     "sort[0]": sortBy,
     "pagination[page]": String(page),
     "pagination[pageSize]": String(pageSize),
