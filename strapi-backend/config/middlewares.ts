@@ -13,6 +13,7 @@ export default [
       textLimit: "300mb",
       formidable: {
         maxFileSize: 300 * 1024 * 1024,
+        maxFieldsSize: 300 * 1024 * 1024,
       },
     },
   },
