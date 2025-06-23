@@ -41,12 +41,21 @@ interface CoverImage {
 export interface PompeichemFalkem {
   id: number;
   documentId: string;
-  googleDriveLink: string;
   dateOfPublish: string;
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
   coverImage: CoverImage;
+  pdfFile: {
+    id: number;
+    url: string;
+    name: string;
+    ext: string;
+    mime: string;
+    size: number;
+    width: number;
+    height: number;
+  } | null;
   title: string;
 }
 

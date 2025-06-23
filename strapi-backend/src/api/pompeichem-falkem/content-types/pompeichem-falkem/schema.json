@@ -19,18 +19,15 @@
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
-    },
-    "googleDriveLink": {
-      "type": "string"
+      "allowedTypes": ["images"]
     },
     "dateOfPublish": {
       "type": "date"
+    },
+    "pdfFile": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["files"]
     }
   }
 }
