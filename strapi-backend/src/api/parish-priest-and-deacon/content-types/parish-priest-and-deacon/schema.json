@@ -18,57 +18,57 @@
   "attributes": {
     "image": {
       "type": "media",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
       "multiple": false,
       "required": false,
       "allowedTypes": [
         "images"
-      ],
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
+      ]
     },
     "name": {
+      "type": "string",
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       },
-      "type": "string",
       "required": true
     },
     "sNo": {
+      "type": "integer",
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       },
-      "type": "integer",
       "required": true,
       "unique": true
     },
     "servicePeriod": {
+      "type": "string",
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       },
-      "type": "string",
       "required": true
     },
     "role": {
+      "type": "enumeration",
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       },
-      "type": "enumeration",
+      "required": true,
       "enum": [
         "Parish Priest",
         "Deacon"
-      ],
-      "required": true
+      ]
     }
   }
 }
