@@ -83,7 +83,6 @@ interface ImageFormat {
   height: number;
   sizeInBytes: number;
 }
-
 interface Event {
   id: number;
   slug: string;
@@ -99,6 +98,7 @@ interface Event {
   updatedAt: string;
   publishedAt: string;
   eventImage: EventImage;
+  associationName: string;
 }
 
 interface EventData {
