@@ -14,7 +14,7 @@ import type { AssociationOfficeBearers } from "~/models/association-bearers";
 import { listEvents } from "~/services/events/list-events";
 import EventCard from "~/components/event-card.astro";
 import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
-
+import { titleMappings } from "~/constants/association-title-mapping";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
@@ -61,18 +61,22 @@ const groupPictureField = slugMappings[slug]
 const groupPicture = associationDetails?.[groupPictureField];
 
 
-const recentEventsData = await listEvents({
+const allEvents = await listEvents({
   page: 1,
-  pageSize: 2,
+  pageSize: 100,
   sortBy: ["eventDate:desc"],
-  filters: {
-    associationName: {
-      $containsi: title // Case-insensitive search for association name
-    }
-  }
 });
+const englishTitle =
+  associations.find((assoc) => assoc.slug === slug)?.title ??
+  associationsKok.find((assoc) => assoc.slug === slug)?.title ?? "";
 
-const recentEvents = recentEventsData.events || [];
+
+const mappedTitle = titleMappings[englishTitle] ?? englishTitle;
+
+const recentEvents = allEvents.events
+  ?.filter((event) => event.associationName === mappedTitle)
+  .slice(0, 2) || [];
+
 ---
 
 <div class="mx-auto">
@@ -126,44 +130,6 @@ const recentEvents = recentEventsData.events || [];
       </>
     )
   }
-
-  {
-    recentEvents.length > 0 && (
-      <>
-<h2
-  class={cn("mt-8 text-left text-2xl font-bold text-slate-900", {
-    "font-bold sm:pt-1": lang === Locale.KOK,
-  })}
->
-  {lang === Locale.KOK ? "ಸಂಘ್-ಸಂಸ್ಥ್ಯಾಚಿ ಘಡಿತಾಂ" : "Association Events"}
-</h2>
-
-        <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 mt-6">
-          {recentEvents.map((event) => (
-            <EventCard
-              eventName={event.englishTitle}
-              eventNameKok={event.konkaniTitle}
-              imageUrl={
-                event.eventImage?.url
-                  ? new URL(
-                      event.eventImage?.url,
-                      import.meta.env.PUBLIC_STRAPI_URL,
-                    ).toString()
-                  : getPlaceholderImage()
-              }
-              imageWidth={event.eventImage?.width || 600}
-              imageHeight={event.eventImage?.height || 400}
-              shortDescription={event.shortDescription}
-              facebookLink={event.facebookLink}
-              slug={event.slug}
-              instagramLink={event.instagramLink}
-            />
-          ))}
-        </div>
-      </>
-    )
-  }
-
   {
     currentSocial && (
       <>
@@ -186,4 +152,37 @@ const recentEvents = recentEventsData.events || [];
       </>
     )
   }
+
+{recentEvents.length > 0 && (
+  <>
+    <h2 class={cn("mt-8 text-left text-2xl font-bold text-slate-900", {
+      "font-bold sm:pt-1": lang === Locale.KOK,
+    })}>
+      {lang === Locale.KOK ? "ಸಂಘ್-ಸಂಸ್ಥ್ಯಾಚಿ ಘಡಿತಾಂ" : "Association Events"}
+    </h2>
+
+    <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 mt-6">
+      {recentEvents.map((event) => (
+        <EventCard
+          eventName={event.englishTitle}
+          eventNameKok={event.konkaniTitle}
+          imageUrl={
+            event.eventImage?.url
+              ? new URL(event.eventImage?.url, import.meta.env.PUBLIC_STRAPI_URL).toString()
+              : getPlaceholderImage()
+          }
+          imageWidth={event.eventImage?.width || 600}
+          imageHeight={event.eventImage?.height || 400}
+          shortDescription={event.shortDescription}
+          facebookLink={event.facebookLink}
+          slug={event.slug}
+          instagramLink={event.instagramLink}
+        />
+      ))}
+    </div>
+  </>
+)}
+
+
+
 </div>
