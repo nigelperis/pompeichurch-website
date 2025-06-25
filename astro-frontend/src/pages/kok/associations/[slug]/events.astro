@@ -18,11 +18,14 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const { slug } = Astro.params as { slug: keyof typeof slugMappings };
 
+// Get both language titles
+const englishTitle = associations.find((a) => a.slug === slug)?.title ?? "";
+const konkaniTitle = associationsKok.find((a) => a.slug === slug)?.title ?? "";
 
-const englishTitle =
-  associations.find((assoc) => assoc.slug === slug)?.title ??
-  associationsKok.find((assoc) => assoc.slug === slug)?.title ?? "";
+// Choose display title based on language
+const title = lang === Locale.KOK ? konkaniTitle : englishTitle;
 
+// For filtering events, always use the mapped English title
 const mappedTitle = titleMappings[englishTitle] ?? englishTitle;
 
 const eventsPerPage = 6;
@@ -30,7 +33,7 @@ const currentPage = Number(Astro.url.searchParams.get("p")) || 1;
 
 const { events: allEvents } = await listEvents({
   page: 1,
-  pageSize: 100, // fetch all for filtering
+  pageSize: 500, //Todo Comment
 });
 
 const filteredEvents = allEvents.filter(
@@ -45,21 +48,25 @@ const paginatedEvents = filteredEvents.slice(
   currentPage * eventsPerPage
 );
 
-const pageTitle = `${englishTitle} Events | Pompei Church`;
+console.log("Filtered events:", filteredEvents.length);
+console.log("Total pages:", totalPages);
+
+const pageTitle = `${title} Events | Pompei Church`;
 ---
+
 <Layout title={pageTitle}>
   <main class="mx-auto max-w-4xl overflow-hidden bg-white">
     <section id="events" class="flex flex-col p-6">
       <PushNotification />
+
       <h1
         class={cn(
           "font-black border-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl lg:text-4xl",
           { "font-bold": lang === Locale.KOK }
         )}
       >
-        {lang === Locale.KOK ? "ಘಡಿತಾಂ" : `Events`}
+             {t("nav.events")}- {t(`nav.${slug}`)}
       </h1>
-
 
       {paginatedEvents.length > 0 ? (
         <>
