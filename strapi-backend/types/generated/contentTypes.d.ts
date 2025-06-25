@@ -777,10 +777,26 @@ export interface ApiEventEvent extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    associationName: Schema.Attribute.Enumeration<
+      [
+        'SVP',
+        'ICYM-PYC',
+        'Altar Servers',
+        'Catholic Sabha',
+        'YCS',
+        'Secular Franciscan',
+        'Catechism',
+        'Small Christian Community',
+        'Gurpur Church Choir',
+        'Women\u2019s Forum',
+        'Christian\u00A0Life\u00A0Community',
+      ]
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     description: Schema.Attribute.Blocks;
+    DUMMY: Schema.Attribute.String;
     englishTitle: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.Unique;
