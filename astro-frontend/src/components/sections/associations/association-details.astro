@@ -117,7 +117,7 @@ const recentEvents = allEvents.events
     officeBearers.length > 0 && (
       <>
         <h2
-          class={cn("font-bold mt-2 text-left text-2xl text-slate-900", {
+          class={cn("font-bold mt-1 text-left text-2xl text-slate-900", {
             "font-bold sm:pt-1": lang === Locale.KOK,
           })}
         >
@@ -144,7 +144,7 @@ const recentEvents = allEvents.events
     currentSocial && (
       <>
         <h2
-          class={cn("mt-8 text-left text-2xl font-bold text-slate-900", {
+          class={cn("mt-2 text-left text-2xl font-bold text-slate-900", {
             "font-bold sm:pt-1": lang === Locale.KOK,
           })}
         >
@@ -165,13 +165,13 @@ const recentEvents = allEvents.events
 
 {recentEvents.length > 0 && (
   <>
-    <h2 class={cn("mt-8 text-left text-2xl font-bold text-slate-900", {
+    <h2 class={cn("mt-4 text-left text-2xl font-bold text-slate-900", {
       "font-bold sm:pt-1": lang === Locale.KOK,
     })}>
       {lang === Locale.KOK ? "ಸಂಘ್-ಸಂಸ್ಥ್ಯಾಚಿ ಘಡಿತಾಂ" : "Association Events"}
     </h2>
 
-    <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 mt-6">
+    <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 mt-4">
       {recentEvents.map((event) => (
         <EventCard
           eventName={event.englishTitle}
