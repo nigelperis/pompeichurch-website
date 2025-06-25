@@ -10,46 +10,44 @@ const selectedLanguage = currentLocale === Locale.KOK ? "ಕೊಂಕಣಿ" : "
 const lang = getLangFromUrl(Astro.url);
 ---
 
-<div class="relative inline-block text-left">
-  <div>
-    <button
-      type="button"
-      id="lang-button"
+<div class="relative inline-block text-left group">
+  <button
+    type="button"
+    id="lang-button"
+    class={cn(
+      "border border-gray-300 px-4 py-2 font-semibold flex justify-between items-center w-full",
+      lang === Locale.KOK &&
+        "pt-2 lg:pb-[0.2rem] lg:pt-[0.6rem]",
+    )}
+    aria-label="Switch Language"
+
+  >
+    {selectedLanguage}
+    <Icon
+      name="chevron-down"
+      id="lang-arrow"
       class={cn(
-        "inline-flex font-semibold justify-center rounded-md border border-gray-500 px-2 lg:py-1 pt-1 pb-1 mt-1 md:hover:bg-natgeo-yellow lg:pb-[0.4rem] cursor-pointer",
-        lang === Locale.KOK &&
-          "pt-2 font-semibold lg:pb-[0.2rem] lg:pt-[0.6rem]",
+        "-mr-1.5 mt-1 h-5 w-5 transition-transform duration-300 ease-in-out group-hover:rotate-180",
+        lang === Locale.KOK && "-mt-1",
       )}
-      aria-label="Click here to switch language"
-    >
-      {selectedLanguage}
-      <Icon
-        name="chevron-down"
-        id="lang-arrow"
-        class={cn(
-          "-mr-1.5 mt-1 h-5 w-5 transition-transform duration-300 ease-in-out",
-          lang === Locale.KOK && "mt-0",
-        )}
-      />
-    </button>
-  </div>
+    />
+  </button>
+
   <div
-    id="lang-dropdown"
-    class="absolute w-full rounded-md bg-white p-2 shadow-md"
+  id="lang-dropdown"
+    class="absolute w-full border border-gray-300 bg-white shadow-lg overflow-hidden mt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out"
+    style="top: 100%;"
     role="menu"
     aria-orientation="vertical"
     aria-labelledby="options-menu"
   >
-    <div>
+    <div class="p-1">
       {
         languages.map((lang) => (
           <button
             type="button"
-            class={cn(
-              "hover:bg-natgeo-yellow w-full rounded-md py-2 text-sm transition-all cursor-pointer",
-              lang === Locale.KOK ? "lg:font-[350]" : "font-normal",
-            )}
-            aria-label="Language label"
+            class="px-3 py-2 hover:bg-gray-100 cursor-pointer w-full text-center transition-all lang-option"
+            aria-label={`Switch to ${lang}`}
           >
             {lang}
           </button>
@@ -63,24 +61,3 @@ const lang = getLangFromUrl(Astro.url);
   import { languageSwitcher } from "~/scripts/language-switcher";
   languageSwitcher();
 </script>
-
-<style>
-  .relative:hover #lang-dropdown {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-  }
-
-  #lang-dropdown {
-    opacity: 0;
-    visibility: hidden;
-    transition:
-      opacity 0.3s ease-in-out,
-      visibility 0.3s ease-in-out;
-  }
-
-  .visible {
-    opacity: 1;
-    visibility: visible;
-  }
-</style>

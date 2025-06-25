@@ -5,6 +5,7 @@ import '@fontsource-variable/roboto';
 import 'aos/dist/aos.css';
 
 import Navbar from '~/components/navbar.astro';
+import Breadcrumbs from '~/components/breadcrumbs.astro';
 import Footer from '~/components/footer.astro';
 import ScrollTop from '~/components/scroll-top.astro';
 import GoogleAnalytics from '~/components/google-analytics.astro';
@@ -101,6 +102,7 @@ const { title, description, image, url } = Astro.props;
 		"font-noto-sans-kannada": lang === Locale.KOK,
 		})}>
 		<Navbar />
+		<Breadcrumbs/>
 		<slot />
 		<Footer />
 		<ScrollTop />

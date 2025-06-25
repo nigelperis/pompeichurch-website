@@ -1,0 +1,120 @@
+---
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { getLangFromUrl, useTranslations } from "~/i18n/utils";
+import { Locale } from "~/enums/locale";
+import { cn } from "~/helpers/cn";
+
+interface BreadcrumbItem {
+  label: string;
+  href: string;
+}
+
+const lang: Locale = getLangFromUrl(Astro.url) as Locale;
+const t = useTranslations(lang);
+const currentPath: string = Astro.url.pathname;
+
+const homePaths: string[] = ['/', `/${lang}`, `/${lang}/`];
+const isHomePage: boolean = homePaths.includes(currentPath);
+
+function generateBreadcrumbs(path: string, locale: Locale): BreadcrumbItem[] {
+  const prefix: string = locale === Locale.KOK ? `/${locale}` : "";
+  const cleanPath: string =
+    path.startsWith(prefix) ? path.slice(prefix.length) : path;
+
+  const segments: string[] = cleanPath
+    .split("/")
+    .filter((seg: string) => seg !== "");
+
+  const crumbs: BreadcrumbItem[] = [
+    {
+      label: t("nav.home"),
+      href: getRelativeLocaleUrl(locale, ""),
+    },
+  ];
+
+  let accumulated: string = prefix;
+  for (const segment of segments) {
+    accumulated += `/${segment}`;
+
+    const key: string = `nav.${segment}`;
+    const translated: string = t(key);
+
+    const label: string =
+      translated !== key
+        ? translated
+        : segment
+            .split("-")
+            .map((w: string) => w.charAt(0).toUpperCase() + w.slice(1))
+            .join(" ");
+
+    crumbs.push({
+      label,
+      href: getRelativeLocaleUrl(locale, accumulated.slice(prefix.length)),
+    });
+  }
+
+  return crumbs;
+}
+
+const breadcrumbItems: BreadcrumbItem[] = isHomePage ? [] : generateBreadcrumbs(currentPath, lang);
+
+const structuredData = breadcrumbItems.length > 0 ? {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: breadcrumbItems.map((item, idx) => ({
+    "@type": "ListItem",
+    position: idx + 1,
+    name: item.label,
+    item: new URL(item.href, Astro.site).toString(),
+  })),
+} : null;
+---
+
+{!isHomePage && (
+  <nav
+    aria-label={t("breadcrumb.navigation") || "Breadcrumb"}
+    class="mx-auto max-w-4xl"
+  >
+    <div class="px-6 pt-4 pb-2">
+      <ol class="flex flex-wrap items-center gap-1 list-none text-sm">
+        {breadcrumbItems.map((item, index) => (
+          <li class="flex items-center">
+            {index > 0 && (
+              <span class="mx-2 text-gray-400 select-none" aria-hidden="true">
+                /
+              </span>
+            )}
+            {index < breadcrumbItems.length - 1 ? (
+              <a
+                href={item.href}
+                class={cn(
+                  "text-gray-600 hover:text-natgeo-yellow hover:underline transition-colors duration-200 font-medium",
+                  { "font-[350]": lang === Locale.KOK }
+                )}
+              >
+                {item.label}
+              </a>
+            ) : (
+              <span
+                class={cn(
+                  "text-gray-800 font-semibold",
+                  { "font-[350]": lang === Locale.KOK }
+                )}
+                aria-current="page"
+              >
+                {item.label}
+              </span>
+            )}
+          </li>
+        ))}
+      </ol>
+    </div>
+
+    {structuredData && (
+      <script
+        type="application/ld+json"
+        set:html={JSON.stringify(structuredData)}
+      />
+    )}
+  </nav>
+)}
