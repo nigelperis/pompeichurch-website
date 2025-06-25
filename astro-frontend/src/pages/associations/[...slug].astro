@@ -24,21 +24,32 @@ export async function getStaticPaths() {
 }
 
 const { slug } = Astro.params as { slug: string };
-const title =
-  associations.find((assoc) => assoc.slug === slug)?.title ||
-  associationsKok.find((assoc) => assoc.slug === slug)?.title ||
-  "Default Title";
+
+const assoc =
+  associations.find((assoc) => assoc.slug === slug) ||
+  associationsKok.find((assoc) => assoc.slug === slug);
+
+const isValid = !!assoc;
+const title = assoc?.title ?? "404: Not Found";
 ---
 
 <Layout title={`Associations | ${title}`}>
   <main class="mx-auto max-w-4xl overflow-hidden bg-white">
     <section id="associations" class="flex flex-col p-6 pb-4">
-      <h1
-        class="border-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl font-black lg:text-4xl"
-      >
-        {t(`nav.${slug}`)}
-      </h1>
-      <AssociationDetails />
+      {isValid ? (
+        <>
+          <h1 class="font-extrablack border-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl lg:text-4xl">
+            {t(`nav.${slug}`)}
+          </h1>
+          <AssociationDetails />
+        </>
+      ) : (
+        <div class="min-h-[60vh] flex flex-col items-center justify-center text-center text-black">
+          <div class="text-6xl font-bold mb-2">404</div>
+          <div class="text-2xl font-semibold mb-1">Not Found</div>
+          <div class="text-sm text-gray-600">Path: /{slug}</div>
+        </div>
+      )}
     </section>
   </main>
 </Layout>

@@ -1,0 +1,82 @@
+---
+import Layout from "~/layouts/layout.astro";
+import { getLangFromUrl, useTranslations } from "~/i18n/utils";
+import { associations } from "~/constants/associations";
+import { associationsKok } from "~/constants/associations-kok";
+import { listEvents } from "~/services/events/list-events";
+import EventsList from "~/components/sections/events/events-list.astro";
+import { titleMappings } from "~/constants/association-title-mapping";
+import { Locale } from "~/enums/locale";
+import { cn } from "~/helpers/cn";
+import { Message } from "~/constants/message.ts";
+import PushNotification from "~/components/push-notification.astro";
+import { slugMappings } from "~/constants/association-slug-mappings";
+import Pagination from "~/components/pagination.astro";
+import { getPaginationRange } from "~/helpers/get-pagination-range";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const { slug } = Astro.params as { slug: keyof typeof slugMappings };
+
+const englishTitle = associations.find((a) => a.slug === slug)?.title ?? "";
+const konkaniTitle = associationsKok.find((a) => a.slug === slug)?.title ?? "";
+
+const title = lang === Locale.KOK ? konkaniTitle : englishTitle;
+
+const mappedTitle = titleMappings[englishTitle] ?? englishTitle;
+
+const eventsPerPage = 6;
+const currentPage = Number(Astro.url.searchParams.get("p")) || 1;
+
+const { events: allEvents } = await listEvents({
+  page: 1,
+  pageSize: 500, //Todo Comment
+});
+
+const filteredEvents = allEvents.filter(
+  (event) => event.associationName === mappedTitle
+);
+
+const totalEvents = filteredEvents.length;
+const totalPages = Math.ceil(totalEvents / eventsPerPage);
+
+const paginatedEvents = filteredEvents.slice(
+  (currentPage - 1) * eventsPerPage,
+  currentPage * eventsPerPage
+);
+
+
+const pageTitle = `${title} Events | Pompei Church`;
+---
+
+<Layout title={pageTitle}>
+  <main class="mx-auto max-w-4xl overflow-hidden bg-white">
+    <section id="events" class="flex flex-col p-6">
+      <PushNotification />
+
+      <h1
+        class={cn(
+          "font-black border-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl lg:text-4xl",
+          { "font-bold": lang === Locale.KOK }
+        )}
+      >
+             {t("nav.events")} - {t(`nav.${slug}`)}
+      </h1>
+
+      {paginatedEvents.length > 0 ? (
+        <>
+          <EventsList events={paginatedEvents} />
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            getPaginationRange={getPaginationRange}
+          />
+        </>
+      ) : (
+        <p class="py-8 text-center text-3xl font-semibold">
+          {Message.EVENTS_NOT_FOUND}
+        </p>
+      )}
+    </section>
+  </main>
+</Layout>
