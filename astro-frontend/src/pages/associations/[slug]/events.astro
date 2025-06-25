@@ -18,14 +18,11 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const { slug } = Astro.params as { slug: keyof typeof slugMappings };
 
-// Get both language titles
 const englishTitle = associations.find((a) => a.slug === slug)?.title ?? "";
 const konkaniTitle = associationsKok.find((a) => a.slug === slug)?.title ?? "";
 
-// Choose display title based on language
 const title = lang === Locale.KOK ? konkaniTitle : englishTitle;
 
-// For filtering events, always use the mapped English title
 const mappedTitle = titleMappings[englishTitle] ?? englishTitle;
 
 const eventsPerPage = 6;
@@ -48,8 +45,6 @@ const paginatedEvents = filteredEvents.slice(
   currentPage * eventsPerPage
 );
 
-console.log("Filtered events:", filteredEvents.length);
-console.log("Total pages:", totalPages);
 
 const pageTitle = `${title} Events | Pompei Church`;
 ---
@@ -65,7 +60,7 @@ const pageTitle = `${title} Events | Pompei Church`;
           { "font-bold": lang === Locale.KOK }
         )}
       >
-             {t("nav.events")}- {t(`nav.${slug}`)}
+             {t("nav.events")} - {t(`nav.${slug}`)}
       </h1>
 
       {paginatedEvents.length > 0 ? (
