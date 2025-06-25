@@ -57,12 +57,9 @@ const pageTitle = `${englishTitle} Events | Pompei Church`;
           { "font-bold": lang === Locale.KOK }
         )}
       >
-        {lang === Locale.KOK ? "ಸಂಘ್-ಸಂಸ್ಥ್ಯಾಚಿ ಘಡಿತಾಂ" : `${englishTitle} Events`}
+        {lang === Locale.KOK ? "ಘಡಿತಾಂ" : `Events`}
       </h1>
 
-      <p class="pb-4 text-justify text-lg">
-        {t("events.subtitle")}
-      </p>
 
       {paginatedEvents.length > 0 ? (
         <>
