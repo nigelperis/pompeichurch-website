@@ -1,63 +1,37 @@
 ---
-const languages = ["English", "ಕೊಂಕಣಿ"];
-const currentLocale = Astro.currentLocale;
-import { cn } from "~/helpers/cn";
-import { getLangFromUrl } from "~/i18n/utils";
-import { Icon } from "astro-icon/components";
 import { Locale } from "~/enums/locale";
 
-const selectedLanguage = currentLocale === Locale.KOK ? "ಕೊಂಕಣಿ" : "English";
-const lang = getLangFromUrl(Astro.url);
+const currentLocale = Astro.currentLocale;
+const currentPath = Astro.url.pathname;
+const search = Astro.url.search;
+const hash = Astro.url.hash;
+
+const isKok = currentLocale === Locale.KOK;
+const buttonLabel = isKok ? "English" : "ಕೊಂಕಣಿ";
+
+let switchPath: string;
+if (isKok) {
+  switchPath = currentPath.replace(/^\/kok/, "") || "/";
+} else {
+  switchPath = `/kok${currentPath}`;
+}
+const switchUrl = `${switchPath}${search}${hash}`;
+
+const fontFamily = isKok
+  ? "'Roboto', sans-serif"
+  : "'Noto Sans Kannada', sans-serif";
+
+const buttonClasses = 'w-25 flex items-center justify-center border border-gray-300 px-2 py-2 font-semibold transition-colors hover:bg-gray-100';
+const textClasses = !isKok ? 'inline-block transform translate-y-1' : 'inline-block';
 ---
 
-<div class="relative inline-block text-left group">
-  <button
-    type="button"
-    id="lang-button"
-    class={cn(
-      "border border-gray-300 px-4 py-2 font-semibold flex justify-between items-center w-full",
-      lang === Locale.KOK &&
-        "pt-2 lg:pb-[0.2rem] lg:pt-[0.6rem]",
-    )}
-    aria-label="Switch Language"
-
-  >
-    {selectedLanguage}
-    <Icon
-      name="chevron-down"
-      id="lang-arrow"
-      class={cn(
-        "-mr-1.5 mt-1 h-5 w-5 transition-transform duration-300 ease-in-out group-hover:rotate-180",
-        lang === Locale.KOK && "-mt-1",
-      )}
-    />
-  </button>
-
-  <div
-  id="lang-dropdown"
-    class="absolute w-full border border-gray-300 bg-white shadow-lg overflow-hidden mt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out"
-    style="top: 100%;"
-    role="menu"
-    aria-orientation="vertical"
-    aria-labelledby="options-menu"
-  >
-    <div class="p-1">
-      {
-        languages.map((lang) => (
-          <button
-            type="button"
-            class="px-3 py-2 hover:bg-gray-100 cursor-pointer w-full text-center transition-all lang-option"
-            aria-label={`Switch to ${lang}`}
-          >
-            {lang}
-          </button>
-        ))
-      }
-    </div>
-  </div>
-</div>
-
-<script>
-  import { languageSwitcher } from "~/scripts/language-switcher";
-  languageSwitcher();
-</script>
+<a
+  href={switchUrl}
+  class={buttonClasses}
+  style={`font-family: ${fontFamily};`}
+  aria-label={`Switch language to ${buttonLabel}`}
+>
+  <span class={textClasses}>
+    {buttonLabel}
+  </span>
+</a>

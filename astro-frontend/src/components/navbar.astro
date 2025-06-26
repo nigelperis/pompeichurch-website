@@ -7,7 +7,6 @@ import { cn } from "~/helpers/cn";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import { navLinks } from "~/constants/nav-links.ts";
 import { Locale } from "~/enums/locale";
-import "~/styles/navbar-styles.css";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -33,51 +32,48 @@ const t = useTranslations(lang);
       >
         {
           navLinks
-            .filter((link) => link.title !== "nav.home") // Exclude the 'Home' link
-            .map((link) => (
-              <li
-                class={cn("group relative", {
-                  "expandable-link": link.type === "expandable",
-                })}
+          .filter((link) => link.title !== "nav.home")
+          .map((link) => (
+            <li
+            class="group relative">
+              <a
+                href={
+                  link.type === "link"
+                    ? getRelativeLocaleUrl(lang, link.href || "")
+                    : "#"
+                }
+                role={link.type === "expandable" ? "button" : undefined}
+                aria-haspopup={
+                  link.type === "expandable" ? "true" : undefined
+                }
+                aria-expanded="false"
+                aria-label={t(link.title)}
+                class="font-semibold transition-all duration-200 p-2  hover:bg-natgeo-yellow"
               >
-                <a
-                  href={
-                    link.type === "link"
-                      ? getRelativeLocaleUrl(lang, link.href || "")
-                      : "#"
-                  }
-                  role={link.type === "expandable" ? "button" : undefined}
-                  aria-haspopup={
-                    link.type === "expandable" ? "true" : undefined
-                  }
-                  aria-expanded="false"
-                  aria-label={t(link.title)}
-                  class="font-semibold transition-all duration-200 p-2 rounded-md hover:bg-natgeo-yellow"
-                >
-                  {t(link.title)}
-                </a>
-                {link.type === "expandable" && link.expandedLinks && (
-                  <ul class="absolute top-full mt-2 hidden w-60 rounded-md p-2 shadow-md group-hover:block md:flex">
-                    {link.expandedLinks.map((sublink) => (
-                      <li class="w-full">
-                        <a
-                          href={getRelativeLocaleUrl(lang, sublink.href)}
-                          class={cn(
-                            "hover:bg-natgeo-yellow block rounded-md px-2 py-2 text-sm transition-all font-normal",
-                            {
-                              "font-[350]": lang === Locale.KOK,
-                            },
-                          )}
-                        >
-                          {t(sublink.title)}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </li>
-            ))
-        }
+                {t(link.title)}
+              </a>
+              {link.type === "expandable" && link.expandedLinks && (
+                <ul class="absolute top-full mt-2 hidden w-60  bg-white p-2 shadow-md group-hover:block">
+                  {link.expandedLinks.map((sublink) => (
+                    <li class="w-full">
+                      <a
+                        href={getRelativeLocaleUrl(lang, sublink.href)}
+                        class={cn(
+                          "block  px-2 py-2 text-sm transition-all hover:bg-natgeo-yellow font-normal",
+                          {
+                            "font-[350]": lang === Locale.KOK,
+                          },
+                        )}
+                      >
+                        {t(sublink.title)}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
+          ))
+          }
       </ul>
     </div>
     <div class="flex flex-row-reverse">
@@ -95,8 +91,10 @@ const t = useTranslations(lang);
 </header>
 
 <nav
-  class="fixed inset-0 z-[101] w-full overflow-y-auto bg-white px-6 py-6 transition-transform duration-500 ease-out"
   id="navbar"
+  class="fixed inset-0 z-[101] w-full overflow-y-auto bg-white px-6 py-6
+         transform translate-x-full transition-transform duration-200 ease-out
+         [&.open]:translate-x-0"
 >
   <Icon
     name="cancel"
@@ -106,63 +104,59 @@ const t = useTranslations(lang);
   <!-- Navbar for mobile -->
   <ul class="flex flex-col gap-y-5">
     {
-      navLinks.map((link) => (
-        <li>
-          <a
-            data-expandable-links={
-              link.type === "expandable" ? "true" : "false"
-            }
-            href={
-              link.type === "link" ? getRelativeLocaleUrl(lang, link.href) : "#"
-            }
-            class={cn(
-              "group flex items-center justify-between font-bold text-xl text-black",
-              {
-                "font-extrablack": lang === Locale.EN,
-              },
-            )}
+    navLinks.map((link) => (
+      <li>
+        <a
+          data-expandable-links={
+            link.type === "expandable" ? "true" : "false"
+          }
+          href={
+            link.type === "link" ? getRelativeLocaleUrl(lang, link.href) : "#"
+          }
+          class={cn(
+            "group flex items-center justify-between font-bold text-xl text-black transition-colors",
+            {
+              "font-extrablack": lang === Locale.EN,
+            },
+          )}
+        >
+          <span
+            class={cn("transition-all duration-150", {
+              "mt-[4px]": lang === Locale.KOK,
+            })}
           >
-            <span
-              class={cn("transition-all duration-150", {
-                "mt-[4px]": lang === Locale.KOK,
-              })}
-            >
-              {t(link.title)}
-            </span>
+            {t(link.title)}
+          </span>
 
-            {link.type === "expandable" ? (
-              <Icon
-                name="chevron-right"
-                class="stroke-2 text-3xl"
-                data-icon-name="chevron-right"
-              />
-            ) : null}
-          </a>
-          {link.type === "expandable" ? (
-            <ul class="expandable-links max-h-0 overflow-hidden transition-all duration-500 ease-out">
-              {link.expandedLinks.map((sublinks) => (
-                <li>
-                  <a
-                    href={getRelativeLocaleUrl(lang, sublinks.href)}
-                    class="group mb-4 flex items-center justify-between text-2xl"
-                  >
-                    <span
-                      class={cn(
-                        "text-lg font-normal transition-all duration-150",
-                        {
-                          "font-[350]": lang === Locale.KOK,
-                        },
-                      )}
-                    >
-                      {t(sublinks.title)}
-                    </span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          ) : null}
-        </li>
-      ))
+          {link.type === "expandable" && (
+            <Icon
+              name="chevron-right"
+              class="stroke-2 text-3xl transition-transform duration-200 ease-out"
+              data-icon-name="chevron-right"
+            />
+          )}
+        </a>
+        {link.type === "expandable" && (
+          <ul class="max-h-0 p-2 overflow-hidden transition-[max-height] duration-500 ease-out">
+            {link.expandedLinks.map((sublinks) => (
+              <li>
+                <a
+                  href={getRelativeLocaleUrl(lang, sublinks.href)}
+                  class={cn(
+                    "group mb-4 flex items-center justify-between text-2xl transition-colors",
+                    { "font-[350]": lang === Locale.KOK }
+                  )}
+                >
+                  <span class="text-lg font-normal transition-all duration-150">
+                    {t(sublinks.title)}
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        )}
+      </li>
+    ))
     }
   </ul>
 </nav>
