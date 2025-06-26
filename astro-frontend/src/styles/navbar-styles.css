@@ -35,7 +35,7 @@ a[data-is-submenu-expanded="true"] > svg[data-icon-name="chevron-right"] {
     position: absolute;
     left: 0;
     top: 100%;
-    margin-top: 7px;
+    margin-top: 4px;
     background-color: white;
     border-radius: 4px;
     padding: 10px;
