@@ -24,7 +24,7 @@ const switchFont = isKok
   : "'Noto Sans Kannada', sans-serif";
 ---
 
-<div class="relative inline-block group">
+<div class="relative inline-block group mx-auto">
   <button
     type="button"
     class="w-22 flex items-center justify-between border border-gray-300 px-2 py-2 font-semibold hover:bg-gray-100 transition-colors cursor-pointer"
@@ -45,13 +45,13 @@ const switchFont = isKok
   </button>
 
   <ul
-    class="hidden group-hover:block absolute inset-x-0 top-full bg-white border border-gray-200 shadow-lg list-none mt-0 p-0 z-20"
+    class="hidden group-hover:block absolute inset-x-0 top-full w-full bg-white border border-gray-200 shadow-lg list-none p-0 z-20"
   >
     <li>
       <a
         href={switchUrl}
         aria-label={`Switch to ${switchLabel}`}
-        class="flex items-center justify-between px-2 py-2 hover:bg-gray-100 transition-colors"
+        class="flex items-center justify-center px-2.5 py-2.5 hover:bg-gray-100 transition-colors"
       >
         <span
           style={`font-family: ${switchFont}`}
@@ -65,3 +65,4 @@ const switchFont = isKok
     </li>
   </ul>
 </div>
+
