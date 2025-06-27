@@ -3,10 +3,6 @@ import { Locale } from "~/enums/locale";
 import { Icon } from "astro-icon/components";
 
 const currentLocale = Astro.currentLocale as Locale;
-const currentPath = Astro.url.pathname;
-const search = Astro.url.search;
-const hash = Astro.url.hash;
-
 const labels = { en: "English", kok: "ಕೊಂಕಣಿ" };
 const isKok = currentLocale === Locale.KOK;
 const currentKey = isKok ? "kok" : "en";
@@ -15,49 +11,54 @@ const currentLabel = labels[currentKey];
 const switchLabel = labels[otherKey];
 
 const switchPath = isKok
-  ? currentPath.replace(/^\/kok/, "") || "/"
-  : `/kok${currentPath}`;
-const switchUrl = `${switchPath}${search}${hash}`;
+  ? (Astro.url.pathname.replace(/^\/kok/, "") || "/")
+  : `/kok${Astro.url.pathname}`;
+const switchUrl = `${switchPath}${Astro.url.search}${Astro.url.hash}`;
 
 const switchFont = isKok
   ? "'Roboto', sans-serif"
   : "'Noto Sans Kannada', sans-serif";
 ---
-
-<div tabindex="0" class="relative inline-block group focus-within:block mx-auto">
+<div class="relative inline-block" data-switcher>
   <button
     type="button"
-    class="w-22 flex items-center justify-between border border-gray-300 px-2 py-2 font-semibold hover:bg-gray-100 transition-colors cursor-pointer"
+    data-switcher-btn
+    class="
+      flex items-center justify-between w-full
+      border border-gray-300
+      px-2 py-2 font-semibold bg-white
+      hover:bg-gray-100 transition-colors
+      cursor-pointer
+    "
   >
-    <span
-      class={`relative inline-block leading-none ${
-        currentKey === "kok" ? "top-[3px]" : ""
-      }`}
-    >
+    <span class={`inline-block leading-none ${currentKey === "kok" ? "translate-y-[2px]" : ""}`}>
       {currentLabel}
     </span>
     <Icon
       name="chevron-down"
-      class={`inline-block h-5 w-5 align-middle ${
-        currentKey === "kok" ? "scale-120" : ""
-      }`}
+      class="inline-block h-5 w-5 transform transition-transform"
     />
   </button>
 
   <ul
-    class="hidden group-hover:block group-focus-within:block absolute inset-x-0 top-full w-full bg-white border border-gray-200 shadow-lg z-20"
+    data-switcher-list
+    class="
+      hidden
+      absolute left-0 right-0 top-full -mt-px
+      border border-gray-300 border-t-0
+      bg-white shadow-lg z-30
+      p-2
+    "
   >
     <li>
       <a
         href={switchUrl}
         aria-label={`Switch to ${switchLabel}`}
-        class="flex items-center justify-center px-2.5 py-2.5 hover:bg-gray-100 transition-colors"
+        class="block px-2 py-1 text-center hover:bg-natgeo-yellow transition-colors"
       >
         <span
           style={`font-family: ${switchFont}`}
-          class={`relative inline-block leading-none ${
-            currentKey === "en" ? "top-[2px]" : ""
-          }`}
+          class={`inline-block leading-none ${currentKey === "kok" ? "translate-y-[3px]" : ""}`}
         >
           {switchLabel}
         </span>
@@ -66,3 +67,32 @@ const switchFont = isKok
   </ul>
 </div>
 
+<script type="module">
+  const wrapper = document.querySelector("[data-switcher]");
+  const btn     = wrapper.querySelector("[data-switcher-btn]");
+  const list    = wrapper.querySelector("[data-switcher-list]");
+  let isOpen = false;
+
+  function update() {
+    if (isOpen) {
+      list.classList.remove("hidden");
+    } else {
+      list.classList.add("hidden");
+    }
+  }
+
+  wrapper.addEventListener("mouseenter", () => {
+    isOpen = true;
+    update();
+  });
+  wrapper.addEventListener("mouseleave", () => {
+    isOpen = false;
+    update();
+  });
+
+  btn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    isOpen = !isOpen;
+    update();
+  });
+</script>
