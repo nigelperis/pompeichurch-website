@@ -79,11 +79,13 @@ const { title, description, image, url } = Astro.props;
 
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
-		{import.meta.env.MODE === 'production' && (
-	<script type="text/javascript">
-		(function (c, l, a, r, i, t, y) {
-			c[a] =
-				c[a] ||
+		{
+		import.meta.env.MODE === 'production' &&
+		import.meta.env.PUBLIC_ENVIRONMENT === 'production' && (
+			<script type="text/javascript">
+				(function (c, l, a, r, i, t, y) {
+					c[a] =
+						c[a] ||
 				function () {
 					(c[a].q = c[a].q || []).push(arguments);
 				};
@@ -94,7 +96,6 @@ const { title, description, image, url } = Astro.props;
 			y.parentNode.insertBefore(t, y);
 		})(window, document, 'clarity', 'script', 'oxa7yg1jfv');
 	</script>
-
 	)}
 	</head>
 	<body class={cn("w-screen overflow-x-hidden font-roboto", {
