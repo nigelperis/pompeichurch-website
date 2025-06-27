@@ -24,7 +24,7 @@ const switchFont = isKok
   : "'Noto Sans Kannada', sans-serif";
 ---
 
-<div class="relative inline-block group mx-auto">
+<div tabindex="0" class="relative inline-block group focus-within:block mx-auto">
   <button
     type="button"
     class="w-22 flex items-center justify-between border border-gray-300 px-2 py-2 font-semibold hover:bg-gray-100 transition-colors cursor-pointer"
@@ -45,7 +45,7 @@ const switchFont = isKok
   </button>
 
   <ul
-    class="hidden group-hover:block absolute inset-x-0 top-full w-full bg-white border border-gray-200 shadow-lg list-none p-0 z-20"
+    class="hidden group-hover:block group-focus-within:block absolute inset-x-0 top-full w-full bg-white border border-gray-200 shadow-lg z-20"
   >
     <li>
       <a
