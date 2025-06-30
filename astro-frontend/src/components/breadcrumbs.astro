@@ -1,0 +1,108 @@
+---
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { getLangFromUrl, useTranslations } from "~/i18n/utils";
+import { Locale } from "~/enums/locale";
+
+interface BreadcrumbItem {
+  label: string;
+  href: string;
+  clickable: boolean;
+}
+
+const lang: Locale = getLangFromUrl(Astro.url) as Locale;
+const t = useTranslations(lang);
+const currentPath: string = Astro.url.pathname;
+
+function generateBreadcrumbs(path: string, locale: Locale): BreadcrumbItem[] {
+  const prefix = locale === Locale.KOK ? `/${locale}` : "";
+  const cleanPath = path.startsWith(prefix) ? path.slice(prefix.length) : path;
+  const segments = cleanPath.split("/").filter((seg) => seg !== "");
+  const crumbs: BreadcrumbItem[] = [
+    {
+      label: t("nav.home"),
+      href: getRelativeLocaleUrl(locale, ""),
+      clickable: true,
+    },
+  ];
+  let accumulated = prefix;
+
+  segments.forEach((segment, idx) => {
+    accumulated += `/${segment}`;
+    const key = `nav.${segment}`;
+    const translated = t(key);
+    const label =
+      translated !== key
+        ? translated
+        : segment
+            .split("-")
+            .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+            .join(" ");
+    const href = getRelativeLocaleUrl(locale, accumulated.slice(prefix.length));
+    const isLast = idx === segments.length - 1;
+    crumbs.push({ label, href, clickable: !isLast });
+  });
+
+  return crumbs;
+}
+
+const breadcrumbItems = generateBreadcrumbs(currentPath, lang);
+
+// Organization schema
+const orgSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": `${Astro.site}#organization`,
+  name: "Our Lady of Pompei Church | Gurpur Kaikamba",
+  url: Astro.site,
+  logo: `${Astro.site}/temp-logo.webp`,
+  sameAs: [
+    "https://www.facebook.com/ladyofpompeichurch.gurpur",
+    "https://www.instagram.com/our_lady_of_pompei_church",
+    "https://www.youtube.com/@pompeichurchmedia8386",
+  ],
+};
+
+// WebSite schema
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${Astro.site}#website`,
+  url: Astro.site,
+  name: "Our Lady of Pompei Church | Gurpur Kaikamba",
+  inLanguage: lang === Locale.KOK ? "kok-IN" : "en-IN",
+};
+
+// BreadcrumbList schema
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: breadcrumbItems.map((item, idx) => ({
+    "@type": "ListItem",
+    position: idx + 1,
+    name: item.label,
+    item: new URL(item.href, Astro.site).toString(),
+  })),
+};
+
+// WebPage schema
+const webpageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": `${new URL(currentPath, Astro.site).toString()}#webpage`,
+  url: new URL(currentPath, Astro.site).toString(),
+  name: breadcrumbItems[breadcrumbItems.length - 1]?.label || t("nav.home"),
+  dateModified: new Date().toISOString(),
+  inLanguage: lang === Locale.KOK ? "kok-IN" : "en-IN",
+  isPartOf: { "@id": `${Astro.site}#website` },
+  publisher: { "@id": `${Astro.site}#organization` },
+  image: {
+    "@type": "ImageObject",
+    "@id": `${Astro.site}#logo`,
+    url: `${Astro.site}/temp-logo.webp`,
+  },
+};
+
+const seoSchema = [orgSchema, websiteSchema, breadcrumbSchema, webpageSchema];
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(seoSchema)} />
