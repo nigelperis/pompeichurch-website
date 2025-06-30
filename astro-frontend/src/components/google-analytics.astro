@@ -4,7 +4,9 @@ const props = Astro.props as Props;
 const measurementId = props.measurementId;
 ---
 
-{import.meta.env.MODE === 'production' && (
+{   
+	import.meta.env.MODE === 'production' &&
+	import.meta.env.PUBLIC_ENVIRONMENT === 'production' && (
 		<script
 			type="text/partytown"
 			src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}
@@ -18,11 +20,11 @@ const measurementId = props.measurementId;
 			const measurementId = document
 				.getElementById('ga-init')
 				.getAttribute('data-ga-measurement-id');
-			window.dataLayer = window.dataLayer || [];
-			function gtag() {
-				dataLayer.push(arguments);
-			}
-			gtag('js', new Date());
-			gtag('config', measurementId);
+				window.dataLayer = window.dataLayer || [];
+				function gtag() {
+					dataLayer.push(arguments);
+				}
+				gtag('js', new Date());
+				gtag('config', measurementId);
 		</script>
 )}
