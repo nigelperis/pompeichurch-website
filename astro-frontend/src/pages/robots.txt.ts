@@ -5,13 +5,19 @@ User-agent: *
 Allow: /
 
 Sitemap: ${sitemapURL.href}
-`;
+`.trim();
 
 export const GET: APIRoute = ({ site }) => {
+  console.log("What is env: ", import.meta.env.PUBLIC_ENVIRONMENT);
+  console.log("What is site: ", site);
+
   if (import.meta.env.PUBLIC_ENVIRONMENT === 'production') {
-  const sitemapURL = new URL("sitemap-index.xml", site);
-  return new Response(getRobotsTxt(sitemapURL));
+    const sitemapURL = new URL("sitemap-index.xml", site);
+    return new Response(getRobotsTxt(sitemapURL), {
+      headers: { 'Content-Type': 'text/plain' },
+    });
   }
+
   return new Response(`User-agent: *\nDisallow: /`, {
     headers: { 'Content-Type': 'text/plain' },
   });
