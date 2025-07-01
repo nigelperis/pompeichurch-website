@@ -1,0 +1,61 @@
+---
+import '@fontsource-variable/noto-sans-kannada';
+import '@fontsource-variable/roboto';
+import "~/styles/global.css";
+import Navbar from '~/components/navbar.astro';
+import Footer from '~/components/footer.astro';
+import ScrollTop from '~/components/scroll-top.astro';
+import { cn } from "~/helpers/cn";
+import { getLangFromUrl } from '~/i18n/utils';
+import { Locale } from '~/enums/locale';
+
+const lang = getLangFromUrl(Astro.url);
+const isKonkani = lang === Locale.KOK;
+const homeUrl = isKonkani ? "/kok/" : "/";
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 | Page Not Found</title>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  </head>
+
+  <body class={cn("w-screen overflow-x-hidden font-roboto h-dvh flex flex-col bg-white", {
+    "font-noto-sans-kannada": lang === Locale.KOK
+  })}>
+
+
+    <Navbar />
+
+
+    <main class="flex-grow flex items-center justify-center px-4">
+      <div class="max-w-xl mx-auto text-center">
+        <h1 class="text-6xl font-extrabold text-yellow-500 mb-4">404</h1>
+        <h2 class="text-2xl font-semibold text-gray-800 mb-3">Page Not Found</h2>
+        <p class="text-base text-gray-600 mb-8">
+          Sorry, the page you are looking for might have been removed or doesn't exist.
+        </p>
+        <a
+          href={homeUrl}
+          class="bg-natgeo-yellow text-black text-base font-semibold px-6 py-3 rounded-md"
+        >
+          Go Back Home
+        </a>
+      </div>
+    </main>
+
+    <Footer />
+
+    <ScrollTop />
+
+
+    <script>
+      console.log("Est Nov, 2024 🥃 www.nigelperis.dev");
+    </script>
+  </body>
+</html>
