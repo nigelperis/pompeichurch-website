@@ -13,9 +13,9 @@ const { events } = Astro.props as { events: Event[] };
         eventName={event.englishTitle}
         eventNameKok={event.konkaniTitle}
         imageUrl={
-          event.eventImage?.url
+          event?.eventImage?.url
             ? new URL(
-                event.eventImage?.url,
+                event?.eventImage?.url,
                 import.meta.env.PUBLIC_STRAPI_URL,
               ).toString()
             : getPlaceholderImage()

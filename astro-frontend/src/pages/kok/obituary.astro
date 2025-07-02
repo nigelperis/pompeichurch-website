@@ -65,8 +65,8 @@ const selectedObituary = id
 
 const baseURL = import.meta.env.PUBLIC_STRAPI_URL;
 
-const absoluteImageURL = selectedObituary?.image?.url
-  ? new URL(selectedObituary.image.url, baseURL).href
+const absoluteImageURL = selectedObituary?.image?.formats.medium.url
+  ? new URL(selectedObituary.image.formats.medium.url, baseURL).href
   : undefined;
 
 const ward =

@@ -2,6 +2,12 @@
 import { cn } from "~/helpers/cn";
 import { Icon } from "astro-icon/components";
 import NetworkImage from "./ui/network-image.astro";
+import { getLangFromUrl, useTranslations } from "~/i18n/utils";
+import { Locale } from "~/enums/locale";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
 interface Props {
   title: string;
   imageUrl: string;
@@ -24,7 +30,7 @@ const {
 
 <div
   class={cn(
-    "hover:scale-[1.01] transform overflow-hidden rounded-md border border-gray-200 duration-300 ease-in-out transition-all max-w-md mx-auto bg-white shadow-lg",
+    "overflow-hidden border border-gray-200 max-w-md mx-auto bg-white",
     className,
   )}
   {...rest}
@@ -43,10 +49,12 @@ const {
     <a
       href={fileUrl}
       download
-      class="mt-1 inline-flex items-center gap-2 rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-md hover:bg-blue-700"
+      class="mt-1 inline-flex items-center gap-2 bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-md hover:bg-blue-700"
     >
       <Icon name="download" size={20} />
-      Download
+      <span class={cn({"mt-2" : lang === Locale.KOK})}>
+        {t("download")}
+      </span>
     </a>
   </div>
 </div>
