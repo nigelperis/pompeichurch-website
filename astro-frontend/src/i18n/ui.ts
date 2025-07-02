@@ -392,6 +392,7 @@ export const ui = {
       "Stay informed about upcoming events, event highlights, and obituaries",
     "push.enable": "Enable",
     "push.disable": "Not Now!",
+    download: "Download",
   },
   kok: {
     "nav.home": "ಹೋಮ್",
@@ -779,5 +780,6 @@ export const ui = {
       "ಫಿರ್ಗಜೆಂತ್ಲಿ ಫುಡ್ಲಿಂ ಕಾರ್ಯಿಂ, ಘಡಿತಾಂಚಿ ಝಳಕ್ ಆನಿ ಮೊರ್ಣಾಚಿ ಖಬರ್ ಅಪ್ಣಾಂವ್ಕ್",
     "push.enable": "ಅನ್ಕೂಲ್ ಕರಾ",
     "push.disable": "ಆತಾಂ ನಾಕಾ!",
+    download: "ಡೌನ್ಲೋಡ್",
   },
 } as const;
