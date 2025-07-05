@@ -328,12 +328,12 @@ export default function ObituaryCardMin({
           </div>
           {/* Share Icon */}
           <ShareLink
-            className="share-button cursor-pointer transition-transform duration-1000 hover:scale-110 absolute bottom-4 right-4"
+            className="share-button cursor-pointer  absolute bottom-4 right-4"
             shareData={{
               title: name,
               url: shareUrl,
             }}
-            size={24}
+            size={30}
           />
         </div>
         {/* --- BACK SIDE (Funeral Details) --- */}
