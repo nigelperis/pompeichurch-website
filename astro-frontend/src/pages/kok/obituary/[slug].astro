@@ -1,0 +1,64 @@
+---
+import Layout from "~/layouts/layout.astro";
+import { getLangFromUrl, useTranslations } from "~/i18n/utils";
+import { listObituaries } from "~/services/obituaries/list-obituaries";
+import { Locale } from "~/enums/locale";
+import ObituaryCard from "~/components/ObituaryCard.tsx";
+
+const { slug } = Astro.params; // Get the slug from the URL
+const lang = getLangFromUrl(Astro.url) as Locale;
+const t = useTranslations(lang);
+
+const { obituaries } = await listObituaries({ pageSize: 1000 });
+const selectedObituary = obituaries.find((item) => item.slug === slug);
+
+if (!selectedObituary) {
+  return Astro.redirect("/obituary"); // Redirect if no obituary is found
+}
+
+const baseURL = import.meta.env.PUBLIC_STRAPI_URL;
+const absoluteImageURL = selectedObituary.image?.formats?.medium?.url
+  ? new URL(selectedObituary.image.formats.medium.url, baseURL).href
+  : ""; // Fallback to empty string if any part of the chain is undefined
+
+const obituaryUrl = new URL(
+  lang === Locale.EN ? `/obituary/${slug}` : `/kok/obituary/${slug}`,
+  Astro.url,
+).href;
+
+const pageTitle = selectedObituary
+  ? lang === Locale.EN
+    ? `${selectedObituary.englishName}`
+    : `${selectedObituary.konkaniName}`
+  : "Obituary";
+---
+
+<Layout
+  title={`${pageTitle} ${selectedObituary?.age ? `(${selectedObituary.age})` : ""}`}
+  description={selectedObituary.ward ?? "Pompei Church Obituaries"}
+  image={absoluteImageURL}
+  url={obituaryUrl}
+>
+  <main class="mx-auto max-w-4xl bg-white p-6">
+    <ObituaryCard
+      client:load
+      id={selectedObituary.id}
+      name={lang === Locale.EN ? selectedObituary.englishName : selectedObituary.konkaniName}
+      age={selectedObituary.age}
+      relationType={selectedObituary.relationType}
+      relationNameEn={selectedObituary.relationNameEn}
+      relationNameKok={selectedObituary.relationNameKok}
+      ward={selectedObituary.ward}
+      dateOfDeath={selectedObituary.dateOfDeath ? new Date(selectedObituary.dateOfDeath).toISOString() : ""}
+      imageWidth={300}
+      imageHeight={400}
+      imageUrl={absoluteImageURL}
+      slug={selectedObituary.slug}
+      funeralDetails={selectedObituary.funeralDetails}
+      funeralDetailsUpdatedAt={selectedObituary.funeralDetailsUpdatedAt}
+      youtubeLink={selectedObituary.youtubeLink}
+      className="mx-auto"
+      autoFlip={true}
+    />
+  </main>
+</Layout>

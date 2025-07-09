@@ -20,10 +20,32 @@ const ShareLink: React.FC<ShareLinkProps> = ({
   const handleShare = async () => {
     if (navigator.share) {
       try {
-        await navigator.share(shareData);
-      } catch (e) {}
+        await navigator.share({
+          title: shareData.title || "Obituary",
+          text: shareData.text || "",
+          url:
+            shareData.url ||
+            (typeof window !== "undefined" ? window.location.href : ""),
+        });
+      } catch (error) {
+        if (navigator.clipboard && typeof window !== "undefined") {
+          navigator.clipboard
+            .writeText(shareData.url || window.location.href)
+            .then(() => {})
+            .catch((err) => {});
+        } else {
+          alert("Sharing not supported on this device.");
+        }
+      }
     } else {
-      alert("Sharing not supported on this device.");
+      if (navigator.clipboard && typeof window !== "undefined") {
+        navigator.clipboard
+          .writeText(shareData.url || window.location.href)
+          .then(() => {})
+          .catch((err) => {});
+      } else {
+        alert("Sharing not supported on this device.");
+      }
     }
   };
 
