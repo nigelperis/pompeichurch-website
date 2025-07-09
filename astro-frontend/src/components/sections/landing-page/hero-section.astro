@@ -1,71 +1,73 @@
 ---
 import { getImage } from "astro:assets";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
-import skyImage from "~/assets/landing-page/Pompei_church_hero_1.jpg";
+import churchHeroImage  from "~/assets/landing-page/church-landing.webp";
 import skyImageMobile from "~/assets/landing-page/Pompei_church_hero_mobile.jpg";
-import churchHeroImage from "~/assets/landing-page/church-hero.webp";
+import { Locale } from "~/enums/locale";
+
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const optimizedSkyImage = await getImage({ src: skyImage });
+
+const optimizedChurchHeroImage  = await getImage({ src: churchHeroImage  });
 const optimizedSkyImageMobile = await getImage({ src: skyImageMobile });
-const optimizedChurchHeroImage = await getImage({ src: churchHeroImage });
+
 ---
+<section class="relative w-screen h-screen overflow-hidden -mt-[70px]">
+  <!-- Background Image Wrapper -->
+  <div class="absolute inset-0 overflow-hidden z-0">
+    <!-- Desktop Image -->
+    <div class="hidden md:block w-full h-full relative">
+      <div class="absolute inset-0 w-full h-full overflow-hidden">
+        <img
+          src={optimizedChurchHeroImage .src}
+          alt="Pompei Church"
+          class="absolute inset-0 w-full h-full object-cover zoom-in-animation"
+          loading="eager"
+        />
+      </div>
+    </div>
 
-<head>
-  <link
-    rel="preload"
-    as="image"
-    href={optimizedSkyImage.src}
-    type="image/webp"
-    media="(min-width: 768px)"
-  />
-  <link
-    rel="preload"
-    as="image"
-    href={optimizedSkyImageMobile.src}
-    type="image/webp"
-    media="(max-width: 767px)"
-  />
-  <link
-    rel="preload"
-    as="image"
-    href={optimizedChurchHeroImage.src}
-    type="image/webp"
-  />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap"
-    rel="stylesheet"
-  />
-</head>
-<section class="w-screen h-screen overflow-hidden relative flex items-center justify-center bg-sky-100 -mt-[70px]">
+    <!-- Mobile Image -->
+    <div class="block md:hidden w-full h-full relative">
+      <div class="absolute inset-0 w-full h-full overflow-hidden">
+        <img
+          src={optimizedSkyImageMobile.src}
+          alt="Pompei Church"
+          class="absolute inset-0 w-full h-full object-cover zoom-in-animation"
+          loading="eager"
+        />
+      </div>
+    </div>
+  </div>
 
-  <!-- Desktop Image -->
-  <img
-    src={optimizedSkyImage.src}
-    alt="Sky Image"
-    class="w-full h-full object-cover hidden md:block"
-  />
+  <!-- Overlay -->
+  <div class="absolute inset-0 z-10 before-overlay after-overlay"></div>
 
-  <!-- Mobile Image -->
-  <img
-    src={optimizedSkyImageMobile.src}
-    alt="Sky Image"
-    class="w-full h-full object-cover block md:hidden"
-  />
 
-  <!-- Linear Gradient Overlay - Creates dark vignette effect -->
-  <div class="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-black/40"></div>
-  <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/30"></div>
-  <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40"></div>
 
-  <!-- Hero Content Overlay -->
-  <div class="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-4 sm:px-6 lg:px-8 z-10" style="font-family: 'Playfair Display', serif;">
-    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-2 sm:mb-4 drop-shadow-lg">
-      Our Lady of<br />
-      Pompei Church
-    </h1>
-    <p class="text-sm sm:text-base md:text-lg lg:text-xl mb-8 sm:mb-12 drop-shadow-md font-medium">
-      Gurpur Kaikamba
+  <!-- Text Content -->
+  <div class="absolute inset-0 z-20 flex flex-col items-center justify-center text-white text-center font-roboto">
+    {lang === Locale.KOK ? (
+      <h1 class="text-4xl md:text-6xl lg:text-8xl font-bold mb-2 sm:mb-4">
+        {t("landing.church-name")}
+      </h1>
+    ) : (
+      <h1 class="text-4xl md:text-6xl lg:text-8xl font-bold mb-2 sm:mb-4 leading-tight">
+        {t("landing.Church-first")}<br />
+        {t("landing.Church-Second")}
+      </h1>
+    )}
+    <p class="text-sm sm:text-base md:text-lg lg:text-3xl mb-8 sm:mb-12 font-medium">
+      {t("landing.town-name")}
     </p>
+
+    <!-- Arrows -->
+    <div class="absolute bottom-3 inset-x-0 flex justify-center items-center z-30">
+      <div id="arrowWrapper" class="flex flex-col items-center arrow-wrapper transition-opacity duration-300">
+        <svg xmlns="http://www.w3.org/2000/svg" class="arrow arrow-1 w-10 h-10 blinking-arrow" viewBox="0 0 1024 1024">
+          <path fill="#fff" d="M8.2 275.4c0-8.6 3.4-17.401 10-24.001c13.2-13.2 34.8-13.2 48 0l451.8 451.8l445.2-445.2c13.2-13.2 34.8-13.2 48 0s13.2 34.8 0 48L542 775.399c-13.2 13.2-34.8 13.2-48 0l-475.8-475.8c-6.8-6.8-10-15.4-10-24.199" stroke-width="1" stroke="#fff" />
+        </svg>
+      </div>
+    </div>
   </div>
 </section>

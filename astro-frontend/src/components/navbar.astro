@@ -14,10 +14,7 @@ const t = useTranslations(lang);
 ---
 
 <ScrollProgress />
-<header
-  id="navbar-header"
-  class="sticky top-0 z-30 w-full shadow-sm bg-white p-3 xl:px-28 transform -translate-y-full transition-transform duration-300 ease-in-out"
->
+<header class="sticky top-0 z-30 w-full shadow-sm bg-white p-3 xl:px-28">
   <section class="flex items-center justify-between">
     <a href={lang === Locale.KOK ? "/kok/" : "/"}>
       <img
@@ -47,7 +44,7 @@ const t = useTranslations(lang);
                   href={
                     link.type === "link"
                       ? getRelativeLocaleUrl(lang, link.href || "")
-                      : "javascript:void(0)"
+                      : "#"
                   }
                   role={link.type === "expandable" ? "button" : undefined}
                   aria-haspopup={
@@ -56,7 +53,6 @@ const t = useTranslations(lang);
                   aria-expanded="false"
                   aria-label={t(link.title)}
                   class="font-semibold transition-all duration-200 p-2 rounded-md hover:bg-natgeo-yellow"
-                  data-expandable={link.type === "expandable" ? "true" : "false"}
                 >
                   {t(link.title)}
                 </a>
@@ -117,7 +113,7 @@ const t = useTranslations(lang);
               link.type === "expandable" ? "true" : "false"
             }
             href={
-              link.type === "link" ? getRelativeLocaleUrl(lang, link.href) : "javascript:void(0)"
+              link.type === "link" ? getRelativeLocaleUrl(lang, link.href) : "#"
             }
             class={cn(
               "group flex items-center justify-between font-bold text-xl text-black",
@@ -173,44 +169,5 @@ const t = useTranslations(lang);
 
 <script>
   import { handleNav } from "~/scripts/handle-nav";
-
   handleNav();
-
-  const isHomePage = window.location.pathname === "/" || window.location.pathname === "/kok/";
-
-  const navbar = document.getElementById('navbar-header');
-
-  if (isHomePage) {
-    let lastScrollY = 0;
-    const scrollThreshold = 10;
-
-    function handleScroll() {
-      const currentScrollY = window.scrollY;
-
-      if (currentScrollY > scrollThreshold) {
-        navbar?.classList.remove('-translate-y-full');
-        navbar?.classList.add('translate-y-0');
-      } else {
-        navbar?.classList.remove('translate-y-0');
-        navbar?.classList.add('-translate-y-full');
-      }
-
-      lastScrollY = currentScrollY;
-    }
-
-    let ticking = false;
-    function requestTick() {
-      if (!ticking) {
-        requestAnimationFrame(handleScroll);
-        ticking = true;
-        setTimeout(() => { ticking = false; }, 10);
-      }
-    }
-
-    window.addEventListener('scroll', requestTick);
-    handleScroll();
-  } else {
-    navbar?.classList.remove('-translate-y-full');
-    navbar?.classList.add('translate-y-0');
-  }
 </script>
