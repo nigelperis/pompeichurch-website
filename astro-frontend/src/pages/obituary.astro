@@ -77,7 +77,11 @@ const pageTitle = selectedObituary
 
 const absoluteImageURL = selectedObituary?.image?.formats?.medium?.url
   ? new URL(selectedObituary.image.formats.medium.url, baseURL).href
-  : getPlaceholderImage({ width: 800, height: 1200, text: pageTitle });
+  : getPlaceholderImage({
+      width: 800,
+      height: 1200,
+      text: selectedObituary?.englishName,
+    });
 
 const ward =
   lang === Locale.KOK
@@ -90,7 +94,6 @@ const obituaryUrl = new URL(
     : `/kok/obituary?id=${id?.replace(/\s+/g, "-").toLowerCase()}`,
   Astro.url
 ).href;
-
 ---
 
 <Layout
