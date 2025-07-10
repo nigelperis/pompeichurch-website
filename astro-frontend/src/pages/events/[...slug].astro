@@ -24,7 +24,7 @@ const eventUrl =
 const baseURL = import.meta.env.PUBLIC_STRAPI_URL;
 
 const absoluteImageURL = new URL(
-  event?.eventImage?.formats.medium.url ?? getPlaceholderImage(),
+  event?.eventImage?.formats?.medium?.url ?? getPlaceholderImage({ text: event?.konkaniTitle }),
   baseURL,
 ).href;
 

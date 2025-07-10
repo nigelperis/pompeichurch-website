@@ -4,6 +4,7 @@ import ObituaryList from "~/components/sections/obituary/obituary-list.astro";
 import PushNotification from "~/components/push-notification.astro";
 import SelectWardRedirect from "~/components/ui/SelectWardRedirect";
 import Pagination from "~/components/pagination.astro";
+import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import { listObituaries } from "~/services/obituaries/list-obituaries";
 import { Message } from "~/constants/message.ts";
@@ -54,10 +55,13 @@ const paginatedObituaries = formattedObituaries.slice(
 
 const uniqueWards = allWards.map((ward) => ({
   name: ward.wardName,
-  label: lang === Locale.KOK ? getWardNameKok(ward.wardName, lang) : ward.wardName,
+  label:
+    lang === Locale.KOK ? getWardNameKok(ward.wardName, lang) : ward.wardName,
 }));
 
-const basePath = selectedWard ? `/obituary?ward=${selectedWard}&` : `/obituary?`;
+const basePath = selectedWard
+  ? `/obituary?ward=${selectedWard}&`
+  : `/obituary?`;
 
 const selectedObituary = id
   ? obituaries.find((item) => item.slug === id)
@@ -65,9 +69,15 @@ const selectedObituary = id
 
 const baseURL = import.meta.env.PUBLIC_STRAPI_URL;
 
-const absoluteImageURL = selectedObituary?.image?.formats.medium.url
+const pageTitle = selectedObituary
+  ? lang === Locale.EN
+    ? `${selectedObituary.englishName}`
+    : `${selectedObituary.konkaniName}`
+  : "Obituary";
+
+const absoluteImageURL = selectedObituary?.image?.formats?.medium?.url
   ? new URL(selectedObituary.image.formats.medium.url, baseURL).href
-  : undefined;
+  : getPlaceholderImage({ text: pageTitle });
 
 const ward =
   lang === Locale.KOK
@@ -78,15 +88,10 @@ const obituaryUrl = new URL(
   lang === Locale.EN
     ? `/obituary?id=${id?.replace(/\s+/g, "-").toLowerCase()}`
     : `/kok/obituary?id=${id?.replace(/\s+/g, "-").toLowerCase()}`,
-  Astro.url,
+  Astro.url
 ).href;
-
-const pageTitle = selectedObituary
-  ? lang === Locale.EN
-    ? `${selectedObituary.englishName}`
-    : `${selectedObituary.konkaniName}`
-  : "Obituary";
 ---
+
 <Layout
   title={`${pageTitle} ${selectedObituary?.age ? `(${selectedObituary.age})` : ""}`}
   description={ward ?? "Pompei Church Obituaries"}
@@ -97,14 +102,16 @@ const pageTitle = selectedObituary
     <section class="flex flex-col p-6 pb-4">
       <PushNotification />
 
-      <div class="flex flex-col gap-2 md:flex-row md:items-center md:justify-between mb-4">
+      <div
+        class="flex flex-col gap-2 md:flex-row md:items-center md:justify-between mb-4"
+      >
         <h1
           class={cn(
             "font-black border-natgeo-yellow mb-2 md:mb-0 border-l-4 pl-3 text-3xl lg:text-4xl",
-            { "pt-2 font-bold": lang === Locale.KOK },
+            { "pt-2 font-bold": lang === Locale.KOK }
           )}
         >
-           {t("nav.obituary")}
+          {t("nav.obituary")}
         </h1>
 
         <div class="w-full md:w-64">
@@ -137,7 +144,7 @@ const pageTitle = selectedObituary
             )}
           </>
         ) : (
-          <div  class="h-screen lg:h-full">
+          <div class="h-screen lg:h-full">
             <p class="py-8 text-center  text-2xl font-semibold text-gray-700">
               {Message.OBITUARIES_NOT_FOUND_KOK}
             </p>
