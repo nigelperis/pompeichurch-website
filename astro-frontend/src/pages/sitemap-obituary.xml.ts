@@ -13,7 +13,7 @@ export const GET: APIRoute = async () => {
   obituariesData.data.forEach((obituary: Obituary) => {
     entry.push(
       `<url>
-            <loc>${SITE_URL}/obituary?id=${obituary.slug}</loc>
+            <loc>${SITE_URL}/obituary/${obituary.slug}</loc>
             <lastmod>${obituary.updatedAt}</lastmod>
             <changefreq>weekly</changefreq>
             <priority>0.8</priority>
@@ -23,7 +23,7 @@ export const GET: APIRoute = async () => {
 
     entry.push(
       `<url>
-                <loc>${SITE_URL}/${Locale.KOK}/obituary?id=${obituary.slug}</loc>
+                <loc>${SITE_URL}/${Locale.KOK}/obituary/${obituary.slug}</loc>
                 <lastmod>${obituary.updatedAt}</lastmod>
                 <changefreq>weekly</changefreq>
                 <priority>0.8</priority>
