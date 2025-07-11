@@ -149,8 +149,8 @@ export default function ObituaryCard({
   const [flipped, setFlipped] = useState(false);
   const shareUrl =
     typeof window !== "undefined"
-      ? `${window.location.origin}/obituary?id=${slug}`
-      : `/obituary?id=${slug}`;
+      ? `${window.location.origin}/obituary/${slug}`
+      : `/obituary/${slug}`;
   const cardId = typeof id === "string" ? id : String(id ?? "no-id");
 
   let updatedAt: Date | null = null;

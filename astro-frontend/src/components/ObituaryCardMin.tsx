@@ -131,8 +131,8 @@ export default function ObituaryCardMin({
   const [flipped, setFlipped] = useState(false);
   const shareUrl =
     typeof window !== "undefined"
-      ? `${window.location.origin}/obituary?id=${slug}`
-      : `/obituary?id=${slug}`;
+      ? `${window.location.origin}/obituary/${slug}`
+      : `/obituary/${slug}`;
 
   let updatedAt: Date | null = null;
   if (funeralDetailsUpdatedAt) {
