@@ -52,6 +52,8 @@ export const ui = {
     "nav.pompeichem-falkem": "Pompeichem Falkem",
     "nav.prayer-corner": "Prayer Corner",
     "landing.church-name": "Our Lady of Pompei Church",
+    "landing.Church-first":"Our Lady of",
+    "landing.Church-Second":"Pompei Church",
     "landing.town-name": "Gurpur Kaikamba",
     "landing.priest": "Parish Priest",
     "landing.priest-speaks": "Parish Priest Speaks",

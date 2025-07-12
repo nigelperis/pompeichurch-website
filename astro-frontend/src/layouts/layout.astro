@@ -1,7 +1,6 @@
 ---
 import '@fontsource-variable/noto-sans-kannada';
 import '@fontsource-variable/roboto';
-
 import 'aos/dist/aos.css';
 
 import Navbar from '~/components/navbar.astro';
@@ -17,100 +16,101 @@ import { Locale } from '~/enums/locale';
 const lang = getLangFromUrl(Astro.url);
 
 export interface Props {
-	title: string;
-	description?: string;
-	image?: string;
-	url?: string;
+  title: string;
+  description?: string;
+  image?: string;
+  url?: string;
 }
 
 const { title, description, image, url } = Astro.props;
 ---
 
 <!doctype html>
-<html lang={lang}>
-	<head>
-		<GoogleAnalytics measurementId={'G-4HPXW69JQV'} />
-		<meta charset="UTF-8" />
-		<meta
-		name="description"
-		content={
-			lang === 'kok'
-				? "ಕೊಡ್ಯಾಳ್ ಥಾವ್ನ್ ಮೂಡಬಿದ್ರಿ ವೆಚ್ಯಾ ವಾಟೆರ್, ಲಗ್ಬಗ್ ೨೦ ಕಿ.ಮೀ ಪರಿಧಿ ಭಿತರ್ ಅಸ್ತಿತ್ವಾರ್ ಆಸ್ಚಿ ಪೊಂಪಯ್ ಮಾಯೆಕ್ ಸಮರ್ಪಿಲ್ಲಿ ಗುರ್ಪುರ್ ವ ಕೌಡೂರ್ ಫಿರ್ಗಜ್ ಆಪ್ಲ್ಯಾ ಗೂಂಡ್ ಐತಿಹಾಸಿಕ್ ಆನಿ ಆಧ್ಯಾತ್ಮಿಕ್ ಸಂಗ್ತಿನಿ ಭರೊನ್ ಜಿವಾಳ್ ಜಾವ್ನ್ ಆಸಾ"
-				: description || "Gurpur Parish, also known as Kowdur, is 19 km from Mangalore on the Moodbidri road, with deep historical and spiritual roots."
-		}
-	/>
-		<meta name="viewport" content="width=device-width" />
-		<meta
-			name="viewport"
-			content="width=device-width, initial-scale=1.0"
-		/>
+<html lang={lang} class="lenis">
+  <head>
+    <GoogleAnalytics measurementId={'G-4HPXW69JQV'} />
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content={
+        lang === 'kok'
+          ? "ಕೊಡ್ಯಾಳ್ ಥಾವ್ನ್ ಮೂಡಬಿದ್ರಿ ವೆಚ್ಯಾ ವಾಟೆರ್, ಲಗ್ಬಗ್ ೨೦ ಕಿ.ಮೀ ಪರಿಧಿ ಭಿತರ್ ಅಸ್ತಿತ್ವಾರ್ ಆಸ್ಚಿ ಪೊಂಪಯ್ ಮಾಯೆಕ್ ಸಮರ್ಪಿಲ್ಲಿ ಗುರ್ಪುರ್ ವ ಕೌಡೂರ್ ಫಿರ್ಗಜ್ ಆಪ್ಲ್ಯಾ ಗೂಂಡ್ ಐತಿಹಾಸಿಕ್ ಆನಿ ಆಧ್ಯಾತ್ಮಿಕ್ ಸಂಗ್ತಿನಿ ಭರೊನ್ ಜಿವಾಳ್ ಜಾವ್ನ್ ಆಸಾ"
+          : description || "Gurpur Parish, also known as Kowdur, is 19 km from Mangalore on the Moodbidri road, with deep historical and spiritual roots."
+      }
+    />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-		<meta property="og:type" content="website" />
-		<meta property="og:url" content={url || "https://pompeichurch.in/"} />
-		<meta property="og:title" content={title || "Our Lady of Pompei Church | Gurpur Kaikamba"} />
-		<meta property="og:description"		content={
-			lang === 'kok'
-				? "ಕೊಡ್ಯಾಳ್ ಥಾವ್ನ್ ಮೂಡಬಿದ್ರಿ ವೆಚ್ಯಾ ವಾಟೆರ್, ಲಗ್ಬಗ್ ೨೦ ಕಿ.ಮೀ ಪರಿಧಿ ಭಿತರ್ ಅಸ್ತಿತ್ವಾರ್ ಆಸ್ಚಿ ಪೊಂಪಯ್ ಮಾಯೆಕ್ ಸಮರ್ಪಿಲ್ಲಿ ಗುರ್ಪುರ್ ವ ಕೌಡೂರ್ ಫಿರ್ಗಜ್ ಆಪ್ಲ್ಯಾ ಗೂಂಡ್ ಐತಿಹಾಸಿಕ್ ಆನಿ ಆಧ್ಯಾತ್ಮಿಕ್ ಸಂಗ್ತಿನಿ ಭರೊನ್ ಜಿವಾಳ್ ಜಾವ್ನ್ ಆಸಾ"
-				: description || "Gurpur Parish, also known as Kowdur, is 19 km from Mangalore on the Moodbidri road, with deep historical and spiritual roots."
-		} />
-		<meta property="og:image" content={image || "https://pompeichurch.in/church-hero.jpg"} />
-		<meta property="og:image:alt" content={title || "Image of Our Lady of Pompei Church, Gurpur Kaikamba"} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={url || "https://pompeichurch.in/"} />
+    <meta property="og:title" content={title || "Our Lady of Pompei Church | Gurpur Kaikamba"} />
+    <meta property="og:description" content={
+      lang === 'kok'
+        ? "ಕೊಡ್ಯಾಳ್ ಥಾವ್ನ್ ಮೂಡಬಿದ್ರಿ ವೆಚ್ಯಾ ವಾಟೆರ್, ಲಗ್ಬಗ್ ೨೦ ಕಿ.ಮೀ ಪರಿಧಿ ಭಿತರ್ ಅಸ್ತಿತ್ವಾರ್ ಆಸ್ಚಿ ಪೊಂಪಯ್ ಮಾಯೆಕ್ ಸಮರ್ಪಿಲ್ಲಿ ಗುರ್ಪುರ್ ವ ಕೌಡೂರ್ ಫಿರ್ಗಜ್ ಆಪ್ಲ್ಯಾ ಗೂಂಡ್ ಐತಿಹಾಸಿಕ್ ಆನಿ ಆಧ್ಯಾತ್ಮಿಕ್ ಸಂಗ್ತಿನಿ ಭರೊನ್ ಜಿವಾಳ್ ಜಾವ್ನ್ ಆಸಾ"
+        : description || "Gurpur Parish, also known as Kowdur, is 19 km from Mangalore on the Moodbidri road, with deep historical and spiritual roots."
+    } />
+    <meta property="og:image" content={image || "https://pompeichurch.in/church-hero.jpg"} />
+    <meta property="og:image:alt" content={title || "Image of Our Lady of Pompei Church, Gurpur Kaikamba"} />
 
-		<meta property="twitter:card" content="summary_large_image" />
-		<meta property="twitter:url" content={url || "https://pompeichurch.in/"} />
-		<meta property="twitter:title" content={title || "Our Lady of Pompei Church | Gurpur Kaikamba"} />
-		<meta property="twitter:description" content={
-			lang === 'kok'
-				? "ಕೊಡ್ಯಾಳ್ ಥಾವ್ನ್ ಮೂಡಬಿದ್ರಿ ವೆಚ್ಯಾ ವಾಟೆರ್, ಲಗ್ಬಗ್ ೨೦ ಕಿ.ಮೀ ಪರಿಧಿ ಭಿತರ್ ಅಸ್ತಿತ್ವಾರ್ ಆಸ್ಚಿ ಪೊಂಪಯ್ ಮಾಯೆಕ್ ಸಮರ್ಪಿಲ್ಲಿ ಗುರ್ಪುರ್ ವ ಕೌಡೂರ್ ಫಿರ್ಗಜ್ ಆಪ್ಲ್ಯಾ ಗೂಂಡ್ ಐತಿಹಾಸಿಕ್ ಆನಿ ಆಧ್ಯಾತ್ಮಿಕ್ ಸಂಗ್ತಿನಿ ಭರೊನ್ ಜಿವಾಳ್ ಜಾವ್ನ್ ಆಸಾ"
-				: description || "Gurpur Parish, also known as Kowdur, is 19 km from Mangalore on the Moodbidri road, with deep historical and spiritual roots."
-		} />
-		<meta property="twitter:image" content={image || "https://pompeichurch.in/church-hero.jpg"} />
-		<meta property="twitter:image:alt" content={title || "Image of Our Lady of Pompei Church, Gurpur Kaikamba"} />
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={url || "https://pompeichurch.in/"} />
+    <meta property="twitter:title" content={title || "Our Lady of Pompei Church | Gurpur Kaikamba"} />
+    <meta property="twitter:description" content={
+      lang === 'kok'
+        ? "ಕೊಡ್ಯಾಳ್ ಥಾವ್ನ್ ಮೂಡಬಿದ್ರಿ ವೆಚ್ಯಾ ವಾಟೆರ್, ಲಗ್ಬಗ್ ೨೦ ಕಿ.ಮೀ ಪರಿಧಿ ಭಿತರ್ ಅಸ್ತಿತ್ವಾರ್ ಆಸ್ಚಿ ಪೊಂಪಯ್ ಮಾಯೆಕ್ ಸಮರ್ಪಿಲ್ಲಿ ಗುರ್ಪುರ್ ವ ಕೌಡೂರ್ ಫಿರ್ಗಜ್ ಆಪ್ಲ್ಯಾ ಗೂಂಡ್ ಐತಿಹಾಸಿಕ್ ಆನಿ ಆಧ್ಯಾತ್ಮಿಕ್ ಸಂಗ್ತಿನಿ ಭರೊನ್ ಜಿವಾಳ್ ಜಾವ್ನ್ ಆಸಾ"
+        : description || "Gurpur Parish, also known as Kowdur, is 19 km from Mangalore on the Moodbidri road, with deep historical and spiritual roots."
+    } />
+    <meta property="twitter:image" content={image || "https://pompeichurch.in/church-hero.jpg"} />
+    <meta property="twitter:image:alt" content={title || "Image of Our Lady of Pompei Church, Gurpur Kaikamba"} />
 
-		<meta name="apple-mobile-web-app-title" content="PompeiChurch" />
-		<meta name="msvalidate.01" content="BEA18465C48B90A839493EB6EE14A0BD" />
-		<meta name="keywords" content="Gurpur Church, Pompei Church, Kaikamba Church" />
+    <meta name="apple-mobile-web-app-title" content="PompeiChurch" />
+    <meta name="msvalidate.01" content="BEA18465C48B90A839493EB6EE14A0BD" />
+    <meta name="keywords" content="Gurpur Church, Pompei Church, Kaikamba Church" />
 
-		<link rel="icon" href="/favicon.ico" type="image/x-icon" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-		<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-		<link rel="manifest" href="/site.webmanifest" />
-		<link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
 
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-		{
-		import.meta.env.MODE === 'production' &&
-		import.meta.env.PUBLIC_ENVIRONMENT === 'production' && (
-			<script type="text/javascript">
-				(function (c, l, a, r, i, t, y) {
-					c[a] =
-						c[a] ||
-				function () {
-					(c[a].q = c[a].q || []).push(arguments);
-				};
-			t = l.createElement(r);
-			t.async = 1;
-			t.src = 'https://www.clarity.ms/tag/' + i;
-			y = l.getElementsByTagName(r)[0];
-			y.parentNode.insertBefore(t, y);
-		})(window, document, 'clarity', 'script', 'oxa7yg1jfv');
-	</script>
-	)}
-	</head>
-	<body class={cn("w-screen overflow-x-hidden font-roboto", {
-		"font-noto-sans-kannada": lang === Locale.KOK,
-		})}>
-		<Navbar />
-		<Breadcrumbs/>
-		<slot />
-		<Footer />
-		<ScrollTop />
-		<script>
-			console.log("Est Nov, 2024 🥃 www.nigelperis.dev")
-			import { aosInit } from '~/helpers/aos-config';
-			aosInit();
-		</script>
-	</body>
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    {
+      import.meta.env.MODE === 'production' &&
+      import.meta.env.PUBLIC_ENVIRONMENT === 'production' && (
+        <script type="text/javascript">
+          (function (c, l, a, r, i, t, y) {
+            c[a] =
+              c[a] ||
+              function () {
+                (c[a].q = c[a].q || []).push(arguments);
+              };
+            t = l.createElement(r);
+            t.async = 1;
+            t.src = 'https://www.clarity.ms/tag/' + i;
+            y = l.getElementsByTagName(r)[0];
+            y.parentNode.insertBefore(t, y);
+          })(window, document, 'clarity', 'script', 'oxa7yg1jfv');
+        </script>
+      )
+    }
+  </head>
+  <body class={cn("w-screen overflow-x-hidden font-roboto", {
+    "font-noto-sans-kannada": lang === Locale.KOK,
+  })}>
+    <Navbar />
+    <Breadcrumbs />
+    <slot />
+    <Footer />
+    <ScrollTop />
+    <script>
+      console.log("Est Nov, 2024 🥃 www.nigelperis.dev");
+
+      import { aosInit } from '~/helpers/aos-config';
+      import { lenisInit } from '~/helpers/lenis-config';
+      aosInit();
+      lenisInit();
+    </script>
+  </body>
 </html>
