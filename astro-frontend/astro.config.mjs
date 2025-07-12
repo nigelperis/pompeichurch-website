@@ -4,7 +4,6 @@ import react from "@astrojs/react";
 import icon from "astro-icon";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
-import sitemap from "@astrojs/sitemap";
 import svgr from "vite-plugin-svgr";
 
 // https://astro.build/config
@@ -24,35 +23,6 @@ export default defineConfig({
         forward: ["dataLayer.push"],
       },
     }),
-    sitemap(
-      {
-        i18n: {
-          defaultLocale: "en",
-          locales: {
-            en: "en-IN",
-            kok: "kok-IN",
-          },
-        },
-      },
-      {
-        serialize(item) {
-          const setUrl = [
-            { pattern: /\/obituary/, changefreq: "weekly", priority: 0.9 },
-            { pattern: /\/events/, changefreq: "weekly", priority: 0.9 },
-            { pattern: /\/index/, changefreq: "weekly", priority: 1.0 },
-          ];
-
-          for (const url of setUrl) {
-            if (url.pattern.test(item.url)) {
-              item.changefreq = url.changefreq;
-              item.priority = url.priority;
-              item.lastmod = new Date();
-            }
-          }
-          return item;
-        },
-      },
-    ),
   ],
   i18n: {
     locales: ["en", "kok"],
