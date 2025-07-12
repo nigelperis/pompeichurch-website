@@ -35,7 +35,7 @@ const absoluteImageURL = new URL(
 const ogUrl = new URL(eventUrl, SITE_URL).href;
 
 const eventImage = event?.eventImage ?? {
-  url: getPlaceholderImage(),
+  url: getPlaceholderImage({ text: event?.englishTitle }),
   width: 600,
   height: 400,
 };

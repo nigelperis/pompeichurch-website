@@ -41,7 +41,7 @@ const obituaryDataFormatted = obituaries
                 item.image.url,
                 import.meta.env.PUBLIC_STRAPI_URL,
               ).toString()
-            : getPlaceholderImage()
+            : getPlaceholderImage({ text: item.englishName })
         }
         imageWidth={item.image?.width ?? 0}
         imageHeight={item.image?.height ?? 0}
