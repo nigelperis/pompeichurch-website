@@ -30,16 +30,32 @@ if (!magazine.pdfFile?.url) {
 
 const fileUrl = new URL(magazine.pdfFile.url, import.meta.env.PUBLIC_STRAPI_URL).toString();
 
-const imageUrl = magazine.coverImage.url
+const imageUrl = magazine.coverImage?.url
   ? new URL(magazine.coverImage.url, import.meta.env.PUBLIC_STRAPI_URL).toString()
   : getPlaceholderImage();
 ---
 
-<head>
-  <meta property="og:title" content={magazine.title} />
-  <meta property="og:image" content={imageUrl} />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content={Astro.url.toString()} />
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <meta http-equiv="refresh" content={`0;url=${fileUrl}`} />
-</head>
+    <title>{magazine.title}</title>
+
+    <meta property="og:title" content={magazine.title} />
+    <meta property="og:description" content="Click to view the magazine." />
+    <meta property="og:image" content={imageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url.toString()} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={magazine.title} />
+    <meta name="twitter:description" content="Click to view the magazine." />
+    <meta name="twitter:image" content={imageUrl} />
+
+    <meta http-equiv="refresh" content={`0;url=${fileUrl}`} />
+  </head>
+  <body></body>
+</html>
