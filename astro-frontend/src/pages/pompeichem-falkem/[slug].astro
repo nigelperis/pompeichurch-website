@@ -1,0 +1,68 @@
+---
+import { listMagazines } from "~/services/list-magazines";
+import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
+
+const { slug } = Astro.params;
+
+function extractSlug(fileUrl: string): string | null {
+  const fileName = new URL(fileUrl).pathname.split("/").pop();
+  if (!fileName) return null;
+  return fileName.split("_").slice(0, -1).join("_").replace(".pdf", "");
+}
+
+const magazines = await listMagazines();
+
+const magazine = magazines.find((m) => {
+  const fileUrl = m.pdfFile?.url
+    ? new URL(m.pdfFile.url, import.meta.env.PUBLIC_STRAPI_URL).toString()
+    : null;
+  const s = fileUrl ? extractSlug(fileUrl) : null;
+  return s === slug;
+});
+
+if (!magazine) {
+  throw new Error("Magazine not found");
+}
+
+if (!magazine.pdfFile?.url) {
+  throw new Error("PDF file is missing");
+}
+
+const fileUrl = new URL(magazine.pdfFile.url, import.meta.env.PUBLIC_STRAPI_URL).toString();
+
+const imageUrl = magazine.coverImage?.formats?.medium?.url
+  ? new URL(magazine.coverImage.formats.medium.url, import.meta.env.PUBLIC_STRAPI_URL).toString()
+  : magazine.coverImage?.url
+    ? new URL(magazine.coverImage.url, import.meta.env.PUBLIC_STRAPI_URL).toString()
+    : getPlaceholderImage({
+        width: 800,
+        height: 1200,
+        text: magazine?.title, 
+      });
+
+---
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>{magazine.title}</title>
+
+    <meta property="og:title" content={magazine.title} />
+    <meta property="og:description" content="Click to view the magazine." />
+    <meta property="og:image" content={imageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url.toString()} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={magazine.title} />
+    <meta name="twitter:description" content="Click to view the magazine." />
+    <meta name="twitter:image" content={imageUrl} />
+
+    <meta http-equiv="refresh" content={`0;url=${fileUrl}`} />
+  </head>
+  <body></body>
+</html>
