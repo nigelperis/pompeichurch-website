@@ -1,0 +1,45 @@
+---
+import { listMagazines } from "~/services/list-magazines";
+import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
+
+const { slug } = Astro.params;
+
+function extractSlug(fileUrl: string): string | null {
+  const fileName = new URL(fileUrl).pathname.split("/").pop();
+  if (!fileName) return null;
+  return fileName.split("_").slice(0, -1).join("_").replace(".pdf", "");
+}
+
+const magazines = await listMagazines();
+
+const magazine = magazines.find((m) => {
+  const fileUrl = m.pdfFile?.url
+    ? new URL(m.pdfFile.url, import.meta.env.PUBLIC_STRAPI_URL).toString()
+    : null;
+  const s = fileUrl ? extractSlug(fileUrl) : null;
+  return s === slug;
+});
+
+if (!magazine) {
+  throw new Error("Magazine not found");
+}
+
+if (!magazine.pdfFile?.url) {
+  throw new Error("PDF file is missing");
+}
+
+const fileUrl = new URL(magazine.pdfFile.url, import.meta.env.PUBLIC_STRAPI_URL).toString();
+
+const imageUrl = magazine.coverImage.url
+  ? new URL(magazine.coverImage.url, import.meta.env.PUBLIC_STRAPI_URL).toString()
+  : getPlaceholderImage();
+---
+
+<head>
+  <meta property="og:title" content={magazine.title} />
+  <meta property="og:image" content={imageUrl} />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={Astro.url.toString()} />
+
+  <meta http-equiv="refresh" content={`0;url=${fileUrl}`} />
+</head>
