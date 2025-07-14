@@ -30,9 +30,16 @@ if (!magazine.pdfFile?.url) {
 
 const fileUrl = new URL(magazine.pdfFile.url, import.meta.env.PUBLIC_STRAPI_URL).toString();
 
-const imageUrl = magazine.coverImage?.url
-  ? new URL(magazine.coverImage.url, import.meta.env.PUBLIC_STRAPI_URL).toString()
-  : getPlaceholderImage();
+const imageUrl = magazine.coverImage?.formats?.medium?.url
+  ? new URL(magazine.coverImage.formats.medium.url, import.meta.env.PUBLIC_STRAPI_URL).toString()
+  : magazine.coverImage?.url
+    ? new URL(magazine.coverImage.url, import.meta.env.PUBLIC_STRAPI_URL).toString()
+    : getPlaceholderImage({
+        width: 800,
+        height: 1200,
+        text: magazine?.title, 
+      });
+
 ---
 
 <html>
