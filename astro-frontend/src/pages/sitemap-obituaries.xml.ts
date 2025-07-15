@@ -5,16 +5,14 @@ import { SITE_URL } from "~/constants/constants";
 import { listObituaries } from "~/services/obituaries/list-obituaries";
 
 export const GET: APIRoute = async () => {
-  const baseURL = import.meta.env.PUBLIC_STRAPI_URL;
-
   const entry: string[] = [];
   const allObituaries: Obituary[] = [];
 
   let currentPage = 1;
-  let totalPages;
+  let totalPages: number;
 
   do {
-    const obituaries = await listObituaries({ page: currentPage });
+    const obituaries = await listObituaries({ page: currentPage, pageSize: 100 });
     allObituaries.push(...obituaries.obituaries);
     currentPage++;
     totalPages = obituaries.pagination.pageCount;

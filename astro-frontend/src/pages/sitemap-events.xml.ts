@@ -5,16 +5,14 @@ import { SITE_URL } from "~/constants/constants";
 import { listEvents } from "~/services/events/list-events";
 
 export const GET: APIRoute = async () => {
-  const baseURL = import.meta.env.PUBLIC_STRAPI_URL;
-
   const entry: string[] = [];
   const allEvents: Event[] = [];
-  
+
   let currentPage = 1;
-  let totalPages;
+  let totalPages: number;
 
   do {
-    const events = await listEvents({ page: currentPage });
+    const events = await listEvents({ page: currentPage, pageSize: 100 });
     allEvents.push(...events.events);
     currentPage++;
     totalPages = events.pagination.pageCount;
