@@ -60,7 +60,7 @@ const obituaryDataFormatted = obituaries.map((obituary) => ({
                         o.image.url,
                         import.meta.env.PUBLIC_STRAPI_URL,
                       ).toString()
-                    : getPlaceholderImage()
+                    : getPlaceholderImage({ text: o.englishName })
                 }
                 imageWidth={o.image?.width ?? 0}
                 imageHeight={o.image?.height ?? 0}

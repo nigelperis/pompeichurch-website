@@ -11,7 +11,7 @@ export const GET: APIRoute = async () => {
             <loc>${SITE_URL}/sitemap-events.xml</loc>
         </sitemap>
         <sitemap>
-            <loc>${SITE_URL}/sitemap-obituary.xml</loc>
+            <loc>${SITE_URL}/sitemap-obituaries.xml</loc>
         </sitemap>
     </sitemapindex>
   `;
@@ -19,6 +19,7 @@ export const GET: APIRoute = async () => {
   return new Response(xml, {
     headers: {
       "Content-Type": "application/xml",
+      "Cache-Control": "max-age=3600, public, stale-while-revalidate=1800",
     },
   });
 };

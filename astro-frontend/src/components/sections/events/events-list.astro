@@ -18,7 +18,7 @@ const { events } = Astro.props as { events: Event[] };
                 event?.eventImage?.url,
                 import.meta.env.PUBLIC_STRAPI_URL,
               ).toString()
-            : getPlaceholderImage()
+            : getPlaceholderImage({ text: event.englishTitle })
         }
         imageWidth={event.eventImage?.width || 600}
         imageHeight={event.eventImage?.height || 400}

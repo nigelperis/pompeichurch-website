@@ -48,10 +48,10 @@ const data = (await listEvents({ page: 1, pageSize: 3 })) || [];
                     event?.eventImage?.url,
                     import.meta.env.PUBLIC_STRAPI_URL,
                   ).toString()
-                : getPlaceholderImage()
+                : getPlaceholderImage({ text: event.englishTitle })
             }
-            imageWidth={event?.eventImage?.width || 300}
-            imageHeight={event?.eventImage?.height || 300}
+            imageWidth={event?.eventImage?.width || 600}
+            imageHeight={event?.eventImage?.height || 400}
             shortDescription={event.shortDescription}
             facebookLink={event.facebookLink}
             slug={event.slug}

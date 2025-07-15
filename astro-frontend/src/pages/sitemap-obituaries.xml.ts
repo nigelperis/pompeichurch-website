@@ -1,16 +1,24 @@
 import type { APIRoute } from "astro";
-import type { Obituary } from "../models/obituary";
-import { Locale } from "../enums/locale";
-import { SITE_URL } from "../constants/constants";
+import type { Obituary } from "~/models/obituary";
+import { Locale } from "~/enums/locale";
+import { SITE_URL } from "~/constants/constants";
+import { listObituaries } from "~/services/obituaries/list-obituaries";
 
 export const GET: APIRoute = async () => {
-  const baseURL = import.meta.env.PUBLIC_STRAPI_URL;
-
   const entry: string[] = [];
-  const obituaries = await fetch(`${baseURL}/api/obituaries`);
-  const obituariesData = await obituaries.json();
+  const allObituaries: Obituary[] = [];
 
-  obituariesData.data.forEach((obituary: Obituary) => {
+  let currentPage = 1;
+  let totalPages: number;
+
+  do {
+    const obituaries = await listObituaries({ page: currentPage, pageSize: 100 });
+    allObituaries.push(...obituaries.obituaries);
+    currentPage++;
+    totalPages = obituaries.pagination.pageCount;
+  } while (currentPage <= totalPages);
+
+  allObituaries.forEach((obituary: Obituary) => {
     entry.push(
       `<url>
             <loc>${SITE_URL}/obituary/${obituary.slug}</loc>
@@ -32,7 +40,7 @@ export const GET: APIRoute = async () => {
     );
   });
 
-  const xml = `<?xml version="1.0" encoding="UTF-8"?> 
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
             ${entry.join("\n")}
     </urlset>`;
