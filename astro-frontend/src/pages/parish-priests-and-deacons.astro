@@ -8,7 +8,7 @@ import { Message } from "~/constants/message.ts";
 import { Locale } from "~/enums/locale";
 import { ClergyRole } from "~/enums/clergy-role";
 import { cn } from "~/helpers/cn";
-
+import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
@@ -39,9 +39,32 @@ const deaconsEn: ParishPriestsAndDeacons[] =
     pageSize: 100,
     filters: { role: { $eq: ClergyRole.DEACON } },
   })) || [];
+
+const firstPriestImage = parishPriestsKok[0]?.image || parishPriestsEn[0]?.image;
+
+const ogImage = firstPriestImage?.formats?.medium?.url
+  ? new URL(firstPriestImage.formats.medium.url, import.meta.env.PUBLIC_STRAPI_URL).toString()
+  : firstPriestImage?.url
+    ? new URL(firstPriestImage.url, import.meta.env.PUBLIC_STRAPI_URL).toString()
+    : getPlaceholderImage({
+        width: 800,
+        height: 1200,
+        text: "Parish Priests and Deacons",
+      });
+
+const ogTitle =
+  lang === Locale.KOK
+    ? "ಫಿರ್ಗಜೆಚೆ ವಿಗಾರ್ ಅನಿ ದಿಯಾಕೊನ್"
+    : "Parish Priests and Deacons";
+
+const ogDescription =
+  lang === Locale.KOK
+    ? "ಫಿರ್ಗಜೆಚೊ ಶತಮಾನೋತ್ಸವ್ ಸಂಭ್ರಮ್ ಆಚರಣ್ ಕರ್ತನಾ ಪಾಟ್ಲ್ಯಾ ಶೆಂಬೊರ್ ವರ್ಸಾನಿಂ ಫಿರ್ಗಜೆಚ್ಯಾ ಭಾವಾರ್ಥಾಚಾ ಆತ್ಮಿಕ್ ಪಯ್ಣಾರ್ ತಶೆಂಚ್ ಸಾಮಾಜಿಕ್ ಆನಿ ಲೌಕಿಕ್ ಜಿಣಿಯೆಕ್ ಆಧಾರ್ ಜಾಲ್ಲ್ಯಾ ಫಿರ್ಗಜೆಚೆಂ ಸುಂಕಾಣ್ ಹಾತಿಂ ಘೆವ್ನ್ ಫಿರ್ಗಜ್ ಕುಟ್ಮಾo ಬರ‍್ಯಾ ರಿತಿನ್ ಚಲವ್ನ್ ವ್ಹರ್ನ್ ಆಮ್ಕಾಂ ಶತಮಾನೋತ್ಸವಾಚೆಂ ಭಾಗ್ ಪಳೊಂವ್ಕ್ ಫಾವೊ ಕೆಲ್ಲ್ಯಾ ಸರ್ವ್ ಫಿರ್ಗಜ್ ವಿಗಾರಾಂಚಿ ಅನಿ ದಿಯಾಕೊನಾಂಚಿ ಮೊಟ್ವಿ ಝಳಕ್."
+    : "Here is a glimpse of the esteemed former parish priests and deacons who have nurtured our faith, enriched our community and individual lives, and upheld the cherished legacy of our church throughout these years.";
 ---
 
-<Layout title="Pompei Church | Parish Priests And Deacons">
+<Layout title={ogTitle} description={ogDescription} image={ogImage}>
+
   <main class="mx-auto max-w-4xl overflow-hidden bg-white">
     <section id="parish-priests-and-deacons" class="flex flex-col p-6 pb-4">
       <h1
@@ -61,13 +84,13 @@ const deaconsEn: ParishPriestsAndDeacons[] =
         {t("parish-priests")}
       </h2>
       {
-        parishPriestsEn.length > 0 ? (
-          <ParishPriestsAndDeaconsList
-            parishPriestsAndDeacons={parishPriestsEn}
-          />
-        ) : parishPriestsKok.length > 0 ? (
+        parishPriestsKok.length > 0 ? (
           <ParishPriestsAndDeaconsList
             parishPriestsAndDeacons={parishPriestsKok}
+          />
+        ) : parishPriestsEn.length > 0 ? (
+          <ParishPriestsAndDeaconsList
+            parishPriestsAndDeacons={parishPriestsEn}
           />
         ) : (
           <p class="py-8 text-center text-3xl font-semibold">
@@ -79,10 +102,10 @@ const deaconsEn: ParishPriestsAndDeacons[] =
         {t("deacons")}
       </h2>
       {
-        deaconsEn.length > 0 ? (
-          <ParishPriestsAndDeaconsList parishPriestsAndDeacons={deaconsEn} />
-        ) : deaconsKok.length > 0 ? (
+        deaconsKok.length > 0 ? (
           <ParishPriestsAndDeaconsList parishPriestsAndDeacons={deaconsKok} />
+        ) : deaconsEn.length > 0 ? (
+          <ParishPriestsAndDeaconsList parishPriestsAndDeacons={deaconsEn} />
         ) : (
           <p class="py-8 text-center text-3xl font-semibold">
             {Message.DEACONS_NOT_FOUND}

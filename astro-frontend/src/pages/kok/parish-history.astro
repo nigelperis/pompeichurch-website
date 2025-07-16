@@ -9,6 +9,9 @@ import churchBannerImage from "~/assets/parish-history/church-banner.jpg";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+const title = lang === Locale.KOK
+  ? "ಪೊಂಪೈ ಮಾಯೆಚಿ ಫಿರ್ಗಜ್ | ಆಮ್ಚಿ ಚರಿತ್ರಾ"
+  : "Pompei Church | Our History";
 
 const description = lang === Locale.KOK
   ? "ತೆನ್ಕಾ ಕುಶಿನ್ ಸೊಭಿತ್ ಫಲ್ಗುಣಿ ನಂಯ್ಚಿ ಮನ್ ಪಿಸ್ವೊಂಚಿ ಸೊಭಾಯ್. ಅಸ್ತಮ್ತೆಂತ್ ಭಂವ್ತಣಿ ಸೊಭಿತ್ ಪಾಚ್ವ್ಯಾ ಸೃಷ್ಠೆಚಿ ಅಪುರ್ಬಾಯ್."
@@ -16,9 +19,10 @@ const description = lang === Locale.KOK
 ---
 
 <Layout
-  title="Pompei Church | Parish History"
+  title={title}
   description={description}
-  image={churchBannerImage.src}
+ image={churchBannerImage.src}
+
 >
   <main class="mx-auto max-w-4xl overflow-hidden bg-white">
     <section id="parish-history" class="flex flex-col p-6 pb-4">
