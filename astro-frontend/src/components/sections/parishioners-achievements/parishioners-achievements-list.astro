@@ -1,0 +1,29 @@
+---
+import AchievementCard from "~/components/sections/parishioners-achievements/achievements-card.astro";
+
+const { list } = Astro.props;
+
+interface ListItem {
+  name: string;
+  url: string;
+  achievement: string;
+  width: number;
+  height: number;
+}
+---
+
+<div
+  class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-4 p-4"
+>
+  {
+    list.map((item: ListItem) => (
+      <AchievementCard
+        name={item.name}
+        url={item.url}
+        achievement={item.achievement}
+        width={item.width}
+        height={item.height}
+      />
+    ))
+  }
+</div>

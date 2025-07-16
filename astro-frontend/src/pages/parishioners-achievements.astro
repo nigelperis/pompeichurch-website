@@ -1,0 +1,85 @@
+---
+import Layout from "~/layouts/layout.astro";
+import { getLangFromUrl, useTranslations } from "~/i18n/utils";
+import { Locale } from "~/enums/locale";
+import { cn } from "~/helpers/cn";
+import AchievementsList from "~/components/sections/parishioners-achievements/parishioners-achievements-list.astro";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const list = [
+  {
+    name: "Ms. Sasha Gonzales",
+    url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRatercvgpil3yEsaUvYXad8eK_4PxTBy73PQ&s",
+    achievement: "Winner of the 2022 NatGeo Photo Contest",
+    width: 300,
+    height: 200
+  },
+  {
+    name: "Mr. Arjun Mehta",
+    url: "https://andrewstuder.com/wp-content/uploads/2020/04/AF3I3830-scaled.jpg",
+    achievement: "Captured the viral Himalayan Eclipse of 2023",
+    width: 300,
+    height: 200
+  },
+  {
+    name: "Dr. Leena Rao",
+    url: "https://images.unsplash.com/photo-1504813184591-01572f98c85f",
+    achievement: "Published the award-winning photo series 'Urban Silence'",
+    width: 300,
+    height: 200
+  },
+  {
+    name: "Mr. Tenzing Norbu",
+    url: "https://andrewstuder.com/wp-content/uploads/2020/04/AF3I3830-scaled.jpg",
+    achievement: "Documented life in the Ladakh monasteries",
+    width: 300,
+    height: 200
+  },
+  {
+    name: "Ms. Carolina Rivers",
+    url: "https://images.unsplash.com/photo-1504813184591-01572f98c85f",
+    achievement: "Finalist in Sony World Photography Awards 2021",
+    width: 300,
+    height: 200
+  },
+  {
+    name: "Mr. Daniel Otieno",
+    url: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce",
+    achievement: "Won Best Wildlife Photographer Award Africa 2024",
+    width: 300,
+    height: 200
+  },
+  {
+    name: "Ms. Ayesha Noor",
+    url: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f",
+    achievement: "Featured in Vogue for her work on cultural heritage photography",
+    width: 300,
+    height: 200
+  }
+];
+
+const desc = "This is Parishioner Achievements page of Pompei Church";
+---
+
+<Layout title="Pompei Church | Parishioner Achievements" description={desc}>
+  <main class="mx-auto max-w-4xl overflow-hidden bg-white">
+    <section id="parishioner-achievements" class="flex flex-col p-6 pb-4">
+      <h1
+        class={cn(
+          "font-roboto font-black border-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl lg:text-4xl",
+          {
+            "font-noto-sans-kannada font-bold": lang === Locale.KOK,
+          },
+        )}
+      >
+        {t("nav.parishioners-achievements")}
+      </h1>
+      <p class="text-justify text-lg text-slate-700">
+        {t("parishioners-achievements.subtitle")}
+      </p>
+      <AchievementsList list={list} />
+    </section>
+  </main>
+</Layout>
