@@ -6,11 +6,25 @@ import ReligiousNunsList from "~/components/sections/religious-nuns/religious-nu
 import { Locale } from "~/enums/locale";
 import { cn } from "~/helpers/cn";
 
+
+import { religiousPriests } from "~/constants/religious-vocations";
+
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+const ogImageUrl = religiousPriests[0]?.imageUrl.src;
+const ogTitle =
+  lang === Locale.KOK
+    ? "ಆಮ್ಚ್ಯೆ ಫಿರ್ಗಜಿಂತ್ಲಿ ಧಾರ್ಮಿಕಾಂ"
+    : "Religious Vocations";
+
+const ogDescription =
+  lang === Locale.KOK
+    ? "ಸೊಮ್ಯಾಚ್ಯಾ ಶೆತಾಂತ್ಲೆಂ ದೇವ್ ಆಪೊವ್ಣ್ಯಾಕ್ ಪಾಳೊ ದೀವ್ನ್ ದೆವಾಚೆಂ ರಾಜ್ ವಿಸ್ತಾರುನ್ ಆಸ್ಚ್ಯಾ ಆಮ್ಚ್ಯಾ ಫಿರ್ಗಜ್ ಗಾರಾಂಚಿಂ ಝಳಕ್."
+    : "A glimpse of our parishioners who have embraced religious vocations, and are spreading God's kingdom.";
 ---
 
-<Layout title="Pompei Church | Religious Vocations">
+<Layout description={ogDescription} title={ogTitle} image={ogImageUrl}>
   <main class="mx-auto max-w-4xl overflow-hidden bg-white">
     <section id="parish-priests" class="flex flex-col p-6 pb-4">
       <h1
@@ -18,24 +32,22 @@ const t = useTranslations(lang);
           "font-black border-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl lg:text-4xl",
           {
             "font-bold": lang === Locale.KOK,
-          },
+          }
         )}
       >
         {t("nav.religious-vocations")}
       </h1>
-      <div class={cn({ "pt-2": lang === Locale.KOK })}>
-        <p class="text-justify text-lg text-slate-700">
-          {t("vocation.title")}
-        </p>
-        <h2 class="mt-6 text-3xl font-semibold italic text-red-600 lg:text-3xl">
-          {t("vocation.subtitle1")}
-        </h2>
-        <ReligiousPriestsList />
-        <h2 class="mt-6 text-3xl font-semibold italic text-red-600 lg:text-3xl">
-          {t("vocation.subtitle2")}
-        </h2>
-        <ReligiousNunsList />
-      </div>
+      <p class="text-justify text-lg text-slate-700">
+        {t("vocation.title")}
+      </p>
+      <h2 class="mt-6 text-3xl font-semibold italic text-red-600 lg:text-3xl">
+        {t("vocation.subtitle1")}
+      </h2>
+      <ReligiousPriestsList />
+      <h2 class="mt-6 text-3xl font-semibold italic text-red-600 lg:text-3xl">
+        {t("vocation.subtitle2")}
+      </h2>
+      <ReligiousNunsList />
     </section>
   </main>
 </Layout>

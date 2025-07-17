@@ -69,39 +69,32 @@ const selectedObituary = id
 
 const baseURL = import.meta.env.PUBLIC_STRAPI_URL;
 
-const pageTitle = selectedObituary
-  ? lang === Locale.EN
-    ? `${selectedObituary.englishName}`
-    : `${selectedObituary.konkaniName}`
-  : "Obituary";
+const firstObituary = formattedObituaries?.[0];
 
-const absoluteImageURL = selectedObituary?.image?.formats?.medium?.url
-  ? new URL(selectedObituary.image.formats.medium.url, baseURL).href
+const ogTitle = lang === Locale.KOK ? "ಫಿರ್ಗಜೆಂತ್ ಮರಣ್" : "Obituary";
+
+const ogDescription = lang === Locale.KOK
+  ? "ಮೊಗಾಚೊ ಉಡಾಸ್"
+  : "Tribute of love...";
+
+const ogImageUrl = firstObituary?.image?.url
+  ? new URL(firstObituary.image.url, baseURL).toString()
   : getPlaceholderImage({
       width: 800,
       height: 1200,
-      text: selectedObituary?.englishName,
+      text: firstObituary?.englishName || "Pompei Obituary",
     });
 
-const ward =
-  lang === Locale.KOK
-    ? selectedObituary?.ward && getWardNameKok(selectedObituary?.ward, lang)
-    : selectedObituary?.ward;
 
-const obituaryUrl = new URL(
-  lang === Locale.EN
-    ? `/obituary?id=${id?.replace(/\s+/g, "-").toLowerCase()}`
-    : `/kok/obituary?id=${id?.replace(/\s+/g, "-").toLowerCase()}`,
-  Astro.url
-).href;
 ---
 
 <Layout
-  title={`${pageTitle} ${selectedObituary?.age ? `(${selectedObituary.age})` : ""}`}
-  description={ward ?? "Pompei Church Obituaries"}
-  image={absoluteImageURL}
-  url={obituaryUrl}
+  title={ogTitle}
+  description={ogDescription}
+  image={ogImageUrl}
+  url={Astro.url.toString()}
 >
+
   <main class="mx-auto max-w-4xl bg-white">
     <section class="flex flex-col p-6 pb-4">
       <PushNotification />

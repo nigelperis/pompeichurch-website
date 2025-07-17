@@ -8,6 +8,7 @@ import { getPastoralCouncilImage } from "~/services/parish-pastoral-council/pari
 import { Message } from "~/constants/message.ts";
 import { Locale } from "~/enums/locale";
 import { cn } from "~/helpers/cn";
+import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -21,9 +22,25 @@ const parishPastoralCouncilDataKok: ParishPastoralCouncil[] =
 const parishPastoralCouncilData: ParishPastoralCouncil[] =
   (await listPastoralCouncilData({ page: 1, pageSize: 100 })) || [];
 const parishPastoralCouncilImage = await getPastoralCouncilImage();
+
+
+const ogImage = parishPastoralCouncilImage?.pastoralCouncilImage?.formats?.medium?.url
+  ? new URL(parishPastoralCouncilImage.pastoralCouncilImage.formats.medium.url, import.meta.env.PUBLIC_STRAPI_URL).toString()
+  : parishPastoralCouncilImage?.pastoralCouncilImage?.url
+    ? new URL(parishPastoralCouncilImage.pastoralCouncilImage.url, import.meta.env.PUBLIC_STRAPI_URL).toString()
+    : getPlaceholderImage({
+        width: 800,
+        height: 600,
+        text: "Parish Pastoral Council",
+      });
+
+const ogTitle = lang === Locale.KOK
+  ? "ಗೊವ್ಳಿಕ್ ಪರಿಷಧ್"
+  : "Parish Pastoral Council";
+
 ---
 
-<Layout title="Pompei Church | Parish Pastoral Council">
+<Layout title={ogTitle}  image={ogImage}>
   <main class="mx-auto max-w-4xl overflow-hidden bg-white">
     <section id="pastoral-council" class="flex flex-col p-6 pb-4">
       <h1
@@ -37,18 +54,19 @@ const parishPastoralCouncilImage = await getPastoralCouncilImage();
         {t("parish.pastoral-parishad")}
       </h1>
       {
-        parishPastoralCouncilDataKok.length > 0 ? (
-          <ParishPastoralCouncilList
-            pastoralCouncilData={parishPastoralCouncilDataKok}
-            pastoralCouncilImage={parishPastoralCouncilImage}
-          />
-        ) : parishPastoralCouncilData.length > 0 ? (
+        parishPastoralCouncilData.length > 0 ? (
           <ParishPastoralCouncilList
             pastoralCouncilData={parishPastoralCouncilData}
             pastoralCouncilImage={parishPastoralCouncilImage}
           />
+        ) : parishPastoralCouncilDataKok.length > 0 ? (
+          <ParishPastoralCouncilList
+            pastoralCouncilData={parishPastoralCouncilDataKok}
+            pastoralCouncilImage={parishPastoralCouncilImage}
+          />
         ) : (
           <>
+            {" "}
             (
             <ParishPastoralCouncilList
               pastoralCouncilData={parishPastoralCouncilData}

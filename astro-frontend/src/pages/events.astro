@@ -23,10 +23,26 @@ const { events, pagination } = await listEvents({
 
 const totalPages = pagination.pageCount;
 
-const pageTitle = `Page ${currentPage} | Events | Pompei Church`;
+const firstEvent = events?.[0];
+
+const ogImageUrl = firstEvent?.eventImage?.url
+  ? new URL(firstEvent.eventImage.url, import.meta.env.PUBLIC_STRAPI_URL).toString()
+  : undefined;
+
+const ogTitle = lang === Locale.KOK ? "ಘಡಿತಾಂ" : "Events";
+
+const ogDescription = lang === Locale.KOK
+  ? "ಫಿರ್ಗಜ್ ಕುಟ್ಮಾಚ್ಯಾ ಎಕ್ವಟ್ಪಣಾಚ್ಯೊ ಘಡಿಯೊ"
+  : "Celebrating the moments that unite our parish community.";
+  const pageTitle = `Page ${currentPage}`;
 ---
 
-<Layout title={pageTitle}>
+<Layout
+  title= `${pageTitle} | ${ogTitle}`
+  image={ogImageUrl}
+  description={ogDescription}
+>
+
   <main class="mx-auto max-w-4xl overflow-hidden bg-white">
     <section id="events" class="flex flex-col p-6">
       <PushNotification />

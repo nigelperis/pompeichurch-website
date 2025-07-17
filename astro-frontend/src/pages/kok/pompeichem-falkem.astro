@@ -12,9 +12,21 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 const magazines: PompeichemFalkem[] = (await listMagazines()) || [];
+const title = lang === Locale.KOK
+  ? "ಪೊಂಪೈಚೆಂ ಫಾಲ್ಕೆಂ"
+  : "Pompeichem Falkem";
+
+
+
+const ogImageUrl = magazines[0]?.coverImage?.url
+  ? new URL(magazines[0].coverImage.url, import.meta.env.PUBLIC_STRAPI_URL).toString()
+  : undefined;
 ---
 
-<Layout title="Pompei Church | Pompeichem Falkem">
+<Layout
+  title={`${title}`}}
+  image={ogImageUrl}
+>
   <main class="mx-auto max-w-4xl overflow-hidden bg-white">
     <section class="flex flex-col p-6">
       <h1

@@ -4,6 +4,12 @@ import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import AssociationDetails from "~/components/sections/associations/association-details.astro";
 import { associations } from "~/constants/associations";
 import { associationsKok } from "~/constants/associations-kok";
+import { getGroupImage } from "~/helpers/get-association-picture";
+import { fetchAssociationBearers } from "~/services/association-bearers-data";
+import { Locale } from "~/enums/locale";
+import { slugMappings } from "~/constants/association-slug-mappings";
+import type { AssociationOfficeBearers } from "~/models/association-bearers";
+
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -21,7 +27,7 @@ export async function getStaticPaths() {
   return paths;
 }
 
-const { slug } = Astro.params as { slug: string };
+const { slug } = Astro.params as { slug: keyof typeof slugMappings };
 
 const assoc =
   associations.find((assoc) => assoc.slug === slug) ||
@@ -31,10 +37,52 @@ if (!assoc) {
   return Astro.redirect("/404", 302);
 }
 
-const title = assoc.title;
+
+
+
+const [enDetails, kokDetails] = (await Promise.all([
+  fetchAssociationBearers(Locale.EN),
+  fetchAssociationBearers(Locale.KOK),
+])) as [AssociationOfficeBearers | null, AssociationOfficeBearers | null];
+
+const associationDetails: AssociationOfficeBearers | undefined =
+  lang === Locale.KOK
+    ? kokDetails || enDetails || undefined
+    : enDetails || kokDetails || undefined;
+
+
+const ogImage = getGroupImage(associationDetails, slug);
+const konkaniDescription = associationsKok.find((a) => a.slug === slug)?.description ?? "";
+const englishDescription = associations.find((a) => a.slug === slug)?.description ?? "";
+
+function stripHtmlTags(html: string): string {
+  return html.replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
+}
+
+const plainKok = Array.isArray(konkaniDescription)
+  ? stripHtmlTags(konkaniDescription.join(" "))
+  : stripHtmlTags(konkaniDescription);
+
+const plainEn = Array.isArray(englishDescription)
+  ? stripHtmlTags(englishDescription.join(" "))
+  : stripHtmlTags(englishDescription);
+
+const ogDescription = lang === Locale.KOK
+  ? plainKok?.substring(0, 300) || plainEn?.substring(0, 300)
+  : plainEn?.substring(0, 300) || plainKok?.substring(0, 300);
+
+
+
+const ogTitle = `${t(`nav.${slug}`)}`;
+
+const ogImageUrl = ogImage;
 ---
 
-<Layout title={`Associations | ${title}`}>
+<Layout
+  title={ogTitle}
+    description={ogDescription}
+  image={ogImageUrl}
+>
   <main class="mx-auto max-w-4xl overflow-hidden bg-white">
     <section id="associations" class="flex flex-col p-6 pb-4">
       <h1 class="font-extrabold pt-1 border-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl lg:text-4xl">

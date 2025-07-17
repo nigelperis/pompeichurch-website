@@ -3,10 +3,8 @@ import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import { Image } from "astro:assets";
 import { cn } from "~/helpers/cn";
 
-//Images
 import candles from "~/assets/prayer-corner/candles.jpg";
 
-//Components
 import Psalms from "~/components/sections/prayer-corner/psalms.astro";
 import Novena from "~/components/sections/prayer-corner/novena.astro";
 import JubileeYear from "~/components/sections/prayer-corner/jubilee-year.astro";
@@ -17,9 +15,18 @@ import { Locale } from "~/enums/locale";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+const title = lang === Locale.KOK ? "ಮಾಗ್ಣ್ಯಾ ಪಾನ್" : "Prayer Corner";
+const description = lang === Locale.KOK
+  ? "ಮಾಗ್ಣ್ಯಾಕ್ ಆಮ್ಚೆ ಹಾತ್ ಜೊಡ್ಯಾಂ"
+  : "Let's join hands in prayer";
+const ogImageUrl = candles.src;
 ---
 
-<Layout title="Pompei Church | Prayer Corner">
+<Layout
+  title={`${title}`}
+  description={description}
+  image={ogImageUrl}
+>
   <main class="mx-auto max-w-4xl overflow-hidden bg-white">
     <section id="parish-history" class="flex flex-col p-6 pb-4">
       <h1

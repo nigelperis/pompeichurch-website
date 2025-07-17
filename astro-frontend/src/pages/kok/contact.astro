@@ -8,9 +8,16 @@ import Layout from "~/layouts/layout.astro";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+const title = lang === Locale.KOK ? "ಸಂಪರ್ಕ್ ಕರಾ" : "Contact";
+const description = lang === Locale.KOK
+  ? "ಇಗರ್ಜೆಚ್ಯೊ ಚಟುವಟಿಕೊ ಆನಿಂ ಹೆರ್ ಮಾಹಿತಿ ಖಾತಿರ್ ಆಮ್ಕಾಂ ಸಂಪರ್ಕ್ ಕರಾ."
+  : "Contact us for more information about our church activities, hall bookings, and other details.";
 ---
 
-<Layout title="Pompei Church | Contact">
+<Layout
+  title={` ${title}`}
+  description={description}
+>
   <main class="mx-auto max-w-4xl overflow-hidden bg-white">
     <section id="contact" class="p-6 pb-4 lg:p-8">
       <h1
