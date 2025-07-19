@@ -1,19 +1,30 @@
 ---
 import { Image } from "astro:assets";
+import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import NetworkImage from "~/components/ui/network-image.astro";
 import Badge from "~/assets/icons/badge.svg";
 import placeholderImage from "~/assets/static-assets/blank.jpeg";
 import { Icon } from "astro-icon/components";
+import { Locale } from "~/enums/locale";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 interface Props {
   name: string;
   url: string;
   achievement: string;
+  slug: string;
   width?: number;
   height?: number;
 }
 
-const { name, url, achievement, width, height } = Astro.props;
+const { name, url, achievement, slug, width, height } = Astro.props;
+
+const achieverUrl =
+  lang === Locale.EN
+    ? `/parishioners-achievements/${slug}`
+    : `/kok/parishioners-achievements/${slug}`;
 ---
 
 <div
@@ -49,8 +60,10 @@ const { name, url, achievement, width, height } = Astro.props;
     {achievement}
   </p>
   <div class="absolute right-0 bottom-0 text-blue-500">
-    <a href="/parishioners-achievements" class="flex my-4 mr-3">
-      <span>Read More</span>
+    <a href={achieverUrl} class="flex my-4 mr-3">
+      <span class={lang === Locale.KOK ? "mt-1" : ""}
+        >{t("ui.more-button-read")}</span
+      >
       <Icon
         name="chevron-right"
         class="stroke-2 text-2xl"

@@ -7,6 +7,7 @@ interface ListItem {
   name: string;
   url: string;
   achievement: string;
+  slug: string;
   width: number;
   height: number;
 }
@@ -21,6 +22,7 @@ interface ListItem {
         name={item.name}
         url={item.url}
         achievement={item.achievement}
+        slug={item.slug}
         width={item.width}
         height={item.height}
       />

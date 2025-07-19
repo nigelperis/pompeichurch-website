@@ -109,7 +109,8 @@ export const ui = {
     "centenaryhall.title": "Centenary Hall",
     "church.patron": "Vailankani Mai",
     "obituary.subtitle": "Tribute of love ",
-    "parishioners-achievements.subtitle": "Celebrating the excellence of our parishioners and giving glory to God through their gifts, efforts, and achievements.",
+    "parishioners-achievements.subtitle":
+      "Celebrating the excellence of our parishioners and giving glory to God through their gifts, efforts, and achievements.",
     "commissions.convenor": "Convenor ",
     "commissions.heading": "Commission",
     "commissions.secretary": "Secretary",
@@ -395,7 +396,8 @@ export const ui = {
     "push.enable": "Enable",
     "push.disable": "Not Now!",
     download: "Download",
-  },
+    congratulations: "Congratulations",
+    },
   kok: {
     "nav.home": "ಹೋಮ್",
     "nav.about-us": "ಆಮ್ಚಿ ಫಿರ್ಗಜ್",
@@ -785,5 +787,6 @@ export const ui = {
     "push.enable": "ಅನ್ಕೂಲ್ ಕರಾ",
     "push.disable": "ಆತಾಂ ನಾಕಾ!",
     download: "ಡೌನ್ಲೋಡ್",
+    congratulations: "ಉಲ್ಲಾಸ್",
   },
 } as const;

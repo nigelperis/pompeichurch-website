@@ -4,7 +4,7 @@ import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import { Locale } from "~/enums/locale";
 import { cn } from "~/helpers/cn";
 import AchievementsList from "~/components/sections/parishioners-achievements/parishioners-achievements-list.astro";
-import {dummyData} from "~/constants/dummy-data";
+import { dummyData } from "~/constants/dummy-data";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -12,7 +12,7 @@ const t = useTranslations(lang);
 const desc = "This is Parishioner Achievements page of Pompei Church";
 ---
 
-<Layout title="Pompei Church | Parishioner Achievements" description={desc}>
+<Layout title="Pompei Church | Parishioners Achievements" description={desc}>
   <main class="mx-auto max-w-4xl overflow-hidden bg-white">
     <section id="parishioner-achievements" class="flex flex-col p-6 pb-4">
       <h1
