@@ -10,14 +10,16 @@ import { Message } from "~/constants/message";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-
+const title = lang === Locale.KOK
+  ? "21 ಆಯೋಗ್"
+  : "Parish Pastoral 21 Commissions";
 const pastoral21CommissionsEn: ParishPastoral21Commission[] =
   (await listPastoral21CommissionsData()) || [];
 const pastoral21CommissionsKok: ParishPastoral21Commission[] =
   (await listPastoral21CommissionsData({ locale: Locale.KOK })) || [];
 ---
 
-<Layout title="Pompei Church | Parish Pastoral 21 Commissions  ">
+<Layout title={title}>
   <main class="mx-auto max-w-4xl overflow-hidden bg-white">
     <section id="pastoral-commissions" class="flex flex-col p-6">
       <h1

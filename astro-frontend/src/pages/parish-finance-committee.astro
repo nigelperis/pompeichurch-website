@@ -7,7 +7,7 @@ import { Locale } from "~/enums/locale";
 import { listParishFinanceCommitteeData } from "~/services/list-parish-finance-committee-data";
 import type { ParishFinanceCommittee } from "~/models/parish-finance-committee";
 import { Message } from "~/constants/message";
-
+import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
@@ -19,9 +19,25 @@ const parishFinanceCommitteeDataKok: ParishFinanceCommittee[] =
   })) || [];
 const parishFinanceCommitteeData: ParishFinanceCommittee[] =
   (await listParishFinanceCommitteeData({ page: 1, pageSize: 100 })) || [];
+
+const firstMemberImage = parishFinanceCommitteeDataKok[0]?.image || parishFinanceCommitteeData[0]?.image;
+
+const ogImage = firstMemberImage?.formats?.medium?.url
+  ? new URL(firstMemberImage.formats.medium.url, import.meta.env.PUBLIC_STRAPI_URL).toString()
+  : firstMemberImage?.url
+    ? new URL(firstMemberImage.url, import.meta.env.PUBLIC_STRAPI_URL).toString()
+    : getPlaceholderImage({
+        width: 800,
+        height: 600,
+        text: "Parish Finance Committee",
+      });
+
+const ogTitle = lang === Locale.KOK
+  ? "ಫಿರ್ಗಜ್ ಆರ್ಥಿಕ್ ಸಮಿತಿ"
+  : "Parish Finance Committee";
 ---
 
-<Layout title="Pompei Church | Parish Finance Committee">
+<Layout title={ogTitle}  image={ogImage}>
   <main class="mx-auto max-w-4xl overflow-hidden bg-white">
     <section id="finance-committee" class="flex flex-col p-6 pb-4">
       <h1

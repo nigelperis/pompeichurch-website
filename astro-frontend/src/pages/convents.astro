@@ -5,12 +5,24 @@ import RosaMysticaConvent from "~/components/sections/convents/rosa-mystica-conv
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import { Locale } from "~/enums/locale";
 import { cn } from "~/helpers/cn";
+import pompeiConvent from "~/assets/convents/pompei-convent.jpg";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+
+const ogImageUrl = pompeiConvent.src;
+const ogTitle =
+  lang === Locale.KOK
+    ? "ಕೊವೆಂತಾಂ"
+    : "Convents";
+
 ---
 
-<Layout title="Pompei Church | Convents">
+<Layout
+  title={ogTitle}
+  image={ogImageUrl}
+>
   <main class="mx-auto max-w-4xl overflow-hidden bg-white">
     <section id="our-convents" class="flex flex-col p-6">
       <h1

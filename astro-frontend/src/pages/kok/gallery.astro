@@ -5,25 +5,43 @@ import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import { Locale } from "~/enums/locale";
 import { cn } from "~/helpers/cn";
 
+
+const imageImports = import.meta.glob<ImageMetadata>(
+  "~/assets/gallery/*.{jpg,jpeg,png,webp}",
+  { eager: true, import: "default" }
+);
+const images = Object.values(imageImports);
+
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+const title = lang === Locale.KOK ? "ಗ್ಯಾಲರಿ" : "Gallery";
+const description = lang === Locale.KOK
+  ? "ಪಿಂತುರಾನಿ ದಾದೊಸ್ಕಾಯೆಚ್ಯೊ ಘಡ್ಯೊ"
+  : "Capturing moments of grace";
+
+const ogImageUrl = images[0]?.src ?? undefined;
 ---
 
-<Layout title="Pompei Church | Gallery">
+<Layout
+  title={`${title}`}
+  description={description}
+  image={ogImageUrl}
+>
   <main class="mx-auto max-w-4xl overflow-hidden bg-white">
     <section id="gallery" class="flex flex-col p-6 pb-4">
       <h1
         class={cn(
           "font-black border-natgeo-yellow mb-2 border-l-4 pl-3 text-3xl lg:text-4xl",
           {
-            "font-bold pt-2": lang === Locale.KOK,
+            "font-bold": lang === Locale.KOK,
           },
         )}
       >
         {t("gallery.title")}
       </h1>
       <p class="text-justify text-lg text-slate-700">
-        ಪಿಂತುರಾನಿ ದಾದೊಸ್ಕಾಯೆಚ್ಯೊ ಘಡ್ಯೊ
+        {description}
       </p>
       <MasonryGallery />
     </section>

@@ -1,9 +1,23 @@
 ---
 import Centenary from "~/components/sections/halls/centenary.astro";
 import Layout from "~/layouts/layout.astro";
+import centenaryHallImage from "~/assets/halls/centenary-hall.jpg";
+import { getLangFromUrl } from "~/i18n/utils";
+import { Locale } from "~/enums/locale";
+
+const lang = getLangFromUrl(Astro.url);
+
+const title = lang === Locale.KOK
+  ? "ಶತಾಬ್ದಿ ಸಾಲ್"
+  : "Centenary Hall";
+
+const ogImageUrl = centenaryHallImage.src;
 ---
 
-<Layout title="Halls | Centenary Hall">
+<Layout
+  title={` ${title}`}
+  image={ogImageUrl}
+>
   <main class="mx-auto max-w-4xl overflow-hidden bg-white">
     <section id="centenary-hall" class="flex flex-col p-6">
       <Centenary />

@@ -7,12 +7,24 @@ import Snehasadan from "~/components/sections/institutions/snehasadan.astro";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import { Locale } from "~/enums/locale";
 import { cn } from "~/helpers/cn";
+import rosaMysticaHrps from "~/assets/institutions/rosa-mystica-hrps.jpg";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+
+const ogTitle =
+  lang === Locale.KOK
+    ? "ಸಂಸ್ಥೆ"
+    : "Institutions";
+const ogImageUrl = rosaMysticaHrps.src;
 ---
 
-<Layout title="Pompei Church | Institutions">
+<Layout
+  title="Pompei Church | Institutions"
+  title={ogTitle}
+  image={ogImageUrl}
+>
   <main class="mx-auto max-w-4xl overflow-hidden bg-white">
     <section id="our-institutions" class="flex flex-col p-6">
       <h1
