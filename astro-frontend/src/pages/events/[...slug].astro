@@ -48,6 +48,10 @@ const socialLinks = [
   { platform: "facebook", url: event?.facebookLink },
   { platform: "instagram", url: event?.instagramLink },
 ].filter((link) => link.url);
+if (!event) {
+  return Astro.redirect('/404', 302);
+}
+
 ---
 
 <Layout
