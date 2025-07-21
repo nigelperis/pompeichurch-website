@@ -14,8 +14,10 @@ const { obituaries } = await listObituaries({ pageSize: 1000 });
 const selectedObituary = obituaries.find((item) => item.slug === slug);
 
 if (!selectedObituary) {
-  return Astro.redirect("/obituary"); // Redirect if no obituary is found
+return Astro.redirect('/404', 302);
+
 }
+
 
 const baseURL = import.meta.env.PUBLIC_STRAPI_URL;
 const absoluteImageURL = selectedObituary.image?.formats?.medium?.url
