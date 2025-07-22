@@ -50,7 +50,7 @@ const additionalImages = achiever?.additionalImages ?? [];
         class="mx-auto mt-5 md:w-3/4"
       />
 
-      <p class="mt-4 text-lg text-justify leading-8">
+      <p class="mt-4 leading-7 text-slate-700">
         <StrapiBlocksRenderer content={achiever?.enDescription ?? []} />
       </p>
 
@@ -61,6 +61,13 @@ const additionalImages = achiever?.additionalImages ?? [];
         </span>
       </div>
 
+      <h2
+        class={cn("mt-4 text-left text-2xl font-semibold text-slate-900", {
+          "font-bold sm:pt-1": lang === Locale.KOK,
+        })}
+      >
+        {lang === Locale.KOK ? "ಹೆರ್ ತಸ್ವಿರೊ" : "Photographs"}
+      </h2>
       <AdditionalImagesCarousel additionalImages={additionalImages} />
     </section>
   </main>

@@ -27,27 +27,27 @@ const achieverUrl =
 ---
 
 <div
-  class="relative mx-auto mt-20 mb-9 w-[300px] bg-white border border-slate-200 rounded-lg"
+  class="relative mx-auto mt-25 mb-9 w-[330px] bg-white border border-slate-200 rounded-3xl"
 >
   <NetworkImage
     src={imageUrl}
     alt={name}
     width={imageWidth ?? 600}
     height={imageHeight ?? 400}
-    class="-mt-15 mx-auto w-[250px] h-[250px] rounded-lg object-cover"
+    class="-mt-25 mx-auto w-[260px] h-[260px] rounded-3xl object-cover"
   />
   <h2
-    class="mt-3 mx-2 p-1 text-balance text-center text-3xl font-bold text-black lg:text-2xl"
+    class="mt-3 mx-2 p-4 text-balance text-center text-2xl font-medium text-black lg:text-2xl"
   >
     {name}
   </h2>
   <p
-    class="mt-2 mx-1 mb-15 p-2 text-balance text-center text-xl text-slate-900 lg:text-lg"
+    class="mt-2 mx-1 mb-20 p-2 text-balance text-center text-lg text-slate-900"
   >
     {achievement}
   </p>
-  <div class="absolute right-0 bottom-0 text-blue-500">
-    <a href={achieverUrl} class="flex my-4 mr-3">
+  <div class="absolute right-0 bottom-0 flex text-red-500 border border-red-500 rounded-full p-2 m-3">
+    <a href={achieverUrl} class="flex">
       <span class={lang === Locale.KOK ? "mt-1" : ""}
         >{t("ui.more-button-read")}</span
       >
@@ -59,5 +59,5 @@ const achieverUrl =
     </a>
   </div>
 
-  <Badge class="absolute -bottom-8 -left-5 w-20 h-20" />
+  <Badge class="absolute -bottom-9 -left-9 w-18 h-18 transform translate-x-[-2px] translate-y-[-2px]" />
 </div>
