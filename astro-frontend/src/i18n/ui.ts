@@ -397,7 +397,7 @@ export const ui = {
     "push.disable": "Not Now!",
     download: "Download",
     congratulations: "Congratulations",
-    },
+  },
   kok: {
     "nav.home": "ಹೋಮ್",
     "nav.about-us": "ಆಮ್ಚಿ ಫಿರ್ಗಜ್",
@@ -439,7 +439,7 @@ export const ui = {
     "nav.addoor-ward": "ಅಡ್ಡೂರ್",
     "nav.obituary": "ಫಿರ್ಗಜೆಂತ್ ಮರಣ್",
     "nav.events": "ಘಡಿತಾಂ",
-    "nav.parishioners-achievements": "ಫಿರ್ಗಜ್ಗಾರಾಂಚಿ ಸಾಧನ",
+    "nav.parishioners-achievements": "ಫಿರ್ಗಜ್ಗಾರಾಂಚಿ ಸಾಧನಾಂ",
     "nav.pompeichem-falkem": "ಪೊಂಪೈಚೆಂ ಫಾಲ್ಕೆಂ",
     "nav.prayer-corner": "ಮಾಗ್ಣ್ಯಾ ಪಾನ್",
     "nav.pompei-sabha-bhavan": "ಪೊಂಪೈ ಸಭಾ ಭವನ್",
@@ -500,7 +500,8 @@ export const ui = {
     "centenaryhall.title": "ಶತಾಬ್ದಿ ಸಾಲ್",
     "church.patron": "ವೈಲಂಕಣಿ ಮಾಯ್",
     "obituary.subtitle": "ಮೊಗಾಚೊ ಉಡಾಸ್",
-    "parishioners-achievements-subtitle": "",
+    "parishioners-achievements.subtitle":
+      "ದೆವಾಕ್, ತಾಂಕಾಂ ಲಾಬ್ಲೆಲ್ಯಾ ದೆಣ್ಗ್ಯಾ, ಪರಿಶ್ರಮಾ ಆನಿ ಸಾಧನಾಂ ದ್ವಾರಿಂ ಮಹಿಮಾ ದಿಂವ್ಚೆಂ ತಶೆಂಚ್ ಆಮ್ಚ್ಯಾ  ಫಿರ್ಗಜ್ಗಾರಾಂಚಿ ಸಾಧನಾಂ ವಳ್ಕುಂಚೆಂ ಪಾನ್.",
     "commissions.convenor": " ಸಂಚಾಲಕಿ/ಕ್ ",
     "commissions.heading": "ಆಯೋಗ್",
     "commissions.secretary": "ಕಾರ್ಯದರ್ಶಿ",

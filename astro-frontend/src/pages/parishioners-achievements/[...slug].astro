@@ -4,26 +4,31 @@ import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import NetworkImage from "~/components/ui/network-image.astro";
 import { Locale } from "~/enums/locale";
 import { cn } from "~/helpers/cn";
+import { getAchiever } from "~/services/parishioners-achievements/get-achiever";
+import StrapiBlocksRenderer from "~/components/ui/strapi-blocks-renderer";
+import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
+import AdditionalImagesCarousel from "~/components/sections/parishioners-achievements/additional-images-carousel.astro";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const dummyData = {
-  name: "Ms. Sasha Gonzales",
-  url: "https://www.livemint.com/lm-img/img/2025/03/09/600x338/Emirates-Cricket-Champions-Trophy-330_1741543479325_1741543500395.jpg",
-  achievement: "Winner of the 2022 NatGeo Photo Contest",
-  width: 300,
-  height: 200,
-  slug: "sasha-gonzales",
-  description: `We are immensely proud to share that Ms. Sasha Gonzales, a cherished member of our parish, has won the prestigious NatGeo Photo Contest 2022. Her breathtaking photograph capturing the raw beauty of Arctic wildlife has received international acclaim.
-  Her artistic vision and commitment to showcasing the wonders of creation remind us of the power of nature and the importance of storytelling through images.`,
+const { slug } = Astro.params;
+
+const achiever = await getAchiever(slug ?? "");
+
+const achieverImage = achiever?.achieverImage ?? {
+  url: getPlaceholderImage({ text: achiever?.englishName }),
+  width: 600,
+  height: 400,
 };
+
+const additionalImages = achiever?.additionalImages ?? [];
 ---
 
 <Layout
-  title={dummyData.name}
-  description={dummyData.achievement}
-  image={dummyData.url}
+  title={achiever?.englishName ?? ""}
+  description={achiever?.enAchievement}
+  image={achiever?.achieverImage?.url}
 >
   <main class="mx-auto max-w-4xl overflow-hidden bg-white">
     <section id="parishioners-achievements" class="flex flex-col p-6 pb-4">
@@ -39,25 +44,24 @@ const dummyData = {
       </h1>
 
       <NetworkImage
-        src={dummyData?.url}
-        width={dummyData?.width}
-        height={dummyData?.height}
-        class="mx-auto mt-5 rounded-sm shadow-lg md:w-3/4"
+        src={achieverImage?.url}
+        width={achieverImage?.width}
+        height={achieverImage?.height}
+        class="mx-auto mt-5 md:w-3/4"
       />
 
       <p class="mt-4 text-lg text-justify leading-8">
-        {dummyData.description ?? []}
-        <!-- use StrapiBlocksRenderer -->
+        <StrapiBlocksRenderer content={achiever?.enDescription ?? []} />
       </p>
 
       <div class="mt-5 text-center italic text-red-600 text-lg font-medium">
-         With Warmest Wishes,<br />
+        With Warmest Wishes,<br />
         <span class="mt-1 block text-xl font-semibold text-gray-900">
           Parish Priest & Parishioners
         </span>
       </div>
 
-      <!-- Additional Photos carousel -->
+      <AdditionalImagesCarousel additionalImages={additionalImages} />
     </section>
-  </main></Layout
->
+  </main>
+</Layout>

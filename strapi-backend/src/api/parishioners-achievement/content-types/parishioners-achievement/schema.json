@@ -50,7 +50,7 @@
     "slug": {
       "type": "uid",
       "targetField": "englishName",
-      "required": true
+      "required": false
     },
     "additionalImages": {
       "type": "media",

@@ -4,12 +4,26 @@ import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import { Locale } from "~/enums/locale";
 import { cn } from "~/helpers/cn";
 import AchievementsList from "~/components/sections/parishioners-achievements/parishioners-achievements-list.astro";
-import { dummyData } from "~/constants/dummy-data";
+import { listParishionersAchievements } from "~/services/parishioners-achievements/list-achievements";
+import Pagination from "~/components/pagination.astro";
+import { getPaginationRange } from "~/helpers/get-pagination-range";
+import { Message } from "~/constants/message";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const desc = "This is Parishioner Achievements page of Pompei Church";
+const desc = "ದೆವಾಕ್, ತಾಂಕಾಂ ಲಾಬ್ಲೆಲ್ಯಾ ದೆಣ್ಗ್ಯಾ, ಪರಿಶ್ರಮಾ ಆನಿ ಸಾಧನಾಂ ದ್ವಾರಿಂ ಮಹಿಮಾ ದಿಂವ್ಚೆಂ ತಶೆಂಚ್ ಆಮ್ಚ್ಯಾ  ಫಿರ್ಗಜ್ಗಾರಾಂಚಿ ಸಾಧನಾಂ ವಳ್ಕುಂಚೆಂ ಪಾನ್.";
+
+const achievementsPerPage = 6;
+const currentPage = Number(Astro.url.searchParams.get("p")) || 1;
+
+const { parishionersAchievements, pagination } =
+  await listParishionersAchievements({
+    page: currentPage,
+    pageSize: achievementsPerPage,
+  });
+
+const totalPages = pagination.pageCount;
 ---
 
 <Layout title="Pompei Church | Parishioners Achievements" description={desc}>
@@ -17,7 +31,7 @@ const desc = "This is Parishioner Achievements page of Pompei Church";
     <section id="parishioner-achievements" class="flex flex-col p-6 pb-4">
       <h1
         class={cn(
-          "font-roboto font-black border-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl lg:text-4xl",
+          "font-roboto font-black border-natgeo-yellow mb-4 border-l-4 pl-3 pt-2 text-3xl lg:text-4xl",
           {
             "font-noto-sans-kannada font-bold": lang === Locale.KOK,
           },
@@ -28,7 +42,23 @@ const desc = "This is Parishioner Achievements page of Pompei Church";
       <p class="text-justify text-lg text-slate-700">
         {t("parishioners-achievements.subtitle")}
       </p>
-      <AchievementsList list={dummyData} />
+
+      {
+        parishionersAchievements.length > 0 ? (
+          <>
+            <AchievementsList achievementsList={parishionersAchievements} />
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              getPaginationRange={getPaginationRange}
+            />
+          </>
+        ) : (
+          <p class="py-8 text-center text-3xl font-semibold">
+            {Message.ACHIEVEMENTS_NOT_FOUND_KOK}
+          </p>
+        )
+      }
     </section>
   </main>
 </Layout>

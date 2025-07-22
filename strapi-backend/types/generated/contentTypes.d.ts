@@ -1319,7 +1319,7 @@ export interface ApiParishionersAchievementParishionersAchievement
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    slug: Schema.Attribute.UID<'englishName'> & Schema.Attribute.Required;
+    slug: Schema.Attribute.UID<'englishName'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

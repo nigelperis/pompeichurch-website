@@ -4,15 +4,29 @@ import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import { Locale } from "~/enums/locale";
 import { cn } from "~/helpers/cn";
 import AchievementsList from "~/components/sections/parishioners-achievements/parishioners-achievements-list.astro";
-import {dummyData} from "~/constants/dummy-data";
+import { listParishionersAchievements } from "~/services/parishioners-achievements/list-achievements";
+import Pagination from "~/components/pagination.astro";
+import { getPaginationRange } from "~/helpers/get-pagination-range";
+import { Message } from "~/constants/message";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const desc = "This is Parishioner Achievements page of Pompei Church";
+const desc = "Celebrating the excellence of our parishioners and giving glory to God through their gifts, efforts, and achievements.";
+
+const achievementsPerPage = 6;
+const currentPage = Number(Astro.url.searchParams.get("p")) || 1;
+
+const { parishionersAchievements, pagination } =
+  await listParishionersAchievements({
+    page: currentPage,
+    pageSize: achievementsPerPage,
+  });
+
+const totalPages = pagination.pageCount;
 ---
 
-<Layout title="Pompei Church | Parishioner Achievements" description={desc}>
+<Layout title="Pompei Church | Parishioners Achievements" description={desc}>
   <main class="mx-auto max-w-4xl overflow-hidden bg-white">
     <section id="parishioner-achievements" class="flex flex-col p-6 pb-4">
       <h1
@@ -28,7 +42,23 @@ const desc = "This is Parishioner Achievements page of Pompei Church";
       <p class="text-justify text-lg text-slate-700">
         {t("parishioners-achievements.subtitle")}
       </p>
-      <AchievementsList list={dummyData} />
+
+      {
+        parishionersAchievements.length > 0 ? (
+          <>
+            <AchievementsList achievementsList={parishionersAchievements} />
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              getPaginationRange={getPaginationRange}
+            />
+          </>
+        ) : (
+          <p class="py-8 text-center text-3xl font-semibold">
+            {Message.ACHIEVEMENTS_NOT_FOUND}
+          </p>
+        )
+      }
     </section>
   </main>
 </Layout>

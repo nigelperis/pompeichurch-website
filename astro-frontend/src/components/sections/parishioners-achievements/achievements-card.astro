@@ -1,9 +1,7 @@
 ---
-import { Image } from "astro:assets";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import NetworkImage from "~/components/ui/network-image.astro";
 import Badge from "~/assets/icons/badge.svg";
-import placeholderImage from "~/assets/static-assets/blank.jpeg";
 import { Icon } from "astro-icon/components";
 import { Locale } from "~/enums/locale";
 
@@ -12,14 +10,15 @@ const t = useTranslations(lang);
 
 interface Props {
   name: string;
-  url: string;
+  imageUrl: string;
   achievement: string;
   slug: string;
-  width?: number;
-  height?: number;
+  imageWidth: number;
+  imageHeight: number;
 }
 
-const { name, url, achievement, slug, width, height } = Astro.props;
+const { name, imageUrl, achievement, slug, imageWidth, imageHeight } =
+  Astro.props;
 
 const achieverUrl =
   lang === Locale.EN
@@ -30,25 +29,13 @@ const achieverUrl =
 <div
   class="relative mx-auto mt-20 mb-9 w-[300px] bg-white border border-slate-200 rounded-lg"
 >
-  {
-    url ? (
-      <NetworkImage
-        src={url}
-        alt={name}
-        width={width ?? 300}
-        height={height ?? 200}
-        class="-mt-15 mx-auto w-[250px] h-[250px] rounded-lg object-fill"
-      />
-    ) : (
-      <Image
-        src={placeholderImage}
-        alt="Blank Profile Image"
-        class="-mt-15 mx-auto w-[250px] h-[250px] rounded-lg object-fill"
-        width={width}
-        height={height}
-      />
-    )
-  }
+  <NetworkImage
+    src={imageUrl}
+    alt={name}
+    width={imageWidth ?? 600}
+    height={imageHeight ?? 400}
+    class="-mt-15 mx-auto w-[250px] h-[250px] rounded-lg object-cover"
+  />
   <h2
     class="mt-3 mx-2 p-1 text-balance text-center text-3xl font-bold text-black lg:text-2xl"
   >

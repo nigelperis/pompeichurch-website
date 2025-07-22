@@ -2,7 +2,7 @@ export class Message {
   public static readonly MESSAGE_TO_BE_SHARED = "Will be shared soon!";
   public static readonly EVENTS_NOT_FOUND = "No Events Found!";
   public static readonly OBITUARIES_NOT_FOUND = "No Obituaries Found!";
-  public static readonly OBITUARIES_NOT_FOUND_KOK="ಕಾಂಯ್ ನಾ!";
+  public static readonly OBITUARIES_NOT_FOUND_KOK = "ಕಾಂಯ್ ನಾ!";
   public static readonly COUNCIL_MEMBERS_NOT_FOUND =
     "No Council Members Found!";
   public static readonly MAGAZINES_NOT_FOUND = "No Magazines available!";
@@ -15,4 +15,8 @@ export class Message {
   public static readonly DEACONS_NOT_FOUND = "No Deacons Found!";
   public static readonly COMMISSIONS_NOT_FOUND =
     "No Pastoral 21 Commissions Found!";
+  public static readonly ACHIEVEMENTS_NOT_FOUND =
+    "No Parishioners Achievements Temporarily Found!";
+  public static readonly ACHIEVEMENTS_NOT_FOUND_KOK =
+    "ಫಿರ್ಗಜ್ಗಾರಾಂಚಿ ಸಾಧನಾಂ ತಾತ್ಕಾಲಿಕ್ ನಾಂತ್!";
 }

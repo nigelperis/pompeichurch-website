@@ -1,0 +1,114 @@
+---
+import EmblaCarousel from "~/components/ui/embla-carousel.astro";
+import EmblaCarouselItem from "~/components/ui/embla-carousel-item.astro";
+import NetworkImage from "~/components/ui/network-image.astro";
+import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
+import type { Media } from "~/models/parishioners-achievement";
+
+const { additionalImages } = Astro.props as { additionalImages: Media[] };
+---
+
+{
+  additionalImages.length > 0 && (
+    <>
+      {/* Mobile: Embla Carousel */}
+      <div class="-mx-[1.5rem] block md:hidden">
+        {additionalImages.length === 1 ? (
+          <a
+            href="#"
+            role="button"
+            aria-label="Additional Images"
+            data-pswp-src={
+              additionalImages[0]?.url
+                ? new URL(
+                    additionalImages[0].url,
+                    import.meta.env.PUBLIC_STRAPI_URL,
+                  ).toString()
+                : getPlaceholderImage({ text: "Achievement" })
+            }
+            data-pswp-width={additionalImages[0]?.width}
+            data-pswp-height={additionalImages[0]?.height}
+          >
+            <NetworkImage
+              src={
+                additionalImages[0].url
+                  ? new URL(
+                      additionalImages[0].url,
+                      import.meta.env.PUBLIC_STRAPI_URL,
+                    ).toString()
+                  : getPlaceholderImage({ text: "Achievement" })
+              }
+              width={additionalImages[0].width ?? 600}
+              height={additionalImages[0].height ?? 400}
+              class="w-full px-6"
+            />
+          </a>
+        ) : (
+          <EmblaCarousel showArrows={true}>
+            {additionalImages.map((media) => (
+              <EmblaCarouselItem>
+                <NetworkImage
+                  src={media.url}
+                  width={media.width}
+                  height={media.height}
+                  class="mx-auto mt-5 md:w-3/4"
+                />
+              </EmblaCarouselItem>
+            ))}
+          </EmblaCarousel>
+        )}
+      </div>
+
+      {/* Desktop: More than 2 images - Embla Carousel */}
+      <div class="event-gallery hidden items-center justify-center gap-4 md:flex">
+        {additionalImages.length < 3 ? (
+          additionalImages.map((media) => (
+            <a
+              href="#"
+              role="button"
+              aria-label="Additional Images"
+              data-pswp-src={
+                media?.url
+                  ? new URL(
+                      media.url,
+                      import.meta.env.PUBLIC_STRAPI_URL,
+                    ).toString()
+                  : getPlaceholderImage({ text: "Achievement" })
+              }
+              data-pswp-width={media?.width}
+              data-pswp-height={media?.height}
+              class="transition-transform duration-300 ease-in-out hover:[transform:scale(1.02)] hover:shadow-md max-h-[1000px] flex items-center justify-center"
+            >
+              <NetworkImage
+                src={
+                  media?.url
+                    ? new URL(
+                        media.url,
+                        import.meta.env.PUBLIC_STRAPI_URL,
+                      ).toString()
+                    : getPlaceholderImage({ text: "Achievement" })
+                }
+                width={media?.width}
+                height={media?.height}
+                class="max-h-[400px] w-auto object-contain"
+              />
+            </a>
+          ))
+        ) : (
+          <EmblaCarousel showArrows={true}>
+            {additionalImages.map((media) => (
+              <EmblaCarouselItem>
+                <NetworkImage
+                  src={media.url}
+                  width={media.width}
+                  height={media.height}
+                  class="mx-auto mt-5 md:w-full"
+                />
+              </EmblaCarouselItem>
+            ))}
+          </EmblaCarousel>
+        )}
+      </div>
+    </>
+  )
+}
