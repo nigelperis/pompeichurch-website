@@ -8,6 +8,7 @@ import { listParishionersAchievements } from "~/services/parishioners-achievemen
 import Pagination from "~/components/pagination.astro";
 import { getPaginationRange } from "~/helpers/get-pagination-range";
 import { Message } from "~/constants/message";
+import Info from "~/assets/react-icons/info.svg?react";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -42,6 +43,13 @@ const totalPages = pagination.pageCount;
       <p class="text-justify text-lg text-slate-700">
         {t("parishioners-achievements.subtitle")}
       </p>
+
+      <div class="flex w-full p-4 rounded justify-end">
+        <a href="/parishioners-achievements-form"
+          class="flex transform transition-all duration-400 animate-bounce">
+            <Info />
+        </a>
+      </div>
 
       {
         parishionersAchievements.length > 0 ? (

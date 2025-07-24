@@ -1,0 +1,249 @@
+---
+import Layout from "~/layouts/layout.astro";
+import { getLangFromUrl, useTranslations } from "~/i18n/utils";
+import { Locale } from "~/enums/locale";
+import { cn } from "~/helpers/cn";
+import ChevronDown from '~/assets/icons/chevron-down.svg?react';
+import CheckMark from '~/assets/icons/check-mark.svg';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const wards = [
+  "Addoor",
+  "Church",
+  "Gurpur",
+  "Pompei A",
+  "Pompei B",
+  "Kandar A",
+  "Kandar B",
+  "Kowdoor A",
+  "Kowdoor B",
+  "Monel",
+]
+---
+
+<Layout title="Parishioners Achievements Form">
+  <main class="mx-auto max-w-4xl overflow-hidden bg-white">
+    <section id="parishioner-achievements" class="flex flex-col p-6 pb-4">
+      <h1
+        class={cn(
+          "font-roboto font-black border-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl lg:text-4xl",
+          {
+            "font-noto-sans-kannada font-bold": lang === Locale.KOK,
+          },
+        )}
+      >
+        {t("nav.parishioners-achievements")}
+      </h1>
+
+      <div class="">
+        Criteria
+      </div>
+
+      <div class="w-full h-0.5 mx-auto my-4 bg-natgeo-yellow rounded-md "></div>
+
+      <form class="flex-1 space-y-6" enctype="multipart/form-data" id="achievementsForm">
+        <!-- Full Name of the achiever or Team Name -->
+        <div>
+          <label for="full-name" class="text-sm font-light leading-6 text-gray-700">Full Name / Team Name <span class="text-red-500">*</span></label>
+          <input id="full-name" type="text" name="full-name" class="block w-full border border-gray-300 p-3 focus:outline-gray-300 placeholder-gray-600" required placeholder="E.g. John Doe / Team Aurora"></input>
+        </div>
+
+        <!-- Achievement -->
+        <div>
+          <label for="achievement" class="text-sm font-light leading-6 text-gray-700">Achievement <span class="text-red-500">*</span></label>
+          <input id="achievement" type="text" name="achievement" class="block w-full border border-gray-300 p-3 focus:outline-gray-300 placeholder-gray-600" required placeholder="E.g. Best Speaker at National Conference"></input>
+        </div>
+
+        <!-- Achiever Image -->
+        <div>
+          <label for="achiever-image" class="text-sm font-light leading-6 text-gray-700">Achiever Image <span class="text-red-500">*</span></label>
+          <input id="achiever-image" type="file" name="achieverImage" class="block w-full border border-gray-300 p-3 focus:outline-gray-300 placeholder-gray-600" accept=".jpg, .jpeg, .png, image/jpeg, image/png"></input>
+          <p id="achiever-image-error" class="text-xs text-red-500 mt-1"></p>
+        </div>
+
+        <!-- Issue Date -->
+        <div>
+          <label for="issue-date" class="text-sm font-light leading-6 text-gray-700">Issue Date <span class="text-red-500">*</span></label>
+          <input id="issue-date" type="date" name="issue-date" class="block w-full border border-gray-300 p-3 focus:outline-gray-300 placeholder-gray-600" required></input>
+        </div>
+
+        <!-- Parents Name or Team Members Names -->
+        <div>
+          <label for="parents-name" class="text-sm font-light leading-6 text-gray-700">Parents Name / Team Members Names <span class="text-red-500">*</span></label>
+          <input id="parents-name" type="text" name="parents-name" class="block w-full border border-gray-300 p-3 focus:outline-gray-300 placeholder-gray-600" required placeholder="E.g. John Doe and Jane Doe / John, Sam, Jane"></input>
+        </div>
+
+        <!-- Ward (optional for teams) -->
+        <div>
+          <div id="ward-select" class="relative w-full mx-auto">
+            <label for="ward-input" class="block text-sm font-light text-gray-700 mb-1">
+              Ward
+            </label>
+
+
+            <input id="ward-input" type="text" name="ward-input"
+                   class="block w-full border border-gray-300 p-3 pr-10 focus:outline-gray-200 placeholder-gray-600 cursor-pointer"
+                   placeholder="Select your ward..."
+                   readonly></input>
+
+            <ChevronDown id="dropdown-chevron" className="absolute w-6 h-6 right-3 top-1/2 text-gray-600 cursor-pointer" />
+
+            <!-- Ward names Dropdown -->
+            <div id="ward-options-menu"
+                 class="absolute left-0 right-0 mt-1 bg-white border border-gray-300 rounded-b-md z-10 max-h-36 overflow-y-auto hidden"
+                >
+              {wards.map((ward) => (
+                <div class="p-2 cursor-pointer hover:bg-blue-100">
+                  {ward}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <!-- Additional Photos (only 2 if any) -->
+        <div>
+          <label for="additional-images" class="text-sm font-light leading-6 text-gray-700">Additional Photos(only 2 if any)</label>
+          <input id="additional-images" type="file" name="additional-images" class="block w-full border border-gray-300 p-3 focus:outline-gray-300 placeholder-gray-600" multiple accept=".jpg, .jpeg, .png, image/jpeg, image/png"></input>
+          <p id="additional-images-error" class="text-xs text-red-500 mt-1"></p>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="flex items-center justify-center mt-4 mb-0">
+          <button type="submit" class="bg-natgeo-yellow text-black text-semibold px-4 py-2 rounded-md">Submit</button>
+        </div>
+
+        <!-- Honeypot Spam Trap (hidden) -->
+        <div class="hidden">
+          <label for="honeypot">Important</label>
+          <input type="text" name="honeypot" id="honeypot" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <!-- Success Toast -->
+        <div id="toast"class="fixed top-6 left-1/2 transform -translate-x-1/2 bg-green-600 text-white px-6 py-4 text-lg font-bold z-50 rounded-xl shadow-lg opacity-0 transition-opacity duration-300 pointer-events-none flex items-center gap-3">
+          <CheckMark class="w-6 h-6" />
+          <span id="toast-text">Submission successful</span>
+        </div>
+      </form>
+    </section>
+  </main>
+</Layout>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("achievementsForm") as HTMLFormElement;
+  const achieverImage = document.getElementById("achiever-image") as HTMLInputElement;
+  const wardSelect = document.getElementById("ward-select") as HTMLDivElement;
+  const chevron = document.getElementById("dropdown-chevron") as HTMLDivElement;
+  const wardMenu = document.getElementById("ward-options-menu") as HTMLDivElement;
+  const wardInput = document.getElementById("ward-input") as HTMLInputElement;
+  const additionalImages = document.getElementById("additional-images") as HTMLInputElement;
+  const achieverErrorMessage = document.getElementById("achiever-image-error") as HTMLParagraphElement;
+  const additionalImagesErrorMessage = document.getElementById("additional-images-error") as HTMLParagraphElement;
+  const submitButton = form.querySelector('button[type="submit"]');
+  const honeypot = document.getElementById("honeypot") as HTMLInputElement;
+
+  const allowedTypes = ["image/jpeg", "image/png", "image/jpg"];
+
+  // Ward Dropdown
+  wardSelect.addEventListener("click", () => {
+    console.log("clicked");
+    wardMenu.classList.toggle("hidden");
+    chevron.classList.toggle("rotate-180");
+  });
+
+  // Ward Selection
+  wardMenu.addEventListener("click", (event) => {
+    if (event.target instanceof HTMLDivElement) {
+      const selectedWard = event.target.textContent;
+      wardInput.value = selectedWard;
+    }
+  });
+
+  // Image Validation by size
+  const handleImageSize = (event: FileList) => {
+    for (let i = 0; i < event.length; i++) {
+      if (event[i].size > 2 * 1024 * 1024) {
+        return false;
+      }
+    }
+    return true;
+  };
+
+  // Image Validation by type
+  const handleImageType = (event: FileList) => {
+    for (let i = 0; i < event.length; i++) {
+      if (!allowedTypes.includes(event[i].type)) {
+        return false;
+      }
+    }
+    return true;
+  };
+
+  // Achiever Image Validation
+  achieverImage.addEventListener("change", () => {
+    if (achieverImage.files && !handleImageSize(achieverImage.files)) {
+      achieverErrorMessage.textContent = "Please select an image less than 2MB.";
+    } else if (achieverImage.files && !handleImageType(achieverImage.files)) {
+      achieverErrorMessage.textContent = "Please select a JPG, JPEG or PNG image.";
+    } else {
+      achieverErrorMessage.textContent = "";
+    }
+  });
+
+  // Additional Images Validation
+  additionalImages.addEventListener("change", () => {
+    const selectedFiles = additionalImages?.files;
+
+    if (selectedFiles && selectedFiles.length > 2) {
+      additionalImagesErrorMessage.textContent = "Please select no more than 2 additional images.";
+      additionalImages.value = "";
+    } else if (selectedFiles && !handleImageSize(selectedFiles)) {
+      additionalImagesErrorMessage.textContent = "Please select images less than 2MB.";
+    } else if (selectedFiles && !handleImageType(selectedFiles)) {
+      additionalImagesErrorMessage.textContent = "Please select JPG, JPEG or PNG images.";
+    } else {
+      additionalImagesErrorMessage.textContent = "";
+    }
+  });
+
+  // Success Toast
+  function showToast(message = "Your submission was successful!") {
+  const toast = document.getElementById("toast");
+
+  if (toast) {
+    const textSpan = document.getElementById("toast-text");
+
+    if (textSpan) {
+      textSpan.textContent = message;
+    }
+
+    toast.classList.remove("opacity-0");
+    toast.classList.add("opacity-100");
+    toast.style.pointerEvents = "auto";
+
+    setTimeout(() => {
+      toast.classList.remove("opacity-100");
+      toast.classList.add("opacity-0");
+      toast.style.pointerEvents = "none";
+    }, 4000);
+  }
+}
+
+  form?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const data = new FormData(form);
+
+    if (honeypot.value) {
+      alert("Spam trap triggered");
+      return;
+    }
+
+    showToast();
+
+  });
+});
+</script>
