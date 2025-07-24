@@ -11,6 +11,7 @@ import CloseIcon from "~/assets/react-icons/x.svg?react";
 import YoutubeIcon from "~/assets/react-icons/youtube.svg?react";
 import CoffinIcon from "~/assets/react-icons/coffin.svg?react";
 import InfoIcon from "~/assets/react-icons/info.svg?react";
+import WhatsAppShare from "~/components/ui/whatsapp-share.tsx";
 
 interface Props {
   id?: string | number;
@@ -147,10 +148,9 @@ export default function ObituaryCard({
   autoFlip = false,
 }: Props) {
   const [flipped, setFlipped] = useState(false);
-  const shareUrl =
-    typeof window !== "undefined"
-      ? `${window.location.origin}/obituary/${slug}`
-      : `/obituary/${slug}`;
+  const obituaryUrl =
+  lang === Locale.EN ? `/obituary/${slug}/` : `/kok/obituary/${slug}/`;
+
   const cardId = typeof id === "string" ? id : String(id ?? "no-id");
 
   let updatedAt: Date | null = null;
@@ -282,16 +282,21 @@ export default function ObituaryCard({
                 </p>
               )}
             </div>
-            <div className="absolute bottom-1 right-1">
-              <ShareLink
-                className="share-button cursor-pointer transform transition-transform duration-1000 hover:scale-110 px-3 py-2 text-sm"
-                shareData={{
-                  title: name,
-                  url: shareUrl,
-                }}
-                size={30}
-              />
-            </div>
+    <div className="absolute bottom-4 right-2 flex items-center gap-2 ">
+      <WhatsAppShare
+  shareData={{      title: name,
+      url: obituaryUrl, }}
+/>
+  <ShareLink
+    className="cursor-pointer transform transition-transform duration-1000 hover:scale-110"
+    shareData={{
+      title: name,
+      url: obituaryUrl,
+    }}
+  />
+
+</div>
+
           </div>
         </div>
         {/* Back side */}

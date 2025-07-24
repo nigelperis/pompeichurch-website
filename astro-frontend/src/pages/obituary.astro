@@ -21,7 +21,6 @@ const selectedWard = url.searchParams.get("ward");
 const normalizedWard = selectedWard?.toLowerCase().replace(/-/g, " ") ?? "";
 const currentPage = Number(url.searchParams.get("p")) || 1;
 const obituariesPerPage = 6;
-const id = url.searchParams.get("id") || null;
 
 const { obituaries } = await listObituaries({ pageSize: 1000 });
 
@@ -62,10 +61,6 @@ const uniqueWards = allWards.map((ward) => ({
 const basePath = selectedWard
   ? `/obituary?ward=${selectedWard}&`
   : `/obituary?`;
-
-const selectedObituary = id
-  ? obituaries.find((item) => item.slug === id)
-  : null;
 
 const baseURL = import.meta.env.PUBLIC_STRAPI_URL;
 
