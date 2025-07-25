@@ -13,7 +13,6 @@ interface Props {
 const WhatsAppShare: React.FC<Props> = ({ className = "", size = 30, shareData }) => {
   const [resolvedUrl, setResolvedUrl] = useState<string>("");
   const [isLoading, setIsLoading] = useState(true);
-
   useEffect(() => {
     if (!shareData?.url) {
       setIsLoading(false);
@@ -33,7 +32,6 @@ const WhatsAppShare: React.FC<Props> = ({ className = "", size = 30, shareData }
   }, [shareData?.url]);
 
   if (!shareData?.url) return null;
-
   const urlToShare = resolvedUrl || shareData.url;
   const text = encodeURIComponent(urlToShare);
   const whatsappUrl = `https://wa.me/?text=${text}`;
