@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import clsx from "clsx"; // or your custom `cn` function
+import clsx from "clsx";
 
 interface Props {
   className?: string;
@@ -11,28 +11,33 @@ interface Props {
 }
 
 const WhatsAppShare: React.FC<Props> = ({ className = "", size = 30, shareData }) => {
-  const [fullUrl, setFullUrl] = useState("");
-
+  const [resolvedUrl, setResolvedUrl] = useState<string>("");
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    if (!shareData?.url) return;
+    if (!shareData?.url) {
+      setIsLoading(false);
+      return;
+    }
 
     const isAbsolute = shareData.url.startsWith("http");
-    const baseUrl = window.location.origin;
-    const resolvedUrl = isAbsolute ? shareData.url : `${baseUrl}${shareData.url}`;
-    setFullUrl(resolvedUrl);
-  }, [shareData]);
+    if (isAbsolute) {
+      setResolvedUrl(shareData.url);
+      setIsLoading(false);
+    } else {
+      if (typeof window !== "undefined") {
+        const baseUrl = window.location.origin;
+        const fullUrl = shareData.url.startsWith('/') ? shareData.url : `/${shareData.url}`;
+        setResolvedUrl(`${baseUrl}${fullUrl}`);
+      } else {
+        setResolvedUrl(shareData.url);
+      }
+      setIsLoading(false);
+    }
+  }, [shareData?.url]);
 
-  // Early return only if shareData.url is missing, not if fullUrl is empty
   if (!shareData?.url) return null;
-
-  // Use fullUrl if available, otherwise fall back to constructing the URL immediately
-  const urlToShare = fullUrl || (() => {
-    const isAbsolute = shareData.url.startsWith("http");
-    const baseUrl = typeof window !== "undefined" ? window.location.origin : "";
-    return isAbsolute ? shareData.url : `${baseUrl}${shareData.url}`;
-  })();
-
-  const text = encodeURIComponent(`${urlToShare}`);
+  const urlToShare = resolvedUrl || shareData.url;
+  const text = encodeURIComponent(urlToShare);
   const whatsappUrl = `https://wa.me/?text=${text}`;
 
   return (
