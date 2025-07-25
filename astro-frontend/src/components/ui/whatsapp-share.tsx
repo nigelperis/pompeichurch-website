@@ -22,9 +22,17 @@ const WhatsAppShare: React.FC<Props> = ({ className = "", size = 30, shareData }
     setFullUrl(resolvedUrl);
   }, [shareData]);
 
-  if (!shareData?.url || !fullUrl) return null;
+  // Early return only if shareData.url is missing, not if fullUrl is empty
+  if (!shareData?.url) return null;
 
-  const text = encodeURIComponent(`${fullUrl}`);
+  // Use fullUrl if available, otherwise fall back to constructing the URL immediately
+  const urlToShare = fullUrl || (() => {
+    const isAbsolute = shareData.url.startsWith("http");
+    const baseUrl = typeof window !== "undefined" ? window.location.origin : "";
+    return isAbsolute ? shareData.url : `${baseUrl}${shareData.url}`;
+  })();
+
+  const text = encodeURIComponent(`${urlToShare}`);
   const whatsappUrl = `https://wa.me/?text=${text}`;
 
   return (
