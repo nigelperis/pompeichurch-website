@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import clsx from "clsx"; // or your custom `cn` function
+import clsx from "clsx";
 
 interface Props {
   className?: string;
@@ -11,20 +11,31 @@ interface Props {
 }
 
 const WhatsAppShare: React.FC<Props> = ({ className = "", size = 30, shareData }) => {
-  const [fullUrl, setFullUrl] = useState("");
+  const [resolvedUrl, setResolvedUrl] = useState<string>("");
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (!shareData?.url) return;
+    if (!shareData?.url) {
+      setIsLoading(false);
+      return;
+    }
 
     const isAbsolute = shareData.url.startsWith("http");
-    const baseUrl = window.location.origin;
-    const resolvedUrl = isAbsolute ? shareData.url : `${baseUrl}${shareData.url}`;
-    setFullUrl(resolvedUrl);
-  }, [shareData]);
+    if (isAbsolute) {
+      setResolvedUrl(shareData.url);
+      setIsLoading(false);
+    } else {
+      const baseUrl = "https://pompeichurch.in";
+      const fullUrl = shareData.url.startsWith('/') ? shareData.url : `/${shareData.url}`;
+      setResolvedUrl(`${baseUrl}${fullUrl}`);
+      setIsLoading(false);
+    }
+  }, [shareData?.url]);
 
-  if (!shareData?.url || !fullUrl) return null;
+  if (!shareData?.url) return null;
 
-  const text = encodeURIComponent(`${fullUrl}`);
+  const urlToShare = resolvedUrl || shareData.url;
+  const text = encodeURIComponent(urlToShare);
   const whatsappUrl = `https://wa.me/?text=${text}`;
 
   return (
