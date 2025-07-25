@@ -13,6 +13,7 @@ interface Props {
 const WhatsAppShare: React.FC<Props> = ({ className = "", size = 30, shareData }) => {
   const [resolvedUrl, setResolvedUrl] = useState<string>("");
   const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     if (!shareData?.url) {
       setIsLoading(false);
@@ -24,18 +25,15 @@ const WhatsAppShare: React.FC<Props> = ({ className = "", size = 30, shareData }
       setResolvedUrl(shareData.url);
       setIsLoading(false);
     } else {
-      if (typeof window !== "undefined") {
-        const baseUrl = window.location.origin;
-        const fullUrl = shareData.url.startsWith('/') ? shareData.url : `/${shareData.url}`;
-        setResolvedUrl(`${baseUrl}${fullUrl}`);
-      } else {
-        setResolvedUrl(shareData.url);
-      }
+      const baseUrl = "https://pompeichurch.in";
+      const fullUrl = shareData.url.startsWith('/') ? shareData.url : `/${shareData.url}`;
+      setResolvedUrl(`${baseUrl}${fullUrl}`);
       setIsLoading(false);
     }
   }, [shareData?.url]);
 
   if (!shareData?.url) return null;
+
   const urlToShare = resolvedUrl || shareData.url;
   const text = encodeURIComponent(urlToShare);
   const whatsappUrl = `https://wa.me/?text=${text}`;
