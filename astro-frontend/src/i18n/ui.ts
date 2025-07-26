@@ -49,6 +49,7 @@ export const ui = {
     "nav.addoor-ward": "Addoor",
     "nav.obituary": "Obituary",
     "nav.events": "Events",
+    "nav.parishioners-achievements": "Parishioners Achievements",
     "nav.pompeichem-falkem": "Pompeichem Falkem",
     "nav.prayer-corner": "Prayer Corner",
     "landing.church-name": "Our Lady of Pompei Church",
@@ -108,6 +109,8 @@ export const ui = {
     "centenaryhall.title": "Centenary Hall",
     "church.patron": "Vailankani Mai",
     "obituary.subtitle": "Tribute of love ",
+    "parishioners-achievements.subtitle":
+      "Celebrating the excellence of our parishioners and giving glory to God through their gifts, efforts, and achievements.",
     "commissions.convenor": "Convenor ",
     "commissions.heading": "Commission",
     "commissions.secretary": "Secretary",
@@ -393,6 +396,7 @@ export const ui = {
     "push.enable": "Enable",
     "push.disable": "Not Now!",
     download: "Download",
+    congratulations: "Congratulations",
   },
   kok: {
     "nav.home": "ಹೋಮ್",
@@ -435,6 +439,7 @@ export const ui = {
     "nav.addoor-ward": "ಅಡ್ಡೂರ್",
     "nav.obituary": "ಫಿರ್ಗಜೆಂತ್ ಮರಣ್",
     "nav.events": "ಘಡಿತಾಂ",
+    "nav.parishioners-achievements": "ಫಿರ್ಗಜ್ಗಾರಾಂಚಿ ಸಾಧನಾಂ",
     "nav.pompeichem-falkem": "ಪೊಂಪೈಚೆಂ ಫಾಲ್ಕೆಂ",
     "nav.prayer-corner": "ಮಾಗ್ಣ್ಯಾ ಪಾನ್",
     "nav.pompei-sabha-bhavan": "ಪೊಂಪೈ ಸಭಾ ಭವನ್",
@@ -495,6 +500,8 @@ export const ui = {
     "centenaryhall.title": "ಶತಾಬ್ದಿ ಸಾಲ್",
     "church.patron": "ವೈಲಂಕಣಿ ಮಾಯ್",
     "obituary.subtitle": "ಮೊಗಾಚೊ ಉಡಾಸ್",
+    "parishioners-achievements.subtitle":
+      "ದೆವಾಕ್, ತಾಂಕಾಂ ಲಾಬ್ಲೆಲ್ಯಾ ದೆಣ್ಗ್ಯಾ, ಪರಿಶ್ರಮಾ ಆನಿ ಸಾಧನಾಂ ದ್ವಾರಿಂ ಮಹಿಮಾ ದಿಂವ್ಚೆಂ ತಶೆಂಚ್ ಆಮ್ಚ್ಯಾ  ಫಿರ್ಗಜ್ಗಾರಾಂಚಿ ಸಾಧನಾಂ ವಳ್ಕುಂಚೆಂ ಪಾನ್.",
     "commissions.convenor": " ಸಂಚಾಲಕಿ/ಕ್ ",
     "commissions.heading": "ಆಯೋಗ್",
     "commissions.secretary": "ಕಾರ್ಯದರ್ಶಿ",
@@ -781,5 +788,6 @@ export const ui = {
     "push.enable": "ಅನ್ಕೂಲ್ ಕರಾ",
     "push.disable": "ಆತಾಂ ನಾಕಾ!",
     download: "ಡೌನ್ಲೋಡ್",
+    congratulations: "ಉಲ್ಲಾಸ್",
   },
 } as const;

@@ -1,0 +1,67 @@
+---
+import Layout from "~/layouts/layout.astro";
+import { getLangFromUrl, useTranslations } from "~/i18n/utils";
+import NetworkImage from "~/components/ui/network-image.astro";
+import { Locale } from "~/enums/locale";
+import { cn } from "~/helpers/cn";
+import { getAchiever } from "~/services/parishioners-achievements/get-achiever";
+import StrapiBlocksRenderer from "~/components/ui/strapi-blocks-renderer";
+import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
+import AdditionalImagesCarousel from "~/components/sections/parishioners-achievements/additional-images-carousel.astro";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const { slug } = Astro.params;
+
+const achiever = await getAchiever(slug ?? "");
+
+const achieverImage = achiever?.achieverImage ?? {
+  url: getPlaceholderImage({ text: achiever?.englishName }),
+  width: 600,
+  height: 400,
+};
+
+const additionalImages = achiever?.additionalImages ?? [];
+---
+
+<Layout
+  title={achiever?.englishName ?? ""}
+  description={achiever?.enAchievement}
+  image={achiever?.achieverImage?.url}
+>
+  <main class="mx-auto max-w-4xl overflow-hidden bg-white">
+    <section id="parishioners-achievements" class="flex flex-col p-6 pb-4">
+      <h1
+        class={cn(
+          "font-black border-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl lg:text-4xl",
+          {
+            "font-bold": lang === Locale.KOK,
+          },
+        )}
+      >
+        {t("congratulations")}
+      </h1>
+
+      <NetworkImage
+        src={achieverImage?.url}
+        width={achieverImage?.width}
+        height={achieverImage?.height}
+        class="mx-auto mt-5 md:w-3/4"
+      />
+
+      <p class="mt-4 leading-7 text-slate-700">
+        <StrapiBlocksRenderer content={achiever?.enDescription ?? []} />
+      </p>
+
+      <div class="mt-5 text-center italic text-red-600 text-lg font-medium">
+        With Warmest Wishes,<br />
+        <span class="mt-1 block text-xl font-semibold text-gray-900">
+          Parish Priest & Parishioners
+        </span>
+      </div>
+
+      <AdditionalImagesCarousel additionalImages={additionalImages} />
+    </section>
+  </main>
+</Layout>
