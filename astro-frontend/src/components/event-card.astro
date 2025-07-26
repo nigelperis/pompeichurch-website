@@ -3,6 +3,7 @@ import { cn } from "~/helpers/cn";
 import HoverableLink from "./ui/hoverable-link.astro";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import ShareLink from "./ui/share-link.astro";
+import WhatsAppShare from "~/components/ui/whatsapp-share.tsx";
 import NetworkImage from "./ui/network-image.astro";
 import { Locale } from "~/enums/locale";
 
@@ -69,7 +70,16 @@ const eventUrl =
         {t("ui.more-button-read")}
         <span class="sr-only"> about {eventName}</span>
       </HoverableLink>
-      <ShareLink class="" shareData={{ url: eventUrl, title: eventName }} />
+      <div class="flex items-center gap-2">
+
+
+<WhatsAppShare
+  client:load
+  shareData={{ url: eventUrl, title: eventName }}
+/>
+
+        <ShareLink class="" shareData={{ url: eventUrl, title: eventName }} />
+      </div>
     </div>
   </div>
 </div>
