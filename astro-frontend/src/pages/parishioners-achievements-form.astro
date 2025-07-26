@@ -159,7 +159,7 @@ document.addEventListener("DOMContentLoaded", () => {
   wardMenu.addEventListener("click", (event) => {
     if (event.target instanceof HTMLDivElement) {
       const selectedWard = event.target.textContent;
-      wardInput.value = selectedWard;
+      wardInput.textContent = selectedWard;
     }
   });
 
