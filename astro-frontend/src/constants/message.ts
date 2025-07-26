@@ -16,7 +16,7 @@ export class Message {
   public static readonly COMMISSIONS_NOT_FOUND =
     "No Pastoral 21 Commissions Found!";
   public static readonly ACHIEVEMENTS_NOT_FOUND =
-    "No Parishioners Achievements Temporarily Found!";
+    "No Parishioners Achievements Found!";
   public static readonly ACHIEVEMENTS_NOT_FOUND_KOK =
-    "ಫಿರ್ಗಜ್ಗಾರಾಂಚಿ ಸಾಧನಾಂ ತಾತ್ಕಾಲಿಕ್ ನಾಂತ್!";
+    "ಫಿರ್ಗಜ್ಗಾರಾಂಚಿ ಸಾಧನಾಂ ನಾಂತ್!";
 }

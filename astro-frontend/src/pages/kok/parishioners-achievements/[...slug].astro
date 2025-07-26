@@ -34,7 +34,7 @@ const additionalImages = achiever?.additionalImages ?? [];
     <section id="parishioners-achievements" class="flex flex-col p-6 pb-4">
       <h1
         class={cn(
-          "font-black border-natgeo-yellow mb-4 border-l-4 pl-3 pt-2 text-2xl lg:text-4xl",
+          "font-black border-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl lg:text-4xl",
           {
             "font-bold": lang === Locale.KOK,
           },
@@ -61,13 +61,6 @@ const additionalImages = achiever?.additionalImages ?? [];
         </span>
       </div>
 
-      <h2
-        class={cn("mt-4 text-left text-2xl font-semibold text-slate-900", {
-          "font-bold sm:pt-1": lang === Locale.KOK,
-        })}
-      >
-        {lang === Locale.KOK ? "ಹೆರ್ ತಸ್ವಿರೊ" : "Photographs"}
-      </h2>
       <AdditionalImagesCarousel additionalImages={additionalImages} />
     </section>
   </main>
