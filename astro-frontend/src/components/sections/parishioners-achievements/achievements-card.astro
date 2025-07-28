@@ -46,18 +46,21 @@ const achieverUrl =
   >
     {achievement}
   </p>
-  <div class="absolute right-0 bottom-0 flex text-[#686868] hover:text-black rounded-full p-2 m-3 font-medium">
+
+  <div
+    class="absolute right-0 bottom-0 m-3 p-2 flex font-medium text-[#737373] rounded-full transition cursor-pointer hover:duration-300 hover:text-black"
+  >
     <a href={achieverUrl} class="flex">
       <span class={lang === Locale.KOK ? "mt-1" : ""}
         >{t("ui.more-button-read")}</span
       >
       <Icon
         name="chevron-right"
-        class="stroke-2 text-xl mt-0.5"
+        class="stroke-2 text-lg mt-1"
         data-icon-name="chevron-right"
       />
     </a>
   </div>
 
-  <Badge class="absolute -bottom-8 -left-8 w-18 h-18 transform translate-x-[-1px] translate-y-[-1px]" />
+  <Badge class="absolute -bottom-[33px] -left-[33px] w-18 h-18" />
 </div>

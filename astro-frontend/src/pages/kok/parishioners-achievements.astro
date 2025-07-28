@@ -12,8 +12,6 @@ import { Message } from "~/constants/message";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const desc = "ದೆವಾಕ್, ತಾಂಕಾಂ ಲಾಬ್ಲೆಲ್ಯಾ ದೆಣ್ಗ್ಯಾ, ಪರಿಶ್ರಮಾ ಆನಿ ಸಾಧನಾಂ ದ್ವಾರಿಂ ಮಹಿಮಾ ದಿಂವ್ಚೆಂ ತಶೆಂಚ್ ಆಮ್ಚ್ಯಾ  ಫಿರ್ಗಜ್ಗಾರಾಂಚಿ ಸಾಧನಾಂ ವಳ್ಕುಂಚೆಂ ಪಾನ್.";
-
 const achievementsPerPage = 6;
 const currentPage = Number(Astro.url.searchParams.get("p")) || 1;
 
@@ -26,7 +24,7 @@ const { parishionersAchievements, pagination } =
 const totalPages = pagination.pageCount;
 ---
 
-<Layout title="Pompei Church | Parishioners Achievements" description={desc}>
+<Layout title="Pompei Church | Parishioners Achievements" description={t("parishioners-achievements.subtitle")}>
   <main class="mx-auto max-w-4xl overflow-hidden bg-white">
     <section id="parishioner-achievements" class="flex flex-col p-6 pb-4">
       <h1
@@ -39,12 +37,13 @@ const totalPages = pagination.pageCount;
       >
         {t("nav.parishioners-achievements")}
       </h1>
+      
       <p class="text-justify text-lg text-slate-700">
         {t("parishioners-achievements.subtitle")}
       </p>
 
       {
-        parishionersAchievements.length > 0 ? (
+        parishionersAchievements?.length > 0 ? (
           <>
             <AchievementsList achievementsList={parishionersAchievements} />
             <Pagination

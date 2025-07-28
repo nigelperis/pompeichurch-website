@@ -1,79 +1,42 @@
 ---
-import EmblaCarousel from "~/components/ui/embla-carousel.astro";
-import EmblaCarouselItem from "~/components/ui/embla-carousel-item.astro";
 import NetworkImage from "~/components/ui/network-image.astro";
 import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
-import { Locale } from "~/enums/locale";
-import { cn } from "~/helpers/cn";
-import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import type { Media } from "~/models/parishioners-achievement";
-
-const lang = getLangFromUrl(Astro.url);
 
 const { additionalImages } = Astro.props as { additionalImages: Media[] };
 ---
 
-{
-  additionalImages.length > 0 && (
-    <>
-      <div class="w-full h-0.5 mx-auto my-4 bg-natgeo-yellow rounded-md "></div>
-      <h2
-        class={cn("my-1 text-left text-2xl font-semibold text-slate-900", {
-          "font-bold md:text-3xl": lang === Locale.KOK,
-        })}
-      >
-        {lang === Locale.KOK ? "ಪಿಂತುರಾಂ" : "Pictures"}
-      </h2>
-      {/* Mobile: Embla Carousel */}
-      <div class="-mx-[1.5rem] block md:hidden">
-        {additionalImages.length === 1 ? (
-          <NetworkImage
-            src={
-              additionalImages[0].url
-                ? new URL(
-                    additionalImages[0].url,
-                    import.meta.env.PUBLIC_STRAPI_URL,
-                  ).toString()
-                : getPlaceholderImage({ text: "Achievement" })
-            }
-            width={additionalImages[0].width ?? 600}
-            height={additionalImages[0].height ?? 400}
-            class="w-full px-6"
-          />
-        ) : (
-          <EmblaCarousel showArrows={true}>
-            {additionalImages.map((media) => (
-              <EmblaCarouselItem>
-                <NetworkImage
-                  src={media.url}
-                  width={media.width}
-                  height={media.height}
-                  class="mx-auto mt-2 md:w-3/4"
-                />
-              </EmblaCarouselItem>
-            ))}
-          </EmblaCarousel>
-        )}
-      </div>
+{/* Mobile: One below the other */}
+<div class="grid grid-cols-1 gap-4 md:hidden">
+  {
+    additionalImages.map((media: Media) => (
+      <NetworkImage
+        src={
+          media.url
+            ? new URL(media.url, import.meta.env.PUBLIC_STRAPI_URL).toString()
+            : getPlaceholderImage({ text: "Achievement" })
+        }
+        width={media.width ?? 600}
+        height={media.height ?? 400}
+      />
+    ))
+  }
+</div>
 
-      {/* Desktop: More than 2 images - Embla Carousel */}
-      <div class="event-gallery hidden items-center justify-center gap-4 md:flex">
-        {additionalImages.map((media) => (
-          <NetworkImage
-            src={
-              media?.url
-                ? new URL(
-                    media.url,
-                    import.meta.env.PUBLIC_STRAPI_URL,
-                  ).toString()
-                : getPlaceholderImage({ text: "Achievement" })
-            }
-            width={media?.width}
-            height={media?.height}
-            class="max-h-[400px] w-auto object-contain"
-          />
-        ))}
-      </div>
-    </>
-  )
-}
+{/* Desktop: Only 2 images */}
+<div class="hidden md:flex flex-row gap-2">
+  {
+    additionalImages.map((media) => (
+      <NetworkImage
+        src={
+          media?.url
+            ? new URL(media.url, import.meta.env.PUBLIC_STRAPI_URL).toString()
+            : getPlaceholderImage({ text: "Achievement" })
+        }
+        width={media?.width}
+        height={media?.height}
+        class="mx-auto max-h-[300px] w-auto"
+      />
+    ))
+  }
+</div>

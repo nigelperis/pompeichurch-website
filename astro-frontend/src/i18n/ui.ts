@@ -111,6 +111,8 @@ export const ui = {
     "obituary.subtitle": "Tribute of love ",
     "parishioners-achievements.subtitle":
       "Celebrating the excellence of our parishioners and giving glory to God through their gifts, efforts, and achievements.",
+    pictures: "Pictures",
+    "warm-wishes": "With Warmest Wishes,",
     "commissions.convenor": "Convenor ",
     "commissions.heading": "Commission",
     "commissions.secretary": "Secretary",
@@ -389,7 +391,7 @@ export const ui = {
     "events.subtitle":
       "Celebrating the moments that unite our parish community.",
     "funeral.rites": "Funeral Rites",
-    "funeral.subtitle": "Parish Priest and Parishioners",
+    "parish-priest-and-parishioners": "Parish Priest and Parishioners",
     "funeral.youtube": "Watch on YouTube",
     "push.notification":
       "Stay informed about upcoming events, event highlights, and obituaries",
@@ -502,6 +504,8 @@ export const ui = {
     "obituary.subtitle": "ಮೊಗಾಚೊ ಉಡಾಸ್",
     "parishioners-achievements.subtitle":
       "ದೆವಾಕ್, ತಾಂಕಾಂ ಲಾಬ್ಲೆಲ್ಯಾ ದೆಣ್ಗ್ಯಾ, ಪರಿಶ್ರಮಾ ಆನಿ ಸಾಧನಾಂ ದ್ವಾರಿಂ ಮಹಿಮಾ ದಿಂವ್ಚೆಂ ತಶೆಂಚ್ ಆಮ್ಚ್ಯಾ  ಫಿರ್ಗಜ್ಗಾರಾಂಚಿ ಸಾಧನಾಂ ವಳ್ಕುಂಚೆಂ ಪಾನ್.",
+    pictures: "ಪಿಂತುರಾಂ",
+    "warm-wishes": "ಸರ್ವ್ ಬೊರೆಂ ಮಾಗ್ತಾತ್,",
     "commissions.convenor": " ಸಂಚಾಲಕಿ/ಕ್ ",
     "commissions.heading": "ಆಯೋಗ್",
     "commissions.secretary": "ಕಾರ್ಯದರ್ಶಿ",
@@ -781,7 +785,7 @@ export const ui = {
     "nun.denisdcunha": "ದೆ| ಡೆನಿಸ್ ಡಿಕುನ್ಹಾ, ದೆ| ಮೇರಿ ಡಿಕುನ್ಹಾ",
     "events.subtitle": "ಫಿರ್ಗಜ್ ಕುಟ್ಮಾಚ್ಯಾ ಎಕ್ವಟ್ಪಣಾಚ್ಯೊ ಘಡಿಯೊ",
     "funeral.rites": "ಮೊರ್ಣಾಚಿ ರೀತ್",
-    "funeral.subtitle": "ವಿಗಾರ್ ಆನಿ ಫಿರ್ಗಜ್ ಕುಟಾಮ್",
+    "parish-priest-and-parishioners": "ವಿಗಾರ್ ಆನಿ ಫಿರ್ಗಜ್ ಕುಟಾಮ್",
     "funeral.youtube": "ಯೂಟೂಬಾರ್ ಪೊಳೆಯಾ",
     "push.notification":
       "ಫಿರ್ಗಜೆಂತ್ಲಿ ಫುಡ್ಲಿಂ ಕಾರ್ಯಿಂ, ಘಡಿತಾಂಚಿ ಝಳಕ್ ಆನಿ ಮೊರ್ಣಾಚಿ ಖಬರ್ ಅಪ್ಣಾಂವ್ಕ್",

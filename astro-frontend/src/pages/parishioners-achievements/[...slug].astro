@@ -26,7 +26,7 @@ const additionalImages = achiever?.additionalImages ?? [];
 ---
 
 <Layout
-  title={achiever?.englishName ?? ""}
+  title=`Parishioners Achievements | ${achiever?.englishName ?? ""}`
   description={achiever?.enAchievement}
   image={achiever?.achieverImage?.url}
 >
@@ -34,7 +34,7 @@ const additionalImages = achiever?.additionalImages ?? [];
     <section id="parishioners-achievements" class="flex flex-col p-6 pb-4">
       <h1
         class={cn(
-          "font-black border-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl lg:text-4xl",
+          "font-black border-natgeo-yellow mb-3 border-l-4 pl-3 text-3xl lg:text-4xl",
           {
             "font-bold": lang === Locale.KOK,
           },
@@ -43,25 +43,39 @@ const additionalImages = achiever?.additionalImages ?? [];
         {t("congratulations")}
       </h1>
 
-      <NetworkImage
-        src={achieverImage?.url}
-        width={achieverImage?.width}
-        height={achieverImage?.height}
-        class="mx-auto mt-5 md:w-3/4"
-      />
+      <div class="mt-2 md:h-[500px]">
+        <NetworkImage
+          src={achieverImage?.url}
+          width={achieverImage?.width}
+          height={achieverImage?.height}
+          class="mx-auto md:w-auto md:h-full"
+        />
+      </div>
 
       <p class="mt-4 leading-7 text-slate-700">
         <StrapiBlocksRenderer content={achiever?.enDescription ?? []} />
       </p>
 
-      <div class="mt-5 text-center italic text-red-600 text-lg font-medium">
-        With Warmest Wishes,<br />
+      <div
+        class="mt-5 pb-2 text-center italic text-red-600 text-lg font-medium"
+      >
+        {t("warm-wishes")}<br />
         <span class="mt-1 block text-xl font-semibold text-gray-900">
-          Parish Priest & Parishioners
+          {t("parish-priest-and-parishioners")}
         </span>
       </div>
 
-      <AdditionalImagesCarousel additionalImages={additionalImages} />
+      {
+        additionalImages?.length > 0 && (
+          <>
+            <div class="ml-1 mt-4 mb-2 w-full h-0.5 bg-natgeo-yellow rounded-md md:ml-2" />
+            <h1 class="mb-4 mt-2 text-2xl font-bold lg:text-3xl">
+              {t("pictures")}
+            </h1>
+            <AdditionalImagesCarousel additionalImages={additionalImages} />
+          </>
+        )
+      }
     </section>
   </main>
 </Layout>
