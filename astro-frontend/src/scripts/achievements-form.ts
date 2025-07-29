@@ -17,7 +17,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Ward Dropdown
   wardSelect.addEventListener("click", () => {
-    console.log("clicked");
     wardMenu.classList.toggle("hidden");
     chevron.classList.toggle("rotate-180");
   });
