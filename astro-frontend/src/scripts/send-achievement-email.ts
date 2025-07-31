@@ -1,7 +1,7 @@
 import { Resend } from "resend";
 import { ADMIN_EMAIL, RECEPIENT_EMAILS } from "~/constants/constants";
 
-const resend = new Resend(`${import.meta.env.RESEND_API_KEY}`);
+const resend = new Resend(import.meta.env.RESEND_API_KEY);
 
 export async function sendAchievementEmail({
   subject,
