@@ -59,7 +59,7 @@ const wards = [
         <!-- Achiever Image -->
         <div>
           <label for="achiever-image" class="text-sm font-light leading-6 text-gray-700">Achiever Image <span class="text-red-500">*</span></label>
-          <input id="achiever-image" type="file" name="achieverImage" class="block w-full border border-gray-300 p-3 focus:outline-gray-300 placeholder-gray-600" accept=".jpg, .jpeg, .png, image/jpeg, image/png"></input>
+          <input id="achiever-image" type="file" name="achiever-image" class="block w-full border border-gray-300 p-3 focus:outline-gray-300 placeholder-gray-600" accept=".jpg, .jpeg, .png, image/jpeg, image/png"></input>
           <p id="achiever-image-error" class="text-xs text-red-500 mt-1"></p>
         </div>
 
@@ -69,9 +69,9 @@ const wards = [
           <input id="issue-date" type="date" name="issue-date" class="block w-full border border-gray-300 p-3 focus:outline-gray-300 placeholder-gray-600" required></input>
         </div>
 
-        <!-- Parents Name or Team Members Names -->
+        <!-- Parents or Team Members Names -->
         <div>
-          <label for="parents-name" class="text-sm font-light leading-6 text-gray-700">Parents Name / Team Members Names <span class="text-red-500">*</span></label>
+          <label for="parents-name" class="text-sm font-light leading-6 text-gray-700">Parents / Team Members Names <span class="text-red-500">*</span></label>
           <input id="parents-name" type="text" name="parents-name" class="block w-full border border-gray-300 p-3 focus:outline-gray-300 placeholder-gray-600" required placeholder="E.g. John Doe and Jane Doe / John, Sam, Jane"></input>
         </div>
 
@@ -82,18 +82,12 @@ const wards = [
               Ward
             </label>
 
-
-            <input id="ward-input" type="text" name="ward-input"
-                   class="block w-full border border-gray-300 p-3 pr-10 focus:outline-gray-200 placeholder-gray-600 cursor-pointer"
-                   placeholder="Select your ward..."
-                   readonly></input>
+            <input id="ward-input" type="text" name="ward-input" class="block w-full border border-gray-300 p-3 pr-10 focus:outline-gray-200 placeholder-gray-600 cursor-pointer" placeholder="Select your ward..." readonly></input>
 
             <ChevronDown id="dropdown-chevron" className="absolute w-6 h-6 right-3 top-1/2 text-gray-600 cursor-pointer" />
 
             <!-- Ward names Dropdown -->
-            <div id="ward-options-menu"
-                 class="absolute left-0 right-0 mt-1 bg-white border border-gray-300 rounded-b-md z-10 max-h-36 overflow-y-auto hidden"
-                >
+            <div id="ward-options-menu" class="absolute left-0 right-0 mt-1 bg-white border border-gray-300 rounded-b-md z-10 max-h-36 overflow-y-auto hidden">
               {wards.map((ward) => (
                 <div class="p-2 cursor-pointer hover:bg-blue-100">
                   {ward}
@@ -101,6 +95,19 @@ const wards = [
               ))}
             </div>
           </div>
+        </div>
+
+        <!-- Submitted By -->
+        <div>
+          <label for="submitted-by" class="text-sm font-light leading-6 text-gray-700">Submitted By <span class="text-red-500">*</span></label>
+          <input id="submitted-by" type="text" name="submitted-by" class="block w-full border border-gray-300 p-3 focus:outline-gray-300 placeholder-gray-600" required placeholder="E.g. John Doe"></input>
+        </div>
+
+        <!-- Proof of Achievement -->
+        <div>
+          <label for="proof-of-achievement" class="text-sm font-light leading-6 text-gray-700">Proof of Achievement <span class="text-red-500">*</span></label>
+          <input id="proof-of-achievement" type="file" name="proof-of-achievement" class="block w-full border border-gray-300 p-3 focus:outline-gray-300 placeholder-gray-600" accept=".jpg, .jpeg, .png, image/jpeg, image/png"></input>
+          <p id="proof-of-achievement-error-message" class="text-xs text-red-500 mt-1"></p>
         </div>
 
         <!-- Additional Photos (only 2 if any) -->
@@ -130,7 +137,7 @@ const wards = [
     </section>
   </main>
   <script>
-    import { form } from "~/scripts/achievements-form";
-    form();
+    import { achievementForm } from "~/scripts/achievement-form";
+    achievementForm();
   </script>
 </Layout>
