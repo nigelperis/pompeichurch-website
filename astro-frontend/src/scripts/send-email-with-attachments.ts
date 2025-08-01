@@ -3,7 +3,7 @@ import { ADMIN_EMAIL, RECEPIENT_EMAILS } from "~/constants/constants";
 
 const resend = new Resend(import.meta.env.RESEND_API_KEY);
 
-export async function sendAchievementEmail({
+export async function sendEmailWithAttachments({
   subject,
   html,
   to = RECEPIENT_EMAILS,

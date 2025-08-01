@@ -8,11 +8,12 @@ import { listParishionersAchievements } from "~/services/parishioners-achievemen
 import Pagination from "~/components/pagination.astro";
 import { getPaginationRange } from "~/helpers/get-pagination-range";
 import { Message } from "~/constants/message";
+import Info from "~/assets/react-icons/info.svg?react";
+import { achievementsPerPage } from "~/constants/entries-per-page";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const achievementsPerPage = 6;
 const currentPage = Number(Astro.url.searchParams.get("p")) || 1;
 
 const { parishionersAchievements, pagination } =
@@ -37,10 +38,24 @@ const totalPages = pagination.pageCount;
       >
         {t("nav.parishioners-achievements")}
       </h1>
-      
+
       <p class="text-justify text-lg text-slate-700">
         {t("parishioners-achievements.subtitle")}
       </p>
+
+      <div class="flex w-full py-4 justify-center lg:justify-end">
+        <a
+          href="/kok/submit-achievement"
+          class="inline-flex gap-2 px-4 py-2 rounded-lg border border-slate-200 text-blue-600 md:px-5 md:py-3"
+        >
+          <span class="text-blue-600">
+            <Info />
+          </span>
+          <span class="text-lg font-semibold">
+            {t("achievement.form-submission")}
+          </span>
+        </a>
+      </div>
 
       {
         parishionersAchievements?.length > 0 ? (

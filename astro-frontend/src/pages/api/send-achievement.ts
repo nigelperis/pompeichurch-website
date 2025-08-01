@@ -1,5 +1,5 @@
 import type { APIRoute } from "astro";
-import { sendAchievementEmail } from "~/scripts/send-achievement-email";
+import { sendEmailWithAttachments } from "~/scripts/send-email-with-attachments";
 import { RECEPIENT_EMAILS } from "~/constants/constants";
 
 /**
@@ -35,7 +35,8 @@ export const POST: APIRoute = async ({ request }) => {
     const name = data.get("full-name");
     const achievement = data.get("achievement");
     const issueDate = data.get("issue-date");
-    const parentsName = data.get("parents-name");
+    const parentsNames = data.get("parents-names");
+    const teamMembersNames = data.get("team-members-names");
     const ward = data.get("ward-input");
     const submittedBy = data.get("submitted-by");
     const proofOfAchievement = data.get("proof-of-achievement") as File;
@@ -91,14 +92,15 @@ export const POST: APIRoute = async ({ request }) => {
     const html = `
       <p><strong>Name:</strong> ${name}</p>
       <p><strong>Achievement:</strong> ${achievement}</p>
-      <p><strong>Issue Date:</strong> ${issueDate}</p>
-      <p><strong>Parents' / Team Members Names:</strong> ${parentsName}</p>
+      <p><strong>Issue Date (MM/DD/YYYY):</strong> ${issueDate}</p>
+      <p><strong>Parents' Names:</strong> ${parentsNames}</p>
+      <p><strong>Team Members' Names:</strong> ${teamMembersNames}</p>
       <p><strong>Ward:</strong> ${ward}</p>
       <p><strong>Submitted By:</strong> ${submittedBy}</p>
     `;
     const to = RECEPIENT_EMAILS;
 
-    await sendAchievementEmail({
+    await sendEmailWithAttachments({
       subject: subject,
       html: html,
       to: to,

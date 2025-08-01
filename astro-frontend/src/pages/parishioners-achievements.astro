@@ -42,10 +42,17 @@ const totalPages = pagination.pageCount;
         {t("parishioners-achievements.subtitle")}
       </p>
 
-      <div class="flex w-full p-4 rounded justify-end">
-        <a href="/parishioners-achievements-form"
-          class="flex transform transition-all duration-400 animate-bounce">
+      <div class="flex w-full py-4 justify-center lg:justify-end">
+        <a
+          href="/submit-achievement"
+          class="inline-flex gap-2 px-4 py-2 rounded-lg border border-slate-200 text-blue-600 md:px-5 md:py-2"
+        >
+          <span class="text-blue-600">
             <Info />
+          </span>
+          <span class="text-lg font-semibold">
+            {t("achievement.form-submission")}
+          </span>
         </a>
       </div>
 
