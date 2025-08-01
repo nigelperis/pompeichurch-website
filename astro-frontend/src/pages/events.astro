@@ -9,11 +9,11 @@ import { Message } from "~/constants/message.ts";
 import { Locale } from "~/enums/locale";
 import { cn } from "~/helpers/cn";
 import PushNotification from "~/components/push-notification.astro";
+import { eventsPerPage } from "~/constants/entries-per-page.ts";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const eventsPerPage = 6;
 const currentPage = Number(Astro.url.searchParams.get("p")) || 1;
 
 const { events, pagination } = await listEvents({
