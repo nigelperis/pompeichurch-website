@@ -7,6 +7,7 @@ import ChevronDown from '~/assets/icons/chevron-down.svg?react';
 import CheckMark from '~/assets/icons/check-mark.svg';
 import { getWardNameKok } from "~/helpers/get-ward-names-kok";
 import { criteria } from "~/constants/achievement-criteria";
+import Calender from "~/assets/icons/calendar.svg?react";
 
 const lang = getLangFromUrl(Astro.url) as Locale;
 const t = useTranslations(lang);
@@ -49,69 +50,53 @@ const wards = [
       <form data-lang={lang} class="flex-1 space-y-6" enctype="multipart/form-data" id="achievementsForm">
         <!-- Name of the achiever or Team Name -->
         <div>
-          <label for="full-name" class="text-base font-light leading-6 text-gray-700">{t("achievement.name")} <span class="text-red-500">*</span></label>
-          <input id="full-name" type="text" name="full-name" class="block w-full border border-gray-300 p-3 focus:outline-gray-700 placeholder-gray-600" required placeholder={t("placeholder.name")} maxlength="50"></input>
+          <label for="full-name" class="text-base font-normal leading-6 text-gray-900">{t("achievement.name")} <span class="text-red-500">*</span></label>
+          <input id="full-name" type="text" name="full-name" class="characters-tracker block w-full border border-gray-500 p-3 focus:outline-gray-700 placeholder-gray-500" required placeholder={t("placeholder.name")} maxlength="50"></input>
+          <p class="live-counter text-xs text-gray-500 flex justify-end mt-1 italic"></p>
         </div>
 
-        <!-- Achievement -->
-        <div>
-          <label for="achievement" class="text-base font-light leading-6 text-gray-700">{t("achievement")} <span class="text-red-500">*</span></label>
-          <input id="achievement" type="text" name="achievement" class="block w-full border border-gray-300 p-3 focus:outline-gray-700 placeholder-gray-600" required placeholder={t("placeholder.achievement")} maxlength="100"></input>
-        </div>
-
-        <!-- Achiever Image -->
-        <div>
-          <label for="achiever-image" class="text-base font-light leading-6 text-gray-700">{t("achievement.achiever-image")} <span class="text-red-500">*</span></label>
-          <input id="achiever-image" type="file" name="achiever-image" class="block w-full border border-gray-300 p-3 cursor-pointer focus:outline-gray-700 placeholder-gray-600" accept=".jpg, .jpeg, .png, image/jpeg, image/png"></input>
-          <p id="achiever-image-error" class="text-xs text-red-500 mt-1"></p>
-        </div>
-
-        <!-- Achievement Issue Date -->
-        <div>
-          <label for="issue-date" class="text-base font-light leading-6 text-gray-700">{t("achievement.issue-date")} <span class="text-red-500">*</span></label>
-          <input id="issue-date" type="date" name="issue-date" class="block w-full border border-gray-300 p-3 cursor-pointer focus:outline-gray-700 placeholder-gray-600" required></input>
-        </div>
-
-        <!-- Parents / Team Members Names Checkbox -->
+        <!-- Individual / Team Achievement Checkbox -->
         <div class="md:flex flex-row space-x-4">
-          <div class="mb-3 md:mb-0">
-            <label for="checkbox-parents-names" class="text-base font-light leading-6 text-gray-700">{t("achievement.parents-names")}</label>
-            <input id="checkbox-parents-names" type="checkbox" name="checkbox-parents-names" class="ml-1 cursor-pointer" required></input>
+          <div class="flex items-center mb-3 md:mb-0">
+            <label for="checkbox-individual-achievement" class="text-base font-normal leading-6 text-gray-900">{t("achievement.individual-achievement")}</label>
+            <input id="checkbox-individual-achievement" type="radio" name="checkbox-individual-achievement" class="mx-2 mb-1 md:mb-0.5 cursor-pointer"></input>
           </div>
 
-          <div class="mb-3 md:mb-0">
-            <label for="checkbox-team-members-names" class="text-base font-light leading-6 text-gray-700">{t("achievement.team-members-names")}</label>
-            <input id="checkbox-team-members-names" type="checkbox" name="checkbox-team-members-names" class="ml-1 cursor-pointer" required></input>
+          <div class="flex items-center mb-3 md:mb-0">
+            <label for="checkbox-team-achievement" class="text-base font-normal leading-6 text-gray-900">{t("achievement.team-achievement")}</label>
+            <input id="checkbox-team-achievement" type="radio" name="checkbox-team-achievement" class="mx-2 mb-1 md:mb-0.5 cursor-pointer"></input>
           </div>
         </div>
 
         <!-- Parents Names -->
         <div class="hidden" id="parents-names">
-          <label for="parents-names" class="text-base font-light leading-6 text-gray-700">{t("achievement.parents-names")} <span class="text-red-500">*</span></label>
-          <input id="parents-names" type="text" name="parents-names" class="block w-full border border-gray-300 p-3 focus:outline-gray-700 placeholder-gray-600" required placeholder={t("placeholder.parents-names")} maxlength="50"></input>
+          <label for="parents-names" class="text-base font-normal leading-6 text-gray-900">{t("achievement.parents-names")} <span class="text-red-500">*</span></label>
+          <input id="parents-names" type="text" name="parents-names" class="characters-tracker block w-full border border-gray-500 p-3 focus:outline-gray-700 placeholder-gray-500" placeholder={t("placeholder.parents-names")} maxlength="50"></input>
+          <p class="live-counter text-xs text-gray-500 flex justify-end mt-1 italic"></p>
         </div>
 
         <!-- Team Members Names -->
         <div class="hidden" id="team-members-names">
-          <label for="team-members-names" class="text-base font-light leading-6 text-gray-700">{t("achievement.team-members-names")} <span class="text-red-500">*</span></label>
-          <input id="team-members-names" type="text" name="team-members-names" class="block w-full border border-gray-300 p-3 focus:outline-gray-700 placeholder-gray-600" required placeholder={t("placeholder.team-members-names")} maxlength="50"></input>
+          <label for="team-members-names" class="text-base font-normal leading-6 text-gray-900">{t("achievement.team-members-names")} <span class="text-red-500">*</span></label>
+          <input id="team-members-names" type="text" name="team-members-names" class="characters-tracker block w-full border border-gray-500 p-3 focus:outline-gray-700 placeholder-gray-500" placeholder={t("placeholder.team-members-names")} maxlength="50"></input>
+          <p class="live-counter text-xs text-gray-500 flex justify-end mt-1 italic"></p>
         </div>
 
-        <!-- Ward (optional for teams) -->
+         <!-- Ward (optional for teams) -->
         <div>
           <div id="ward-select" class="relative w-full mx-auto cursor-pointer">
-            <label for="ward-input" class="block text-base font-light text-gray-700 mb-1">
+            <label for="ward-input" class="block text-base font-normal text-gray-900 mb-1">
               {t("achievement.ward")}
             </label>
 
-            <input id="ward-input" type="text" name="ward-input" class="block w-full border border-gray-300 p-3 pr-10 focus:outline-gray-700 placeholder-gray-600 cursor-pointer" placeholder={t("ward.select-label")} readonly></input>
+            <input id="ward-input" type="text" name="ward-input" class="block w-full border border-gray-500 p-3 pr-10 focus:outline-gray-700 placeholder-gray-500 cursor-pointer" placeholder={t("ward.select-label")} readonly></input>
 
             <ChevronDown id="dropdown-chevron" className="absolute w-6 h-6 right-3 top-1/2 text-gray-600 cursor-pointer" />
 
             <!-- Ward names Dropdown -->
-            <div id="ward-options-menu" class="absolute left-0 right-0 mt-1 bg-white border border-gray-300 rounded-b-md z-10 max-h-36 overflow-y-auto hidden">
+            <div id="ward-options-menu" class="absolute left-0 right-0 mt-1 bg-white border border-gray-500 rounded-b-md z-10 max-h-36 overflow-y-auto hidden">
               {wards.map((ward) => (
-                <div class="p-2 cursor-pointer hover:bg-blue-100">
+                <div class="p-2 cursor-pointer hover:bg-blue-100" role="option" aria-label={ward}>
                   {getWardNameKok(ward, lang)}
                 </div>
               ))}
@@ -119,24 +104,121 @@ const wards = [
           </div>
         </div>
 
-        <!-- Submitted By -->
+        <!-- Achievement -->
         <div>
-          <label for="submitted-by" class="text-base font-light leading-6 text-gray-700">{t("achievement.submitted-by")} <span class="text-red-500">*</span></label>
-          <input id="submitted-by" type="text" name="submitted-by" class="block w-full border border-gray-300 p-3 focus:outline-gray-700 placeholder-gray-600" required placeholder={t("placeholder.submitted-by")} maxlength="50"></input>
+          <label for="achievement" class="text-base font-normal leading-6 text-gray-900">{t("achievement")} <span class="text-red-500">*</span></label>
+          <input id="achievement" type="text" name="achievement" class="achievement-characters-tracker block w-full border border-gray-500 p-3 focus:outline-gray-700 placeholder-gray-500" required placeholder={t("placeholder.achievement")} maxlength="100"></input>
+          <p class="live-counter text-xs text-gray-500 flex justify-end mt-1 italic"></p>
+        </div>
+
+        <!-- Achievement Issue Date -->
+        <div>
+          <label for="issue-date" class="text-base font-normal leading-6 text-gray-900">{t("achievement.issue-date")} <span class="text-red-500">*</span>
+            <div class="relative">
+              <input id="issue-date" type="text" name="issue-date" class="block w-full border border-gray-500 p-3 cursor-pointer focus:outline-gray-700 placeholder-gray-500" required placeholder="dd/mm/yyyy"></input>
+              <Calender className="absolute w-4 h-4 right-3 top-4 text-gray-600 cursor-pointer"/>
+            </div>
+          </label>
+        </div>
+
+        <!-- Achiever Image -->
+        <div>
+          <label class="block text-base font-normal leading-6 text-gray-900">
+            {t("achievement.achiever-image")} <span class="text-red-500">*</span>
+          </label>
+
+          <div class="relative mt-2 flex items-center gap-4">
+            <!-- Hidden file input -->
+            <input
+              id="achiever-image"
+              type="file"
+              name="achiever-image"
+              class="sr-only"
+              required
+              accept=".jpg, .jpeg, .png, image/jpeg, image/png"
+            />
+
+            <label
+              for="achiever-image"
+              class="shrink-0 bg-natgeo-yellow text-black font-normal px-4 py-2 rounded-md cursor-pointer"
+            >
+              {t("achievement.choose-file")}
+            </label>
+
+            <!-- File name display -->
+            <p id="achiever-image-file-name" class="text-lg text-gray-900 truncate">{t("achievement.no-file-chosen")}</p>
+          </div>
+          <!-- Error message -->
+          <p id="achiever-image-error" class="text-sm text-red-500 mt-1 p-1"></p>
         </div>
 
         <!-- Proof of Achievement -->
         <div>
-          <label for="proof-of-achievement" class="text-base font-light leading-6 text-gray-700">{t("achievement.proof-of-achievement")} <span class="text-red-500">*</span></label>
-          <input id="proof-of-achievement" type="file" name="proof-of-achievement" class="block w-full border border-gray-300 p-3 cursor-pointer focus:outline-gray-700 placeholder-gray-600" accept=".jpg, .jpeg, .png, image/jpeg, image/png"></input>
-          <p id="proof-of-achievement-error-message" class="text-xs text-red-500 mt-1"></p>
+          <label class="block text-base font-normal leading-6 text-gray-900">
+            {t("achievement.proof-of-achievement")} <span class="text-red-500">*</span>
+          </label>
+
+          <div class="relative mt-2 flex items-center gap-4">
+            <!-- Hidden file input -->
+            <input
+              id="proof-of-achievement"
+              type="file"
+              name="proof-of-achievement"
+              class="sr-only"
+              required
+              accept=".jpg, .jpeg, .png, image/jpeg, image/png"
+            />
+
+            <label
+              for="proof-of-achievement"
+              class="shrink-0 bg-natgeo-yellow text-black font-normal px-4 py-2 rounded-md cursor-pointer"
+            >
+              {t("achievement.choose-file")}
+            </label>
+
+            <!-- File name display -->
+            <p id="proof-of-achievement-file-name" class="text-lg text-gray-900 truncate">{t("achievement.no-file-chosen")}</p>
+          </div>
+          <!-- Error message -->
+          <p id="proof-of-achievement-error-message" class="text-sm text-red-500 mt-1 p-1"></p>
         </div>
 
         <!-- Additional Images (only 2 if any) -->
         <div>
-          <label for="additional-images" class="text-base font-light leading-6 text-gray-700">{t("achievement.additional-images")}</label>
-          <input id="additional-images" type="file" name="additional-images" class="block w-full border border-gray-300 p-3 cursor-pointer focus:outline-gray-700 placeholder-gray-600" multiple accept=".jpg, .jpeg, .png, image/jpeg, image/png"></input>
-          <p id="additional-images-error" class="text-xs text-red-500 mt-1"></p>
+          <label class="block text-base font-normal leading-6 text-gray-900">
+            {t("achievement.additional-images")}</span>
+          </label>
+
+          <div class="relative mt-2 flex items-center gap-4">
+            <!-- Hidden file input -->
+            <input
+              id="additional-images"
+              type="file"
+              name="additional-images"
+              class="sr-only"
+              multiple
+              accept=".jpg, .jpeg, .png, image/jpeg, image/png"
+            />
+
+            <label
+              for="additional-images"
+              class="shrink-0 bg-natgeo-yellow text-black font-normal px-4 py-2 rounded-md cursor-pointer"
+            >
+              {t("achievement.choose-file")}
+            </label>
+
+            <!-- File name display -->
+            <p id="additional-images-file-name" class="text-lg text-gray-900 truncate">{t("achievement.no-file-chosen")}</p>
+          </div>
+          <!-- Error message -->
+          <p id="additional-images-error" class="text-sm text-red-500 mt-1 p-1"></p>
+        </div>
+
+        <!-- Submitted By -->
+        <div>
+          <label for="submitted-by" class="text-base font-normal leading-6 text-gray-900">{t("achievement.submitted-by")} <span class="text-red-500">*</span></label>
+          <input id="submitted-by" type="text" name="submitted-by" class="characters-tracker block w-full border border-gray-500 p-3 focus:outline-gray-700 placeholder-gray-500" required placeholder={t("placeholder.submitted-by")} maxlength="50"></input>
+          <p class="live-counter text-xs text-gray-500 flex justify-end mt-1 italic"></p>
         </div>
 
         <!-- Submit Button -->

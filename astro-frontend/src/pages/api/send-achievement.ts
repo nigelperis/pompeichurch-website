@@ -1,31 +1,29 @@
 import type { APIRoute } from "astro";
-import { sendEmailWithAttachments } from "~/scripts/send-email-with-attachments";
+import { sendEmail } from "~/helpers/send-email";
 import { RECEPIENT_EMAILS } from "~/constants/constants";
 
 /**
- * Handles POST requests to send achievement data via email.
+ * Handles the POST request to submit achievement data.
+ * Extracts form data including personal and achievement details,
+ * performs server-side spam checks, and processes file attachments.
+ * Sends an email with the achievement details and attachments.
  *
- * The function retrieves form data from the request, including details about
- * the achiever, achievement, and additional images. It constructs an email
- * with this information and sends it to a predefined list of recipients.
+ * @param {Object} request - The incoming HTTP request containing form data.
  *
- * Form fields processed:
- * - full-name: Name of the achiever or team
- * - achievement: Description of the achievement
- * - issue-date: Date of the achievement
- * - parents-name: Names of parents or team members
- * - ward-input: Ward information
- * - submitted-by: Name of the person submitting the form
- * - proof-of-achievement: File containing proof of achievement
- * - achiever-image: Image of the achiever
- * - additional-images: Additional images related to the achievement
+ * @returns {Response} - The HTTP response indicating success or failure.
  *
- * A honeypot field is used to detect spam submissions.
- *
- * Attachments are prepared and converted to base64 before sending.
- *
- * If any error occurs during the process, a 500 response is returned.
- * Otherwise, a 200 response is returned upon successful email dispatch.
+ * Form Data Fields:
+ * - full-name: The name of the achiever or team.
+ * - achievement: Description of the achievement.
+ * - issue-date: Date when the achievement was issued.
+ * - parents-names: Names of the parents if applicable.
+ * - team-members-names: Names of team members if applicable.
+ * - ward-input: Ward information, optional for teams.
+ * - submitted-by: Name of the person submitting the achievement.
+ * - achiever-image: File representing the achiever's image.
+ * - proof-of-achievement: File as proof of the achievement.
+ * - additional-images: Any additional images related to the achievement.
+ * - honeypot: A hidden field used for spam detection.
  */
 
 export const POST: APIRoute = async ({ request }) => {
@@ -88,11 +86,11 @@ export const POST: APIRoute = async ({ request }) => {
         }
       }
 
-    const subject = `🏅New Parishioners Achievement Submitted: ${name}`;
+    const subject = `🏅New Achievement Submitted: ${name}`;
     const html = `
       <p><strong>Name:</strong> ${name}</p>
       <p><strong>Achievement:</strong> ${achievement}</p>
-      <p><strong>Issue Date (MM/DD/YYYY):</strong> ${issueDate}</p>
+      <p><strong>Issue Date (dd/mm/yyyy):</strong> ${issueDate}</p>
       <p><strong>Parents' Names:</strong> ${parentsNames}</p>
       <p><strong>Team Members' Names:</strong> ${teamMembersNames}</p>
       <p><strong>Ward:</strong> ${ward}</p>
@@ -100,7 +98,7 @@ export const POST: APIRoute = async ({ request }) => {
     `;
     const to = RECEPIENT_EMAILS;
 
-    await sendEmailWithAttachments({
+    await sendEmail({
       subject: subject,
       html: html,
       to: to,
@@ -114,5 +112,6 @@ export const POST: APIRoute = async ({ request }) => {
     return new Response("Failed to send achievement data", {
       status: 500,
     });
+    console.error("Error sending achievement data:", error);
   }
 };

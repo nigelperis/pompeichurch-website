@@ -1,11 +1,14 @@
 import { useTranslations } from "~/i18n/utils";
-import { Locale } from "../enums/locale";
+import { Locale } from "~/enums/locale";
+import Litepicker from "litepicker";
 
 export const achievementForm = (lang: Locale = Locale.EN) => {
   document.addEventListener("DOMContentLoaded", () => {
     const t = useTranslations(lang);
 
     const form = document.getElementById("achievementsForm") as HTMLFormElement;
+
+    const issueDate = document.getElementById("issue-date") as HTMLInputElement;
 
     const achieverImage = document.getElementById(
       "achiever-image",
@@ -14,10 +17,18 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
       "achiever-image-error",
     ) as HTMLParagraphElement;
 
-    const checkboxParentsNames = document.getElementById("checkbox-parents-names") as HTMLInputElement;
-    const checkboxTeamMembersNames = document.getElementById("checkbox-team-members-names") as HTMLInputElement;
-    const parentsNames = document.getElementById("parents-names") as HTMLInputElement;
-    const teamMembersNames = document.getElementById("team-members-names") as HTMLInputElement;
+    const checkboxIndividualAchievement = document.getElementById(
+      "checkbox-individual-achievement",
+    ) as HTMLInputElement;
+    const checkboxTeamAchievement = document.getElementById(
+      "checkbox-team-achievement",
+    ) as HTMLInputElement;
+    const parentsNames = document.getElementById(
+      "parents-names",
+    ) as HTMLInputElement;
+    const teamMembersNames = document.getElementById(
+      "team-members-names",
+    ) as HTMLInputElement;
 
     const wardInput = document.getElementById("ward-input") as HTMLInputElement;
     const wardMenu = document.getElementById(
@@ -44,33 +55,86 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
 
     const honeypot = document.getElementById("honeypot") as HTMLInputElement;
 
+    const charactersTracker = document.querySelectorAll(
+      ".characters-tracker",
+    ) as NodeListOf<HTMLInputElement>;
+    const achievementCharacterTracker = document.querySelector(
+      ".achievement-characters-tracker",
+    ) as HTMLInputElement;
+
     const allowedTypes = ["image/jpeg", "image/png", "image/jpg"];
 
     const MAX_SIZE = 2 * 1024 * 1024; // 2MB;
     const MAX_IMAGES = 2; // Maximum number of additional images
 
-    // Checkbox for Parents Names
-    checkboxParentsNames.addEventListener("change", () => {
-      if (checkboxParentsNames.checked) {
+    const limit = 50;
+    const achievementLimit = 100;
+
+    // Date Picker
+    new Litepicker({
+      element: issueDate as HTMLInputElement,
+      format: "DD/MM/YYYY",
+      autoApply: true, // Auto-close after selection
+      dropdowns: {
+        minYear: 2000,
+        maxYear: null,
+        months: true,
+        years: true,
+      },
+    });
+
+    // Character Counter
+    charactersTracker.forEach((character: HTMLInputElement) => {
+      character.addEventListener("input", () => {
+        const length = character.value.length;
+        const liveCounter =
+          character.nextElementSibling as HTMLParagraphElement;
+        liveCounter.textContent = `${length}/${limit}`;
+        if (length === limit) {
+          liveCounter.classList.add("text-red-500");
+        } else {
+          liveCounter.classList.remove("text-red-500");
+        }
+      });
+    });
+
+    // Achievement Character Counter
+    achievementCharacterTracker.addEventListener("input", () => {
+      const length = achievementCharacterTracker.value.length;
+      const liveCounter =
+        achievementCharacterTracker.nextElementSibling as HTMLParagraphElement;
+      liveCounter.textContent = `${length}/${achievementLimit}`;
+      if (length === achievementLimit) {
+        liveCounter.classList.add("text-red-500");
+      } else {
+        liveCounter.classList.remove("text-red-500");
+      }
+    });
+
+    // Checkbox for Individual Achievement
+    checkboxIndividualAchievement.addEventListener("change", () => {
+      if (checkboxIndividualAchievement.checked) {
         // Show parents section
         parentsNames.classList.remove("hidden");
+        parentsNames.required = true;
 
         // Uncheck and hide team members section
-        checkboxTeamMembersNames.checked = false;
+        checkboxTeamAchievement.checked = false;
         teamMembersNames.classList.add("hidden");
       } else {
         parentsNames.classList.add("hidden");
       }
     });
 
-    // Checkbox for Team Members Names
-    checkboxTeamMembersNames.addEventListener("change", () => {
-      if (checkboxTeamMembersNames.checked) {
+    // Checkbox for Team Achievement
+    checkboxTeamAchievement.addEventListener("change", () => {
+      if (checkboxTeamAchievement.checked) {
         // Show team members section
         teamMembersNames.classList.remove("hidden");
+        teamMembersNames.required = true;
 
         // Uncheck and hide parents section
-        checkboxParentsNames.checked = false;
+        checkboxIndividualAchievement.checked = false;
         parentsNames.classList.add("hidden");
       } else {
         teamMembersNames.classList.add("hidden");
@@ -91,6 +155,10 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
           wardInput.value = selectedWard;
         }
       }
+    });
+
+    chevron.addEventListener("click", () => {
+      wardInput.focus();
     });
 
     // Image Validation by size
@@ -115,57 +183,89 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
 
     // Achiever Image Validation
     achieverImage.addEventListener("change", () => {
+      const fileName = document.getElementById(
+        "achiever-image-file-name",
+      ) as HTMLInputElement;
+
       if (achieverImage.files && !handleImageSize(achieverImage.files)) {
-        achieverImageErrorMessage.textContent =
-          t("achievement.image-size-error");
-        achieverImage.value = "";
+        achieverImageErrorMessage.textContent = t(
+          "achievement.image-size-error",
+        );
+        fileName.textContent = t("achievement.no-file-chosen");
       } else if (achieverImage.files && !handleImageType(achieverImage.files)) {
-        achieverImageErrorMessage.textContent =
-          t("achievement.image-type-error");
-        achieverImage.value = "";
+        achieverImageErrorMessage.textContent = t(
+          "achievement.image-type-error",
+        );
+        fileName.textContent = t("achievement.no-file-chosen");
       } else {
-        achieverImageErrorMessage.textContent = "";
+          achieverImage.files
+            ? (fileName.textContent = achieverImage.files[0].name)
+            : t("achievement.no-file-chosen");
+          achieverImageErrorMessage.textContent = "";
       }
     });
 
     // Proof of Achievement Image Validation
     proofOfAchievement.addEventListener("change", () => {
+      const fileName = document.getElementById(
+        "proof-of-achievement-file-name",
+      ) as HTMLInputElement;
+
       if (
         proofOfAchievement.files &&
         !handleImageSize(proofOfAchievement.files)
       ) {
-        proofOfAchievementErrorMessage.textContent =
-          t("achievement.image-size-error");
-        proofOfAchievement.value = "";
+        proofOfAchievementErrorMessage.textContent = t(
+          "achievement.image-size-error",
+        );
+        fileName.textContent = t("achievement.no-file-chosen");
       } else if (
         proofOfAchievement.files &&
         !handleImageType(proofOfAchievement.files)
       ) {
-        proofOfAchievementErrorMessage.textContent =
-          t("achievement.image-type-error");
-        proofOfAchievement.value = "";
+        proofOfAchievementErrorMessage.textContent = t(
+          "achievement.image-type-error",
+        );
+        fileName.textContent = t("achievement.no-file-chosen");
       } else {
+        proofOfAchievement.files
+          ? (fileName.textContent = proofOfAchievement.files[0].name)
+          : t("achievement.no-file-chosen");
         proofOfAchievementErrorMessage.textContent = "";
       }
     });
 
     // Additional Images Validation
     additionalImages.addEventListener("change", () => {
+      const fileName = document.getElementById(
+        "additional-images-file-name",
+      ) as HTMLInputElement;
+
       const selectedFiles = additionalImages?.files;
 
       if (selectedFiles && selectedFiles.length > MAX_IMAGES) {
-        additionalImagesErrorMessage.textContent =
-          t("achievement.additional-images-error");
-        additionalImages.value = "";
+        additionalImagesErrorMessage.textContent = t(
+          "achievement.additional-images-error",
+        );
+        fileName.textContent = t("achievement.no-file-chosen");
       } else if (selectedFiles && !handleImageSize(selectedFiles)) {
-        additionalImagesErrorMessage.textContent =
-          t("achievement.image-size-error");
-        additionalImages.value = "";
+        additionalImagesErrorMessage.textContent = t(
+          "achievement.image-size-error",
+        );
+        fileName.textContent = t("achievement.no-file-chosen");
       } else if (selectedFiles && !handleImageType(selectedFiles)) {
-        additionalImagesErrorMessage.textContent =
-          t("achievement.image-type-error");
+        additionalImagesErrorMessage.textContent = t(
+          "achievement.image-type-error",
+        );
       } else {
-        additionalImagesErrorMessage.textContent = "";
+          if (selectedFiles?.length === 1) {
+            fileName.textContent = selectedFiles[0].name;
+          } else if (selectedFiles?.length === 2) {
+            fileName.textContent = `${selectedFiles.length} ${t("achievement.files")}`;
+          } else {
+            fileName.textContent = t("achievement.no-file-chosen");
+          }
+          additionalImagesErrorMessage.textContent = "";
       }
     });
 
