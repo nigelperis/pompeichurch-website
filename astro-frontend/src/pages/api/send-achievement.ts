@@ -30,13 +30,13 @@ export const POST: APIRoute = async ({ request }) => {
   try {
     const data = await request.formData();
 
-    const name = data.get("full-name");
-    const achievement = data.get("achievement");
-    const issueDate = data.get("issue-date");
-    const parentsNames = data.get("parents-names");
-    const teamMembersNames = data.get("team-members-names");
-    const ward = data.get("ward-input");
-    const submittedBy = data.get("submitted-by");
+    const name = data.get("full-name")?.toString().trim();
+    const achievement = data.get("achievement")?.toString().trim();
+    const issueDate = data.get("issue-date")?.toString().trim();
+    const parentsNames = data.get("parents-names")?.toString().trim();
+    const teamMembersNames = data.get("team-members-names")?.toString().trim();
+    const ward = data.get("ward-input")?.toString().trim();
+    const submittedBy = data.get("submitted-by")?.toString().trim();
     const proofOfAchievement = data.get("proof-of-achievement") as File;
     const achieverImage = data.get("achiever-image") as File;
     const additionalImages = data.getAll("additional-images");
@@ -51,7 +51,33 @@ export const POST: APIRoute = async ({ request }) => {
 
     // Server-side spam check
     if (honeypot && typeof honeypot === "string" && honeypot.trim() !== "") {
-      return new Response("Server Side Spam Triggered", { status: 400 });
+      console.error("Bots spammed the form.");
+      return new Response("Server Side spam triggered. Submission Failed", { status: 400 });
+    }
+
+    // Required fields Validation
+    if (
+      !name ||
+      !achievement ||
+      !achieverImage ||
+      !issueDate ||
+      !submittedBy ||
+      !proofOfAchievement
+    ) {
+      console.error("Missing required fields.");
+      return new Response("Missing required fields. Submission Failed", {
+        status: 400,
+      });
+    }
+
+    if (!parentsNames && !teamMembersNames) {
+      console.error("Either parents or team members name is required.");
+      return new Response(
+        "Please provide either Parents' or Team Members' name.",
+        {
+          status: 400,
+        },
+      );
     }
 
     // Push files to attachments
@@ -89,11 +115,11 @@ export const POST: APIRoute = async ({ request }) => {
     const subject = `🏅New Achievement Submitted: ${name}`;
     const html = `
       <p><strong>Name:</strong> ${name}</p>
-      <p><strong>Achievement:</strong> ${achievement}</p>
-      <p><strong>Issue Date (dd/mm/yyyy):</strong> ${issueDate}</p>
       <p><strong>Parents' Names:</strong> ${parentsNames}</p>
       <p><strong>Team Members' Names:</strong> ${teamMembersNames}</p>
       <p><strong>Ward:</strong> ${ward}</p>
+      <p><strong>Achievement:</strong> ${achievement}</p>
+      <p><strong>Issue Date (dd/mm/yyyy):</strong> ${issueDate}</p>
       <p><strong>Submitted By:</strong> ${submittedBy}</p>
     `;
     const to = RECEPIENT_EMAILS;
