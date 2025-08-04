@@ -11,16 +11,19 @@ import SelectWard from '~/components/ui/SelectWard.tsx';
 const lang = getLangFromUrl(Astro.url) as Locale;
 const t = useTranslations(lang);
 
-const rawWardDetails = lang === Locale.EN
-  ? await fetchWardDetails()
-  : await fetchWardDetails(Locale.KOK);
+let wardDetails = lang === Locale.EN
+  ? await fetchWardDetails() || []
+  : await fetchWardDetails(Locale.KOK) || [];
 
-const wardDetails = rawWardDetails ?? [];
+if (wardDetails.length === 0) {
+  wardDetails = lang === Locale.EN
+    ? await fetchWardDetails(Locale.KOK) || []
+    : await fetchWardDetails() || [];
+}
 
 const ogTitle = lang === Locale.KOK
   ? "ವಾಡೆ"
   : "Wards";
-
 
 const firstWardPatronImage = wardDetails.length > 0 ? wardDetails[0].patronImage : null;
 
