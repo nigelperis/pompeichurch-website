@@ -1,12 +1,20 @@
 import { useTranslations } from "~/i18n/utils";
 import { Locale } from "~/enums/locale";
 import Litepicker from "litepicker";
+import { validateFileInput } from "~/helpers/validate-file-input";
 
 export const achievementForm = (lang: Locale = Locale.EN) => {
   document.addEventListener("DOMContentLoaded", () => {
     const t = useTranslations(lang);
 
     const form = document.getElementById("achievementsForm") as HTMLFormElement;
+
+    const fullNameDiv = document.getElementById("full-name-div") as HTMLDivElement;
+    const teamNameDiv = document.getElementById("team-name-div") as HTMLDivElement;
+    const fullName = document.getElementById("full-name") as HTMLInputElement;
+    const teamName = document.getElementById("team-name") as HTMLInputElement;
+
+    const achievement = document.getElementById("achievement") as HTMLInputElement;
 
     const issueDate = document.getElementById("issue-date") as HTMLInputElement;
 
@@ -17,23 +25,30 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
       "achiever-image-error",
     ) as HTMLParagraphElement;
 
-    const checkboxIndividualAchievement = document.getElementById(
-      "checkbox-individual-achievement",
+    const individualAchievement = document.getElementById(
+      "individual-achievement",
     ) as HTMLInputElement;
-    const checkboxTeamAchievement = document.getElementById(
-      "checkbox-team-achievement",
+    const teamAchievement = document.getElementById(
+      "team-achievement",
     ) as HTMLInputElement;
+    const parentsNamesDiv = document.getElementById(
+      "parents-names-div",
+    ) as HTMLDivElement;
+    const teamMembersNamesDiv = document.getElementById(
+      "team-members-names-div",
+    ) as HTMLDivElement;
     const parentsNames = document.getElementById(
       "parents-names",
     ) as HTMLInputElement;
     const teamMembersNames = document.getElementById(
       "team-members-names",
     ) as HTMLInputElement;
+     const radioButtonError = document.getElementById(
+       "achievement-type-error",
+     ) as HTMLParagraphElement;
 
     const wardInput = document.getElementById("ward-input") as HTMLInputElement;
-    const wardMenu = document.getElementById(
-      "ward-options-menu",
-    ) as HTMLDivElement;
+    const wardMenu = document.getElementById("ward-options-menu") as HTMLDivElement;
     const wardSelect = document.getElementById("ward-select") as HTMLDivElement;
     const chevron = document.getElementById(
       "dropdown-chevron",
@@ -53,22 +68,20 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
       "additional-images-error",
     ) as HTMLParagraphElement;
 
-    const honeypot = document.getElementById("honeypot") as HTMLInputElement;
-
     const charactersTracker = document.querySelectorAll(
       ".characters-tracker",
     ) as NodeListOf<HTMLInputElement>;
-    const achievementCharacterTracker = document.querySelector(
-      ".achievement-characters-tracker",
-    ) as HTMLInputElement;
+    const descriptiveCharactersTracker = document.querySelectorAll(
+      ".descriptive-characters-tracker",
+    ) as NodeListOf<HTMLInputElement>;
 
     const allowedTypes = ["image/jpeg", "image/png", "image/jpg"];
 
     const MAX_SIZE = 2 * 1024 * 1024; // 2MB;
     const MAX_IMAGES = 2; // Maximum number of additional images
 
-    const limit = 50;
-    const achievementLimit = 100;
+    const stdLimit = 50;
+    const descriptiveLimit = 100;
 
     // Date Picker
     new Litepicker({
@@ -83,61 +96,78 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
       },
     });
 
-    // Character Counter
-    charactersTracker.forEach((character: HTMLInputElement) => {
-      character.addEventListener("input", () => {
-        const length = character.value.length;
+    const liveCharacterCounter = (input: HTMLInputElement, limit: number) => {
+      input.addEventListener("input", () => {
+        const length = input.value.length;
         const liveCounter =
-          character.nextElementSibling as HTMLParagraphElement;
+          input.nextElementSibling as HTMLParagraphElement;
         liveCounter.textContent = `${length}/${limit}`;
-        if (length === limit) {
-          liveCounter.classList.add("text-red-500");
-        } else {
-          liveCounter.classList.remove("text-red-500");
-        }
       });
+    };
+
+    charactersTracker.forEach((input) => {
+      liveCharacterCounter(input, stdLimit);
     });
 
-    // Achievement Character Counter
-    achievementCharacterTracker.addEventListener("input", () => {
-      const length = achievementCharacterTracker.value.length;
-      const liveCounter =
-        achievementCharacterTracker.nextElementSibling as HTMLParagraphElement;
-      liveCounter.textContent = `${length}/${achievementLimit}`;
-      if (length === achievementLimit) {
-        liveCounter.classList.add("text-red-500");
-      } else {
-        liveCounter.classList.remove("text-red-500");
+    descriptiveCharactersTracker.forEach((input) => {
+      liveCharacterCounter(input, descriptiveLimit);
+    });
+
+    achievement.addEventListener("input", () => {
+      if (!individualAchievement.checked && !teamAchievement.checked) {
+        radioButtonError.classList.remove("hidden");
+        radioButtonError.textContent = t("achievement.achievement-type-error");
       }
     });
 
-    // Checkbox for Individual Achievement
-    checkboxIndividualAchievement.addEventListener("change", () => {
-      if (checkboxIndividualAchievement.checked) {
+    // Radio Button for Individual Achievement
+    individualAchievement.addEventListener("change", () => {
+      if (individualAchievement.checked) {
+        // Show full name section
+        fullNameDiv.classList.remove("hidden");
+        fullName.required = true;
+
         // Show parents section
-        parentsNames.classList.remove("hidden");
+        parentsNamesDiv.classList.remove("hidden");
         parentsNames.required = true;
 
-        // Uncheck and hide team members section
-        checkboxTeamAchievement.checked = false;
-        teamMembersNames.classList.add("hidden");
-      } else {
-        parentsNames.classList.add("hidden");
+        // Deselect and hide team members section
+        radioButtonError.classList.add("hidden");
+        radioButtonError.textContent = "";
+        teamAchievement.checked = false;
+        teamName.required = false;
+        teamMembersNames.required = false;
+        teamNameDiv.classList.add("hidden");
+        teamMembersNamesDiv.classList.add("hidden");
+        teamName.value = "";
+        teamMembersNames.value = "";
+        wardSelect.classList.remove("hidden");
       }
     });
 
-    // Checkbox for Team Achievement
-    checkboxTeamAchievement.addEventListener("change", () => {
-      if (checkboxTeamAchievement.checked) {
+    // Radio Button for Team Achievement
+    teamAchievement.addEventListener("change", () => {
+      if (teamAchievement.checked) {
+        // Show team name section
+        teamNameDiv.classList.remove("hidden");
+        teamName.required = true;
+
         // Show team members section
-        teamMembersNames.classList.remove("hidden");
+        teamMembersNamesDiv.classList.remove("hidden");
         teamMembersNames.required = true;
 
-        // Uncheck and hide parents section
-        checkboxIndividualAchievement.checked = false;
-        parentsNames.classList.add("hidden");
-      } else {
-        teamMembersNames.classList.add("hidden");
+        wardSelect.classList.add("hidden");
+
+        // Deselect and hide parents section
+        radioButtonError.classList.add("hidden");
+        radioButtonError.textContent = "";
+        individualAchievement.checked = false;
+        fullName.required = false;
+        parentsNames.required = false;
+        fullNameDiv.classList.add("hidden");
+        parentsNamesDiv.classList.add("hidden");
+        fullName.value = "";
+        parentsNames.value = "";
       }
     });
 
@@ -182,57 +212,19 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
     };
 
     // Achiever Image Validation
-    achieverImage.addEventListener("change", () => {
-      const fileName = document.getElementById(
-        "achiever-image-file-name",
-      ) as HTMLInputElement;
-
-      if (achieverImage.files && !handleImageSize(achieverImage.files)) {
-        achieverImageErrorMessage.textContent = t(
-          "achievement.image-size-error",
-        );
-        fileName.textContent = t("achievement.no-file-chosen");
-      } else if (achieverImage.files && !handleImageType(achieverImage.files)) {
-        achieverImageErrorMessage.textContent = t(
-          "achievement.image-type-error",
-        );
-        fileName.textContent = t("achievement.no-file-chosen");
-      } else {
-          achieverImage.files
-            ? (fileName.textContent = achieverImage.files[0].name)
-            : t("achievement.no-file-chosen");
-          achieverImageErrorMessage.textContent = "";
-      }
+    validateFileInput({
+      lang,
+      input: achieverImage,
+      fileName: "achiever-image-file-name",
+      inputErrorMessage: achieverImageErrorMessage,
     });
 
-    // Proof of Achievement Image Validation
-    proofOfAchievement.addEventListener("change", () => {
-      const fileName = document.getElementById(
-        "proof-of-achievement-file-name",
-      ) as HTMLInputElement;
-
-      if (
-        proofOfAchievement.files &&
-        !handleImageSize(proofOfAchievement.files)
-      ) {
-        proofOfAchievementErrorMessage.textContent = t(
-          "achievement.image-size-error",
-        );
-        fileName.textContent = t("achievement.no-file-chosen");
-      } else if (
-        proofOfAchievement.files &&
-        !handleImageType(proofOfAchievement.files)
-      ) {
-        proofOfAchievementErrorMessage.textContent = t(
-          "achievement.image-type-error",
-        );
-        fileName.textContent = t("achievement.no-file-chosen");
-      } else {
-        proofOfAchievement.files
-          ? (fileName.textContent = proofOfAchievement.files[0].name)
-          : t("achievement.no-file-chosen");
-        proofOfAchievementErrorMessage.textContent = "";
-      }
+    // Proof of Achievement Validation
+    validateFileInput({
+      lang,
+      input: proofOfAchievement,
+      fileName: "proof-of-achievement-file-name",
+      inputErrorMessage: proofOfAchievementErrorMessage,
     });
 
     // Additional Images Validation
@@ -292,15 +284,47 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
       }
     }
 
+    const resetFormFields = () => {
+      charactersTracker.forEach((input: HTMLInputElement) => {
+        if (input.nextElementSibling) {
+          input.nextElementSibling.textContent = "0/50";
+        }
+      });
+
+      descriptiveCharactersTracker.forEach((input: HTMLInputElement) => {
+        if (input.nextElementSibling) {
+          input.nextElementSibling.textContent = "0/100";
+        }
+      });
+
+      const achieverImageName = document.getElementById("achiever-image-file-name");
+      if (achieverImageName)
+        achieverImageName.textContent = t("achievement.no-file-chosen");
+
+      const additionalImagesName = document.getElementById("additional-images-file-name");
+      if (additionalImagesName)
+        additionalImagesName.textContent = t("achievement.no-files-chosen");
+
+      const proofOfAchievementName = document.getElementById("proof-of-achievement-file-name");
+      if (proofOfAchievementName)
+        proofOfAchievementName.textContent = t("achievement.no-file-chosen");
+
+      if(radioButtonError){
+        radioButtonError.classList.add("hidden");
+        radioButtonError.textContent = "";
+      }
+    };
+
     // Form Submission
     form?.addEventListener("submit", async (event) => {
       event.preventDefault();
 
       const data = new FormData(form);
 
-      // Honeypot Check
-      if (honeypot && honeypot.value) {
-        return new Response("Server Side Spam Triggered", { status: 400 });
+      if(!individualAchievement.checked && !teamAchievement.checked) {
+        event.preventDefault();
+        radioButtonError.classList.remove("hidden");
+        radioButtonError.textContent = t("achievement.achievement-type-error");
       }
 
       // Validate Achiever Image
@@ -335,7 +359,9 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
 
           showToast();
 
-          form.reset(); // Reset the form after successful submission
+          // Reset the form fields after successful submission
+          form.reset();
+          resetFormFields();
         } catch (error) {
           console.error("Failed to send data", error);
         }

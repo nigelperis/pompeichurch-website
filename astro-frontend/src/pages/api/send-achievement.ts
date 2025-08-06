@@ -23,14 +23,15 @@ import { RECEPIENT_EMAILS } from "~/constants/constants";
  * - achiever-image: File representing the achiever's image.
  * - proof-of-achievement: File as proof of the achievement.
  * - additional-images: Any additional images related to the achievement.
- * - honeypot: A hidden field used for spam detection.
+ * - blank: A hidden field used for spam detection.
  */
 
 export const POST: APIRoute = async ({ request }) => {
   try {
     const data = await request.formData();
 
-    const name = data.get("full-name")?.toString().trim();
+    const fullName = data.get("full-name")?.toString().trim();
+    const teamName = data.get("team-name")?.toString().trim();
     const achievement = data.get("achievement")?.toString().trim();
     const issueDate = data.get("issue-date")?.toString().trim();
     const parentsNames = data.get("parents-names")?.toString().trim();
@@ -41,7 +42,7 @@ export const POST: APIRoute = async ({ request }) => {
     const achieverImage = data.get("achiever-image") as File;
     const additionalImages = data.getAll("additional-images");
 
-    const honeypot = data.get("honeypot");
+    const blank = data.get("blank");
 
     const attachments: {
       filename: string;
@@ -49,8 +50,20 @@ export const POST: APIRoute = async ({ request }) => {
       contentType: string;
     }[] = [];
 
+    const individualHTML = `
+      <h1>Individual Achievement</h1>
+      <p><strong>Name:</strong> ${fullName}</p>
+      <p><strong>Parents' Names:</strong> ${parentsNames}</p>
+      <p><strong>Ward:</strong> ${ward}</p>`;
+    const teamHTML = `
+      <h1>Team Achievement</h1>
+      <p><strong>Team Name:</strong> ${teamName}</p>
+      <p><strong>Team Members' Names:</strong> ${teamMembersNames}</p>`;
+    const name = fullName || teamName;
+    const category = fullName ? "Individual Achievement" : "Team Achievement";
+
     // Server-side spam check
-    if (honeypot && typeof honeypot === "string" && honeypot.trim() !== "") {
+    if (blank && typeof blank === "string" && blank.trim() !== "") {
       console.error("Bots spammed the form.");
       return new Response("Server Side spam triggered. Submission Failed", { status: 400 });
     }
@@ -64,14 +77,12 @@ export const POST: APIRoute = async ({ request }) => {
       !submittedBy ||
       !proofOfAchievement
     ) {
-      console.error("Missing required fields.");
       return new Response("Missing required fields. Submission Failed", {
         status: 400,
       });
     }
 
     if (!parentsNames && !teamMembersNames) {
-      console.error("Either parents or team members name is required.");
       return new Response(
         "Please provide either Parents' or Team Members' name.",
         {
@@ -84,7 +95,7 @@ export const POST: APIRoute = async ({ request }) => {
     if (achieverImage) {
       const arrayBuffer = await achieverImage.arrayBuffer();
       attachments.push({
-        filename: achieverImage.name,
+        filename: `achiever_image_${achieverImage.name}`,
         content: Buffer.from(arrayBuffer),
         contentType: achieverImage.type,
       });
@@ -94,7 +105,7 @@ export const POST: APIRoute = async ({ request }) => {
     if (proofOfAchievement) {
       const arrayBuffer = await proofOfAchievement.arrayBuffer();
       attachments.push({
-        filename: proofOfAchievement.name,
+        filename: `proof_of_achievement_${proofOfAchievement.name}`,
         content: Buffer.from(arrayBuffer),
         contentType: proofOfAchievement.type,
       });
@@ -114,10 +125,7 @@ export const POST: APIRoute = async ({ request }) => {
 
     const subject = `🏅New Achievement Submitted: ${name}`;
     const html = `
-      <p><strong>Name:</strong> ${name}</p>
-      <p><strong>Parents' Names:</strong> ${parentsNames}</p>
-      <p><strong>Team Members' Names:</strong> ${teamMembersNames}</p>
-      <p><strong>Ward:</strong> ${ward}</p>
+      ${category === "Individual Achievement" ? individualHTML : teamHTML}
       <p><strong>Achievement:</strong> ${achievement}</p>
       <p><strong>Issue Date (dd/mm/yyyy):</strong> ${issueDate}</p>
       <p><strong>Submitted By:</strong> ${submittedBy}</p>
@@ -135,9 +143,9 @@ export const POST: APIRoute = async ({ request }) => {
       status: 200,
     });
   } catch (error) {
+    console.log("Error sending achievement data:", error);
     return new Response("Failed to send achievement data", {
       status: 500,
     });
-    console.error("Error sending achievement data:", error);
   }
 };

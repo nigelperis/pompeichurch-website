@@ -48,44 +48,55 @@ const wards = [
       <div class="w-full h-0.5 mx-auto my-4  border border-dashed border-natgeo-yellow"></div>
 
       <form data-lang={lang} class="flex-1 space-y-6" enctype="multipart/form-data" id="achievementsForm">
-        <!-- Name of the achiever or Team Name -->
-        <div>
-          <label for="full-name" class="text-base font-normal leading-6 text-gray-900">{t("achievement.name")} <span class="text-red-500">*</span></label>
-          <input id="full-name" type="text" name="full-name" class="characters-tracker block w-full border border-gray-500 p-3 focus:outline-gray-700 placeholder-gray-500" required placeholder={t("placeholder.name")} maxlength="50"></input>
-          <p class="live-counter text-xs text-gray-500 flex justify-end mt-1 italic"></p>
+        <!-- Individual / Team Achievement Checkbox -->
+        <fieldset class="md:flex flex-row space-x-4">
+          <legend class="text-base font-semibold leading-6 text-gray-900">{t("achievement.achievement-type")} <span class="text-red-500">*</span></legend>
+
+          <div class="flex items-center mb-2 md:mb-0">
+            <input id="individual-achievement" type="radio" name="achievement-type" class="mr-2 mt-0.5 md:mb-0.5 cursor-pointer" required></input>
+            <label for="individual-achievement" class="text-base font-normal leading-6 text-gray-900">{t("achievement.individual-achievement")}</label>
+          </div>
+
+          <div class="flex items-center md:mb-0">
+            <input id="team-achievement" type="radio" name="achievement-type" class="mr-2 mt-0.5 md:mb-0.5 cursor-pointer"></input>
+            <label for="team-achievement" class="text-base font-normal leading-6 text-gray-900">{t("achievement.team-achievement")}</label>
+          </div>
+
+          <p id="achievement-type-error" class="text-sm text-red-500 mt-1 md:mt-0.5 hidden"></p>
+        </fieldset>
+
+        <!-- Name of the achiever -->
+        <div class="hidden" id="full-name-div">
+          <label for="full-name" class="text-base font-normal leading-6 text-gray-900">{t("achievement.full-name")} <span class="text-red-500">*</span></label>
+          <input id="full-name" type="text" name="full-name" class="characters-tracker block w-full border border-gray-500 p-3 focus:outline-gray-700 placeholder-gray-500" placeholder={t("placeholder.full-name")} maxlength="50"></input>
+          <p class="live-counter text-xs text-gray-500 flex justify-end mt-1">0/50</p>
         </div>
 
-        <!-- Individual / Team Achievement Checkbox -->
-        <div class="md:flex flex-row space-x-4">
-          <div class="flex items-center mb-3 md:mb-0">
-            <label for="checkbox-individual-achievement" class="text-base font-normal leading-6 text-gray-900">{t("achievement.individual-achievement")}</label>
-            <input id="checkbox-individual-achievement" type="radio" name="checkbox-individual-achievement" class="mx-2 mt-0.5 md:mb-0.5 cursor-pointer"></input>
-          </div>
-
-          <div class="flex items-center mb-3 md:mb-0">
-            <label for="checkbox-team-achievement" class="text-base font-normal leading-6 text-gray-900">{t("achievement.team-achievement")}</label>
-            <input id="checkbox-team-achievement" type="radio" name="checkbox-team-achievement" class="mx-2 mt-0.5 md:mb-0.5 cursor-pointer"></input>
-          </div>
+        <!-- Team Name -->
+        <div class="hidden" id="team-name-div">
+          <label for="team-name" class="text-base font-normal leading-6 text-gray-900">{t("achievement.team-name")} <span class="text-red-500">*</span></label>
+          <input id="team-name" type="text" name="team-name" class="characters-tracker block w-full border border-gray-500 p-3 focus:outline-gray-700 placeholder-gray-500" placeholder={t("placeholder.team-name")} maxlength="50"></input>
+          <p class="live-counter text-xs text-gray-500 flex justify-end mt-1">0/50</p>
         </div>
 
         <!-- Parents Names -->
-        <div class="hidden" id="parents-names">
+        <div class="hidden" id="parents-names-div">
           <label for="parents-names" class="text-base font-normal leading-6 text-gray-900">{t("achievement.parents-names")} <span class="text-red-500">*</span></label>
-          <input id="parents-names" type="text" name="parents-names" class="characters-tracker block w-full border border-gray-500 p-3 focus:outline-gray-700 placeholder-gray-500" placeholder={t("placeholder.parents-names")} maxlength="50"></input>
-          <p class="live-counter text-xs text-gray-500 flex justify-end mt-1 italic"></p>
+          <input id="parents-names" type="text" name="parents-names" class="descriptive-characters-tracker block w-full border border-gray-500 p-3 focus:outline-gray-700 placeholder-gray-500" placeholder={t("placeholder.parents-names")} maxlength="50"></input>
+          <p class="live-counter text-xs text-gray-500 flex justify-end mt-1">0/100</p>
         </div>
 
         <!-- Team Members Names -->
-        <div class="hidden" id="team-members-names">
+        <div class="hidden" id="team-members-names-div">
           <label for="team-members-names" class="text-base font-normal leading-6 text-gray-900">{t("achievement.team-members-names")} <span class="text-red-500">*</span></label>
-          <input id="team-members-names" type="text" name="team-members-names" class="character-tracker block w-full border border-gray-500 p-3 focus:outline-gray-700 placeholder-gray-500" placeholder={t("placeholder.team-members-names")} maxlength="50"></input>
-          <p class="live-counter text-xs text-gray-500 flex justify-end mt-1 italic"></p>
+          <input id="team-members-names" type="text" name="team-members-names" class="descriptive-characters-tracker block w-full border border-gray-500 p-3 focus:outline-gray-700 placeholder-gray-500" placeholder={t("placeholder.team-members-names")} maxlength="50"></input>
+          <p class="live-counter text-xs text-gray-500 flex justify-end mt-1">0/100</p>
         </div>
 
          <!-- Ward (optional for teams) -->
         <div>
-          <div id="ward-select" class="relative w-full mx-auto cursor-pointer">
-            <label for="ward-input" class="block text-base font-normal text-gray-900 mb-1">
+          <div id="ward-select" class="relative w-full mx-auto cursor-pointer hidden">
+            <label for="ward-input" class="block text-base font-normal text-gray-900">
               {t("achievement.ward")}
             </label>
 
@@ -94,7 +105,7 @@ const wards = [
             <ChevronDown id="dropdown-chevron" className="absolute w-6 h-6 right-3 top-1/2 text-gray-600 cursor-pointer" />
 
             <!-- Ward names Dropdown -->
-            <div id="ward-options-menu" class="absolute left-0 right-0 mt-1 bg-white border border-gray-500 rounded-b-md z-10 max-h-36 overflow-y-auto hidden">
+            <div id="ward-options-menu" class="absolute left-0 right-0 mt-1 bg-white border border-gray-500 max-h-32 overflow-y-auto hidden">
               {wards.map((ward) => (
                 <div class="p-2 cursor-pointer hover:bg-blue-100" role="option" aria-label={ward}>
                   {getWardNameKok(ward, lang)}
@@ -107,18 +118,17 @@ const wards = [
         <!-- Achievement -->
         <div>
           <label for="achievement" class="text-base font-normal leading-6 text-gray-900">{t("achievement")} <span class="text-red-500">*</span></label>
-          <input id="achievement" type="text" name="achievement" class="achievement-characters-tracker block w-full border border-gray-500 p-3 focus:outline-gray-700 placeholder-gray-500" required placeholder={t("placeholder.achievement")} maxlength="100"></input>
-          <p class="live-counter text-xs text-gray-500 flex justify-end mt-1 italic"></p>
+          <input id="achievement" type="text" name="achievement" class="descriptive-characters-tracker block w-full border border-gray-500 p-3 focus:outline-gray-700 placeholder-gray-500" required placeholder={t("placeholder.achievement")} maxlength="100"></input>
+          <p class="live-counter text-xs text-gray-500 flex justify-end mt-1">0/100</p>
         </div>
 
         <!-- Achievement Issue Date -->
         <div>
-          <label for="issue-date" class="text-base font-normal leading-6 text-gray-900">{t("achievement.issue-date")} <span class="text-red-500">*</span>
+          <label for="issue-date" class="text-base font-normal leading-6 text-gray-900">{t("achievement.issue-date")} <span class="text-red-500">*</span></label>
             <div class="relative">
               <input id="issue-date" type="text" name="issue-date" class="block w-full border border-gray-500 p-3 cursor-pointer focus:outline-gray-700 placeholder-gray-500" required placeholder="dd/mm/yyyy"></input>
               <Calender className="absolute w-4 h-4 right-3 top-4 text-gray-600 cursor-pointer"/>
             </div>
-          </label>
         </div>
 
         <!-- Achiever Image -->
@@ -138,15 +148,17 @@ const wards = [
               accept=".jpg, .jpeg, .png, image/jpeg, image/png"
             />
 
-            <label
-              for="achiever-image"
-              class="shrink-0 bg-natgeo-yellow text-black font-normal px-4 py-2 rounded-md cursor-pointer"
-            >
-              {t("achievement.choose-file")}
-            </label>
+            <div class="border border-gray-500 flex flex-row w-full items-center p-2 gap-2">
+              <label
+                for="achiever-image"
+                class="shrink-0 bg-natgeo-yellow text-black font-normal px-4 py-2 rounded-md cursor-pointer"
+              >
+                {t("achievement.choose-file")}
+              </label>
 
-            <!-- File name display -->
-            <p id="achiever-image-file-name" class="text-lg text-gray-900 truncate">{t("achievement.no-file-chosen")}</p>
+              <!-- File name display -->
+              <p id="achiever-image-file-name" class="font-normal text-gray-900 truncate">{t("achievement.no-file-chosen")}</p>
+            </div>
           </div>
           <!-- Error message -->
           <p id="achiever-image-error" class="text-sm text-red-500 mt-1 p-1"></p>
@@ -169,15 +181,17 @@ const wards = [
               accept=".jpg, .jpeg, .png, image/jpeg, image/png"
             />
 
-            <label
-              for="proof-of-achievement"
-              class="shrink-0 bg-natgeo-yellow text-black font-normal px-4 py-2 rounded-md cursor-pointer"
-            >
-              {t("achievement.choose-file")}
-            </label>
+            <div class="border border-gray-500 flex flex-row w-full items-center p-2 gap-2">
+              <label
+                for="proof-of-achievement"
+                class="shrink-0 bg-natgeo-yellow text-black font-normal px-4 py-2 rounded-md cursor-pointer"
+              >
+                {t("achievement.choose-file")}
+              </label>
 
-            <!-- File name display -->
-            <p id="proof-of-achievement-file-name" class="text-lg text-gray-900 truncate">{t("achievement.no-file-chosen")}</p>
+              <!-- File name display -->
+              <p id="proof-of-achievement-file-name" class="font-normal text-gray-900 truncate">{t("achievement.no-file-chosen")}</p>
+            </div>
           </div>
           <!-- Error message -->
           <p id="proof-of-achievement-error-message" class="text-sm text-red-500 mt-1 p-1"></p>
@@ -200,15 +214,17 @@ const wards = [
               accept=".jpg, .jpeg, .png, image/jpeg, image/png"
             />
 
-            <label
-              for="additional-images"
-              class="shrink-0 bg-natgeo-yellow text-black font-normal px-4 py-2 rounded-md cursor-pointer"
-            >
-              {t("achievement.choose-file")}
-            </label>
+            <div class="border border-gray-500 flex flex-row w-full items-center p-2 gap-2">
+              <label
+                for="additional-images"
+                class="shrink-0 bg-natgeo-yellow text-black font-normal px-4 py-2 rounded-md cursor-pointer"
+              >
+                {t("achievement.choose-files")}
+              </label>
 
-            <!-- File name display -->
-            <p id="additional-images-file-name" class="text-lg text-gray-900 truncate">{t("achievement.no-file-chosen")}</p>
+              <!-- File name display -->
+              <p id="additional-images-file-name" class="font-normal text-gray-900 truncate">{t("achievement.no-files-chosen")}</p>
+            </div>
           </div>
           <!-- Error message -->
           <p id="additional-images-error" class="text-sm text-red-500 mt-1 p-1"></p>
@@ -218,7 +234,7 @@ const wards = [
         <div>
           <label for="submitted-by" class="text-base font-normal leading-6 text-gray-900">{t("achievement.submitted-by")} <span class="text-red-500">*</span></label>
           <input id="submitted-by" type="text" name="submitted-by" class="characters-tracker block w-full border border-gray-500 p-3 focus:outline-gray-700 placeholder-gray-500" required placeholder={t("placeholder.submitted-by")} maxlength="50"></input>
-          <p class="live-counter text-xs text-gray-500 flex justify-end mt-1 italic"></p>
+          <p class="live-counter text-xs text-gray-500 flex justify-end mt-1 italic">0/50</p>
         </div>
 
         <!-- Submit Button -->
@@ -226,10 +242,10 @@ const wards = [
           <button type="submit" class="bg-natgeo-yellow text-black text-semibold px-4 py-2 rounded-md cursor-pointer">{t("achievement.submit")}</button>
         </div>
 
-        <!-- Honeypot Spam Trap (hidden) -->
-        <div class="sr-only">
-          <label for="honeypot">Leave this blank</label>
-          <input type="text" name="honeypot" id="honeypot" tabindex="-1" autocomplete="off" />
+        <!-- Honeypot Spam Trap -->
+        <div style="display: none;">
+          <label for="blank">Leave this field blank</label>
+          <input type="text" name="blank" id="blank" tabindex="-1" autocomplete="off" />
         </div>
 
         <!-- Success Toast -->
@@ -243,7 +259,7 @@ const wards = [
   <script>
     import { achievementForm } from "~/scripts/achievement-form";
     import { Locale } from "~/enums/locale";
-    const lang = document.getElementById("achievementsForm")?.dataset.lang as Locale;
+    const lang = document.getElementById("achievementsForm")?.getAttribute("data-lang") as Locale;
     achievementForm(lang);
   </script>
 </Layout>
