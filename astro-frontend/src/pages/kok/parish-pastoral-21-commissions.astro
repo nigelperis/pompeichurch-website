@@ -1,6 +1,6 @@
 ---
 import Layout from "~/layouts/layout.astro";
-import PastoralCommission from "~/components/sections/parish-pastoral-21-commissions/pastoral-commission.astro";
+import CommissionCard from "~/components/sections/parish-pastoral-21-commissions/commission-card.astro";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import { cn } from "~/helpers/cn";
 import { Locale } from "~/enums/locale";
@@ -8,41 +8,80 @@ import type { ParishPastoral21Commission } from "~/models/parish-pastoral-21-com
 import { listPastoral21CommissionsData } from "~/services/list-parish-pastoral-21-commissions";
 import { Message } from "~/constants/message";
 
-const lang = getLangFromUrl(Astro.url);
+const lang = getLangFromUrl(Astro.url) as Locale;
 const t = useTranslations(lang);
 const title = lang === Locale.KOK
   ? "21 ಆಯೋಗ್"
   : "Parish Pastoral 21 Commissions";
-const pastoral21CommissionsEn: ParishPastoral21Commission[] =
-  (await listPastoral21CommissionsData()) || [];
-const pastoral21CommissionsKok: ParishPastoral21Commission[] =
-  (await listPastoral21CommissionsData({ locale: Locale.KOK })) || [];
+
+let pastoral21CommissionsData: ParishPastoral21Commission[] =
+  lang === Locale.EN
+    ? await listPastoral21CommissionsData({ locale: Locale.EN }) || []
+    : await listPastoral21CommissionsData({ locale: Locale.KOK }) || [];
+
+if (pastoral21CommissionsData.length === 0) {
+  pastoral21CommissionsData =
+    lang === Locale.EN
+      ? await listPastoral21CommissionsData({ locale: Locale.KOK }) || []
+      : await listPastoral21CommissionsData({ locale: Locale.EN }) || [];
+}
+
 ---
 
 <Layout title={title}>
-  <main class="mx-auto max-w-4xl overflow-hidden bg-white">
-    <section id="pastoral-commissions" class="flex flex-col p-6">
-      <h1
-        class={cn(
-          "font-black border-l-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl lg:text-4xl",
-          {
-            "font-bold pt-2": lang === Locale.KOK,
-          },
+  <main class="mx-auto max-w-screen-lg overflow-hidden bg-white">
+    <section id="pastoral-commissions" class="p-6">
+      <div class="mb-8">
+        <h1
+          class={cn(
+            "font-black border-l-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl lg:text-4xl text-gray-800",
+            {
+              "font-bold pt-2": lang === Locale.KOK,
+            },
+          )}
+        >
+          {t("nav.parish-pastoral-21-commissions")}
+        </h1>
+
+        {pastoral21CommissionsData.length > 0 && (
+          <div class="border border-gray-200 p-6 mb-8">
+            <div class="flex items-center space-x-3">
+
+              <div>
+                <h2 class="text-xl font-semibold text-gray-800">
+                  {pastoral21CommissionsData[0].coordinatorName?.position}
+                </h2>
+                <p class="text-gray-600">
+                  {pastoral21CommissionsData[0].coordinatorName?.name}
+                </p>
+              </div>
+            </div>
+          </div>
         )}
-      >
-        {t("nav.parish-pastoral-21-commissions")}
-      </h1>
+      </div>
+
       {
-        pastoral21CommissionsKok.length > 0 ? (
-          <PastoralCommission
-            pastoral21Commissions={pastoral21CommissionsKok}
-          />
-        ) : pastoral21CommissionsEn.length > 0 ? (
-          <PastoralCommission pastoral21Commissions={pastoral21CommissionsEn} />
+        pastoral21CommissionsData.length > 0 ? (
+          <div class="grid gap-8 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2">
+            {pastoral21CommissionsData[0].commissions.map((commission) => (
+              <CommissionCard
+                title={commission.commissionTitle}
+                convenor={commission.convenor}
+                subCommissions={commission.subCommissions}
+              />
+            ))}
+          </div>
         ) : (
-          <p class="py-8 text-center text-3xl font-semibold">
-            {Message.COMMISSIONS_NOT_FOUND}
-          </p>
+          <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-12 text-center">
+            <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+            </div>
+            <p class="text-xl font-semibold text-gray-700">
+              {Message.COMMISSIONS_NOT_FOUND}
+            </p>
+          </div>
         )
       }
     </section>

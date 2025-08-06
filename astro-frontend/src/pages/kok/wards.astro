@@ -11,16 +11,19 @@ import SelectWard from '~/components/ui/SelectWard.tsx';
 const lang = getLangFromUrl(Astro.url) as Locale;
 const t = useTranslations(lang);
 
-const rawWardDetails = lang === Locale.EN
-  ? await fetchWardDetails()
-  : await fetchWardDetails(Locale.KOK);
+let wardDetails = lang === Locale.EN
+  ? await fetchWardDetails() || []
+  : await fetchWardDetails(Locale.KOK) || [];
 
-const wardDetails = rawWardDetails ?? [];
+if (wardDetails.length === 0) {
+  wardDetails = lang === Locale.EN
+    ? await fetchWardDetails(Locale.KOK) || []
+    : await fetchWardDetails() || [];
+}
 
 const ogTitle = lang === Locale.KOK
   ? "ವಾಡೆ"
   : "Wards";
-
 
 const firstWardPatronImage = wardDetails.length > 0 ? wardDetails[0].patronImage : null;
 
@@ -33,7 +36,7 @@ const ogImageUrl = firstWardPatronImage ?
   title={ogTitle}
   image={ogImageUrl}
 >
-  <main class="mx-auto max-w-4xl bg-white">
+  <main class="mx-auto max-w-screen-lg overflow-hidden bg-white">
     <section class="p-6">
       <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
         <h1

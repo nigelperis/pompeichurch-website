@@ -8,19 +8,23 @@ import { listParishFinanceCommitteeData } from "~/services/list-parish-finance-c
 import type { ParishFinanceCommittee } from "~/models/parish-finance-committee";
 import { Message } from "~/constants/message";
 import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
-const lang = getLangFromUrl(Astro.url);
+
+const lang = getLangFromUrl(Astro.url) as Locale;
 const t = useTranslations(lang);
 
-const parishFinanceCommitteeDataKok: ParishFinanceCommittee[] =
-  (await listParishFinanceCommitteeData({
-    page: 1,
-    pageSize: 100,
-    locale: Locale.KOK,
-  })) || [];
-const parishFinanceCommitteeData: ParishFinanceCommittee[] =
-  (await listParishFinanceCommitteeData({ page: 1, pageSize: 100 })) || [];
+let parishFinanceCommitteeData: ParishFinanceCommittee[] =
+  lang === Locale.EN
+    ? await listParishFinanceCommitteeData({ page: 1, pageSize: 100 })
+    : await listParishFinanceCommitteeData({ page: 1, pageSize: 100, locale: Locale.KOK }) || [];
 
-const firstMemberImage = parishFinanceCommitteeDataKok[0]?.image || parishFinanceCommitteeData[0]?.image;
+if (parishFinanceCommitteeData.length === 0) {
+  parishFinanceCommitteeData =
+    lang === Locale.EN
+      ? await listParishFinanceCommitteeData({ page: 1, pageSize: 100, locale: Locale.KOK }) || []
+      : await listParishFinanceCommitteeData({ page: 1, pageSize: 100 }) || [];
+}
+
+const firstMemberImage = parishFinanceCommitteeData[0]?.image;
 
 const ogImage = firstMemberImage?.formats?.medium?.url
   ? new URL(firstMemberImage.formats.medium.url, import.meta.env.PUBLIC_STRAPI_URL).toString()
@@ -37,8 +41,8 @@ const ogTitle = lang === Locale.KOK
   : "Parish Finance Committee";
 ---
 
-<Layout title={ogTitle}  image={ogImage}>
-  <main class="mx-auto max-w-4xl overflow-hidden bg-white">
+<Layout title={ogTitle} image={ogImage}>
+  <main class="mx-auto max-w-screen-lg overflow-hidden bg-white">
     <section id="finance-committee" class="flex flex-col p-6 pb-4">
       <h1
         class={cn(
@@ -54,10 +58,6 @@ const ogTitle = lang === Locale.KOK
         parishFinanceCommitteeData.length > 0 ? (
           <ParishFinancecommitteeList
             parishFinanceCommittee={parishFinanceCommitteeData}
-          />
-        ) : parishFinanceCommitteeDataKok.length > 0 ? (
-          <ParishFinancecommitteeList
-            parishFinanceCommittee={parishFinanceCommitteeDataKok}
           />
         ) : (
           <p class="py-8 text-center text-3xl font-semibold">
