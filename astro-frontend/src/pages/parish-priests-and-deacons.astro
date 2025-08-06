@@ -9,38 +9,71 @@ import { Locale } from "~/enums/locale";
 import { ClergyRole } from "~/enums/clergy-role";
 import { cn } from "~/helpers/cn";
 import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
-const lang = getLangFromUrl(Astro.url);
+
+const lang = getLangFromUrl(Astro.url) as Locale;
 const t = useTranslations(lang);
 
-const parishPriestsKok: ParishPriestsAndDeacons[] =
-  (await listParishPriestsAndDeacons({
-    page: 1,
-    pageSize: 100,
-    locale: Locale.KOK,
-    filters: { role: { $eq: ClergyRole.PARISH_PRIEST } },
-  })) || [];
-const parishPriestsEn: ParishPriestsAndDeacons[] =
-  (await listParishPriestsAndDeacons({
-    page: 1,
-    pageSize: 100,
-    filters: { role: { $eq: ClergyRole.PARISH_PRIEST } },
-  })) || [];
+let parishPriests: ParishPriestsAndDeacons[] =
+  lang === Locale.EN
+    ? await listParishPriestsAndDeacons({
+        page: 1,
+        pageSize: 100,
+        filters: { role: { $eq: ClergyRole.PARISH_PRIEST } },
+      })
+    : await listParishPriestsAndDeacons({
+        page: 1,
+        pageSize: 100,
+        locale: Locale.KOK,
+        filters: { role: { $eq: ClergyRole.PARISH_PRIEST } },
+      }) || [];
 
-const deaconsKok: ParishPriestsAndDeacons[] =
-  (await listParishPriestsAndDeacons({
-    page: 1,
-    pageSize: 100,
-    locale: Locale.KOK,
-    filters: { role: { $eq: ClergyRole.DEACON } },
-  })) || [];
-const deaconsEn: ParishPriestsAndDeacons[] =
-  (await listParishPriestsAndDeacons({
-    page: 1,
-    pageSize: 100,
-    filters: { role: { $eq: ClergyRole.DEACON } },
-  })) || [];
+if (parishPriests.length === 0) {
+  parishPriests =
+    lang === Locale.EN
+      ? await listParishPriestsAndDeacons({
+          page: 1,
+          pageSize: 100,
+          locale: Locale.KOK,
+          filters: { role: { $eq: ClergyRole.PARISH_PRIEST } },
+        }) || []
+      : await listParishPriestsAndDeacons({
+          page: 1,
+          pageSize: 100,
+          filters: { role: { $eq: ClergyRole.PARISH_PRIEST } },
+        }) || [];
+}
 
-const firstPriestImage = parishPriestsKok[0]?.image || parishPriestsEn[0]?.image;
+let deacons: ParishPriestsAndDeacons[] =
+  lang === Locale.EN
+    ? await listParishPriestsAndDeacons({
+        page: 1,
+        pageSize: 100,
+        filters: { role: { $eq: ClergyRole.DEACON } },
+      })
+    : await listParishPriestsAndDeacons({
+        page: 1,
+        pageSize: 100,
+        locale: Locale.KOK,
+        filters: { role: { $eq: ClergyRole.DEACON } },
+      }) || [];
+
+if (deacons.length === 0) {
+  deacons =
+    lang === Locale.EN
+      ? await listParishPriestsAndDeacons({
+          page: 1,
+          pageSize: 100,
+          locale: Locale.KOK,
+          filters: { role: { $eq: ClergyRole.DEACON } },
+        }) || []
+      : await listParishPriestsAndDeacons({
+          page: 1,
+          pageSize: 100,
+          filters: { role: { $eq: ClergyRole.DEACON } },
+        }) || [];
+}
+
+const firstPriestImage = parishPriests[0]?.image || deacons[0]?.image;
 
 const ogImage = firstPriestImage?.formats?.medium?.url
   ? new URL(firstPriestImage.formats.medium.url, import.meta.env.PUBLIC_STRAPI_URL).toString()
@@ -64,8 +97,7 @@ const ogDescription =
 ---
 
 <Layout title={ogTitle} description={ogDescription} image={ogImage}>
-
-  <main class="mx-auto max-w-4xl overflow-hidden bg-white">
+  <main class="mx-auto max-w-screen-lg overflow-hidden bg-white">
     <section id="parish-priests-and-deacons" class="flex flex-col p-6 pb-4">
       <h1
         class={cn(
@@ -84,14 +116,8 @@ const ogDescription =
         {t("parish-priests")}
       </h2>
       {
-        parishPriestsKok.length > 0 ? (
-          <ParishPriestsAndDeaconsList
-            parishPriestsAndDeacons={parishPriestsKok}
-          />
-        ) : parishPriestsEn.length > 0 ? (
-          <ParishPriestsAndDeaconsList
-            parishPriestsAndDeacons={parishPriestsEn}
-          />
+        parishPriests.length > 0 ? (
+          <ParishPriestsAndDeaconsList parishPriestsAndDeacons={parishPriests} />
         ) : (
           <p class="py-8 text-center text-3xl font-semibold">
             {Message.PARISH_PRIESTS_NOT_FOUND}
@@ -102,10 +128,8 @@ const ogDescription =
         {t("deacons")}
       </h2>
       {
-        deaconsKok.length > 0 ? (
-          <ParishPriestsAndDeaconsList parishPriestsAndDeacons={deaconsKok} />
-        ) : deaconsEn.length > 0 ? (
-          <ParishPriestsAndDeaconsList parishPriestsAndDeacons={deaconsEn} />
+        deacons.length > 0 ? (
+          <ParishPriestsAndDeaconsList parishPriestsAndDeacons={deacons} />
         ) : (
           <p class="py-8 text-center text-3xl font-semibold">
             {Message.DEACONS_NOT_FOUND}

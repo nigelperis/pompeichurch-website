@@ -10,19 +10,22 @@ import { Locale } from "~/enums/locale";
 import { cn } from "~/helpers/cn";
 import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
 
-const lang = getLangFromUrl(Astro.url);
+const lang = getLangFromUrl(Astro.url) as Locale;
 const t = useTranslations(lang);
 
-const parishPastoralCouncilDataKok: ParishPastoralCouncil[] =
-  (await listPastoralCouncilData({
-    page: 1,
-    pageSize: 100,
-    locale: Locale.KOK,
-  })) || [];
-const parishPastoralCouncilData: ParishPastoralCouncil[] =
-  (await listPastoralCouncilData({ page: 1, pageSize: 100 })) || [];
-const parishPastoralCouncilImage = await getPastoralCouncilImage();
+let parishPastoralCouncilData: ParishPastoralCouncil[] =
+  lang === Locale.EN
+    ? await listPastoralCouncilData({ page: 1, pageSize: 100 })
+    : await listPastoralCouncilData({ page: 1, pageSize: 100, locale: Locale.KOK }) || [];
 
+if (parishPastoralCouncilData.length === 0) {
+  parishPastoralCouncilData =
+    lang === Locale.EN
+      ? await listPastoralCouncilData({ page: 1, pageSize: 100, locale: Locale.KOK }) || []
+      : await listPastoralCouncilData({ page: 1, pageSize: 100 }) || [];
+}
+
+const parishPastoralCouncilImage = await getPastoralCouncilImage();
 
 const ogImage = parishPastoralCouncilImage?.pastoralCouncilImage?.formats?.medium?.url
   ? new URL(parishPastoralCouncilImage.pastoralCouncilImage.formats.medium.url, import.meta.env.PUBLIC_STRAPI_URL).toString()
@@ -37,11 +40,10 @@ const ogImage = parishPastoralCouncilImage?.pastoralCouncilImage?.formats?.mediu
 const ogTitle = lang === Locale.KOK
   ? "ಗೊವ್ಳಿಕ್ ಪರಿಷಧ್"
   : "Parish Pastoral Council";
-
 ---
 
-<Layout title={ogTitle}  image={ogImage}>
-  <main class="mx-auto max-w-4xl overflow-hidden bg-white">
+<Layout title={ogTitle} image={ogImage}>
+  <main class="mx-auto max-w-screen-lg overflow-hidden bg-white">
     <section id="pastoral-council" class="flex flex-col p-6 pb-4">
       <h1
         class={cn(
@@ -59,24 +61,10 @@ const ogTitle = lang === Locale.KOK
             pastoralCouncilData={parishPastoralCouncilData}
             pastoralCouncilImage={parishPastoralCouncilImage}
           />
-        ) : parishPastoralCouncilDataKok.length > 0 ? (
-          <ParishPastoralCouncilList
-            pastoralCouncilData={parishPastoralCouncilDataKok}
-            pastoralCouncilImage={parishPastoralCouncilImage}
-          />
         ) : (
-          <>
-            {" "}
-            (
-            <ParishPastoralCouncilList
-              pastoralCouncilData={parishPastoralCouncilData}
-              pastoralCouncilImage={parishPastoralCouncilImage}
-            />
-            <p class="py-8 text-center text-3xl font-semibold">
-              {Message.COUNCIL_MEMBERS_NOT_FOUND}
-            </p>
-            )
-          </>
+          <p class="py-8 text-center text-3xl font-semibold">
+            {Message.COUNCIL_MEMBERS_NOT_FOUND}
+          </p>
         )
       }
     </section>

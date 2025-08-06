@@ -27,7 +27,7 @@ interface ParishPastoral21Commission {
   updatedAt: string;
   publishedAt: string;
   locale: Locale;
-  coordinatorName: CoordinatorName[];
+  coordinatorName: CoordinatorName;
   commissions: CommissionBlock[];
 }
 

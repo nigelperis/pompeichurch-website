@@ -19,9 +19,9 @@ const { pastoralCouncilImage } = Astro.props;
       : getPlaceholderImage({ text: "Parish Pastoral Council" })}
     width={pastoralCouncilImage?.pastoralCouncilImage?.width || 600}
     height={pastoralCouncilImage?.pastoralCouncilImage?.height || 400}
-    class="w-full object-contain pb-4 pt-4"
+    class="w-full object-contain pb-10 pt-10"
   />
-  <table class="mx-auto w-full max-w-4xl border border-gray-200">
+  <table class="mx-auto w-full border border-gray-200">
     <tbody>
       {
         pastoralCouncilData.map((member) => {
