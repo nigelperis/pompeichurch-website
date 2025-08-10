@@ -25,12 +25,6 @@ let pageTitle = `${t("landing.church-name")} | ${t("landing.town-name")}`;
 let pageDescription = "";
 let pageImage = "https://pompeichurch.in/church-hero.jpg";
 if (section === "upcoming-events") {
-  pageTitle =
-    lang === Locale.KOK
-      ? "ಯೆವ್ಪಿ ಕಾರ್ಯಾವಳಿ | ಗುರ್ಪುರ್ ಪೊಂಪಯ್ ಮಾಯೆಕ್ ಫಿರ್ಗಜ್"
-      : "Upcoming Events | Our Lady of Pompei Church | Gurpur Kaikamba";
-
-
   try {
     const today = new Date();
     const upcomingEvents = await listUpcomingEvents();
@@ -78,8 +72,16 @@ if (section === "upcoming-events") {
   document.addEventListener("DOMContentLoaded", () => {
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get("section") === "upcoming-events") {
-      const element = document.getElementById("upcoming-events");
-      if (element) element.scrollIntoView({ behavior: "smooth" });
+      const scrollToSection = () => {
+        const element = document.getElementById("upcoming-events");
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        } else {
+
+          requestAnimationFrame(scrollToSection);
+        }
+      };
+      scrollToSection();
     }
   });
 </script>
