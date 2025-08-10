@@ -5,7 +5,7 @@ import { cn } from "~/helpers/cn";
 import { getFuneralPrayer } from "~/helpers/get-funeral-prayer";
 import { getWardNameKok } from "~/helpers/get-ward-names-kok";
 import { RelationType } from "~/enums/obituary";
-import BlankImg from "~/assets/static-assets/blank.jpeg";
+import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
 import ShareLink from "~/components/ui/ShareLink";
 import CloseIcon from "~/assets/react-icons/x.svg?react";
 import YoutubeIcon from "~/assets/react-icons/youtube.svg?react";
@@ -149,7 +149,7 @@ export default function ObituaryCard({
 }: Props) {
   const [flipped, setFlipped] = useState(false);
   const obituaryUrl =
-  lang === Locale.EN ? `/obituary/${slug}/` : `/kok/obituary/${slug}/`;
+    lang === Locale.EN ? `/obituary/${slug}/` : `/kok/obituary/${slug}/`;
 
   const cardId = typeof id === "string" ? id : String(id ?? "no-id");
 
@@ -200,9 +200,6 @@ export default function ObituaryCard({
     }
   }
 
-  const displayImage = imageUrl || BlankImg.src;
-
-  // Show flip button if funeralDetails exists, regardless of freshness
   const showFlip =
     funeralDetails && funeralDetails.trim().length > 0 && isDetailsFresh;
 
@@ -237,7 +234,7 @@ export default function ObituaryCard({
         >
           <div className="aspect-[3/4] bg-gray-100 relative">
             <img
-              src={displayImage}
+              src={imageUrl}
               alt={`Image of ${name}`}
               width={imageWidth}
               height={imageHeight}
@@ -282,21 +279,16 @@ export default function ObituaryCard({
                 </p>
               )}
             </div>
-    <div className="absolute bottom-4 right-2 flex items-center gap-2 ">
-      <WhatsAppShare
-  shareData={{      title: name,
-      url: obituaryUrl, }}
-/>
-  <ShareLink
-    className="cursor-pointer transform transition-transform duration-1000 hover:scale-110"
-    shareData={{
-      title: name,
-      url: obituaryUrl,
-    }}
-  />
-
-</div>
-
+            <div className="absolute bottom-4 right-2 flex items-center gap-2 ">
+              <WhatsAppShare shareData={{ title: name, url: obituaryUrl }} />
+              <ShareLink
+                className="cursor-pointer transform transition-transform duration-1000 hover:scale-110"
+                shareData={{
+                  title: name,
+                  url: obituaryUrl,
+                }}
+              />
+            </div>
           </div>
         </div>
         {/* Back side */}

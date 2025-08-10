@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { Locale } from "~/enums/locale";
 import { useTranslations } from "~/i18n/utils";
 import { cn } from "~/helpers/cn";
-import BlankImg from "~/assets/static-assets/blank.jpeg";
 import ShareLink from "~/components/ui/ShareLink";
 import CoffinIcon from "~/assets/react-icons/coffin.svg?react";
 import InfoIcon from "~/assets/react-icons/info.svg?react";
@@ -119,6 +118,8 @@ export default function ObituaryCardMin({
   name,
   age,
   dateOfDeath,
+  imageWidth,
+  imageHeight,
   imageUrl,
   slug,
   blurred = false,
@@ -130,7 +131,7 @@ export default function ObituaryCardMin({
 }: Props) {
   const [flipped, setFlipped] = useState(false);
   const obituaryUrl =
-  lang === Locale.EN ? `/obituary/${slug}/` : `/kok/obituary/${slug}/`;
+    lang === Locale.EN ? `/obituary/${slug}/` : `/kok/obituary/${slug}/`;
 
   let updatedAt: Date | null = null;
   if (funeralDetailsUpdatedAt) {
@@ -185,8 +186,6 @@ export default function ObituaryCardMin({
     }
   }
 
-  const displayImage = imageUrl || BlankImg.src;
-
   const cardId = typeof id === "string" ? id : String(id ?? "no-id");
 
   // BLURRED Minimal Card (View All)
@@ -198,8 +197,10 @@ export default function ObituaryCardMin({
             <div className="opacity-50 blur-md">
               <div className="card-image flex-none">
                 <img
-                  src={displayImage}
+                  src={imageUrl}
                   alt={`Image of ${name}`}
+                  width={imageWidth}
+                  height={imageHeight}
                   className="h-[300px] w-full object-cover border-none"
                   loading="lazy"
                 />
@@ -234,10 +235,10 @@ export default function ObituaryCardMin({
           {/* render the standard minimal card */}
           <div className="card-image flex-none">
             <img
-              src={displayImage}
+              src={imageUrl}
               alt={`Image of ${name}`}
-              width={300}
-              height={300}
+              width={imageWidth}
+              height={imageHeight}
               className="h-[300px] w-full object-cover border-none"
               loading="lazy"
             />
@@ -254,26 +255,23 @@ export default function ObituaryCardMin({
                 </p>
               )}
             </div>
-      <div className="absolute bottom-2 right-2 flex items-center gap-2 ">
-        <WhatsAppShare
-         shareData={{
-              title: name,
-              url: obituaryUrl,
-            }}
-            size={28}
-
-/>
-  <ShareLink
-    className="cursor-pointer transform transition-transform duration-1000 hover:scale-110"
-         shareData={{
-              title: name,
-              url: obituaryUrl,
-            }}
-            size={28}
-
-  />
-
-</div>
+            <div className="absolute bottom-2 right-2 flex items-center gap-2 ">
+              <WhatsAppShare
+                shareData={{
+                  title: name,
+                  url: obituaryUrl,
+                }}
+                size={28}
+              />
+              <ShareLink
+                className="cursor-pointer transform transition-transform duration-1000 hover:scale-110"
+                shareData={{
+                  title: name,
+                  url: obituaryUrl,
+                }}
+                size={28}
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -310,10 +308,10 @@ export default function ObituaryCardMin({
         >
           <div className="flex-none relative">
             <img
-              src={displayImage}
+              src={imageUrl}
               alt={`Image of ${name}`}
-              width={300}
-              height={300}
+              width={imageWidth}
+              height={imageHeight}
               className="h-[300px] w-full object-cover border-none"
               loading="lazy"
             />
@@ -337,25 +335,23 @@ export default function ObituaryCardMin({
             )}
           </div>
           {/* Share Icon */}
-    <div className="absolute bottom-2 right-2 flex items-center gap-2 ">
-      <WhatsAppShare
-         shareData={{
-              title: name,
-              url: obituaryUrl,
-            }}
-            size={28}
-
-/>
-  <ShareLink
-    className="cursor-pointer transform transition-transform duration-1000 hover:scale-110"
-         shareData={{
-              title: name,
-              url: obituaryUrl,
-            }}
-                  size={28}
-  />
-
-</div>
+          <div className="absolute bottom-2 right-2 flex items-center gap-2 ">
+            <WhatsAppShare
+              shareData={{
+                title: name,
+                url: obituaryUrl,
+              }}
+              size={28}
+            />
+            <ShareLink
+              className="cursor-pointer transform transition-transform duration-1000 hover:scale-110"
+              shareData={{
+                title: name,
+                url: obituaryUrl,
+              }}
+              size={28}
+            />
+          </div>
         </div>
         {/* --- BACK SIDE (Funeral Details) --- */}
         {showFlip && (
