@@ -12,7 +12,8 @@ export default function SelectWardRedirect({
   placeholder = "Select Ward…",
 }: SelectWardRedirectProps) {
   const [value, setValue] = React.useState("");
-  const [dynamicPlaceholder, setDynamicPlaceholder] = React.useState(placeholder);
+  const [dynamicPlaceholder, setDynamicPlaceholder] =
+    React.useState(placeholder);
   const [isKonkani, setIsKonkani] = React.useState(false);
   const triggerRef = React.useRef<HTMLButtonElement>(null);
   const [triggerWidth, setTriggerWidth] = React.useState(0);
@@ -26,12 +27,14 @@ export default function SelectWardRedirect({
     if (wardParam) {
       const wardName = wardParam.replace(/-/g, " ");
       const matchingWard = wards.find(
-        ward => ward.name.toLowerCase() === wardName.toLowerCase()
+        (ward) => ward.name.toLowerCase() === wardName.toLowerCase(),
       );
       if (matchingWard) {
         setDynamicPlaceholder(matchingWard.label);
       } else {
-        setDynamicPlaceholder(wardName.replace(/\b\w/g, l => l.toUpperCase()));
+        setDynamicPlaceholder(
+          wardName.replace(/\b\w/g, (l) => l.toUpperCase()),
+        );
       }
     } else {
       setDynamicPlaceholder(placeholder);
@@ -57,15 +60,18 @@ export default function SelectWardRedirect({
   React.useEffect(() => {
     if (value) {
       const basePath = isKonkani ? "/kok/obituary" : "/obituary";
-      const query = value === "__all__" ? "" : `?ward=${value.toLowerCase().replace(/\s+/g, "-")}`;
+      const query =
+        value === "__all__"
+          ? ""
+          : `?ward=${value.toLowerCase().replace(/\s+/g, "-")}`;
       window.location.href = `${basePath}${query}`;
     }
   }, [value, isKonkani]);
 
-  const options = React.useMemo(() => [
-    { name: "__all__", label: isKonkani ? "ಸಗ್ಳೆಂ" : "All" },
-    ...wards,
-  ], [isKonkani, wards]);
+  const options = React.useMemo(
+    () => [{ name: "__all__", label: isKonkani ? "ಸಗ್ಳೆಂ" : "All" }, ...wards],
+    [isKonkani, wards],
+  );
 
   return (
     <Radix.Root value={value} onValueChange={setValue}>
@@ -75,7 +81,7 @@ export default function SelectWardRedirect({
         aria-label={dynamicPlaceholder}
       >
         <Radix.Value placeholder={dynamicPlaceholder} />
-        <ChevronDown width={24} height={24} className="text-slate-600" />
+        <ChevronDown width={24} height={24} className="text-slate-700" />
       </Radix.Trigger>
 
       <Radix.Portal>

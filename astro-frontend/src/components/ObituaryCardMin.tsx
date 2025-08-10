@@ -207,12 +207,16 @@ export default function ObituaryCardMin({
               </div>
               <div className="flex flex-1 flex-col justify-start space-y-1 p-3">
                 <div className="space-y-1">
-                  <p className="text-lg font-bold leading-snug text-gray-800">
-                    {name}
-                    {age ? ` (${age})` : ""}
+                  <p className="text-lg font-bold leading-snug text-slate-900 flex items-center">
+                    <span className="truncate max-w-[190px]" title={name}>
+                      {name}
+                    </span>
+                    {age ? (
+                      <span className="flex-shrink-0">&nbsp;({age})</span>
+                    ) : null}
                   </p>
                   {dateOfDeath && (
-                    <p className="text-gray-600">
+                    <p className="text-slate-700">
                       {labels.death}: {formattedDate}
                     </p>
                   )}
@@ -245,12 +249,17 @@ export default function ObituaryCardMin({
           </div>
           <div className="flex flex-1 flex-col justify-start space-y-1 p-3">
             <div className="space-y-1">
-              <p className="text-lg font-bold leading-snug text-gray-800">
-                {name}
-                {age ? ` (${age})` : ""}
+              <p className="text-lg font-bold leading-snug text-slate-900 flex items-center">
+                <span className="truncate max-w-[190px]" title={name}>
+                  {name}
+                </span>
+                {age ? (
+                  <span className="flex-shrink-0">&nbsp;({age})</span>
+                ) : null}
               </p>
+
               {dateOfDeath && (
-                <p className="text-gray-600">
+                <p className="text-slate-700">
                   {labels.death}: {formattedDate}
                 </p>
               )}
@@ -324,12 +333,17 @@ export default function ObituaryCardMin({
             )}
           </div>
           <div className="flex flex-1 flex-col justify-start space-y-1 p-3">
-            <p className="text-lg font-bold leading-snug text-gray-800">
-              {name}
-              {age ? ` (${age})` : ""}
+            <p className="text-lg font-bold leading-snug text-slate-900 flex items-center">
+              <span className="truncate max-w-[190px]" title={name}>
+                {name}
+              </span>
+              {age ? (
+                <span className="flex-shrink-0">&nbsp;({age})</span>
+              ) : null}
             </p>
+
             {dateOfDeath && (
-              <p className="text-gray-600">
+              <p className="text-slate-700">
                 {labels.death}: {formattedDate}
               </p>
             )}

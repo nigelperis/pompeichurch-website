@@ -333,7 +333,7 @@ export default function ObituaryCard({
               {funeralPrayer && (
                 <blockquote
                   className={cn(
-                    "text-gray-800",
+                    "text-slate-900",
                     lang === Locale.KOK
                       ? "font-noto-sans-kannada text-lg md:text-base text-center mb-12 md:mb-8"
                       : "font-roboto text-xl sm:text-xl md:text-base text-center mb-14",
@@ -344,10 +344,10 @@ export default function ObituaryCard({
               )}
               <p
                 className={cn(
-                  "font-semibold text-gray-600 text-center mb-4",
+                  "font-semibold text-slate-700 text-center mb-4",
                   lang === Locale.KOK
-                    ? "font-noto-sans-kannada text-gray-600 text-lg md:text-base"
-                    : "font-roboto text-gray-600 text-lg md:text-[15px]",
+                    ? "font-noto-sans-kannada text-slate-700 text-lg md:text-base"
+                    : "font-roboto text-slate-700 text-lg md:text-[15px]",
                 )}
               >
                 {t("funeral.subtitle")}
