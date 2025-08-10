@@ -17,13 +17,15 @@ import UpcomingEventsSection from "~/components/sections/landing-page/upcoming-e
 import ObituarySection from "~/components/sections/landing-page/obituary-section.astro";
 import stayTuned from "~/assets/static-assets/stay-tuned.png";
 import stayTunedKok from "~/assets/static-assets/stay-tuned-kok.png";
+
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const url = new URL(Astro.request.url);
 const section = url.searchParams.get("section");
+
 let pageTitle = `${t("landing.church-name")} | ${t("landing.town-name")}`;
-let pageDescription = "";
 let pageImage = "https://pompeichurch.in/church-hero.jpg";
+
 if (section === "upcoming-events") {
   try {
     const today = new Date();
@@ -49,11 +51,7 @@ if (section === "upcoming-events") {
 }
 ---
 
-<Layout
-  title={pageTitle}
-  image={pageImage}
-  url={url.toString()}
->
+<Layout title={pageTitle} image={pageImage} url={url.toString()}>
   <main>
     <HeroSection />
     <LandingCarousel />
@@ -69,19 +67,41 @@ if (section === "upcoming-events") {
 </Layout>
 
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
+  function scrollToSection() {
     const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get("section") === "upcoming-events") {
-      const scrollToSection = () => {
-        const element = document.getElementById("upcoming-events");
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth" });
-        } else {
+    const section = urlParams.get("section");
 
-          requestAnimationFrame(scrollToSection);
-        }
-      };
-      scrollToSection();
+    if (section === "upcoming-events") {
+      const element = document.getElementById("upcoming-events");
+
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+        }, 100);
+      } else {
+
+        setTimeout(() => {
+          const retryElement = document.getElementById("upcoming-events");
+          if (retryElement) {
+            retryElement.scrollIntoView({
+              behavior: "smooth",
+              block: "start"
+            });
+          }
+        }, 500);
+      }
     }
-  });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', scrollToSection);
+  } else {
+    scrollToSection();
+  }
+  window.addEventListener('load', scrollToSection);
+
+  window.addEventListener('popstate', scrollToSection);
 </script>
