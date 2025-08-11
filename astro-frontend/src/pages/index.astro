@@ -1,6 +1,10 @@
 ---
 import Layout from "~/layouts/layout.astro";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
+import { Locale } from "~/enums/locale";
+import { listUpcomingEvents } from "~/services/list-upcoming-events";
+import { parseISO } from "date-fns";
+import { fromZonedTime } from "date-fns-tz";
 import HeroSection from "~/components/sections/landing-page/hero-section.astro";
 import ParishPriestSpeaks from "~/components/sections/landing-page/parish-priest-speaks-section.astro";
 import AboutChurch from "~/components/sections/landing-page/about-church-section.astro";
@@ -11,31 +15,93 @@ import ChurchEventsSection from "~/components/sections/landing-page/church-event
 import LandingCarousel from "~/components/sections/landing-page/landing-carousel.astro";
 import UpcomingEventsSection from "~/components/sections/landing-page/upcoming-events-section.astro";
 import ObituarySection from "~/components/sections/landing-page/obituary-section.astro";
+import stayTuned from "~/assets/static-assets/stay-tuned.png";
+import stayTunedKok from "~/assets/static-assets/stay-tuned-kok.png";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+const url = new URL(Astro.request.url);
+const section = url.searchParams.get("section");
+
+let pageTitle = `${t("landing.church-name")} | ${t("landing.town-name")}`;
+let pageImage = "https://pompeichurch.in/church-hero.jpg";
+
+if (section === "upcoming-events") {
+  try {
+    const today = new Date();
+    const upcomingEvents = await listUpcomingEvents();
+    const filteredEvents = upcomingEvents.filter((event) => {
+      if (!event.eventEndDate) return false;
+      const eventDate = parseISO(event.eventEndDate);
+      return fromZonedTime(eventDate, "Asia/Kolkata") > today;
+    });
+
+    if (filteredEvents.length > 0 && filteredEvents[0].eventImage?.url) {
+      pageImage = new URL(
+        filteredEvents[0].eventImage.url,
+        import.meta.env.PUBLIC_STRAPI_URL
+      ).toString();
+    } else {
+      pageImage = lang === Locale.KOK ? stayTunedKok.src : stayTuned.src;
+    }
+  } catch (error) {
+    console.error("Could not load dynamic event image:", error);
+    pageImage = lang === Locale.KOK ? stayTunedKok.src : stayTuned.src;
+  }
+}
 ---
 
-<Layout title={`${t("landing.church-name")} | ${t("landing.town-name")}`}>
+<Layout title={pageTitle} image={pageImage} url={url.toString()}>
   <main>
     <HeroSection />
-
     <LandingCarousel />
-
     <ParishPriestSpeaks />
-
     <AboutChurch />
-
     <PastoralParishadSection />
-
     <UpcomingEventsSection />
-
     <ChurchEventsSection />
-
     <ObituarySection />
-
     <SocialGrid />
-
     <MassTimingsSection />
   </main>
 </Layout>
+
+<script>
+  function scrollToSection() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const section = urlParams.get("section");
+
+    if (section === "upcoming-events") {
+      const element = document.getElementById("upcoming-events");
+
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+        }, 100);
+      } else {
+
+        setTimeout(() => {
+          const retryElement = document.getElementById("upcoming-events");
+          if (retryElement) {
+            retryElement.scrollIntoView({
+              behavior: "smooth",
+              block: "start"
+            });
+          }
+        }, 500);
+      }
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', scrollToSection);
+  } else {
+    scrollToSection();
+  }
+  window.addEventListener('load', scrollToSection);
+
+  window.addEventListener('popstate', scrollToSection);
+</script>
