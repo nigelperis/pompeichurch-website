@@ -16,7 +16,7 @@ const { slug } = Astro.params;
 const lang = getLangFromUrl(Astro.url);
 
 const event = await getEvent(slug ?? "");
-const { events: allEvents } = await listEvents();
+
 
 const eventUrl =
   lang === Locale.EN ? `/events/${slug}/` : `/kok/events/${slug}/`;
@@ -40,6 +40,13 @@ const eventImage = event?.eventImage ?? {
   width: 600,
   height: 400,
 };
+
+const { pagination: initialPagination } = await listEvents({ pageSize: 1 });
+const totalEvents = initialPagination.total;
+
+const { events: allEvents } = await listEvents({
+  pageSize: totalEvents
+});
 
 const eventIndex = allEvents.findIndex((e) => e.slug === slug);
 const prevEvent = allEvents[eventIndex - 1];
