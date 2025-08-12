@@ -19,7 +19,18 @@ if (!selectedObituary) {
 }
 
 const baseURL = import.meta.env.PUBLIC_STRAPI_URL;
-const absoluteImageURL = selectedObituary.image?.url
+const absoluteImage = selectedObituary.image?.formats?.medium?.url
+  ? new URL(selectedObituary.image.formats.medium.url, baseURL).toString()
+  : selectedObituary.image?.url
+    ? new URL(selectedObituary.image.url, baseURL).toString()
+    : getPlaceholderImage({
+        text: selectedObituary.englishName,
+        width: 340,
+        height: 400,
+      });
+
+
+const obituaryImage = selectedObituary.image?.url
   ? new URL(selectedObituary.image.url, baseURL).toString()
   : getPlaceholderImage({
       text: selectedObituary.englishName,
@@ -42,7 +53,7 @@ const pageTitle = selectedObituary
 <Layout
   title={`${pageTitle} ${selectedObituary?.age ? `(${selectedObituary.age})` : ""}`}
   description={selectedObituary.ward ?? "Pompei Church Obituaries"}
-  image={absoluteImageURL}
+  image={absoluteImage}
   url={obituaryUrl}
 >
   <main class="mx-auto max-w-screen-lg overflow-hidden bg-white p-6">
@@ -78,7 +89,7 @@ const pageTitle = selectedObituary
         dateOfDeath={selectedObituary.dateOfDeath ? new Date(selectedObituary.dateOfDeath).toISOString() : ""}
         imageWidth={340}
         imageHeight={400}
-        imageUrl={absoluteImageURL}
+        imageUrl={obituaryImage}
         slug={selectedObituary.slug}
         funeralDetails={selectedObituary.funeralDetails}
         funeralDetailsUpdatedAt={selectedObituary.funeralDetailsUpdatedAt}
