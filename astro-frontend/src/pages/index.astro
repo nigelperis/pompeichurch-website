@@ -23,7 +23,17 @@ const t = useTranslations(lang);
 const url = new URL(Astro.request.url);
 const section = url.searchParams.get("section");
 
-let pageTitle = `${t("landing.church-name")} | ${t("landing.town-name")}`;
+let pageTitle;
+
+if (section === "upcoming-events") {
+  pageTitle =
+    lang === Locale.KOK
+      ? `ಫುಡ್ಲಿಂ ಕಾರ್ಯಿಂ `
+      : `Upcoming Events`;
+} else {
+  pageTitle = `${t("landing.church-name")} | ${t("landing.town-name")}`;
+}
+
 let pageImage = "https://pompeichurch.in/church-hero.jpg";
 
 if (section === "upcoming-events") {
