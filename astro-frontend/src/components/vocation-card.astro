@@ -43,28 +43,28 @@ const { imageUrl, name, ward, dob, dod, congregation, parents, role } =
     }
     {
       ward && (
-        <p class="mb-1 italic text-gray-600 lg:text-sm">
+        <p class="mb-1 italic text-slate-700 lg:text-sm">
           <span class="font-semibold">{t("vocation.ward")}</span> {ward}
         </p>
       )
     }
     {
       dob && (
-        <p class="mb-1 text-gray-600 lg:text-sm">
+        <p class="mb-1 text-slate-700 lg:text-sm">
           <span class="font-semibold">{t("vocation.dob")}</span> {dob}
         </p>
       )
     }
     {
       dod && (
-        <p class="mb-1 text-gray-600 lg:text-sm">
+        <p class="mb-1 text-slate-700 lg:text-sm">
           <span class="font-semibold">{t("vocation.dod")}</span> {dod}
         </p>
       )
     }
     {
       parents && role && (
-        <p class="mb-1 text-gray-600 lg:text-sm">
+        <p class="mb-1 text-slate-700 lg:text-sm">
           <span class="font-semibold">
             {role === "nun" ? t("vocation.do") : t("vocation.so")}
           </span>

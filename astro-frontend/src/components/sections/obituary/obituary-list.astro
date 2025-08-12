@@ -15,8 +15,18 @@ const obituaryDataFormatted = obituaries
       ? new Date(obituary.dateOfDeath)
       : new Date(0);
 
+    // Consistent image handling with standardized dimensions
+    const imageUrl = obituary.image?.url
+      ? new URL(obituary.image.url, import.meta.env.PUBLIC_STRAPI_URL).toString()
+      : getPlaceholderImage({
+          text: obituary.englishName,
+          width: 340,
+          height: 400
+        });
+
     return {
       ...obituary,
+      imageUrl,
       formattedDate: obituary.dateOfDeath
         ? format(rawDate, "dd MMMM, yyyy")
         : "Unknown Date",
@@ -35,16 +45,9 @@ const obituaryDataFormatted = obituaries
         client:load
         id={item.englishName}
         name={lang === Locale.EN ? item.englishName : item.konkaniName}
-        imageUrl={
-          item.image?.url
-            ? new URL(
-                item.image.url,
-                import.meta.env.PUBLIC_STRAPI_URL,
-              ).toString()
-            : getPlaceholderImage({ text: item.englishName })
-        }
-        imageWidth={item.image?.width ?? 0}
-        imageHeight={item.image?.height ?? 0}
+        imageUrl={item.imageUrl}
+        imageWidth={340}
+        imageHeight={400}
         age={item.age}
         ward={item.ward}
         dateOfDeath={item.formattedDate}

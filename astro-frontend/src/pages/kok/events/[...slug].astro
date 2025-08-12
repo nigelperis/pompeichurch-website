@@ -23,15 +23,7 @@ const eventUrl =
 
 const baseURL = import.meta.env.PUBLIC_STRAPI_URL;
 
-const absoluteImageURL = new URL(
-  event?.eventImage?.formats?.medium?.url ??
-    getPlaceholderImage({
-      width: 1200,
-      height: 630,
-      text: event?.englishTitle,
-    }),
-  baseURL,
-).href;
+
 
 const ogUrl = new URL(eventUrl, SITE_URL).href;
 
@@ -40,6 +32,15 @@ const eventImage = event?.eventImage ?? {
   width: 600,
   height: 400,
 };
+const ogImage = (eventImage && "formats" in eventImage && eventImage.formats?.medium?.url)
+  ? new URL(eventImage.formats.medium.url, baseURL).toString()
+  : eventImage?.url
+    ? new URL(eventImage.url, baseURL).toString()
+    : getPlaceholderImage({
+        width: 800,
+        height: 600,
+        text: event?.englishTitle || "Parish Finance Committee",
+      });
 
 const { pagination: initialPagination } = await listEvents({ pageSize: 1 });
 const totalEvents = initialPagination.total;
@@ -48,6 +49,7 @@ const { events: allEvents } = await listEvents({
   pageSize: totalEvents
 });
 
+const absoluteImageURL = ogImage;
 const eventIndex = allEvents.findIndex((e) => e.slug === slug);
 const prevEvent = allEvents[eventIndex - 1];
 const nextEvent = allEvents[eventIndex + 1];
@@ -128,7 +130,7 @@ if (!event) {
                 rel="prev"
                 class={`flex items-center gap-3 rounded-lg border border-gray-300 px-4 py-3 shadow-md transition-colors hover:border-black ${nextEvent ? "sm:w-1/2" : "w-full"}`}
               >
-                <div class="shrink-0 text-3xl text-gray-800">
+                <div class="shrink-0 text-3xl text-slate-900">
                   <Icon name="chevron-left" class="stroke-2" />
                 </div>
                 <span class="flex-1">
@@ -146,7 +148,7 @@ if (!event) {
                 rel="next"
                 class={`flex flex-row-reverse items-center gap-3 rounded-lg border border-gray-300 px-4 py-3 text-right shadow-md transition-colors hover:border-black ${prevEvent ? "sm:w-1/2" : "w-full"}`}
               >
-                <div class="shrink-0 text-3xl text-gray-800">
+                <div class="shrink-0 text-3xl text-slate-900">
                   <Icon name="chevron-right" class="stroke-2" />
                 </div>
                 <span class="flex-1">

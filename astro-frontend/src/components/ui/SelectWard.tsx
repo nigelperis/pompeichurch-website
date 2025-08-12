@@ -50,7 +50,7 @@ export default function SelectWard({
         aria-label={placeholder}
       >
         <Radix.Value placeholder={placeholder} />
-        <ChevronDown width={24} height={24} className="text-slate-600" />
+        <ChevronDown width={24} height={24} className="text-slate-700" />
       </Radix.Trigger>
 
       <Radix.Portal>
