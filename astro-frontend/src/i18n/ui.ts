@@ -569,7 +569,7 @@ export const ui = {
       "ದಯಾಕರ್ನ್ JPG, JPEG ವಾ PNG ರುಪಾಚಿ ತಸ್ವೀರ್ ವಿಂಚಾ.",
     "achievement.additional-images-error": "ದಯಾಕರ್ನ್ ಕೇವಲ್ 2 ತಸ್ವಿರೊ ವಿಂಚಾ.",
     "achievement.success-message": "ತುಮ್ಚಿ ಅರ್ಜಿ ಆಮ್ಕಾಂ ಪಾವ್ಲ್ಯಾ!",
-    "achievement.individiual-data-loss-message":
+    "achievement.individual-data-loss-message":
       "ವೈಯುಕ್ತಿಕ್ ಸಾಧನ್ ವಿಂಚ್ಲಾಂ. ತುಮ್ಕಾಂ ಭರ್ತಿ ಕೆಲ್ಲಿ ಮಾಹೆತ್ ನಾಕಾ ಗಿ?",
     "achievement.team-data-loss-message":
       "ಪಂಗ್ಡಾಚೆಂ ಸಾಧನ್ ವಿಂಚ್ಲಾಂ. ತುಮ್ಕಾಂ ಭರ್ತಿ ಕೆಲ್ಲಿ ಮಾಹೆತ್ ನಾಕಾ ಗಿ?",

@@ -8,6 +8,8 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
   document.addEventListener("DOMContentLoaded", () => {
     const t = useTranslations(lang);
 
+    const overlay = document.getElementById("overlay") as HTMLDivElement;
+
     const form = document.getElementById("achievementsForm") as HTMLFormElement;
 
     const individualAchievement = document.getElementById("individual-achievement") as HTMLInputElement;
@@ -88,13 +90,16 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
       if (individualAchievement.checked) {
         // If team name or team members name is not empty
         if (teamName.value !== "" || teamMembersNames.value !== "") {
+          overlay.classList.remove("hidden");
           const message = t("achievement.individual-data-loss-message");
           const dataLoss = await dataLossConfirmation(message);
           if (dataLoss) {
+            overlay.classList.add("hidden");
             teamName.value = "";
             teamMembersNames.value = "";
           } else {
             teamAchievement.checked = true;
+            overlay.classList.add("hidden");
             return;
           }
         }
@@ -123,14 +128,17 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
     teamAchievement.addEventListener("change", async () => {
       if (teamAchievement.checked) {
         if (fullName.value !== "" || parentsNames.value !== "" || wardInput.value !== "") {
+          overlay.classList.remove("hidden");
           const message = t("achievement.team-data-loss-message");
           const dataLoss = await dataLossConfirmation(message);
           if (dataLoss) {
+            overlay.classList.add("hidden");
             fullName.value = "";
             parentsNames.value = "";
             wardInput.value = "";
           } else {
             individualAchievement.checked = true;
+            overlay.classList.add("hidden");
             return;
           }
         }
