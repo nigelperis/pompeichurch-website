@@ -8,6 +8,7 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
   document.addEventListener("DOMContentLoaded", () => {
     const t = useTranslations(lang);
 
+    const body = document.body;
     const overlay = document.getElementById("overlay") as HTMLDivElement;
 
     const form = document.getElementById("achievementsForm") as HTMLFormElement;
@@ -32,6 +33,8 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
 
     const issueDate = document.getElementById("issue-date") as HTMLInputElement;
 
+    const achievement = document.getElementById("achievement") as HTMLInputElement;
+    
     const achieverImage = document.getElementById("achiever-image") as HTMLInputElement;
     const achieverImageErrorMessage = document.getElementById("achiever-image-error") as HTMLParagraphElement;
 
@@ -91,15 +94,18 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
         // If team name or team members name is not empty
         if (teamName.value !== "" || teamMembersNames.value !== "") {
           overlay.classList.remove("hidden");
+          body.style.overflow = "hidden";
           const message = t("achievement.individual-data-loss-message");
           const dataLoss = await dataLossConfirmation(message);
           if (dataLoss) {
             overlay.classList.add("hidden");
+            body.style.overflow = "";
             teamName.value = "";
             teamMembersNames.value = "";
           } else {
             teamAchievement.checked = true;
             overlay.classList.add("hidden");
+            body.style.overflow = "";
             return;
           }
         }
@@ -129,16 +135,19 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
       if (teamAchievement.checked) {
         if (fullName.value !== "" || parentsNames.value !== "" || wardInput.value !== "") {
           overlay.classList.remove("hidden");
+          body.style.overflow = "hidden";
           const message = t("achievement.team-data-loss-message");
           const dataLoss = await dataLossConfirmation(message);
           if (dataLoss) {
             overlay.classList.add("hidden");
+            body.style.overflow = "";
             fullName.value = "";
             parentsNames.value = "";
             wardInput.value = "";
           } else {
             individualAchievement.checked = true;
             overlay.classList.add("hidden");
+            body.style.overflow = "";
             return;
           }
         }
@@ -309,6 +318,37 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
       parentsNames.required = true;
       wardSelect.classList.remove("hidden");
     };
+
+    // Check if the form has data entered
+    const isDirty = () => {
+      return (
+        fullName.value !== "" ||
+        parentsNames.value !== "" ||
+        wardInput.value !== "" ||
+        teamName.value !== "" ||
+        teamMembersNames.value !== "" ||
+        achievement.value !== "" ||
+        issueDate.value !== "" ||
+        achieverImage.files?.length !== 0 ||
+        proofOfAchievement.files?.length !== 0 ||
+        additionalImages.files?.length !== 0
+      );
+    }
+
+    // For languagae dropdown button click if data is entered ask for confirmation
+    document
+      .querySelectorAll<HTMLButtonElement>("#lang-dropdown button")
+      .forEach((btn) => {
+        btn.addEventListener("click", async (e: MouseEvent) => {
+          if(isDirty()) {
+             const message = t("achievement.language-data-loss-message");
+             const confirmation = await dataLossConfirmation(message);
+             if (!confirmation) {
+               e.preventDefault();
+             }
+          }
+        });
+      });
 
     // Form Submission
     form?.addEventListener("submit", async (event) => {
