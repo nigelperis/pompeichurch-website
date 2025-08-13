@@ -7,7 +7,7 @@ import { getLangFromUrl } from "~/i18n/utils";
 
 const url = new URL(Astro.url);
 const lang = getLangFromUrl(Astro.url);
-const pathname = url.pathname.split("?")[0].replace(/\/$/, ""); 
+const pathname = url.pathname.split("?")[0].replace(/\/$/, "");
 
 const { currentPage, totalPages } = Astro.props as {
   currentPage: number;

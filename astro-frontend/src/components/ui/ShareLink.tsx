@@ -59,7 +59,7 @@ const ShareLink: React.FC<ShareLinkProps> = ({
       onClick={handleShare}
       type="button"
     >
-      <ShareIcon width={size} height={size} className="text-slate-600" />
+      <ShareIcon width={size} height={size} className="text-slate-700" />
     </button>
   );
 };

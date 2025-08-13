@@ -6,7 +6,6 @@ import ObituaryCardMin from "~/components/ObituaryCardMin.tsx";
 import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
 import { listObituaries } from "~/services/obituaries/list-obituaries";
 import { Message } from "~/constants/message.ts";
-
 import { Locale } from "~/enums/locale";
 
 const lang = getLangFromUrl(Astro.url);
@@ -46,7 +45,7 @@ const obituaryDataFormatted = obituaries.map((obituary) => ({
           {obituaryDataFormatted.slice(0, 5).map((o, i) => (
             <div
               class={cn(
-                "flex-none relative h-full", // width is important for horizontal scroll!
+                "flex-none relative h-full",
                 i === 4 ? "lg:hidden overflow-hidden" : "",
               )}
             >
@@ -60,10 +59,12 @@ const obituaryDataFormatted = obituaries.map((obituary) => ({
                         o.image.url,
                         import.meta.env.PUBLIC_STRAPI_URL,
                       ).toString()
-                    : getPlaceholderImage({ text: o.englishName })
+                    : getPlaceholderImage({
+                        text: o.englishName,
+                        width: 340,
+                        height: 400,
+                      })
                 }
-                imageWidth={o.image?.width ?? 0}
-                imageHeight={o.image?.height ?? 0}
                 dateOfDeath={o.dateOfDeath}
                 age={o.age}
                 slug={o.slug}
