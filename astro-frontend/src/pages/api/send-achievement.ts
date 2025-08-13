@@ -23,7 +23,7 @@ import { RECEPIENT_EMAILS } from "~/constants/constants";
  * - achiever-image: File representing the achiever's image.
  * - proof-of-achievement: File as proof of the achievement.
  * - additional-images: Any additional images related to the achievement.
- * - blank: A hidden field used for spam detection.
+ * - fax: A hidden field used for spam detection.
  */
 
 export const POST: APIRoute = async ({ request }) => {
@@ -42,7 +42,7 @@ export const POST: APIRoute = async ({ request }) => {
     const achieverImage = data.get("achiever-image") as File;
     const additionalImages = data.getAll("additional-images");
 
-    const blank = data.get("blank");
+    const fax = data.get("fax");
 
     const attachments: {
       filename: string;
@@ -63,7 +63,7 @@ export const POST: APIRoute = async ({ request }) => {
     const category = fullName ? "Individual Achievement" : "Team Achievement";
 
     // Server-side spam check
-    if (blank && typeof blank === "string" && blank.trim() !== "") {
+    if (fax && typeof fax === "string" && fax.trim() !== "") {
       console.error("Bots spammed the form.");
       return new Response("Server Side spam triggered. Submission Failed", { status: 400 });
     }
