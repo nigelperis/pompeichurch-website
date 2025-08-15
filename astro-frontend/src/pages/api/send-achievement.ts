@@ -92,26 +92,31 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     // Push files to attachments
-    if (achieverImage) {
-      const arrayBuffer = await achieverImage.arrayBuffer();
-      attachments.push({
-        filename: `achiever_image_${achieverImage.name}`,
-        content: Buffer.from(arrayBuffer),
-        contentType: achieverImage.type,
-      });
-    }
+    const attachAchieverImage = async () => {
+      if (achieverImage) {
+        const arrayBuffer = await achieverImage.arrayBuffer();
+        attachments.push({
+          filename: `achiever_image_${achieverImage.name}`,
+          content: Buffer.from(arrayBuffer),
+          contentType: achieverImage.type,
+        });
+      }
+    };
 
     // Push proof of achievement file to attachment
-    if (proofOfAchievement) {
-      const arrayBuffer = await proofOfAchievement.arrayBuffer();
-      attachments.push({
-        filename: `proof_of_achievement_${proofOfAchievement.name}`,
-        content: Buffer.from(arrayBuffer),
-        contentType: proofOfAchievement.type,
-      });
-    }
+    const attachProofOfAchievement = async () => {
+      if (proofOfAchievement) {
+        const arrayBuffer = await proofOfAchievement.arrayBuffer();
+        attachments.push({
+          filename: `proof_of_achievement_${proofOfAchievement.name}`,
+          content: Buffer.from(arrayBuffer),
+          contentType: proofOfAchievement.type,
+        });
+      }
+    };
 
     // Push additional images to attachments
+    const attachAdditionalImages = async () => {
       for (const entry of additionalImages) {
         if (entry instanceof File && entry.size > 0) {
           const arrayBuffer = await entry.arrayBuffer();
@@ -122,6 +127,21 @@ export const POST: APIRoute = async ({ request }) => {
           });
         }
       }
+    };
+
+    // Parallelize file attachments
+    try{
+      await Promise.all([
+        attachAchieverImage(),
+        attachProofOfAchievement(),
+        attachAdditionalImages(),
+      ]);
+    } catch(error){
+      console.error("Attachment error:", error);
+      return new Response("Failed to attach files", {
+        status: 500,
+      });
+    }
 
     const subject = `🏅New Achievement Submitted: ${name}`;
     const html = `
@@ -132,18 +152,24 @@ export const POST: APIRoute = async ({ request }) => {
     `;
     const to = RECEPIENT_EMAILS;
 
-    await sendEmail({
+    const res = await sendEmail({
       subject: subject,
       html: html,
       to: to,
       attachments: attachments,
     });
 
-    return new Response("Achievement data sent successfully", {
-      status: 200,
-    });
+    if(res?.ok){
+      return new Response("Achievement data sent successfully", {
+        status: 200,
+      });
+    } else {
+      return new Response("Failed to send achievement data", {
+        status: 503,
+      });
+    }
   } catch (error) {
-    console.log("Error sending achievement data:", error);
+    console.error("Error sending achievement data:", error);
     return new Response("Failed to send achievement data", {
       status: 500,
     });

@@ -34,7 +34,7 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
     const issueDate = document.getElementById("issue-date") as HTMLInputElement;
 
     const achievement = document.getElementById("achievement") as HTMLInputElement;
-    
+
     const achieverImage = document.getElementById("achiever-image") as HTMLInputElement;
     const achieverImageErrorMessage = document.getElementById("achiever-image-error") as HTMLParagraphElement;
 
@@ -356,19 +356,21 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
 
       const data = new FormData(form);
 
-      // Validate Achiever Image
+      // Validate Achiever Image: Required, Size and Type
       const isAchieverImageValid =
-        !achieverImage.files ||
+        achieverImage.files &&
+        achieverImage.files.length > 0 &&
         (handleImageSize(achieverImage.files) &&
           handleImageType(achieverImage.files));
 
-      // Validate Proof of Achievement Image
+      // Validate Proof of Achievement Image: Required, Size and Type
       const isProofOfAchievementValid =
-        !proofOfAchievement.files ||
+        proofOfAchievement.files &&
+        proofOfAchievement.files.length > 0 &&
         (handleImageSize(proofOfAchievement.files) &&
           handleImageType(proofOfAchievement.files));
 
-      // Validate Additional Images
+      // Validate Additional Images: Size and Type
       const isAdditionalImagesValid =
         !additionalImages.files ||
         (handleImageSize(additionalImages.files) &&
@@ -381,10 +383,15 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
         isAdditionalImagesValid
       ) {
         try {
-          await fetch("/api/send-achievement", {
+          const res = await fetch("/api/send-achievement", {
             method: "POST",
             body: data,
           });
+
+          // Server error throws to catch block
+          if (!res?.ok) {
+            throw new Error(`Server error: ${res.status}`);
+          }
 
           showToast();
 
@@ -392,6 +399,13 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
           form.reset();
           resetFormFields();
         } catch (error) {
+          // Form Submission failed
+          const toast = document.getElementById("toast") as HTMLDivElement;
+          if (toast) {
+            toast.classList.add("bg-red-600");
+            toast.classList.remove("bg-green-600");
+            showToast(t("achievement.error-message"));
+          }
           console.error("Failed to send data", error);
         }
       }

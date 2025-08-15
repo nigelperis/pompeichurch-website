@@ -39,10 +39,13 @@ export async function sendEmail({
 
     if (res.error) {
       console.error("Resend Email Error:", res.error);
+      return new Response("Resend Email Error", {status: 503});
     } else {
       console.log("Email sent successfully:", res.data);
+      return new Response("Email sent successfully", {status: 200});
     }
   } catch (err) {
     console.error("Failed to send email:", err);
+    return new Response("Failed to send email", {status: 500});
   }
 }
