@@ -139,11 +139,12 @@ export const ui = {
     "achievement.additional-images-error":
       "Please select only 2 additional images.",
     "achievement.success-message": "Your submission was successful!",
-    "achievement.error-message": "Your submission has failed. Please try again.",
+    "achievement.error-message": "Aroma to fill.....",
     "achievement.individual-data-loss-message":
       "Switching to Individual Achievement will erase entered data. Proceed?",
     "achievement.team-data-loss-message":
       "Switching to Team Achievement will erase entered data. Proceed?",
+    "achievement.language-data-loss-message": "Aroma to fill......",
     "placeholder.full-name": "Ex: John Doe",
     "placeholder.team-name": "Ex: Team Vision",
     "placeholder.achievement": "Ex: First Place in Singing Competition",
@@ -576,6 +577,7 @@ export const ui = {
       "ವೈಯುಕ್ತಿಕ್ ಸಾಧನ್ ವಿಂಚ್ಲಾಂ. ತುಮ್ಕಾಂ ಭರ್ತಿ ಕೆಲ್ಲಿ ಮಾಹೆತ್ ನಾಕಾ ಗಿ?",
     "achievement.team-data-loss-message":
       "ಪಂಗ್ಡಾಚೆಂ ಸಾಧನ್ ವಿಂಚ್ಲಾಂ. ತುಮ್ಕಾಂ ಭರ್ತಿ ಕೆಲ್ಲಿ ಮಾಹೆತ್ ನಾಕಾ ಗಿ?",
+    "achievement.language-data-loss-message": "Aroma to fill.....",
     "placeholder.full-name": "ಉದಾ: ಜೊನ್ ಡಿಸೋಜಾ",
     "placeholder.team-name": "ಉದಾ: ಪಂಗಡ್ ದೃಶ್ಯ್",
     "placeholder.achievement": "ಉದಾ: ಎಕೊಡೆ ಗಾಯನ್ ಸ್ಪರ್ಧ್ಯಾಂತ್ ಪಯ್ಲೆಂ ಸ್ಥಾನ್",
