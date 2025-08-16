@@ -13,39 +13,77 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
 
     const form = document.getElementById("achievementsForm") as HTMLFormElement;
 
-    const individualAchievement = document.getElementById("individual-achievement") as HTMLInputElement;
-    const teamAchievement = document.getElementById("team-achievement") as HTMLInputElement;
+    const individualAchievement = document.getElementById(
+      "individual-achievement",
+    ) as HTMLInputElement;
+    const teamAchievement = document.getElementById(
+      "team-achievement",
+    ) as HTMLInputElement;
 
-    const fullNameDiv = document.getElementById("full-name-div") as HTMLDivElement;
-    const teamNameDiv = document.getElementById("team-name-div") as HTMLDivElement;
+    const fullNameDiv = document.getElementById(
+      "full-name-div",
+    ) as HTMLDivElement;
+    const teamNameDiv = document.getElementById(
+      "team-name-div",
+    ) as HTMLDivElement;
     const fullName = document.getElementById("full-name") as HTMLInputElement;
     const teamName = document.getElementById("team-name") as HTMLInputElement;
 
-    const parentsNamesDiv = document.getElementById("parents-names-div") as HTMLDivElement;
-    const teamMembersNamesDiv = document.getElementById("team-members-names-div") as HTMLDivElement;
-    const parentsNames = document.getElementById("parents-names") as HTMLInputElement;
-    const teamMembersNames = document.getElementById("team-members-names") as HTMLInputElement;
+    const parentsNamesDiv = document.getElementById(
+      "parents-names-div",
+    ) as HTMLDivElement;
+    const teamMembersNamesDiv = document.getElementById(
+      "team-members-names-div",
+    ) as HTMLDivElement;
+    const parentsNames = document.getElementById(
+      "parents-names",
+    ) as HTMLInputElement;
+    const teamMembersNames = document.getElementById(
+      "team-members-names",
+    ) as HTMLInputElement;
 
     const wardInput = document.getElementById("ward-input") as HTMLInputElement;
-    const wardMenu = document.getElementById("ward-options-menu") as HTMLDivElement;
+    const wardMenu = document.getElementById(
+      "ward-options-menu",
+    ) as HTMLDivElement;
     const wardSelect = document.getElementById("ward-select") as HTMLDivElement;
-    const chevron = document.getElementById("dropdown-chevron") as HTMLDivElement;
+    const chevron = document.getElementById(
+      "dropdown-chevron",
+    ) as HTMLDivElement;
 
     const issueDate = document.getElementById("issue-date") as HTMLInputElement;
 
-    const achievement = document.getElementById("achievement") as HTMLInputElement;
+    const achievement = document.getElementById(
+      "achievement",
+    ) as HTMLInputElement;
 
-    const achieverImage = document.getElementById("achiever-image") as HTMLInputElement;
-    const achieverImageErrorMessage = document.getElementById("achiever-image-error") as HTMLParagraphElement;
+    const achieverImage = document.getElementById(
+      "achiever-image",
+    ) as HTMLInputElement;
+    const achieverImageErrorMessage = document.getElementById(
+      "achiever-image-error",
+    ) as HTMLParagraphElement;
 
-    const proofOfAchievement = document.getElementById("proof-of-achievement") as HTMLInputElement;
-    const proofOfAchievementErrorMessage = document.getElementById("proof-of-achievement-error-message") as HTMLParagraphElement;
+    const proofOfAchievement = document.getElementById(
+      "proof-of-achievement",
+    ) as HTMLInputElement;
+    const proofOfAchievementErrorMessage = document.getElementById(
+      "proof-of-achievement-error-message",
+    ) as HTMLParagraphElement;
 
-    const additionalImages = document.getElementById("additional-images") as HTMLInputElement;
-    const additionalImagesErrorMessage = document.getElementById("additional-images-error") as HTMLParagraphElement;
+    const additionalImages = document.getElementById(
+      "additional-images",
+    ) as HTMLInputElement;
+    const additionalImagesErrorMessage = document.getElementById(
+      "additional-images-error",
+    ) as HTMLParagraphElement;
 
-    const charactersTracker = document.querySelectorAll(".characters-tracker") as NodeListOf<HTMLInputElement>;
-    const descriptiveCharactersTracker = document.querySelectorAll(".descriptive-characters-tracker") as NodeListOf<HTMLInputElement>;
+    const charactersTracker = document.querySelectorAll(
+      ".characters-tracker",
+    ) as NodeListOf<HTMLInputElement>;
+    const descriptiveCharactersTracker = document.querySelectorAll(
+      ".descriptive-characters-tracker",
+    ) as NodeListOf<HTMLInputElement>;
 
     const allowedTypes = ["image/jpeg", "image/png", "image/jpg"];
 
@@ -72,8 +110,7 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
     const liveCharacterCounter = (input: HTMLInputElement, limit: number) => {
       input.addEventListener("input", () => {
         const length = input.value.length;
-        const liveCounter =
-          input.nextElementSibling as HTMLParagraphElement;
+        const liveCounter = input.nextElementSibling as HTMLParagraphElement;
         liveCounter.textContent = `${length}/${limit}`;
       });
     };
@@ -133,7 +170,11 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
     // Radio Button for Team Achievement
     teamAchievement.addEventListener("change", async () => {
       if (teamAchievement.checked) {
-        if (fullName.value !== "" || parentsNames.value !== "" || wardInput.value !== "") {
+        if (
+          fullName.value !== "" ||
+          parentsNames.value !== "" ||
+          wardInput.value !== ""
+        ) {
           overlay.classList.remove("hidden");
           body.style.overflow = "hidden";
           const message = t("achievement.team-data-loss-message");
@@ -229,27 +270,35 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
 
     // Additional Images Validation
     additionalImages.addEventListener("change", () => {
-      const fileName = document.getElementById("additional-images-file-name") as HTMLInputElement;
+      const fileName = document.getElementById(
+        "additional-images-file-name",
+      ) as HTMLInputElement;
 
       const selectedFiles = additionalImages?.files;
 
       if (selectedFiles && selectedFiles.length > MAX_IMAGES) {
-        additionalImagesErrorMessage.textContent = t("achievement.additional-images-error");
+        additionalImagesErrorMessage.textContent = t(
+          "achievement.additional-images-error",
+        );
         fileName.textContent = t("achievement.no-file-chosen");
       } else if (selectedFiles && !handleImageSize(selectedFiles)) {
-        additionalImagesErrorMessage.textContent = t("achievement.image-size-error");
+        additionalImagesErrorMessage.textContent = t(
+          "achievement.image-size-error",
+        );
         fileName.textContent = t("achievement.no-file-chosen");
       } else if (selectedFiles && !handleImageType(selectedFiles)) {
-        additionalImagesErrorMessage.textContent = t("achievement.image-type-error");
+        additionalImagesErrorMessage.textContent = t(
+          "achievement.image-type-error",
+        );
       } else {
-          if (selectedFiles?.length === 1) {
-            fileName.textContent = selectedFiles[0].name;
-          } else if (selectedFiles?.length === 2) {
-            fileName.textContent = `${selectedFiles.length} ${t("achievement.files")}`;
-          } else {
-            fileName.textContent = t("achievement.no-file-chosen");
-          }
-          additionalImagesErrorMessage.textContent = "";
+        if (selectedFiles?.length === 1) {
+          fileName.textContent = selectedFiles[0].name;
+        } else if (selectedFiles?.length === 2) {
+          fileName.textContent = `${selectedFiles.length} ${t("achievement.files")}`;
+        } else {
+          fileName.textContent = t("achievement.no-file-chosen");
+        }
+        additionalImagesErrorMessage.textContent = "";
       }
     });
 
@@ -292,15 +341,21 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
       });
 
       // Reset file names if selected
-      const achieverImageName = document.getElementById("achiever-image-file-name");
+      const achieverImageName = document.getElementById(
+        "achiever-image-file-name",
+      );
       if (achieverImageName)
         achieverImageName.textContent = t("achievement.no-file-chosen");
 
-      const additionalImagesName = document.getElementById("additional-images-file-name");
+      const additionalImagesName = document.getElementById(
+        "additional-images-file-name",
+      );
       if (additionalImagesName)
         additionalImagesName.textContent = t("achievement.no-files-chosen");
 
-      const proofOfAchievementName = document.getElementById("proof-of-achievement-file-name");
+      const proofOfAchievementName = document.getElementById(
+        "proof-of-achievement-file-name",
+      );
       if (proofOfAchievementName)
         proofOfAchievementName.textContent = t("achievement.no-file-chosen");
 
@@ -333,22 +388,33 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
         proofOfAchievement.files?.length !== 0 ||
         additionalImages.files?.length !== 0
       );
-    }
+    };
 
-    // For languagae dropdown button click if data is entered ask for confirmation
-    document
-      .querySelectorAll<HTMLButtonElement>("#lang-dropdown button")
-      .forEach((btn) => {
-        btn.addEventListener("click", async (e: MouseEvent) => {
-          if(isDirty()) {
-             const message = t("achievement.language-data-loss-message");
-             const confirmation = await dataLossConfirmation(message);
-             if (!confirmation) {
-               e.preventDefault();
-             }
-          }
-        });
-      });
+    const handleLanguageSwitch = async (targetLang: string) => {
+      if (isDirty()) {
+        overlay.classList.remove("hidden");
+        body.style.overflow = "hidden";
+
+        const message = t("achievement.language-data-loss-message");
+        const confirmation = await dataLossConfirmation(message);
+
+        overlay.classList.add("hidden");
+        body.style.overflow = "";
+
+        if (!confirmation) {
+          return false;
+        }
+      }
+
+      return true;
+    };
+
+    // Global function
+    (window as any).checkAchievementFormDataLoss = async (
+      targetLang: string,
+    ) => {
+      return await handleLanguageSwitch(targetLang);
+    };
 
     // Form Submission
     form?.addEventListener("submit", async (event) => {
@@ -360,15 +426,15 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
       const isAchieverImageValid =
         achieverImage.files &&
         achieverImage.files.length > 0 &&
-        (handleImageSize(achieverImage.files) &&
-          handleImageType(achieverImage.files));
+        handleImageSize(achieverImage.files) &&
+        handleImageType(achieverImage.files);
 
       // Validate Proof of Achievement Image: Required, Size and Type
       const isProofOfAchievementValid =
         proofOfAchievement.files &&
         proofOfAchievement.files.length > 0 &&
-        (handleImageSize(proofOfAchievement.files) &&
-          handleImageType(proofOfAchievement.files));
+        handleImageSize(proofOfAchievement.files) &&
+        handleImageType(proofOfAchievement.files);
 
       // Validate Additional Images: Size and Type
       const isAdditionalImagesValid =

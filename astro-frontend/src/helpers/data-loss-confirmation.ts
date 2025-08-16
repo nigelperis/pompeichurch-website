@@ -1,11 +1,16 @@
 export function dataLossConfirmation(message: string): Promise<boolean> {
   return new Promise((resolve) => {
-    const confirmationPrompt = document.getElementById("confirmation-prompt") as HTMLDivElement;
-    const confirmationMessage = document.getElementById("confirmation-message") as HTMLParagraphElement;
+    const confirmationPrompt = document.getElementById(
+      "confirmation-prompt",
+    ) as HTMLDivElement;
+    const confirmationMessage = document.getElementById(
+      "confirmation-message",
+    ) as HTMLParagraphElement;
     const yes = document.getElementById("confirmed") as HTMLButtonElement;
     const no = document.getElementById("dismissed") as HTMLButtonElement;
 
     if (!confirmationPrompt || !yes || !no) {
+      resolve(true);
       return;
     }
 
@@ -21,5 +26,5 @@ export function dataLossConfirmation(message: string): Promise<boolean> {
 
     yes.addEventListener("click", () => handleClick(true));
     no.addEventListener("click", () => handleClick(false));
-  })
+  });
 }
