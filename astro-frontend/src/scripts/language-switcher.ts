@@ -93,19 +93,16 @@ export const languageSwitcher = () => {
           const targetLocale = targetLang === "ಕೊಂಕಣಿ" ? Locale.KOK : Locale.EN;
           const currentLocale = getCurrentLocale();
 
+          if (window.checkAchievementFormDataLoss) {
+            const canSwitch = await window.checkAchievementFormDataLoss(targetLang);
+            if (!canSwitch) {
+              return;
+            } 
+          }
+
           if (targetLocale === currentLocale) {
             window.location.reload();
             return;
-          }
-
-          // don't use any, for now had to do
-          if ((window as any).checkAchievementFormDataLoss) {
-            const canSwitch = await (
-              window as any
-            ).checkAchievementFormDataLoss(targetLang);
-            if (!canSwitch) {
-              return;
-            }
           }
 
           handleLanguageChange(targetLang);

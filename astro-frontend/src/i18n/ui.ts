@@ -139,12 +139,14 @@ export const ui = {
     "achievement.additional-images-error":
       "Please select only 2 additional images.",
     "achievement.success-message": "Your submission was successful!",
-    "achievement.error-message": "Aroma to fill.....",
+    "achievement.error-message":
+      "Your submission has failed. Please try again.",
     "achievement.individual-data-loss-message":
-      "Switching to Individual Achievement will erase entered data. Proceed?",
+      "Switching to Individual Achievement will erase the entered data. Proceed?",
     "achievement.team-data-loss-message":
-      "Switching to Team Achievement will erase entered data. Proceed?",
-    "achievement.language-data-loss-message": "Aroma to fill......",
+      "Switching to Team Achievement will erase the entered data. Proceed?",
+    "achievement.language-data-loss-message":
+      "The entered data will be lost. Proceed?",
     "placeholder.full-name": "Ex: John Doe",
     "placeholder.team-name": "Ex: Team Vision",
     "placeholder.achievement": "Ex: First Place in Singing Competition",
@@ -566,18 +568,19 @@ export const ui = {
     "achievement.no-file-chosen": "ತಸ್ವೀರ್ ವಿಂಚುಂಕ್ ನಾಂತ್",
     "achievement.no-files-chosen": "ತಸ್ವೀರ್(ರೊ) ವಿಂಚುಂಕ್ ನಾಂತ್",
     "achievement.submit": "ದಾಖಲ್ ಕರಾ",
-    "achievement.image-size-error": "ದಯಾಕರ್ನ್ 2MB ಭಿತರ್ ತಸ್ವೀರ್ ವಿಂಚಾ",
+    "achievement.image-size-error": "ದಯಾಕರ್ನ್ 2MB ಭಿತರ್ ತಸ್ವೀರ್ ವಿಂಚಾ.",
     "achievement.image-type-error":
       "ದಯಾಕರ್ನ್ JPG, JPEG ವಾ PNG ರುಪಾಚಿ ತಸ್ವೀರ್ ವಿಂಚಾ.",
     "achievement.additional-images-error": "ದಯಾಕರ್ನ್ ಕೇವಲ್ 2 ತಸ್ವಿರೊ ವಿಂಚಾ.",
     "achievement.success-message": "ತುಮ್ಚಿ ಅರ್ಜಿ ಆಮ್ಕಾಂ ಪಾವ್ಲ್ಯಾ!",
     "achievement.error-message":
-      "ತುಮ್ಚಿ ಅರ್ಜಿ ಆಮ್ಕಾಂ ಪಾವೊಂಕ್ ನಾ. ದಯಾಕರ್ನ್ ಪರತ್ ಪ್ರಯತ್ನ್  ಕರಾ.",
+      "ತುಮ್ಚಿ ಅರ್ಜಿ ಆಮ್ಕಾಂ ಪಾವೊಂಕ್ ನಾ. ದಯಾಕರ್ನ್ ಪರತ್ ಪ್ರಯತ್ನ್ ಕರಾ.",
     "achievement.individual-data-loss-message":
-      "ವೈಯುಕ್ತಿಕ್ ಸಾಧನ್ ವಿಂಚ್ಲಾಂ. ತುಮ್ಕಾಂ ಭರ್ತಿ ಕೆಲ್ಲಿ ಮಾಹೆತ್ ನಾಕಾ ಗಿ?",
+      "ವೈಯುಕ್ತಿಕ್ ಸಾಧನಾಕ್ ಬದ್ಲಿಲ್ಯಾರ್ ಭರ್ತಿ ಕೆಲ್ಲಿ ಮಾಹೆತ್ ಹೊಗ್ಡಾಯ್ತಾತ್. ಮುಕಾರ್ಶಿ?",
     "achievement.team-data-loss-message":
-      "ಪಂಗ್ಡಾಚೆಂ ಸಾಧನ್ ವಿಂಚ್ಲಾಂ. ತುಮ್ಕಾಂ ಭರ್ತಿ ಕೆಲ್ಲಿ ಮಾಹೆತ್ ನಾಕಾ ಗಿ?",
-    "achievement.language-data-loss-message": "Aroma to fill.....",
+      "ಪಂಗ್ಡಾಚ್ಯಾ ಸಾಧನಾಕ್ ಬದ್ಲಿಲ್ಯಾರ್ ಭರ್ತಿ ಕೆಲ್ಲಿ ಮಾಹೆತ್ ಹೊಗ್ಡಾಯ್ತಾತ್. ಮುಕಾರ್ಶಿ?",
+    "achievement.language-data-loss-message":
+      "ತುಮಿ ಭರ್ತಿ ಕೆಲ್ಲಿ ಮಾಹೆತ್ ಹೊಗ್ಡಾಯಿತಾತ್. ಮುಕರ್ಷಿ?",
     "placeholder.full-name": "ಉದಾ: ಜೊನ್ ಡಿಸೋಜಾ",
     "placeholder.team-name": "ಉದಾ: ಪಂಗಡ್ ದೃಶ್ಯ್",
     "placeholder.achievement": "ಉದಾ: ಎಕೊಡೆ ಗಾಯನ್ ಸ್ಪರ್ಧ್ಯಾಂತ್ ಪಯ್ಲೆಂ ಸ್ಥಾನ್",

@@ -1,3 +1,9 @@
+declare global {
+  interface Window {
+    checkAchievementFormDataLoss: (targetLang: string) => Promise<boolean>;
+  }
+}
+
 import { useTranslations } from "~/i18n/utils";
 import { Locale } from "~/enums/locale";
 import Litepicker from "litepicker";
@@ -410,9 +416,7 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
     };
 
     // Global function
-    (window as any).checkAchievementFormDataLoss = async (
-      targetLang: string,
-    ) => {
+    window.checkAchievementFormDataLoss = async (targetLang: string) => {
       return await handleLanguageSwitch(targetLang);
     };
 

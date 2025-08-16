@@ -14,12 +14,14 @@ export function dataLossConfirmation(message: string): Promise<boolean> {
       return;
     }
 
-    confirmationPrompt.classList.remove("hidden");
+    confirmationPrompt.classList.remove("opacity-0");
+    confirmationPrompt.classList.add("opacity-100");
     confirmationMessage.textContent = message;
 
     const handleClick = (value: boolean) => {
       setTimeout(() => {
-        confirmationPrompt.classList.add("hidden");
+        confirmationPrompt.classList.remove("opacity-100");
+        confirmationPrompt.classList.add("opacity-0");
         resolve(value);
       }, 100);
     };
