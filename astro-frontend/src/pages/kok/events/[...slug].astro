@@ -23,8 +23,6 @@ const eventUrl =
 
 const baseURL = import.meta.env.PUBLIC_STRAPI_URL;
 
-
-
 const ogUrl = new URL(eventUrl, SITE_URL).href;
 
 const eventImage = event?.eventImage ?? {
@@ -66,7 +64,7 @@ if (!event) {
 
 <Layout
   title={event?.konkaniTitle ?? ""}
-  description={event?.shortDescription}
+  description={event?.shortDescriptionKok ?? event?.shortDescriptionEn ?? ""}
   image={absoluteImageURL}
   url={ogUrl}
 >

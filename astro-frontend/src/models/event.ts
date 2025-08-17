@@ -90,7 +90,8 @@ interface Event {
   konkaniTitle: string;
   englishTitle: string;
   eventDate: string;
-  shortDescription: string;
+  shortDescriptionEn: string;
+  shortDescriptionKok: string;
   description: BlocksContent;
   facebookLink: string;
   instagramLink: string;

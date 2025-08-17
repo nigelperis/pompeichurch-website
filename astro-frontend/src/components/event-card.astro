@@ -16,7 +16,8 @@ interface Props {
   imageUrl: string;
   imageWidth: number;
   imageHeight: number;
-  shortDescription: string;
+  shortDescriptionEn?: string;
+  shortDescriptionKok?: string;
   facebookLink?: string;
   slug: string;
   class?: string;
@@ -27,7 +28,8 @@ const {
   eventName,
   eventNameKok,
   imageUrl,
-  shortDescription,
+  shortDescriptionEn,
+  shortDescriptionKok,
   imageWidth,
   imageHeight,
   slug,
@@ -37,26 +39,31 @@ const {
 
 const eventUrl =
   lang === Locale.EN ? `/events/${slug}/` : `/kok/events/${slug}/`;
+
+const displayTitle = lang === Locale.EN ? eventName : eventNameKok;
+const displayDescription = lang === Locale.EN
+  ? (shortDescriptionEn ?? shortDescriptionKok ?? "No description available")
+  : (shortDescriptionKok ?? shortDescriptionEn ?? "No description available");
 ---
 
 <div class={cn("flex flex-col border border-gray-200", className)} {...rest}>
   <div class="event-image w-full">
     <NetworkImage
       src={imageUrl}
-      alt={eventName}
+      alt={displayTitle}
       width={imageWidth}
       height={imageHeight}
       class="object-fit aspect-[1.2/0.7] duration-700 ease-in-out"
     />
   </div>
 
-  <div class="relative p-4 font-noto-sans-kannada flex flex-col flex-grow">
+  <div class={cn("relative p-4 flex flex-col flex-grow", lang === Locale.KOK ? "font-noto-sans-kannada" : "font-roboto")}>
     <div class="flex flex-col gap-2 flex-grow pb-12">
       <p class="text-xl font-bold text-slate-900">
-        {eventNameKok}
+        {displayTitle}
       </p>
       <p class="pb-4 text-justify text-base text-slate-700">
-        {shortDescription}
+        {displayDescription}
       </p>
     </div>
 
@@ -68,17 +75,17 @@ const eventUrl =
     >
       <HoverableLink href={eventUrl}>
         {t("ui.more-button-read")}
-        <span class="sr-only"> about {eventName}</span>
+        <span class="sr-only"> about {displayTitle}</span>
       </HoverableLink>
       <div class="flex items-center gap-2">
 
 
 <WhatsAppShare
   client:load
-  shareData={{ url: eventUrl, title: eventName }}
+  shareData={{ url: eventUrl, title: displayTitle }}
 />
 
-        <ShareLink class="" shareData={{ url: eventUrl, title: eventName }} />
+        <ShareLink class="" shareData={{ url: eventUrl, title: displayTitle }} />
       </div>
     </div>
   </div>
