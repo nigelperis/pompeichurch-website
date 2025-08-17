@@ -99,6 +99,22 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
     const stdLimit = 50;
     const descriptiveLimit = 100;
 
+    const inputIds = [
+            "individual-achievement",
+            "team-achievement",
+            "full-name",
+            "team-name",
+            "parents-names",
+            "team-members-names",
+            "ward-input",
+            "achievement",
+            "issue-date",
+            "achiever-image",
+            "proof-of-achievement",
+            "additional-images",
+            "submitted-by",
+      ];
+
     // Date Picker
     new Litepicker({
       element: issueDate as HTMLInputElement,
@@ -138,6 +154,7 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
         if (teamName.value !== "" || teamMembersNames.value !== "") {
           overlay.classList.remove("hidden");
           body.style.overflow = "hidden";
+
           const message = t("achievement.individual-data-loss-message");
           const dataLoss = await dataLossConfirmation(message);
           if (dataLoss) {
@@ -163,6 +180,7 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
 
         //Show wards field
         wardSelect.classList.remove("hidden");
+        wardInput.required = true;
 
         // Hide team name and team members name fields
         teamAchievement.checked = false;
@@ -183,6 +201,7 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
         ) {
           overlay.classList.remove("hidden");
           body.style.overflow = "hidden";
+
           const message = t("achievement.team-data-loss-message");
           const dataLoss = await dataLossConfirmation(message);
           if (dataLoss) {
@@ -218,6 +237,14 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
       }
     });
 
+    // Enable readonly property for issue date and ward input
+    issueDate.addEventListener("keydown", (e) => {
+      e.preventDefault();
+    });
+    wardInput.addEventListener("keydown", (e) => {
+      e.preventDefault();
+    });
+
     // Ward Dropdown
     wardSelect.addEventListener("click", () => {
       wardMenu.classList.toggle("hidden");
@@ -237,6 +264,14 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
     chevron.addEventListener("click", () => {
       wardInput.focus();
     });
+
+    // Hide dropdown when click outside
+    document.addEventListener("click", (event) => {
+      if (event.target !== wardInput) {
+        if(!wardMenu.classList.contains("hidden"))
+        {wardMenu.classList.add("hidden")}
+      }
+    })
 
     // Image Validation by size
     const handleImageSize = (event: FileList) => {
@@ -420,6 +455,31 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
       return await handleLanguageSwitch(targetLang);
     };
 
+    // Submitting
+    const submitting = () => {
+      const submit = document.getElementById("submit") as HTMLButtonElement;
+
+      submit.disabled = true;
+      submit.textContent = t("achievement.submitting");
+
+      inputIds.forEach((id) => {
+        const inputField = document.getElementById(id) as HTMLInputElement;
+        inputField.disabled = true;
+      });
+    }
+
+    // Reset Submitting
+    const resetSubmitting = () => {
+      const submit = document.getElementById("submit") as HTMLButtonElement;
+      submit.disabled = false;
+      submit.textContent = t("achievement.submit");
+
+      inputIds.forEach((id) => {
+        const inputField = document.getElementById(id) as HTMLInputElement;
+        inputField.disabled = false;
+      });
+    };
+
     // Form Submission
     form?.addEventListener("submit", async (event) => {
       event.preventDefault();
@@ -453,6 +513,9 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
         isAdditionalImagesValid
       ) {
         try {
+          submitting();
+
+          // Send data
           const res = await fetch("/api/send-achievement", {
             method: "POST",
             body: data,
@@ -476,7 +539,10 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
             toast.classList.remove("bg-green-600");
             showToast(t("achievement.error-message"));
           }
+          resetSubmitting();
           console.error("Failed to send data", error);
+        } finally {
+          resetSubmitting();
         }
       }
     });
