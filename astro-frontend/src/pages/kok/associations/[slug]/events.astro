@@ -47,7 +47,9 @@ const paginatedEvents = filteredEvents.slice(
 
 
 
-const pageTitle = `${title} Events | Pompei Church`;
+const pageTitle = lang === Locale.KOK
+  ? `${konkaniTitle} Events | Pompei Church`
+  : `${title} Events | Pompei Church`;
 ---
 
 <Layout title={pageTitle}>

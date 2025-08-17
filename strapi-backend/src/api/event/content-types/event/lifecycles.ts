@@ -15,7 +15,7 @@ async function maybeSendEventEmail(result: any) {
     englishTitle,
     konkaniTitle,
     eventDate,
-    shortDescription,
+    shortDescriptionEn,
     facebookLink,
     instagramLink,
   } = result;
@@ -23,7 +23,9 @@ async function maybeSendEventEmail(result: any) {
   const publisher = result.updatedBy || result.createdBy || null;
 
   const publisherName = publisher
-    ? `${publisher.firstname || publisher.firstName || ""} ${publisher.lastname || publisher.lastName || ""}`.trim()
+    ? `${publisher.firstname || publisher.firstName || ""} ${
+        publisher.lastname || publisher.lastName || ""
+      }`.trim()
     : "Unknown";
 
   const subject = `📅 New Event Published: ${englishTitle}`;
@@ -33,9 +35,19 @@ async function maybeSendEventEmail(result: any) {
       <li><strong>English Title:</strong> ${englishTitle}</li>
       <li><strong>Konkani Title:</strong> ${konkaniTitle}</li>
       <li><strong>Event Date:</strong> ${eventDate}</li>
-      <li><strong>Short Description:</strong> ${shortDescription || "N/A"}</li>
-      ${facebookLink ? `<li><strong>Facebook Link:</strong> <a href="${facebookLink}">${facebookLink}</a></li>` : ""}
-      ${instagramLink ? `<li><strong>Instagram Link:</strong> <a href="${instagramLink}">${instagramLink}</a></li>` : ""}
+      <li><strong>English Short Description:</strong> ${
+        shortDescriptionEn || "N/A"
+      }</li>
+      ${
+        facebookLink
+          ? `<li><strong>Facebook Link:</strong> <a href="${facebookLink}">${facebookLink}</a></li>`
+          : ""
+      }
+      ${
+        instagramLink
+          ? `<li><strong>Instagram Link:</strong> <a href="${instagramLink}">${instagramLink}</a></li>`
+          : ""
+      }
       <li><strong>View Event:</strong> <a href="${eventLink}">${eventLink}</a></li>
     </ul>
     <p><strong>Published By:</strong> ${publisherName}</p>

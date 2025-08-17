@@ -64,8 +64,8 @@ if (!event) {
 ---
 
 <Layout
-  title={event?.konkaniTitle ?? ""}
-  description={event?.shortDescription}
+  title={event?.englishTitle ?? ""}
+  description={event?.shortDescriptionEn ?? event?.shortDescriptionKok ?? ""}
   image={absoluteImageURL}
   url={ogUrl}
 >
@@ -74,9 +74,9 @@ if (!event) {
   >
     <section class="flex flex-col p-6">
       <h1
-        class="border-natgeo-yellow border-l-4 pl-3 pt-[13px] text-left text-2xl font-bold lg:text-4xl"
+        class="border-natgeo-yellow border-l-4 pl-3 pt-[13px] text-left text-2xl font-bold lg:text-4xl font-roboto"
       >
-        {event?.konkaniTitle}
+        {event?.englishTitle}
       </h1>
 
       <NetworkImage
@@ -106,11 +106,11 @@ if (!event) {
 
 <WhatsAppShare
   client:load
-  shareData={{ title: event?.konkaniTitle || "", url: eventUrl}}
+  shareData={{ title: event?.englishTitle || "", url: eventUrl}}
 />
 
   <ShareLink
-    shareData={{ title: event?.konkaniTitle || "", url: eventUrl }}
+    shareData={{ title: event?.englishTitle || "", url: eventUrl }}
     class="flex h-12 items-center"
   />
 
@@ -135,7 +135,7 @@ if (!event) {
                 <span class="flex-1">
                   <div class="pb-1 text-gray-500">Previous Event</div>
                   <div class="text-left text-lg font-medium text-black">
-                    {prevEvent.konkaniTitle}
+                    {prevEvent.englishTitle}
                   </div>
                 </span>
               </a>
@@ -153,7 +153,7 @@ if (!event) {
                 <span class="flex-1">
                   <div class="pb-1 text-gray-500">Next Event</div>
                   <div class="text-lg font-medium text-black">
-                    {nextEvent.konkaniTitle}
+                    {nextEvent.englishTitle}
                   </div>
                 </span>
               </a>
