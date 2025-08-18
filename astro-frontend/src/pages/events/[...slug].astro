@@ -1,7 +1,7 @@
 ---
 import Layout from "~/layouts/layout.astro";
 import { Icon } from "astro-icon/components";
-import { getLangFromUrl } from "~/i18n/utils";
+import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import ShareLink from "~/components/ui/share-link.astro";
 import { getEvent } from "~/services/events/get-event";
 import NetworkImage from "~/components/ui/network-image.astro";
@@ -14,6 +14,7 @@ import WhatsAppShare from "~/components/ui/whatsapp-share";
 
 const { slug } = Astro.params;
 const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 const event = await getEvent(slug ?? "");
 
@@ -128,7 +129,7 @@ if (!event) {
                   <Icon name="chevron-left" class="stroke-2" />
                 </div>
                 <span class="flex-1 font-roboto">
-                  <div class="pb-1 text-gray-500">Previous Event</div>
+                  <div class="pb-1 text-gray-500">{t("events.previous-event")}</div>
                   <div class="text-left text-lg font-medium text-black">
                     {prevEvent.englishTitle}
                   </div>
@@ -145,8 +146,8 @@ if (!event) {
                 <div class="shrink-0 text-3xl text-slate-900">
                   <Icon name="chevron-right" class="stroke-2" />
                 </div>
-                <span class="flex-1">
-                  <div class="pb-1 text-gray-500">Next Event</div>
+                <span class="flex-1 font-roboto">
+                  <div class="pb-1 text-gray-500">{t("events.next-event")}</div>
                   <div class="text-lg font-medium text-black">
                     {nextEvent.englishTitle}
                   </div>
