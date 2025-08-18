@@ -15,30 +15,44 @@ const t = useTranslations(lang);
 let parishFinanceCommitteeData: ParishFinanceCommittee[] =
   lang === Locale.EN
     ? await listParishFinanceCommitteeData({ page: 1, pageSize: 100 })
-    : await listParishFinanceCommitteeData({ page: 1, pageSize: 100, locale: Locale.KOK }) || [];
+    : (await listParishFinanceCommitteeData({
+        page: 1,
+        pageSize: 100,
+        locale: Locale.KOK,
+      })) || [];
 
 if (parishFinanceCommitteeData.length === 0) {
   parishFinanceCommitteeData =
     lang === Locale.EN
-      ? await listParishFinanceCommitteeData({ page: 1, pageSize: 100, locale: Locale.KOK }) || []
-      : await listParishFinanceCommitteeData({ page: 1, pageSize: 100 }) || [];
+      ? (await listParishFinanceCommitteeData({
+          page: 1,
+          pageSize: 100,
+          locale: Locale.KOK,
+        })) || []
+      : (await listParishFinanceCommitteeData({ page: 1, pageSize: 100 })) ||
+        [];
 }
 
 const firstMemberImage = parishFinanceCommitteeData[0]?.image;
 
 const ogImage = firstMemberImage?.formats?.medium?.url
-  ? new URL(firstMemberImage.formats.medium.url, import.meta.env.PUBLIC_STRAPI_URL).toString()
+  ? new URL(
+      firstMemberImage.formats.medium.url,
+      import.meta.env.PUBLIC_STRAPI_URL,
+    ).toString()
   : firstMemberImage?.url
-    ? new URL(firstMemberImage.url, import.meta.env.PUBLIC_STRAPI_URL).toString()
+    ? new URL(
+        firstMemberImage.url,
+        import.meta.env.PUBLIC_STRAPI_URL,
+      ).toString()
     : getPlaceholderImage({
         width: 800,
         height: 600,
         text: "Parish Finance Committee",
       });
 
-const ogTitle = lang === Locale.KOK
-  ? "ಫಿರ್ಗಜ್ ಆರ್ಥಿಕ್ ಸಮಿತಿ"
-  : "Parish Finance Committee";
+const ogTitle =
+  lang === Locale.KOK ? "ಫಿರ್ಗಜ್ ಆರ್ಥಿಕ್ ಸಮಿತಿ" : "Parish Finance Committee";
 ---
 
 <Layout title={ogTitle} image={ogImage}>

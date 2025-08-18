@@ -10,7 +10,6 @@ import { Locale } from "~/enums/locale";
 import { slugMappings } from "~/constants/association-slug-mappings";
 import type { AssociationOfficeBearers } from "~/models/association-bearers";
 
-
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
@@ -37,7 +36,6 @@ if (!assoc) {
   return Astro.redirect("/404", 302);
 }
 
-
 const [enDetails, kokDetails] = (await Promise.all([
   fetchAssociationBearers(Locale.EN),
   fetchAssociationBearers(Locale.KOK),
@@ -49,11 +47,16 @@ const associationDetails: AssociationOfficeBearers | undefined =
     : enDetails || kokDetails || undefined;
 
 const ogImage = getGroupImage(associationDetails, slug);
-const konkaniDescription = associationsKok.find((a) => a.slug === slug)?.description ?? "";
-const englishDescription = associations.find((a) => a.slug === slug)?.description ?? "";
+const konkaniDescription =
+  associationsKok.find((a) => a.slug === slug)?.description ?? "";
+const englishDescription =
+  associations.find((a) => a.slug === slug)?.description ?? "";
 
 function stripHtmlTags(html: string): string {
-  return html.replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
+  return html
+    .replace(/<[^>]+>/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
 const plainKok = Array.isArray(konkaniDescription)
@@ -64,25 +67,22 @@ const plainEn = Array.isArray(englishDescription)
   ? stripHtmlTags(englishDescription.join(" "))
   : stripHtmlTags(englishDescription);
 
-const ogDescription = lang === Locale.KOK
-  ? plainKok?.substring(0, 300) || plainEn?.substring(0, 300)
-  : plainEn?.substring(0, 300) || plainKok?.substring(0, 300);
-
-
+const ogDescription =
+  lang === Locale.KOK
+    ? plainKok?.substring(0, 300) || plainEn?.substring(0, 300)
+    : plainEn?.substring(0, 300) || plainKok?.substring(0, 300);
 
 const ogTitle = `${t(`nav.${slug}`)}`;
 
 const ogImageUrl = ogImage;
 ---
 
-<Layout
-  title={ogTitle}
-    description={ogDescription}
-  image={ogImageUrl}
->
+<Layout title={ogTitle} description={ogDescription} image={ogImageUrl}>
   <main class="mx-auto max-w-screen-lg overflow-hidden bg-white">
     <section id="associations" class="flex flex-col p-6 pb-4">
-      <h1 class="font-bold pt-1 border-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl lg:text-4xl">
+      <h1
+        class="font-bold pt-1 border-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl lg:text-4xl"
+      >
         {t(`nav.${slug}`)}
       </h1>
       <AssociationDetails />

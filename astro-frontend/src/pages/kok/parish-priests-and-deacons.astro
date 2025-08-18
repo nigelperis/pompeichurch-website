@@ -20,27 +20,27 @@ let parishPriests: ParishPriestsAndDeacons[] =
         pageSize: 100,
         filters: { role: { $eq: ClergyRole.PARISH_PRIEST } },
       })
-    : await listParishPriestsAndDeacons({
+    : (await listParishPriestsAndDeacons({
         page: 1,
         pageSize: 100,
         locale: Locale.KOK,
         filters: { role: { $eq: ClergyRole.PARISH_PRIEST } },
-      }) || [];
+      })) || [];
 
 if (parishPriests.length === 0) {
   parishPriests =
     lang === Locale.EN
-      ? await listParishPriestsAndDeacons({
+      ? (await listParishPriestsAndDeacons({
           page: 1,
           pageSize: 100,
           locale: Locale.KOK,
           filters: { role: { $eq: ClergyRole.PARISH_PRIEST } },
-        }) || []
-      : await listParishPriestsAndDeacons({
+        })) || []
+      : (await listParishPriestsAndDeacons({
           page: 1,
           pageSize: 100,
           filters: { role: { $eq: ClergyRole.PARISH_PRIEST } },
-        }) || [];
+        })) || [];
 }
 
 let deacons: ParishPriestsAndDeacons[] =
@@ -50,35 +50,41 @@ let deacons: ParishPriestsAndDeacons[] =
         pageSize: 100,
         filters: { role: { $eq: ClergyRole.DEACON } },
       })
-    : await listParishPriestsAndDeacons({
+    : (await listParishPriestsAndDeacons({
         page: 1,
         pageSize: 100,
         locale: Locale.KOK,
         filters: { role: { $eq: ClergyRole.DEACON } },
-      }) || [];
+      })) || [];
 
 if (deacons.length === 0) {
   deacons =
     lang === Locale.EN
-      ? await listParishPriestsAndDeacons({
+      ? (await listParishPriestsAndDeacons({
           page: 1,
           pageSize: 100,
           locale: Locale.KOK,
           filters: { role: { $eq: ClergyRole.DEACON } },
-        }) || []
-      : await listParishPriestsAndDeacons({
+        })) || []
+      : (await listParishPriestsAndDeacons({
           page: 1,
           pageSize: 100,
           filters: { role: { $eq: ClergyRole.DEACON } },
-        }) || [];
+        })) || [];
 }
 
 const firstPriestImage = parishPriests[0]?.image || deacons[0]?.image;
 
 const ogImage = firstPriestImage?.formats?.medium?.url
-  ? new URL(firstPriestImage.formats.medium.url, import.meta.env.PUBLIC_STRAPI_URL).toString()
+  ? new URL(
+      firstPriestImage.formats.medium.url,
+      import.meta.env.PUBLIC_STRAPI_URL,
+    ).toString()
   : firstPriestImage?.url
-    ? new URL(firstPriestImage.url, import.meta.env.PUBLIC_STRAPI_URL).toString()
+    ? new URL(
+        firstPriestImage.url,
+        import.meta.env.PUBLIC_STRAPI_URL,
+      ).toString()
     : getPlaceholderImage({
         width: 800,
         height: 1200,
@@ -117,7 +123,9 @@ const ogDescription =
       </h2>
       {
         parishPriests.length > 0 ? (
-          <ParishPriestsAndDeaconsList parishPriestsAndDeacons={parishPriests} />
+          <ParishPriestsAndDeaconsList
+            parishPriestsAndDeacons={parishPriests}
+          />
         ) : (
           <p class="py-8 text-center text-3xl font-semibold">
             {Message.PARISH_PRIESTS_NOT_FOUND}

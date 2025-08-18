@@ -29,14 +29,17 @@ const {
 } = Astro.props;
 
 const slug = fileUrl
-  ? new URL(fileUrl).pathname.split("/").pop()?.split("_").slice(0, -1).join("_").replace(".pdf", "")
+  ? new URL(fileUrl).pathname
+      .split("/")
+      .pop()
+      ?.split("_")
+      .slice(0, -1)
+      .join("_")
+      .replace(".pdf", "")
   : null;
 
 const origin = Astro.url.origin;
-const shareUrl = fileUrl && slug
-  ? `${origin}/pompeichem-falkem/${slug}`
-  : "#";
-
+const shareUrl = fileUrl && slug ? `${origin}/pompeichem-falkem/${slug}` : "#";
 ---
 
 <div
@@ -56,30 +59,28 @@ const shareUrl = fileUrl && slug
     />
   </div>
 
-<div class="relative p-4 text-center">
-  <div class="flex justify-center">
-    <a
-      href={fileUrl}
-      download
-      class="mt-1 inline-flex items-center gap-2 bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-md hover:bg-blue-700"
-    >
-      <Icon name="download" size={20} />
-      <span class={cn({ "mt-2": lang === Locale.KOK })}>
-        {t("download")}
-      </span>
-    </a>
+  <div class="relative p-4 text-center">
+    <div class="flex justify-center">
+      <a
+        href={fileUrl}
+        download
+        class="mt-1 inline-flex items-center gap-2 bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-md hover:bg-blue-700"
+      >
+        <Icon name="download" size={20} />
+        <span class={cn({ "mt-2": lang === Locale.KOK })}>
+          {t("download")}
+        </span>
+      </a>
+    </div>
+
+    <div class="absolute right-4 top-6">
+      <ShareLink
+        class=""
+        shareData={{
+          url: shareUrl,
+          title: title,
+        }}
+      />
+    </div>
   </div>
-
-  <div class="absolute right-4 top-6">
-    <ShareLink
-      class=""
-      shareData={{
-        url: shareUrl,
-        title: title,
-      }}
-    />
-  </div>
-</div>
-
-
 </div>

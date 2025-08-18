@@ -9,21 +9,18 @@ import churchBannerImage from "~/assets/parish-history/church-banner.jpg";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const title = lang === Locale.KOK
-  ? "ಪೊಂಪೈ ಮಾಯೆಚಿ ಫಿರ್ಗಜ್ | ಆಮ್ಚಿ ಚರಿತ್ರಾ"
-  : "Pompei Church | Our History";
+const title =
+  lang === Locale.KOK
+    ? "ಪೊಂಪೈ ಮಾಯೆಚಿ ಫಿರ್ಗಜ್ | ಆಮ್ಚಿ ಚರಿತ್ರಾ"
+    : "Pompei Church | Our History";
 
-const description = lang === Locale.KOK
-  ? "ತೆನ್ಕಾ ಕುಶಿನ್ ಸೊಭಿತ್ ಫಲ್ಗುಣಿ ನಂಯ್ಚಿ ಮನ್ ಪಿಸ್ವೊಂಚಿ ಸೊಭಾಯ್. ಅಸ್ತಮ್ತೆಂತ್ ಭಂವ್ತಣಿ ಸೊಭಿತ್ ಪಾಚ್ವ್ಯಾ ಸೃಷ್ಠೆಚಿ ಅಪುರ್ಬಾಯ್."
-  : "The Gurpur Parish is situated 19 km from Mangalore on the Mangalore-Moodbidri road.";
+const description =
+  lang === Locale.KOK
+    ? "ತೆನ್ಕಾ ಕುಶಿನ್ ಸೊಭಿತ್ ಫಲ್ಗುಣಿ ನಂಯ್ಚಿ ಮನ್ ಪಿಸ್ವೊಂಚಿ ಸೊಭಾಯ್. ಅಸ್ತಮ್ತೆಂತ್ ಭಂವ್ತಣಿ ಸೊಭಿತ್ ಪಾಚ್ವ್ಯಾ ಸೃಷ್ಠೆಚಿ ಅಪುರ್ಬಾಯ್."
+    : "The Gurpur Parish is situated 19 km from Mangalore on the Mangalore-Moodbidri road.";
 ---
 
-<Layout
-  title={title}
-  description={description}
- image={churchBannerImage.src}
-
->
+<Layout title={title} description={description} image={churchBannerImage.src}>
   <main class="mx-auto max-w-screen-lg overflow-hidden bg-white">
     <section id="parish-history" class="flex flex-col p-6 pb-4">
       <h1

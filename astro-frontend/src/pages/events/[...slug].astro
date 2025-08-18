@@ -17,12 +17,10 @@ const lang = getLangFromUrl(Astro.url);
 
 const event = await getEvent(slug ?? "");
 
-
 const eventUrl =
   lang === Locale.EN ? `/events/${slug}/` : `/kok/events/${slug}/`;
 
 const baseURL = import.meta.env.PUBLIC_STRAPI_URL;
-
 
 const ogUrl = new URL(eventUrl, SITE_URL).href;
 
@@ -31,21 +29,22 @@ const eventImage = event?.eventImage ?? {
   width: 600,
   height: 400,
 };
-const ogImage = (eventImage && "formats" in eventImage && eventImage.formats?.medium?.url)
-  ? new URL(eventImage.formats.medium.url, baseURL).toString()
-  : eventImage?.url
-    ? new URL(eventImage.url, baseURL).toString()
-    : getPlaceholderImage({
-        width: 800,
-        height: 600,
-        text: event?.englishTitle || "Parish Finance Committee",
-      });
+const ogImage =
+  eventImage && "formats" in eventImage && eventImage.formats?.medium?.url
+    ? new URL(eventImage.formats.medium.url, baseURL).toString()
+    : eventImage?.url
+      ? new URL(eventImage.url, baseURL).toString()
+      : getPlaceholderImage({
+          width: 800,
+          height: 600,
+          text: event?.englishTitle || "Parish Finance Committee",
+        });
 
 const { pagination: initialPagination } = await listEvents({ pageSize: 1 });
 const totalEvents = initialPagination.total;
 
 const { events: allEvents } = await listEvents({
-  pageSize: totalEvents
+  pageSize: totalEvents,
 });
 
 const absoluteImageURL = ogImage;
@@ -58,9 +57,8 @@ const socialLinks = [
   { platform: "instagram", url: event?.instagramLink },
 ].filter((link) => link.url);
 if (!event) {
-  return Astro.redirect('/404', 302);
+  return Astro.redirect("/404", 302);
 }
-
 ---
 
 <Layout
@@ -102,20 +100,17 @@ if (!event) {
           }
         </div>
 
-  <div class="mt-2 flex items-center gap-2">
+        <div class="mt-2 flex items-center gap-2">
+          <WhatsAppShare
+            client:load
+            shareData={{ title: event?.englishTitle || "", url: eventUrl }}
+          />
 
-<WhatsAppShare
-  client:load
-  shareData={{ title: event?.englishTitle || "", url: eventUrl}}
-/>
-
-  <ShareLink
-    shareData={{ title: event?.englishTitle || "", url: eventUrl }}
-    class="flex h-12 items-center"
-  />
-
-</div>
-
+          <ShareLink
+            shareData={{ title: event?.englishTitle || "", url: eventUrl }}
+            class="flex h-12 items-center"
+          />
+        </div>
       </div>
     </section>
 
@@ -132,7 +127,7 @@ if (!event) {
                 <div class="shrink-0 text-3xl text-slate-900">
                   <Icon name="chevron-left" class="stroke-2" />
                 </div>
-                <span class="flex-1">
+                <span class="flex-1 font-roboto">
                   <div class="pb-1 text-gray-500">Previous Event</div>
                   <div class="text-left text-lg font-medium text-black">
                     {prevEvent.englishTitle}

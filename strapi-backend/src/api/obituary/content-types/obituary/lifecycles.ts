@@ -2,6 +2,9 @@ import { SITE_URL } from "../../../../constants";
 import { sendEmail } from "../../../../utils/send-email";
 import { sendPushNotification } from "../../../../utils/send-push-notifications";
 
+const STRAPI_URL =
+  process.env.STRAPI_URL || "https://strapi.pompeichurch.in";
+
 /**
  * Lifecycle hooks for the Event content type
  * Handles sending an email notification when an event is created or updated
@@ -10,6 +13,10 @@ async function maybeSendObituaryEmail(result: any) {
   if (!result.publishedAt) return;
 
   const obituaryLink = `${SITE_URL}/obituary?${result.slug}`;
+
+  const obituaryImage = result.image?.url
+    ? new URL(result.image.url, STRAPI_URL).toString()
+    : null;
 
   const {
     englishName,
@@ -25,7 +32,9 @@ async function maybeSendObituaryEmail(result: any) {
   const publisher = result.updatedBy || result.createdBy || null;
 
   const publisherName = publisher
-    ? `${publisher.firstname || publisher.firstName || ""} ${publisher.lastname || publisher.lastName || ""}`.trim()
+    ? `${publisher.firstname || publisher.firstName || ""} ${
+        publisher.lastname || publisher.lastName || ""
+      }`.trim()
     : "Unknown";
 
   const subject = `🕊️ New Obituary: ${englishName}`;
@@ -50,6 +59,7 @@ async function maybeSendObituaryEmail(result: any) {
     title: "🕊️ Obituary Added",
     body: konkaniName,
     icon: "/temp-logo.webp",
+    image: obituaryImage,
     data: {
       url: obituaryLink,
     },

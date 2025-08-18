@@ -17,11 +17,14 @@ const obituaryDataFormatted = obituaries
 
     // Consistent image handling with standardized dimensions
     const imageUrl = obituary.image?.url
-      ? new URL(obituary.image.url, import.meta.env.PUBLIC_STRAPI_URL).toString()
+      ? new URL(
+          obituary.image.url,
+          import.meta.env.PUBLIC_STRAPI_URL,
+        ).toString()
       : getPlaceholderImage({
           text: obituary.englishName,
           width: 340,
-          height: 400
+          height: 400,
         });
 
     return {

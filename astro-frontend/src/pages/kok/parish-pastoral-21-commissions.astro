@@ -10,22 +10,20 @@ import { Message } from "~/constants/message";
 
 const lang = getLangFromUrl(Astro.url) as Locale;
 const t = useTranslations(lang);
-const title = lang === Locale.KOK
-  ? "21 ಆಯೋಗ್"
-  : "Parish Pastoral 21 Commissions";
+const title =
+  lang === Locale.KOK ? "21 ಆಯೋಗ್" : "Parish Pastoral 21 Commissions";
 
 let pastoral21CommissionsData: ParishPastoral21Commission[] =
   lang === Locale.EN
-    ? await listPastoral21CommissionsData({ locale: Locale.EN }) || []
-    : await listPastoral21CommissionsData({ locale: Locale.KOK }) || [];
+    ? (await listPastoral21CommissionsData({ locale: Locale.EN })) || []
+    : (await listPastoral21CommissionsData({ locale: Locale.KOK })) || [];
 
 if (pastoral21CommissionsData.length === 0) {
   pastoral21CommissionsData =
     lang === Locale.EN
-      ? await listPastoral21CommissionsData({ locale: Locale.KOK }) || []
-      : await listPastoral21CommissionsData({ locale: Locale.EN }) || [];
+      ? (await listPastoral21CommissionsData({ locale: Locale.KOK })) || []
+      : (await listPastoral21CommissionsData({ locale: Locale.EN })) || [];
 }
-
 ---
 
 <Layout title={title}>
@@ -43,21 +41,22 @@ if (pastoral21CommissionsData.length === 0) {
           {t("nav.parish-pastoral-21-commissions")}
         </h1>
 
-        {pastoral21CommissionsData.length > 0 && (
-          <div class="border border-gray-200 p-6 mb-8">
-            <div class="flex items-center space-x-3">
-
-              <div>
-                <h2 class="text-xl font-semibold">
-                  {pastoral21CommissionsData[0].coordinatorName?.position}
-                </h2>
-                <p class="text-slate-900">
-                  {pastoral21CommissionsData[0].coordinatorName?.name}
-                </p>
+        {
+          pastoral21CommissionsData.length > 0 && (
+            <div class="border border-gray-200 p-6 mb-8">
+              <div class="flex items-center space-x-3">
+                <div>
+                  <h2 class="text-xl font-semibold">
+                    {pastoral21CommissionsData[0].coordinatorName?.position}
+                  </h2>
+                  <p class="text-slate-900">
+                    {pastoral21CommissionsData[0].coordinatorName?.name}
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-        )}
+          )
+        }
       </div>
 
       {

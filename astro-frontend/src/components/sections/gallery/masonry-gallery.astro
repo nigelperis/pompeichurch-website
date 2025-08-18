@@ -1,33 +1,38 @@
 ---
 import { Image } from "astro:assets";
 
-const imageImports = import.meta.glob<ImageMetadata>("~/assets/gallery/*.{jpg,jpeg,png,webp}", { eager: true, import: 'default' });
+const imageImports = import.meta.glob<ImageMetadata>(
+  "~/assets/gallery/*.{jpg,jpeg,png,webp}",
+  { eager: true, import: "default" },
+);
 
 const images = Object.values(imageImports);
 ---
 
 <div class="masonry-grid relative m-4 mx-auto min-h-screen w-full">
-  {images.map((image) => (
-    <a
-      href="#"
-      role="button"
-      aria-label="View full-size image"
-      data-pswp-src={image.src}
-      data-pswp-width={image.width}
-      data-pswp-height={image.height}
-      class="masonry-grid-item-link masonry-grid-item inline-block w-1/2 lg:w-1/3"
-    >
-      <div class="relative overflow-hidden rounded-md md:p-1.5 p-1">
-        <div class="img-hover-zoom img-hover-zoom--xyz relative w-full overflow-hidden">
-          <Image
-            src={image}
-            alt="Gallery image"
-            class="object-cover w-full h-full transition-transform duration-400 hover:scale-110"
-          />
+  {
+    images.map((image) => (
+      <a
+        href="#"
+        role="button"
+        aria-label="View full-size image"
+        data-pswp-src={image.src}
+        data-pswp-width={image.width}
+        data-pswp-height={image.height}
+        class="masonry-grid-item-link masonry-grid-item inline-block w-1/2 lg:w-1/3"
+      >
+        <div class="relative overflow-hidden rounded-md md:p-1.5 p-1">
+          <div class="img-hover-zoom img-hover-zoom--xyz relative w-full overflow-hidden">
+            <Image
+              src={image}
+              alt="Gallery image"
+              class="object-cover w-full h-full transition-transform duration-400 hover:scale-110"
+            />
+          </div>
         </div>
-      </div>
-    </a>
-  ))}
+      </a>
+    ))
+  }
 </div>
 
 <script>

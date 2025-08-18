@@ -17,7 +17,12 @@ async function listObituaries(args?: {
   sortBy?: string;
   ward?: string;
 }): Promise<ObituaryPagination> {
-  const { page = 1, pageSize = 25, sortBy = "dateOfDeath:desc", ward } = args ?? {};
+  const {
+    page = 1,
+    pageSize = 25,
+    sortBy = "dateOfDeath:desc",
+    ward,
+  } = args ?? {};
 
   const queryParams = new URLSearchParams({
     "populate[0]": "image",
@@ -45,6 +50,5 @@ async function listObituaries(args?: {
     },
   };
 }
-
 
 export { listObituaries };

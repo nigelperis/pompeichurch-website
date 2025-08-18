@@ -26,10 +26,7 @@ const section = url.searchParams.get("section");
 let pageTitle;
 
 if (section === "upcoming-events") {
-  pageTitle =
-    lang === Locale.KOK
-      ? `ಫುಡ್ಲಿಂ ಕಾರ್ಯಿಂ `
-      : `Upcoming Events`;
+  pageTitle = lang === Locale.KOK ? `ಫುಡ್ಲಿಂ ಕಾರ್ಯಿಂ ` : `Upcoming Events`;
 } else {
   pageTitle = `${t("landing.church-name")} | ${t("landing.town-name")}`;
 }
@@ -49,7 +46,7 @@ if (section === "upcoming-events") {
     if (filteredEvents.length > 0 && filteredEvents[0].eventImage?.url) {
       pageImage = new URL(
         filteredEvents[0].eventImage.url,
-        import.meta.env.PUBLIC_STRAPI_URL
+        import.meta.env.PUBLIC_STRAPI_URL,
       ).toString();
     } else {
       pageImage = lang === Locale.KOK ? stayTunedKok.src : stayTuned.src;
@@ -88,17 +85,16 @@ if (section === "upcoming-events") {
         setTimeout(() => {
           element.scrollIntoView({
             behavior: "smooth",
-            block: "start"
+            block: "start",
           });
         }, 100);
       } else {
-
         setTimeout(() => {
           const retryElement = document.getElementById("upcoming-events");
           if (retryElement) {
             retryElement.scrollIntoView({
               behavior: "smooth",
-              block: "start"
+              block: "start",
             });
           }
         }, 500);
@@ -106,12 +102,12 @@ if (section === "upcoming-events") {
     }
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', scrollToSection);
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", scrollToSection);
   } else {
     scrollToSection();
   }
-  window.addEventListener('load', scrollToSection);
+  window.addEventListener("load", scrollToSection);
 
-  window.addEventListener('popstate', scrollToSection);
+  window.addEventListener("popstate", scrollToSection);
 </script>

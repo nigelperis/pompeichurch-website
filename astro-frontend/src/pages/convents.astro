@@ -10,19 +10,11 @@ import pompeiConvent from "~/assets/convents/pompei-convent.jpg";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-
 const ogImageUrl = pompeiConvent.src;
-const ogTitle =
-  lang === Locale.KOK
-    ? "ಕೊವೆಂತಾಂ"
-    : "Convents";
-
+const ogTitle = lang === Locale.KOK ? "ಕೊವೆಂತಾಂ" : "Convents";
 ---
 
-<Layout
-  title={ogTitle}
-  image={ogImageUrl}
->
+<Layout title={ogTitle} image={ogImageUrl}>
   <main class="mx-auto max-w-screen-lg overflow-hidden bg-white">
     <section id="our-convents" class="flex flex-col p-6">
       <h1
