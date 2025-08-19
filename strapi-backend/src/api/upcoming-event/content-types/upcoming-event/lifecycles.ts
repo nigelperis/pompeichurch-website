@@ -2,10 +2,16 @@ import { sendEmail } from "../../../../utils/send-email";
 import { UPCOMING_EVENTS } from "../../../../constants";
 import { sendPushNotification } from "../../../../utils/send-push-notifications";
 
+const STRAPI_URL = process.env.STRAPI_URL || "https://strapi.pompeichurch.in";
+
 async function maybeSendUpcomingEventEmail(result: any) {
   if (!result.publishedAt) return;
 
   const { eventEndDate } = result;
+
+  const upcomingEventImage = result.eventImage?.url
+    ? new URL(result.eventImage.url, STRAPI_URL).toString()
+    : null;
 
   const publisher = result.updatedBy || result.createdBy || null;
 
@@ -28,6 +34,7 @@ async function maybeSendUpcomingEventEmail(result: any) {
   await sendPushNotification(strapi, {
     title: "📢 New Upcoming Event Added",
     icon: "/temp-logo.webp",
+    image: upcomingEventImage,
     data: {
       url: UPCOMING_EVENTS,
     },

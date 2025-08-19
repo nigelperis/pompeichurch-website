@@ -2,6 +2,8 @@ import { SITE_URL } from "../../../../constants";
 import { sendEmail } from "../../../../utils/send-email";
 import { sendPushNotification } from "../../../../utils/send-push-notifications";
 
+const STRAPI_URL = process.env.STRAPI_URL || "https://strapi.pompeichurch.in";
+
 /**
  * Lifecycle hooks for the Event content type
  * Handles sending an email notification when an event is created or updated
@@ -11,11 +13,16 @@ async function maybeSendEventEmail(result: any) {
 
   const eventLink = `${SITE_URL}/events/${result.slug}`;
 
+  const eventImage = result.eventImage?.url
+    ? new URL(result.eventImage.url, STRAPI_URL).toString()
+    : null;
+
   const {
     englishTitle,
     konkaniTitle,
     eventDate,
     shortDescriptionEn,
+    shortDescriptionKok,
     facebookLink,
     instagramLink,
   } = result;
@@ -38,6 +45,9 @@ async function maybeSendEventEmail(result: any) {
       <li><strong>English Short Description:</strong> ${
         shortDescriptionEn || "N/A"
       }</li>
+       <li><strong>Konkani Short Description:</strong> ${
+         shortDescriptionKok || "N/A"
+       }</li>
       ${
         facebookLink
           ? `<li><strong>Facebook Link:</strong> <a href="${facebookLink}">${facebookLink}</a></li>`
@@ -59,6 +69,7 @@ async function maybeSendEventEmail(result: any) {
     title: "📅New Event Added",
     body: konkaniTitle,
     icon: "/temp-logo.webp",
+    image: eventImage,
     data: {
       url: eventLink,
     },

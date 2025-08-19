@@ -16,30 +16,44 @@ const t = useTranslations(lang);
 let parishPastoralCouncilData: ParishPastoralCouncil[] =
   lang === Locale.EN
     ? await listPastoralCouncilData({ page: 1, pageSize: 100 })
-    : await listPastoralCouncilData({ page: 1, pageSize: 100, locale: Locale.KOK }) || [];
+    : (await listPastoralCouncilData({
+        page: 1,
+        pageSize: 100,
+        locale: Locale.KOK,
+      })) || [];
 
 if (parishPastoralCouncilData.length === 0) {
   parishPastoralCouncilData =
     lang === Locale.EN
-      ? await listPastoralCouncilData({ page: 1, pageSize: 100, locale: Locale.KOK }) || []
-      : await listPastoralCouncilData({ page: 1, pageSize: 100 }) || [];
+      ? (await listPastoralCouncilData({
+          page: 1,
+          pageSize: 100,
+          locale: Locale.KOK,
+        })) || []
+      : (await listPastoralCouncilData({ page: 1, pageSize: 100 })) || [];
 }
 
 const parishPastoralCouncilImage = await getPastoralCouncilImage();
 
-const ogImage = parishPastoralCouncilImage?.pastoralCouncilImage?.formats?.medium?.url
-  ? new URL(parishPastoralCouncilImage.pastoralCouncilImage.formats.medium.url, import.meta.env.PUBLIC_STRAPI_URL).toString()
+const ogImage = parishPastoralCouncilImage?.pastoralCouncilImage?.formats
+  ?.medium?.url
+  ? new URL(
+      parishPastoralCouncilImage.pastoralCouncilImage.formats.medium.url,
+      import.meta.env.PUBLIC_STRAPI_URL,
+    ).toString()
   : parishPastoralCouncilImage?.pastoralCouncilImage?.url
-    ? new URL(parishPastoralCouncilImage.pastoralCouncilImage.url, import.meta.env.PUBLIC_STRAPI_URL).toString()
+    ? new URL(
+        parishPastoralCouncilImage.pastoralCouncilImage.url,
+        import.meta.env.PUBLIC_STRAPI_URL,
+      ).toString()
     : getPlaceholderImage({
         width: 800,
         height: 600,
         text: "Parish Pastoral Council",
       });
 
-const ogTitle = lang === Locale.KOK
-  ? "ಗೊವ್ಳಿಕ್ ಪರಿಷಧ್"
-  : "Parish Pastoral Council";
+const ogTitle =
+  lang === Locale.KOK ? "ಗೊವ್ಳಿಕ್ ಪರಿಷಧ್" : "Parish Pastoral Council";
 ---
 
 <Layout title={ogTitle} image={ogImage}>

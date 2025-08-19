@@ -12,7 +12,10 @@ export const GET: APIRoute = async () => {
   let totalPages: number;
 
   do {
-    const obituaries = await listObituaries({ page: currentPage, pageSize: 100 });
+    const obituaries = await listObituaries({
+      page: currentPage,
+      pageSize: 100,
+    });
     allObituaries.push(...obituaries.obituaries);
     currentPage++;
     totalPages = obituaries.pagination.pageCount;

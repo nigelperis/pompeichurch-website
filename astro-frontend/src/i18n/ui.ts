@@ -431,6 +431,8 @@ export const ui = {
     "nun.denisdcunha": "Late| Denis DCunha, Late| Mary DCunha",
     "events.subtitle":
       "Celebrating the moments that unite our parish community.",
+    "events.previous-event": "Previous Event",
+    "events.next-event": "Next Event",
     "funeral.rites": "Funeral Rites",
     "parish-priest-and-parishioners": "Parish Priest and Parishioners",
     "funeral.youtube": "Watch on YouTube",
@@ -867,6 +869,8 @@ export const ui = {
     "nun.albertrodrigues": "ದೆ| ಆಲ್ಬರ್ಟ್ ರೊಡ್ರಿಗಸ್, ದೆ| ಎಮಿಲಿಯಾನಾ ರೊಡ್ರಿಗಸ್",
     "nun.denisdcunha": "ದೆ| ಡೆನಿಸ್ ಡಿಕುನ್ಹಾ, ದೆ| ಮೇರಿ ಡಿಕುನ್ಹಾ",
     "events.subtitle": "ಫಿರ್ಗಜ್ ಕುಟ್ಮಾಚ್ಯಾ ಎಕ್ವಟ್ಪಣಾಚ್ಯೊ ಘಡಿಯೊ",
+    "events.previous-event": "ಪಾಟ್ಲೆಂ ಘಡಿತ್",
+    "events.next-event": "ಫುಡ್ಲೆಂ ಘಡಿತ್",
     "funeral.rites": "ಮೊರ್ಣಾಚಿ ರೀತ್",
     "parish-priest-and-parishioners": "ವಿಗಾರ್ ಆನಿ ಫಿರ್ಗಜ್ ಕುಟಾಮ್",
     "funeral.youtube": "ಯೂಟೂಬಾರ್ ಪೊಳೆಯಾ",

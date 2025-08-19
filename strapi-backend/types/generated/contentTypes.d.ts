@@ -788,8 +788,8 @@ export interface ApiEventEvent extends Struct.CollectionTypeSchema {
         'Catechism',
         'Small Christian Community',
         'Gurpur Church Choir',
-        'Women\u2019s Forum',
-        'Christian\u00A0Life\u00A0Community',
+        "Women's Forum",
+        'Christian Life Community',
       ]
     >;
     createdAt: Schema.Attribute.DateTime;
@@ -810,7 +810,8 @@ export interface ApiEventEvent extends Struct.CollectionTypeSchema {
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::event.event'> &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    shortDescription: Schema.Attribute.String;
+    shortDescriptionEn: Schema.Attribute.String;
+    shortDescriptionKok: Schema.Attribute.String;
     slug: Schema.Attribute.UID<'englishTitle'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &

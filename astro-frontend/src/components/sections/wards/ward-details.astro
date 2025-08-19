@@ -13,98 +13,103 @@ const t = useTranslations(lang);
 const { details } = Astro.props as unknown as { details: MergedWardDetails[] };
 
 const slug = (name: string) =>
-  name.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "");
+  name
+    .toLowerCase()
+    .replace(/\s+/g, "-")
+    .replace(/[^a-z0-9-]/g, "");
 ---
 
-{details.map((ward) => {
-  const hasSecondRep = Boolean(ward.wardRepresentative2);
-  return (
-  <div class="mb-12">
-    <h2
-      id={`ward-${slug(ward.wardName)}`}
-      class="scroll-mt-24 text-3xl font-bold text-slate-900"
-    >
-      {lang === Locale.KOK
-        ? getWardNameKok(ward.wardName, lang)
-        : ward.wardName}
-    </h2>
-
-    <p class="mt-2 font-semibold text-lg text-slate-900">
-      {t("ward.family")} : {ward.familyCount}
-    </p>
-
-    <div class="mt-6 grid grid-cols-2 gap-x-6 gap-y-6 lg:gap-x-20 lg:gap-y-20 md:grid-cols-3 md:grid-rows-2">
-      <div class="border border-gray-200 overflow-hidden flex flex-col md:row-span-2">
-        <div class="w-full aspect-[1/1.4] flex-shrink-0 overflow-hidden">
-          <Image
-            src={ward.patronImage}
-            alt={t("ward.patronAlt")}
-            class="w-full h-full object-cover"
-          /></div>
-
-        <div class="p-4 flex-1 flex items-center text-center justify-center">
-          <p class="font-semibold text-base md:text-lg text-slate-900">
-            {lang === Locale.KOK
-              ? `${t(`ward.${ward.patronName}`)} ${t("ward.patron")}`
-              : `${t("ward.patron")} ${t(`ward.${ward.patronName}`)}`}
-          </p>
-        </div>
-      </div>
-
-      <div class="border border-gray-200 overflow-hidden md:row-span-2">
-        <div class="w-full aspect-[1/1.4]">
-          <NetworkImage
-            src={
-              ward.wardLeaderImage?.url
-                ? new URL(
-                    ward.wardLeaderImage.url,
-                    import.meta.env.PUBLIC_STRAPI_URL
-                  ).toString()
-                : getPlaceholderImage({ text: ward.wardLeader })
-            }
-            alt={ward.wardLeader || t("ward.leaderAlt")}
-            width={ward.wardLeaderImage?.width ?? 365}
-            height={ward.wardLeaderImage?.height ?? 365}
-            class="w-full h-full object-cover"
-          />
-        </div>
-        <div class="p-3 text-center">
-          <h3 class="font-semibold text-base md:text-lg text-slate-900 mb-1">
-            {ward.wardLeader}
-          </h3>
-          <p class="text-base text-slate-700">
-            {getGurkarTitle(ward.wardLeaderSex, lang)}
-          </p>
-        </div>
-      </div>
-
-      {ward.wardRepresentative1 && (
-        <div
-          class={
-            `border border-gray-200 p-2 flex items-center justify-center text-center md:col-start-3 ` +
-            (hasSecondRep
-              ? "md:row-start-1"
-              : "md:row-span-2")
-          }
+{
+  details.map((ward) => {
+    const hasSecondRep = Boolean(ward.wardRepresentative2);
+    return (
+      <div class="mb-12">
+        <h2
+          id={`ward-${slug(ward.wardName)}`}
+          class="scroll-mt-24 text-3xl font-bold text-slate-900"
         >
-          <div class="w-full">
-            <p class="font-semibold text-base md:text-lg text-slate-900 mb-1">
-              {ward.wardRepresentative1}
-            </p>
-            <p class="text-base text-slate-700">{t("ward.pratinidi")}</p>
+          {lang === Locale.KOK
+            ? getWardNameKok(ward.wardName, lang)
+            : ward.wardName}
+        </h2>
+
+        <p class="mt-2 font-semibold text-lg text-slate-900">
+          {t("ward.family")} : {ward.familyCount}
+        </p>
+
+        <div class="mt-6 grid grid-cols-2 gap-x-6 gap-y-6 lg:gap-x-20 lg:gap-y-20 md:grid-cols-3 md:grid-rows-2">
+          <div class="border border-gray-200 overflow-hidden flex flex-col md:row-span-2">
+            <div class="w-full aspect-[1/1.4] flex-shrink-0 overflow-hidden">
+              <Image
+                src={ward.patronImage}
+                alt={t("ward.patronAlt")}
+                class="w-full h-full object-cover"
+              />
+            </div>
+
+            <div class="p-4 flex-1 flex items-center text-center justify-center">
+              <p class="font-semibold text-base md:text-lg text-slate-900">
+                {lang === Locale.KOK
+                  ? `${t(`ward.${ward.patronName}`)} ${t("ward.patron")}`
+                  : `${t("ward.patron")} ${t(`ward.${ward.patronName}`)}`}
+              </p>
+            </div>
           </div>
-        </div>
-      )}
-      {ward.wardRepresentative2 && (
-        <div class="border border-gray-200 p-2 flex items-center justify-center text-center md:col-start-3 md:row-start-2">
-          <div class="w-full">
-            <p class="font-semibold text-base md:text-lg text-slate-900 mb-1">
-              {ward.wardRepresentative2}
-            </p>
-            <p class="text-base text-slate-700">{t("ward.pratinidi")}</p>
+
+          <div class="border border-gray-200 overflow-hidden md:row-span-2">
+            <div class="w-full aspect-[1/1.4]">
+              <NetworkImage
+                src={
+                  ward.wardLeaderImage?.url
+                    ? new URL(
+                        ward.wardLeaderImage.url,
+                        import.meta.env.PUBLIC_STRAPI_URL,
+                      ).toString()
+                    : getPlaceholderImage({ text: ward.wardLeader })
+                }
+                alt={ward.wardLeader || t("ward.leaderAlt")}
+                width={ward.wardLeaderImage?.width ?? 365}
+                height={ward.wardLeaderImage?.height ?? 365}
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div class="p-3 text-center">
+              <h3 class="font-semibold text-base md:text-lg text-slate-900 mb-1">
+                {ward.wardLeader}
+              </h3>
+              <p class="text-base text-slate-700">
+                {getGurkarTitle(ward.wardLeaderSex, lang)}
+              </p>
+            </div>
           </div>
+
+          {ward.wardRepresentative1 && (
+            <div
+              class={
+                `border border-gray-200 p-2 flex items-center justify-center text-center md:col-start-3 ` +
+                (hasSecondRep ? "md:row-start-1" : "md:row-span-2")
+              }
+            >
+              <div class="w-full">
+                <p class="font-semibold text-base md:text-lg text-slate-900 mb-1">
+                  {ward.wardRepresentative1}
+                </p>
+                <p class="text-base text-slate-700">{t("ward.pratinidi")}</p>
+              </div>
+            </div>
+          )}
+          {ward.wardRepresentative2 && (
+            <div class="border border-gray-200 p-2 flex items-center justify-center text-center md:col-start-3 md:row-start-2">
+              <div class="w-full">
+                <p class="font-semibold text-base md:text-lg text-slate-900 mb-1">
+                  {ward.wardRepresentative2}
+                </p>
+                <p class="text-base text-slate-700">{t("ward.pratinidi")}</p>
+              </div>
+            </div>
+          )}
         </div>
-      )}
-    </div>
-  </div>
-);})}
+      </div>
+    );
+  })
+}

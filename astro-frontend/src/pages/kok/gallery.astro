@@ -5,10 +5,9 @@ import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import { Locale } from "~/enums/locale";
 import { cn } from "~/helpers/cn";
 
-
 const imageImports = import.meta.glob<ImageMetadata>(
   "~/assets/gallery/*.{jpg,jpeg,png,webp}",
-  { eager: true, import: "default" }
+  { eager: true, import: "default" },
 );
 const images = Object.values(imageImports);
 
@@ -16,18 +15,15 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 const title = lang === Locale.KOK ? "ಗ್ಯಾಲರಿ" : "Gallery";
-const description = lang === Locale.KOK
-  ? "ಪಿಂತುರಾನಿ ದಾದೊಸ್ಕಾಯೆಚ್ಯೊ ಘಡ್ಯೊ"
-  : "Capturing moments of grace";
+const description =
+  lang === Locale.KOK
+    ? "ಪಿಂತುರಾನಿ ದಾದೊಸ್ಕಾಯೆಚ್ಯೊ ಘಡ್ಯೊ"
+    : "Capturing moments of grace";
 
 const ogImageUrl = images[0]?.src ?? undefined;
 ---
 
-<Layout
-  title={`${title}`}
-  description={description}
-  image={ogImageUrl}
->
+<Layout title={`${title}`} description={description} image={ogImageUrl}>
   <main class="mx-auto max-w-screen-lg overflow-hidden bg-white">
     <section id="gallery" class="flex flex-col p-6 pb-4">
       <h1

@@ -73,7 +73,9 @@ const filteredEvents = upcomingEvents.filter((event) => {
                           filteredEvents[0].eventImage.url,
                           import.meta.env.PUBLIC_STRAPI_URL,
                         ).toString()
-                      : getPlaceholderImage({ text: filteredEvents[0].eventImage?.name })
+                      : getPlaceholderImage({
+                          text: filteredEvents[0].eventImage?.name,
+                        })
                   }
                   data-pswp-width={filteredEvents[0].eventImage?.width}
                   data-pswp-height={filteredEvents[0].eventImage?.height}
@@ -85,7 +87,9 @@ const filteredEvents = upcomingEvents.filter((event) => {
                             filteredEvents[0].eventImage.url,
                             import.meta.env.PUBLIC_STRAPI_URL,
                           ).toString()
-                        : getPlaceholderImage({ text: filteredEvents[0].eventImage?.name })
+                        : getPlaceholderImage({
+                            text: filteredEvents[0].eventImage?.name,
+                          })
                     }
                     class="w-full"
                     width={filteredEvents[0].eventImage?.width || 0}
@@ -120,7 +124,9 @@ const filteredEvents = upcomingEvents.filter((event) => {
                                 event.eventImage.url,
                                 import.meta.env.PUBLIC_STRAPI_URL,
                               ).toString()
-                            : getPlaceholderImage({ text: event.eventImage?.name })
+                            : getPlaceholderImage({
+                                text: event.eventImage?.name,
+                              })
                         }
                         data-pswp-width={event.eventImage?.width}
                         data-pswp-height={event.eventImage?.height}
@@ -132,7 +138,9 @@ const filteredEvents = upcomingEvents.filter((event) => {
                                   event.eventImage.url,
                                   import.meta.env.PUBLIC_STRAPI_URL,
                                 ).toString()
-                              : getPlaceholderImage({ text: event.eventImage?.name })
+                              : getPlaceholderImage({
+                                  text: event.eventImage?.name,
+                                })
                           }
                           class="w-full"
                           width={event.eventImage?.width || 0}

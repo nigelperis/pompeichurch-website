@@ -41,9 +41,10 @@ const eventUrl =
   lang === Locale.EN ? `/events/${slug}/` : `/kok/events/${slug}/`;
 
 const displayTitle = lang === Locale.EN ? eventName : eventNameKok;
-const displayDescription = lang === Locale.EN
-  ? (shortDescriptionEn ?? shortDescriptionKok ?? "No description available")
-  : (shortDescriptionKok ?? shortDescriptionEn ?? "No description available");
+const displayDescription =
+  lang === Locale.EN
+    ? (shortDescriptionEn ?? shortDescriptionKok ?? "No description available")
+    : (shortDescriptionKok ?? shortDescriptionEn ?? "No description available");
 ---
 
 <div class={cn("flex flex-col border border-gray-200", className)} {...rest}>
@@ -57,7 +58,12 @@ const displayDescription = lang === Locale.EN
     />
   </div>
 
-  <div class={cn("relative p-4 flex flex-col flex-grow", lang === Locale.KOK ? "font-noto-sans-kannada" : "font-roboto")}>
+  <div
+    class={cn(
+      "relative p-4 flex flex-col flex-grow",
+      lang === Locale.KOK ? "font-noto-sans-kannada" : "font-roboto",
+    )}
+  >
     <div class="flex flex-col gap-2 flex-grow pb-12">
       <p class="text-xl font-bold text-slate-900">
         {displayTitle}
@@ -78,14 +84,15 @@ const displayDescription = lang === Locale.EN
         <span class="sr-only"> about {displayTitle}</span>
       </HoverableLink>
       <div class="flex items-center gap-2">
+        <WhatsAppShare
+          client:load
+          shareData={{ url: eventUrl, title: displayTitle }}
+        />
 
-
-<WhatsAppShare
-  client:load
-  shareData={{ url: eventUrl, title: displayTitle }}
-/>
-
-        <ShareLink class="" shareData={{ url: eventUrl, title: displayTitle }} />
+        <ShareLink
+          class=""
+          shareData={{ url: eventUrl, title: displayTitle }}
+        />
       </div>
     </div>
   </div>

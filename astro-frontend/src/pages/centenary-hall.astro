@@ -7,17 +7,12 @@ import { Locale } from "~/enums/locale";
 
 const lang = getLangFromUrl(Astro.url);
 
-const title = lang === Locale.KOK
-  ? "ಶತಾಬ್ದಿ ಸಾಲ್"
-  : "Centenary Hall";
+const title = lang === Locale.KOK ? "ಶತಾಬ್ದಿ ಸಾಲ್" : "Centenary Hall";
 
 const ogImageUrl = centenaryHallImage.src;
 ---
 
-<Layout
-  title={` ${title}`}
-  image={ogImageUrl}
->
+<Layout title={` ${title}`} image={ogImageUrl}>
   <main class="mx-auto max-w-screen-lg overflow-hidden bg-white">
     <section id="centenary-hall" class="flex flex-col p-6">
       <Centenary />

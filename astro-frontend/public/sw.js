@@ -2,7 +2,8 @@ self.addEventListener("push", (event) => {
   const data = event.data.json();
   self.registration.showNotification(data.title, {
     body: data.body,
-    icon: "/temp-logo.webp",
+    icon: data.icon || "/temp-logo.webp",
+    image: data.image,
     data: {
       url: data.data?.url || "/", // store URL here to use on click
     },

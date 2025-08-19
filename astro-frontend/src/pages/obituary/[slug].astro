@@ -15,7 +15,7 @@ const { obituaries } = await listObituaries({ pageSize: 1000 });
 const selectedObituary = obituaries.find((item) => item.slug === slug);
 
 if (!selectedObituary) {
-  return Astro.redirect('/404', 302);
+  return Astro.redirect("/404", 302);
 }
 
 const baseURL = import.meta.env.PUBLIC_STRAPI_URL;
@@ -29,13 +29,12 @@ const absoluteImage = selectedObituary.image?.formats?.medium?.url
         height: 400,
       });
 
-
 const obituaryImage = selectedObituary.image?.url
   ? new URL(selectedObituary.image.url, baseURL).toString()
   : getPlaceholderImage({
       text: selectedObituary.englishName,
       width: 340,
-      height: 400
+      height: 400,
     });
 
 const obituaryUrl = new URL(
@@ -58,7 +57,9 @@ const pageTitle = selectedObituary
 >
   <main class="mx-auto max-w-screen-lg overflow-hidden bg-white p-6">
     <section class="flex flex-col pb-4">
-      <div class="flex flex-col gap-2 md:flex-row md:items-center md:justify-between mb-4">
+      <div
+        class="flex flex-col gap-2 md:flex-row md:items-center md:justify-between mb-4"
+      >
         <h1
           class={cn(
             "font-black border-natgeo-yellow mb-2 md:mb-0 border-l-4 pl-3 text-3xl lg:text-4xl",
@@ -80,13 +81,17 @@ const pageTitle = selectedObituary
       <ObituaryCard
         client:load
         id={selectedObituary.id}
-        name={lang === Locale.EN ? selectedObituary.englishName : selectedObituary.konkaniName}
+        name={lang === Locale.EN
+          ? selectedObituary.englishName
+          : selectedObituary.konkaniName}
         age={selectedObituary.age}
         relationType={selectedObituary.relationType}
         relationNameEn={selectedObituary.relationNameEn}
         relationNameKok={selectedObituary.relationNameKok}
         ward={selectedObituary.ward}
-        dateOfDeath={selectedObituary.dateOfDeath ? new Date(selectedObituary.dateOfDeath).toISOString() : ""}
+        dateOfDeath={selectedObituary.dateOfDeath
+          ? new Date(selectedObituary.dateOfDeath).toISOString()
+          : ""}
         imageWidth={340}
         imageHeight={400}
         imageUrl={obituaryImage}

@@ -22,59 +22,70 @@ const currentPage = Number(url.searchParams.get("p")) || 1;
 
 const { obituaries } = await listObituaries({ pageSize: 1000 });
 
-const normalizedWard = decodeURIComponent(ward ?? "").toLowerCase().replace(/-/g, " ");
-const filteredObituaries = obituaries.filter((item) =>
-  item.ward?.toLowerCase() === normalizedWard,
+const normalizedWard = decodeURIComponent(ward ?? "")
+  .toLowerCase()
+  .replace(/-/g, " ");
+const filteredObituaries = obituaries.filter(
+  (item) => item.ward?.toLowerCase() === normalizedWard,
 );
 
-const formattedObituaries = filteredObituaries.map((obit) => {
-  const rawDate = obit.dateOfDeath ? new Date(obit.dateOfDeath) : new Date(0);
-  return {
-    ...obit,
-    formattedDate: obit.dateOfDeath
-      ? rawDate.toLocaleDateString(lang === Locale.KOK ? "kok-IN" : "en-IN", {
-          day: "2-digit",
-          month: "long",
-          year: "numeric",
-        })
-      : "Unknown Date",
-    dateSort: rawDate,
-  };
-}).sort((a, b) => b.dateSort.getTime() - a.dateSort.getTime());
+const formattedObituaries = filteredObituaries
+  .map((obit) => {
+    const rawDate = obit.dateOfDeath ? new Date(obit.dateOfDeath) : new Date(0);
+    return {
+      ...obit,
+      formattedDate: obit.dateOfDeath
+        ? rawDate.toLocaleDateString(lang === Locale.KOK ? "kok-IN" : "en-IN", {
+            day: "2-digit",
+            month: "long",
+            year: "numeric",
+          })
+        : "Unknown Date",
+      dateSort: rawDate,
+    };
+  })
+  .sort((a, b) => b.dateSort.getTime() - a.dateSort.getTime());
 
 const totalPages = Math.ceil(formattedObituaries.length / obituariesPerPage);
 const paginatedObituaries = formattedObituaries.slice(
   (currentPage - 1) * obituariesPerPage,
-  currentPage * obituariesPerPage
+  currentPage * obituariesPerPage,
 );
 
-const pageTitle = lang === Locale.KOK
-  ? `Obituary`
-  : `Obituary`;
+const pageTitle = lang === Locale.KOK ? `Obituary` : `Obituary`;
 
 const uniqueWards = allWards.map((ward) => ({
   name: ward.wardName,
-  label: lang === Locale.KOK ? getWardNameKok(ward.wardName, lang) : ward.wardName,
+  label:
+    lang === Locale.KOK ? getWardNameKok(ward.wardName, lang) : ward.wardName,
 }));
 
 const basePath = `${Astro.url.pathname}?`;
 ---
 
-<Layout title={pageTitle} >
+<Layout title={pageTitle}>
   <main class="mx-auto max-w-screen-lg overflow-hidden bg-white">
     <section class="flex flex-col p-6 pb-4">
       <PushNotification />
 
-      <div class="flex flex-col gap-2 md:flex-row md:items-center md:justify-between mb-4">
-        <h1 class={cn(
-          "font-black border-natgeo-yellow mb-2 md:mb-0 border-l-4 pl-3 text-3xl lg:text-4xl",
-          { "pt-2 font-bold": lang === Locale.KOK },
-        )}>
-             {t("nav.obituary")}
+      <div
+        class="flex flex-col gap-2 md:flex-row md:items-center md:justify-between mb-4"
+      >
+        <h1
+          class={cn(
+            "font-black border-natgeo-yellow mb-2 md:mb-0 border-l-4 pl-3 text-3xl lg:text-4xl",
+            { "pt-2 font-bold": lang === Locale.KOK },
+          )}
+        >
+          {t("nav.obituary")}
         </h1>
 
         <div class="w-full md:w-64">
-          <SelectWardRedirect client:only="react" wards={uniqueWards} placeholder={t("ward.select-label")}/>
+          <SelectWardRedirect
+            client:only="react"
+            wards={uniqueWards}
+            placeholder={t("ward.select-label")}
+          />
         </div>
       </div>
 
@@ -90,7 +101,6 @@ const basePath = `${Astro.url.pathname}?`;
         paginatedObituaries.length > 0 ? (
           <>
             <ObituaryList obituaries={paginatedObituaries} />
-
 
             {totalPages > 1 && (
               <Pagination

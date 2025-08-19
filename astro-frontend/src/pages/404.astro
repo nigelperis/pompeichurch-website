@@ -1,13 +1,13 @@
 ---
-import '@fontsource-variable/noto-sans-kannada';
-import '@fontsource-variable/roboto';
+import "@fontsource-variable/noto-sans-kannada";
+import "@fontsource-variable/roboto";
 import "~/styles/global.css";
-import Navbar from '~/components/navbar.astro';
-import Footer from '~/components/footer.astro';
-import ScrollTop from '~/components/scroll-top.astro';
+import Navbar from "~/components/navbar.astro";
+import Footer from "~/components/footer.astro";
+import ScrollTop from "~/components/scroll-top.astro";
 import { cn } from "~/helpers/cn";
-import { getLangFromUrl } from '~/i18n/utils';
-import { Locale } from '~/enums/locale';
+import { getLangFromUrl } from "~/i18n/utils";
+import { Locale } from "~/enums/locale";
 
 const lang = getLangFromUrl(Astro.url);
 const isKonkani = lang === Locale.KOK;
@@ -25,20 +25,25 @@ const homeUrl = isKonkani ? "/kok/" : "/";
     <link rel="manifest" href="/site.webmanifest" />
   </head>
 
-  <body class={cn("w-screen overflow-x-hidden font-roboto h-dvh flex flex-col bg-white", {
-    "font-noto-sans-kannada": lang === Locale.KOK
-  })}>
-
-
+  <body
+    class={cn(
+      "w-screen overflow-x-hidden font-roboto h-dvh flex flex-col bg-white",
+      {
+        "font-noto-sans-kannada": lang === Locale.KOK,
+      },
+    )}
+  >
     <Navbar />
-
 
     <main class="flex-grow flex items-center justify-center px-4">
       <div class="max-w-xl mx-auto text-center">
         <h1 class="text-6xl font-extrabold text-yellow-500 mb-4">404</h1>
-        <h2 class="text-2xl font-semibold text-slate-900 mb-3">Page Not Found</h2>
+        <h2 class="text-2xl font-semibold text-slate-900 mb-3">
+          Page Not Found
+        </h2>
         <p class="text-base text-slate-700 mb-8">
-          Sorry, the page you are looking for might have been removed or doesn't exist.
+          Sorry, the page you are looking for might have been removed or doesn't
+          exist.
         </p>
         <a
           href={homeUrl}
@@ -52,7 +57,6 @@ const homeUrl = isKonkani ? "/kok/" : "/";
     <Footer />
 
     <ScrollTop />
-
 
     <script>
       console.log("Est Nov, 2024 🥃 www.nigelperis.dev");

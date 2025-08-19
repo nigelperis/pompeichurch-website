@@ -6,17 +6,12 @@ import { getLangFromUrl } from "~/i18n/utils";
 import { Locale } from "~/enums/locale";
 const lang = getLangFromUrl(Astro.url);
 
-const title = lang === Locale.KOK
-  ? "ಪೊಂಪೈ ಸಭಾ ಭವನ್"
-  : "Pompei Sabha Bhavan";
+const title = lang === Locale.KOK ? "ಪೊಂಪೈ ಸಭಾ ಭವನ್" : "Pompei Sabha Bhavan";
 
 const ogImageUrl = pompeiSabhaBhavanImage.src;
 ---
 
-<Layout
-  title={` ${title}`}
-  image={ogImageUrl}
->
+<Layout title={` ${title}`} image={ogImageUrl}>
   <main class="mx-auto max-w-screen-lg overflow-hidden bg-white">
     <section class="flex flex-col p-6">
       <PompeiSabhaBhavanHall />

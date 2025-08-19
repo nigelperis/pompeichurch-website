@@ -11,24 +11,27 @@ const { magazines } = Astro.props as { magazines: PompeichemFalkem[] };
 >
   {
     magazines.map((magazine) => (
-       <MagazineCard
-      title={magazine.title}
-      imageUrl={
-        magazine.coverImage?.url
-          ? new URL(
-            magazine.coverImage.url,
-            import.meta.env.PUBLIC_STRAPI_URL,
-          ).toString()
-          : getPlaceholderImage({ text: magazine.title })
-      }
-      imageWidth={magazine.coverImage?.width ?? 600}
-      imageHeight={magazine.coverImage?.height ?? 400}
-       fileUrl={
-        magazine.pdfFile?.url
-          ? new URL(magazine.pdfFile.url, import.meta.env.PUBLIC_STRAPI_URL).toString()
-          : null
-      }
-    />
+      <MagazineCard
+        title={magazine.title}
+        imageUrl={
+          magazine.coverImage?.url
+            ? new URL(
+                magazine.coverImage.url,
+                import.meta.env.PUBLIC_STRAPI_URL,
+              ).toString()
+            : getPlaceholderImage({ text: magazine.title })
+        }
+        imageWidth={magazine.coverImage?.width ?? 600}
+        imageHeight={magazine.coverImage?.height ?? 400}
+        fileUrl={
+          magazine.pdfFile?.url
+            ? new URL(
+                magazine.pdfFile.url,
+                import.meta.env.PUBLIC_STRAPI_URL,
+              ).toString()
+            : null
+        }
+      />
     ))
   }
 </div>

@@ -49,7 +49,7 @@ const totalPages = Math.ceil(formattedObituaries.length / obituariesPerPage);
 
 const paginatedObituaries = formattedObituaries.slice(
   (currentPage - 1) * obituariesPerPage,
-  currentPage * obituariesPerPage
+  currentPage * obituariesPerPage,
 );
 
 const uniqueWards = allWards.map((ward) => ({
@@ -62,17 +62,14 @@ const basePath = selectedWard
   ? `/obituary?ward=${selectedWard}&`
   : `/obituary?`;
 
-
-
 const baseURL = import.meta.env.PUBLIC_STRAPI_URL;
 
 const firstObituary = formattedObituaries?.[0];
 
 const ogTitle = lang === Locale.KOK ? "ಫಿರ್ಗಜೆಂತ್ ಮರಣ್" : "Obituary";
 
-const ogDescription = lang === Locale.KOK
-  ? "ಮೊಗಾಚೊ ಉಡಾಸ್"
-  : "Tribute of love...";
+const ogDescription =
+  lang === Locale.KOK ? "ಮೊಗಾಚೊ ಉಡಾಸ್" : "Tribute of love...";
 
 const ogImageUrl = firstObituary?.image?.url
   ? new URL(firstObituary.image.url, baseURL).toString()
@@ -81,8 +78,6 @@ const ogImageUrl = firstObituary?.image?.url
       height: 1200,
       text: firstObituary?.englishName || "Pompei Obituary",
     });
-
-
 ---
 
 <Layout
@@ -91,7 +86,6 @@ const ogImageUrl = firstObituary?.image?.url
   image={ogImageUrl}
   url={Astro.url.toString()}
 >
-
   <main class="mx-auto max-w-screen-lg overflow-hidden bg-white">
     <section class="flex flex-col p-6 pb-4">
       <PushNotification />
@@ -102,7 +96,7 @@ const ogImageUrl = firstObituary?.image?.url
         <h1
           class={cn(
             "font-black border-natgeo-yellow mb-2 md:mb-0 border-l-4 pl-3 text-3xl lg:text-4xl",
-            { "pt-2 font-bold": lang === Locale.KOK }
+            { "pt-2 font-bold": lang === Locale.KOK },
           )}
         >
           {t("nav.obituary")}
