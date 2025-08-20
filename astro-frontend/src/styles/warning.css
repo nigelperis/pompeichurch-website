@@ -1,0 +1,51 @@
+@keyframes glow-color {
+  0% {
+    text-shadow: 0 0 3px #ff0000, 0 0 10px #ff0000;
+  }
+  50% {
+    text-shadow: 0 0 20px #ff0000, 0 0 30px #ff0000;
+  }
+  100% {
+    text-shadow: 0 0 3px #ff0000, 0 0 10px #ff0000;
+  }
+
+}
+
+.glow {
+  animation: glow-color 2s ease-in-out infinite;
+}
+
+@keyframes slideInDown {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutUp {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
+
+#confirmation-prompt {
+  transition: all 0.3s ease-in-out;
+}
+
+#confirmation-prompt.slide-in {
+  animation: slideInDown 0.3s ease-out forwards;
+}
+
+#confirmation-prompt.slide-out {
+  animation: slideOutUp 0.5s ease-in forwards;
+}
+

@@ -15,11 +15,14 @@ export function dataLossConfirmation(message: string): Promise<boolean> {
     }
 
     confirmationPrompt.classList.remove("hidden");
+    confirmationPrompt.classList.add("slide-in");
     confirmationMessage.textContent = message;
 
     const handleClick = (value: boolean) => {
+      confirmationPrompt.classList.add("slide-out");
       setTimeout(() => {
         confirmationPrompt.classList.add("hidden");
+        confirmationPrompt.classList.remove("slide-in", "slide-out");
         resolve(value);
       }, 100);
     };
