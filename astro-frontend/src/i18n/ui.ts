@@ -571,7 +571,7 @@ export const ui = {
     "achievement.no-file-chosen": "ತಸ್ವೀರ್ ವಿಂಚುಂಕ್ ನಾಂತ್",
     "achievement.no-files-chosen": "ತಸ್ವೀರ್(ರೊ) ವಿಂಚುಂಕ್ ನಾಂತ್",
     "achievement.submit": "ದಾಖಲ್ ಕರಾ",
-    "achievement.submitting": "ದಾಕಲ್ ಜಾವ್ನಾಸಾ...",
+    "achievement.submitting": "ದಾಖಲ್ ಜಾವ್ನ್ ಆಸಾ...",
     "achievement.image-size-error": "ದಯಾಕರ್ನ್ 2MB ಭಿತರ್ ತಸ್ವೀರ್ ವಿಂಚಾ.",
     "achievement.image-type-error":
       "ದಯಾಕರ್ನ್ JPG, JPEG ವಾ PNG ರುಪಾಚಿ ತಸ್ವೀರ್ ವಿಂಚಾ.",

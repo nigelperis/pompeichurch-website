@@ -91,6 +91,10 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
       ".descriptive-characters-tracker",
     ) as NodeListOf<HTMLInputElement>;
 
+    const submit = document.getElementById("submit") as HTMLButtonElement;
+
+    const header = document.getElementById("header") as HTMLDivElement;
+
     const allowedTypes = ["image/jpeg", "image/png", "image/jpg"];
 
     const MAX_SIZE = 2 * 1024 * 1024; // 2MB;
@@ -100,20 +104,20 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
     const descriptiveLimit = 100;
 
     const inputIds = [
-            "individual-achievement",
-            "team-achievement",
-            "full-name",
-            "team-name",
-            "parents-names",
-            "team-members-names",
-            "ward-input",
-            "achievement",
-            "issue-date",
-            "achiever-image",
-            "proof-of-achievement",
-            "additional-images",
-            "submitted-by",
-      ];
+      "individual-achievement",
+      "team-achievement",
+      "full-name",
+      "team-name",
+      "parents-names",
+      "team-members-names",
+      "ward-input",
+      "achievement",
+      "issue-date",
+      "achiever-image",
+      "proof-of-achievement",
+      "additional-images",
+      "submitted-by",
+    ];
 
     // Date Picker
     new Litepicker({
@@ -268,10 +272,11 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
     // Hide dropdown when click outside
     document.addEventListener("click", (event) => {
       if (event.target !== wardInput) {
-        if(!wardMenu.classList.contains("hidden"))
-        {wardMenu.classList.add("hidden")}
+        if (!wardMenu.classList.contains("hidden")) {
+          wardMenu.classList.add("hidden");
+        }
       }
-    })
+    });
 
     // Image Validation by size
     const handleImageSize = (event: FileList) => {
@@ -457,22 +462,25 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
 
     // Submitting
     const submitting = () => {
-      const submit = document.getElementById("submit") as HTMLButtonElement;
-
+      header.classList.add("pointer-events-none");
       submit.disabled = true;
       submit.textContent = t("achievement.submitting");
+      submit.classList.remove("bg-natego-yellow");
+      submit.classList.add("bg-yellow-400");
 
       inputIds.forEach((id) => {
         const inputField = document.getElementById(id) as HTMLInputElement;
         inputField.disabled = true;
       });
-    }
+    };
 
     // Reset Submitting
     const resetSubmitting = () => {
-      const submit = document.getElementById("submit") as HTMLButtonElement;
+      header.classList.remove("pointer-events-none");
       submit.disabled = false;
       submit.textContent = t("achievement.submit");
+      submit.classList.remove("bg-yellow-400");
+      submit.classList.add("bg-natego-yellow");
 
       inputIds.forEach((id) => {
         const inputField = document.getElementById(id) as HTMLInputElement;
@@ -531,6 +539,8 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
           // Reset the form fields after successful submission
           form.reset();
           resetFormFields();
+
+          resetSubmitting();
         } catch (error) {
           // Form Submission failed
           const toast = document.getElementById("toast") as HTMLDivElement;
@@ -541,8 +551,6 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
           }
           resetSubmitting();
           console.error("Failed to send data", error);
-        } finally {
-          resetSubmitting();
         }
       }
     });
