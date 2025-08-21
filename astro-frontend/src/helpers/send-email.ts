@@ -1,12 +1,12 @@
 import { Resend } from "resend";
-import { ADMIN_EMAIL, RECEPIENT_EMAILS } from "~/constants/constants";
+import { ADMIN_EMAIL, RECIPIENT_EMAILS } from "~/constants/index";
 
 const resend = new Resend(import.meta.env.RESEND_API_KEY);
 
 export async function sendEmail({
   subject,
   html,
-  to = RECEPIENT_EMAILS,
+  to = RECIPIENT_EMAILS,
   attachments = [],
 }: {
   subject: string;

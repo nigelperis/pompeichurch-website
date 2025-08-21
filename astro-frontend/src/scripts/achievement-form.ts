@@ -9,6 +9,14 @@ import { Locale } from "~/enums/locale";
 import Litepicker from "litepicker";
 import { validateFileInput } from "~/helpers/validate-file-input";
 import { dataLossConfirmation } from "~/helpers/data-loss-confirmation";
+import {
+  SEND_ACHIEVEMENT_API_URL,
+  MAX_IMAGES,
+  MAX_SIZE,
+  STD_LIMIT,
+  DESCRIPTIVE_LIMIT,
+  ALLOWED_TYPES,
+} from "~/constants/index";
 
 export const achievementForm = (lang: Locale = Locale.EN) => {
   document.addEventListener("DOMContentLoaded", () => {
@@ -91,17 +99,13 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
       ".descriptive-characters-tracker",
     ) as NodeListOf<HTMLInputElement>;
 
+    const submittedBy = document.getElementById(
+      "submitted-by",
+    ) as HTMLInputElement;
+
     const submit = document.getElementById("submit") as HTMLButtonElement;
 
     const header = document.getElementById("header") as HTMLDivElement;
-
-    const allowedTypes = ["image/jpeg", "image/png", "image/jpg"];
-
-    const MAX_SIZE = 2 * 1024 * 1024; // 2MB;
-    const MAX_IMAGES = 2; // Maximum number of additional images
-
-    const stdLimit = 50;
-    const descriptiveLimit = 100;
 
     const inputIds = [
       "individual-achievement",
@@ -143,12 +147,12 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
 
     // Live 50 Character Counters
     charactersTracker.forEach((input) => {
-      liveCharacterCounter(input, stdLimit);
+      liveCharacterCounter(input, STD_LIMIT);
     });
 
     // Live 100 Character Counters
     descriptiveCharactersTracker.forEach((input) => {
-      liveCharacterCounter(input, descriptiveLimit);
+      liveCharacterCounter(input, DESCRIPTIVE_LIMIT);
     });
 
     // Radio Button for Individual Achievement
@@ -291,7 +295,7 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
     // Image Validation by type
     const handleImageType = (event: FileList) => {
       for (let i = 0; i < event.length; i++) {
-        if (!allowedTypes.includes(event[i].type)) {
+        if (!ALLOWED_TYPES.includes(event[i].type)) {
           return false;
         }
       }
@@ -432,10 +436,12 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
         issueDate.value !== "" ||
         achieverImage.files?.length !== 0 ||
         proofOfAchievement.files?.length !== 0 ||
-        additionalImages.files?.length !== 0
+        additionalImages.files?.length !== 0 ||
+        submittedBy.value !== ""
       );
     };
 
+    // Handle language switch confirmation
     const handleLanguageSwitch = async (targetLang: string) => {
       if (isDirty()) {
         overlay.classList.remove("hidden");
@@ -493,6 +499,7 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
       event.preventDefault();
 
       const data = new FormData(form);
+      data.append("lang", lang);
 
       // Validate Achiever Image: Required, Size and Type
       const isAchieverImageValid =
@@ -524,7 +531,7 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
           submitting();
 
           // Send data
-          const res = await fetch("/api/send-achievement", {
+          const res = await fetch(SEND_ACHIEVEMENT_API_URL, {
             method: "POST",
             body: data,
           });

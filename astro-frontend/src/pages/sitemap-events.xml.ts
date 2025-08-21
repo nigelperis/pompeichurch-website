@@ -1,7 +1,7 @@
 import type { APIRoute } from "astro";
 import type { Event } from "~/models/event";
 import { Locale } from "~/enums/locale";
-import { SITE_URL } from "~/constants/constants";
+import { SITE_URL } from "~/constants/index";
 import { listEvents } from "~/services/events/list-events";
 
 export const GET: APIRoute = async () => {

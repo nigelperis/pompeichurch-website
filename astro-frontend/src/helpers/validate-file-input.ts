@@ -1,5 +1,6 @@
 import { useTranslations } from "~/i18n/utils";
 import { Locale } from "~/enums/locale";
+import { ALLOWED_TYPES, MAX_IMAGES, MAX_SIZE } from "~/constants/index";
 
 export function validateFileInput({
   lang,
@@ -12,11 +13,6 @@ export function validateFileInput({
   fileName: string;
   inputErrorMessage: HTMLParagraphElement;
 }) {
-
-  const allowedTypes = ["image/jpeg", "image/png", "image/jpg"];
-
-  const MAX_SIZE = 2 * 1024 * 1024; // 2MB;
-  const MAX_IMAGES = 2; // Maximum number of additional images
 
   // Image Validation by size
   const handleImageSize = (event: FileList) => {
@@ -31,7 +27,7 @@ export function validateFileInput({
   // Image Validation by type
   const handleImageType = (event: FileList) => {
     for (let i = 0; i < event.length; i++) {
-      if (!allowedTypes.includes(event[i].type)) {
+      if (!ALLOWED_TYPES.includes(event[i].type)) {
         return false;
       }
     }

@@ -1,34 +1,36 @@
 import type { APIRoute } from "astro";
 import { sendEmail } from "~/helpers/send-email";
-import { RECEPIENT_EMAILS } from "~/constants/constants";
+import { RECIPIENT_EMAILS } from "~/constants/index";
+import { getAchievementEmailHtml } from "~/helpers/get-achievement-email-html";
+import { useTranslations } from "~/i18n/utils";
+import { Locale } from "~/enums/locale";
 
 /**
- * Handles the POST request to submit achievement data.
- * Extracts form data including personal and achievement details,
- * performs server-side spam checks, and processes file attachments.
- * Sends an email with the achievement details and attachments.
- *
- * @param {Object} request - The incoming HTTP request containing form data.
- *
- * @returns {Response} - The HTTP response indicating success or failure.
- *
- * Form Data Fields:
- * - full-name: The name of the achiever or team.
- * - achievement: Description of the achievement.
- * - issue-date: Date when the achievement was issued.
- * - parents-names: Names of the parents if applicable.
- * - team-members-names: Names of team members if applicable.
- * - ward-input: Ward information, optional for teams.
- * - submitted-by: Name of the person submitting the achievement.
- * - achiever-image: File representing the achiever's image.
- * - proof-of-achievement: File as proof of the achievement.
- * - additional-images: Any additional images related to the achievement.
- * - fax: A hidden field used for spam detection.
+ * API route to handle submissions of achievements.
+ * @remarks
+ * This route accepts the following form data:
+ * - `lang`: The language of the achievement submission.
+ * - `full-name`: The name of the individual achiever.
+ * - `team-name`: The name of the team.
+ * - `achievement`: A short description of the achievement.
+ * - `issue-date`: The date the achievement was issued in the format `dd/mm/yyyy`.
+ * - `parents-names`: The names of the parents of the individual achiever.
+ * - `team-members-names`: The names of the team members.
+ * - `ward`: The ward of the achiever.
+ * - `submitted-by`: The name of the person submitting the achievement.
+ * - `proof-of-achievement`: A file containing proof of the achievement (required).
+ * - `achiever-image`: A file containing a photo of the individual achiever (required).
+ * - `additional-images`: Files containing additional photos of the achievement.
+ * - `fax`: A hidden field to detect server-side spam.
+ * @returns {Response} A response with a status code of 200 if the submission is successful, otherwise 400, 500, or 503.
  */
 
 export const POST: APIRoute = async ({ request }) => {
   try {
     const data = await request.formData();
+
+    const lang = data.get("lang") as Locale;
+    const t = useTranslations(lang);
 
     const fullName = data.get("full-name")?.toString().trim();
     const teamName = data.get("team-name")?.toString().trim();
@@ -50,15 +52,6 @@ export const POST: APIRoute = async ({ request }) => {
       contentType: string;
     }[] = [];
 
-    const individualHTML = `
-      <h1>Individual Achievement</h1>
-      <p><strong>Name:</strong> ${fullName}</p>
-      <p><strong>Parents' Names:</strong> ${parentsNames}</p>
-      <p><strong>Ward:</strong> ${ward}</p>`;
-    const teamHTML = `
-      <h1>Team Achievement</h1>
-      <p><strong>Team Name:</strong> ${teamName}</p>
-      <p><strong>Team Members' Names:</strong> ${teamMembersNames}</p>`;
     const name = fullName || teamName;
     const category = fullName ? "Individual Achievement" : "Team Achievement";
 
@@ -143,14 +136,22 @@ export const POST: APIRoute = async ({ request }) => {
       });
     }
 
-    const subject = `🏅New Achievement Submitted: ${name}`;
-    const html = `
-      ${category === "Individual Achievement" ? individualHTML : teamHTML}
-      <p><strong>Achievement:</strong> ${achievement}</p>
-      <p><strong>Issue Date (dd/mm/yyyy):</strong> ${issueDate}</p>
-      <p><strong>Submitted By:</strong> ${submittedBy}</p>
-    `;
-    const to = RECEPIENT_EMAILS;
+    const body = getAchievementEmailHtml({
+      lang,
+      category,
+      fullName,
+      teamName,
+      ward,
+      parentsNames,
+      teamMembersNames,
+      issueDate,
+      achievement,
+      submittedBy,
+    });
+
+    const subject = `🏅${t("achievement.title")}: ${name}`;
+    const html = body;
+    const to = RECIPIENT_EMAILS;
 
     const res = await sendEmail({
       subject: subject,

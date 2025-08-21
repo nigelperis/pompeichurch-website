@@ -1,5 +1,5 @@
 import type { APIRoute } from "astro";
-import { SITE_URL } from "../constants/constants";
+import { SITE_URL } from "../constants/index";
 
 export const GET: APIRoute = async () => {
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
