@@ -1,6 +1,6 @@
 import { useTranslations } from "~/i18n/utils";
 import { Locale } from "~/enums/locale";
-import { ALLOWED_TYPES, MAX_IMAGES, MAX_SIZE } from "~/constants/index";
+import { ALLOWED_TYPES, MAX_SIZE } from "~/constants/index";
 
 export function validateFileInput({
   lang,
@@ -15,9 +15,9 @@ export function validateFileInput({
 }) {
 
   // Image Validation by size
-  const handleImageSize = (event: FileList) => {
-    for (let i = 0; i < event.length; i++) {
-      if (event[i].size > MAX_SIZE) {
+  const handleImageSize = (files: FileList) => {
+    for (let i = 0; i < files.length; i++) {
+      if (files[i].size > MAX_SIZE) {
         return false;
       }
     }
@@ -25,9 +25,9 @@ export function validateFileInput({
   };
 
   // Image Validation by type
-  const handleImageType = (event: FileList) => {
-    for (let i = 0; i < event.length; i++) {
-      if (!ALLOWED_TYPES.includes(event[i].type)) {
+  const handleImageType = (files: FileList) => {
+    for (let i = 0; i < files.length; i++) {
+      if (!ALLOWED_TYPES.includes(files[i].type)) {
         return false;
       }
     }
@@ -42,9 +42,11 @@ export function validateFileInput({
     if (input.files && !handleImageSize(input.files)) {
       inputErrorMessage.textContent = t("achievement.image-size-error");
       fileNameElement.textContent = t("achievement.no-file-chosen");
+      input.value = "";
     } else if (input.files && !handleImageType(input.files)) {
       inputErrorMessage.textContent = t("achievement.image-type-error");
       fileNameElement.textContent = t("achievement.no-file-chosen");
+      input.value = "";
     } else {
       input.files && input.files.length > 0
         ? (fileNameElement.textContent = input.files[0].name)

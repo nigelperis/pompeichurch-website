@@ -8,10 +8,10 @@ import { useTranslations } from "~/i18n/utils";
 import { Locale } from "~/enums/locale";
 import Litepicker from "litepicker";
 import { validateFileInput } from "~/helpers/validate-file-input";
+import { validateAdditionalImages } from "~/helpers/validate-additional-images";
 import { dataLossConfirmation } from "~/helpers/data-loss-confirmation";
 import {
   SEND_ACHIEVEMENT_API_URL,
-  MAX_IMAGES,
   MAX_SIZE,
   STD_LIMIT,
   DESCRIPTIVE_LIMIT,
@@ -92,6 +92,8 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
       "additional-images-error",
     ) as HTMLParagraphElement;
 
+    const xButtons = document.querySelectorAll(".x-button") as NodeListOf<HTMLButtonElement>;
+
     const charactersTracker = document.querySelectorAll(
       ".characters-tracker",
     ) as NodeListOf<HTMLInputElement>;
@@ -170,6 +172,16 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
             body.style.overflow = "";
             teamName.value = "";
             teamMembersNames.value = "";
+            charactersTracker.forEach((input: HTMLInputElement) => {
+              if (input.nextElementSibling) {
+                input.nextElementSibling.textContent = "0/50";
+              }
+            });
+            descriptiveCharactersTracker.forEach((input: HTMLInputElement) => {
+              if (input.nextElementSibling) {
+                input.nextElementSibling.textContent = "0/100";
+              }
+            });
           } else {
             teamAchievement.checked = true;
             overlay.classList.add("hidden");
@@ -218,6 +230,16 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
             fullName.value = "";
             parentsNames.value = "";
             wardInput.value = "";
+            charactersTracker.forEach((input: HTMLInputElement) => {
+              if (input.nextElementSibling) {
+                input.nextElementSibling.textContent = "0/50";
+              }
+            });
+            descriptiveCharactersTracker.forEach((input: HTMLInputElement) => {
+              if (input.nextElementSibling) {
+                input.nextElementSibling.textContent = "0/100";
+              }
+            });
           } else {
             individualAchievement.checked = true;
             overlay.classList.add("hidden");
@@ -319,38 +341,30 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
     });
 
     // Additional Images Validation
-    additionalImages.addEventListener("change", () => {
-      const fileName = document.getElementById(
-        "additional-images-file-name",
-      ) as HTMLInputElement;
-
-      const selectedFiles = additionalImages?.files;
-
-      if (selectedFiles && selectedFiles.length > MAX_IMAGES) {
-        additionalImagesErrorMessage.textContent = t(
-          "achievement.additional-images-error",
-        );
-        fileName.textContent = t("achievement.no-file-chosen");
-      } else if (selectedFiles && !handleImageSize(selectedFiles)) {
-        additionalImagesErrorMessage.textContent = t(
-          "achievement.image-size-error",
-        );
-        fileName.textContent = t("achievement.no-file-chosen");
-      } else if (selectedFiles && !handleImageType(selectedFiles)) {
-        additionalImagesErrorMessage.textContent = t(
-          "achievement.image-type-error",
-        );
-      } else {
-        if (selectedFiles?.length === 1) {
-          fileName.textContent = selectedFiles[0].name;
-        } else if (selectedFiles?.length === 2) {
-          fileName.textContent = `${selectedFiles.length} ${t("achievement.files")}`;
-        } else {
-          fileName.textContent = t("achievement.no-file-chosen");
-        }
-        additionalImagesErrorMessage.textContent = "";
-      }
+    validateAdditionalImages({
+      lang,
+      additionalImages,
+      fileName: "additional-images-file-name",
+      additionalImagesErrorMessage,
     });
+
+    xButtons.forEach((xButton) =>
+      xButton.addEventListener("click", () => {
+        const container = xButton.closest(".relative");
+
+        if (!container) return;
+
+        const inputField = container.querySelector(
+          'input[type="file"]',
+        ) as HTMLInputElement;
+        const fileName = xButton.previousElementSibling as HTMLParagraphElement;
+
+        if (inputField && fileName) {
+          fileName.textContent = t("achievement.no-file-chosen");
+          inputField.value = "";
+        }
+      })
+    );
 
     // Success Toast
     function showToast(message = t("achievement.success-message")) {
@@ -402,6 +416,7 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
       );
       if (additionalImagesName)
         additionalImagesName.textContent = t("achievement.no-files-chosen");
+      additionalImagesErrorMessage.textContent = "";
 
       const proofOfAchievementName = document.getElementById(
         "proof-of-achievement-file-name",

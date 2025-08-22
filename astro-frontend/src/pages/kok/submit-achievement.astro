@@ -1,5 +1,6 @@
 ---
 import Layout from "~/layouts/layout.astro";
+import { Icon } from "astro-icon/components";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import { Locale } from "~/enums/locale";
 import { cn } from "~/helpers/cn";
@@ -157,6 +158,12 @@ const wards = [
 
               <!-- File name display -->
               <p id="achiever-image-file-name" class="font-normal text-gray-900 truncate">{t("achievement.no-file-chosen")}</p>
+              <button class="x-button ml-auto">
+                <Icon
+                name="cancel"
+                class="cursor-pointer"
+                />
+              </button>
             </div>
           </div>
           <!-- Error message -->
@@ -190,6 +197,12 @@ const wards = [
 
               <!-- File name display -->
               <p id="proof-of-achievement-file-name" class="font-normal text-gray-900 truncate">{t("achievement.no-file-chosen")}</p>
+              <button class="x-button ml-auto">
+                <Icon
+                name="cancel"
+                class="cursor-pointer"
+                />
+              </button>
             </div>
           </div>
           <!-- Error message -->
@@ -223,6 +236,12 @@ const wards = [
 
               <!-- File name display -->
               <p id="additional-images-file-name" class="font-normal text-gray-900 truncate">{t("achievement.no-files-chosen")}</p>
+              <button class="x-button ml-auto">
+                <Icon
+                name="cancel"
+                class="cursor-pointer"
+                />
+              </button>
             </div>
           </div>
           <!-- Error message -->
