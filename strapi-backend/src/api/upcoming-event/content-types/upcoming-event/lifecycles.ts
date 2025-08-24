@@ -1,5 +1,5 @@
 import { sendEmail } from "../../../../utils/send-email";
-import { UPCOMING_EVENTS } from "../../../../constants";
+import { SITE_URL } from "../../../../constants";
 import { sendPushNotification } from "../../../../utils/send-push-notifications";
 
 const STRAPI_URL = process.env.STRAPI_URL || "https://strapi.pompeichurch.in";
@@ -24,7 +24,7 @@ async function maybeSendUpcomingEventEmail(result: any) {
     <h2>New Upcoming Event</h2>
     <ul>
       <li><strong>Event End Date:</strong> ${eventEndDate}</li>
-      <li><strong>View Upcoming Event:</strong> <a href="${UPCOMING_EVENTS}">${UPCOMING_EVENTS}</a></li>
+      <li><strong>View Upcoming Event:</strong> <a href="${SITE_URL}?section=upcoming-events">${SITE_URL}?section=upcoming-events</a></li>
     </ul>
     <p><strong>Published By:</strong> ${publisherName}</p>
   `;
@@ -36,7 +36,7 @@ async function maybeSendUpcomingEventEmail(result: any) {
     icon: "/temp-logo.webp",
     image: upcomingEventImage,
     data: {
-      url: UPCOMING_EVENTS,
+      url: `${SITE_URL}?section=upcoming-events`,
     },
   });
 }
