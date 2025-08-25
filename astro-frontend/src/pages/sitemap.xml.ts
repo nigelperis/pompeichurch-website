@@ -1,7 +1,7 @@
 import type { APIRoute } from "astro";
 import { navLinks } from "../constants/nav-links";
 import { Locale } from "../enums/locale";
-import { SITE_URL } from "../constants/constants";
+import { SITE_URL } from "../constants/index";
 import { lastmod } from "../constants/last-modified-date";
 
 export const GET: APIRoute = async () => {

@@ -350,7 +350,7 @@ export default function ObituaryCard({
                     : "font-roboto text-slate-700 text-lg md:text-[15px]",
                 )}
               >
-                {t("funeral.subtitle")}
+                {t("parish-priest-and-parishioners")}
               </p>
               {youtubeLink && (
                 <a

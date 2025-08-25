@@ -1,7 +1,7 @@
 import type { APIRoute } from "astro";
 import type { Obituary } from "~/models/obituary";
 import { Locale } from "~/enums/locale";
-import { SITE_URL } from "~/constants/constants";
+import { SITE_URL } from "~/constants/index";
 import { listObituaries } from "~/services/obituaries/list-obituaries";
 
 export const GET: APIRoute = async () => {

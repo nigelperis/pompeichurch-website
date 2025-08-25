@@ -1,5 +1,5 @@
 import { Resend } from "resend";
-import { ADMIN_EMAIL, RECEPIENT_EMAILS } from "../constants";
+import { ADMIN_EMAIL, RECIPIENT_EMAILS } from "../constants";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -12,7 +12,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 export async function sendEmail({
   subject,
   html,
-  to = RECEPIENT_EMAILS,
+  to = RECIPIENT_EMAILS,
 }: {
   subject: string;
   html: string;
