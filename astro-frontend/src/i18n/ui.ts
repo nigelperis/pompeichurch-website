@@ -136,7 +136,6 @@ export const ui = {
     "achievement.submit": "Submit",
     "achievement.submitting": "Submitting...",
     "achievement.image-size-error": "Please select an image smaller than 2MB.",
-    "achievement.image-type-error": "Please select a JPG, JPEG or PNG image.",
     "achievement.additional-images-error":
       "Please select only 2 additional images.",
     "achievement.success-message": "Your submission was successful!",
@@ -574,8 +573,6 @@ export const ui = {
     "achievement.submit": "ದಾಖಲ್ ಕರಾ",
     "achievement.submitting": "ದಾಖಲ್ ಜಾವ್ನ್ ಆಸಾ...",
     "achievement.image-size-error": "ದಯಾಕರ್ನ್ 2MB ಭಿತರ್ ತಸ್ವೀರ್ ವಿಂಚಾ.",
-    "achievement.image-type-error":
-      "ದಯಾಕರ್ನ್ JPG, JPEG ವಾ PNG ರುಪಾಚಿ ತಸ್ವೀರ್ ವಿಂಚಾ.",
     "achievement.additional-images-error": "ದಯಾಕರ್ನ್ ಕೇವಲ್ 2 ತಸ್ವಿರೊ ವಿಂಚಾ.",
     "achievement.success-message": "ತುಮ್ಚಿ ಅರ್ಜಿ ಆಮ್ಕಾಂ ಪಾವ್ಲ್ಯಾ!",
     "achievement.error-message":
@@ -592,7 +589,7 @@ export const ui = {
     "placeholder.parents-names": "ಉದಾ: ಜೊನ್ ಡಿಸೋಜಾ ಆನಿ ಜೇನ್ ಡಿಸೋಜಾ",
     "placeholder.team-members-names": "ಉದಾ: ಜೇನ್, ಸ್ಯಾಮ್, ಜೋ",
     "placeholder.submitted-by": "ಉದಾ: ಜೊನ್ ಡಿಸೋಜಾ",
-    "achievement.title": "ನೊವ್ಯಾ ಸಾಧನಾಚಿ ಅರ್ಜಿ",
+    "achievement.title": "ನವ್ಯಾ ಸಾಧನಾಚಿ ಅರ್ಜಿ",
     "commissions.convenor": "ಸಂಚಾಲಕಿ/ಕ್ ",
     "commissions.heading": "ಆಯೋಗ್",
     "commissions.secretary": "ಕಾರ್ಯದರ್ಶಿ",

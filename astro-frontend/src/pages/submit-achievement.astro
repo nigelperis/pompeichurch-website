@@ -82,8 +82,8 @@ const wards = [
         <!-- Parents Names -->
         <div class="" id="parents-names-div">
           <label for="parents-names" class="text-base font-normal leading-6 text-gray-900">{t("achievement.parents-names")} <span class="text-red-500">*</span></label>
-          <input id="parents-names" type="text" name="parents-names" class="descriptive-characters-tracker block w-full border border-gray-400 mt-0.5 p-3 focus:outline-gray-700 placeholder-gray-500" placeholder={t("placeholder.parents-names")} maxlength="100" required></input>
-          <p class="live-counter text-xs text-gray-500 flex justify-end mt-1" aria-live="polite">0/100</p>
+          <input id="parents-names" type="text" name="parents-names" class="characters-tracker block w-full border border-gray-400 mt-0.5 p-3 focus:outline-gray-700 placeholder-gray-500" placeholder={t("placeholder.parents-names")} maxlength="50" required></input>
+          <p class="live-counter text-xs text-gray-500 flex justify-end mt-1" aria-live="polite">0/50</p>
         </div>
 
         <!-- Team Members Names -->
@@ -157,13 +157,9 @@ const wards = [
               </label>
 
               <!-- File name display -->
-              <p id="achiever-image-file-name" class="font-normal text-gray-900 truncate">{t("achievement.no-file-chosen")}</p>
-              <button class="x-button ml-auto">
-                <Icon
-                name="cancel"
-                class="cursor-pointer"
-                />
-              </button>
+              <div id="achiever-image-file-name-container" class="flex items-center">
+                <p id="achiever-image-file-name" class="font-normal text-gray-900 truncate">{t("achievement.no-file-chosen")}</p>
+              </div>
             </div>
           </div>
           <!-- Error message -->
@@ -196,13 +192,9 @@ const wards = [
               </label>
 
               <!-- File name display -->
-              <p id="proof-of-achievement-file-name" class="font-normal text-gray-900 truncate">{t("achievement.no-file-chosen")}</p>
-              <button class="x-button ml-auto">
-                <Icon
-                name="cancel"
-                class="cursor-pointer"
-                />
-              </button>
+              <div id="proof-of-achievement-file-name-container" class="flex items-center">
+                <p id="proof-of-achievement-file-name" class="font-normal text-gray-900 truncate">{t("achievement.no-file-chosen")}</p>
+              </div>
             </div>
           </div>
           <!-- Error message -->
@@ -226,7 +218,7 @@ const wards = [
               accept=".jpg, .jpeg, .png, image/jpeg, image/png"
             />
 
-            <div class="border border-gray-400 flex flex-row w-full items-center p-2 gap-2">
+            <div  class="border border-gray-400 flex flex-row w-full items-center p-2 gap-2">
               <label
                 for="additional-images"
                 class="shrink-0 bg-natgeo-yellow hover:bg-yellow-400 text-black font-normal px-2 py-1 rounded-md cursor-pointer"
@@ -235,13 +227,9 @@ const wards = [
               </label>
 
               <!-- File name display -->
-              <p id="additional-images-file-name" class="font-normal text-gray-900 truncate">{t("achievement.no-files-chosen")}</p>
-              <button class="x-button ml-auto">
-                <Icon
-                name="cancel"
-                class="cursor-pointer"
-                />
-              </button>
+              <div id="additional-images-file-name-container" class="flex items-center">
+                <p id="additional-images-file-name" class="font-normal text-gray-900 truncate">{t("achievement.no-files-chosen")}</p>
+              </div>
             </div>
           </div>
           <!-- Error message -->

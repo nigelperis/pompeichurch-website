@@ -15,7 +15,6 @@ import {
   MAX_SIZE,
   STD_LIMIT,
   DESCRIPTIVE_LIMIT,
-  ALLOWED_TYPES,
 } from "~/constants/index";
 
 export const achievementForm = (lang: Locale = Locale.EN) => {
@@ -92,8 +91,6 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
       "additional-images-error",
     ) as HTMLParagraphElement;
 
-    const xButtons = document.querySelectorAll(".x-button") as NodeListOf<HTMLButtonElement>;
-
     const charactersTracker = document.querySelectorAll(
       ".characters-tracker",
     ) as NodeListOf<HTMLInputElement>;
@@ -123,6 +120,12 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
       "proof-of-achievement",
       "additional-images",
       "submitted-by",
+    ];
+
+    const fileNameDivIds = [
+      "achiever-image-file-name-container",
+      "proof-of-achievement-file-name-container",
+      "additional-images-file-name-container",
     ];
 
     // Date Picker
@@ -314,20 +317,11 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
       return true;
     };
 
-    // Image Validation by type
-    const handleImageType = (event: FileList) => {
-      for (let i = 0; i < event.length; i++) {
-        if (!ALLOWED_TYPES.includes(event[i].type)) {
-          return false;
-        }
-      }
-      return true;
-    };
-
     // Achiever Image Validation
     validateFileInput({
       lang,
       input: achieverImage,
+      fileNameDivId: "achiever-image-file-name-container",
       fileName: "achiever-image-file-name",
       inputErrorMessage: achieverImageErrorMessage,
     });
@@ -336,6 +330,7 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
     validateFileInput({
       lang,
       input: proofOfAchievement,
+      fileNameDivId: "proof-of-achievement-file-name-container",
       fileName: "proof-of-achievement-file-name",
       inputErrorMessage: proofOfAchievementErrorMessage,
     });
@@ -344,27 +339,10 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
     validateAdditionalImages({
       lang,
       additionalImages,
+      fileNameDivId: "additional-images-file-name-container",
       fileName: "additional-images-file-name",
       additionalImagesErrorMessage,
     });
-
-    xButtons.forEach((xButton) =>
-      xButton.addEventListener("click", () => {
-        const container = xButton.closest(".relative");
-
-        if (!container) return;
-
-        const inputField = container.querySelector(
-          'input[type="file"]',
-        ) as HTMLInputElement;
-        const fileName = xButton.previousElementSibling as HTMLParagraphElement;
-
-        if (inputField && fileName) {
-          fileName.textContent = t("achievement.no-file-chosen");
-          inputField.value = "";
-        }
-      })
-    );
 
     // Success Toast
     function showToast(message = t("achievement.success-message")) {
@@ -404,7 +382,16 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
         }
       });
 
-      // Reset file names if selected
+      // Remove file names + x button
+      fileNameDivIds.forEach((id) => {
+        const fileNameDiv = document.getElementById(id) as HTMLDivElement;
+        const wrappers = fileNameDiv.querySelectorAll(
+          ".wrapper",
+        ) as NodeListOf<HTMLDivElement>;
+        wrappers.forEach((wrapper: HTMLDivElement) => wrapper.remove());
+      });
+
+      // Reset file names if selected todo
       const achieverImageName = document.getElementById(
         "achiever-image-file-name",
       );
@@ -520,21 +507,18 @@ export const achievementForm = (lang: Locale = Locale.EN) => {
       const isAchieverImageValid =
         achieverImage.files &&
         achieverImage.files.length > 0 &&
-        handleImageSize(achieverImage.files) &&
-        handleImageType(achieverImage.files);
+        handleImageSize(achieverImage.files)
 
       // Validate Proof of Achievement Image: Required, Size and Type
       const isProofOfAchievementValid =
         proofOfAchievement.files &&
         proofOfAchievement.files.length > 0 &&
-        handleImageSize(proofOfAchievement.files) &&
-        handleImageType(proofOfAchievement.files);
+        handleImageSize(proofOfAchievement.files)
 
       // Validate Additional Images: Size and Type
       const isAdditionalImagesValid =
         !additionalImages.files ||
-        (handleImageSize(additionalImages.files) &&
-          handleImageType(additionalImages.files));
+        (handleImageSize(additionalImages.files))
 
       // If all validations pass, send the data
       if (
