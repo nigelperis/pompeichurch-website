@@ -1,6 +1,7 @@
 ---
 import PompeichemFalkemList from "~/components/sections/pompeichem-falkem/pompeichem-falkem-list.astro";
 import Layout from "~/layouts/layout.astro";
+import Pagination from "~/components/pagination.astro";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import type { PompeichemFalkem } from "~/models/pompeichem-falkem";
 import { listMagazines } from "~/services/list-magazines";
@@ -11,10 +12,18 @@ import { Locale } from "~/enums/locale";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const magazines: PompeichemFalkem[] = (await listMagazines()) || [];
+const magazinesPerPage = 6;
+const currentPage = Number(Astro.url.searchParams.get("p")) || 1;
+
+const { magazines, pagination } = await listMagazines({
+  page: currentPage,
+  pageSize: magazinesPerPage,
+});
+
+const totalPages = pagination.pageCount;
 const title = lang === Locale.KOK ? "ಪೊಂಪೈಚೆಂ ಫಾಲ್ಕೆಂ" : "Pompeichem Falkem";
 
-const ogImageUrl = magazines[0]?.coverImage?.url
+const ogImageUrl = magazines?.[0]?.coverImage?.url
   ? new URL(
       magazines[0].coverImage.url,
       import.meta.env.PUBLIC_STRAPI_URL,
@@ -27,17 +36,21 @@ const ogImageUrl = magazines[0]?.coverImage?.url
     <section class="flex flex-col p-6">
       <h1
         class={cn(
-          "font-black border-natgeo-yellow border-l-4 pl-3 text-3xl lg:text-4xl",
+          "font-black border-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl lg:text-4xl",
           {
-            "pt-2 font-bold": lang === Locale.KOK,
+            "font-bold": lang === Locale.KOK,
           },
         )}
       >
         {t("nav.pompeichem-falkem")}
       </h1>
+
       {
         magazines.length > 0 ? (
-          <PompeichemFalkemList magazines={magazines} />
+          <>
+            <PompeichemFalkemList magazines={magazines as PompeichemFalkem[]} />
+            <Pagination currentPage={currentPage} totalPages={totalPages} />
+          </>
         ) : (
           <p class="py-8 text-center text-3xl font-semibold">
             {Message.MAGAZINES_NOT_FOUND}

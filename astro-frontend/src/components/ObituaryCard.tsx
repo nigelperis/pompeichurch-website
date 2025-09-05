@@ -282,7 +282,7 @@ export default function ObituaryCard({
             <div className="absolute bottom-4 right-2 flex items-center gap-2 ">
               <WhatsAppShare shareData={{ title: name, url: obituaryUrl }} />
               <ShareLink
-                className="cursor-pointer transform transition-transform duration-1000 hover:scale-110"
+                className="cursor-pointer transform transition-transform duration-300 hover:scale-110"
                 shareData={{
                   title: name,
                   url: obituaryUrl,

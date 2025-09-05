@@ -4,34 +4,55 @@ import type { PompeichemFalkem } from "~/models/pompeichem-falkem";
 import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
 
 const { magazines } = Astro.props as { magazines: PompeichemFalkem[] };
+
+const magazinesOrdered = (() => {
+  const list = [...magazines];
+  const specialIndex = list.findIndex((m) => {
+    const t = (m.title || "").toLowerCase();
+    return t.includes("centenary") || t.includes("souvenir");
+  });
+  if (specialIndex > 1) {
+    const [special] = list.splice(specialIndex, 1);
+    list.splice(1, 0, special);
+  }
+  return list;
+})();
 ---
 
-<div
-  class="grid-cols-1 mx-auto grid w-full max-w-4xl gap-x-20 gap-y-8 pt-10 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2"
->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 mt-5 mb-5 w-full">
   {
-    magazines.map((magazine) => (
-      <MagazineCard
-        title={magazine.title}
-        imageUrl={
-          magazine.coverImage?.url
-            ? new URL(
-                magazine.coverImage.url,
-                import.meta.env.PUBLIC_STRAPI_URL,
-              ).toString()
-            : getPlaceholderImage({ text: magazine.title })
-        }
-        imageWidth={magazine.coverImage?.width ?? 600}
-        imageHeight={magazine.coverImage?.height ?? 400}
-        fileUrl={
-          magazine.pdfFile?.url
-            ? new URL(
-                magazine.pdfFile.url,
-                import.meta.env.PUBLIC_STRAPI_URL,
-              ).toString()
-            : null
-        }
-      />
-    ))
+    magazinesOrdered.map((magazine, index) => {
+      const isLatest = index === 0;
+      const titleLower = (magazine.title || "").toLowerCase();
+      const isSpecial = titleLower.includes("centenary") || titleLower.includes("souvenir");
+
+      return (
+        <div>
+          <MagazineCard
+            title={magazine.title}
+            imageUrl={
+              magazine.coverImage?.url
+                ? new URL(
+                    magazine.coverImage.url,
+                    import.meta.env.PUBLIC_STRAPI_URL,
+                  ).toString()
+                : getPlaceholderImage({ text: magazine.title })
+            }
+            imageWidth={magazine.coverImage?.width ?? 600}
+            imageHeight={magazine.coverImage?.height ?? 400}
+            fileUrl={
+              magazine.pdfFile?.url
+                ? new URL(
+                    magazine.pdfFile.url,
+                    import.meta.env.PUBLIC_STRAPI_URL,
+                  ).toString()
+                : null
+            }
+            latest={isLatest}
+            specialEdition={isSpecial}
+          />
+        </div>
+      );
+    })
   }
 </div>

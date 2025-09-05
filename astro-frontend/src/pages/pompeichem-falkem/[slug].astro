@@ -10,7 +10,7 @@ function extractSlug(fileUrl: string): string | null {
   return fileName.split("_").slice(0, -1).join("_").replace(".pdf", "");
 }
 
-const magazines = await listMagazines();
+const { magazines } = await listMagazines();
 
 const magazine = magazines.find((m) => {
   const fileUrl = m.pdfFile?.url
