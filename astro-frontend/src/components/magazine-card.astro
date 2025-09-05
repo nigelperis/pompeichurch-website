@@ -55,13 +55,7 @@ const badgeClasses =
   </div>
 
   <div class="relative p-4 flex flex-col flex-grow">
-    <div class="flex flex-col gap-2 flex-grow pb-12">
-      <p class="text-xl font-bold text-slate-900">
-        {title}
-      </p>
-    </div>
-
-    <div class="absolute bottom-4 left-4 right-4 flex justify-between items-center">
+    <div class="bottom-4 left-4 right-4 flex justify-between items-center">
       {
         hasFile ? (
           <HoverableLink href={fileUrl!} target="_blank">
