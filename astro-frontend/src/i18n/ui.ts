@@ -114,7 +114,6 @@ export const ui = {
     "parishioners-achievements.subtitle":
       "Celebrating the excellence of our parishioners and giving glory to God through their gifts, efforts, and achievements.",
     "achievement.congratulations": "Congratulations",
-    "achievement.pictures": "Pictures",
     "achievement.warm-wishes": "Blessings and best wishes from,",
     achievement: "Achievement",
     "commissions.convenor": "Convenor ",
@@ -514,7 +513,6 @@ export const ui = {
     "parishioners-achievements.subtitle":
       "ಆಮ್ಚ್ಯಾ ಫಿರ್ಗಜ್ಗಾರಾಂಕ್ ಲಾಭ್ಲೆಲ್ಯಾ ದೆಣ್ಗ್ಯಾ ಆನಿ ಪರಿಶ್ರಮಾ ದ್ವಾರಿಂ, ದೆವಾಕ್ ಮಹಿಮಾ ದೀವ್ನ್, ತಾಂಚಿ ಸಾಧನಾಂ ವಳ್ಕುಂಚೆಂ ಪಾನ್.",
     "achievement.congratulations": "ಉಲ್ಲಾಸ್",
-    "achievement.pictures": "ತಸ್ವಿರೊ",
     "achievement.warm-wishes": "ಆಶೀರ್ವಾದಾಂ ಆನಿ ಬರೆಂ ಮಾಗ್ತಾತ್,",
     achievement: "ಸಾಧನ್",
     "commissions.convenor": "ಸಂಚಾಲಕಿ/ಕ್ ",
