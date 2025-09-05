@@ -273,7 +273,7 @@ export default function ObituaryCardMin({
                 size={28}
               />
               <ShareLink
-                className="cursor-pointer transform transition-transform duration-1000 hover:scale-110"
+                className="cursor-pointer transform transition-transform duration-300 hover:scale-110"
                 shareData={{
                   title: name,
                   url: obituaryUrl,
@@ -358,7 +358,7 @@ export default function ObituaryCardMin({
               size={28}
             />
             <ShareLink
-              className="cursor-pointer transform transition-transform duration-1000 hover:scale-110"
+              className="cursor-pointer transform transition-transform duration-300 hover:scale-110"
               shareData={{
                 title: name,
                 url: obituaryUrl,

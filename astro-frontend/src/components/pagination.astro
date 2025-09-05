@@ -14,6 +14,7 @@ const { currentPage, totalPages } = Astro.props as {
   totalPages: number;
 };
 
+const showPagination = totalPages > 1;
 const paginationRange = getPaginationRange(currentPage, totalPages);
 
 const preservedParams = url.searchParams;
@@ -24,6 +25,7 @@ const buildHref = (page: number) => {
 };
 ---
 
+{showPagination && (
 <div class="mt-10 flex items-center justify-center gap-2 text-lg lg:mt-10">
   <!-- Previous Button -->
   {
@@ -95,3 +97,4 @@ const buildHref = (page: number) => {
     )
   }
 </div>
+  )}
