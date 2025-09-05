@@ -35,10 +35,6 @@
         "images"
       ]
     },
-    "issueDate": {
-      "type": "date",
-      "required": true
-    },
     "enDescription": {
       "type": "blocks",
       "required": true
@@ -51,14 +47,6 @@
       "type": "uid",
       "targetField": "englishName",
       "required": false
-    },
-    "additionalImages": {
-      "type": "media",
-      "multiple": true,
-      "allowedTypes": [
-        "images",
-        "files"
-      ]
     }
   }
 }

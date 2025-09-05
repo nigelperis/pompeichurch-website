@@ -13,7 +13,6 @@ import { ROUTES } from "~/constants/strapi-endpoints";
 async function getAchiever(slug: string): Promise<ParishionersAchievement | undefined> {
   const queryParams = new URLSearchParams({
     "populate[0]": "achieverImage",
-    "populate[1]": "additionalImages",
     "filters[slug][$eq]": slug,
   });
 

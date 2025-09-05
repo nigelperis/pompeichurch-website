@@ -8,7 +8,6 @@ import { listParishionersAchievements } from "~/services/parishioners-achievemen
 import Pagination from "~/components/pagination.astro";
 import { getPaginationRange } from "~/helpers/get-pagination-range";
 import { Message } from "~/constants/message";
-import Info from "~/assets/react-icons/info.svg?react";
 import { ACHIEVEMENTS_PER_PAGE } from "~/constants/index.ts";
 
 const lang = getLangFromUrl(Astro.url);
@@ -26,7 +25,7 @@ const totalPages = pagination.pageCount;
 ---
 
 <Layout title="Pompei Church | Parishioners Achievements" description={t("parishioners-achievements.subtitle")}>
-  <main class="mx-auto max-w-4xl overflow-hidden bg-white">
+  <main class="mx-auto max-w-screen-lg overflow-hidden bg-white">
     <section id="parishioner-achievements" class="flex flex-col p-6 pb-4">
       <h1
         class={cn(
@@ -39,24 +38,9 @@ const totalPages = pagination.pageCount;
         {t("nav.parishioners-achievements")}
       </h1>
 
-      <p class="text-justify text-lg text-slate-700">
+      <p class="mb-3 text-justify text-lg text-slate-700">
         {t("parishioners-achievements.subtitle")}
       </p>
-
-      <!-- TODO: Aroma to check and remove this -->
-      <!-- <div class="flex w-full py-4 justify-center lg:justify-end">
-        <a
-          href="/kok/submit-achievement"
-          class="inline-flex gap-2 px-4 py-2 rounded-lg border border-slate-200 text-blue-600 md:px-5 md:py-3"
-        >
-          <span class="text-blue-600">
-            <Info />
-          </span>
-          <span class="text-lg font-semibold mt-0.5">
-            {t("achievement.form-submission")}
-          </span>
-        </a>
-      </div> -->
 
       {
         parishionersAchievements?.length > 0 ? (

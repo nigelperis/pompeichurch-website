@@ -1302,14 +1302,12 @@ export interface ApiParishionersAchievementParishionersAchievement
   };
   attributes: {
     achieverImage: Schema.Attribute.Media<'images'>;
-    additionalImages: Schema.Attribute.Media<'images' | 'files', true>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     enAchievement: Schema.Attribute.String & Schema.Attribute.Required;
     enDescription: Schema.Attribute.Blocks & Schema.Attribute.Required;
     englishName: Schema.Attribute.String & Schema.Attribute.Required;
-    issueDate: Schema.Attribute.Date & Schema.Attribute.Required;
     kokAchievement: Schema.Attribute.String & Schema.Attribute.Required;
     kokDescription: Schema.Attribute.Blocks & Schema.Attribute.Required;
     konkaniName: Schema.Attribute.String & Schema.Attribute.Required;
