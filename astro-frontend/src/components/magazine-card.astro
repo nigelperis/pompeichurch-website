@@ -1,86 +1,83 @@
 ---
-import { cn } from "~/helpers/cn";
-import { Icon } from "astro-icon/components";
-import NetworkImage from "./ui/network-image.astro";
+import HoverableLink from "~/components/ui/hoverable-link.astro";
+import ShareLink from "~/components/ui/share-link.astro";
+import WhatsAppShare from "~/components/ui/whatsapp-share.tsx";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
-import { Locale } from "~/enums/locale";
-import ShareLink from "./ui/share-link.astro";
+import NetworkImage from "~/components/ui/network-image.astro";
+
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-interface Props {
+export interface Props {
   title: string;
   imageUrl: string;
-  imageWidth: number;
-  imageHeight: number;
-  fileUrl: string | null;
-  class?: string;
+  imageWidth?: number;
+  imageHeight?: number;
+  fileUrl?: string | null;
+  featured?: boolean;
+  latest?: boolean;
+  specialEdition?: boolean;
 }
 
 const {
   title,
   imageUrl,
+  imageWidth = 600,
+  imageHeight = 400,
   fileUrl,
-  imageWidth,
-  imageHeight,
-  class: className,
-  ...rest
-} = Astro.props;
+  latest = false,
+  specialEdition = false,
+} = Astro.props as Props;
 
-const slug = fileUrl
-  ? new URL(fileUrl).pathname
-      .split("/")
-      .pop()
-      ?.split("_")
-      .slice(0, -1)
-      .join("_")
-      .replace(".pdf", "")
+const hasFile = Boolean(fileUrl);
+const badgeLabel = latest
+  ? t("magazine.latest")
+  : specialEdition
+  ? t("magazine.centenary")
   : null;
-
-const origin = Astro.url.origin;
-const shareUrl = fileUrl && slug ? `${origin}/pompeichem-falkem/${slug}` : "#";
+const badgeClasses =
+  "absolute top-2 right-2 bg-slate-900/70 text-white text-[13px] font-bold px-4 py-1 uppercase tracking-wide";
 ---
 
-<div
-  class={cn(
-    "overflow-hidden border border-gray-200 max-w-md mx-auto bg-white",
-    className,
-  )}
-  {...rest}
->
-  <div class="magazine-image relative">
+<div class="flex flex-col border border-gray-200">
+  <div class="relative w-full">
     <NetworkImage
       src={imageUrl}
       alt={title}
       width={imageWidth}
       height={imageHeight}
-      class="w-full object-cover lg:h-[480px]"
+      class="w-full object-cover aspect-[2/3]"
     />
+    {badgeLabel && (
+      <span class={badgeClasses}>{badgeLabel}</span>
+    )}
   </div>
 
-  <div class="relative p-4 text-center">
-    <div class="flex justify-center">
-      <a
-        href={fileUrl}
-        download
-        class="mt-1 inline-flex items-center gap-2 bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-md hover:bg-blue-700"
-      >
-        <Icon name="download" size={20} />
-        <span class={cn({ "mt-2": lang === Locale.KOK })}>
-          {t("download")}
-        </span>
-      </a>
+  <div class="relative p-4 flex flex-col flex-grow">
+    <div class="flex flex-col gap-2 flex-grow pb-12">
+      <p class="text-xl font-bold text-slate-900">
+        {title}
+      </p>
     </div>
 
-    <div class="absolute right-4 top-6">
-      <ShareLink
-        class=""
-        shareData={{
-          url: shareUrl,
-          title: title,
-        }}
-      />
+    <div class="absolute bottom-4 left-4 right-4 flex justify-between items-center">
+      {
+        hasFile ? (
+          <HoverableLink href={fileUrl!} target="_blank">
+            {t("download")}
+          </HoverableLink>
+        ) : (
+          <span class="text-slate-400">{t("download")}</span>
+        )
+      }
+
+      {hasFile && (
+        <div class="flex items-center gap-2">
+          <WhatsAppShare client:load shareData={{ url: fileUrl!, title }} />
+          <ShareLink shareData={{ url: fileUrl!, title }} />
+        </div>
+      )}
     </div>
   </div>
 </div>
