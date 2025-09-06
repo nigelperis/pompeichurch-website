@@ -9,7 +9,7 @@ import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
 import StrapiBlocksRenderer from "~/components/ui/strapi-blocks-renderer";
 import { listEvents } from "~/services/events/list-events";
 import { Locale } from "~/enums/locale";
-import { SITE_URL } from "~/constants/constants";
+import { SITE_URL } from "~/constants/index";
 import WhatsAppShare from "~/components/ui/whatsapp-share";
 
 const { slug } = Astro.params;
@@ -129,7 +129,9 @@ if (!event) {
                   <Icon name="chevron-left" class="stroke-2" />
                 </div>
                 <span class="flex-1 font-roboto">
-                  <div class="pb-1 text-gray-500">{t("events.previous-event")}</div>
+                  <div class="pb-1 text-gray-500">
+                    {t("events.previous-event")}
+                  </div>
                   <div class="text-left text-lg font-medium text-black">
                     {prevEvent.englishTitle}
                   </div>

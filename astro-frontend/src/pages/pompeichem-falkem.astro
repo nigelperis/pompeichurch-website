@@ -9,6 +9,7 @@ import { listMagazines } from "~/services/list-magazines";
 import { Message } from "~/constants/message.ts";
 import { cn } from "~/helpers/cn";
 import { Locale } from "~/enums/locale";
+import { ITEMS_PER_PAGE } from "~/constants/index.ts";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -36,6 +37,7 @@ const uniqueYears = Array.from(
 const totalPages = pagination.pageCount;
 const title = lang === Locale.KOK ? "ಪೊಂಪೈಚೆಂ ಫಾಲ್ಕೆಂ" : "Pompeichem Falkem";
 
+const ogImageUrl = magazines?.[0]?.coverImage?.url
 const ogImageUrl = magazines?.[0]?.coverImage?.url
   ? new URL(
       magazines[0].coverImage.url,

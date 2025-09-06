@@ -4,6 +4,7 @@ export const ROUTES = {
   UPCOMING_EVENTS: "/upcoming-events",
   OBITUARIES: "/obituaries",
   EVENTS: "/events",
+  PARISHIONERS_ACHIEVEMENTS: "/parishioners-achievements",
   POPES_INTENTION: "/popes-intentions",
   PARISH_PASTORAL_COUNCIL: "/parish-pastoral-councils",
   PARISH_PASTORAL_COUNCIL_IMAGE: "/parish-pastoral-council-image",

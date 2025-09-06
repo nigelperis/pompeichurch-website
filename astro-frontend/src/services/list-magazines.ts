@@ -13,6 +13,7 @@ import type {
  * @param {number} [args.pageSize=25] - The number of magazines per page (default: 25).
  * @param {string} [args.sortBy='dateOfPublish:desc'] - The sorting order for magazines (default: 'dateOfPublish:desc').
  * @returns {Promise<{ magazines: PompeichemFalkem[]; pagination: { total: number; page: number; pageSize: number; pageCount: number } }>} A promise resolving to magazines and pagination meta.
+ * @returns {Promise<{ magazines: PompeichemFalkem[]; pagination: { total: number; page: number; pageSize: number; pageCount: number } }>} A promise resolving to magazines and pagination meta.
  */
 async function listMagazines(args?: {
   page?: number;
@@ -21,9 +22,19 @@ async function listMagazines(args?: {
   year?: number | string;
 }): Promise<{
   magazines: PompeichemFalkem[];
-  pagination: { total: number; page: number; pageSize: number; pageCount: number };
+  pagination: {
+    total: number;
+    page: number;
+    pageSize: number;
+    pageCount: number;
+  };
 }> {
-  const { page = 1, pageSize = 25, sortBy = "dateOfPublish:desc", year } = args ?? {};
+  const {
+    page = 1,
+    pageSize = 25,
+    sortBy = "dateOfPublish:desc",
+    year,
+  } = args ?? {};
 
   const queryParams = new URLSearchParams({
     "populate[0]": "coverImage",
@@ -51,7 +62,8 @@ async function listMagazines(args?: {
   return {
     magazines: data?.data ?? [],
     pagination:
-      data?.meta?.pagination ?? ({ total: 0, page, pageSize, pageCount: 0 } as const),
+      data?.meta?.pagination ??
+      ({ total: 0, page, pageSize, pageCount: 0 } as const),
   };
 }
 

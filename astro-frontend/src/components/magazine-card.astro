@@ -2,6 +2,9 @@
 import HoverableLink from "~/components/ui/hoverable-link.astro";
 import ShareLink from "~/components/ui/share-link.astro";
 import WhatsAppShare from "~/components/ui/whatsapp-share.tsx";
+import HoverableLink from "~/components/ui/hoverable-link.astro";
+import ShareLink from "~/components/ui/share-link.astro";
+import WhatsAppShare from "~/components/ui/whatsapp-share.tsx";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import NetworkImage from "~/components/ui/network-image.astro";
 
@@ -9,6 +12,7 @@ import NetworkImage from "~/components/ui/network-image.astro";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
+export interface Props {
 export interface Props {
   title: string;
   imageUrl: string;
@@ -24,6 +28,8 @@ export interface Props {
 const {
   title,
   imageUrl,
+  imageWidth = 600,
+  imageHeight = 400,
   imageWidth = 600,
   imageHeight = 400,
   fileUrl,

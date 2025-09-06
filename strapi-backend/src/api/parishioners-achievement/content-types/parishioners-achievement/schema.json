@@ -1,0 +1,52 @@
+{
+  "kind": "collectionType",
+  "collectionName": "parishioners_achievements",
+  "info": {
+    "singularName": "parishioners-achievement",
+    "pluralName": "parishioners-achievements",
+    "displayName": "Parishioners Achievements"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "englishName": {
+      "type": "string",
+      "required": true
+    },
+    "konkaniName": {
+      "type": "string",
+      "required": true
+    },
+    "enAchievement": {
+      "type": "string",
+      "required": true
+    },
+    "kokAchievement": {
+      "type": "string",
+      "required": true
+    },
+    "achieverImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "enDescription": {
+      "type": "blocks",
+      "required": true
+    },
+    "kokDescription": {
+      "type": "blocks",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "englishName",
+      "required": false
+    }
+  }
+}

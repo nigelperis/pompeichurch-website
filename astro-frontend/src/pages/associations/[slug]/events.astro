@@ -13,6 +13,7 @@ import PushNotification from "~/components/push-notification.astro";
 import { slugMappings } from "~/constants/association-slug-mappings";
 import Pagination from "~/components/pagination.astro";
 import { getPaginationRange } from "~/helpers/get-pagination-range";
+import { ITEMS_PER_PAGE } from "~/constants/index.ts";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -25,7 +26,6 @@ const title = lang === Locale.KOK ? konkaniTitle : englishTitle;
 
 const mappedTitle = titleMappings[englishTitle] ?? englishTitle;
 
-const eventsPerPage = 6;
 const currentPage = Number(Astro.url.searchParams.get("p")) || 1;
 
 const { events: allEvents } = await listEvents({
@@ -38,11 +38,11 @@ const filteredEvents = allEvents.filter(
 );
 
 const totalEvents = filteredEvents.length;
-const totalPages = Math.ceil(totalEvents / eventsPerPage);
+const totalPages = Math.ceil(totalEvents / ITEMS_PER_PAGE);
 
 const paginatedEvents = filteredEvents.slice(
-  (currentPage - 1) * eventsPerPage,
-  currentPage * eventsPerPage,
+  (currentPage - 1) * ITEMS_PER_PAGE,
+  currentPage * ITEMS_PER_PAGE,
 );
 
 const pageTitle =

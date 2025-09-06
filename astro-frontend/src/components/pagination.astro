@@ -15,6 +15,7 @@ const { currentPage, totalPages } = Astro.props as {
 };
 
 const showPagination = totalPages > 1;
+const showPagination = totalPages > 1;
 const paginationRange = getPaginationRange(currentPage, totalPages);
 
 const preservedParams = url.searchParams;
@@ -48,33 +49,31 @@ const buildHref = (page: number) => {
     )
   }
 
-  <!-- Page Numbers -->
-  {
-    paginationRange.map((page) => {
-      if (typeof page === "string") {
-        return (
-          <span class="flex h-10 w-10 items-center justify-center">...</span>
-        );
-      }
+      {/* Page Numbers */}
+      {paginationRange.map((page) => {
+        if (typeof page === "string") {
+          return (
+            <span class="flex h-10 w-10 items-center justify-center">...</span>
+          );
+        }
 
-      return (
-        <a
-          href={buildHref(page)}
-          class={cn(
-            `flex h-10 w-10 items-center justify-center rounded transition-all duration-200 ${
-              currentPage === page
-                ? "bg-natgeo-yellow font-semibold text-black shadow-md"
-                : "hover:bg-gray-200"
-            }`,
-            lang === Locale.KOK ? "pt-[6px]" : "",
-          )}
-          aria-label={`Page ${page}`}
-        >
-          {page}
-        </a>
-      );
-    })
-  }
+        return (
+          <a
+            href={buildHref(page)}
+            class={cn(
+              `flex h-10 w-10 items-center justify-center transition-all duration-200 ${
+                currentPage === page
+                  ? "bg-natgeo-yellow font-semibold text-black"
+                  : "hover:bg-gray-100"
+              }`,
+              lang === Locale.KOK ? "pt-[6px]" : "",
+            )}
+            aria-label={`Page ${page}`}
+          >
+            {page}
+          </a>
+        );
+      })}
 
   <!-- Next Button -->
   {

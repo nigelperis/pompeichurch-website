@@ -15,4 +15,8 @@ export class Message {
   public static readonly DEACONS_NOT_FOUND = "No Deacons Found!";
   public static readonly COMMISSIONS_NOT_FOUND =
     "No Pastoral 21 Commissions Found!";
+  public static readonly ACHIEVEMENTS_NOT_FOUND =
+    "No Parishioners Achievements Found!";
+  public static readonly ACHIEVEMENTS_NOT_FOUND_KOK =
+    "ಫಿರ್ಗಜ್ಗಾರಾಂಚಿ ಸಾಧನಾಂ ನಾಂತ್!";
 }
