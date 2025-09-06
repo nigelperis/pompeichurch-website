@@ -1289,6 +1289,42 @@ export interface ApiParishPriestMessageParishPriestMessage
   };
 }
 
+export interface ApiParishionersAchievementParishionersAchievement
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'parishioners_achievements';
+  info: {
+    displayName: 'Parishioners Achievements';
+    pluralName: 'parishioners-achievements';
+    singularName: 'parishioners-achievement';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    achieverImage: Schema.Attribute.Media<'images'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    enAchievement: Schema.Attribute.String & Schema.Attribute.Required;
+    enDescription: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    englishName: Schema.Attribute.String & Schema.Attribute.Required;
+    kokAchievement: Schema.Attribute.String & Schema.Attribute.Required;
+    kokDescription: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    konkaniName: Schema.Attribute.String & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::parishioners-achievement.parishioners-achievement'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'englishName'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiPompeichemFalkemPompeichemFalkem
   extends Struct.CollectionTypeSchema {
   collectionName: 'pompeichem_falkems';
@@ -2033,6 +2069,7 @@ declare module '@strapi/strapi' {
       'api::parish-pastoral-council.parish-pastoral-council': ApiParishPastoralCouncilParishPastoralCouncil;
       'api::parish-priest-and-deacon.parish-priest-and-deacon': ApiParishPriestAndDeaconParishPriestAndDeacon;
       'api::parish-priest-message.parish-priest-message': ApiParishPriestMessageParishPriestMessage;
+      'api::parishioners-achievement.parishioners-achievement': ApiParishionersAchievementParishionersAchievement;
       'api::pompeichem-falkem.pompeichem-falkem': ApiPompeichemFalkemPompeichemFalkem;
       'api::popes-intention.popes-intention': ApiPopesIntentionPopesIntention;
       'api::push-notification.push-notification': ApiPushNotificationPushNotification;

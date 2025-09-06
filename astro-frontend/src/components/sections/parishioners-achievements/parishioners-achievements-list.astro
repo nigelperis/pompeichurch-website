@@ -1,0 +1,37 @@
+---
+import AchievementCard from "~/components/sections/parishioners-achievements/achievements-card.astro";
+import { Locale } from "~/enums/locale";
+import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
+import { getLangFromUrl } from "~/i18n/utils";
+import type { ParishionersAchievement } from "~/models/parishioners-achievement";
+
+const lang = getLangFromUrl(Astro.url);
+
+const { achievementsList } = Astro.props as {
+  achievementsList: ParishionersAchievement[];
+};
+---
+
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-6 p-4">
+  {
+    achievementsList.map((item: ParishionersAchievement) => (
+      <AchievementCard
+        name={lang === Locale.KOK ? item.konkaniName : item.englishName}
+        imageUrl={
+          item.achieverImage?.url
+            ? new URL(
+                item.achieverImage?.url,
+                import.meta.env.PUBLIC_STRAPI_URL,
+              ).toString()
+            : getPlaceholderImage({ text: item.englishName })
+        }
+        imageWidth={item.achieverImage?.width || 600}
+        imageHeight={item.achieverImage?.height || 400}
+        achievement={
+          lang === Locale.KOK ? item.kokAchievement : item.enAchievement
+        }
+        slug={item.slug}
+      />
+    ))
+  }
+</div>

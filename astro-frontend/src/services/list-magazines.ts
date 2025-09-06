@@ -20,7 +20,12 @@ async function listMagazines(args?: {
   sortBy?: string;
 }): Promise<{
   magazines: PompeichemFalkem[];
-  pagination: { total: number; page: number; pageSize: number; pageCount: number };
+  pagination: {
+    total: number;
+    page: number;
+    pageSize: number;
+    pageCount: number;
+  };
 }> {
   const { page = 1, pageSize = 25, sortBy = "dateOfPublish:desc" } = args ?? {};
 
@@ -40,7 +45,8 @@ async function listMagazines(args?: {
   return {
     magazines: data?.data ?? [],
     pagination:
-      data?.meta?.pagination ?? ({ total: 0, page, pageSize, pageCount: 0 } as const),
+      data?.meta?.pagination ??
+      ({ total: 0, page, pageSize, pageCount: 0 } as const),
   };
 }
 
