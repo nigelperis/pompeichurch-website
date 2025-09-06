@@ -15,7 +15,6 @@ const { currentPage, totalPages } = Astro.props as {
 };
 
 const showPagination = totalPages > 1;
-const showPagination = totalPages > 1;
 const paginationRange = getPaginationRange(currentPage, totalPages);
 
 const preservedParams = url.searchParams;
