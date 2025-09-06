@@ -9,7 +9,6 @@ import { listMagazines } from "~/services/list-magazines";
 import { Message } from "~/constants/message.ts";
 import { cn } from "~/helpers/cn";
 import { Locale } from "~/enums/locale";
-import { ITEMS_PER_PAGE } from "~/constants/index.ts";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -45,7 +44,6 @@ const ogImageUrl = magazines[0]?.coverImage?.url
   : undefined;
 ---
 
-<Layout title={`${title}`} image={ogImageUrl}>
 <Layout title={`${title}`} image={ogImageUrl}>
   <main class="mx-auto max-w-screen-lg overflow-hidden bg-white">
     <section class="flex flex-col p-6">
