@@ -6,30 +6,30 @@ export interface SelectYearRedirectProps {
   years: number[];
   placeholder?: string;
   allYearsLabel?: string;
+  selectedYear?: string | number;
 }
 
 export default function SelectYearRedirect({
   years,
   placeholder = "Select Year",
   allYearsLabel = "All Years",
+  selectedYear,
 }: SelectYearRedirectProps) {
   const [value, setValue] = React.useState("");
-  const [dynamicPlaceholder, setDynamicPlaceholder] =
-    React.useState(placeholder);
+  const [dynamicPlaceholder, setDynamicPlaceholder] = React.useState(
+    selectedYear ? String(selectedYear) : placeholder,
+  );
   const [isKonkani, setIsKonkani] = React.useState(false);
   const triggerRef = React.useRef<HTMLButtonElement>(null);
   const [triggerWidth, setTriggerWidth] = React.useState(0);
 
   React.useEffect(() => {
     setIsKonkani(window.location.pathname.startsWith("/kok"));
-    const urlParams = new URLSearchParams(window.location.search);
-    const yearParam = urlParams.get("year");
-    if (yearParam) {
-      setDynamicPlaceholder(yearParam);
-    } else {
-      setDynamicPlaceholder(placeholder);
-    }
-  }, [placeholder]);
+  }, []);
+
+  React.useEffect(() => {
+    setDynamicPlaceholder(selectedYear ? String(selectedYear) : placeholder);
+  }, [selectedYear, placeholder]);
 
   React.useLayoutEffect(() => {
     if (triggerRef.current) {
@@ -58,7 +58,7 @@ export default function SelectYearRedirect({
   }, [value, isKonkani]);
 
   const options = React.useMemo(() => {
-    const sorted = [...years].sort((a, b) => b - a);
+    const sorted = [...years].sort((a, b) => a - b);
     return ["__all__", ...sorted.map(String)];
   }, [years]);
 

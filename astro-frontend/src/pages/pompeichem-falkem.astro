@@ -21,6 +21,7 @@ const { magazines, pagination } = await listMagazines({
   page: currentPage,
   pageSize: magazinesPerPage,
   year: selectedYear ?? undefined,
+  sortBy: selectedYear ? "dateOfPublish:asc" : "dateOfPublish:desc",
 });
 
 const { magazines: allMagazines } = await listMagazines({ page: 1, pageSize: 1000 });
@@ -31,7 +32,7 @@ const uniqueYears = Array.from(
       .map((m) => (m.dateOfPublish ? new Date(m.dateOfPublish).getFullYear() : undefined))
       .filter((y): y is number => typeof y === "number" && !isNaN(y))
   )
-).sort((a, b) => b - a);
+).sort((a, b) => a - b);
 
 const totalPages = pagination.pageCount;
 const title = lang === Locale.KOK ? "ಪೊಂಪೈಚೆಂ ಫಾಲ್ಕೆಂ" : "Pompeichem Falkem";
@@ -61,7 +62,7 @@ const ogImageUrl = magazines?.[0]?.coverImage?.url
 
         {uniqueYears.length > 0 && (
           <div class="w-full md:w-64">
-            <SelectYearRedirect client:load years={uniqueYears} placeholder={t("year.select-label")} allYearsLabel={t("year.all")} />
+            <SelectYearRedirect client:load years={uniqueYears} selectedYear={selectedYear ?? undefined} placeholder={selectedYear ?? t("year.select-label")} allYearsLabel={t("year.all")} />
           </div>
         )}
       </div>

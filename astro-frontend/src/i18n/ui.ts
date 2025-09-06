@@ -419,7 +419,7 @@ export const ui = {
       "Stay informed about upcoming events, event highlights, and obituaries",
     "push.enable": "Enable",
     "push.disable": "Not Now!",
-    download: "Download",
+    download: "View PDF",
   },
   kok: {
     "nav.home": "ಹೋಮ್",
@@ -500,7 +500,7 @@ export const ui = {
     "ui.more-button-know": "ಚಡಿತ್ ಮಾಹೆತ್",
     "ui.more-button-show": "ಚಡಿತ್ ಮಾಹೆತ್",
     "ui.more-button-read": "ಚಡಿತ್ ಮಾಹೆತ್",
-    "magazine.latest": "ನೊವೊ ಅಂಕೊ",
+    "magazine.latest": "ನವೊ ಅಂಕೊ",
     "magazine.special": "ವಿಶೇಷ್ ಅಂಕೊ",
     "magazine.issue.easter": "ಪಾಸ್ಕಾಂ ಫೆಸ್ತಾಚೊ ಅಂಕೊ",
     "magazine.issue.monti": "ಮೊಂತಿ ಫೆಸ್ತಾಚೊ ಅಂಕೊ",
@@ -829,11 +829,11 @@ export const ui = {
     "events.next-event": "ಫುಡ್ಲೆಂ ಘಡಿತ್",
     "funeral.rites": "ಮೊರ್ಣಾಚಿ ರೀತ್",
     "parish-priest-and-parishioners": "ವಿಗಾರ್ ಆನಿ ಫಿರ್ಗಜ್ ಕುಟಾಮ್",
-    "funeral.youtube": "ಯೂಟೂಬಾರ್ ಪೊಳೆಯಾ",
+    "funeral.youtube": "ಯೂಟೂಬಾರ್ ಪಳೆಯಾ",
     "push.notification":
       "ಫಿರ್ಗಜೆಂತ್ಲಿ ಫುಡ್ಲಿಂ ಕಾರ್ಯಿಂ, ಘಡಿತಾಂಚಿ ಝಳಕ್ ಆನಿ ಮೊರ್ಣಾಚಿ ಖಬರ್ ಅಪ್ಣಾಂವ್ಕ್",
     "push.enable": "ಅನ್ಕೂಲ್ ಕರಾ",
     "push.disable": "ಆತಾಂ ನಾಕಾ!",
-    download: "ಡೌನ್ಲೋಡ್",
+    download: "PDF ಪಳೆಯಾ",
   },
 } as const;

@@ -32,8 +32,7 @@ const {
   dateOfPublish = null,
 } = Astro.props as Props;
 
-const imgRatio = imageWidth > 0 && imageHeight > 0 ? imageWidth / imageHeight : 135 / 191;
-const containerRatio = imgRatio + 0.01;
+const containerRatio = 0.75;
 
 const hasFile = Boolean(fileUrl);
 const sharePageUrl = (() => {
@@ -82,7 +81,7 @@ const formattedPublishDate = (() => {
 })();
 ---
 
-<div class="flex flex-col border border-gray-200">
+<div class="flex h-full flex-col border border-gray-200">
   <div class="relative w-full" style={{ aspectRatio: `${containerRatio}` }}>
     <NetworkImage
       src={imageUrl}
@@ -116,10 +115,10 @@ const formattedPublishDate = (() => {
         <div class="flex items-center gap-2">
           <WhatsAppShare
             client:load
-            shareData={{ url: sharePageUrl || fileUrl!, title, downloadUrl: fileUrl! }}
+            shareData={{ url: sharePageUrl || fileUrl!, title }}
           />
           <ShareLink
-            shareData={{ url: sharePageUrl || fileUrl!, title, text: `Download: ${fileUrl!}` }}
+            shareData={{ url: sharePageUrl || fileUrl!, title }}
           />
         </div>
       )}

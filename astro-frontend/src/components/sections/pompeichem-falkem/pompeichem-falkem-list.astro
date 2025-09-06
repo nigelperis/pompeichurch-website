@@ -41,7 +41,7 @@ const magazinesOrdered = (() => {
       const displayTitle = getMagazineDisplayTitle(magazine, lang);
 
       return (
-        <div>
+        <div class="h-full">
           <MagazineCard
             title={displayTitle}
             imageUrl={
@@ -50,10 +50,14 @@ const magazinesOrdered = (() => {
                     magazine.coverImage.url,
                     import.meta.env.PUBLIC_STRAPI_URL,
                   ).toString()
-                : getPlaceholderImage({ text: displayTitle })
+                : getPlaceholderImage({
+                    text: displayTitle,
+                    width: magazine.coverImage?.width ?? 400,
+                    height: magazine.coverImage?.height ?? 500,
+                  })
             }
-            imageWidth={magazine.coverImage?.width ?? 600}
-            imageHeight={magazine.coverImage?.height ?? 400}
+            imageWidth={magazine.coverImage?.width ?? 400}
+            imageHeight={magazine.coverImage?.height ?? 500}
             fileUrl={
               magazine.pdfFile?.url
                 ? new URL(
