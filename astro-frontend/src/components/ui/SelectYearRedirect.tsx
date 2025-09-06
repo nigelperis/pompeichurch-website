@@ -2,15 +2,17 @@ import * as React from "react";
 import * as Radix from "@radix-ui/react-select";
 import ChevronDown from "~/assets/icons/chevron-down.svg?react";
 
-export interface SelectWardRedirectProps {
-  wards: Array<{ name: string; label: string }>;
+export interface SelectYearRedirectProps {
+  years: number[];
   placeholder?: string;
+  allYearsLabel?: string;
 }
 
-export default function SelectWardRedirect({
-  wards,
-  placeholder = "Select Ward…",
-}: SelectWardRedirectProps) {
+export default function SelectYearRedirect({
+  years,
+  placeholder = "Select Year",
+  allYearsLabel = "All Years",
+}: SelectYearRedirectProps) {
   const [value, setValue] = React.useState("");
   const [dynamicPlaceholder, setDynamicPlaceholder] =
     React.useState(placeholder);
@@ -20,26 +22,14 @@ export default function SelectWardRedirect({
 
   React.useEffect(() => {
     setIsKonkani(window.location.pathname.startsWith("/kok"));
-
     const urlParams = new URLSearchParams(window.location.search);
-    const wardParam = urlParams.get("ward");
-
-    if (wardParam) {
-      const wardName = wardParam.replace(/-/g, " ");
-      const matchingWard = wards.find(
-        (ward) => ward.name.toLowerCase() === wardName.toLowerCase(),
-      );
-      if (matchingWard) {
-        setDynamicPlaceholder(matchingWard.label);
-      } else {
-        setDynamicPlaceholder(
-          wardName.replace(/\b\w/g, (l) => l.toUpperCase()),
-        );
-      }
+    const yearParam = urlParams.get("year");
+    if (yearParam) {
+      setDynamicPlaceholder(yearParam);
     } else {
       setDynamicPlaceholder(placeholder);
     }
-  }, [wards, placeholder]);
+  }, [placeholder]);
 
   React.useLayoutEffect(() => {
     if (triggerRef.current) {
@@ -59,19 +49,18 @@ export default function SelectWardRedirect({
 
   React.useEffect(() => {
     if (value) {
-      const basePath = isKonkani ? "/kok/obituary" : "/obituary";
-      const query =
-        value === "__all__"
-          ? ""
-          : `?ward=${value.toLowerCase().replace(/\s+/g, "-")}`;
+      const basePath = isKonkani
+        ? "/kok/pompeichem-falkem"
+        : "/pompeichem-falkem";
+      const query = value === "__all__" ? "" : `?year=${value}`;
       window.location.href = `${basePath}${query}`;
     }
   }, [value, isKonkani]);
 
-  const options = React.useMemo(
-    () => [{ name: "__all__", label: isKonkani ? "ಸಗ್ಳೆಂ" : "All" }, ...wards],
-    [isKonkani, wards],
-  );
+  const options = React.useMemo(() => {
+    const sorted = [...years].sort((a, b) => b - a);
+    return ["__all__", ...sorted.map(String)];
+  }, [years]);
 
   return (
     <Radix.Root value={value} onValueChange={setValue}>
@@ -95,13 +84,15 @@ export default function SelectWardRedirect({
           className="mb-2 border border-gray-300 bg-white shadow-lg overflow-hidden"
         >
           <Radix.Viewport className="p-1">
-            {options.map((w) => (
+            {options.map((opt) => (
               <Radix.Item
-                key={w.name}
-                value={w.name}
+                key={opt}
+                value={opt}
                 className="px-4 py-2 rounded hover:bg-gray-100 cursor-pointer"
               >
-                <Radix.ItemText>{w.label}</Radix.ItemText>
+                <Radix.ItemText>
+                  {opt === "__all__" ? allYearsLabel : opt}
+                </Radix.ItemText>
               </Radix.Item>
             ))}
           </Radix.Viewport>

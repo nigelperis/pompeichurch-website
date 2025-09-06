@@ -2,41 +2,55 @@
 import MagazineCard from "~/components/magazine-card.astro";
 import type { PompeichemFalkem } from "~/models/pompeichem-falkem";
 import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
+import { getLangFromUrl } from "~/i18n/utils";
+import { getMagazineDisplayTitle, isSpecialEdition } from "~/helpers/magazine";
 
-const { magazines } = Astro.props as { magazines: PompeichemFalkem[] };
+const { magazines, isFirstPage = false, latestMagazineId } = Astro.props as {
+  magazines: PompeichemFalkem[];
+  isFirstPage?: boolean;
+  latestMagazineId?: number;
+};
+
+const lang = getLangFromUrl(Astro.url);
 
 const magazinesOrdered = (() => {
   const list = [...magazines];
-  const specialIndex = list.findIndex((m) => {
-    const t = (m.title || "").toLowerCase();
-    return t.includes("centenary") || t.includes("souvenir");
-  });
-  if (specialIndex > 1) {
-    const [special] = list.splice(specialIndex, 1);
-    list.splice(1, 0, special);
+  if (list.length <= 1) return list;
+
+  const [first, ...rest] = list;
+  const specials: PompeichemFalkem[] = [];
+  const normals: PompeichemFalkem[] = [];
+
+  for (const m of rest) {
+    if (isSpecialEdition(m)) specials.push(m);
+    else normals.push(m);
   }
-  return list;
+
+  return [first, ...specials, ...normals];
 })();
 ---
 
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 mt-5 mb-5 w-full">
+<div class="grid grid-cols-1 gap-20 lg:gap-x-20 lg:gap-y-20 md:grid-cols-2 lg:grid-cols-3 mt-5 mb-5">
   {
     magazinesOrdered.map((magazine, index) => {
-      const isLatest = index === 0;
-      const titleLower = (magazine.title || "").toLowerCase();
-      const isSpecial = titleLower.includes("centenary") || titleLower.includes("souvenir");
+      const isLatest =
+        typeof latestMagazineId === "number"
+          ? magazine.id === latestMagazineId
+          : isFirstPage && index === 0;
+      const isSpecial = isSpecialEdition(magazine);
+      const displayTitle = getMagazineDisplayTitle(magazine, lang);
 
       return (
         <div>
           <MagazineCard
-            title={magazine.title}
+            title={displayTitle}
             imageUrl={
               magazine.coverImage?.url
                 ? new URL(
                     magazine.coverImage.url,
                     import.meta.env.PUBLIC_STRAPI_URL,
                   ).toString()
-                : getPlaceholderImage({ text: magazine.title })
+                : getPlaceholderImage({ text: displayTitle })
             }
             imageWidth={magazine.coverImage?.width ?? 600}
             imageHeight={magazine.coverImage?.height ?? 400}
@@ -48,6 +62,7 @@ const magazinesOrdered = (() => {
                   ).toString()
                 : null
             }
+            dateOfPublish={magazine.dateOfPublish}
             latest={isLatest}
             specialEdition={isSpecial}
           />

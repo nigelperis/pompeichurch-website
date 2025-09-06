@@ -7,6 +7,7 @@ interface Props {
   shareData: {
     title?: string;
     url?: string;
+    downloadUrl?: string;
   };
 }
 
@@ -39,7 +40,11 @@ const WhatsAppShare: React.FC<Props> = ({
 
   if (!shareData?.url) return null;
   const urlToShare = resolvedUrl || shareData.url;
-  const text = encodeURIComponent(urlToShare);
+  const parts: string[] = [];
+  if (shareData.title) parts.push(shareData.title);
+  parts.push(urlToShare);
+  if (shareData.downloadUrl) parts.push(`Download: ${shareData.downloadUrl}`);
+  const text = encodeURIComponent(parts.join("\n"));
   const whatsappUrl = `https://wa.me/?text=${text}`;
 
   return (

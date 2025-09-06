@@ -1,6 +1,7 @@
 ---
 import { listMagazines } from "~/services/list-magazines";
 import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
+import { getMagazineDisplayTitle } from "~/helpers/magazine";
 
 const { slug } = Astro.params;
 
@@ -46,8 +47,10 @@ const imageUrl = magazine.coverImage?.formats?.medium?.url
     : getPlaceholderImage({
         width: 800,
         height: 1200,
-        text: magazine?.title,
+        text: getMagazineDisplayTitle(magazine, "en"),
       });
+
+const displayTitle = getMagazineDisplayTitle(magazine, "en");
 ---
 
 <html>
@@ -55,9 +58,9 @@ const imageUrl = magazine.coverImage?.formats?.medium?.url
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>{magazine.title}</title>
+    <title>{displayTitle}</title>
 
-    <meta property="og:title" content={magazine.title} />
+    <meta property="og:title" content={displayTitle} />
     <meta property="og:description" content="Click to view the magazine." />
     <meta property="og:image" content={imageUrl} />
     <meta property="og:image:width" content="1200" />
@@ -66,7 +69,7 @@ const imageUrl = magazine.coverImage?.formats?.medium?.url
     <meta property="og:url" content={Astro.url.toString()} />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={magazine.title} />
+    <meta name="twitter:title" content={displayTitle} />
     <meta name="twitter:description" content="Click to view the magazine." />
     <meta name="twitter:image" content={imageUrl} />
 

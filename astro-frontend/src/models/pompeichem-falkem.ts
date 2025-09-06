@@ -45,6 +45,9 @@ export interface PompeichemFalkem {
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
+  magazineTitle?: string | null;
+  specialEditionTitle?: string | null;
+  specialEditionTitleKok?: string | null;
   coverImage: CoverImage;
   pdfFile: {
     id: number;
@@ -56,7 +59,6 @@ export interface PompeichemFalkem {
     width: number;
     height: number;
   } | null;
-  title: string;
 }
 
 interface Pagination {
