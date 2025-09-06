@@ -18,10 +18,7 @@ async function listParishionersAchievements(args?: {
   page?: number;
   pageSize?: number;
 }): Promise<ParishionersAchievementsPagination> {
-  const {
-    page = 1,
-    pageSize = 25,
-  } = args ?? {};
+  const { page = 1, pageSize = 25 } = args ?? {};
 
   const queryParams = new URLSearchParams({
     "populate[0]": "achieverImage",

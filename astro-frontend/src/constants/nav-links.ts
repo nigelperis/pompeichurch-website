@@ -146,7 +146,7 @@ export const navLinks = [
       {
         title: "nav.parishioners-achievements",
         href: "/parishioners-achievements",
-      }
+      },
     ],
   },
   {

@@ -1,4 +1,7 @@
-import type { ParishionersAchievement, ParishionersAchievementsData } from "~/models/parishioners-achievement";
+import type {
+  ParishionersAchievement,
+  ParishionersAchievementsData,
+} from "~/models/parishioners-achievement";
 import { strapiFetch } from "~/helpers/strapi-fetch";
 import { ROUTES } from "~/constants/strapi-endpoints";
 
@@ -10,7 +13,9 @@ import { ROUTES } from "~/constants/strapi-endpoints";
  *   to an object containing the parishioner's achievement if found, or undefined
  *   if not found.
  */
-async function getAchiever(slug: string): Promise<ParishionersAchievement | undefined> {
+async function getAchiever(
+  slug: string,
+): Promise<ParishionersAchievement | undefined> {
   const queryParams = new URLSearchParams({
     "populate[0]": "achieverImage",
     "filters[slug][$eq]": slug,

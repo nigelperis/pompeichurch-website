@@ -7,12 +7,12 @@ import type { ParishionersAchievement } from "~/models/parishioners-achievement"
 
 const lang = getLangFromUrl(Astro.url);
 
-const { achievementsList } = Astro.props as { achievementsList: ParishionersAchievement[]};
+const { achievementsList } = Astro.props as {
+  achievementsList: ParishionersAchievement[];
+};
 ---
 
-<div
-  class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-6 p-4"
->
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-6 p-4">
   {
     achievementsList.map((item: ParishionersAchievement) => (
       <AchievementCard
@@ -27,7 +27,9 @@ const { achievementsList } = Astro.props as { achievementsList: ParishionersAchi
         }
         imageWidth={item.achieverImage?.width || 600}
         imageHeight={item.achieverImage?.height || 400}
-        achievement={lang === Locale.KOK ? item.kokAchievement : item.enAchievement}
+        achievement={
+          lang === Locale.KOK ? item.kokAchievement : item.enAchievement
+        }
         slug={item.slug}
       />
     ))
