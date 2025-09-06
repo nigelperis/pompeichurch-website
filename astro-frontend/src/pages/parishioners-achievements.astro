@@ -8,7 +8,7 @@ import { listParishionersAchievements } from "~/services/parishioners-achievemen
 import Pagination from "~/components/pagination.astro";
 import { getPaginationRange } from "~/helpers/get-pagination-range";
 import { Message } from "~/constants/message";
-import { ACHIEVEMENTS_PER_PAGE } from "~/constants/index.ts";
+import { ITEMS_PER_PAGE } from "~/constants/index.ts";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -18,7 +18,7 @@ const currentPage = Number(Astro.url.searchParams.get("p")) || 1;
 const { parishionersAchievements, pagination } =
   await listParishionersAchievements({
     page: currentPage,
-    pageSize: ACHIEVEMENTS_PER_PAGE,
+    pageSize: ITEMS_PER_PAGE,
   });
 
 const totalPages = pagination.pageCount;

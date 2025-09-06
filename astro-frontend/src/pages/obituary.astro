@@ -12,7 +12,7 @@ import { Locale } from "~/enums/locale";
 import { cn } from "~/helpers/cn";
 import { getWardNameKok } from "~/helpers/get-ward-names-kok";
 import { wards as allWards } from "~/constants/wards";
-import { OBITUARIES_PER_PAGE } from "~/constants/index.ts";
+import { ITEMS_PER_PAGE } from "~/constants/index.ts";
 
 const url = new URL(Astro.url);
 const lang = getLangFromUrl(Astro.url) as Locale;
@@ -45,11 +45,11 @@ const formattedObituaries = filteredObituaries
   })
   .sort((a, b) => b.dateSort.getTime() - a.dateSort.getTime());
 
-const totalPages = Math.ceil(formattedObituaries.length / OBITUARIES_PER_PAGE);
+const totalPages = Math.ceil(formattedObituaries.length / ITEMS_PER_PAGE);
 
 const paginatedObituaries = formattedObituaries.slice(
-  (currentPage - 1) * OBITUARIES_PER_PAGE,
-  currentPage * OBITUARIES_PER_PAGE,
+  (currentPage - 1) * ITEMS_PER_PAGE,
+  currentPage * ITEMS_PER_PAGE,
 );
 
 const uniqueWards = allWards.map((ward) => ({

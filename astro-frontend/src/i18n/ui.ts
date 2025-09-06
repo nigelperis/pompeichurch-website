@@ -403,8 +403,6 @@ export const ui = {
     "push.enable": "Enable",
     "push.disable": "Not Now!",
     download: "Download",
-    yes: "Yes",
-    no: "No",
   },
   kok: {
     "nav.home": "ಹೋಮ್",
@@ -803,7 +801,5 @@ export const ui = {
     "push.enable": "ಅನ್ಕೂಲ್ ಕರಾ",
     "push.disable": "ಆತಾಂ ನಾಕಾ!",
     download: "ಡೌನ್ಲೋಡ್",
-    yes: "ವ್ಹಯ್",
-    no: "ನಾಕಾ",
   },
 } as const;

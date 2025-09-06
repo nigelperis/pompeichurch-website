@@ -13,7 +13,7 @@ import PushNotification from "~/components/push-notification.astro";
 import { slugMappings } from "~/constants/association-slug-mappings";
 import Pagination from "~/components/pagination.astro";
 import { getPaginationRange } from "~/helpers/get-pagination-range";
-import { EVENTS_PER_PAGE } from "~/constants/index.ts";
+import { ITEMS_PER_PAGE } from "~/constants/index.ts";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -38,11 +38,11 @@ const filteredEvents = allEvents.filter(
 );
 
 const totalEvents = filteredEvents.length;
-const totalPages = Math.ceil(totalEvents / EVENTS_PER_PAGE);
+const totalPages = Math.ceil(totalEvents / ITEMS_PER_PAGE);
 
 const paginatedEvents = filteredEvents.slice(
-  (currentPage - 1) * EVENTS_PER_PAGE,
-  currentPage * EVENTS_PER_PAGE,
+  (currentPage - 1) * ITEMS_PER_PAGE,
+  currentPage * ITEMS_PER_PAGE,
 );
 
 const pageTitle =

@@ -8,16 +8,16 @@ import { listMagazines } from "~/services/list-magazines";
 import { Message } from "~/constants/message.ts";
 import { cn } from "~/helpers/cn";
 import { Locale } from "~/enums/locale";
+import { ITEMS_PER_PAGE } from "~/constants/index.ts";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const magazinesPerPage = 6;
 const currentPage = Number(Astro.url.searchParams.get("p")) || 1;
 
 const { magazines, pagination } = await listMagazines({
   page: currentPage,
-  pageSize: magazinesPerPage,
+  pageSize: ITEMS_PER_PAGE,
 });
 
 const totalPages = pagination.pageCount;

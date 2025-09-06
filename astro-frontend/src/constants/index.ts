@@ -7,6 +7,4 @@ export const RECIPIENT_EMAILS = [
 ];
 export const SITE_URL = "https://pompeichurch.in";
 
-export const ACHIEVEMENTS_PER_PAGE = 6;
-export const EVENTS_PER_PAGE = 6;
-export const OBITUARIES_PER_PAGE = 6;
+export const ITEMS_PER_PAGE = 6;
