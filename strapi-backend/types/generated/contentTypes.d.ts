@@ -788,8 +788,8 @@ export interface ApiEventEvent extends Struct.CollectionTypeSchema {
         'Catechism',
         'Small Christian Community',
         'Gurpur Church Choir',
-        'Women\u2019s Forum',
-        'Christian\u00A0Life\u00A0Community',
+        "Women's Forum",
+        'Christian Life Community',
       ]
     >;
     createdAt: Schema.Attribute.DateTime;
@@ -810,7 +810,8 @@ export interface ApiEventEvent extends Struct.CollectionTypeSchema {
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::event.event'> &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    shortDescription: Schema.Attribute.String;
+    shortDescriptionEn: Schema.Attribute.String;
+    shortDescriptionKok: Schema.Attribute.String;
     slug: Schema.Attribute.UID<'englishTitle'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -1282,6 +1283,42 @@ export interface ApiParishPriestMessageParishPriestMessage
         };
       }>;
     publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiParishionersAchievementParishionersAchievement
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'parishioners_achievements';
+  info: {
+    displayName: 'Parishioners Achievements';
+    pluralName: 'parishioners-achievements';
+    singularName: 'parishioners-achievement';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    achieverImage: Schema.Attribute.Media<'images'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    enAchievement: Schema.Attribute.String & Schema.Attribute.Required;
+    enDescription: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    englishName: Schema.Attribute.String & Schema.Attribute.Required;
+    kokAchievement: Schema.Attribute.String & Schema.Attribute.Required;
+    kokDescription: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    konkaniName: Schema.Attribute.String & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::parishioners-achievement.parishioners-achievement'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'englishName'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -2032,6 +2069,7 @@ declare module '@strapi/strapi' {
       'api::parish-pastoral-council.parish-pastoral-council': ApiParishPastoralCouncilParishPastoralCouncil;
       'api::parish-priest-and-deacon.parish-priest-and-deacon': ApiParishPriestAndDeaconParishPriestAndDeacon;
       'api::parish-priest-message.parish-priest-message': ApiParishPriestMessageParishPriestMessage;
+      'api::parishioners-achievement.parishioners-achievement': ApiParishionersAchievementParishionersAchievement;
       'api::pompeichem-falkem.pompeichem-falkem': ApiPompeichemFalkemPompeichemFalkem;
       'api::popes-intention.popes-intention': ApiPopesIntentionPopesIntention;
       'api::push-notification.push-notification': ApiPushNotificationPushNotification;
