@@ -16,11 +16,6 @@ export const languageSwitcher = () => {
       button.removeAttribute("disabled");
     });
 
-    const getCurrentLocale = (): Locale => {
-      const currentPath = window.location.pathname;
-      return currentPath.startsWith("/kok/") ? Locale.KOK : Locale.EN;
-    };
-
     const handleLanguageChange = (lang: string): void => {
       const currentPath = window.location.pathname;
       const pathWithLocaleStripped = currentPath.replace(/^\/kok\//, "/");
@@ -29,6 +24,7 @@ export const languageSwitcher = () => {
         localeToSwitchTo === Locale.KOK
           ? `/${localeToSwitchTo}${pathWithLocaleStripped}`
           : `${pathWithLocaleStripped}`;
+
       window.location.href = newPath;
     };
 
@@ -87,25 +83,9 @@ export const languageSwitcher = () => {
     document
       .querySelectorAll<HTMLButtonElement>("#lang-dropdown button")
       .forEach((btn) => {
-        btn.addEventListener("click", async (e: MouseEvent) => {
-          const target = e.currentTarget as HTMLButtonElement;
-          const targetLang = target.innerText;
-          const targetLocale = targetLang === "ಕೊಂಕಣಿ" ? Locale.KOK : Locale.EN;
-          const currentLocale = getCurrentLocale();
-
-          if (window.checkAchievementFormDataLoss) {
-            const canSwitch = await window.checkAchievementFormDataLoss(targetLang);
-            if (!canSwitch) {
-              return;
-            } 
-          }
-
-          if (targetLocale === currentLocale) {
-            window.location.reload();
-            return;
-          }
-
-          handleLanguageChange(targetLang);
+        btn.addEventListener("click", (e: MouseEvent) => {
+          const target = e.target as HTMLButtonElement;
+          handleLanguageChange(target.innerText);
         });
       });
   });
