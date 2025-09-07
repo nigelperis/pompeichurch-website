@@ -23,7 +23,9 @@ const achieverImage = achiever?.achieverImage ?? {
 
 const baseURL = import.meta.env.PUBLIC_STRAPI_URL;
 const ogImage =
-  achieverImage && "formats" in achieverImage && achieverImage.formats?.medium?.url
+  achieverImage &&
+  "formats" in achieverImage &&
+  achieverImage.formats?.medium?.url
     ? new URL(achieverImage.formats.medium.url, baseURL).toString()
     : achieverImage?.url
       ? new URL(achieverImage.url, baseURL).toString()
@@ -65,8 +67,11 @@ const ogImage =
         {lang === Locale.EN ? achiever?.englishName : achiever?.konkaniName}
       </h2>
 
-      <div class="mt-1 leading-7 text-slate-700 text-center">
-        <StrapiBlocksRenderer content={achiever?.kokDescription ?? []} />
+      <div class="mt-1 leading-7 text-center">
+        <StrapiBlocksRenderer
+          content={achiever?.kokDescription ?? []}
+          paraClassName="text-slate-800"
+        />
       </div>
 
       <div

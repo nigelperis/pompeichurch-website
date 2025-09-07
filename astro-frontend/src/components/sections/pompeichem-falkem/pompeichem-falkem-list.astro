@@ -39,7 +39,11 @@ const magazinesOrdered = (() => {
                     magazine.coverImage.url,
                     import.meta.env.PUBLIC_STRAPI_URL,
                   ).toString()
-                : getPlaceholderImage({ text: magazine.title })
+                : getPlaceholderImage({
+                    width: 340,
+                    height: 400,
+                    text: magazine.title,
+                  })
             }
             imageWidth={magazine.coverImage?.width ?? 600}
             imageHeight={magazine.coverImage?.height ?? 400}
