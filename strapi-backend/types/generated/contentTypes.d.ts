@@ -1349,9 +1349,13 @@ export interface ApiPompeichemFalkemPompeichemFalkem
       'api::pompeichem-falkem.pompeichem-falkem'
     > &
       Schema.Attribute.Private;
+    magazineTitle: Schema.Attribute.Enumeration<
+      ['Easter Issue', 'Monti Feast Issue', 'Christmas Issue']
+    >;
     pdfFile: Schema.Attribute.Media<'files'>;
     publishedAt: Schema.Attribute.DateTime;
-    title: Schema.Attribute.String;
+    specialEditionTitle: Schema.Attribute.String;
+    specialEditionTitleKok: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

@@ -5,6 +5,7 @@ import WhatsAppShare from "~/components/ui/whatsapp-share.tsx";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import NetworkImage from "~/components/ui/network-image.astro";
 
+
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
@@ -17,6 +18,7 @@ export interface Props {
   featured?: boolean;
   latest?: boolean;
   specialEdition?: boolean;
+  dateOfPublish?: string | null;
 }
 
 const {
@@ -27,31 +29,77 @@ const {
   fileUrl,
   latest = false,
   specialEdition = false,
+  dateOfPublish = null,
 } = Astro.props as Props;
 
+const containerRatio = 0.75;
+
 const hasFile = Boolean(fileUrl);
+const sharePageUrl = (() => {
+  if (!fileUrl) return null;
+  try {
+    const fileName = new URL(fileUrl).pathname.split("/").pop();
+    if (!fileName) return null;
+    const base = fileName.replace(/\.pdf$/i, "");
+    const parts = base.split("_");
+    const slug = parts.length > 1 ? parts.slice(0, -1).join("_") : base;
+    return `${lang === 'kok' ? '/kok' : ''}/pompeichem-falkem/${slug}`;
+  } catch {
+    return null;
+  }
+})();
 const badgeLabel = latest
   ? t("magazine.latest")
   : specialEdition
-    ? t("magazine.centenary")
-    : null;
+  ? t("magazine.special")
+  : null;
 const badgeClasses =
   "absolute top-2 right-2 bg-slate-900/70 text-white text-[13px] font-bold px-4 py-1 uppercase tracking-wide";
+
+const formattedPublishDate = (() => {
+  if (!dateOfPublish) return null;
+  const d = new Date(dateOfPublish);
+  if (isNaN(d.getTime())) return null;
+  const monthKeys = [
+    "month.january",
+    "month.february",
+    "month.march",
+    "month.april",
+    "month.may",
+    "month.june",
+    "month.july",
+    "month.august",
+    "month.september",
+    "month.october",
+    "month.november",
+    "month.december",
+  ] as const;
+  const monthIndex = d.getMonth();
+  const monthName = monthKeys[monthIndex] ? t(monthKeys[monthIndex]) : "";
+  const year = d.getFullYear();
+  return `${monthName} ${year}`.trim();
+})();
 ---
 
-<div class="flex flex-col border border-gray-200">
-  <div class="relative w-full">
+<div class="flex h-full flex-col border border-gray-200">
+  <div class="relative w-full" style={{ aspectRatio: `${containerRatio}` }}>
     <NetworkImage
       src={imageUrl}
       alt={title}
       width={imageWidth}
       height={imageHeight}
-      class="w-full object-cover aspect-[2/3]"
+      class="absolute inset-0 w-full h-full object-cover object-top"
     />
-    {badgeLabel && <span class={badgeClasses}>{badgeLabel}</span>}
+    {badgeLabel && (
+      <span class={badgeClasses}>{badgeLabel}</span>
+    )}
   </div>
 
   <div class="relative p-4 flex flex-col flex-grow">
+    <h3 class="text-lg font-semibold leading-snug mb-1">{title}</h3>
+    {formattedPublishDate && (
+      <p class="text-sm text-slate-600 mb-3">{formattedPublishDate}</p>
+    )}
     <div class="bottom-4 left-4 right-4 flex justify-between items-center">
       {
         hasFile ? (
@@ -63,14 +111,17 @@ const badgeClasses =
         )
       }
 
-      {
-        hasFile && (
-          <div class="flex items-center gap-2">
-            <WhatsAppShare client:load shareData={{ url: fileUrl!, title }} />
-            <ShareLink shareData={{ url: fileUrl!, title }} />
-          </div>
-        )
-      }
+      {hasFile && (
+        <div class="flex items-center gap-2">
+          <WhatsAppShare
+            client:load
+            shareData={{ url: sharePageUrl || fileUrl!, title }}
+          />
+          <ShareLink
+            shareData={{ url: sharePageUrl || fileUrl!, title }}
+          />
+        </div>
+      )}
     </div>
   </div>
 </div>

@@ -7,13 +7,40 @@ const STRAPI_URL = process.env.STRAPI_URL || "https://strapi.pompeichurch.in";
 async function maybeSendPompeichemFalkemEmail(result: any) {
   if (!result?.publishedAt) return;
 
-  const link = `${SITE_URL}/pompeichem-falkem`;
+  const link = (() => {
+    const pdfUrl: string | undefined = result?.pdfFile?.url;
+    if (!pdfUrl) return `${SITE_URL}/pompeichem-falkem`;
+    try {
+      const fileName =
+        new URL(pdfUrl, STRAPI_URL).pathname.split("/").pop() || "";
+      const base = fileName.replace(/\.pdf$/i, "");
+      const parts = base.split("_");
+      const slug = parts.length > 1 ? parts.slice(0, -1).join("_") : base;
+      if (!slug) return `${SITE_URL}/pompeichem-falkem`;
+      return `${SITE_URL}/pompeichem-falkem/${slug}`;
+    } catch {
+      return `${SITE_URL}/pompeichem-falkem`;
+    }
+  })();
 
   const coverImage = result.coverImage?.url
     ? new URL(result.coverImage.url, STRAPI_URL).toString()
     : null;
 
   const { title, dateOfPublish } = result;
+
+  const formattedDateOfPublish = (() => {
+    if (!dateOfPublish) return "";
+    const d = new Date(dateOfPublish);
+    if (isNaN(d.getTime())) return String(dateOfPublish);
+    return d
+      .toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+      })
+      .replace(/\//g, "-");
+  })();
 
   const publisher = result.updatedBy || result.createdBy || null;
   const publisherName = publisher
@@ -27,7 +54,7 @@ async function maybeSendPompeichemFalkemEmail(result: any) {
     <h2>New Pompeichem Falkem</h2>
     <ul>
       <li><strong>Title:</strong> ${title}</li>
-      <li><strong>Date of Publish:</strong> ${dateOfPublish}</li>
+      <li><strong>Date of Publish:</strong> ${formattedDateOfPublish}</li>
       <li><strong>View:</strong> <a href="${link}">${link}</a></li>
     </ul>
     <p><strong>Published By:</strong> ${publisherName}</p>

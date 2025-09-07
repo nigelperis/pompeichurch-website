@@ -13,11 +13,13 @@ import type {
  * @param {number} [args.pageSize=25] - The number of magazines per page (default: 25).
  * @param {string} [args.sortBy='dateOfPublish:desc'] - The sorting order for magazines (default: 'dateOfPublish:desc').
  * @returns {Promise<{ magazines: PompeichemFalkem[]; pagination: { total: number; page: number; pageSize: number; pageCount: number } }>} A promise resolving to magazines and pagination meta.
+ * @returns {Promise<{ magazines: PompeichemFalkem[]; pagination: { total: number; page: number; pageSize: number; pageCount: number } }>} A promise resolving to magazines and pagination meta.
  */
 async function listMagazines(args?: {
   page?: number;
   pageSize?: number;
   sortBy?: string;
+  year?: number | string;
 }): Promise<{
   magazines: PompeichemFalkem[];
   pagination: {
@@ -27,7 +29,12 @@ async function listMagazines(args?: {
     pageCount: number;
   };
 }> {
-  const { page = 1, pageSize = 25, sortBy = "dateOfPublish:desc" } = args ?? {};
+  const {
+    page = 1,
+    pageSize = 25,
+    sortBy = "dateOfPublish:desc",
+    year,
+  } = args ?? {};
 
   const queryParams = new URLSearchParams({
     "populate[0]": "coverImage",
@@ -36,6 +43,16 @@ async function listMagazines(args?: {
     "pagination[page]": String(page),
     "pagination[pageSize]": String(pageSize),
   });
+
+  if (year) {
+    const y = typeof year === "string" ? parseInt(year, 10) : year;
+    if (!Number.isNaN(y)) {
+      const start = `${y}-01-01`;
+      const end = `${y}-12-31`;
+      queryParams.set("filters[dateOfPublish][$gte]", start);
+      queryParams.set("filters[dateOfPublish][$lte]", end);
+    }
+  }
 
   const data = await strapiFetch<PompeichemFalkemData>({
     endpoint: ROUTES.POMPEICHEM_FALKEM,
