@@ -509,8 +509,8 @@ export const ui = {
     "church.patron": "ವೈಲಂಕಣಿ ಮಾಯ್",
     "obituary.subtitle": "ಮೊಗಾಚೊ ಉಡಾಸ್",
     "parishioners-achievements.subtitle":
-      "ಆಮ್ಚ್ಯಾ ಫಿರ್ಗಜ್ಗಾರಾಂಕ್ ಲಾಭ್ಲೆಲ್ಯಾ ದೆಣ್ಗ್ಯಾ ಆನಿ ಪರಿಶ್ರಮಾ ದ್ವಾರಿಂ, ದೆವಾಕ್ ಮಹಿಮಾ ದೀವ್ನ್, ತಾಂಚಿ ಸಾಧನಾಂ ವಳ್ಕುಂಚೆಂ ಪಾನ್.",
-    "achievement.congratulations": "ಉಲ್ಲಾಸ್",
+      "ಫಿರ್ಗಜ್‌ಗಾರಾಂನಿ ದೆವಾ ಥಾವ್ನ್ ಲಾಬ್ಲೆಲ್ಯಾ ದೆಣ್ಯಾವರ್ವಿಂ ಆನಿ ಪರಿಶ್ರಮಾದ್ವಾರಿಂ ಕೆಲ್ಲ್ಯಾ ಸಾಧನಾಕ್ ಉಲ್ಲಾಸ್ ಪಾಟವ್ನ್ ಬರೆಂ ಮಾಗ್ಚೆಂ ಪಾನ್.",
+    "achievement.congratulations": "ಅಭಿನಂದನ್",
     "achievement.warm-wishes": "ಆಶೀರ್ವಾದಾಂ ಆನಿ ಬರೆಂ ಮಾಗ್ತಾತ್,",
     achievement: "ಸಾಧನ್",
     "commissions.convenor": "ಸಂಚಾಲಕಿ/ಕ್ ",
@@ -798,7 +798,7 @@ export const ui = {
     "funeral.youtube": "ಯೂಟೂಬಾರ್ ಪೊಳೆಯಾ",
     "push.notification":
       "ಫಿರ್ಗಜೆಂತ್ಲಿ ಫುಡ್ಲಿಂ ಕಾರ್ಯಿಂ, ಘಡಿತಾಂಚಿ ಝಳಕ್ ಆನಿ ಮೊರ್ಣಾಚಿ ಖಬರ್ ಅಪ್ಣಾಂವ್ಕ್",
-    "push.enable": "ಅನ್ಕೂಲ್ ಕರಾ",
+    "push.enable": "ಕ್ರಿಯಾಳ್ ಕರಾ",
     "push.disable": "ಆತಾಂ ನಾಕಾ!",
     download: "ಡೌನ್ಲೋಡ್",
   },
