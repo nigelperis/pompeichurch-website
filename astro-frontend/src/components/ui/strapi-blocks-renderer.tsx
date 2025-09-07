@@ -7,10 +7,11 @@ import { cn } from "~/helpers/cn";
 
 interface StrapiBlocksProps {
   content: BlocksContent;
+  paraClassName?: string;
 }
 
 function StrapiBlocksRenderer(props: StrapiBlocksProps) {
-  const { content } = props;
+  const { content, paraClassName } = props;
   return (
     <BlocksRenderer
       content={content}
@@ -39,7 +40,11 @@ function StrapiBlocksRenderer(props: StrapiBlocksProps) {
         },
 
         paragraph: ({ children }) => {
-          return <p className="leading-7 text-slate-900">{children}</p>;
+          return (
+            <p className={cn("leading-7 text-slate-900", paraClassName)}>
+              {children}
+            </p>
+          );
         },
 
         image: ({ image }) => {

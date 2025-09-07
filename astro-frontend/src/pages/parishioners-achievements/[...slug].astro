@@ -20,12 +20,26 @@ const achieverImage = achiever?.achieverImage ?? {
   width: 600,
   height: 400,
 };
+
+const baseURL = import.meta.env.PUBLIC_STRAPI_URL;
+const ogImage =
+  achieverImage &&
+  "formats" in achieverImage &&
+  achieverImage.formats?.medium?.url
+    ? new URL(achieverImage.formats.medium.url, baseURL).toString()
+    : achieverImage?.url
+      ? new URL(achieverImage.url, baseURL).toString()
+      : getPlaceholderImage({
+          width: 800,
+          height: 600,
+          text: achiever?.englishName || "Achiever",
+        });
 ---
 
 <Layout
-  title=`Parishioners Achievements | ${achiever?.englishName ?? ""}`
+  title=`${achiever?.englishName ?? ""}`
   description={achiever?.enAchievement}
-  image={achiever?.achieverImage?.url}
+  image={ogImage}
 >
   <main class="mx-auto max-w-screen-lg overflow-hidden bg-white">
     <section id="parishioners-achievements" class="flex flex-col p-6 pb-4">
@@ -53,8 +67,11 @@ const achieverImage = achiever?.achieverImage ?? {
         {lang === Locale.EN ? achiever?.englishName : achiever?.konkaniName}
       </h2>
 
-      <div class="mt-1 leading-7 text-slate-700 text-center">
-        <StrapiBlocksRenderer content={achiever?.enDescription ?? []} />
+      <div class="mt-1 leading-7 text-center">
+        <StrapiBlocksRenderer
+          content={achiever?.enDescription ?? []}
+          paraClassName="text-slate-800"
+        />
       </div>
 
       <div
