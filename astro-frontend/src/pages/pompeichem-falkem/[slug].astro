@@ -1,9 +1,13 @@
----
+﻿---
 import { listMagazines } from "~/services/list-magazines";
 import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
 import { getMagazineDisplayTitle } from "~/helpers/magazine";
+import { getLangFromUrl, useTranslations } from "~/i18n/utils";
+import { Locale } from "~/enums/locale";
 
 const { slug } = Astro.params;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 function extractSlug(fileUrl: string): string | null {
   const fileName = new URL(fileUrl).pathname.split("/").pop();
@@ -45,12 +49,16 @@ const imageUrl = magazine.coverImage?.formats?.medium?.url
         import.meta.env.PUBLIC_STRAPI_URL,
       ).toString()
     : getPlaceholderImage({
-        width: 800,
-        height: 1200,
+        width: 340,
+        height: 400,
         text: getMagazineDisplayTitle(magazine, "en"),
       });
 
-const displayTitle = getMagazineDisplayTitle(magazine, "en");
+const displayTitle = getMagazineDisplayTitle(
+  magazine,
+  lang === Locale.KOK ? "kok" : "en",
+);
+const metaDescription = t("magazine.view.description");
 ---
 
 <html>
@@ -61,7 +69,7 @@ const displayTitle = getMagazineDisplayTitle(magazine, "en");
     <title>{displayTitle}</title>
 
     <meta property="og:title" content={displayTitle} />
-    <meta property="og:description" content="Click to view the magazine." />
+    <meta property="og:description" content={metaDescription} />
     <meta property="og:image" content={imageUrl} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -70,7 +78,7 @@ const displayTitle = getMagazineDisplayTitle(magazine, "en");
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={displayTitle} />
-    <meta name="twitter:description" content="Click to view the magazine." />
+    <meta name="twitter:description" content={metaDescription} />
     <meta name="twitter:image" content={imageUrl} />
 
     <meta http-equiv="refresh" content={`0;url=${fileUrl}`} />
