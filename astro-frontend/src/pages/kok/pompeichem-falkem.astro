@@ -9,17 +9,19 @@ import { listMagazines } from "~/services/list-magazines";
 import { Message } from "~/constants/message.ts";
 import { cn } from "~/helpers/cn";
 import { Locale } from "~/enums/locale";
+import { ITEMS_PER_PAGE } from "~/constants/index.ts";
+import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const magazinesPerPage = 6;
+
 const currentPage = Number(Astro.url.searchParams.get("p")) || 1;
 const selectedYear = Astro.url.searchParams.get("year");
 
 const { magazines, pagination } = await listMagazines({
   page: currentPage,
-  pageSize: magazinesPerPage,
+  pageSize: ITEMS_PER_PAGE,
   year: selectedYear ?? undefined,
   sortBy: selectedYear ? "dateOfPublish:asc" : "dateOfPublish:desc",
 });
@@ -37,12 +39,16 @@ const uniqueYears = Array.from(
 const totalPages = pagination.pageCount;
 const title = lang === Locale.KOK ? "ಪೊಂಪೈಚೆಂ ಫಾಲ್ಕೆಂ" : "Pompeichem Falkem";
 
-const ogImageUrl = magazines[0]?.coverImage?.url
-  ? new URL(
-      magazines[0].coverImage.url,
-      import.meta.env.PUBLIC_STRAPI_URL,
-    ).toString()
-  : undefined;
+const baseURL = import.meta.env.PUBLIC_STRAPI_URL;
+const firstMagazine = magazines?.[0];
+
+const ogImageUrl = firstMagazine?.coverImage?.url
+  ? new URL(firstMagazine.coverImage.url, baseURL).toString()
+  : getPlaceholderImage({
+      width: 800,
+      height: 1200,
+      text: firstMagazine?.magazineTitle || "Pompeichem Falkem",
+    });
 ---
 
 <Layout title={`${title}`} image={ogImageUrl}>
@@ -53,7 +59,7 @@ const ogImageUrl = magazines[0]?.coverImage?.url
           class={cn(
             "font-black border-natgeo-yellow mb-2 md:mb-0 border-l-4 pl-3 text-3xl lg:text-4xl",
             {
-              "pt-2 font-bold": lang === Locale.KOK,
+              "font-bold": lang === Locale.KOK,
             },
           )}
         >
@@ -62,10 +68,11 @@ const ogImageUrl = magazines[0]?.coverImage?.url
 
         {uniqueYears.length > 0 && (
           <div class="w-full md:w-64">
-            <SelectYearRedirect client:load years={uniqueYears} selectedYear={selectedYear ?? undefined} placeholder={selectedYear ?? t("year.select-label")} allYearsLabel={t("year.all")}  />
+            <SelectYearRedirect client:load years={uniqueYears} selectedYear={selectedYear ?? undefined} placeholder={selectedYear ?? t("year.select-label")} allYearsLabel={t("year.all")} />
           </div>
         )}
       </div>
+
       {
         magazines.length > 0 ? (
           <>

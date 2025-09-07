@@ -28,7 +28,7 @@ const WhatsAppShare: React.FC<Props> = ({
       setResolvedUrl(shareData.url);
       setIsLoading(false);
     } else {
-      const baseUrl = "https://pompeichurch.in";
+      const baseUrl = typeof window !== "undefined" ? window.location.origin : "";
       const fullUrl = shareData.url.startsWith("/")
         ? shareData.url
         : `/${shareData.url}`;

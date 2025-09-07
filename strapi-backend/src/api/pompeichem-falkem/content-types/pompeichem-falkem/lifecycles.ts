@@ -33,10 +33,13 @@ async function maybeSendPompeichemFalkemEmail(result: any) {
     if (!dateOfPublish) return "";
     const d = new Date(dateOfPublish);
     if (isNaN(d.getTime())) return String(dateOfPublish);
-    const mm = String(d.getMonth() + 1).padStart(2, "0");
-    const dd = String(d.getDate()).padStart(2, "0");
-    const yyyy = String(d.getFullYear());
-    return `${mm}-${dd}-${yyyy}`;
+    return d
+      .toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+      })
+      .replace(/\//g, "-");
   })();
 
   const publisher = result.updatedBy || result.createdBy || null;
