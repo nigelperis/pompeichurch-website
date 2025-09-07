@@ -143,10 +143,10 @@ export const navLinks = [
         title: "nav.events",
         href: "/events",
       },
-      /*{
+      {
         title: "nav.parishioners-achievements",
         href: "/parishioners-achievements",
-      },*/
+      },
     ],
   },
   {
