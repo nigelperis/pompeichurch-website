@@ -43,7 +43,7 @@ const sharePageUrl = (() => {
     const base = fileName.replace(/\.pdf$/i, "");
     const parts = base.split("_");
     const slug = parts.length > 1 ? parts.slice(0, -1).join("_") : base;
-    return `/pompeichem-falkem/${slug}`;
+    return `${lang === 'kok' ? '/kok' : ''}/pompeichem-falkem/${slug}`;
   } catch {
     return null;
   }
