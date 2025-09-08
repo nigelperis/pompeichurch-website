@@ -7,6 +7,7 @@ import { Locale } from "~/enums/locale";
 import NetworkImage from "~/components/ui/network-image.astro";
 import { getAssociation } from "~/services/associations/get-association";
 import type { Association } from "~/models/association";
+import OfficeBearerCard from "~/components/sections/associations/office-bearer-card.astro";
 import { listEvents } from "~/services/events/list-events";
 import EventCard from "~/components/event-card.astro";
 import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
@@ -55,17 +56,50 @@ const totalEventCount = allEvents.events?.length ?? 0;
 
 <div class="mx-auto">
   <div class="mt-2 flex justify-center">
-    <NetworkImage
-      src={association.groupImage?.url
-        ? new URL(
-            association.groupImage.url,
-            import.meta.env.PUBLIC_STRAPI_URL,
-          ).toString()
-        : getPlaceholderImage({ text: association.name })}
-      alt={`Members of ${title} at Our Lady of Pompei Church`}
-      width={association.groupImage?.width || 600}
-      height={association.groupImage?.height || 400}
-    />
+    <div class="relative inline-block">
+      <NetworkImage
+        src={association.groupImage?.url
+          ? new URL(
+              association.groupImage.url,
+              import.meta.env.PUBLIC_STRAPI_URL,
+            ).toString()
+          : getPlaceholderImage({ text: association.name })}
+        alt={`Members of ${title} at Our Lady of Pompei Church`}
+        width={association.groupImage?.width || 600}
+        height={association.groupImage?.height || 400}
+      />
+
+      {
+        association.logo?.url && (
+          <div class="absolute -top-4 -right-4 md:top-3 md:right-3 bg-white/90 backdrop-blur-sm rounded-full p-1 md:p-3 shadow-md border border-slate-200">
+            <div class="rounded-full overflow-hidden w-20 h-20 md:w-24 md:h-24 bg-white">
+              {
+                (() => {
+                  const targetWidth = 96;
+                  const logoW = association.logo?.width || targetWidth;
+                  const logoH = association.logo?.height || targetWidth;
+                  const computedHeight = Math.round(
+                    (targetWidth * logoH) / logoW,
+                  );
+                  return (
+                    <NetworkImage
+                      src={new URL(
+                        association.logo.url,
+                        import.meta.env.PUBLIC_STRAPI_URL,
+                      ).toString()}
+                      alt={`${title} logo`}
+                      width={targetWidth}
+                      height={computedHeight}
+                      class="w-full h-full object-contain"
+                    />
+                  );
+                })()
+              }
+            </div>
+          </div>
+        )
+      }
+    </div>
   </div>
 
   <h2
@@ -97,20 +131,21 @@ const totalEventCount = allEvents.events?.length ?? 0;
         >
           {t("associations.office-bearers")}
         </h2>
-        <ul
-          class={cn("my-4 list-inside list-disc text-base text-slate-700", {
-            "font-normal sm:pt-1": lang === Locale.KOK,
-          })}
+        <div
+          class={cn(
+            "my-3 grid gap-3 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4",
+            {
+              "font-normal sm:pt-1": lang === Locale.KOK,
+            },
+          )}
         >
           {officeBearers.map((bearer) => (
-            <li class="text-left">
-              <span class="text-slate-700 font-semibold">
-                {bearer.roleTitle}:{" "}
-              </span>
-              {bearer.personName}
-            </li>
+            <OfficeBearerCard
+              roleTitle={bearer.roleTitle}
+              personName={bearer.personName}
+            />
           ))}
-        </ul>
+        </div>
       </>
     )
   }
