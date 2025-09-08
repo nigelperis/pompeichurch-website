@@ -4,6 +4,14 @@ import { sendPushNotification } from "../../../../utils/send-push-notifications"
 
 const STRAPI_URL = process.env.STRAPI_URL || "https://strapi.pompeichurch.in";
 
+function getDisplayTitleFromEntry(entry: any): string {
+  const specialEn = (entry?.specialEditionTitle ?? "").trim();
+  if (specialEn) return specialEn;
+
+  const mag = (entry?.magazineTitle ?? "").trim();
+  return mag || "Pompeichem Falkem";
+}
+
 async function maybeSendPompeichemFalkemEmail(result: any) {
   if (!result?.publishedAt) return;
 
@@ -27,7 +35,8 @@ async function maybeSendPompeichemFalkemEmail(result: any) {
     ? new URL(result.coverImage.url, STRAPI_URL).toString()
     : null;
 
-  const { title, dateOfPublish } = result;
+  const title = getDisplayTitleFromEntry(result);
+  const { dateOfPublish } = result;
 
   const formattedDateOfPublish = (() => {
     if (!dateOfPublish) return "";
@@ -49,7 +58,7 @@ async function maybeSendPompeichemFalkemEmail(result: any) {
       }`.trim()
     : "Unknown";
 
-  const subject = `New Pompeichem Falkem Published: ${title || "Untitled"}`;
+  const subject = `📖 New Pompeichem Falkem Published: ${title || "Untitled"}`;
   const html = `
     <h2>New Pompeichem Falkem</h2>
     <ul>

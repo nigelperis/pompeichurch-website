@@ -6,6 +6,7 @@ import SelectYearRedirect from "~/components/ui/SelectYearRedirect";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import type { PompeichemFalkem } from "~/models/pompeichem-falkem";
 import { listMagazines } from "~/services/list-magazines";
+import { isSpecialEdition } from "~/helpers/magazine";
 import { Message } from "~/constants/message.ts";
 import { cn } from "~/helpers/cn";
 import { Locale } from "~/enums/locale";
@@ -23,7 +24,7 @@ const { magazines, pagination } = await listMagazines({
   page: currentPage,
   pageSize: ITEMS_PER_PAGE,
   year: selectedYear ?? undefined,
-  sortBy: selectedYear ? "dateOfPublish:asc" : "dateOfPublish:desc",
+  sortBy: "dateOfPublish:desc",
 });
 
 const { magazines: allMagazines } = await listMagazines({ page: 1, pageSize: 1000 });
@@ -76,19 +77,33 @@ const ogImageUrl = firstMagazine?.coverImage?.formats?.medium?.url
       </div>
 
       {
-        magazines.length > 0 ? (
+        (() => {
+          let magazinesForRender: PompeichemFalkem[] = magazines as PompeichemFalkem[];
+          if (currentPage === 1 && !selectedYear && allMagazines?.length) {
+            const latest = allMagazines[0];
+            const specials = allMagazines.filter(
+              (m) => isSpecialEdition(m) && m.id !== latest.id,
+            );
+            const normals = allMagazines.filter(
+              (m) => !isSpecialEdition(m) && m.id !== latest.id,
+            );
+            magazinesForRender = [latest, ...specials, ...normals].slice(0, ITEMS_PER_PAGE);
+          }
+
+          return magazinesForRender.length > 0 ? (
           <>
             <PompeichemFalkemList
-              magazines={magazines as PompeichemFalkem[]}
+              magazines={magazinesForRender}
               latestMagazineId={latestMagazineId}
             />
             <Pagination currentPage={currentPage} totalPages={totalPages} />
           </>
-        ) : (
+          ) : (
           <p class="py-8 text-center text-3xl font-semibold">
             {Message.MAGAZINES_NOT_FOUND}
           </p>
-        )
+          );
+        })()
       }
     </section>
   </main>

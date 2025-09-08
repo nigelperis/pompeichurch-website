@@ -28,7 +28,8 @@ const WhatsAppShare: React.FC<Props> = ({
       setResolvedUrl(shareData.url);
       setIsLoading(false);
     } else {
-      const baseUrl = typeof window !== "undefined" ? window.location.origin : "";
+      const baseUrl =
+        typeof window !== "undefined" ? window.location.origin : "";
       const fullUrl = shareData.url.startsWith("/")
         ? shareData.url
         : `/${shareData.url}`;
@@ -39,10 +40,7 @@ const WhatsAppShare: React.FC<Props> = ({
 
   if (!shareData?.url) return null;
   const urlToShare = resolvedUrl || shareData.url;
-  const parts: string[] = [];
-  if (shareData.title) parts.push(shareData.title);
-  parts.push(urlToShare);
-  const text = encodeURIComponent(parts.join("\n"));
+  const text = encodeURIComponent(urlToShare);
   const whatsappUrl = `https://wa.me/?text=${text}`;
 
   return (
