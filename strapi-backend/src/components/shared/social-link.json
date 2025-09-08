@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_shared_social_links",
+  "info": {
+    "displayName": "social-link"
+  },
+  "options": {},
+  "attributes": {
+    "platform": {
+      "type": "enumeration",
+      "enum": ["facebook", "instagram", "whatsapp", "website", "other"],
+      "required": true
+    },
+    "label": {
+      "type": "string",
+      "required": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "url": {
+      "type": "string",
+      "required": true
+    }
+  }
+}
+

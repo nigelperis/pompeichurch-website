@@ -1,0 +1,47 @@
+{
+  "collectionName": "components_associations_office_bearers",
+  "info": {
+    "displayName": "office-bearer"
+  },
+  "options": {},
+  "attributes": {
+    "roleTitle": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "required": true
+    },
+    "personName": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "required": true
+    },
+    "picture": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "gender": {
+      "type": "enumeration",
+      "required": false,
+      "enum": [
+        "male",
+        "female"
+      ]
+    },
+    "order": {
+      "type": "integer",
+      "required": false
+    }
+  }
+}

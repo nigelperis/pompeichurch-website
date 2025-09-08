@@ -2,55 +2,37 @@
 import Layout from "~/layouts/layout.astro";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import AssociationDetails from "~/components/sections/associations/association-details.astro";
-import { associations } from "~/constants/associations";
-import { associationsKok } from "~/constants/associations-kok";
-import { getGroupImage } from "~/helpers/get-association-picture";
-import { fetchAssociationBearers } from "~/services/association-bearers-data";
+import { listAssociations } from "~/services/associations/list-associations";
+import { getAssociation } from "~/services/associations/get-association";
 import { Locale } from "~/enums/locale";
-import { slugMappings } from "~/constants/association-slug-mappings";
-import type { AssociationOfficeBearers } from "~/models/association-bearers";
+import type { Association } from "~/models/association";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 export async function getStaticPaths() {
-  const paths = [
-    ...associations.map(({ slug }) => ({
-      params: { slug },
-    })),
-    ...associationsKok.map(({ slug }) => ({
-      params: { slug },
-    })),
-  ];
-
-  return paths;
+  const assocs = await listAssociations();
+  return assocs.map(({ slug }) => ({ params: { slug } }));
 }
 
-const { slug } = Astro.params as { slug: keyof typeof slugMappings };
+const { slug } = Astro.params as { slug: string };
 
-const assoc =
-  associations.find((assoc) => assoc.slug === slug) ||
-  associationsKok.find((assoc) => assoc.slug === slug);
+const [assocPrimary, assocFallback] = await Promise.all([
+  getAssociation({ slug, locale: lang as Locale }),
+  getAssociation({ slug, locale: Locale.EN }),
+]);
 
-if (!assoc) {
+const association: Association | null = assocPrimary || assocFallback;
+
+if (!association) {
   return Astro.redirect("/404", 302);
 }
 
-const [enDetails, kokDetails] = (await Promise.all([
-  fetchAssociationBearers(Locale.EN),
-  fetchAssociationBearers(Locale.KOK),
-])) as [AssociationOfficeBearers | null, AssociationOfficeBearers | null];
-
-const associationDetails: AssociationOfficeBearers | undefined =
-  lang === Locale.KOK
-    ? kokDetails || enDetails || undefined
-    : enDetails || kokDetails || undefined;
-
-const ogImage = getGroupImage(associationDetails, slug);
-const konkaniDescription =
-  associationsKok.find((a) => a.slug === slug)?.description ?? "";
-const englishDescription =
-  associations.find((a) => a.slug === slug)?.description ?? "";
+const ogImage = association.groupImage?.url
+  ? new URL(association.groupImage.url, import.meta.env.PUBLIC_STRAPI_URL).toString()
+  : undefined;
+const konkaniDescription = association?.summary ?? "";
+const englishDescription = association?.summary ?? "";
 
 function stripHtmlTags(html: string): string {
   return html
@@ -72,7 +54,7 @@ const ogDescription =
     ? plainKok?.substring(0, 300) || plainEn?.substring(0, 300)
     : plainEn?.substring(0, 300) || plainKok?.substring(0, 300);
 
-const ogTitle = `${t(`nav.${slug}`)}`;
+const ogTitle = association.name;
 
 const ogImageUrl = ogImage;
 ---
@@ -83,7 +65,7 @@ const ogImageUrl = ogImage;
       <h1
         class="font-bold pt-1 border-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl lg:text-4xl"
       >
-        {t(`nav.${slug}`)}
+        {ogTitle}
       </h1>
       <AssociationDetails />
     </section>

@@ -20,7 +20,12 @@
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": ["images", "files", "videos", "audios"]
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     },
     "shortDescriptionEn": {
       "type": "string"
@@ -66,6 +71,12 @@
         "Women's Forum",
         "Christian Life Community"
       ]
+    },
+    "association": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::association.association",
+      "inversedBy": "events"
     }
   }
 }

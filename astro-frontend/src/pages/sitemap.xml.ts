@@ -1,5 +1,6 @@
 import type { APIRoute } from "astro";
 import { navLinks } from "../constants/nav-links";
+import { listAssociations } from "../services/associations/list-associations";
 import { Locale } from "../enums/locale";
 import { SITE_URL } from "../constants/index";
 import { lastmod } from "../constants/last-modified-date";
@@ -51,6 +52,29 @@ export const GET: APIRoute = async () => {
         `,
       );
     }
+  });
+
+  // Dynamic associations routes
+  const assocs = await listAssociations();
+  assocs.forEach((a) => {
+    entry.push(
+      `<url>
+          <loc>${SITE_URL}/associations/${a.slug}</loc>
+          <lastmod>${lastmod}</lastmod>
+          <changefreq>monthly</changefreq>
+          <priority>0.9</priority>
+      </url>
+    `,
+    );
+    entry.push(
+      `<url>
+          <loc>${SITE_URL}/${Locale.KOK}/associations/${a.slug}</loc>
+          <lastmod>${lastmod}</lastmod>
+          <changefreq>monthly</changefreq>
+          <priority>0.9</priority>
+      </url>
+    `,
+    );
   });
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
