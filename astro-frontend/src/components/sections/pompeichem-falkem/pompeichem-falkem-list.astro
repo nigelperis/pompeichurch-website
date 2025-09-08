@@ -17,7 +17,15 @@ const magazinesOrdered = (() => {
   const list = [...magazines];
   if (list.length <= 1) return list;
 
-  const [first, ...rest] = list;
+  let firstIndex = 0;
+  if (typeof latestMagazineId === "number") {
+    const idx = list.findIndex((m) => m.id === latestMagazineId);
+    if (idx !== -1) firstIndex = idx;
+  }
+
+  const first = list[firstIndex];
+  const rest = list.filter((_, i) => i !== firstIndex);
+
   const specials: PompeichemFalkem[] = [];
   const normals: PompeichemFalkem[] = [];
 
@@ -30,7 +38,7 @@ const magazinesOrdered = (() => {
 })();
 ---
 
-<div class="grid grid-cols-1 gap-20 lg:gap-x-20 lg:gap-y-20 md:grid-cols-2 lg:grid-cols-3 mt-5 mb-5">
+<div class="grid grid-cols-1 gap-10 lg:gap-x-20 lg:gap-y-20 md:grid-cols-2 lg:grid-cols-3 mt-5 mb-5">
   {
     magazinesOrdered.map((magazine, index) => {
       const isLatest =
