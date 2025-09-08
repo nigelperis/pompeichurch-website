@@ -30,7 +30,7 @@
       "targetField": "name",
       "required": true
     },
-    "summary": {
+    "shortDescription": {
       "type": "text",
       "pluginOptions": {
         "i18n": {
@@ -39,14 +39,14 @@
       },
       "required": false
     },
-    "about": {
+    "description": {
       "type": "blocks",
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       },
-      "required": false
+      "required": true
     },
     "groupImage": {
       "type": "media",

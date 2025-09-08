@@ -23,14 +23,6 @@
       },
       "required": true
     },
-    "picture": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": [
-        "images"
-      ]
-    },
     "gender": {
       "type": "enumeration",
       "required": false,

@@ -51,8 +51,7 @@ export interface OfficeBearer {
   id?: number;
   roleTitle: string;
   personName: string;
-  picture?: MediaItem | null;
-  gender?: "male" | "female" | "mixed" | "other";
+  gender?: "male" | "female";
   order?: number | null;
 }
 
@@ -61,8 +60,8 @@ export interface Association {
   documentId: string;
   name: string;
   slug: string;
-  summary?: string;
-  about?: BlocksContent;
+  shortDescription?: string;
+  description?: BlocksContent;
   groupImage?: MediaItem | null;
   logo?: MediaItem | null;
   socialLinks?: SocialLink[];
@@ -88,4 +87,3 @@ export interface AssociationSingleResponse {
   data: Association[];
   meta: Record<string, unknown>;
 }
-

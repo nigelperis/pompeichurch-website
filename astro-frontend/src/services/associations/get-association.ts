@@ -1,6 +1,9 @@
 import { ROUTES } from "~/constants/strapi-endpoints";
 import { strapiFetch } from "~/helpers/strapi-fetch";
-import type { Association, AssociationSingleResponse } from "~/models/association";
+import type {
+  Association,
+  AssociationSingleResponse,
+} from "~/models/association";
 import { Locale } from "~/enums/locale";
 
 async function getAssociation(args: {
@@ -29,4 +32,3 @@ async function getAssociation(args: {
 }
 
 export { getAssociation };
-

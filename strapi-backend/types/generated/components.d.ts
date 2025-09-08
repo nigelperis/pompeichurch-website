@@ -15,7 +15,6 @@ export interface AssociationsOfficeBearer extends Struct.ComponentSchema {
           localized: true;
         };
       }>;
-    picture: Schema.Attribute.Media<'images'>;
     roleTitle: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
@@ -66,7 +65,7 @@ export interface SharedSocialLink extends Struct.ComponentSchema {
         };
       }>;
     platform: Schema.Attribute.Enumeration<
-      ['facebook', 'instagram', 'whatsapp', 'website', 'other']
+      ['facebook2', 'instagram2', 'youtube2', 'website', 'other']
     > &
       Schema.Attribute.Required;
     url: Schema.Attribute.String & Schema.Attribute.Required;

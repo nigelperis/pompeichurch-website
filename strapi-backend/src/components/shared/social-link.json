@@ -7,17 +7,23 @@
   "attributes": {
     "platform": {
       "type": "enumeration",
-      "enum": ["facebook", "instagram", "whatsapp", "website", "other"],
-      "required": true
+      "required": true,
+      "enum": [
+        "facebook2",
+        "instagram2",
+        "youtube2",
+        "website",
+        "other"
+      ]
     },
     "label": {
       "type": "string",
-      "required": false,
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
-      }
+      },
+      "required": false
     },
     "url": {
       "type": "string",
@@ -25,4 +31,3 @@
     }
   }
 }
-

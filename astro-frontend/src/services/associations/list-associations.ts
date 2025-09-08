@@ -12,7 +12,7 @@ async function listAssociations(args?: { locale?: Locale }): Promise<
     "fields[1]": "name",
     "pagination[page]": "1",
     "pagination[pageSize]": "100",
-    "sort[0]": "name:asc",
+    "sort[0]": "createdAt:asc",
   });
   if (locale) params.append("locale", locale);
 

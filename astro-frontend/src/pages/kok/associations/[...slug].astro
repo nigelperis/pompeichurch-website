@@ -31,8 +31,8 @@ if (!association) {
 const ogImage = association.groupImage?.url
   ? new URL(association.groupImage.url, import.meta.env.PUBLIC_STRAPI_URL).toString()
   : undefined;
-const konkaniDescription = association?.summary ?? "";
-const englishDescription = association?.summary ?? "";
+const konkaniDescription = association?.shortDescription ?? "";
+const englishDescription = association?.shortDescription ?? "";
 
 function stripHtmlTags(html: string): string {
   return html

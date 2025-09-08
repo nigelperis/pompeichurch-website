@@ -733,15 +733,16 @@ export interface ApiAssociationAssociation extends Struct.CollectionTypeSchema {
     };
   };
   attributes: {
-    about: Schema.Attribute.Blocks &
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Blocks &
+      Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
         };
       }>;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
     events: Schema.Attribute.Relation<'oneToMany', 'api::event.event'>;
     groupImage: Schema.Attribute.Media<'images'>;
     locale: Schema.Attribute.String;
@@ -762,14 +763,14 @@ export interface ApiAssociationAssociation extends Struct.CollectionTypeSchema {
       true
     >;
     publishedAt: Schema.Attribute.DateTime;
-    slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
-    socialLinks: Schema.Attribute.Component<'shared.social-link', true>;
-    summary: Schema.Attribute.Text &
+    shortDescription: Schema.Attribute.Text &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
         };
       }>;
+    slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
+    socialLinks: Schema.Attribute.Component<'shared.social-link', true>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
