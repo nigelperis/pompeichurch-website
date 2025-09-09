@@ -8,13 +8,7 @@
     "platform": {
       "type": "enumeration",
       "required": true,
-      "enum": [
-        "facebook2",
-        "instagram2",
-        "youtube2",
-        "website",
-        "other"
-      ]
+      "enum": ["facebook", "instagram", "youtube", "website", "other"]
     },
     "label": {
       "type": "string",

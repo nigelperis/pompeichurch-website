@@ -65,7 +65,7 @@ export interface SharedSocialLink extends Struct.ComponentSchema {
         };
       }>;
     platform: Schema.Attribute.Enumeration<
-      ['facebook2', 'instagram2', 'youtube2', 'website', 'other']
+      ['facebook', 'instagram', 'youtube', 'website', 'other']
     > &
       Schema.Attribute.Required;
     url: Schema.Attribute.String & Schema.Attribute.Required;
