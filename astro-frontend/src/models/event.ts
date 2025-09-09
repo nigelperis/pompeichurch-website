@@ -99,7 +99,13 @@ interface Event {
   updatedAt: string;
   publishedAt: string;
   eventImage: EventImage;
-  associationName: string;
+  associationName?: string;
+  association?: {
+    id: number;
+    documentId: string;
+    name: string;
+    slug: string;
+  } | null;
 }
 
 interface EventData {

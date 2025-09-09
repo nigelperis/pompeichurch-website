@@ -35,12 +35,13 @@ async function listEvents(args?: {
 
   if (filters) {
     Object.entries(filters).forEach(([key, value]) => {
-      if (typeof value === "object") {
+      const keyPath = key.includes(".") ? key.replaceAll(".", "][") : key;
+      if (typeof value === "object" && value !== null) {
         Object.entries(value).forEach(([op, val]) => {
-          queryParams.append(`filters[${key}][${op}]`, String(val));
+          queryParams.append(`filters[${keyPath}][${op}]`, String(val));
         });
       } else {
-        queryParams.append(`filters[${key}]`, String(value));
+        queryParams.append(`filters[${keyPath}]`, String(value));
       }
     });
   }

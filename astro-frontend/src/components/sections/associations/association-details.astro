@@ -1,101 +1,105 @@
 ---
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
-import { associations } from "~/constants/associations";
-import { associationsKok } from "~/constants/associations-kok";
+import { listAssociations } from "~/services/associations/list-associations";
 import { cn } from "~/helpers/cn";
 import { Icon } from "astro-icon/components";
-import { socials } from "~/constants/social-media-handles";
 import { Locale } from "~/enums/locale";
-import { fetchAssociationBearers } from "~/services/association-bearers-data";
 import NetworkImage from "~/components/ui/network-image.astro";
-import { slugMappings } from "~/constants/association-slug-mappings";
-import { getGroupImage } from "~/helpers/get-association-picture";
-import type { AssociationOfficeBearers } from "~/models/association-bearers";
+import { getAssociation } from "~/services/associations/get-association";
+import type { Association } from "~/models/association";
+import OfficeBearerCard from "~/components/sections/associations/office-bearer-card.astro";
 import { listEvents } from "~/services/events/list-events";
 import EventCard from "~/components/event-card.astro";
 import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
-import { titleMappings } from "~/constants/association-title-mapping";
 import HoverableLink from "~/components/ui/hoverable-link.astro";
+import StrapiBlocksRenderer from "~/components/ui/strapi-blocks-renderer.tsx";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const { slug } = Astro.params as { slug: keyof typeof slugMappings };
+const { slug } = Astro.params as { slug: string };
 
-const [enDetails, kokDetails] = (await Promise.all([
-  fetchAssociationBearers(Locale.EN),
-  fetchAssociationBearers(Locale.KOK),
-])) as [AssociationOfficeBearers | null, AssociationOfficeBearers | null];
+// Fetch association by locale with fallback
+const [assocPrimary, assocFallback] = await Promise.all([
+  getAssociation({ slug, locale: lang as Locale }),
+  getAssociation({ slug, locale: Locale.EN }),
+]);
 
-const associationDetails: AssociationOfficeBearers | undefined =
-  lang === Locale.KOK
-    ? kokDetails || enDetails || undefined
-    : enDetails || kokDetails || undefined;
+const association: Association | null = assocPrimary || assocFallback;
 
-const associationData = lang === Locale.KOK ? associationsKok : associations;
-const fallbackAssociationData =
-  lang === Locale.KOK ? associations : associationsKok;
+if (!association) {
+  throw new Error(`Association not found for slug: ${slug}`);
+}
 
-const association =
-  associationData.find((assoc) => assoc.slug === slug) ??
-  fallbackAssociationData.find((assoc) => assoc.slug === slug);
-
-const title = association?.title ?? "";
-const description = association?.description ?? [];
-
-const currentAssociation = slugMappings[slug] ?? {};
-
-const officeBearers = Object.entries(currentAssociation)
-  .filter(([key]) => key !== "groupPicture")
-  .map(([role, field]) => {
-    const name =
-      associationDetails?.[field as keyof AssociationOfficeBearers] ??
-      enDetails?.[field as keyof AssociationOfficeBearers] ??
-      kokDetails?.[field as keyof AssociationOfficeBearers];
-    return { role, name };
-  })
-  .filter(({ name }) => name !== undefined && name !== null);
-
-const currentSocial = socials.find((social) => social.name === slug);
-
-const groupPictureField = slugMappings[slug]
-  ?.groupPicture as keyof AssociationOfficeBearers;
-const groupPicture = associationDetails?.[groupPictureField];
+const title = association.name;
+const description = association.description ?? [];
+const officeBearers = (association.officeBearers || [])
+  .slice()
+  .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
 
 const eventsUrl =
   lang === Locale.KOK
     ? `/kok/associations/${slug}/events`
     : `/associations/${slug}/events`;
 
+// Fetch recent events linked via relation
 const allEvents = await listEvents({
   page: 1,
-  pageSize: 100,
+  pageSize: 6,
   sortBy: ["eventDate:desc"],
+  filters: { "association.slug": { $eq: slug } },
 });
-const englishTitle =
-  associations.find((assoc) => assoc.slug === slug)?.title ??
-  associationsKok.find((assoc) => assoc.slug === slug)?.title ??
-  "";
 
-const mappedTitle = titleMappings[englishTitle] ?? englishTitle;
-
-const recentEvents =
-  allEvents.events
-    ?.filter((event) => event.associationName === mappedTitle)
-    .slice(0, 2) || [];
-const totalEventCount =
-  allEvents.events?.filter((event) => event.associationName === mappedTitle)
-    .length ?? 0;
+const recentEvents = allEvents.events?.slice(0, 2) || [];
+const totalEventCount = allEvents.events?.length ?? 0;
 ---
 
 <div class="mx-auto">
   <div class="mt-2 flex justify-center">
-    <NetworkImage
-      src={getGroupImage(associationDetails, slug)}
-      alt={`Members of ${title} at Our Lady of Pompei Church`}
-      width={(typeof groupPicture === "object" && groupPicture?.width) || 600}
-      height={(typeof groupPicture === "object" && groupPicture?.height) || 400}
-    />
+    <div class="relative inline-block">
+      <NetworkImage
+        src={association.groupImage?.url
+          ? new URL(
+              association.groupImage.url,
+              import.meta.env.PUBLIC_STRAPI_URL,
+            ).toString()
+          : getPlaceholderImage({ text: association.name })}
+        alt={`Members of ${title} at Our Lady of Pompei Church`}
+        width={association.groupImage?.width || 600}
+        height={association.groupImage?.height || 400}
+      />
+
+      {
+        association.logo?.url && (
+          <div class="absolute -top-4 -right-4 md:top-3 md:right-3 bg-white/90 backdrop-blur-sm rounded-full p-1 md:p-3 shadow-md border border-slate-200">
+            <div class="rounded-full overflow-hidden w-20 h-20 md:w-24 md:h-24 bg-white">
+              {
+                (() => {
+                  const targetWidth = 96;
+                  const logoW = association.logo?.width || targetWidth;
+                  const logoH = association.logo?.height || targetWidth;
+                  const computedHeight = Math.round(
+                    (targetWidth * logoH) / logoW,
+                  );
+                  return (
+                    <NetworkImage
+                      src={new URL(
+                        association.logo.url,
+                        import.meta.env.PUBLIC_STRAPI_URL,
+                      ).toString()}
+                      alt={`${title} logo`}
+                      width={targetWidth}
+                      height={computedHeight}
+                      class="w-full h-full object-contain"
+                    />
+                  );
+                })()
+              }
+            </div>
+          </div>
+        )
+      }
+    </div>
   </div>
 
   <h2
@@ -105,12 +109,17 @@ const totalEventCount =
   >
     {t("associations.about-us")}
   </h2>
-  <p
-    class={cn("rich-content mt-4 text-justify leading-7 text-slate-700 mb-4", {
-      "font-normal": lang === Locale.KOK,
-    })}
-    set:html={description}
-  />
+  {
+    Array.isArray(description) && description.length > 0 ? (
+      <StrapiBlocksRenderer
+        client:load
+        content={description}
+        paraClassName={cn("mt-4 text-justify leading-7 text-slate-700 mb-4", {
+          "font-normal": lang === Locale.KOK,
+        })}
+      />
+    ) : null
+  }
 
   {
     officeBearers.length > 0 && (
@@ -122,25 +131,26 @@ const totalEventCount =
         >
           {t("associations.office-bearers")}
         </h2>
-        <ul
-          class={cn("my-4 list-inside list-disc text-base text-slate-700", {
-            "font-normal sm:pt-1": lang === Locale.KOK,
-          })}
+        <div
+          class={cn(
+            "my-3 grid gap-3 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4",
+            {
+              "font-normal sm:pt-1": lang === Locale.KOK,
+            },
+          )}
         >
           {officeBearers.map((bearer) => (
-            <li class="text-left">
-              <span class="text-slate-700 font-semibold">
-                {t(`${bearer.role}`)}:{" "}
-              </span>{" "}
-              {bearer.name}
-            </li>
+            <OfficeBearerCard
+              roleTitle={bearer.roleTitle}
+              personName={bearer.personName}
+            />
           ))}
-        </ul>
+        </div>
       </>
     )
   }
   {
-    currentSocial && (
+    association.socialLinks && association.socialLinks.length > 0 && (
       <>
         <h2
           class={cn("mt-2 text-left text-2xl font-bold text-slate-900", {
@@ -150,10 +160,10 @@ const totalEventCount =
           {t("landing.follow-our-journey")}
         </h2>
         <div class="flex gap-8 md:gap-12">
-          {currentSocial.links.map((link) => (
+          {association.socialLinks.map((link) => (
             <div class="mb-9 mt-4 h-5 w-5 transition-transform hover:scale-105 duration-300">
-              <a href={link.value} target="_blank" rel="noopener noreferrer">
-                <Icon name={link.key} class="size-10 md:size-13" />
+              <a href={link.url} target="_blank" rel="noopener noreferrer">
+                <Icon name={link.platform} class="size-10 md:size-13" />
               </a>
             </div>
           ))}
@@ -166,13 +176,11 @@ const totalEventCount =
     recentEvents.length > 0 && (
       <>
         <h2
-          class={cn("mt-4 text-left text-2xl font-bold text-slate-900", {
+          class={cn("font-bold mt-1 text-left text-2xl text-slate-900", {
             "font-bold sm:pt-1": lang === Locale.KOK,
           })}
         >
-          {lang === Locale.KOK
-            ? "ಸಂಘ್-ಸಂಸ್ಥ್ಯಾಚಿ ಘಡಿತಾಂ"
-            : "Association Events"}
+          {t("associations.events")}
         </h2>
 
         <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 mt-4">

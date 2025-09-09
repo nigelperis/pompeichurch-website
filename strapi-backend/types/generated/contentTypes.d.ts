@@ -716,6 +716,67 @@ export interface ApiAssociationOfficeBearerAssociationOfficeBearer
   };
 }
 
+export interface ApiAssociationAssociation extends Struct.CollectionTypeSchema {
+  collectionName: 'associations';
+  info: {
+    description: 'Parish associations with office bearers and social links';
+    displayName: 'Associations';
+    pluralName: 'associations';
+    singularName: 'association';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Blocks &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    events: Schema.Attribute.Relation<'oneToMany', 'api::event.event'>;
+    groupImage: Schema.Attribute.Media<'images'>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::association.association'
+    >;
+    logo: Schema.Attribute.Media<'images'>;
+    name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    officeBearers: Schema.Attribute.Component<
+      'associations.office-bearer',
+      true
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    shortDescription: Schema.Attribute.Text &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
+    socialLinks: Schema.Attribute.Component<'shared.social-link', true>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiContactContact extends Struct.SingleTypeSchema {
   collectionName: 'contacts';
   info: {
@@ -777,6 +838,10 @@ export interface ApiEventEvent extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    association: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::association.association'
+    >;
     associationName: Schema.Attribute.Enumeration<
       [
         'SVP',
@@ -2062,6 +2127,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::association-office-bearer.association-office-bearer': ApiAssociationOfficeBearerAssociationOfficeBearer;
+      'api::association.association': ApiAssociationAssociation;
       'api::contact.contact': ApiContactContact;
       'api::event.event': ApiEventEvent;
       'api::landing-page-carousel.landing-page-carousel': ApiLandingPageCarouselLandingPageCarousel;
