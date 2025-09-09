@@ -1,41 +1,36 @@
 ---
 import Layout from "~/layouts/layout.astro";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
-import { associations } from "~/constants/associations";
-import { associationsKok } from "~/constants/associations-kok";
+import { getAssociation } from "~/services/associations/get-association";
 import { listEvents } from "~/services/events/list-events";
 import EventsList from "~/components/sections/events/events-list.astro";
-import { titleMappings } from "~/constants/association-title-mapping";
 import { Locale } from "~/enums/locale";
 import { cn } from "~/helpers/cn";
 import { Message } from "~/constants/message.ts";
 import PushNotification from "~/components/push-notification.astro";
-import { slugMappings } from "~/constants/association-slug-mappings";
 import Pagination from "~/components/pagination.astro";
 import { getPaginationRange } from "~/helpers/get-pagination-range";
 import { ITEMS_PER_PAGE } from "~/constants/index.ts";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const { slug } = Astro.params as { slug: keyof typeof slugMappings };
+const { slug } = Astro.params as { slug: string };
 
-const englishTitle = associations.find((a) => a.slug === slug)?.title ?? "";
-const konkaniTitle = associationsKok.find((a) => a.slug === slug)?.title ?? "";
+const [assocPrimary, assocFallback] = await Promise.all([
+  getAssociation({ slug, locale: lang as Locale }),
+  getAssociation({ slug, locale: Locale.EN }),
+]);
 
-const title = lang === Locale.KOK ? konkaniTitle : englishTitle;
-
-const mappedTitle = titleMappings[englishTitle] ?? englishTitle;
+const association = assocPrimary || assocFallback;
+const title = association?.name ?? slug;
 
 const currentPage = Number(Astro.url.searchParams.get("p")) || 1;
 
-const { events: allEvents } = await listEvents({
+const { events: filteredEvents } = await listEvents({
   page: 1,
   pageSize: 500, //Todo Comment
+  filters: { "association.slug": { $eq: slug } },
 });
-
-const filteredEvents = allEvents.filter(
-  (event) => event.associationName === mappedTitle,
-);
 
 const totalEvents = filteredEvents.length;
 const totalPages = Math.ceil(totalEvents / ITEMS_PER_PAGE);
@@ -45,10 +40,7 @@ const paginatedEvents = filteredEvents.slice(
   currentPage * ITEMS_PER_PAGE,
 );
 
-const pageTitle =
-  lang === Locale.KOK
-    ? `${konkaniTitle} Events | Pompei Church`
-    : `${title} Events | Pompei Church`;
+const pageTitle = `${title} Events | Pompei Church`;
 ---
 
 <Layout title={pageTitle}>
@@ -62,7 +54,7 @@ const pageTitle =
           { "font-bold": lang === Locale.KOK },
         )}
       >
-        {t("nav.events")} - {t(`nav.${slug}`)}
+        {t("nav.events")} - {title}
       </h1>
 
       {

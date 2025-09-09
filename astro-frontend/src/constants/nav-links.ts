@@ -70,52 +70,7 @@ export const navLinks = [
   {
     type: "expandable",
     title: "nav.associations",
-    expandedLinks: [
-      {
-        title: "nav.svp",
-        href: "/associations/svp",
-      },
-      {
-        title: "nav.icym-pyc",
-        href: "/associations/icym-pyc",
-      },
-      {
-        title: "nav.altar-servers",
-        href: "/associations/altar-servers",
-      },
-      {
-        title: "nav.catholic-sabha",
-        href: "/associations/catholic-sabha",
-      },
-      {
-        title: "nav.ycs",
-        href: "/associations/ycs",
-      },
-      {
-        title: "nav.secular-franciscan",
-        href: "/associations/secular-franciscan",
-      },
-      {
-        title: "nav.catechism",
-        href: "/associations/catechism",
-      },
-      {
-        title: "nav.small-christian-community",
-        href: "/associations/small-christian-community",
-      },
-      {
-        title: "nav.gurpur-choir",
-        href: "/associations/gurpur-choir",
-      },
-      {
-        title: "nav.womens-forum",
-        href: "/associations/womens-forum",
-      },
-      {
-        title: "nav.christian-life-community",
-        href: "/associations/christian-life-community",
-      },
-    ],
+    expandedLinks: [],
   },
   {
     type: "expandable",
