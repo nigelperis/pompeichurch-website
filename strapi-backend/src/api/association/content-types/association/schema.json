@@ -71,6 +71,11 @@
     },
     "officeBearers": {
       "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
       "component": "associations.office-bearer",
       "repeatable": true
     },
