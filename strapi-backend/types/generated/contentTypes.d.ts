@@ -761,7 +761,12 @@ export interface ApiAssociationAssociation extends Struct.CollectionTypeSchema {
     officeBearers: Schema.Attribute.Component<
       'associations.office-bearer',
       true
-    >;
+    > &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     publishedAt: Schema.Attribute.DateTime;
     shortDescription: Schema.Attribute.Text &
       Schema.Attribute.SetPluginOptions<{
