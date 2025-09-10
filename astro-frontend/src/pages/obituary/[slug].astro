@@ -51,7 +51,9 @@ const pageTitle = selectedObituary
 
 <Layout
   title={`${pageTitle} ${selectedObituary?.age ? `(${selectedObituary.age})` : ""}`}
-  description={selectedObituary.ward ?? "Pompei Church Obituaries"}
+  description={selectedObituary?.ward
+  ? `${selectedObituary.ward} ${t("ward")}`
+  : "Pompei Church Obituaries"}
   image={absoluteImage}
   url={obituaryUrl}
 >
@@ -97,6 +99,7 @@ const pageTitle = selectedObituary
         imageUrl={obituaryImage}
         slug={selectedObituary.slug}
         funeralDetails={selectedObituary.funeralDetails}
+        funeralDetailsKok={selectedObituary.funeralDetailsKok}
         funeralDetailsUpdatedAt={selectedObituary.funeralDetailsUpdatedAt}
         youtubeLink={selectedObituary.youtubeLink}
         className="mx-auto"

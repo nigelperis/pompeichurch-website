@@ -4,9 +4,9 @@ import Layout from "~/layouts/layout.astro";
 import Pagination from "~/components/pagination.astro";
 import SelectYearRedirect from "~/components/ui/SelectYearRedirect";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
-import type { PompeichemFalkem } from "~/models/pompeichem-falkem";
 import { listMagazines } from "~/services/list-magazines";
-import { isSpecialEdition } from "~/helpers/magazine";
+import { isCentenaryEdition } from "~/helpers/magazine";
+import type { PompeichemFalkem } from "~/models/pompeichem-falkem";
 import { Message } from "~/constants/message.ts";
 import { cn } from "~/helpers/cn";
 import { Locale } from "~/enums/locale";
@@ -24,7 +24,7 @@ const { magazines, pagination } = await listMagazines({
   page: currentPage,
   pageSize: ITEMS_PER_PAGE,
   year: selectedYear ?? undefined,
-  sortBy: "dateOfPublish:desc",
+  sortBy: selectedYear ? "dateOfPublish:asc" : "dateOfPublish:desc",
 });
 
 const { magazines: allMagazines } = await listMagazines({ page: 1, pageSize: 1000 });
@@ -78,30 +78,33 @@ const ogImageUrl = firstMagazine?.coverImage?.formats?.medium?.url
 
       {
         (() => {
-          let magazinesForRender: PompeichemFalkem[] = magazines as PompeichemFalkem[];
-          if (currentPage === 1 && !selectedYear && allMagazines?.length) {
+          // Default (no year): pin Centenary right after Latest across all pages; rest newest→oldest (desc)
+          if (!selectedYear && Array.isArray(allMagazines) && allMagazines.length) {
             const latest = allMagazines[0];
-            const specials = allMagazines.filter(
-              (m) => isSpecialEdition(m) && m.id !== latest.id,
+            const rest = allMagazines.slice(1);
+            const centenary = rest.find((m) => isCentenaryEdition(m)) || null;
+            const restWithoutCentenary = centenary ? rest.filter((m) => m.id !== centenary.id) : rest;
+            const ordered = centenary ? [latest, centenary, ...restWithoutCentenary] : [latest, ...restWithoutCentenary];
+            const start = (currentPage - 1) * ITEMS_PER_PAGE;
+            const pageItems = ordered.slice(start, start + ITEMS_PER_PAGE) as PompeichemFalkem[];
+            return pageItems.length > 0 ? (
+              <>
+                <PompeichemFalkemList magazines={pageItems} latestMagazineId={latestMagazineId} />
+                <Pagination currentPage={currentPage} totalPages={totalPages} />
+              </>
+            ) : (
+              <p class="py-8 text-center text-3xl font-semibold">{Message.MAGAZINES_NOT_FOUND}</p>
             );
-            const normals = allMagazines.filter(
-              (m) => !isSpecialEdition(m) && m.id !== latest.id,
-            );
-            magazinesForRender = [latest, ...specials, ...normals].slice(0, ITEMS_PER_PAGE);
           }
 
-          return magazinesForRender.length > 0 ? (
-          <>
-            <PompeichemFalkemList
-              magazines={magazinesForRender}
-              latestMagazineId={latestMagazineId}
-            />
-            <Pagination currentPage={currentPage} totalPages={totalPages} />
-          </>
+          // Year selected: render as received (asc order from service)
+          return magazines.length > 0 ? (
+            <>
+              <PompeichemFalkemList magazines={magazines as PompeichemFalkem[]} latestMagazineId={latestMagazineId} />
+              <Pagination currentPage={currentPage} totalPages={totalPages} />
+            </>
           ) : (
-          <p class="py-8 text-center text-3xl font-semibold">
-            {Message.MAGAZINES_NOT_FOUND}
-          </p>
+            <p class="py-8 text-center text-3xl font-semibold">{Message.MAGAZINES_NOT_FOUND}</p>
           );
         })()
       }

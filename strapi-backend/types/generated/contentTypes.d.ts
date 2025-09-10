@@ -940,6 +940,7 @@ export interface ApiObituaryObituary extends Struct.CollectionTypeSchema {
     dateOfDeath: Schema.Attribute.Date;
     englishName: Schema.Attribute.String;
     funeralDetails: Schema.Attribute.Text;
+    funeralDetailsKok: Schema.Attribute.Text;
     funeralDetailsUpdatedAt: Schema.Attribute.Date;
     image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     konkaniName: Schema.Attribute.String;

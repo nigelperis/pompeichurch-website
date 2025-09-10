@@ -18,6 +18,7 @@ export interface Props {
   featured?: boolean;
   latest?: boolean;
   specialEdition?: boolean;
+  centenaryEdition?: boolean;
   dateOfPublish?: string | null;
 }
 
@@ -29,6 +30,7 @@ const {
   fileUrl,
   latest = false,
   specialEdition = false,
+  centenaryEdition = false,
   dateOfPublish = null,
 } = Astro.props as Props;
 
@@ -50,11 +52,14 @@ const sharePageUrl = (() => {
 })();
 const badgeLabel = latest
   ? t("magazine.latest")
+  : centenaryEdition
+  ? t("magazine.centenary")
   : specialEdition
   ? t("magazine.special")
   : null;
-const badgeClasses =
-  "absolute top-2 right-2 bg-slate-900/70 text-white text-[13px] font-bold px-4 py-1 uppercase tracking-wide";
+const badgeClasses = centenaryEdition
+  ? "absolute top-2 right-2 bg-natgeo-yellow/90 text-black text-[13px] font-bold px-4 py-1 uppercase tracking-wide"
+  : "absolute top-2 right-2 bg-slate-900/70 text-white text-[13px] font-bold px-4 py-1 uppercase tracking-wide";
 
 const formattedPublishDate = (() => {
   if (!dateOfPublish) return null;

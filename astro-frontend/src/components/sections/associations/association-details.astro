@@ -159,9 +159,9 @@ const totalEventCount = allEvents.events?.length ?? 0;
         >
           {t("landing.follow-our-journey")}
         </h2>
-        <div class="flex gap-8 md:gap-12">
+        <div class="flex gap-6 md:gap-8 my-3 items-center">
           {association.socialLinks.map((link) => (
-            <div class="mb-9 mt-4 h-5 w-5 transition-transform hover:scale-105 duration-300">
+            <div class="transition-transform hover:scale-105 duration-300">
               <a href={link.url} target="_blank" rel="noopener noreferrer">
                 <Icon name={link.platform} class="size-10 md:size-13" />
               </a>

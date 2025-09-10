@@ -3,7 +3,7 @@ import MagazineCard from "~/components/magazine-card.astro";
 import type { PompeichemFalkem } from "~/models/pompeichem-falkem";
 import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
 import { getLangFromUrl } from "~/i18n/utils";
-import { getMagazineDisplayTitle, isSpecialEdition } from "~/helpers/magazine";
+import { getMagazineDisplayTitle, isSpecialEdition, isCentenaryEdition } from "~/helpers/magazine";
 
 const { magazines, isFirstPage = false, latestMagazineId } = Astro.props as {
   magazines: PompeichemFalkem[];
@@ -13,29 +13,8 @@ const { magazines, isFirstPage = false, latestMagazineId } = Astro.props as {
 
 const lang = getLangFromUrl(Astro.url);
 
-const magazinesOrdered = (() => {
-  const list = [...magazines];
-  if (list.length <= 1) return list;
-
-  let firstIndex = 0;
-  if (typeof latestMagazineId === "number") {
-    const idx = list.findIndex((m) => m.id === latestMagazineId);
-    if (idx !== -1) firstIndex = idx;
-  }
-
-  const first = list[firstIndex];
-  const rest = list.filter((_, i) => i !== firstIndex);
-
-  const specials: PompeichemFalkem[] = [];
-  const normals: PompeichemFalkem[] = [];
-
-  for (const m of rest) {
-    if (isSpecialEdition(m)) specials.push(m);
-    else normals.push(m);
-  }
-
-  return [first, ...specials, ...normals];
-})();
+// Keep the incoming order from the page query (desc for default, asc for year filter)
+const magazinesOrdered = magazines;
 ---
 
 <div class="grid grid-cols-1 gap-10 lg:gap-x-20 lg:gap-y-20 md:grid-cols-2 lg:grid-cols-3 mt-5 mb-5">
@@ -46,6 +25,7 @@ const magazinesOrdered = (() => {
           ? magazine.id === latestMagazineId
           : isFirstPage && index === 0;
       const isSpecial = isSpecialEdition(magazine);
+      const isCentenary = isCentenaryEdition(magazine);
       const displayTitle = getMagazineDisplayTitle(magazine, lang);
 
       return (
@@ -77,6 +57,7 @@ const magazinesOrdered = (() => {
             dateOfPublish={magazine.dateOfPublish}
             latest={isLatest}
             specialEdition={isSpecial}
+            centenaryEdition={isCentenary}
           />
         </div>
       );
