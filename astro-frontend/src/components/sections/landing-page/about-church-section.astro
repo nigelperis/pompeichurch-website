@@ -19,10 +19,11 @@ const historyUrl =
   lang === Locale.EN ? "/parish-history" : "/kok/parish-history";
 ---
 
-<section
+<div
   style={{ backgroundImage: `url(${optimizedGrottoImage.src})` }}
-  class="relative flex flex-col gap-y-8 bg-black/70 bg-cover bg-center p-8 text-white bg-blend-darken md:p-24"
+  class="relative flex flex-col gap-y-8 bg-black/70 bg-cover bg-center py-8 text-white bg-blend-darken"
 >
+<section class="mx-6 mt-6 flex flex-col lg:mx-28 lg:mb-3 lg:mt-0 lg:min-h-[70svh] lg:justify-evenly">
   <h1
     data-aos="fade-right"
     class={cn("font-black text-5xl leading-tight tracking-wider", {
@@ -53,3 +54,4 @@ const historyUrl =
     </div>
   </div>
 </section>
+</div>

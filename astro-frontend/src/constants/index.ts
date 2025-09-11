@@ -7,4 +7,6 @@ export const RECIPIENT_EMAILS = [
 ];
 export const SITE_URL = "https://pompeichurch.in";
 
-export const ITEMS_PER_PAGE = 6;
+export const ITEMS_PER_PAGE = 6; // number of items to show per page
+
+export const PAGINATION_BETWEEN_COUNT = 1; // how many pages to show on each side of currentPage

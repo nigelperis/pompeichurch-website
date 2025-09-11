@@ -49,7 +49,7 @@ const filteredEvents = upcomingEvents.filter((event) => {
     filteredEvents.length > 0 ? (
       <>
         {/* Mobile: Show carousel only if more than one item */}
-        <div class="-mx-[1.5rem] block md:hidden">
+        <div class="-mx-[1.5rem] block md:hidden p-2">
           {filteredEvents.length === 1 ? (
             <div class="event-gallery px-4">
               {filteredEvents[0].eventImage?.mime?.startsWith("video/") ? (
