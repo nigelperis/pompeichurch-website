@@ -125,17 +125,17 @@ const totalEventCount = allEvents.events?.length ?? 0;
     officeBearers.length > 0 && (
       <>
         <h2
-          class={cn("font-bold mt-1 text-left text-2xl text-slate-900", {
-            "font-bold sm:pt-1": lang === Locale.KOK,
+          class={cn("font-bold text-left text-2xl text-slate-900", {
+            "font-bold": lang === Locale.KOK,
           })}
         >
           {t("associations.office-bearers")}
         </h2>
         <div
           class={cn(
-            "my-3 grid gap-3 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4",
+            "grid gap-3 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 my-4",
             {
-              "font-normal sm:pt-1": lang === Locale.KOK,
+              "mb-5 mt-2.5": lang === Locale.KOK,
             },
           )}
         >
@@ -153,13 +153,15 @@ const totalEventCount = allEvents.events?.length ?? 0;
     association.socialLinks && association.socialLinks.length > 0 && (
       <>
         <h2
-          class={cn("mt-2 text-left text-2xl font-bold text-slate-900", {
-            "font-bold sm:pt-1": lang === Locale.KOK,
+          class={cn("text-left text-2xl font-bold text-slate-900", {
+            "font-bold": lang === Locale.KOK,
           })}
         >
           {t("landing.follow-our-journey")}
         </h2>
-        <div class="flex gap-6 md:gap-8 my-3 items-center">
+        <div class={cn("flex gap-4 items-center my-4", {
+            "mb-5 mt-2.5": lang === Locale.KOK,
+          })}>
           {association.socialLinks.map((link) => (
             <div class="transition-transform hover:scale-105 duration-300">
               <a href={link.url} target="_blank" rel="noopener noreferrer">
@@ -177,13 +179,15 @@ const totalEventCount = allEvents.events?.length ?? 0;
       <>
         <h2
           class={cn("font-bold mt-1 text-left text-2xl text-slate-900", {
-            "font-bold sm:pt-1": lang === Locale.KOK,
+            "font-bold": lang === Locale.KOK,
           })}
         >
           {t("associations.events")}
         </h2>
 
-        <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 mt-4">
+        <div class={cn("grid grid-cols-1 gap-8 sm:grid-cols-2 my-4", {
+            "mb-5 mt-2.5": lang === Locale.KOK,
+          })}>
           {recentEvents.map((event) => (
             <EventCard
               eventName={event.englishTitle}
