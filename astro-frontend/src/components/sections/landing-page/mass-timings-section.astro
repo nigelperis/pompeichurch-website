@@ -10,10 +10,11 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<section
+<div
   style={{ backgroundImage: `url(${optimizedmassInteriorImage.src})` }}
-  class="relative mt-4 flex flex-col bg-black/60 bg-cover bg-center p-8 text-white bg-blend-darken lg:p-28"
+  class="relative flex flex-col bg-black/60 bg-cover bg-center py-8 text-white bg-blend-darken"
 >
+<section class="mx-6 mt-6 flex flex-col lg:mx-28 lg:mb-3 lg:mt-0 lg:justify-evenly">
   <h1
     data-aos="fade-right"
     class={cn(
@@ -59,3 +60,4 @@ const t = useTranslations(lang);
     </li>
   </ul>
 </section>
+</div>

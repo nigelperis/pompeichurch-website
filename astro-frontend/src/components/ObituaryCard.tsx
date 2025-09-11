@@ -27,6 +27,7 @@ interface Props {
   dateOfDeath: string;
   slug: string;
   funeralDetails?: string;
+  funeralDetailsKok?: string;
   funeralDetailsUpdatedAt?: Date | string;
   youtubeLink?: string;
   className?: string;
@@ -115,11 +116,7 @@ export function FuneralInfoButton({
         style={{ whiteSpace: "nowrap" }}
       >
         <span
-          className={
-            lang === "kok"
-              ? "font-noto-sans-kannada text-[16px] relative -top-[-3px]"
-              : "font-roboto"
-          }
+          className={lang === "kok" ? "text-[16px] relative -top-[-3px]" : ""}
         >
           {label}
         </span>
@@ -142,6 +139,7 @@ export default function ObituaryCard({
   imageUrl,
   slug,
   funeralDetails,
+  funeralDetailsKok,
   youtubeLink,
   className,
   funeralDetailsUpdatedAt,
@@ -164,14 +162,19 @@ export default function ObituaryCard({
   const isDetailsFresh =
     updatedAt && now.getTime() - updatedAt.getTime() <= EXPIRE_TIME;
 
+  const localizedFuneralDetails =
+    lang === Locale.KOK
+      ? funeralDetailsKok?.trim() || funeralDetails || ""
+      : funeralDetails || "";
+
   useEffect(() => {
-    if (autoFlip && funeralDetails && isDetailsFresh) {
+    if (autoFlip && localizedFuneralDetails && isDetailsFresh) {
       const timer = setTimeout(() => {
         setFlipped(true);
       }, 2000);
       return () => clearTimeout(timer);
     }
-  }, [funeralDetails, autoFlip, isDetailsFresh]);
+  }, [localizedFuneralDetails, autoFlip, isDetailsFresh]);
 
   const t = useTranslations(lang);
 
@@ -201,7 +204,9 @@ export default function ObituaryCard({
   }
 
   const showFlip =
-    funeralDetails && funeralDetails.trim().length > 0 && isDetailsFresh;
+    localizedFuneralDetails &&
+    localizedFuneralDetails.trim().length > 0 &&
+    isDetailsFresh;
 
   return (
     <div
@@ -308,21 +313,16 @@ export default function ObituaryCard({
             </button>
             {/* Funeral details content */}
             <div className="flex-1 pt-4 pb-2">
-              <h4
-                className={cn(
-                  "flex items-center gap-2 justify-center font-bold mb-2",
-                  lang === Locale.KOK
-                    ? "font-noto-sans-kannada text-xl mt-2"
-                    : "font-roboto text-xl",
-                )}
-              >
+              <h4 className="flex items-center gap-2 justify-center font-bold text-xl mb-2">
                 <CoffinIcon className="w-7 h-7" />
-                <span>{t("funeral.rites")}</span>
+                <span className={cn(lang === Locale.KOK ? "mt-2" : "")}>
+                  {t("funeral.rites")}
+                </span>
               </h4>
               <div className="mb-2">
-                <p className="font-noto-sans-kannada text-xl md:text-[18px] text-center mt-6">
-                  {funeralDetails ? (
-                    funeralDetails
+                <p className="text-xl md:text-[18px] text-center mt-6">
+                  {localizedFuneralDetails ? (
+                    localizedFuneralDetails
                   ) : (
                     <em>No details available.</em>
                   )}
@@ -333,10 +333,10 @@ export default function ObituaryCard({
               {funeralPrayer && (
                 <blockquote
                   className={cn(
-                    "text-slate-900",
+                    "text-slate-900 text-center",
                     lang === Locale.KOK
-                      ? "font-noto-sans-kannada text-lg md:text-base text-center mb-12 md:mb-8"
-                      : "font-roboto text-xl sm:text-xl md:text-base text-center mb-14",
+                      ? "text-lg md:text-base mb-12 md:mb-8"
+                      : "text-xl sm:text-xl md:text-base mb-14",
                   )}
                 >
                   "{funeralPrayer}"
@@ -344,10 +344,8 @@ export default function ObituaryCard({
               )}
               <p
                 className={cn(
-                  "font-semibold text-slate-700 text-center mb-4",
-                  lang === Locale.KOK
-                    ? "font-noto-sans-kannada text-slate-700 text-lg md:text-base"
-                    : "font-roboto text-slate-700 text-lg md:text-[15px]",
+                  "font-semibold text-slate-700 text-lg text-center mb-4",
+                  lang === Locale.KOK ? "md:text-base" : "md:text-[15px]",
                 )}
               >
                 {t("parish-priest-and-parishioners")}
@@ -357,12 +355,7 @@ export default function ObituaryCard({
                   href={youtubeLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={cn(
-                    "flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white text-base py-2 w-full mt-2",
-                    lang === Locale.KOK
-                      ? "font-noto-sans-kannada "
-                      : "font-roboto",
-                  )}
+                  className="flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white text-base py-2 w-full mt-2"
                   style={{ letterSpacing: "0.04em" }}
                 >
                   <YoutubeIcon className="w-6 h-6" />

@@ -4,7 +4,7 @@
   "info": {
     "singularName": "obituary",
     "pluralName": "obituaries",
-    "displayName": "obituaries",
+    "displayName": "Obituaries",
     "description": ""
   },
   "options": {
@@ -13,16 +13,13 @@
   "pluginOptions": {},
   "attributes": {
     "konkaniName": {
-      "type": "string",
-      "pluginOptions": {}
+      "type": "string"
     },
     "age": {
-      "type": "integer",
-      "pluginOptions": {}
+      "type": "integer"
     },
     "dateOfDeath": {
-      "type": "date",
-      "pluginOptions": {}
+      "type": "date"
     },
     "image": {
       "type": "media",
@@ -33,12 +30,10 @@
         "files",
         "videos",
         "audios"
-      ],
-      "pluginOptions": {}
+      ]
     },
     "englishName": {
-      "type": "string",
-      "pluginOptions": {}
+      "type": "string"
     },
     "slug": {
       "type": "uid",
@@ -51,12 +46,10 @@
         "W/O",
         "S/O",
         "D/O"
-      ],
-      "pluginOptions": {}
+      ]
     },
     "relationNameEn": {
-      "type": "string",
-      "pluginOptions": {}
+      "type": "string"
     },
     "ward": {
       "type": "enumeration",
@@ -71,13 +64,15 @@
         "Monel",
         "Pompei A",
         "Pompei B"
-      ],
-      "pluginOptions": {}
+      ]
     },
     "relationNameKok": {
       "type": "string"
     },
     "funeralDetails": {
+      "type": "text"
+    },
+    "funeralDetailsKok": {
       "type": "text"
     },
     "youtubeLink": {

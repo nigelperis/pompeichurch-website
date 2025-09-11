@@ -5,6 +5,7 @@ import { listObituaries } from "~/services/obituaries/list-obituaries";
 import { Locale } from "~/enums/locale";
 import ObituaryCard from "~/components/ObituaryCard.tsx";
 import { cn } from "~/helpers/cn";
+import { getWardNameKok } from "~/helpers/get-ward-names-kok";
 import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
 
 const { slug } = Astro.params; // Get the slug from the URL
@@ -51,7 +52,9 @@ const pageTitle = selectedObituary
 
 <Layout
   title={`${pageTitle} ${selectedObituary?.age ? `(${selectedObituary.age})` : ""}`}
-  description={selectedObituary.ward ?? "Pompei Church Obituaries"}
+  description={selectedObituary?.ward
+    ? `${getWardNameKok(selectedObituary.ward, lang)} ${t("ward")}`
+    : "Pompei Church Obituaries"}
   image={absoluteImage}
   url={obituaryUrl}
 >
@@ -97,6 +100,7 @@ const pageTitle = selectedObituary
         imageUrl={obituaryImage}
         slug={selectedObituary.slug}
         funeralDetails={selectedObituary.funeralDetails}
+        funeralDetailsKok={selectedObituary.funeralDetailsKok}
         funeralDetailsUpdatedAt={selectedObituary.funeralDetailsUpdatedAt}
         youtubeLink={selectedObituary.youtubeLink}
         className="mx-auto"

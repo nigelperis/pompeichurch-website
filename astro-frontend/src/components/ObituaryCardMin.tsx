@@ -19,6 +19,7 @@ interface Props {
   slug?: string;
   blurred?: boolean;
   funeralDetails?: string;
+  funeralDetailsKok?: string;
   funeralDetailsUpdatedAt?: Date | string;
   youtubeLink?: string;
   className?: string;
@@ -101,9 +102,7 @@ export function FuneralInfoButton({
       >
         <span
           className={
-            lang === Locale.KOK
-              ? "font-noto-sans-kannada text-[16px] relative -top-[-3px]"
-              : "font-roboto"
+            lang === Locale.KOK ? "text-[16px] relative -top-[-3px]" : ""
           }
         >
           {label}
@@ -124,6 +123,7 @@ export default function ObituaryCardMin({
   slug,
   blurred = false,
   funeralDetails,
+  funeralDetailsKok,
   youtubeLink,
   className = "",
   funeralDetailsUpdatedAt,
@@ -144,9 +144,15 @@ export default function ObituaryCardMin({
     ? now.getTime() - updatedAt.getTime() < EXPIRE_TIME
     : false;
 
+  // Choose localized funeral details with fallback (define before effects)
+  const localizedFuneralDetails =
+    lang === Locale.KOK
+      ? funeralDetailsKok?.trim() || funeralDetails || ""
+      : funeralDetails || "";
+
   const cardRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    if (!autoFlip || !funeralDetails || !isFuneralDetailsFresh) return;
+    if (!autoFlip || !localizedFuneralDetails || !isFuneralDetailsFresh) return;
 
     const observer = new window.IntersectionObserver(
       (entries) => {
@@ -166,7 +172,7 @@ export default function ObituaryCardMin({
     }
 
     return () => observer.disconnect();
-  }, [autoFlip, funeralDetails, isFuneralDetailsFresh]);
+  }, [autoFlip, localizedFuneralDetails, isFuneralDetailsFresh]);
 
   const t = useTranslations?.(lang);
   const labels = activeLabels[lang as keyof typeof activeLabels];
@@ -289,7 +295,9 @@ export default function ObituaryCardMin({
 
   // ---- Flippable Minimal Card (Funeral Info) ----
   const showFlip =
-    funeralDetails && funeralDetails.trim().length > 0 && isFuneralDetailsFresh;
+    localizedFuneralDetails &&
+    localizedFuneralDetails.trim().length > 0 &&
+    isFuneralDetailsFresh;
 
   return (
     <div
@@ -384,19 +392,14 @@ export default function ObituaryCardMin({
               <CloseIcon className="h-8 w-8 text-red-600" />
             </button>
             <div className="flex-1 flex flex-col items-center justify-center text-center pt-6 pb-4">
-              <h4
-                className={cn(
-                  "flex items-center gap-2 justify-center font-bold mb-2",
-                  lang === Locale.KOK
-                    ? "font-noto-sans-kannada text-xl mt-2"
-                    : "font-roboto text-xl",
-                )}
-              >
+              <h4 className="flex items-center gap-2 justify-center font-bold text-xl mb-2">
                 <CoffinIcon className="w-7 h-7" />
-                <span>{t("funeral.rites")}</span>
+                <span className={cn(lang === Locale.KOK ? "mt-2" : "")}>
+                  {t("funeral.rites")}
+                </span>
               </h4>
-              <p className="font-noto-sans-kannada text-xl md:text-[18px] text-center mt-6">
-                {funeralDetails}
+              <p className="text-xl md:text-[18px] text-center mt-6">
+                {localizedFuneralDetails}
               </p>
             </div>
             {youtubeLink && (
