@@ -51,6 +51,7 @@ export interface Obituary {
   relationNameEn?: string;
   relationNameKok?: string;
   funeralDetails?: string;
+  funeralDetailsKok?: string;
   youtubeLink?: string;
   ward: string;
   dateOfDeath: Date;

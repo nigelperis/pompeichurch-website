@@ -4,7 +4,7 @@
   "info": {
     "singularName": "event",
     "pluralName": "events",
-    "displayName": "events",
+    "displayName": "Events",
     "description": ""
   },
   "options": {
@@ -12,6 +12,11 @@
   },
   "pluginOptions": {},
   "attributes": {
+    "englishTitle": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
     "konkaniTitle": {
       "type": "string",
       "required": true
@@ -41,11 +46,6 @@
     },
     "instagramLink": {
       "type": "string"
-    },
-    "englishTitle": {
-      "type": "string",
-      "required": true,
-      "unique": true
     },
     "eventDate": {
       "type": "date",

@@ -17,15 +17,15 @@ export const languageSwitcher = () => {
     });
 
     const handleLanguageChange = (lang: string): void => {
-      const currentPath = window.location.pathname;
-      const pathWithLocaleStripped = currentPath.replace(/^\/kok\//, "/");
+      const { pathname, search, hash } = window.location;
+      const pathWithLocaleStripped = pathname.replace(/^\/kok\//, "/");
       const localeToSwitchTo = lang === "ಕೊಂಕಣಿ" ? Locale.KOK : Locale.EN;
       const newPath =
         localeToSwitchTo === Locale.KOK
           ? `/${localeToSwitchTo}${pathWithLocaleStripped}`
           : `${pathWithLocaleStripped}`;
 
-      window.location.href = newPath;
+      window.location.href = `${newPath}${search}${hash}`;
     };
 
     const toggleDropdown = (): void => {
