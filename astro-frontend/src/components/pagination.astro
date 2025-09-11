@@ -26,16 +26,16 @@ const buildHref = (page: number) => {
 ---
 
 {showPagination && (
-<div class="mt-10 flex items-center justify-center gap-2 text-lg lg:mt-10">
+<div class="mt-8 flex items-center justify-center gap-2 text-base">
   <!-- Previous Button -->
   {
     currentPage === 1 ? (
       <span
-        class="flex h-10 w-10 cursor-not-allowed items-center justify-center font-bold opacity-60"
+        class="flex h-10 w-10 items-center justify-center pointer-events-none text-gray-300"
         aria-label="Previous Page (Disabled)"
         tabindex="-1"
       >
-        <Icon name="chevron-left" class="stroke-2 text-2xl text-black" />
+        <Icon name="chevron-left" class="stroke-2 text-2xl" />
       </span>
     ) : (
       <a
@@ -52,7 +52,7 @@ const buildHref = (page: number) => {
       {paginationRange.map((page) => {
         if (typeof page === "string") {
           return (
-            <span class="flex h-10 w-10 items-center justify-center">...</span>
+            <span class="flex h-10 w-10 items-center justify-center text-gray-500">...</span>
           );
         }
 
@@ -62,8 +62,8 @@ const buildHref = (page: number) => {
             class={cn(
               `flex h-10 w-10 items-center justify-center transition-all duration-200 ${
                 currentPage === page
-                  ? "bg-natgeo-yellow font-semibold text-black"
-                  : "hover:bg-gray-100"
+                  ? "bg-natgeo-yellow font-medium text-black"
+                  : "hover:bg-gray-100 font-medium text-gray-700"
               }`,
               lang === Locale.KOK ? "pt-[6px]" : "",
             )}
@@ -78,16 +78,16 @@ const buildHref = (page: number) => {
   {
     currentPage === totalPages ? (
       <span
-        class="flex h-10 w-10 cursor-not-allowed items-center justify-center font-bold opacity-60"
+        class="flex h-10 w-10 items-center justify-center pointer-events-none text-gray-300"
         aria-label="Next Page (Disabled)"
         tabindex="-1"
       >
-        <Icon name="chevron-right" class="stroke-2 text-2xl text-black" />
+        <Icon name="chevron-right" class="stroke-2 text-2xl" />
       </span>
     ) : (
       <a
         href={buildHref(currentPage + 1)}
-        class="flex h-10 w-10 items-center justify-center font-bold transition-all duration-200 hover:bg-gray-100"
+        class="flex h-10 w-10 items-center justify-center hover:bg-gray-100"
         aria-label="Next Page"
       >
         <Icon name="chevron-right" class="stroke-2 text-2xl text-black" />
