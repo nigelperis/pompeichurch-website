@@ -504,21 +504,6 @@ export interface ApiEventEvent extends Struct.CollectionTypeSchema {
       'manyToOne',
       'api::association.association'
     >;
-    associationName: Schema.Attribute.Enumeration<
-      [
-        'SVP',
-        'ICYM-PYC',
-        'Altar Servers',
-        'Catholic Sabha',
-        'YCS',
-        'Secular Franciscan',
-        'Catechism',
-        'Small Christian Community',
-        'Gurpur Church Choir',
-        "Women's Forum",
-        'Christian Life Community',
-      ]
-    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

@@ -55,23 +55,6 @@
       "type": "uid",
       "targetField": "englishTitle"
     },
-    "associationName": {
-      "type": "enumeration",
-      "required": false,
-      "enum": [
-        "SVP",
-        "ICYM-PYC",
-        "Altar Servers",
-        "Catholic Sabha",
-        "YCS",
-        "Secular Franciscan",
-        "Catechism",
-        "Small Christian Community",
-        "Gurpur Church Choir",
-        "Women's Forum",
-        "Christian Life Community"
-      ]
-    },
     "association": {
       "type": "relation",
       "relation": "manyToOne",
