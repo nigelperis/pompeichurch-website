@@ -4,12 +4,14 @@ import Pagination from "~/components/pagination.astro";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import { getPaginationRange } from "~/helpers/get-pagination-range";
 import { listEvents } from "~/services/events/list-events";
+import { listAssociations } from "~/services/associations/list-associations";
 import EventsList from "~/components/sections/events/events-list.astro";
 import { Message } from "~/constants/message.ts";
 import { Locale } from "~/enums/locale";
 import { cn } from "~/helpers/cn";
 import PushNotification from "~/components/push-notification.astro";
 import { ITEMS_PER_PAGE } from "~/constants/index.ts";
+import SelectAssociationRedirect from "~/components/ui/SelectAssociationRedirect";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -20,6 +22,8 @@ const { events, pagination } = await listEvents({
   page: currentPage,
   pageSize: ITEMS_PER_PAGE,
 });
+
+const associations = await listAssociations({ locale: lang as Locale });
 
 const totalPages = pagination.pageCount;
 
@@ -49,16 +53,29 @@ const pageTitle = `Page ${currentPage}`;
   <main class="mx-auto max-w-screen-lg overflow-hidden bg-white">
     <section id="events" class="flex flex-col p-6">
       <PushNotification />
-      <h1
-        class={cn(
-          "font-black border-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl lg:text-4xl",
-          {
-            "font-bold": lang === Locale.KOK,
-          },
+      <div class="flex flex-col gap-2 md:flex-row md:items-center md:justify-between mb-2">
+        <h1
+          class={cn(
+            "font-black border-natgeo-yellow mb-2 md:mb-0 border-l-4 pl-3 text-3xl lg:text-4xl",
+            {
+              "font-bold": lang === Locale.KOK,
+            },
+          )}
+        >
+          {t("nav.events")}
+        </h1>
+
+        {associations.length > 0 && (
+          <div class="w-full md:w-64">
+            <SelectAssociationRedirect
+              client:load
+              associations={associations}
+              placeholder={t("nav.associations")}
+              allLabel={t("all")}
+            />
+          </div>
         )}
-      >
-        {t("nav.events")}
-      </h1>
+      </div>
       <p class="pb-4 text-justify text-lg">
         {t("events.subtitle")}
       </p>

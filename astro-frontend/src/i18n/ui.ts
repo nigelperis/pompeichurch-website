@@ -424,6 +424,7 @@ export const ui = {
     "push.enable": "Enable",
     "push.disable": "Not Now!",
     download: "View PDF",
+    all: "All",
   },
   kok: {
     "nav.home": "ಹೋಮ್",
@@ -843,5 +844,6 @@ export const ui = {
     "push.enable": "ಕ್ರಿಯಾಳ್ ಕರಾ",
     "push.disable": "ಆತಾಂ ನಾಕಾ!",
     download: "PDF ಪಳೆಯಾ",
+    all: "ಸಕ್ಕಡ್",
   },
 } as const;

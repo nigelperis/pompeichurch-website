@@ -2,6 +2,7 @@
 import Layout from "~/layouts/layout.astro";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import { getAssociation } from "~/services/associations/get-association";
+import { listAssociations } from "~/services/associations/list-associations";
 import { listEvents } from "~/services/events/list-events";
 import EventsList from "~/components/sections/events/events-list.astro";
 import { Locale } from "~/enums/locale";
@@ -11,6 +12,7 @@ import PushNotification from "~/components/push-notification.astro";
 import Pagination from "~/components/pagination.astro";
 import { getPaginationRange } from "~/helpers/get-pagination-range";
 import { ITEMS_PER_PAGE } from "~/constants/index.ts";
+import SelectAssociationRedirect from "~/components/ui/SelectAssociationRedirect";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -41,6 +43,8 @@ const paginatedEvents = filteredEvents.slice(
 );
 
 const pageTitle = `${title} Events | Pompei Church`;
+
+const associations = await listAssociations({ locale: lang as Locale });
 ---
 
 <Layout title={pageTitle}>
@@ -48,14 +52,27 @@ const pageTitle = `${title} Events | Pompei Church`;
     <section id="events" class="flex flex-col p-6">
       <PushNotification />
 
-      <h1
-        class={cn(
-          "font-black border-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl lg:text-4xl",
-          { "font-bold": lang === Locale.KOK },
+      <div class="flex flex-col gap-2 md:flex-row md:items-center md:justify-between mb-2">
+        <h1
+          class={cn(
+            "font-black border-natgeo-yellow mb-2 md:mb-0 border-l-4 pl-3 text-3xl lg:text-4xl",
+            { "font-bold": lang === Locale.KOK },
+          )}
+        >
+          {t("nav.events")} - {title}
+        </h1>
+
+        {associations.length > 0 && (
+          <div class="w-full md:w-64">
+            <SelectAssociationRedirect
+              client:load
+              associations={associations}
+              placeholder={title}
+              allLabel={t("all")}
+            />
+          </div>
         )}
-      >
-        {t("nav.events")} - {title}
-      </h1>
+      </div>
 
       {
         paginatedEvents.length > 0 ? (
