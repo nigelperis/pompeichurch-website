@@ -1,0 +1,44 @@
+{
+  "kind": "collectionType",
+  "collectionName": "gallery_albums",
+  "info": {
+    "singularName": "gallery-album",
+    "pluralName": "gallery-albums",
+    "displayName": "Gallery Albums",
+    "description": "Albums containing multiple gallery images; optionally linked to an event"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "type": {
+      "type": "enumeration",
+      "required": true,
+      "default": "general",
+      "enum": [
+        "general",
+        "event"
+      ]
+    },
+    "event": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::event.event",
+      "inversedBy": "galleryAlbums"
+    },
+    "images": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  }
+}

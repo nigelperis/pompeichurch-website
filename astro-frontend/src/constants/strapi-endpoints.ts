@@ -19,4 +19,5 @@ export const ROUTES = {
   WARDS: "/wards",
   PUSH_NOTIFICATIONS: "/push-notifications",
   PUSH_NOTIFICATIONS_CHECK: "/push-notifications/check",
+  GALLERY_ALBUMS: "/gallery-albums",
 } as const;

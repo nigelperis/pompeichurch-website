@@ -1,26 +1,29 @@
 ---
 import Layout from "~/layouts/layout.astro";
-import MasonryGallery from "~/components/sections/gallery/masonry-gallery.astro";
+import DynamicGallery from "~/components/sections/gallery/dynamic-gallery.astro";
+import { listGalleryAlbums } from "~/services/gallery/list-gallery-albums";
+import Pagination from "~/components/pagination.astro";
+import { getPaginationRange } from "~/helpers/get-pagination-range";
+import { ITEMS_PER_PAGE } from "~/constants/index.ts";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import { Locale } from "~/enums/locale";
 import { cn } from "~/helpers/cn";
 
-const imageImports = import.meta.glob<ImageMetadata>(
-  "~/assets/gallery/*.{jpg,jpeg,png,webp}",
-  { eager: true, import: "default" },
-);
-const images = Object.values(imageImports);
+const pageParam = Number(Astro.url.searchParams.get("p") ?? "1");
+const page = Number.isFinite(pageParam) && pageParam > 0 ? pageParam : 1;
+
+const pageSize = 1;
+const { albums, pagination } = await listGalleryAlbums({ page, pageSize });
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const title = lang === Locale.KOK ? "ಗ್ಯಾಲರಿ" : "Gallery";
-const description =
-  lang === Locale.KOK
-    ? "ಪಿಂತುರಾನಿ ದಾದೊಸ್ಕಾಯೆಚ್ಯೊ ಘಡ್ಯೊ"
-    : "Capturing moments of grace";
+const title = t("nav.gallery");
+const description = t("gallery.description");
 
-const ogImageUrl = images[0]?.src ?? undefined;
+const ogImageUrl = albums?.[0]?.images?.[0]?.url
+  ? new URL(albums[0].images[0].url, import.meta.env.PUBLIC_STRAPI_URL).toString()
+  : undefined;
 ---
 
 <Layout title={`${title}`} description={description} image={ogImageUrl}>
@@ -39,7 +42,8 @@ const ogImageUrl = images[0]?.src ?? undefined;
       <p class="text-justify text-lg text-slate-700">
         {description}
       </p>
-      <MasonryGallery />
+      <DynamicGallery albums={albums} />
+      <Pagination currentPage={page} totalPages={pagination.pageCount} getPaginationRange={getPaginationRange} />
     </section>
   </main>
 </Layout>

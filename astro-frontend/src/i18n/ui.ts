@@ -425,6 +425,7 @@ export const ui = {
     "push.disable": "Not Now!",
     download: "View PDF",
     all: "All",
+    "gallery.description": "Capturing moments of grace",
   },
   kok: {
     "nav.home": "ಹೋಮ್",
@@ -845,5 +846,6 @@ export const ui = {
     "push.disable": "ಆತಾಂ ನಾಕಾ!",
     download: "PDF ಪಳೆಯಾ",
     all: "ಸಕ್ಕಡ್",
+    "gallery.description": "ಪಿಂತುರಾನಿ ದಾದೊಸ್ಕಾಯೆಚ್ಯೊ ಘಡ್ಯೊ",
   },
 } as const;

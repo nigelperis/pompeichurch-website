@@ -516,6 +516,10 @@ export interface ApiEventEvent extends Struct.CollectionTypeSchema {
       'images' | 'files' | 'videos' | 'audios'
     >;
     facebookLink: Schema.Attribute.String;
+    galleryAlbums: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::gallery-album.gallery-album'
+    >;
     instagramLink: Schema.Attribute.String;
     konkaniTitle: Schema.Attribute.String & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
@@ -525,6 +529,43 @@ export interface ApiEventEvent extends Struct.CollectionTypeSchema {
     shortDescriptionEn: Schema.Attribute.String;
     shortDescriptionKok: Schema.Attribute.String;
     slug: Schema.Attribute.UID<'englishTitle'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiGalleryAlbumGalleryAlbum
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'gallery_albums';
+  info: {
+    description: 'Albums containing multiple gallery images; optionally linked to an event';
+    displayName: 'Gallery Albums';
+    pluralName: 'gallery-albums';
+    singularName: 'gallery-album';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    event: Schema.Attribute.Relation<'manyToOne', 'api::event.event'>;
+    images: Schema.Attribute.Media<'images', true> & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::gallery-album.gallery-album'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    publishedAt: Schema.Attribute.DateTime;
+    type: Schema.Attribute.Enumeration<['general', 'event']> &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'general'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1777,6 +1818,7 @@ declare module '@strapi/strapi' {
       'api::association.association': ApiAssociationAssociation;
       'api::contact.contact': ApiContactContact;
       'api::event.event': ApiEventEvent;
+      'api::gallery-album.gallery-album': ApiGalleryAlbumGalleryAlbum;
       'api::landing-page-carousel.landing-page-carousel': ApiLandingPageCarouselLandingPageCarousel;
       'api::obituary.obituary': ApiObituaryObituary;
       'api::parish-finance-committee.parish-finance-committee': ApiParishFinanceCommitteeParishFinanceCommittee;

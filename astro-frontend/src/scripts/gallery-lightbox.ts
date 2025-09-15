@@ -15,6 +15,8 @@ export const masonry = () => {
     transitionDuration: 300,
   });
 
+  (window as any).masonryInstance = masonryInstance;
+
   imagesLoaded(masonryGrid).on("progress", () => {
     masonryInstance?.layout?.();
   });
