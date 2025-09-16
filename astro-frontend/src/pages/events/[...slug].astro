@@ -11,6 +11,7 @@ import { listEvents } from "~/services/events/list-events";
 import { Locale } from "~/enums/locale";
 import { SITE_URL } from "~/constants/index";
 import WhatsAppShare from "~/components/ui/whatsapp-share";
+import type { Event } from "~/models/event";
 
 const { slug } = Astro.params;
 const lang = getLangFromUrl(Astro.url);
@@ -48,7 +49,7 @@ const { events: allEvents } = await listEvents({
   pageSize: totalEvents,
 });
 
-const getEventTimestamp = (event) => {
+const getEventTimestamp = (event: Event) => {
   const created = event?.createdAt
     ? new Date(event.createdAt).getTime()
     : Number.NaN;
