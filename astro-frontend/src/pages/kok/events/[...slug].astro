@@ -48,10 +48,38 @@ const { events: allEvents } = await listEvents({
   pageSize: totalEvents,
 });
 
+const getEventTimestamp = (event) => {
+  const created = event?.createdAt
+    ? new Date(event.createdAt).getTime()
+    : Number.NaN;
+  if (!Number.isNaN(created)) {
+    return created;
+  }
+
+  const scheduled = event?.eventDate
+    ? new Date(event.eventDate).getTime()
+    : Number.NaN;
+
+  if (!Number.isNaN(scheduled)) {
+    return scheduled;
+  }
+
+  return 0;
+};
+
+// Sort by creation time so latest posts appear first.
+const eventsByNewest = [...allEvents].sort(
+  (a, b) => getEventTimestamp(b) - getEventTimestamp(a),
+);
+
 const absoluteImageURL = ogImage;
-const eventIndex = allEvents.findIndex((e) => e.slug === slug);
-const prevEvent = allEvents[eventIndex - 1];
-const nextEvent = allEvents[eventIndex + 1];
+const eventIndex = eventsByNewest.findIndex((e) => e.slug === slug);
+const prevEvent =
+  eventIndex > 0 ? eventsByNewest[eventIndex - 1] : undefined;
+const nextEvent =
+  eventIndex >= 0 && eventIndex < eventsByNewest.length - 1
+    ? eventsByNewest[eventIndex + 1]
+    : undefined;
 
 const socialLinks = [
   { platform: "facebook", url: event?.facebookLink },
@@ -130,7 +158,7 @@ if (!event) {
                 </div>
                 <span class="flex-1 font-noto-sans-kannada">
                   <div class="pb-1 text-gray-500">
-                    {t("events.previous-event")}
+                    {t("events.next-event")}
                   </div>
                   <div class="text-left text-lg font-medium text-black">
                     {prevEvent.konkaniTitle}
@@ -149,7 +177,7 @@ if (!event) {
                   <Icon name="chevron-right" class="stroke-2" />
                 </div>
                 <span class="flex-1 font-noto-sans-kannada">
-                  <div class="pb-1 text-gray-500">{t("events.next-event")}</div>
+                  <div class="pb-1 text-gray-500">{t("events.previous-event")}</div>
                   <div class="text-lg font-medium text-black">
                     {nextEvent.konkaniTitle}
                   </div>
