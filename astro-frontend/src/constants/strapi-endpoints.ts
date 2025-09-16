@@ -14,6 +14,7 @@ export const ROUTES = {
   PARISH_FINANCE_COMMITTEE: "/parish-finance-committees",
   PARISH_PRIESTS_AND_DEACONS: "/parish-priests-and-deacons",
   LANDING_PAGE_CAROUSEL: "/landing-page-carousels",
+  GALLERY_IMAGES: "/gallery-images",
   PARISH_PASTORAL_21_COMMISSION: "/parish-pastoral-21-commissions",
   CONTACT: "/contact",
   WARDS: "/wards",

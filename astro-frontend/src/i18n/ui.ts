@@ -533,7 +533,7 @@ export const ui = {
     "history.subtitle": "ಪೊಂಪೈ ಮಾಯೆಚಿ ಫಿರ್ಗಜ್, ಗುರ್ಪುರ್ - ಚರಿತ್ರೆಚೆರ್ ಏಕ್ ನದರ್",
     "history.sweet-memories": "ಮಧುರ್ ಉಗ್ಡಾಸ್",
     "gallery.title": "ಗ್ಯಾಲರಿ",
-    "gallery.subtitle": "Capturing moments of grace",
+    "gallery.subtitle": "ಪಿಂತುರಾನಿ ದಾದೊಸ್ಕಾಯೆಚ್ಯೊ ಘಡ್ಯೊ",
     "priest.service-period": "ಅವ್ದಿ",
     "bethany.title": "ಬೆಥನಿ ಸ್ಕೂಲ್ (ಸಿ.ಬಿ.ಎಸ್.ಸಿ)",
     "jeevadaan.title": "ಜೀವದಾನ",

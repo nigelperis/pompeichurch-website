@@ -4,23 +4,28 @@ import MasonryGallery from "~/components/sections/gallery/masonry-gallery.astro"
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import { Locale } from "~/enums/locale";
 import { cn } from "~/helpers/cn";
-
-const imageImports = import.meta.glob<ImageMetadata>(
-  "~/assets/gallery/*.{jpg,jpeg,png,webp}",
-  { eager: true, import: "default" },
-);
-const images = Object.values(imageImports);
+import { listGalleryImages } from "~/services/gallery/list-gallery-images";
+import { Message } from "~/constants/message";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const title = lang === Locale.KOK ? "ಗ್ಯಾಲರಿ" : "Gallery";
-const description =
-  lang === Locale.KOK
-    ? "ಪಿಂತುರಾನಿ ದಾದೊಸ್ಕಾಯೆಚ್ಯೊ ಘಡ್ಯೊ"
-    : "Capturing moments of grace";
+const title = t("gallery.title");
+const description = t("gallery.subtitle");
 
-const ogImageUrl = images[0]?.src ?? undefined;
+const galleryImages = await listGalleryImages();
+const strapiBaseUrl = import.meta.env.PUBLIC_STRAPI_URL;
+const firstGalleryImage = galleryImages[0];
+const ogImageUrl = firstGalleryImage?.url
+  ? strapiBaseUrl
+    ? new URL(firstGalleryImage.url, strapiBaseUrl).toString()
+    : firstGalleryImage.url
+  : undefined;
+
+const emptyStateMessage =
+  lang === Locale.KOK
+    ? Message.GALLERY_IMAGES_NOT_FOUND_KOK
+    : Message.GALLERY_IMAGES_NOT_FOUND;
 ---
 
 <Layout title={`${title}`} description={description} image={ogImageUrl}>
@@ -39,7 +44,15 @@ const ogImageUrl = images[0]?.src ?? undefined;
       <p class="text-justify text-lg text-slate-700">
         {description}
       </p>
-      <MasonryGallery />
+      {
+        galleryImages.length > 0 ? (
+          <MasonryGallery images={galleryImages} />
+        ) : (
+          <p class="py-8 text-center text-3xl font-semibold">
+            {emptyStateMessage}
+          </p>
+        )
+      }
     </section>
   </main>
 </Layout>

@@ -1,17 +1,50 @@
 ---
-import { Image } from "astro:assets";
+import NetworkImage from "~/components/ui/network-image.astro";
+import type { GalleryMediaItem } from "~/models/gallery-image";
 
-const imageImports = import.meta.glob<ImageMetadata>(
-  "~/assets/gallery/*.{jpg,jpeg,png,webp}",
-  { eager: true, import: "default" },
-);
+interface Props {
+  images?: GalleryMediaItem[];
+}
 
-const images = Object.values(imageImports);
+interface GalleryItem {
+  id: number;
+  src: string;
+  width: number;
+  height: number;
+  alt: string;
+}
+
+const { images = [] } = Astro.props as Props;
+const strapiBaseUrl = import.meta.env.PUBLIC_STRAPI_URL;
+
+const galleryItems = images
+  .map((item) => {
+    if (!item?.url) {
+      return undefined;
+    }
+
+    const absoluteUrl = strapiBaseUrl
+      ? new URL(item.url, strapiBaseUrl).toString()
+      : item.url;
+
+    return {
+      id: item.mediaId,
+      src: absoluteUrl,
+      width: item.width ?? 1200,
+      height: item.height ?? 800,
+      alt:
+        item.alternativeText ??
+        item.parentTitle ??
+        item.name ??
+        "Gallery image",
+    } satisfies GalleryItem;
+  })
+  .filter(Boolean) as GalleryItem[];
 ---
 
 <div class="masonry-grid relative m-4 mx-auto min-h-screen w-full">
   {
-    images.map((image) => (
+    galleryItems.map((image) => (
       <a
         href="#"
         role="button"
@@ -23,9 +56,11 @@ const images = Object.values(imageImports);
       >
         <div class="relative overflow-hidden rounded-md md:p-1.5 p-1">
           <div class="img-hover-zoom img-hover-zoom--xyz relative w-full overflow-hidden">
-            <Image
-              src={image}
-              alt="Gallery image"
+            <NetworkImage
+              src={image.src}
+              alt={image.alt}
+              width={image.width}
+              height={image.height}
               class="object-cover w-full h-full transition-transform duration-400 hover:scale-110"
             />
           </div>
