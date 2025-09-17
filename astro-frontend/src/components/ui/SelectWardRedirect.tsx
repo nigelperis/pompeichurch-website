@@ -99,7 +99,7 @@ export default function SelectWardRedirect({
               <Radix.Item
                 key={w.name}
                 value={w.name}
-                className="px-4 py-2 rounded hover:bg-gray-100 cursor-pointer"
+                className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
               >
                 <Radix.ItemText>{w.label}</Radix.ItemText>
               </Radix.Item>

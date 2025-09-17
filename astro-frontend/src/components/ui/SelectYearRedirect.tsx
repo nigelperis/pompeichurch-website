@@ -88,7 +88,7 @@ export default function SelectYearRedirect({
               <Radix.Item
                 key={opt}
                 value={opt}
-                className="px-4 py-2 rounded hover:bg-gray-100 cursor-pointer"
+                className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
               >
                 <Radix.ItemText>
                   {opt === "__all__" ? allYearsLabel : opt}

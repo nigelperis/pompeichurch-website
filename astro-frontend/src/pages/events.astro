@@ -43,6 +43,9 @@ const ogDescription =
     ? "ಫಿರ್ಗಜ್ ಕುಟ್ಮಾಚ್ಯಾ ಎಕ್ವಟ್ಪಣಾಚ್ಯೊ ಘಡಿಯೊ"
     : "Celebrating the moments that unite our parish community.";
 const pageTitle = `Page ${currentPage}`;
+
+const emptyStateMessage =
+  lang === Locale.KOK ? Message.EVENTS_NOT_FOUND_KOK : Message.EVENTS_NOT_FOUND;
 ---
 
 <Layout
@@ -51,32 +54,36 @@ const pageTitle = `Page ${currentPage}`;
   description={ogDescription}
 >
   <main class="mx-auto max-w-screen-lg overflow-hidden bg-white">
-    <section id="events" class="flex flex-col p-6">
+    <section id="events" class="flex flex-col p-6 lg:p-8">
       <PushNotification />
-      <div class="flex flex-col gap-2 md:flex-row md:items-center md:justify-between mb-2">
+      <div
+        class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between pb-6 lg:pb-8"
+      >
         <h1
           class={cn(
-            "font-black border-natgeo-yellow mb-2 md:mb-0 border-l-4 pl-3 text-3xl lg:text-4xl",
+            "border-natgeo-yellow border-l-4 pl-3 text-left text-3xl lg:text-4xl font-black",
             {
-              "font-bold": lang === Locale.KOK,
+              "pt-[13px] font-bold": lang === Locale.KOK,
             },
           )}
         >
           {t("nav.events")}
         </h1>
 
-        {associations.length > 0 && (
-          <div class="w-full md:w-64">
-            <SelectAssociationRedirect
-              client:load
-              associations={associations}
-              placeholder={t("nav.associations")}
-              allLabel={t("all")}
-            />
-          </div>
-        )}
+        {
+          associations.length > 0 && (
+            <div class="w-full md:w-64">
+              <SelectAssociationRedirect
+                client:load
+                associations={associations}
+                placeholder={t("nav.associations")}
+                allLabel={t("all")}
+              />
+            </div>
+          )
+        }
       </div>
-      <p class="pb-4 text-justify text-lg">
+      <p class="pb-6 lg:pb-8 text-lg font-normal text-slate-700">
         {t("events.subtitle")}
       </p>
 
@@ -92,7 +99,7 @@ const pageTitle = `Page ${currentPage}`;
           </>
         ) : (
           <p class="py-8 text-center text-3xl font-semibold">
-            {Message.EVENTS_NOT_FOUND}
+            {emptyStateMessage}
           </p>
         )
       }

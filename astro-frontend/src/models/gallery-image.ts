@@ -67,4 +67,10 @@ interface GalleryImageResponse {
   };
 }
 
-export type { MediaFormat, Media, GalleryImage, GalleryImageResponse, GalleryMediaItem };
+export type {
+  MediaFormat,
+  Media,
+  GalleryImage,
+  GalleryImageResponse,
+  GalleryMediaItem,
+};

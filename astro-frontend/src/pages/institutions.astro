@@ -18,13 +18,11 @@ const ogImageUrl = rosaMysticaHrps.src;
 
 <Layout title="Pompei Church | Institutions" title={ogTitle} image={ogImageUrl}>
   <main class="mx-auto max-w-screen-lg overflow-hidden bg-white">
-    <section id="our-institutions" class="flex flex-col p-6">
+    <section id="our-institutions" class="flex flex-col p-6 lg:p-8">
       <h1
         class={cn(
-          "font-black border-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl lg:text-4xl",
-          {
-            "font-bold": lang === Locale.KOK,
-          },
+          "border-natgeo-yellow border-l-4 pl-3 text-left text-3xl lg:text-4xl font-black",
+          { "pt-[13px] font-bold": lang === Locale.KOK },
         )}
       >
         {t("nav.institutions")}

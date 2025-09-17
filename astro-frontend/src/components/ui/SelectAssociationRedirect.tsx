@@ -3,9 +3,9 @@ import * as Radix from "@radix-ui/react-select";
 import ChevronDown from "~/assets/icons/chevron-down.svg?react";
 
 export interface SelectAssociationRedirectProps {
-  associations: Array<{ slug: string; name: string }>
-  placeholder?: string
-  allLabel?: string
+  associations: Array<{ slug: string; name: string }>;
+  placeholder?: string;
+  allLabel?: string;
 }
 
 export default function SelectAssociationRedirect({
@@ -14,9 +14,8 @@ export default function SelectAssociationRedirect({
   allLabel = "All",
 }: SelectAssociationRedirectProps) {
   const [value, setValue] = React.useState("");
-  const [dynamicPlaceholder, setDynamicPlaceholder] = React.useState(
-    placeholder,
-  );
+  const [dynamicPlaceholder, setDynamicPlaceholder] =
+    React.useState(placeholder);
   const [isKonkani, setIsKonkani] = React.useState(false);
   const triggerRef = React.useRef<HTMLButtonElement>(null);
   const [triggerWidth, setTriggerWidth] = React.useState(0);
@@ -62,7 +61,7 @@ export default function SelectAssociationRedirect({
     <Radix.Root value={value} onValueChange={setValue}>
       <Radix.Trigger
         ref={triggerRef}
-        className="border border-gray-300 px-4 py-2 flex justify-between items-center w-[50%] md:w-full hover:cursor-pointer"
+        className="border border-gray-300 px-4 py-2 flex justify-between items-center w-[80%] md:w-full hover:cursor-pointer"
         aria-label={dynamicPlaceholder}
       >
         <Radix.Value placeholder={dynamicPlaceholder} />
@@ -84,7 +83,7 @@ export default function SelectAssociationRedirect({
               <Radix.Item
                 key={opt.slug}
                 value={opt.slug}
-                className="px-4 py-2 rounded hover:bg-gray-100 cursor-pointer"
+                className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
               >
                 <Radix.ItemText>{opt.name}</Radix.ItemText>
               </Radix.Item>
@@ -95,4 +94,3 @@ export default function SelectAssociationRedirect({
     </Radix.Root>
   );
 }
-

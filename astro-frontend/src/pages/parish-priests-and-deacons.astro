@@ -104,18 +104,20 @@ const ogDescription =
 
 <Layout title={ogTitle} description={ogDescription} image={ogImage}>
   <main class="mx-auto max-w-screen-lg overflow-hidden bg-white">
-    <section id="parish-priests-and-deacons" class="flex flex-col p-6 pb-4">
+    <section id="parish-priests-and-deacons" class="flex flex-col p-6 lg:p-8">
       <h1
         class={cn(
-          "font-roboto font-black border-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl lg:text-4xl",
+          "border-natgeo-yellow border-l-4 pl-3 text-left text-3xl lg:text-4xl font-black",
           {
-            "font-noto-sans-kannada font-bold": lang === Locale.KOK,
+            "pt-[13px] font-bold": lang === Locale.KOK,
           },
         )}
       >
         {t("nav.parish-priests-and-deacons")}
       </h1>
-      <p class="text-justify text-lg text-slate-700">
+      <p
+        class="pb-6 pt-4 lg:pb-8 text-lg text-justify font-normal text-slate-700"
+      >
         {t("pp.subtitle")}
       </p>
       <h2 class="mt-10 text-2xl font-semibold italic text-red-600 lg:text-3xl">

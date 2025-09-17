@@ -28,13 +28,13 @@ if (pastoral21CommissionsData.length === 0) {
 
 <Layout title={title}>
   <main class="mx-auto max-w-screen-lg overflow-hidden bg-white">
-    <section id="pastoral-commissions" class="p-6">
+    <section id="pastoral-commissions" class="flex flex-col p-6 lg:p-8">
       <div class="mb-8">
         <h1
           class={cn(
-            "font-black border-l-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl lg:text-4xl text-slate-900",
+            "border-natgeo-yellow border-l-4 pl-3 text-left text-3xl lg:text-4xl font-black",
             {
-              "font-bold pt-2": lang === Locale.KOK,
+              "pt-[13px] font-bold": lang === Locale.KOK,
             },
           )}
         >
@@ -43,7 +43,7 @@ if (pastoral21CommissionsData.length === 0) {
 
         {
           pastoral21CommissionsData.length > 0 && (
-            <div class="border border-gray-200 p-6 mb-8">
+            <div class="border border-gray-200 p-6 mt-6">
               <div class="flex items-center space-x-3">
                 <div>
                   <h2 class="text-xl font-semibold">

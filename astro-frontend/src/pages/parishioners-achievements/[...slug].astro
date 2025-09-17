@@ -42,19 +42,19 @@ const ogImage =
   image={ogImage}
 >
   <main class="mx-auto max-w-screen-lg overflow-hidden bg-white">
-    <section id="parishioners-achievements" class="flex flex-col p-6 pb-4">
+    <section id="parishioners-achievements" class="flex flex-col p-6 lg:p-8">
       <h1
         class={cn(
-          "font-black border-natgeo-yellow mb-3 border-l-4 pl-3 text-3xl lg:text-4xl",
+          "border-natgeo-yellow border-l-4 pl-3 text-left text-3xl lg:text-4xl font-black",
           {
-            "font-bold": lang === Locale.KOK,
+            "pt-[13px] font-bold": lang === Locale.KOK,
           },
         )}
       >
         {t("achievement.congratulations")}
       </h1>
 
-      <div class="mt-2 md:h-[500px]">
+      <div class="md:h-[500px] my-6 lg:my-8">
         <NetworkImage
           src={achieverImage?.url}
           width={achieverImage?.width}
