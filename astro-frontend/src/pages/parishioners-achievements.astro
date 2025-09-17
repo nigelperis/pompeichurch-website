@@ -29,18 +29,20 @@ const totalPages = pagination.pageCount;
   description={t("parishioners-achievements.subtitle")}
 >
   <main class="mx-auto max-w-screen-lg overflow-hidden bg-white">
-    <section id="parishioner-achievements" class="flex flex-col p-6 pb-4">
+    <section id="parishioner-achievements" class="flex flex-col p-6 lg:p-8">
       <h1
         class={cn(
-          "font-roboto font-black border-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl lg:text-4xl",
+          "border-natgeo-yellow border-l-4 pl-3 text-left text-3xl lg:text-4xl font-black",
           {
-            "font-noto-sans-kannada font-bold": lang === Locale.KOK,
+            "pt-[13px] font-bold": lang === Locale.KOK,
           },
         )}
       >
         {t("nav.parishioners-achievements")}
       </h1>
-      <p class="mb-3 text-justify text-lg text-slate-700">
+      <p
+        class="pb-6 pt-4 lg:pb-8 text-lg text-justify font-normal text-slate-700"
+      >
         {t("parishioners-achievements.subtitle")}
       </p>
 

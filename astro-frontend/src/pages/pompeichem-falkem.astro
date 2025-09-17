@@ -16,7 +16,6 @@ import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-
 const currentPage = Number(Astro.url.searchParams.get("p")) || 1;
 const selectedYear = Astro.url.searchParams.get("year");
 
@@ -27,14 +26,19 @@ const { magazines, pagination } = await listMagazines({
   sortBy: selectedYear ? "dateOfPublish:asc" : "dateOfPublish:desc",
 });
 
-const { magazines: allMagazines } = await listMagazines({ page: 1, pageSize: 1000 });
+const { magazines: allMagazines } = await listMagazines({
+  page: 1,
+  pageSize: 1000,
+});
 const latestMagazineId = allMagazines?.[0]?.id;
 const uniqueYears = Array.from(
   new Set(
     allMagazines
-      .map((m) => (m.dateOfPublish ? new Date(m.dateOfPublish).getFullYear() : undefined))
-      .filter((y): y is number => typeof y === "number" && !isNaN(y))
-  )
+      .map((m) =>
+        m.dateOfPublish ? new Date(m.dateOfPublish).getFullYear() : undefined,
+      )
+      .filter((y): y is number => typeof y === "number" && !isNaN(y)),
+  ),
 ).sort((a, b) => a - b);
 
 const totalPages = pagination.pageCount;
@@ -56,55 +60,86 @@ const ogImageUrl = firstMagazine?.coverImage?.formats?.medium?.url
 
 <Layout title={`${title}`} image={ogImageUrl}>
   <main class="mx-auto max-w-screen-lg overflow-hidden bg-white">
-    <section class="flex flex-col p-6">
-      <div class="flex flex-col gap-2 md:flex-row md:items-center md:justify-between mb-2">
+    <section class="flex flex-col p-6 lg:p-8">
+      <div
+        class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between pb-6 lg:pb-8"
+      >
         <h1
           class={cn(
-            "font-black border-natgeo-yellow mb-2 md:mb-0 border-l-4 pl-3 text-3xl lg:text-4xl",
+            "border-natgeo-yellow border-l-4 pl-3 text-left text-3xl lg:text-4xl font-black",
             {
-              "font-bold": lang === Locale.KOK,
+              "pt-[13px] font-bold": lang === Locale.KOK,
             },
           )}
         >
           {t("nav.pompeichem-falkem")}
         </h1>
 
-        {uniqueYears.length > 0 && (
-          <div class="w-full md:w-64">
-            <SelectYearRedirect client:load years={uniqueYears} selectedYear={selectedYear ?? undefined} placeholder={selectedYear ?? t("year.select-label")} allYearsLabel={t("year.all")} />
-          </div>
-        )}
+        {
+          uniqueYears.length > 0 && (
+            <div class="w-full md:w-64">
+              <SelectYearRedirect
+                client:load
+                years={uniqueYears}
+                selectedYear={selectedYear ?? undefined}
+                placeholder={selectedYear ?? t("year.select-label")}
+                allYearsLabel={t("year.all")}
+              />
+            </div>
+          )
+        }
       </div>
 
       {
         (() => {
           // Default (no year): pin Centenary right after Latest across all pages; rest newest→oldest (desc)
-          if (!selectedYear && Array.isArray(allMagazines) && allMagazines.length) {
+          if (
+            !selectedYear &&
+            Array.isArray(allMagazines) &&
+            allMagazines.length
+          ) {
             const latest = allMagazines[0];
             const rest = allMagazines.slice(1);
             const centenary = rest.find((m) => isCentenaryEdition(m)) || null;
-            const restWithoutCentenary = centenary ? rest.filter((m) => m.id !== centenary.id) : rest;
-            const ordered = centenary ? [latest, centenary, ...restWithoutCentenary] : [latest, ...restWithoutCentenary];
+            const restWithoutCentenary = centenary
+              ? rest.filter((m) => m.id !== centenary.id)
+              : rest;
+            const ordered = centenary
+              ? [latest, centenary, ...restWithoutCentenary]
+              : [latest, ...restWithoutCentenary];
             const start = (currentPage - 1) * ITEMS_PER_PAGE;
-            const pageItems = ordered.slice(start, start + ITEMS_PER_PAGE) as PompeichemFalkem[];
+            const pageItems = ordered.slice(
+              start,
+              start + ITEMS_PER_PAGE,
+            ) as PompeichemFalkem[];
             return pageItems.length > 0 ? (
               <>
-                <PompeichemFalkemList magazines={pageItems} latestMagazineId={latestMagazineId} />
+                <PompeichemFalkemList
+                  magazines={pageItems}
+                  latestMagazineId={latestMagazineId}
+                />
                 <Pagination currentPage={currentPage} totalPages={totalPages} />
               </>
             ) : (
-              <p class="py-8 text-center text-3xl font-semibold">{Message.MAGAZINES_NOT_FOUND}</p>
+              <p class="py-8 text-center text-3xl font-semibold">
+                {Message.MAGAZINES_NOT_FOUND}
+              </p>
             );
           }
 
           // Year selected: render as received (asc order from service)
           return magazines.length > 0 ? (
             <>
-              <PompeichemFalkemList magazines={magazines as PompeichemFalkem[]} latestMagazineId={latestMagazineId} />
+              <PompeichemFalkemList
+                magazines={magazines as PompeichemFalkem[]}
+                latestMagazineId={latestMagazineId}
+              />
               <Pagination currentPage={currentPage} totalPages={totalPages} />
             </>
           ) : (
-            <p class="py-8 text-center text-3xl font-semibold">{Message.MAGAZINES_NOT_FOUND}</p>
+            <p class="py-8 text-center text-3xl font-semibold">
+              {Message.MAGAZINES_NOT_FOUND}
+            </p>
           );
         })()
       }

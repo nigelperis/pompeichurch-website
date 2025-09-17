@@ -58,23 +58,18 @@ const pageTitle = selectedObituary
   image={absoluteImage}
   url={obituaryUrl}
 >
-  <main class="mx-auto max-w-screen-lg overflow-hidden bg-white p-6">
-    <section class="flex flex-col pb-4">
-      <div
-        class="flex flex-col gap-2 md:flex-row md:items-center md:justify-between mb-4"
+  <main class="mx-auto max-w-screen-lg overflow-hidden bg-white">
+    <section class="flex flex-col p-6 lg:p-8">
+      <h1
+        class={cn(
+          "font-black border-natgeo-yellow border-l-4 pl-3 text-3xl lg:text-4xl",
+          { "pt-[13px] font-bold": lang === Locale.KOK },
+        )}
       >
-        <h1
-          class={cn(
-            "font-black border-natgeo-yellow mb-2 md:mb-0 border-l-4 pl-3 text-3xl lg:text-4xl",
-            { "pt-2 font-bold": lang === Locale.KOK },
-          )}
-        >
-          {t("nav.obituary")}
-        </h1>
-      </div>
-
+        {t("nav.obituary")}
+      </h1>
       <p
-        class={cn("p-3 pb-6 text-2xl font-bold italic text-red-600", {
+        class={cn("py-6 lg:py-8 text-2xl font-bold italic text-red-600", {
           "font-semibold": lang === Locale.KOK,
         })}
       >

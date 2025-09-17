@@ -41,7 +41,12 @@ function StrapiBlocksRenderer(props: StrapiBlocksProps) {
 
         paragraph: ({ children }) => {
           return (
-            <p className={cn("leading-7 text-slate-900", paraClassName)}>
+            <p
+              className={cn(
+                "font-noto-sans-kannada leading-7 text-slate-900",
+                paraClassName,
+              )}
+            >
               {children}
             </p>
           );

@@ -2,6 +2,7 @@
 import Layout from "~/layouts/layout.astro";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import { getAssociation } from "~/services/associations/get-association";
+import { listAssociations } from "~/services/associations/list-associations";
 import { listEvents } from "~/services/events/list-events";
 import EventsList from "~/components/sections/events/events-list.astro";
 import { Locale } from "~/enums/locale";
@@ -11,6 +12,7 @@ import PushNotification from "~/components/push-notification.astro";
 import Pagination from "~/components/pagination.astro";
 import { getPaginationRange } from "~/helpers/get-pagination-range";
 import { ITEMS_PER_PAGE } from "~/constants/index.ts";
+import SelectAssociationRedirect from "~/components/ui/SelectAssociationRedirect";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -41,21 +43,43 @@ const paginatedEvents = filteredEvents.slice(
 );
 
 const pageTitle = `${title} Events | Pompei Church`;
+
+const associations = await listAssociations({ locale: lang as Locale });
+
+const emptyStateMessage =
+  lang === Locale.KOK ? Message.EVENTS_NOT_FOUND_KOK : Message.EVENTS_NOT_FOUND;
 ---
 
 <Layout title={pageTitle}>
   <main class="mx-auto max-w-screen-lg overflow-hidden bg-white">
-    <section id="events" class="flex flex-col p-6">
+    <section id="events" class="flex flex-col p-6 lg:p-8">
       <PushNotification />
 
-      <h1
-        class={cn(
-          "font-black border-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl lg:text-4xl",
-          { "font-bold": lang === Locale.KOK },
-        )}
+      <div
+        class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between pb-6 lg:pb-8"
       >
-        {t("nav.events")} - {title}
-      </h1>
+        <h1
+          class={cn(
+            "font-black border-natgeo-yellow border-l-4 pl-3 text-3xl lg:text-4xl",
+            { "pt-[13px] font-bold": lang === Locale.KOK },
+          )}
+        >
+          {t("nav.events")} - {title}
+        </h1>
+
+        {
+          associations.length > 0 && (
+            <div class="w-full md:w-64">
+              <SelectAssociationRedirect
+                client:load
+                associations={associations}
+                placeholder={title}
+                allLabel={t("all")}
+              />
+            </div>
+          )
+        }
+      </div>
 
       {
         paginatedEvents.length > 0 ? (
@@ -69,7 +93,7 @@ const pageTitle = `${title} Events | Pompei Church`;
           </>
         ) : (
           <p class="py-8 text-center text-3xl font-semibold">
-            {Message.EVENTS_NOT_FOUND}
+            {emptyStateMessage}
           </p>
         )
       }

@@ -1,6 +1,7 @@
 export class Message {
   public static readonly MESSAGE_TO_BE_SHARED = "Will be shared soon!";
   public static readonly EVENTS_NOT_FOUND = "No Events Found!";
+  public static readonly EVENTS_NOT_FOUND_KOK = "ಘಡಿತಾಂ ನಾಂತ್!";
   public static readonly OBITUARIES_NOT_FOUND = "No Obituaries Found!";
   public static readonly OBITUARIES_NOT_FOUND_KOK = "ಕಾಂಯ್ ನಾ!";
   public static readonly COUNCIL_MEMBERS_NOT_FOUND =
@@ -19,4 +20,6 @@ export class Message {
     "No Parishioners Achievements Found!";
   public static readonly ACHIEVEMENTS_NOT_FOUND_KOK =
     "ಫಿರ್ಗಜ್ಗಾರಾಂಚಿ ಸಾಧನಾಂ ನಾಂತ್!";
+  public static readonly GALLERY_IMAGES_NOT_FOUND = "No Images Found!";
+  public static readonly GALLERY_IMAGES_NOT_FOUND_KOK = "ತಸ್ವಿರೊ ನಾಂತ್!";
 }

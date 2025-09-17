@@ -14,50 +14,52 @@ const t = useTranslations(lang);
   style={{ backgroundImage: `url(${optimizedmassInteriorImage.src})` }}
   class="relative flex flex-col bg-black/60 bg-cover bg-center py-8 text-white bg-blend-darken"
 >
-<section class="mx-6 mt-6 flex flex-col lg:mx-28 lg:mb-3 lg:mt-0 lg:justify-evenly">
-  <h1
-    data-aos="fade-right"
-    class={cn(
-      "font-black mb-4 border-l-4 border-natgeo-yellow pl-3 text-2xl lg:text-4xl",
-      {
-        "font-extrabold pt-2": lang === Locale.KOK,
-      },
-    )}
+  <section
+    class="mx-6 mt-6 flex flex-col lg:mx-28 lg:mb-3 lg:mt-0 lg:justify-evenly"
   >
-    {t("landing.mass-timings")}
-  </h1>
+    <h1
+      data-aos="fade-right"
+      class={cn(
+        "font-black mb-4 border-l-4 border-natgeo-yellow pl-3 text-2xl lg:text-4xl",
+        {
+          "font-extrabold pt-2": lang === Locale.KOK,
+        },
+      )}
+    >
+      {t("landing.mass-timings")}
+    </h1>
 
-  <ul
-    class="space-y-3 lg:space-y-4 text-sm lg:text-xl text-white leading-relaxed"
-  >
-    <li>
-      <strong>{t("landing.mon-sat")}</strong> 6:45 AM ({
-        t("landing.daily-mass")
-      })
-    </li>
-    <li>
-      <strong>{t("landing.friday")}</strong> 4:45 PM ({
-        t("landing.friday-note")
-      })
-    </li>
-    <li>
-      <strong>{t("landing.saturday")}:</strong> 4 PM ({
-        t("landing.saturday-note")
-      })
-    </li>
-    <li>
-      <strong>{t("landing.sunday")}:</strong> 7:30 AM & 10:15 AM {
-        t("landing.adoration-note")
-      }
-    </li>
-    <li>
-      <strong>{t("landing.catechism")}:</strong>
-      {t("landing.catechism-note")}
-    </li>
-    <li>
-      <strong>{t("landing.novena")}:</strong>
-      {t("landing.novena-note")}
-    </li>
-  </ul>
-</section>
+    <ul
+      class="space-y-3 lg:space-y-4 text-sm lg:text-xl text-white leading-relaxed"
+    >
+      <li>
+        <strong>{t("landing.mon-sat")}</strong> 6:45 AM ({
+          t("landing.daily-mass")
+        })
+      </li>
+      <li>
+        <strong>{t("landing.friday")}</strong> 4:45 PM ({
+          t("landing.friday-note")
+        })
+      </li>
+      <li>
+        <strong>{t("landing.saturday")}:</strong> 4 PM ({
+          t("landing.saturday-note")
+        })
+      </li>
+      <li>
+        <strong>{t("landing.sunday")}:</strong> 7:30 AM & 10:15 AM {
+          t("landing.adoration-note")
+        }
+      </li>
+      <li>
+        <strong>{t("landing.catechism")}:</strong>
+        {t("landing.catechism-note")}
+      </li>
+      <li>
+        <strong>{t("landing.novena")}:</strong>
+        {t("landing.novena-note")}
+      </li>
+    </ul>
+  </section>
 </div>
