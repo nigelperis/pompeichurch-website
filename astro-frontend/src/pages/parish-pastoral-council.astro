@@ -58,13 +58,11 @@ const ogTitle =
 
 <Layout title={ogTitle} image={ogImage}>
   <main class="mx-auto max-w-screen-lg overflow-hidden bg-white">
-    <section id="pastoral-council" class="flex flex-col p-6 pb-4">
+    <section id="pastoral-council" class="flex flex-col p-6 lg:p-8">
       <h1
         class={cn(
-          "border-natgeo-yellow border-l-4 pl-3 text-3xl font-black lg:text-4xl",
-          {
-            "font-bold": lang === Locale.KOK,
-          },
+          "border-natgeo-yellow border-l-4 pl-3 text-left text-3xl lg:text-4xl font-black",
+          { "pt-[13px] font-bold": lang === Locale.KOK },
         )}
       >
         {t("parish.pastoral-parishad")}

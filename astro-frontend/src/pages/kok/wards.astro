@@ -37,20 +37,20 @@ const ogImageUrl = firstWardPatronImage
 
 <Layout title={ogTitle} image={ogImageUrl}>
   <main class="mx-auto max-w-screen-lg overflow-hidden bg-white">
-    <section class="p-6">
+    <section class="flex flex-col p-6 lg:p-8">
       <div
-        class="flex flex-col md:flex-row md:items-center md:justify-between mb-4"
+        class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between pb-6 lg:pb-8"
       >
         <h1
           class={cn(
-            "font-black border-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl lg:text-4xl",
-            { "font-bold": lang === Locale.KOK },
+            "border-natgeo-yellow border-l-4 pl-3 text-left text-3xl lg:text-4xl font-black",
+            { "pt-[13px] font-bold": lang === Locale.KOK },
           )}
         >
           {t("nav.wards")}
         </h1>
 
-        <div class="w-1/2 md:w-auto flex justify-start">
+        <div class="w-full md:w-64">
           <SelectWard
             client:load
             placeholder={t("ward.select-label")}

@@ -15,17 +15,18 @@ const t = useTranslations(lang);
 
 <h1
   class={cn(
-    "font-black border-natgeo-yellow mb-4 border-l-4 pl-3 text-3xl lg:text-4xl",
-    { "font-bold sm:pt-1": lang === Locale.KOK },
+    "border-natgeo-yellow border-l-4 pl-3 text-left text-3xl lg:text-4xl font-black",
+    { "pt-[13px] font-bold": lang === Locale.KOK },
   )}
 >
   {t("centenaryhall.title")}
 </h1>
-<Image
-  src={centenaryHallImage}
-  alt="Exterior view of Centenary Hall at Our Lady of Pomepi Church"
-  class="text-center pt-5 pb-5"
-/>
+<div class="flex items-center justify-center py-6 lg:py-8">
+  <Image
+    src={centenaryHallImage}
+    alt="Exterior view of Centenary Hall at Our Lady of Pompei Church"
+  />
+</div>
 <div class="font-roboto pb-4">
   <p class="mb-4 text-lg font-bold">Capacity: 200</p>
 

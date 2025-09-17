@@ -414,8 +414,6 @@ export const ui = {
     "nun.denisdcunha": "Late| Denis DCunha, Late| Mary DCunha",
     "events.subtitle":
       "Celebrating the moments that unite our parish community.",
-    "events.previous-event": "Previous Event",
-    "events.next-event": "Next Event",
     "funeral.rites": "Funeral Rites",
     "parish-priest-and-parishioners": "Parish Priest and Parishioners",
     "funeral.youtube": "Watch on YouTube",
@@ -424,6 +422,7 @@ export const ui = {
     "push.enable": "Enable",
     "push.disable": "Not Now!",
     download: "View PDF",
+    all: "All",
   },
   kok: {
     "nav.home": "ಹೋಮ್",
@@ -532,7 +531,7 @@ export const ui = {
     "history.subtitle": "ಪೊಂಪೈ ಮಾಯೆಚಿ ಫಿರ್ಗಜ್, ಗುರ್ಪುರ್ - ಚರಿತ್ರೆಚೆರ್ ಏಕ್ ನದರ್",
     "history.sweet-memories": "ಮಧುರ್ ಉಗ್ಡಾಸ್",
     "gallery.title": "ಗ್ಯಾಲರಿ",
-    "gallery.subtitle": "Capturing moments of grace",
+    "gallery.subtitle": "ಪಿಂತುರಾನಿ ದಾದೊಸ್ಕಾಯೆಚ್ಯೊ ಘಡ್ಯೊ",
     "priest.service-period": "ಅವ್ದಿ",
     "bethany.title": "ಬೆಥನಿ ಸ್ಕೂಲ್ (ಸಿ.ಬಿ.ಎಸ್.ಸಿ)",
     "jeevadaan.title": "ಜೀವದಾನ",
@@ -833,8 +832,6 @@ export const ui = {
     "nun.albertrodrigues": "ದೆ| ಆಲ್ಬರ್ಟ್ ರೊಡ್ರಿಗಸ್, ದೆ| ಎಮಿಲಿಯಾನಾ ರೊಡ್ರಿಗಸ್",
     "nun.denisdcunha": "ದೆ| ಡೆನಿಸ್ ಡಿಕುನ್ಹಾ, ದೆ| ಮೇರಿ ಡಿಕುನ್ಹಾ",
     "events.subtitle": "ಫಿರ್ಗಜ್ ಕುಟ್ಮಾಚ್ಯಾ ಎಕ್ವಟ್ಪಣಾಚ್ಯೊ ಘಡಿಯೊ",
-    "events.previous-event": "ಪಾಟ್ಲೆಂ ಘಡಿತ್",
-    "events.next-event": "ಫುಡ್ಲೆಂ ಘಡಿತ್",
     "funeral.rites": "ಮೊರ್ಣಾಚಿ ರೀತ್",
     "parish-priest-and-parishioners": "ವಿಗಾರ್ ಆನಿ ಫಿರ್ಗಜ್ ಕುಟಾಮ್",
     "funeral.youtube": "ಯೂಟೂಬಾರ್ ಪಳೆಯಾ",
@@ -843,5 +840,6 @@ export const ui = {
     "push.enable": "ಕ್ರಿಯಾಳ್ ಕರಾ",
     "push.disable": "ಆತಾಂ ನಾಕಾ!",
     download: "PDF ಪಳೆಯಾ",
+    all: "ಸಕ್ಕಡ್",
   },
 } as const;

@@ -3,9 +3,17 @@ import MagazineCard from "~/components/magazine-card.astro";
 import type { PompeichemFalkem } from "~/models/pompeichem-falkem";
 import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
 import { getLangFromUrl } from "~/i18n/utils";
-import { getMagazineDisplayTitle, isSpecialEdition, isCentenaryEdition } from "~/helpers/magazine";
+import {
+  getMagazineDisplayTitle,
+  isSpecialEdition,
+  isCentenaryEdition,
+} from "~/helpers/magazine";
 
-const { magazines, isFirstPage = false, latestMagazineId } = Astro.props as {
+const {
+  magazines,
+  isFirstPage = false,
+  latestMagazineId,
+} = Astro.props as {
   magazines: PompeichemFalkem[];
   isFirstPage?: boolean;
   latestMagazineId?: number;
@@ -17,7 +25,9 @@ const lang = getLangFromUrl(Astro.url);
 const magazinesOrdered = magazines;
 ---
 
-<div class="grid grid-cols-1 gap-10 lg:gap-x-20 lg:gap-y-20 md:grid-cols-2 lg:grid-cols-3 mt-5 mb-5">
+<div
+  class="grid grid-cols-1 gap-10 lg:gap-x-20 lg:gap-y-20 md:grid-cols-2 lg:grid-cols-3"
+>
   {
     magazinesOrdered.map((magazine, index) => {
       const isLatest =

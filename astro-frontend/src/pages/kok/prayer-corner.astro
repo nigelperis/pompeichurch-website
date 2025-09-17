@@ -25,22 +25,20 @@ const ogImageUrl = candles.src;
 
 <Layout title={`${title}`} description={description} image={ogImageUrl}>
   <main class="mx-auto max-w-screen-lg overflow-hidden bg-white">
-    <section id="parish-history" class="flex flex-col p-6 pb-4">
+    <section id="parish-history" class="flex flex-col p-6 lg:p-8">
       <h1
         class={cn(
-          "font-black mb-4 border-l-4 border-natgeo-yellow pl-3 text-3xl lg:text-4xl",
+          "border-natgeo-yellow border-l-4 pl-3 text-left text-3xl lg:text-4xl font-black",
           {
-            "font-bold": lang === Locale.KOK,
+            "pt-[13px] font-bold": lang === Locale.KOK,
           },
         )}
       >
         {t("nav.prayer-corner")}
       </h1>
-      <Image
-        src={candles}
-        alt="Candles lit for prayer"
-        class="w-full pb-4 pt-2"
-      />
+      <div class="flex items-center justify-center py-6 lg:py-8">
+        <Image src={candles} alt="Candles lit for prayer" />
+      </div>
       <PrayerCard />
       <Novena />
       <Psalms />

@@ -42,12 +42,14 @@ export function isCentenaryEdition(magazine: PompeichemFalkem): boolean {
   const kok = (magazine.specialEditionTitleKok || "").toLowerCase();
   // Prioritize explicit English naming; fallback checks for common root "centenary"
   return (
-    (!!en && en.includes("centenary")) ||
-    (!!kok && kok.includes("centenary"))
+    (!!en && en.includes("centenary")) || (!!kok && kok.includes("centenary"))
   );
 }
 
-export function compareByPublishDateAsc(a: PompeichemFalkem, b: PompeichemFalkem): number {
+export function compareByPublishDateAsc(
+  a: PompeichemFalkem,
+  b: PompeichemFalkem,
+): number {
   const da = a.dateOfPublish ? new Date(a.dateOfPublish).getTime() : 0;
   const db = b.dateOfPublish ? new Date(b.dateOfPublish).getTime() : 0;
   return da - db;

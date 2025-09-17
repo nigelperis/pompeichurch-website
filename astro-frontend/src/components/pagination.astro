@@ -25,34 +25,34 @@ const buildHref = (page: number) => {
 };
 ---
 
-{showPagination && (
-<div class="mt-8 flex items-center justify-center gap-2 text-base">
-  <!-- Previous Button -->
-  {
-    currentPage === 1 ? (
-      <span
-        class="flex h-10 w-10 items-center justify-center pointer-events-none text-gray-300"
-        aria-label="Previous Page (Disabled)"
-        tabindex="-1"
-      >
-        <Icon name="chevron-left" class="stroke-2 text-2xl" />
-      </span>
-    ) : (
-      <a
-        href={buildHref(currentPage - 1)}
-        class="flex h-10 w-10 items-center justify-center font-bold transition-all duration-200 hover:bg-gray-100"
-        aria-label="Previous Page"
-      >
-        <Icon name="chevron-left" class="stroke-2 text-2xl text-black" />
-      </a>
-    )
-  }
+{
+  showPagination && (
+    <div class="mt-8 flex items-center justify-center gap-2 text-base">
+      {currentPage === 1 ? (
+        <span
+          class="flex h-10 w-10 items-center justify-center pointer-events-none text-gray-300"
+          aria-label="Previous Page (Disabled)"
+          tabindex="-1"
+        >
+          <Icon name="chevron-left" class="stroke-2 text-2xl" />
+        </span>
+      ) : (
+        <a
+          href={buildHref(currentPage - 1)}
+          class="flex h-10 w-10 items-center justify-center font-bold transition-all duration-200 hover:bg-gray-100"
+          aria-label="Previous Page"
+        >
+          <Icon name="chevron-left" class="stroke-2 text-2xl text-black" />
+        </a>
+      )}
 
       {/* Page Numbers */}
       {paginationRange.map((page) => {
         if (typeof page === "string") {
           return (
-            <span class="flex h-10 w-10 items-center justify-center text-gray-500">...</span>
+            <span class="flex h-10 w-10 items-center justify-center text-gray-500">
+              ...
+            </span>
           );
         }
 
@@ -73,26 +73,23 @@ const buildHref = (page: number) => {
           </a>
         );
       })}
-
-  <!-- Next Button -->
-  {
-    currentPage === totalPages ? (
-      <span
-        class="flex h-10 w-10 items-center justify-center pointer-events-none text-gray-300"
-        aria-label="Next Page (Disabled)"
-        tabindex="-1"
-      >
-        <Icon name="chevron-right" class="stroke-2 text-2xl" />
-      </span>
-    ) : (
-      <a
-        href={buildHref(currentPage + 1)}
-        class="flex h-10 w-10 items-center justify-center hover:bg-gray-100"
-        aria-label="Next Page"
-      >
-        <Icon name="chevron-right" class="stroke-2 text-2xl text-black" />
-      </a>
-    )
-  }
-</div>
-  )}
+      {currentPage === totalPages ? (
+        <span
+          class="flex h-10 w-10 items-center justify-center pointer-events-none text-gray-300"
+          aria-label="Next Page (Disabled)"
+          tabindex="-1"
+        >
+          <Icon name="chevron-right" class="stroke-2 text-2xl" />
+        </span>
+      ) : (
+        <a
+          href={buildHref(currentPage + 1)}
+          class="flex h-10 w-10 items-center justify-center hover:bg-gray-100"
+          aria-label="Next Page"
+        >
+          <Icon name="chevron-right" class="stroke-2 text-2xl text-black" />
+        </a>
+      )}
+    </div>
+  )
+}

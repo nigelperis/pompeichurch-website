@@ -11,6 +11,8 @@ import { listEvents } from "~/services/events/list-events";
 import { Locale } from "~/enums/locale";
 import { SITE_URL } from "~/constants/index";
 import WhatsAppShare from "~/components/ui/whatsapp-share";
+import type { Event } from "~/models/event";
+import { cn } from "~/helpers/cn";
 
 const { slug } = Astro.params;
 const lang = getLangFromUrl(Astro.url);
@@ -48,10 +50,37 @@ const { events: allEvents } = await listEvents({
   pageSize: totalEvents,
 });
 
+const getEventTimestamp = (event: Event) => {
+  const created = event?.createdAt
+    ? new Date(event.createdAt).getTime()
+    : Number.NaN;
+  if (!Number.isNaN(created)) {
+    return created;
+  }
+
+  const scheduled = event?.eventDate
+    ? new Date(event.eventDate).getTime()
+    : Number.NaN;
+
+  if (!Number.isNaN(scheduled)) {
+    return scheduled;
+  }
+
+  return 0;
+};
+
+// Sort by creation time so latest posts appear first.
+const eventsByNewest = [...allEvents].sort(
+  (a, b) => getEventTimestamp(b) - getEventTimestamp(a),
+);
+
 const absoluteImageURL = ogImage;
-const eventIndex = allEvents.findIndex((e) => e.slug === slug);
-const prevEvent = allEvents[eventIndex - 1];
-const nextEvent = allEvents[eventIndex + 1];
+const eventIndex = eventsByNewest.findIndex((e) => e.slug === slug);
+const prevEvent = eventIndex > 0 ? eventsByNewest[eventIndex - 1] : undefined;
+const nextEvent =
+  eventIndex >= 0 && eventIndex < eventsByNewest.length - 1
+    ? eventsByNewest[eventIndex + 1]
+    : undefined;
 
 const socialLinks = [
   { platform: "facebook", url: event?.facebookLink },
@@ -68,26 +97,26 @@ if (!event) {
   image={absoluteImageURL}
   url={ogUrl}
 >
-  <main
-    class="mx-auto max-w-screen-lg overflow-hidden bg-white text-justify font-noto-sans-kannada"
-  >
-    <section class="flex flex-col p-6">
+  <main class="mx-auto max-w-screen-lg overflow-hidden bg-white text-justify">
+    <section class="flex flex-col p-6 lg:p-8">
       <h1
-        class="border-natgeo-yellow border-l-4 pl-3 pt-[13px] text-left text-2xl font-bold lg:text-4xl"
+        class={cn(
+          "border-natgeo-yellow border-l-4 pl-3 text-left text-3xl lg:text-4xl font-black",
+          { "pt-[13px] font-bold": lang === Locale.KOK },
+        )}
       >
         {event?.englishTitle}
       </h1>
+      <div class="flex items-center justify-center py-6 lg:py-8">
+        <NetworkImage
+          src={eventImage?.url}
+          width={eventImage?.width}
+          height={eventImage?.height}
+          class="mx-auto md:w-3/4"
+        />
+      </div>
 
-      <NetworkImage
-        src={eventImage?.url}
-        width={eventImage?.width}
-        height={eventImage?.height}
-        class="mx-auto mt-5 md:w-3/4"
-      />
-
-      <p class="mt-4 leading-7 text-slate-700">
-        <StrapiBlocksRenderer content={event?.description ?? []} />
-      </p>
+      <StrapiBlocksRenderer content={event?.description ?? []} />
       <div class="flex">
         <div class="flex w-full justify-start gap-10">
           {
@@ -128,11 +157,12 @@ if (!event) {
                 <div class="shrink-0 text-3xl text-slate-900">
                   <Icon name="chevron-left" class="stroke-2" />
                 </div>
-                <span class="flex-1 font-roboto">
-                  <div class="pb-1 text-gray-500">
-                    {t("events.previous-event")}
-                  </div>
-                  <div class="text-left text-lg font-medium text-black">
+                <span class="flex-1">
+                  <div
+                    class={cn("text-lg font-medium text-black", {
+                      "pt-[8px]": lang === Locale.KOK,
+                    })}
+                  >
                     {prevEvent.englishTitle}
                   </div>
                 </span>
@@ -148,12 +178,13 @@ if (!event) {
                 <div class="shrink-0 text-3xl text-slate-900">
                   <Icon name="chevron-right" class="stroke-2" />
                 </div>
-                <span class="flex-1 font-roboto">
-                  <div class="pb-1 text-gray-500">{t("events.next-event")}</div>
-                  <div class="text-lg font-medium text-black">
-                    {nextEvent.englishTitle}
-                  </div>
-                </span>
+                <div
+                  class={cn("text-lg font-medium text-black", {
+                    "pt-[8px]": lang === Locale.KOK,
+                  })}
+                >
+                  {nextEvent.englishTitle}
+                </div>
               </a>
             )}
           </div>

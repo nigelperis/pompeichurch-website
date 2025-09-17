@@ -1,11 +1,14 @@
 import { ROUTES } from "~/constants/strapi-endpoints";
 import { strapiFetch } from "~/helpers/strapi-fetch";
-import type { Association, AssociationListResponse } from "~/models/association";
+import type {
+  Association,
+  AssociationListResponse,
+} from "~/models/association";
 import { Locale } from "~/enums/locale";
 
-async function listAssociations(args?: { locale?: Locale }): Promise<
-  Pick<Association, "slug" | "name">[]
-> {
+async function listAssociations(args?: {
+  locale?: Locale;
+}): Promise<Pick<Association, "slug" | "name">[]> {
   const { locale } = args || {};
   const params = new URLSearchParams({
     "fields[0]": "slug",

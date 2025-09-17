@@ -71,42 +71,40 @@ try {
                 </a>
                 {link.type === "expandable" && (
                   <ul class="absolute top-full mt-2 hidden w-60 rounded-md p-2 shadow-md group-hover:block md:flex">
-                    {
-                      link.title === "nav.associations"
-                        ? associations.map((assoc) => (
-                            <li class="w-full">
-                              <a
-                                href={getRelativeLocaleUrl(
-                                  lang,
-                                  `/associations/${assoc.slug}`,
-                                )}
-                                class={cn(
-                                  "hover:bg-natgeo-yellow block rounded-md px-2 py-2 text-sm transition-all font-normal",
-                                  {
-                                    "font-[350]": lang === Locale.KOK,
-                                  },
-                                )}
-                              >
-                                {assoc.name}
-                              </a>
-                            </li>
-                          ))
-                        : link.expandedLinks?.map((sublink) => (
-                            <li class="w-full">
-                              <a
-                                href={getRelativeLocaleUrl(lang, sublink.href)}
-                                class={cn(
-                                  "hover:bg-natgeo-yellow block rounded-md px-2 py-2 text-sm transition-all font-normal",
-                                  {
-                                    "font-[350]": lang === Locale.KOK,
-                                  },
-                                )}
-                              >
-                                {t(sublink.title)}
-                              </a>
-                            </li>
-                          ))
-                    }
+                    {link.title === "nav.associations"
+                      ? associations.map((assoc) => (
+                          <li class="w-full">
+                            <a
+                              href={getRelativeLocaleUrl(
+                                lang,
+                                `/associations/${assoc.slug}`,
+                              )}
+                              class={cn(
+                                "hover:bg-natgeo-yellow block rounded-md px-2 py-2 text-sm transition-all font-normal",
+                                {
+                                  "font-[350]": lang === Locale.KOK,
+                                },
+                              )}
+                            >
+                              {assoc.name}
+                            </a>
+                          </li>
+                        ))
+                      : link.expandedLinks?.map((sublink) => (
+                          <li class="w-full">
+                            <a
+                              href={getRelativeLocaleUrl(lang, sublink.href)}
+                              class={cn(
+                                "hover:bg-natgeo-yellow block rounded-md px-2 py-2 text-sm transition-all font-normal",
+                                {
+                                  "font-[350]": lang === Locale.KOK,
+                                },
+                              )}
+                            >
+                              {t(sublink.title)}
+                            </a>
+                          </li>
+                        ))}
                   </ul>
                 )}
               </li>
@@ -174,50 +172,48 @@ try {
           </a>
           {link.type === "expandable" ? (
             <ul class="expandable-links max-h-0 overflow-hidden transition-all duration-500 ease-out">
-              {
-                link.title === "nav.associations"
-                  ? associations.map((assoc) => (
-                      <li>
-                        <a
-                          href={getRelativeLocaleUrl(
-                            lang,
-                            `/associations/${assoc.slug}`,
+              {link.title === "nav.associations"
+                ? associations.map((assoc) => (
+                    <li>
+                      <a
+                        href={getRelativeLocaleUrl(
+                          lang,
+                          `/associations/${assoc.slug}`,
+                        )}
+                        class="group mb-4 flex items-center justify-between text-2xl"
+                      >
+                        <span
+                          class={cn(
+                            "text-lg font-normal transition-all duration-150",
+                            {
+                              "font-[350]": lang === Locale.KOK,
+                            },
                           )}
-                          class="group mb-4 flex items-center justify-between text-2xl"
                         >
-                          <span
-                            class={cn(
-                              "text-lg font-normal transition-all duration-150",
-                              {
-                                "font-[350]": lang === Locale.KOK,
-                              },
-                            )}
-                          >
-                            {assoc.name}
-                          </span>
-                        </a>
-                      </li>
-                    ))
-                  : link.expandedLinks?.map((sublinks) => (
-                      <li>
-                        <a
-                          href={getRelativeLocaleUrl(lang, sublinks.href)}
-                          class="group mb-4 flex items-center justify-between text-2xl"
+                          {assoc.name}
+                        </span>
+                      </a>
+                    </li>
+                  ))
+                : link.expandedLinks?.map((sublinks) => (
+                    <li>
+                      <a
+                        href={getRelativeLocaleUrl(lang, sublinks.href)}
+                        class="group mb-4 flex items-center justify-between text-2xl"
+                      >
+                        <span
+                          class={cn(
+                            "text-lg font-normal transition-all duration-150",
+                            {
+                              "font-[350]": lang === Locale.KOK,
+                            },
+                          )}
                         >
-                          <span
-                            class={cn(
-                              "text-lg font-normal transition-all duration-150",
-                              {
-                                "font-[350]": lang === Locale.KOK,
-                              },
-                            )}
-                          >
-                            {t(sublinks.title)}
-                          </span>
-                        </a>
-                      </li>
-                    ))
-              }
+                          {t(sublinks.title)}
+                        </span>
+                      </a>
+                    </li>
+                  ))}
             </ul>
           ) : null}
         </li>
