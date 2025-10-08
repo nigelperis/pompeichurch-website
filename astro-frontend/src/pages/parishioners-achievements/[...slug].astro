@@ -54,7 +54,7 @@ const ogImage =
         {t("achievement.congratulations")}
       </h1>
 
-      <div class="md:h-[500px] mt-6 mb-2 lg:mt-8">
+      <div class="md:h-[500px] mt-6">
         <NetworkImage
           src={achieverImage?.url}
           width={achieverImage?.width}
@@ -63,19 +63,21 @@ const ogImage =
         />
       </div>
 
-      <h2 class="mt-3 pb-2 text-center text-xl font-bold text-slate-900">
+      <h2 class="my-4 text-center text-xl font-bold text-slate-900">
         {lang === Locale.EN ? achiever?.englishName : achiever?.konkaniName}
       </h2>
 
-      <div class="mt-1 leading-7 text-center">
+      <div class="leading-7 text-center">
         <StrapiBlocksRenderer
           content={achiever?.enDescription ?? []}
-          paraClassName="text-slate-800"
+          paraClassName={cn("text-slate-800", {
+            "font-roboto": lang === Locale.EN,
+          })}
         />
       </div>
 
       <div
-        class="mt-1 pt-2 text-center italic text-[#CC0000] text-lg font-medium"
+        class="mt-4 text-center italic text-[#CC0000] text-lg font-medium"
       >
         {t("achievement.warm-wishes")}
         <br />
