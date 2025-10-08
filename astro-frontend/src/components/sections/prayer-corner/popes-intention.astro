@@ -43,7 +43,7 @@ const subtitle =
   {
     currentIntention ? (
       <p>
-        <StrapiBlocksRenderer content={currentIntention.monthlyIntention} />
+        <StrapiBlocksRenderer content={currentIntention.monthlyIntention} paraClassName={lang === Locale.EN ? "font-roboto" : "font-noto-sans-kannada"}/>
       </p>
     ) : (
       <p>{Message.POPES_INTENTION_NOT_FOUND}</p>
