@@ -65,6 +65,10 @@ export const navLinks = [
         title: "nav.institutions",
         href: "/institutions",
       },
+      {
+        title: "nav.patron",
+        href: "/patron-of-our-parish",
+      },
     ],
   },
   {
