@@ -16,7 +16,7 @@ import frJohnPeris from "~/assets/religious-priests/fr-john-peris.png";
 import frJosephLobo from "~/assets/religious-priests/fr-joseph-lobo.png";
 import frJosephTauro from "~/assets/religious-priests/fr-joseph-tauro.png";
 import frMelwinMendonca from "~/assets/religious-priests/fr-melwin-mendonca.png";
-import frPiusPinto from "~/assets/religious-priests/fr-pius-pinto.png";
+import frPiusPinto from "~/assets/religious-priests/fr-pius-pinto.jpg";
 import frPrakashDCunha from "~/assets/religious-priests/fr-prakash-dchuna.png";
 import frRichardDSouza from "~/assets/religious-priests/fr-richard-dsouza.png";
 import frRohanMiranda from "~/assets/religious-priests/fr-rohan-miranda.png";
