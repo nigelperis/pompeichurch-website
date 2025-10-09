@@ -26,6 +26,10 @@ export const navLinks = [
     title: "nav.about-us",
     expandedLinks: [
       {
+        title: "nav.patron",
+        href: "/patron-of-our-parish",
+      },
+      {
         title: "nav.parish-history",
         href: "/parish-history",
       },
@@ -64,10 +68,6 @@ export const navLinks = [
       {
         title: "nav.institutions",
         href: "/institutions",
-      },
-      {
-        title: "nav.patron",
-        href: "/patron-of-our-parish",
       },
     ],
   },
