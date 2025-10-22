@@ -58,7 +58,7 @@ async function maybeSendObituaryEmail(result: any) {
   await sendPushNotification(strapi, {
     title: "🕊️ Obituary Added",
     body: konkaniName,
-    icon: "/temp-logo.webp",
+    icon: "/church-logo.webp",
     image: obituaryImage,
     data: {
       url: obituaryLink,
