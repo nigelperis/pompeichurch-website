@@ -12,7 +12,7 @@ const STRAPI_URL =
 async function maybeSendObituaryEmail(result: any) {
   if (!result.publishedAt) return;
 
-  const obituaryLink = `${SITE_URL}/obituary?${result.slug}`;
+  const obituaryLink = `${SITE_URL}/obituary/${result.slug}`;
 
   const obituaryImage = result.image?.url
     ? new URL(result.image.url, STRAPI_URL).toString()
@@ -58,7 +58,7 @@ async function maybeSendObituaryEmail(result: any) {
   await sendPushNotification(strapi, {
     title: "🕊️ Obituary Added",
     body: konkaniName,
-    icon: "/temp-logo.webp",
+    icon: "/church-logo.webp",
     image: obituaryImage,
     data: {
       url: obituaryLink,

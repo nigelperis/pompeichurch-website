@@ -33,7 +33,7 @@ async function maybeSendUpcomingEventEmail(result: any) {
 
   await sendPushNotification(strapi, {
     title: "📢 New Upcoming Event Added",
-    icon: "/temp-logo.webp",
+    icon: "/church-logo.webp",
     image: upcomingEventImage,
     data: {
       url: `${SITE_URL}?section=upcoming-events`,
