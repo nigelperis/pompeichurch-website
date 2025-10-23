@@ -68,7 +68,7 @@ async function maybeSendEventEmail(result: any) {
   await sendPushNotification(strapi, {
     title: "📅New Event Added",
     body: konkaniTitle,
-    icon: "/temp-logo.webp",
+    icon: "/church-logo.webp",
     image: eventImage,
     data: {
       url: eventLink,

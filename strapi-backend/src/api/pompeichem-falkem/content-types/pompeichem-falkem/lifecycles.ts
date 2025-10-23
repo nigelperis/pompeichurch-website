@@ -74,7 +74,7 @@ async function maybeSendPompeichemFalkemEmail(result: any) {
   await sendPushNotification(strapi, {
     title: "New Pompeichem Falkem Added",
     body: title,
-    icon: "/temp-logo.webp",
+    icon: "/church-logo.webp",
     image: coverImage,
     data: {
       url: link,
