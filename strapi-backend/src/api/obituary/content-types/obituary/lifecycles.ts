@@ -12,7 +12,7 @@ const STRAPI_URL =
 async function maybeSendObituaryEmail(result: any) {
   if (!result.publishedAt) return;
 
-  const obituaryLink = `${SITE_URL}/obituary?${result.slug}`;
+  const obituaryLink = `${SITE_URL}/obituary/${result.slug}`;
 
   const obituaryImage = result.image?.url
     ? new URL(result.image.url, STRAPI_URL).toString()
