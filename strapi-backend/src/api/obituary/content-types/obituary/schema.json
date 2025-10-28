@@ -69,7 +69,7 @@
     "relationNameKok": {
       "type": "string"
     },
-    "funeralDetails": {
+    "funeralDetailsEn": {
       "type": "text"
     },
     "funeralDetailsKok": {
@@ -78,7 +78,7 @@
     "youtubeLink": {
       "type": "string"
     },
-    "funeralDetailsUpdatedAt": {
+    "funeralDetailsUpdatedOn": {
       "type": "date"
     }
   }

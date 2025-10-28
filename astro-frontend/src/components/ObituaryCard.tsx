@@ -12,6 +12,7 @@ import YoutubeIcon from "~/assets/react-icons/youtube.svg?react";
 import CoffinIcon from "~/assets/react-icons/coffin.svg?react";
 import InfoIcon from "~/assets/react-icons/info.svg?react";
 import WhatsAppShare from "~/components/ui/whatsapp-share.tsx";
+import { EXPIRE_TIME } from "~/constants/index.ts";
 
 interface Props {
   id?: string | number;
@@ -60,8 +61,6 @@ const activeLabels = {
     death: "ಮರಣ್",
   },
 };
-
-const EXPIRE_TIME = 24 * 60 * 60 * 1000 * 3; // milliseconds in three days
 
 type FuneralInfoButtonProps = {
   label: string;

@@ -28,7 +28,7 @@ const optimizedChurchHeroImage = await getImage({ src: churchHeroImage });
 </head>
 
 <section
-  class="relative h-screen w-screen bg-black/20 bg-cover bg-blend-darken"
+  class="relative h-screen w-screen md:h-full bg-black/20 bg-cover bg-blend-darken"
   style={{
     backgroundImage: `url(${optimizedSkyImage.src})`,
   }}
@@ -62,10 +62,10 @@ const optimizedChurchHeroImage = await getImage({ src: churchHeroImage });
   </p>
   <div class="mx-auto">
     <img
-      src="/temp-logo.webp"
+      src="/church-logo.webp"
       alt="Our Lady of Pompei Church logo"
-      width={190}
-      height={190}
+      width={200}
+      height={200}
       data-aos="fade-up"
       data-aos-delay="1100"
       class="mx-auto my-4 opacity-0"
