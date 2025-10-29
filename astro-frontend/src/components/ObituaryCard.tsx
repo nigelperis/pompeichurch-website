@@ -5,7 +5,6 @@ import { cn } from "~/helpers/cn";
 import { getFuneralPrayer } from "~/helpers/get-funeral-prayer";
 import { getWardNameKok } from "~/helpers/get-ward-names-kok";
 import { RelationType } from "~/enums/obituary";
-import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
 import ShareLink from "~/components/ui/ShareLink";
 import CloseIcon from "~/assets/react-icons/x.svg?react";
 import YoutubeIcon from "~/assets/react-icons/youtube.svg?react";
