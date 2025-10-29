@@ -34,6 +34,10 @@ const ogImage =
           height: 600,
           text: achiever?.englishName || "Achiever",
         });
+
+if (!achiever) {
+  return Astro.redirect("/404", 302);
+}
 ---
 
 <Layout

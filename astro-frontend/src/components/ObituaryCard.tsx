@@ -236,7 +236,7 @@ export default function ObituaryCard({
             flipped ? "opacity-0 delay-0" : "opacity-100 delay-500",
           )}
         >
-          <div className="aspect-[3/4] bg-gray-100 relative">
+          <div className="aspect-[3/4] bg-gray-100 relative md:h-[330px]">
             <img
               src={imageUrl}
               alt={`Image of ${name}`}
