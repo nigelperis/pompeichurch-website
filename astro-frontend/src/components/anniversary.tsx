@@ -4,8 +4,18 @@ import { useEffect, useRef, useState } from "react";
 import { Fireworks } from "fireworks-js";
 import { motion, AnimatePresence } from "framer-motion";
 import CloseIcon from "~/assets/react-icons/x.svg?react";
+import { useTranslations } from "~/i18n/utils";
+import { Locale } from "~/enums/locale";
 
 export default function AnniversaryFireworks() {
+  const lang =
+    typeof window !== "undefined" &&
+    window.location.pathname.startsWith(`/${Locale.KOK}`)
+      ? Locale.KOK
+      : Locale.EN;
+
+  const t = useTranslations(lang);
+
   const containerRef = useRef<HTMLDivElement>(null);
   const fireworksRef = useRef<Fireworks | null>(null);
   const [isActive, setIsActive] = useState(false);
@@ -59,7 +69,7 @@ export default function AnniversaryFireworks() {
           clearInterval(interval);
           fireworksRef.current?.stop();
           setIsActive(false);
-          setShowModal(true); // show modal after celebration ends
+          setShowModal(true);
           return 0;
         }
         return prev - 1;
@@ -79,7 +89,7 @@ export default function AnniversaryFireworks() {
       />
 
       {/* Celebrate Button */}
-      <div className="fixed bottom-6 left-6 z-50 flex flex-col items-start gap-2 sm:bottom-8 sm:left-8">
+      <div className="fixed bottom-8.5 left-4 z-50 flex flex-col items-start gap-2 sm:bottom-8 sm:left-8">
         <motion.button
           onClick={handleFireworks}
           disabled={isActive}
@@ -96,9 +106,7 @@ export default function AnniversaryFireworks() {
           whileHover={!isActive ? { scale: 1.05 } : {}}
           whileTap={!isActive ? { scale: 0.97 } : {}}
         >
-          {isActive
-            ? `🎆 Celebrating ${countdown}s`
-            : "🎉 Celebrate 1 Year With Us!"}
+          {isActive ? `🎆 ${countdown}s` : t("anniversaryButton")}
         </motion.button>
       </div>
 
@@ -130,23 +138,29 @@ export default function AnniversaryFireworks() {
 
               {/* Text with soft gradient glow */}
               <motion.h2
-                className="text-3xl sm:text-4xl font-semibold mb-3 bg-gradient-to-r from-yellow-300 via-orange-300 to-yellow-200 bg-clip-text text-transparent"
+                className="text-3xl sm:text-4xl font-semibold py-4 bg-gradient-to-r from-yellow-300 via-orange-300 to-yellow-200 bg-clip-text text-transparent"
                 initial={{ y: 10, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.2 }}
               >
-                Thank You for Celebrating With Us!
+                {t("anniversaryTitle")}
               </motion.h2>
 
               <motion.p
-                className="text-base sm:text-lg text-gray-200 max-w-2xl mx-auto"
+                className="text-lg text-gray-200 max-w-2xl mx-auto text-justify"
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.4 }}
               >
-                Your support means the world to us. One year down, and a
-                lifetime to go — together in faith, community, and celebration.
-                💛
+                {t("anniversaryMessage")}
+              </motion.p>
+              <motion.p
+                className="text-lg text-gray-200 max-w-2xl mx-auto py-5"
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.4 }}
+              >
+                {t("anniversaryThanks")}
               </motion.p>
             </motion.div>
           </motion.div>
