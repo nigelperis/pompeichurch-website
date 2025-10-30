@@ -20,9 +20,9 @@ interface Props {
   imageHeight?: number;
   slug?: string;
   blurred?: boolean;
-  funeralDetails?: string;
+  funeralDetailsEn?: string;
   funeralDetailsKok?: string;
-  funeralDetailsUpdatedAt?: Date | string;
+  funeralDetailsUpdatedOn?: Date | string;
   youtubeLink?: string;
   className?: string;
   autoFlip?: boolean;
@@ -122,11 +122,11 @@ export default function ObituaryCardMin({
   imageUrl,
   slug,
   blurred = false,
-  funeralDetails,
+  funeralDetailsEn,
   funeralDetailsKok,
   youtubeLink,
   className = "",
-  funeralDetailsUpdatedAt,
+  funeralDetailsUpdatedOn,
   autoFlip = true,
 }: Props) {
   const [flipped, setFlipped] = useState(false);
@@ -134,8 +134,8 @@ export default function ObituaryCardMin({
     lang === Locale.EN ? `/obituary/${slug}/` : `/kok/obituary/${slug}/`;
 
   let updatedAt: Date | null = null;
-  if (funeralDetailsUpdatedAt) {
-    updatedAt = new Date(funeralDetailsUpdatedAt);
+  if (funeralDetailsUpdatedOn) {
+    updatedAt = new Date(funeralDetailsUpdatedOn);
     if (isNaN(updatedAt.getTime())) updatedAt = null;
   }
   const now = new Date();
@@ -147,8 +147,8 @@ export default function ObituaryCardMin({
   // Choose localized funeral details with fallback (define before effects)
   const localizedFuneralDetails =
     lang === Locale.KOK
-      ? funeralDetailsKok?.trim() || funeralDetails || ""
-      : funeralDetails || "";
+      ? funeralDetailsKok?.trim() || funeralDetailsEn || ""
+      : funeralDetailsEn || "";
 
   const cardRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
