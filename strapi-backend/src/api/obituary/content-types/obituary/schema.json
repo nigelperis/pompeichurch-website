@@ -69,16 +69,19 @@
     "relationNameKok": {
       "type": "string"
     },
-    "funeralDetailsEn": {
-      "type": "text"
-    },
-    "funeralDetailsKok": {
-      "type": "text"
-    },
     "youtubeLink": {
       "type": "string"
     },
     "funeralDetailsUpdatedOn": {
+      "type": "date"
+    },
+    "massTime": {
+      "type": "time"
+    },
+    "homeTime": {
+      "type": "time"
+    },
+    "funeralDate": {
       "type": "date"
     }
   }

@@ -5,7 +5,6 @@ import { cn } from "~/helpers/cn";
 import { getFuneralPrayer } from "~/helpers/get-funeral-prayer";
 import { getWardNameKok } from "~/helpers/get-ward-names-kok";
 import { RelationType } from "~/enums/obituary";
-import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
 import ShareLink from "~/components/ui/ShareLink";
 import CloseIcon from "~/assets/react-icons/x.svg?react";
 import YoutubeIcon from "~/assets/react-icons/youtube.svg?react";
@@ -13,6 +12,7 @@ import CoffinIcon from "~/assets/react-icons/coffin.svg?react";
 import InfoIcon from "~/assets/react-icons/info.svg?react";
 import WhatsAppShare from "~/components/ui/whatsapp-share.tsx";
 import { EXPIRE_TIME } from "~/constants/index.ts";
+import { getFuneralDetails } from "~/helpers/get-funeral-details";
 
 interface Props {
   id?: string | number;
@@ -27,8 +27,9 @@ interface Props {
   ward?: string;
   dateOfDeath: string;
   slug: string;
-  funeralDetailsEn?: string;
-  funeralDetailsKok?: string;
+  massTime?: string;
+  homeTime?: string;
+  funeralDate?: Date;
   funeralDetailsUpdatedOn?: Date | string;
   youtubeLink?: string;
   className?: string;
@@ -137,11 +138,12 @@ export default function ObituaryCard({
   imageHeight,
   imageUrl,
   slug,
-  funeralDetailsEn,
-  funeralDetailsKok,
   youtubeLink,
   className,
   funeralDetailsUpdatedOn,
+  homeTime,
+  massTime,
+  funeralDate,
   autoFlip = false,
 }: Props) {
   const [flipped, setFlipped] = useState(false);
@@ -161,19 +163,23 @@ export default function ObituaryCard({
   const isDetailsFresh =
     updatedAt && now.getTime() - updatedAt.getTime() <= EXPIRE_TIME;
 
-  const localizedFuneralDetails =
-    lang === Locale.KOK
-      ? funeralDetailsKok?.trim() || funeralDetailsEn || ""
-      : funeralDetailsEn || "";
+  const localizedFuneralDetails = getFuneralDetails(
+    lang,
+    funeralDate,
+    homeTime,
+    massTime,
+  );
 
   useEffect(() => {
-    if (autoFlip && localizedFuneralDetails && isDetailsFresh) {
-      const timer = setTimeout(() => {
-        setFlipped(true);
-      }, 2000);
+    if (
+      autoFlip &&
+      localizedFuneralDetails &&
+      (!funeralDate || isDetailsFresh)
+    ) {
+      const timer = setTimeout(() => setFlipped(true), 2000);
       return () => clearTimeout(timer);
     }
-  }, [localizedFuneralDetails, autoFlip, isDetailsFresh]);
+  }, [localizedFuneralDetails, autoFlip, funeralDate, isDetailsFresh]);
 
   const t = useTranslations(lang);
 
@@ -203,9 +209,13 @@ export default function ObituaryCard({
   }
 
   const showFlip =
-    localizedFuneralDetails &&
-    localizedFuneralDetails.trim().length > 0 &&
-    isDetailsFresh;
+    (!funeralDate &&
+      localizedFuneralDetails &&
+      localizedFuneralDetails.trim().length > 0) ||
+    (funeralDate &&
+      localizedFuneralDetails &&
+      localizedFuneralDetails.trim().length > 0 &&
+      isDetailsFresh);
 
   return (
     <div
