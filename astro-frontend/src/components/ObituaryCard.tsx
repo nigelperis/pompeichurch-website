@@ -27,9 +27,9 @@ interface Props {
   ward?: string;
   dateOfDeath: string;
   slug: string;
-  funeralDetails?: string;
+  funeralDetailsEn?: string;
   funeralDetailsKok?: string;
-  funeralDetailsUpdatedAt?: Date | string;
+  funeralDetailsUpdatedOn?: Date | string;
   youtubeLink?: string;
   className?: string;
   autoFlip?: boolean;
@@ -137,11 +137,11 @@ export default function ObituaryCard({
   imageHeight,
   imageUrl,
   slug,
-  funeralDetails,
+  funeralDetailsEn,
   funeralDetailsKok,
   youtubeLink,
   className,
-  funeralDetailsUpdatedAt,
+  funeralDetailsUpdatedOn,
   autoFlip = false,
 }: Props) {
   const [flipped, setFlipped] = useState(false);
@@ -151,8 +151,8 @@ export default function ObituaryCard({
   const cardId = typeof id === "string" ? id : String(id ?? "no-id");
 
   let updatedAt: Date | null = null;
-  if (funeralDetailsUpdatedAt) {
-    updatedAt = new Date(funeralDetailsUpdatedAt);
+  if (funeralDetailsUpdatedOn) {
+    updatedAt = new Date(funeralDetailsUpdatedOn);
     if (isNaN(updatedAt.getTime())) updatedAt = null;
   }
   const now = new Date();
@@ -163,8 +163,8 @@ export default function ObituaryCard({
 
   const localizedFuneralDetails =
     lang === Locale.KOK
-      ? funeralDetailsKok?.trim() || funeralDetails || ""
-      : funeralDetails || "";
+      ? funeralDetailsKok?.trim() || funeralDetailsEn || ""
+      : funeralDetailsEn || "";
 
   useEffect(() => {
     if (autoFlip && localizedFuneralDetails && isDetailsFresh) {
