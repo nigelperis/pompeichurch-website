@@ -50,12 +50,13 @@ export interface Obituary {
   relationType?: RelationType;
   relationNameEn?: string;
   relationNameKok?: string;
-  funeralDetailsEn?: string;
-  funeralDetailsKok?: string;
   youtubeLink?: string;
   ward: string;
   dateOfDeath: Date;
   funeralDetailsUpdatedOn?: Date;
+  homeTime: string;
+  massTime: string;
+  funeralDate: Date;
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
