@@ -66,7 +66,7 @@ export function getFuneralDetails(
     }
 
     const massHour = massTime ? Number(massTime.split(":")[0]) : 0;
-    const periodWord = massHour < 12 ? "ಸಾಕಾಳಿಂ" : "ದನ್ಪರಾಂ";
+    const periodWord = massHour < 12 ? "ಸಕಾಳಿಂ" : "ದನ್ಪರಾಂ";
 
     return `${weekdayKey ? `${days.kok[weekdayKey]} (${formattedDate}), ` : ""
       }${homeT ? `${periodWord} ${homeT} ವ್ಹರಾರ್ ಘರಾ ಥಾವ್ನ್` : ""}${homeT && massT ? ", " : ""

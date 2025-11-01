@@ -75,10 +75,10 @@
     "funeralDetailsUpdatedOn": {
       "type": "date"
     },
-    "massTime": {
+    "homeTime": {
       "type": "time"
     },
-    "homeTime": {
+    "massTime": {
       "type": "time"
     },
     "funeralDate": {
