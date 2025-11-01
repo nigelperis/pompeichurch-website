@@ -55,9 +55,7 @@ export function FuneralInfoButton({
         ].join(" ")}
         style={{ whiteSpace: "nowrap" }}
       >
-        <span
-          className={lang === "kok" ? "text-[16px] relative top-1" : ""}
-        >
+        <span className={lang === "kok" ? "text-[16px] relative top-1" : ""}>
           {label}
         </span>
       </span>

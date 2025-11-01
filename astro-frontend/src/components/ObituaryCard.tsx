@@ -212,7 +212,15 @@ export default function ObituaryCard({
               {(relationNameEn || relationNameKok) && (
                 <p className="line-clamp-2 md:text-base text-lg text-slate-700">
                   <strong>{relationLabel}:</strong>{" "}
-                  {lang === "kok" ? relationNameKok : relationNameEn}
+                  {lang === "kok"
+                    ? `${relationNameKok || ""} ${
+                        relationType === "H/O"
+                          ? "ಹಿಚೊ"
+                          : relationType === "W/O"
+                            ? "ಹಾಚಿ"
+                            : ""
+                      }`
+                    : relationNameEn}
                 </p>
               )}
               {age && (
