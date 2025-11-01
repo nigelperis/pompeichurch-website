@@ -4,11 +4,12 @@ import { useTranslations } from "~/i18n/utils";
 import { cn } from "~/helpers/cn";
 import ShareLink from "~/components/ui/ShareLink";
 import CoffinIcon from "~/assets/react-icons/coffin.svg?react";
-import InfoIcon from "~/assets/react-icons/info.svg?react";
 import CloseIcon from "~/assets/react-icons/x.svg?react";
 import YoutubeIcon from "~/assets/react-icons/youtube.svg?react";
 import WhatsAppShare from "~/components/ui/whatsapp-share.tsx";
 import { EXPIRE_TIME } from "~/constants/index.ts";
+import { getFuneralDetails } from "~/helpers/get-funeral-details";
+import { FuneralInfoButton } from "./ui/FuneralInfoButton";
 
 interface Props {
   id?: string | number;
@@ -20,9 +21,10 @@ interface Props {
   imageHeight?: number;
   slug?: string;
   blurred?: boolean;
-  funeralDetails?: string;
-  funeralDetailsKok?: string;
-  funeralDetailsUpdatedAt?: Date | string;
+  homeTime?: string;
+  massTime?: string;
+  funeralDate: Date;
+  funeralDetailsUpdatedOn?: Date | string;
   youtubeLink?: string;
   className?: string;
   autoFlip?: boolean;
@@ -48,70 +50,6 @@ const activeLabels = {
   },
 };
 
-type FuneralInfoButtonProps = {
-  label: string;
-  lang: Locale;
-  onClick: () => void;
-};
-
-export function FuneralInfoButton({
-  label,
-  lang,
-  onClick,
-}: FuneralInfoButtonProps) {
-  const [showFullLabel, setShowFullLabel] = useState(true);
-  const [isHovered, setIsHovered] = useState(false);
-
-  useEffect(() => {
-    if (!showFullLabel) return;
-    const timer = setTimeout(() => setShowFullLabel(false), 3000);
-    return () => clearTimeout(timer);
-  }, [showFullLabel]);
-
-  // Show full label on hover/focus
-  const expandLabel = () => setIsHovered(true);
-  const collapseLabel = () => setIsHovered(false);
-
-  const isExpanded = showFullLabel || isHovered;
-
-  return (
-    <button
-      type="button"
-      aria-label={label}
-      className={[
-        "absolute top-4 right-0 flex items-center px-4 py-1.5 rounded-l-full",
-        "bg-white/80 backdrop-blur-md shadow-md border border-white/40 font-semibold text-black",
-        "transition-all duration-300 hover:bg-white/90 z-5 cursor-pointer",
-        "gap-1",
-      ].join(" ")}
-      onClick={onClick}
-      onMouseEnter={expandLabel}
-      onMouseLeave={collapseLabel}
-      onFocus={expandLabel}
-      onBlur={collapseLabel}
-    >
-      <InfoIcon className="w-5 h-5 opacity-80" />
-      <span
-        className={[
-          "overflow-hidden transition-all duration-300",
-          isExpanded
-            ? "max-w-[200px] opacity-100 ml-1"
-            : "max-w-0 opacity-0 ml-0",
-        ].join(" ")}
-        style={{ whiteSpace: "nowrap" }}
-      >
-        <span
-          className={
-            lang === Locale.KOK ? "text-[16px] relative -top-[-3px]" : ""
-          }
-        >
-          {label}
-        </span>
-      </span>
-    </button>
-  );
-}
-
 export default function ObituaryCardMin({
   id,
   name,
@@ -122,11 +60,12 @@ export default function ObituaryCardMin({
   imageUrl,
   slug,
   blurred = false,
-  funeralDetails,
-  funeralDetailsKok,
+  homeTime,
+  massTime,
+  funeralDate,
   youtubeLink,
   className = "",
-  funeralDetailsUpdatedAt,
+  funeralDetailsUpdatedOn,
   autoFlip = true,
 }: Props) {
   const [flipped, setFlipped] = useState(false);
@@ -134,45 +73,50 @@ export default function ObituaryCardMin({
     lang === Locale.EN ? `/obituary/${slug}/` : `/kok/obituary/${slug}/`;
 
   let updatedAt: Date | null = null;
-  if (funeralDetailsUpdatedAt) {
-    updatedAt = new Date(funeralDetailsUpdatedAt);
+  if (funeralDetailsUpdatedOn) {
+    updatedAt = new Date(funeralDetailsUpdatedOn);
     if (isNaN(updatedAt.getTime())) updatedAt = null;
   }
   const now = new Date();
-  // check if details are fresh (within one day)
-  const isFuneralDetailsFresh = updatedAt
-    ? now.getTime() - updatedAt.getTime() < EXPIRE_TIME
-    : false;
 
-  // Choose localized funeral details with fallback (define before effects)
-  const localizedFuneralDetails =
-    lang === Locale.KOK
-      ? funeralDetailsKok?.trim() || funeralDetails || ""
-      : funeralDetails || "";
+  // check if details are fresh (within one day)
+  const isFuneralDetailsFresh =
+    updatedAt && now.getTime() - updatedAt.getTime() <= EXPIRE_TIME;
+
+  const localizedFuneralDetails = getFuneralDetails(
+    lang,
+    funeralDate,
+    homeTime,
+    massTime,
+  );
 
   const cardRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    if (!autoFlip || !localizedFuneralDetails || !isFuneralDetailsFresh) return;
+    if (
+      autoFlip &&
+      localizedFuneralDetails &&
+      (!funeralDate || isFuneralDetailsFresh)
+    ) {
+      const observer = new window.IntersectionObserver(
+        (entries) => {
+          if (entries[0].isIntersecting) {
+            // Add a delay before flipping (2 seconds)
+            setTimeout(() => {
+              setFlipped(true);
+            }, 2000);
+            observer.disconnect();
+          }
+        },
+        { threshold: 1.0 },
+      );
 
-    const observer = new window.IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          // Add a delay before flipping (2 seconds)
-          setTimeout(() => {
-            setFlipped(true);
-          }, 2000);
-          observer.disconnect();
-        }
-      },
-      { threshold: 1.0 },
-    );
+      if (cardRef.current) {
+        observer.observe(cardRef.current);
+      }
 
-    if (cardRef.current) {
-      observer.observe(cardRef.current);
+      return () => observer.disconnect();
     }
-
-    return () => observer.disconnect();
-  }, [autoFlip, localizedFuneralDetails, isFuneralDetailsFresh]);
+  }, [localizedFuneralDetails, autoFlip, funeralDate, isFuneralDetailsFresh]);
 
   const t = useTranslations?.(lang);
   const labels = activeLabels[lang as keyof typeof activeLabels];
@@ -293,30 +237,36 @@ export default function ObituaryCardMin({
     );
   }
 
-  // ---- Flippable Minimal Card (Funeral Info) ----
   const showFlip =
-    localizedFuneralDetails &&
-    localizedFuneralDetails.trim().length > 0 &&
-    isFuneralDetailsFresh;
+    (!funeralDate &&
+      localizedFuneralDetails &&
+      localizedFuneralDetails.trim().length > 0) ||
+    (funeralDate &&
+      localizedFuneralDetails &&
+      localizedFuneralDetails.trim().length > 0 &&
+      isFuneralDetailsFresh);
 
   return (
     <div
       className={cn("flex-none relative h-full perspective", className)}
-      style={{ perspective: "800px" }}
+      style={{ perspective: "1000px" }}
       id={cardId}
     >
       <div
         ref={cardRef}
         className={cn(
-          "relative w-64 max-w-xs flex-shrink-0 border border-gray-200 ease-in-out sm:w-64 transition-transform duration-1000 transform-style",
+          "relative w-64 max-w-xs flex-shrink-0 border border-gray-200 sm:w-64 transition-transform duration-1000 transform-style",
           flipped ? "rotate-y-180" : "",
         )}
         style={{
           minHeight: 380,
           height: 380,
+          position: "relative",
+          transformStyle: "preserve-3d",
+          transition: "transform 1s ease-in-out",
         }}
       >
-        {/* --- FRONT SIDE --- */}
+        {/* Front Side */}
         <div
           className={cn(
             "absolute w-full h-full backface-hidden bg-white flex flex-col overflow-hidden transition-opacity duration-500",
@@ -337,6 +287,7 @@ export default function ObituaryCardMin({
                 label={t("funeral.rites")}
                 lang={lang}
                 onClick={() => setFlipped(true)}
+                floating={true}
               />
             )}
           </div>
@@ -375,15 +326,15 @@ export default function ObituaryCardMin({
             />
           </div>
         </div>
-        {/* --- BACK SIDE (Funeral Details) --- */}
+
+        {/* Back side */}
         {showFlip && (
           <div
             className={cn(
-              "absolute flex flex-col justify-between w-full h-full backface-hidden bg-white p-4 rotate-y-180 transition-opacity duration-500",
+              "absolute inset-0 flex flex-col justify-between w-full h-full backface-hidden bg-white p-4 rotate-y-180 transition-opacity duration-500",
               flipped ? "opacity-100 delay-500" : "opacity-0 delay-0",
             )}
           >
-            {/* Close (X) button top-right */}
             <button
               type="button"
               className="absolute top-2 right-1 rounded-full hover:scale-115 cursor-pointer transition"
@@ -424,12 +375,14 @@ export default function ObituaryCardMin({
         )}
       </div>
       {/* Minimal card flip effect */}
-      <style>{`
-        .perspective { perspective: 800px; }
-        .transform-style { transform-style: preserve-3d; }
-        .backface-hidden { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
-        .rotate-y-180 { transform: rotateY(180deg); }
-      `}</style>
+      <style>
+        {`
+      .perspective { perspective: 1000px; }
+      .transform-style { transform-style: preserve-3d; }
+      .backface-hidden { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+      .rotate-y-180 { transform: rotateY(180deg); }
+      `}
+      </style>
     </div>
   );
 }

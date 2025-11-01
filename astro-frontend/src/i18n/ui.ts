@@ -497,7 +497,7 @@ export const ui = {
     "landing.daily-mass": "ಸದಾಂ ಮೀಸ್",
     "landing.catechism": "ಭುರ್ಗ್ಯಾಂಕ್ ದೊತೊರ್ನ್",
     "landing.catechism-note":
-      "ಆಯ್ತಾರಾ ಸಾಕಾಳಿಂ, 9:15AM (ಮಹಿನ್ಯಾಚೊ ಪಯ್ಲೊ ಆಯ್ತಾರ್  ಸೊಡ್ನ್)",
+      "ಆಯ್ತಾರಾ ಸಕಾಳಿಂ, 9:15AM (ಮಹಿನ್ಯಾಚೊ ಪಯ್ಲೊ ಆಯ್ತಾರ್  ಸೊಡ್ನ್)",
     "landing.novena": "ಪೊಂಪೈ ಮಾಯೆಚೆ‌ ನೊವೆನ್",
     "landing.novena-note": "ಸನ್ವಾರಾ ಸಾಂಜೆರ್ ಆನಿ ಆಯ್ತಾರಾ ಸಕಾಳಿಂ ಮಿಸಾ ಉಪ್ರಾಂತ್",
     "landing.follow-our-journey": "ಮಾಧ್ಯಮನಿಂ ಆಮ್ಚಿಂ ಪಾವ್ಲಾಂ",

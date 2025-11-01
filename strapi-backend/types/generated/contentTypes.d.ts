@@ -669,9 +669,9 @@ export interface ApiObituaryObituary extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     dateOfDeath: Schema.Attribute.Date;
     englishName: Schema.Attribute.String;
-    funeralDetailsEn: Schema.Attribute.Text;
-    funeralDetailsKok: Schema.Attribute.Text;
+    funeralDate: Schema.Attribute.Date;
     funeralDetailsUpdatedOn: Schema.Attribute.Date;
+    homeTime: Schema.Attribute.Time;
     image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     konkaniName: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
@@ -680,6 +680,7 @@ export interface ApiObituaryObituary extends Struct.CollectionTypeSchema {
       'api::obituary.obituary'
     > &
       Schema.Attribute.Private;
+    massTime: Schema.Attribute.Time;
     publishedAt: Schema.Attribute.DateTime;
     relationNameEn: Schema.Attribute.String;
     relationNameKok: Schema.Attribute.String;
