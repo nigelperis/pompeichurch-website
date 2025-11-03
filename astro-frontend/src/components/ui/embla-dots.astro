@@ -1,0 +1,23 @@
+---
+interface Props {
+  total: number;
+  selectedIndex: number;
+}
+
+const { total, selectedIndex } = Astro.props;
+---
+
+<div class="flex justify-center gap-2 mt-4">
+  {Array.from({ length: total }).map((_, i) => (
+    <button
+      type="button"
+      class:list={[
+        "transition-all duration-300 rounded-full bg-gray-300",
+        selectedIndex === i
+          ? "w-6 h-2 bg-natgeo-yellow"
+          : "w-2 h-2 hover:bg-gray-300",
+      ]}
+      aria-label={`Go to slide ${i + 1}`}
+    />
+  ))}
+</div>

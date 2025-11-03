@@ -33,23 +33,16 @@ function tweenOpacity(
       if (engine.options.loop) {
         engine.slideLooper.loopPoints.forEach((loopItem) => {
           const target = loopItem.target();
-
           if (slideIndex === loopItem.index && target !== 0) {
             const sign = Math.sign(target);
-
-            if (sign === -1) {
-              diffToTarget = scrollSnap - (1 + scrollProgress);
-            }
-            if (sign === 1) {
-              diffToTarget = scrollSnap + (1 - scrollProgress);
-            }
+            if (sign === -1) diffToTarget = scrollSnap - (1 + scrollProgress);
+            if (sign === 1) diffToTarget = scrollSnap + (1 - scrollProgress);
           }
         });
       }
 
       const tweenValue = 1 - Math.abs(diffToTarget * tweenFactor);
       const opacity = numberWithinRange(tweenValue, 0.4, 1).toString();
-
       emblaApi.slideNodes()[slideIndex].style.opacity = opacity;
     });
   });
@@ -68,6 +61,7 @@ export const setupTweenOpacity = (
     .on("reInit", () => tweenOpacity(emblaApi, tweenFactor))
     .on("scroll", () => tweenOpacity(emblaApi, tweenFactor, "scroll"))
     .on("slideFocus", () => tweenOpacity(emblaApi, tweenFactor, "slideFocus"));
+
   return (): void => {
     slideNodes.forEach((slide) => slide.removeAttribute("style"));
   };
@@ -89,50 +83,58 @@ export const emblaCarousel = async () => {
 
     const plugins = [];
 
-    if (carouselType === "opacityTransition") {
-      if (autoScroll) {
-        const AutoPlay = await import("embla-carousel-autoplay");
-        plugins.push(
-          AutoPlay.default({
-            delay: 3000,
-            stopOnInteraction: false,
-            jump: false,
-          }),
-        );
-      }
+    const WheelGesturesPlugin = await import("embla-carousel-wheel-gestures");
+    plugins.push(WheelGesturesPlugin.WheelGesturesPlugin({}));
 
-      const WheelGesturesPlugin = await import("embla-carousel-wheel-gestures");
-      plugins.push(WheelGesturesPlugin.WheelGesturesPlugin({}));
+    if (carouselType === "opacityTransition" && autoScroll) {
+      const AutoPlay = await import("embla-carousel-autoplay");
+      plugins.push(
+        AutoPlay.default({
+          delay: 3000,
+          stopOnInteraction: false,
+          jump: false,
+        }),
+      );
+    }
 
-      const emblaApi = EmblaCarousel(node, carouselOptions, plugins);
+    const emblaApi = EmblaCarousel(node, carouselOptions, plugins);
 
-      const prevButton = node.querySelector(".embla__prev");
-      const nextButton = node.querySelector(".embla__next");
+    // Buttons
+    const prevButton = node.querySelector(".embla__prev");
+    const nextButton = node.querySelector(".embla__next");
+    if (prevButton) prevButton.addEventListener("click", () => emblaApi.scrollPrev());
+    if (nextButton) nextButton.addEventListener("click", () => emblaApi.scrollNext());
 
-      if (prevButton) {
-        prevButton.addEventListener("click", () => emblaApi.scrollPrev());
-      }
-      if (nextButton) {
-        nextButton.addEventListener("click", () => emblaApi.scrollNext());
-      }
+    const removeTweenOpacity = setupTweenOpacity(emblaApi);
+    emblaApi.on("destroy", removeTweenOpacity);
 
-      const removeTweenOpacity = setupTweenOpacity(emblaApi);
-      emblaApi.on("destroy", removeTweenOpacity);
-    } else {
-      const WheelGesturesPlugin = await import("embla-carousel-wheel-gestures");
-      const emblaApi = EmblaCarousel(node, carouselOptions, [
-        WheelGesturesPlugin.WheelGesturesPlugin({}),
-      ]);
+    const dotsContainer = node.querySelector(".embla__dots") as HTMLElement | null;
+    if (dotsContainer) {
+      const scrollSnaps = emblaApi.scrollSnapList();
+      let selectedIndex = emblaApi.selectedScrollSnap();
 
-      const prevButton = node.querySelector(".embla__prev");
-      const nextButton = node.querySelector(".embla__next");
+      const renderDots = () => {
+        dotsContainer.innerHTML = "";
+        scrollSnaps.forEach((_, i) => {
+          const dot = document.createElement("button");
+          dot.className =
+            "transition-all duration-300 rounded-full mx-1 bg-gray-400 " +
+            (i === selectedIndex
+              ? "w-6 h-2 bg-yellow-400"
+              : "w-2 h-2 hover:bg-gray-500");
+          dot.addEventListener("click", () => emblaApi.scrollTo(i));
+          dotsContainer.appendChild(dot);
+        });
+      };
 
-      if (prevButton) {
-        prevButton.addEventListener("click", () => emblaApi.scrollPrev());
-      }
-      if (nextButton) {
-        nextButton.addEventListener("click", () => emblaApi.scrollNext());
-      }
+      renderDots();
+
+      emblaApi.on("select", () => {
+        selectedIndex = emblaApi.selectedScrollSnap();
+        renderDots();
+      });
+
+      emblaApi.on("reInit", renderDots);
     }
   }
 };

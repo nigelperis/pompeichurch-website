@@ -7,17 +7,17 @@ import NetworkImage from "~/components/ui/network-image.astro";
 const landingCarouselImages = await fetchCarouselImages();
 ---
 
-<EmblaCarosuel autoScroll={true}>
+<EmblaCarosuel autoScroll={true} showDots={true}>
   {
     landingCarouselImages?.map((item) =>
       item.carouselImage?.map((img) => (
-        <EmblaCarosuelItem class="h-[210px] md:h-[670px]">
+        <EmblaCarosuelItem class="h-[210px] md:h-[670px] pt-2">
           <NetworkImage
             src={img.url}
             alt={img.name}
             width={img.width ?? 800}
             height={img.height ?? 600}
-            class="object-cover h-full"
+            class="object-cover h-full rounded-xl"
           />
         </EmblaCarosuelItem>
       )),
