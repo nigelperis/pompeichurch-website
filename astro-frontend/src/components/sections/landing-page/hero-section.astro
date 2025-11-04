@@ -22,49 +22,37 @@ const t = useTranslations(lang);
     >
       <h1
         class={cn(
-          "text-2xl md:text-5xl font-semibold text-natgeo-yellow tracking-wide",
+          "text-2xl font-semibold text-natgeo-yellow tracking-wide mb-2",
           { "font-semibold tracking-wide": lang === Locale.KOK },
         )}
-        data-aos="fade-up"
-        data-aos-delay="700"
       >
         {t("landing.church-name")}
       </h1>
-      <p
-        class="mt-1 text-md md:text-3xl text-white"
-        data-aos="fade-up"
-        data-aos-delay="900"
-      >
-        {t("landing.town-name")}
-      </p>
+      <p class="text-md text-white">{t("landing.town-name")}</p>
     </div>
   </div>
 
   <!-- Desktop hero -->
   <div
-    class="hidden md:block relative h-[85vh] bg-cover bg-center bg-no-repeat object-top"
+    class="hidden md:block relative h-[85vh] bg-cover bg-center bg-no-repeat"
     style={`background-image: url(${churchHeroDesktop.src})`}
   >
     <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/65"></div>
     <div
-      class="relative flex flex-col items-center justify-center h-full text-center px-4 pt-110"
+      class="relative flex flex-col items-center justify-center h-full text-center px-4 pt-35"
       data-aos="fade-up"
     >
+
+    <div class="relative flex flex-col items-center justify-center h-full text-center px-4">
       <h1
         class={cn(
-          "text-5xl font-semibold text-natgeo-yellow tracking-wide",
+          "text-5xl font-semibold text-natgeo-yellow tracking-wide mb-4",
           { "font-semibold tracking-wide": lang === Locale.KOK },
         )}
-        data-aos="fade-up"
       >
         {t("landing.church-name")}
       </h1>
-      <p
-        class="mt-5 text-md text-3xl text-white"
-        data-aos="fade-up"
-      >
-        {t("landing.town-name")}
-      </p>
+      <p class="text-3xl text-white">{t("landing.town-name")}</p>
     </div>
   </div>
 </section>
