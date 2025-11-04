@@ -1,38 +1,25 @@
 ---
-import { getImage } from "astro:assets";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
-import churchHeroImage from "~/assets/landing-page/church-hero.webp";
+import churchHeroMobile from "~/assets/landing-page/church-hero.webp";
+import churchHeroDesktop from "~/assets/landing-page/church.png";
 import { cn } from "~/helpers/cn";
 import { Locale } from "~/enums/locale";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const optimizedChurchHeroImage = await getImage({ src: churchHeroImage });
 ---
 
-<head>
-  <link
-    rel="preload"
-    as="image"
-    href={optimizedChurchHeroImage.src}
-    type="image/webp"
-  />
-</head>
-
 <section class="relative w-full">
+  <!-- Mobile hero -->
   <div
-    class="relative h-[40vh] md:h-[80vh] bg-cover bg-center bg-no-repeat"
-    style={`background-image: url(${optimizedChurchHeroImage.src})`}
+    class="relative h-[40vh] bg-cover bg-center bg-no-repeat md:hidden"
+    style={`background-image: url(${churchHeroMobile.src})`}
   >
-    <!-- Overlay -->
     <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/65"></div>
-
-    <!-- Content -->
     <div
-      class="relative flex flex-col items-center justify-center h-full text-center px-4 pt-60"
+      class="relative flex flex-col items-center justify-center h-full text-center px-4 pt-35"
       data-aos="fade-up"
     >
-      <!-- Logo / Text -->
       <h1
         class={cn(
           "text-2xl md:text-5xl font-semibold text-natgeo-yellow tracking-wide",
@@ -43,7 +30,6 @@ const optimizedChurchHeroImage = await getImage({ src: churchHeroImage });
       >
         {t("landing.church-name")}
       </h1>
-
       <p
         class="mt-1 text-md md:text-3xl text-white"
         data-aos="fade-up"
@@ -53,5 +39,32 @@ const optimizedChurchHeroImage = await getImage({ src: churchHeroImage });
       </p>
     </div>
   </div>
-</section>
 
+  <!-- Desktop hero -->
+  <div
+    class="hidden md:block relative h-[85vh] bg-cover bg-center bg-no-repeat object-top"
+    style={`background-image: url(${churchHeroDesktop.src})`}
+  >
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/65"></div>
+    <div
+      class="relative flex flex-col items-center justify-center h-full text-center px-4 pt-110"
+      data-aos="fade-up"
+    >
+      <h1
+        class={cn(
+          "text-5xl font-semibold text-natgeo-yellow tracking-wide",
+          { "font-semibold tracking-wide": lang === Locale.KOK },
+        )}
+        data-aos="fade-up"
+      >
+        {t("landing.church-name")}
+      </h1>
+      <p
+        class="mt-5 text-md text-3xl text-white"
+        data-aos="fade-up"
+      >
+        {t("landing.town-name")}
+      </p>
+    </div>
+  </div>
+</section>
