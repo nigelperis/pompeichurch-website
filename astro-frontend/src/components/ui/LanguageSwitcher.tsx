@@ -11,7 +11,7 @@ interface Language {
 }
 
 const LANGUAGES: Language[] = [
-  { code: Locale.EN, name: "Eng", label: "Switch to English" },
+  { code: Locale.EN, name: "English", label: "Switch to English" },
   { code: Locale.KOK, name: "ಕೊಂಕಣಿ", label: "Switch to Konkani" },
 ];
 
@@ -47,7 +47,9 @@ export function LanguageSwitcher({ currentLocale: initialLocale }: Props) {
               currentLocale === language.code
                 ? "bg-white text-black shadow-md"
                 : "text-black hover:text-black/90",
-              language.code === Locale.KOK ? "font-noto-sans-kannada pb-0.5" : "font-roboto",
+              language.code === Locale.KOK
+                ? "font-noto-sans-kannada pb-0.5"
+                : "font-roboto",
             )}
             aria-label={language.label}
             aria-pressed={currentLocale === language.code}
