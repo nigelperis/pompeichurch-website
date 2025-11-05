@@ -1,6 +1,5 @@
 ---
 import ScrollProgress from "~/components/ui/scroll-progress.astro";
-import LanguageSwitcher from "~/components/language-switcher.astro";
 import { getRelativeLocaleUrl } from "astro:i18n";
 import { Icon } from "astro-icon/components";
 import { cn } from "~/helpers/cn";
@@ -9,6 +8,9 @@ import { navLinks } from "~/constants/nav-links.ts";
 import { listAssociations } from "~/services/associations/list-associations";
 import { Locale } from "~/enums/locale";
 import "~/styles/navbar-styles.css";
+import { LanguageSwitcher } from "~/components/ui/LanguageSwitcher";
+
+const currentLocale = Astro.currentLocale;
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -122,7 +124,7 @@ try {
         <Icon name="menu" class="mt-1" size={35} />
       </div>
       <div class="ml-5">
-        <LanguageSwitcher />
+        <LanguageSwitcher currentLocale={currentLocale as Locale} client:load />
       </div>
     </div>
   </section>
