@@ -5,14 +5,14 @@ import { cn } from "~/helpers/cn";
 import { getFuneralPrayer } from "~/helpers/get-funeral-prayer";
 import { getWardNameKok } from "~/helpers/get-ward-names-kok";
 import { RelationType } from "~/enums/obituary";
-import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
 import ShareLink from "~/components/ui/ShareLink";
 import CloseIcon from "~/assets/react-icons/x.svg?react";
 import YoutubeIcon from "~/assets/react-icons/youtube.svg?react";
 import CoffinIcon from "~/assets/react-icons/coffin.svg?react";
-import InfoIcon from "~/assets/react-icons/info.svg?react";
 import WhatsAppShare from "~/components/ui/whatsapp-share.tsx";
 import { EXPIRE_TIME } from "~/constants/index.ts";
+import { getFuneralDetails } from "~/helpers/get-funeral-details";
+import { FuneralInfoButton } from "./ui/FuneralInfoButton";
 
 interface Props {
   id?: string | number;
@@ -27,8 +27,9 @@ interface Props {
   ward?: string;
   dateOfDeath: string;
   slug: string;
-  funeralDetailsEn?: string;
-  funeralDetailsKok?: string;
+  massTime?: string;
+  homeTime?: string;
+  funeralDate?: Date;
   funeralDetailsUpdatedOn?: Date | string;
   youtubeLink?: string;
   className?: string;
@@ -62,68 +63,6 @@ const activeLabels = {
   },
 };
 
-type FuneralInfoButtonProps = {
-  label: string;
-  lang: Locale;
-  onClick: () => void;
-};
-
-export function FuneralInfoButton({
-  label,
-  lang,
-  onClick,
-}: FuneralInfoButtonProps) {
-  const [showFullLabel, setShowFullLabel] = useState(true);
-  const [isHovered, setIsHovered] = useState(false);
-
-  useEffect(() => {
-    if (!showFullLabel) return;
-    const timer = setTimeout(() => setShowFullLabel(false), 3000);
-    return () => clearTimeout(timer);
-  }, [showFullLabel]);
-
-  // Show full label on hover/focus
-  const expandLabel = () => setIsHovered(true);
-  const collapseLabel = () => setIsHovered(false);
-
-  const isExpanded = showFullLabel || isHovered;
-
-  return (
-    <button
-      type="button"
-      aria-label={label}
-      className={[
-        "flex items-center px-4 py-1.5 rounded-l-full",
-        "bg-white/80 backdrop-blur-md shadow-md border border-white/40 font-semibold text-black",
-        "transition-all duration-300 hover:bg-white/90 z-10 cursor-pointer",
-        "gap-1",
-      ].join(" ")}
-      onClick={onClick}
-      onMouseEnter={expandLabel}
-      onMouseLeave={collapseLabel}
-      onFocus={expandLabel}
-      onBlur={collapseLabel}
-    >
-      <InfoIcon className="w-5 h-5 opacity-80" />
-      <span
-        className={[
-          "overflow-hidden transition-all duration-300",
-          isExpanded
-            ? "max-w-[200px] opacity-100 ml-1"
-            : "max-w-0 opacity-0 ml-0",
-        ].join(" ")}
-        style={{ whiteSpace: "nowrap" }}
-      >
-        <span
-          className={lang === "kok" ? "text-[16px] relative -top-[-3px]" : ""}
-        >
-          {label}
-        </span>
-      </span>
-    </button>
-  );
-}
-
 export default function ObituaryCard({
   id,
   name,
@@ -137,11 +76,12 @@ export default function ObituaryCard({
   imageHeight,
   imageUrl,
   slug,
-  funeralDetailsEn,
-  funeralDetailsKok,
   youtubeLink,
   className,
   funeralDetailsUpdatedOn,
+  homeTime,
+  massTime,
+  funeralDate,
   autoFlip = false,
 }: Props) {
   const [flipped, setFlipped] = useState(false);
@@ -156,24 +96,28 @@ export default function ObituaryCard({
     if (isNaN(updatedAt.getTime())) updatedAt = null;
   }
   const now = new Date();
-  // check if details are fresh (within one day)
 
+  // check if details are fresh (within one day)
   const isDetailsFresh =
     updatedAt && now.getTime() - updatedAt.getTime() <= EXPIRE_TIME;
 
-  const localizedFuneralDetails =
-    lang === Locale.KOK
-      ? funeralDetailsKok?.trim() || funeralDetailsEn || ""
-      : funeralDetailsEn || "";
+  const localizedFuneralDetails = getFuneralDetails(
+    lang,
+    funeralDate,
+    homeTime,
+    massTime,
+  );
 
   useEffect(() => {
-    if (autoFlip && localizedFuneralDetails && isDetailsFresh) {
-      const timer = setTimeout(() => {
-        setFlipped(true);
-      }, 2000);
+    if (
+      autoFlip &&
+      localizedFuneralDetails &&
+      (!funeralDate || isDetailsFresh)
+    ) {
+      const timer = setTimeout(() => setFlipped(true), 2000);
       return () => clearTimeout(timer);
     }
-  }, [localizedFuneralDetails, autoFlip, isDetailsFresh]);
+  }, [localizedFuneralDetails, autoFlip, funeralDate, isDetailsFresh]);
 
   const t = useTranslations(lang);
 
@@ -203,9 +147,13 @@ export default function ObituaryCard({
   }
 
   const showFlip =
-    localizedFuneralDetails &&
-    localizedFuneralDetails.trim().length > 0 &&
-    isDetailsFresh;
+    (!funeralDate &&
+      localizedFuneralDetails &&
+      localizedFuneralDetails.trim().length > 0) ||
+    (funeralDate &&
+      localizedFuneralDetails &&
+      localizedFuneralDetails.trim().length > 0 &&
+      isDetailsFresh);
 
   return (
     <div
@@ -264,7 +212,15 @@ export default function ObituaryCard({
               {(relationNameEn || relationNameKok) && (
                 <p className="line-clamp-2 md:text-base text-lg text-slate-700">
                   <strong>{relationLabel}:</strong>{" "}
-                  {lang === "kok" ? relationNameKok : relationNameEn}
+                  {lang === "kok"
+                    ? `${relationNameKok || ""} ${
+                        relationType === "H/O"
+                          ? "ಹಿಚೊ"
+                          : relationType === "W/O"
+                            ? "ಹಾಚಿ"
+                            : ""
+                      }`
+                    : relationNameEn}
                 </p>
               )}
               {age && (
@@ -295,6 +251,7 @@ export default function ObituaryCard({
             </div>
           </div>
         </div>
+
         {/* Back side */}
         {showFlip && (
           <div
@@ -320,11 +277,7 @@ export default function ObituaryCard({
               </h4>
               <div className="mb-2">
                 <p className="text-xl md:text-[18px] text-center mt-6">
-                  {localizedFuneralDetails ? (
-                    localizedFuneralDetails
-                  ) : (
-                    <em>No details available.</em>
-                  )}
+                  {localizedFuneralDetails}
                 </p>
               </div>
             </div>
