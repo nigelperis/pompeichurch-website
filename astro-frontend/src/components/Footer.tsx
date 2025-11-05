@@ -85,7 +85,7 @@ export default function Footer({ lang }: { lang: Locale }) {
               {t("landing.church-name")}
             </h3>
             <h3 className="text-md font-bold text-natgeo-yellow mb-4">
-              {t("landing.church-name")}
+              {t("landing.town-name")}
             </h3>
             <div className="flex gap-4">
               {socialLinks.map((link) => {

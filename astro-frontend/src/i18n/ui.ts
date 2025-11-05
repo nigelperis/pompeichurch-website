@@ -36,7 +36,7 @@ export const ui = {
     "nav.catechism": "Catechism",
     "nav.small-christian-community": "Small Christian Community",
     "nav.gurpur-choir": "Gurpur Church Choir",
-    "nav.womens-forum": "Women’s Forum",
+    "nav.womens-forum": "Women's Forum",
     "nav.christian-life-community": "Christian Life Community",
     "nav.kowdoor-a-ward": "Kowdoor A",
     "nav.kowdoor-b-ward": "Kowdoor B",
