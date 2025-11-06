@@ -1,0 +1,115 @@
+import React, { useCallback, useEffect, useState } from "react";
+import useEmblaCarousel from "embla-carousel-react";
+import { cn } from "~/helpers/cn";
+
+interface CarouselSlide {
+  id: number;
+  title: string;
+  image: string;
+  alt?: string;
+}
+
+interface HomepageCarouselProps {
+  slides: CarouselSlide[];
+  autoplay?: boolean;
+  autoplayDelay?: number;
+  className?: string;
+}
+
+export const HomepageCarousel: React.FC<HomepageCarouselProps> = ({
+  slides,
+  autoplay = true,
+  autoplayDelay = 4000,
+  className,
+}) => {
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: true,
+    align: "center",
+    containScroll: "trimSnaps",
+  });
+
+  const scrollTo = useCallback(
+    (index: number) => emblaApi && emblaApi.scrollTo(index),
+    [emblaApi],
+  );
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    onSelect();
+    emblaApi.on("select", onSelect);
+    emblaApi.on("reInit", onSelect);
+  }, [emblaApi, onSelect]);
+
+  useEffect(() => {
+    if (!emblaApi || !autoplay) return;
+
+    const autoplayInterval = setInterval(() => {
+      emblaApi.scrollNext();
+    }, autoplayDelay);
+
+    return () => clearInterval(autoplayInterval);
+  }, [emblaApi, autoplay, autoplayDelay]);
+
+  if (!slides || slides.length === 0) {
+    return null;
+  }
+
+  return (
+    <div className={cn("relative w-full mx-auto", className)}>
+      {/* Carousel Container */}
+      <div className="overflow-hidden" ref={emblaRef}>
+        <div className="flex">
+          {slides.map((slide, index) => (
+            <div
+              key={slide.id}
+              className="flex-[0_0_80%] md:flex-[0_0_60%] lg:flex-[0_0_50%] min-w-0 px-2 md:px-4"
+            >
+              <div
+                className={cn(
+                  "relative aspect-[4/3] rounded-xl overflow-hidden transition-all duration-500 ease-out cursor-pointer",
+                  "transform-gpu",
+                  index === selectedIndex
+                    ? "scale-100 opacity-100 shadow-2xl"
+                    : "scale-90 opacity-70 shadow-lg hover:scale-95 hover:opacity-85",
+                )}
+                onClick={() => scrollTo(index)}
+              >
+                <img
+                  src={slide.image}
+                  alt={slide.alt || slide.title}
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Dots Indicator */}
+      <div className="flex justify-center mt-6 md:mt-8 space-x-2">
+        {slides.map((_, index) => (
+          <button
+            key={index}
+            className={cn(
+              "transition-all duration-300 rounded-full",
+              index === selectedIndex
+                ? "w-8 h-2 bg-yellow-400"
+                : "w-2 h-2 bg-gray-400 hover:bg-gray-500",
+            )}
+            onClick={() => scrollTo(index)}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
