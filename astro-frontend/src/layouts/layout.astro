@@ -6,14 +6,13 @@ import 'aos/dist/aos.css';
 
 import Navbar from '~/components/navbar.astro';
 import Breadcrumbs from '~/components/breadcrumbs.astro';
-// import Footer from '~/components/footer.astro';
+import Footer from '~/components/footer.astro';
 import ScrollTop from '~/components/scroll-top.astro';
 import GoogleAnalytics from '~/components/google-analytics.astro';
 import "~/styles/global.css";
 import { cn } from "~/helpers/cn";
 import { getLangFromUrl } from '~/i18n/utils';
 import { Locale } from '~/enums/locale';
-import Footer from '~/components/Footer';
 
 const lang = getLangFromUrl(Astro.url);
 
@@ -105,7 +104,7 @@ const pageUrl = url || "https://pompeichurch.in/";
   <Navbar />
   <Breadcrumbs/>
   <slot />
-  <Footer lang={lang as Locale}/>
+  <Footer />
   <ScrollTop />
   <script>
     console.log("Est Nov, 2024 🥃 www.nigelperis.dev")
