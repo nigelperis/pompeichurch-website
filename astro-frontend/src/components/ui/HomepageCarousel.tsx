@@ -69,15 +69,15 @@ export const HomepageCarousel: React.FC<HomepageCarouselProps> = ({
           {slides.map((slide, index) => (
             <div
               key={slide.id}
-              className="flex-[0_0_80%] md:flex-[0_0_60%] lg:flex-[0_0_50%] min-w-0 px-2 md:px-4"
+              className="flex-[0_0_80%] md:flex-[0_0_60%] lg:flex-[0_0_55%] min-w-0 px-2 md:px-4"
             >
               <div
                 className={cn(
-                  "relative aspect-[4/3] rounded-xl overflow-hidden transition-all duration-500 ease-out cursor-pointer",
+                  "relative aspect-[4/3] rounded-xl overflow-hidden transition-all duration-500 ease-out",
                   "transform-gpu",
                   index === selectedIndex
-                    ? "scale-100 opacity-100 shadow-2xl"
-                    : "scale-90 opacity-70 shadow-lg hover:scale-95 hover:opacity-85",
+                    ? "scale-100 opacity-100"
+                    : "scale-90 opacity-70",
                 )}
                 onClick={() => scrollTo(index)}
               >
@@ -87,7 +87,6 @@ export const HomepageCarousel: React.FC<HomepageCarouselProps> = ({
                   className="w-full h-full object-cover"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
               </div>
             </div>
           ))}
@@ -103,7 +102,7 @@ export const HomepageCarousel: React.FC<HomepageCarouselProps> = ({
               "transition-all duration-300 rounded-full",
               index === selectedIndex
                 ? "w-8 h-2 bg-yellow-400"
-                : "w-2 h-2 bg-gray-400 hover:bg-gray-500",
+                : "w-2 h-2 bg-gray-400",
             )}
             onClick={() => scrollTo(index)}
             aria-label={`Go to slide ${index + 1}`}
