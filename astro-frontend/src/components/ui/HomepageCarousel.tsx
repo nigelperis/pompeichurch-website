@@ -18,7 +18,7 @@ interface HomepageCarouselProps {
 
 export const HomepageCarousel: React.FC<HomepageCarouselProps> = ({
   slides,
-  autoplay = true,
+  autoplay = false,
   autoplayDelay = 4000,
   className,
 }) => {
@@ -69,11 +69,11 @@ export const HomepageCarousel: React.FC<HomepageCarouselProps> = ({
           {slides.map((slide, index) => (
             <div
               key={slide.id}
-              className="flex-[0_0_80%] md:flex-[0_0_60%] lg:flex-[0_0_55%] min-w-0 px-2 md:px-4"
+              className="flex-[0_0_78%] md:flex-[0_0_60%] lg:flex-[0_0_55%] px-1 md:px-2"
             >
               <div
                 className={cn(
-                  "relative aspect-[4/3] rounded-xl overflow-hidden transition-all duration-500 ease-out",
+                  "relative aspect-4/3 rounded-lg overflow-hidden transition-all duration-500 ease-out",
                   "transform-gpu",
                   index === selectedIndex
                     ? "scale-100 opacity-100"
