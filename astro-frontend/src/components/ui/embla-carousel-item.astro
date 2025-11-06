@@ -10,10 +10,15 @@ const { class: className, style, ...rest } = Astro.props;
 
 <div
   class={cn(
-    "mx-3 flex aspect-video w-5/6 lg:w-4/6 min-w-0 flex-none items-center justify-center rounded-lg",
+    "mx-3 flex w-5/6 lg:w-4/6 min-w-0 flex-none items-center justify-center rounded-lg max-h-[570px]",
     className,
   )}
-  style={style}
+  style={{
+    boxShadow:
+      "0px 4px 4px -1px rgba(12, 12, 13, 0.1), 0px 4px 4px -1px rgba(12, 12, 13, 0.05)",
+      borderRadius: "8px",
+    ...style,
+  }}
   {...rest}
 >
   <slot />

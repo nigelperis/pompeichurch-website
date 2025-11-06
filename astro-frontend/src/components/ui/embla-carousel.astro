@@ -9,8 +9,10 @@ interface Props {
   shouldDragFreely?: boolean;
   showArrows?: boolean;
   autoScroll?: boolean;
+  showDots?: boolean
 }
-const { carouselType, shouldLoop, shouldDragFreely, showArrows, autoScroll } =
+
+const { carouselType, shouldLoop, shouldDragFreely, showArrows, autoScroll, showDots } =
   Astro.props;
 
 const carouselTypeToUse = carouselType ?? "opacityTransition";
@@ -46,6 +48,9 @@ const shouldDragFreelyFlagToUse = shouldDragFreely ?? false;
       </>
     )
   }
+  {showDots && (
+  <div class="embla__dots flex justify-center mt-4" />
+  )}
 </div>
 
 <script>

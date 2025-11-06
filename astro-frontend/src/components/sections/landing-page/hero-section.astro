@@ -1,75 +1,57 @@
 ---
-import { getImage } from "astro:assets";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
-import skyImage from "~/assets/landing-page/sky-bg.webp";
-import churchHeroImage from "~/assets/landing-page/church-hero.webp";
+import churchHeroMobile from "~/assets/landing-page/church-hero.webp";
+import churchHeroDesktop from "~/assets/landing-page/church-improved.png";
 import { cn } from "~/helpers/cn";
 import { Locale } from "~/enums/locale";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const optimizedSkyImage = await getImage({ src: skyImage });
-const optimizedChurchHeroImage = await getImage({ src: churchHeroImage });
 ---
 
-<head>
-  <link
-    rel="preload"
-    as="image"
-    href={optimizedSkyImage.src}
-    type="image/webp"
-  />
-  <link
-    rel="preload"
-    as="image"
-    href={optimizedChurchHeroImage.src}
-    type="image/webp"
-  />
-</head>
-
-<section
-  class="relative h-screen w-screen md:h-full bg-black/20 bg-cover bg-blend-darken"
-  style={{
-    backgroundImage: `url(${optimizedSkyImage.src})`,
-  }}
->
-  <div class="absolute inset-0 bg-white opacity-70 bg-blend-darken"></div>
-
-
+<section class="relative w-full">
+  <!-- Mobile hero -->
   <div
-    class="relative mx-4 h-[30vh] overflow-hidden rounded-b-full bg-yellow-50 sm:mx-auto sm:h-[40vh] sm:w-[80vw] md:h-80 md:w-96 xl:h-96 xl:w-5/12"
+    class="relative h-[40vh] bg-cover bg-center bg-no-repeat md:hidden"
+    style={`background-image: url(${churchHeroMobile.src})`}
   >
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/65"></div>
     <div
-      class="animated-background mx-auto h-full w-full bg-cover bg-center bg-no-repeat"
-      style={{ backgroundImage: `url(${optimizedChurchHeroImage.src})` }}
+      class="relative flex flex-col items-center justify-center h-full text-center px-4 pt-35"
     >
+      <h1
+        class={cn(
+          "text-2xl font-semibold text-natgeo-yellow tracking-wide mb-2",
+          { "font-semibold tracking-wide": lang === Locale.KOK },
+        )}
+      >
+        {t("landing.church-name")}
+      </h1>
+      <p class="text-md text-white">{t("landing.town-name")}</p>
     </div>
   </div>
-  <h1
-    data-aos="fade-up"
-    data-aos-delay="700"
-    class={cn(
-      "mt-6 text-center text-4xl lg:text-5xl font-semibold tracking-wide",
-      {
-        "font-semibold tracking-wide": lang === Locale.KOK,
-      },
-    )}
+
+  <!-- Desktop hero -->
+  <div
+    class="hidden md:block relative h-[85vh] bg-cover bg-center bg-no-repeat"
+    style={`background-image: url(${churchHeroDesktop.src})`}
   >
-    {t("landing.church-name")}
-  </h1>
-  <p data-aos="fade-up" data-aos-delay="900" class="mt-2 text-center text-3xl">
-    {t("landing.town-name")}
-  </p>
-  <div class="mx-auto">
-    <img
-      src="/church-logo.webp"
-      alt="Our Lady of Pompei Church logo"
-      width={200}
-      height={200}
-      data-aos="fade-up"
-      data-aos-delay="1100"
-      class="mx-auto my-4 opacity-0"
-    />
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/65"></div>
+    <div
+      class="relative flex flex-col items-center justify-center h-full text-center px-4 pt-35"
+    >
+
+    <div class="relative flex flex-col items-center justify-center h-full text-center px-4">
+      <h1
+        class={cn(
+          "text-5xl font-semibold text-natgeo-yellow tracking-wide mb-4",
+          { "font-semibold tracking-wide": lang === Locale.KOK },
+        )}
+      >
+        {t("landing.church-name")}
+      </h1>
+      <p class="text-3xl text-white">{t("landing.town-name")}</p>
+    </div>
   </div>
 
 </section>
