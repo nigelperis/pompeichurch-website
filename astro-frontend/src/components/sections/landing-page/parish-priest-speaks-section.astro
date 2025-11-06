@@ -9,6 +9,7 @@ import NetworkImage from "~/components/ui/network-image.astro";
 import { Locale } from "~/enums/locale";
 
 import { Message } from "~/constants/message.ts";
+import FireworksButton  from "~/components/anniversary";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -120,4 +121,5 @@ const parishPriestName =
       )
     }
   </div>
+    <FireworksButton client:only="react" />
 </section>

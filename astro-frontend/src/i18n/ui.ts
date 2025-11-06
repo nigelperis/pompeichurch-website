@@ -36,7 +36,7 @@ export const ui = {
     "nav.catechism": "Catechism",
     "nav.small-christian-community": "Small Christian Community",
     "nav.gurpur-choir": "Gurpur Church Choir",
-    "nav.womens-forum": "Women’s Forum",
+    "nav.womens-forum": "Women's Forum",
     "nav.christian-life-community": "Christian Life Community",
     "nav.kowdoor-a-ward": "Kowdoor A",
     "nav.kowdoor-b-ward": "Kowdoor B",
@@ -424,6 +424,10 @@ export const ui = {
     "push.disable": "Not Now!",
     download: "View PDF",
     all: "All",
+    anniversaryButton: "🎆 Come, Celebrate with Us!",
+    anniversaryTitle: "Our Church Website Turns One!",
+    anniversaryMessage: "Whatever God created, He saw that it was good, and He was truly pleased. The parish website we created has also turned out well, and on its first anniversary, we are filled with joy and gratitude. The website continues to share parish news, history, prayers, updates, and photos in an attractive and regularly refreshed format. This is our prayer that the website may always remain vibrant and inspiring.",
+    anniversaryThanks: "Thank you everyone🙏🏻"
   },
   kok: {
     "nav.home": "ಹೋಮ್",
@@ -843,5 +847,9 @@ export const ui = {
     "push.disable": "ಆತಾಂ ನಾಕಾ!",
     download: "PDF ಪಳೆಯಾ",
     all: "ಸಕ್ಕಡ್",
+    anniversaryButton: "🎆 ಯೆಯಾ, ಸಾಂಗಾತಾ ಮೆಳೊನ್ ಆಚರ್ಸಿಯಾ!",
+    anniversaryTitle: "ಆಮ್ಚ್ಯಾ ಫಿರ್ಗಜ್ ವೆಬ್‌ಸಾಯ್ಟಿಕ್ ಏಕ್ ವರ್ಸ್ ಸಂಪ್ತಾ!",
+    anniversaryMessage: "ದೆವಾನ್‌ ರಚ್ಲೆಂ ಸಗ್ಳೆಂ ತಾಕಾ ಬರೆಂ ದಿಸ್ಲೆಂ ಆನಿ ತೊ ಖರೆಂಚ್‌ ಸಂತೊಸ್ಲೊ. ಆಮಿಂ ರಚ್ಲಲಿ ಫಿರ್ಗಜೆಚಿ ವೆಬ್‌ಸಾಯ್ಟ್ ಆಮ್ಕಾಂ ಬರಿ ದಿಸ್ಲಿ ಆನಿ ತಾಚ್ಯಾ ಪಯ್ಲ್ಯಾ ವರ್ಸಾಚ್ಯಾ ಸುವಾಳ್ಯಾರ್‌ ವರ್ತೊ ಸಂತೊಸ್‌ ಆಮ್ಕಾಂ ಭೊಗ್ತಾ. ಫಿರ್ಗಜೆಚ್ಯೊ ನಿರಂತರ್‌ ಖಬ್ರೊ, ಚರಿತ್ರಾ, ಮಾಗ್ಣೆಂ, ವರ್ದಿ, ತಸ್ವಿರೊ ಆಟಾಪ್ಟಿಂ ಪಾನಾ, ಆಕರ್ಶಿತ್‌ ಆನಿ ನವಿಕರಣಾಚ್ಯಾ ಪಾವ್ಲಾಂನಿ ಚಮ್ಕೊಂವ್ಚಿ ವೆಬ್‌ಸಾಯ್ಟ್ ಅಶಿಚ್ಚ್‌ ಸದಾಂಚ್‌ ಸುಡ್ಸುಡಿತ್ ಆಸುಂದಿ ಮ್ಹಳ್ಳೆಂ ಆಮ್ಚೆಂ ಮಾಗ್ಣೆಂ.",
+    anniversaryThanks: "ತುಮ್ಕಾಂ ಸಮೇಸ್ತಾಂಕ್ ದೇವ್ ಬರೆಂ ಕರುಂ🙏🏻"
   },
 } as const;
