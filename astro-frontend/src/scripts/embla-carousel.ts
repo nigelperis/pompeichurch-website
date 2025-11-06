@@ -48,41 +48,6 @@ function tweenOpacity(
   });
 }
 
-function tweenScale(
-  emblaApi: EmblaCarouselType,
-  tweenFactor: number,
-  eventName?: EmblaEventType,
-): void {
-  const engine = emblaApi.internalEngine();
-  const scrollProgress = emblaApi.scrollProgress();
-  const slidesInView = emblaApi.slidesInView();
-  const isScrollEvent = eventName === "scroll";
-
-  emblaApi.scrollSnapList().forEach((scrollSnap, snapIndex) => {
-    let diffToTarget = scrollSnap - scrollProgress;
-    const slidesInSnap = engine.slideRegistry[snapIndex];
-
-    slidesInSnap.forEach((slideIndex) => {
-      if (isScrollEvent && !slidesInView.includes(slideIndex)) return;
-
-      if (engine.options.loop) {
-        engine.slideLooper.loopPoints.forEach((loopItem) => {
-          const target = loopItem.target();
-          if (slideIndex === loopItem.index && target !== 0) {
-            const sign = Math.sign(target);
-            if (sign === -1) diffToTarget = scrollSnap - (1 + scrollProgress);
-            if (sign === 1) diffToTarget = scrollSnap + (1 - scrollProgress);
-          }
-        });
-      }
-
-      const tweenValue = 1 - Math.abs(diffToTarget * tweenFactor);
-      const scale = numberWithinRange(0.9 + tweenValue * 0.15, 0.9, 1.05);
-      emblaApi.slideNodes()[slideIndex].style.transform = `scale(${scale})`;
-    });
-  });
-}
-
 export const setupTweenOpacity = (
   emblaApi: EmblaCarouselType,
 ): (() => void) => {
@@ -99,25 +64,6 @@ export const setupTweenOpacity = (
 
   return (): void => {
     slideNodes.forEach((slide) => slide.removeAttribute("style"));
-  };
-};
-
-export const setupTweenScale = (emblaApi: EmblaCarouselType): (() => void) => {
-  const TWEEN_FACTOR_BASE = 0.84;
-  const slideNodes = emblaApi.slideNodes();
-  const tweenFactor = setTweenFactor(emblaApi, TWEEN_FACTOR_BASE);
-
-  tweenScale(emblaApi, tweenFactor);
-
-  emblaApi
-    .on("reInit", () => tweenScale(emblaApi, tweenFactor))
-    .on("scroll", () => tweenScale(emblaApi, tweenFactor, "scroll"))
-    .on("slideFocus", () => tweenScale(emblaApi, tweenFactor, "slideFocus"));
-
-  return (): void => {
-    slideNodes.forEach((slide) => {
-      slide.style.transform = "";
-    });
   };
 };
 
@@ -156,21 +102,13 @@ export const emblaCarousel = async () => {
     // Buttons
     const prevButton = node.querySelector(".embla__prev");
     const nextButton = node.querySelector(".embla__next");
-    if (prevButton)
-      prevButton.addEventListener("click", () => emblaApi.scrollPrev());
-    if (nextButton)
-      nextButton.addEventListener("click", () => emblaApi.scrollNext());
+    if (prevButton) prevButton.addEventListener("click", () => emblaApi.scrollPrev());
+    if (nextButton) nextButton.addEventListener("click", () => emblaApi.scrollNext());
 
     const removeTweenOpacity = setupTweenOpacity(emblaApi);
-    const removeTweenScale = setupTweenScale(emblaApi);
-    emblaApi.on("destroy", () => {
-      removeTweenOpacity();
-      removeTweenScale();
-    });
+    emblaApi.on("destroy", removeTweenOpacity);
 
-    const dotsContainer = node.querySelector(
-      ".embla__dots",
-    ) as HTMLElement | null;
+    const dotsContainer = node.querySelector(".embla__dots") as HTMLElement | null;
     if (dotsContainer) {
       const scrollSnaps = emblaApi.scrollSnapList();
       let selectedIndex = emblaApi.selectedScrollSnap();
