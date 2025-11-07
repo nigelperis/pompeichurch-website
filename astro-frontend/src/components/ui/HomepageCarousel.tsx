@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
+import { WheelGesturesPlugin } from "embla-carousel-wheel-gestures";
 import { cn } from "~/helpers/cn";
 
 interface CarouselSlide {
@@ -24,11 +25,14 @@ export const HomepageCarousel: React.FC<HomepageCarouselProps> = ({
 }) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
 
-  const [emblaRef, emblaApi] = useEmblaCarousel({
-    loop: true,
-    align: "center",
-    containScroll: "trimSnaps",
-  });
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    {
+      loop: true,
+      align: "center",
+      containScroll: "trimSnaps",
+    },
+    [WheelGesturesPlugin()],
+  );
 
   const scrollTo = useCallback(
     (index: number) => emblaApi && emblaApi.scrollTo(index),
@@ -64,7 +68,7 @@ export const HomepageCarousel: React.FC<HomepageCarouselProps> = ({
   return (
     <div className={cn("relative w-full mx-auto", className)}>
       {/* Carousel Container */}
-      <div className="overflow-hidden" ref={emblaRef}>
+      <div className="overflow-visible" ref={emblaRef}>
         <div className="flex">
           {slides.map((slide, index) => (
             <div
@@ -73,7 +77,7 @@ export const HomepageCarousel: React.FC<HomepageCarouselProps> = ({
             >
               <div
                 className={cn(
-                  "relative aspect-4/3 md:aspect-auto md:max-h-[570px] md:h-[670px] rounded-xl overflow-hidden transition-all duration-500 ease-out",
+                  "relative aspect-4/3 md:aspect-auto md:max-h-[570px] md:h-[670px] rounded-lg overflow-hidden transition-all duration-500 ease-out shadow-sm",
                   "transform-gpu",
                   index === selectedIndex
                     ? "scale-100 opacity-100"
