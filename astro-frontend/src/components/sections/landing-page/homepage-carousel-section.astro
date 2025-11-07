@@ -1,0 +1,26 @@
+---
+import { HomepageCarousel } from "~/components/ui/HomepageCarousel";
+import { fetchCarouselImages } from "~/services/landing-page-carousel";
+
+const landingCarouselImages = await fetchCarouselImages();
+
+const slides = landingCarouselImages?.flatMap((item) =>
+  item.carouselImage?.map((img, index) => ({
+    id: item.id * 1000 + index,
+    title: img.alternativeText || img.name || `Slide ${index + 1}`,
+    image: new URL(img.url, import.meta.env.PUBLIC_STRAPI_URL).toString(),
+    alt: img.alternativeText || img.name,
+  }))
+) || [];
+
+---
+
+<section class="py-8 md:py-8">
+  <div class="mx-auto w-full">
+    <HomepageCarousel
+      slides={slides}
+      className="w-full"
+      client:load
+    />
+  </div>
+</section>
