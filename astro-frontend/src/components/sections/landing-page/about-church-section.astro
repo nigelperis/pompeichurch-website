@@ -27,7 +27,8 @@ const historyUrl =
     class="mx-6 mt-6 flex flex-col lg:mx-28 lg:mb-3 lg:mt-0 lg:min-h-[70svh] lg:justify-evenly"
   >
     <h1
-      class={cn("font-black text-5xl leading-tight tracking-wider", {
+      data-aos="fade-right"
+      class={cn("font-black text-5xl leading-tight tracking-wider pb-2", {
         "font-bold": lang === Locale.KOK,
       })}
     >
@@ -35,7 +36,7 @@ const historyUrl =
     </h1>
     <div class="flex flex-col items-center gap-x-10 md:flex-row-reverse">
       <div
-        class="lg:gap-18 relative flex w-full flex-col gap-12 bg-cover bg-center pb-2 xl:gap-20"
+        class="lg:gap-18 relative flex w-full flex-col gap-1 bg-cover bg-center pb-2 xl:gap-20"
       >
         <p
           class="max-w-2xl text-justify text-base leading-7 drop-shadow-xl lg:max-w-fit"

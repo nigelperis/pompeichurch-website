@@ -11,11 +11,12 @@ import { listEvents } from "~/services/events/list-events";
 import { Locale } from "~/enums/locale";
 import { SITE_URL } from "~/constants/index";
 import WhatsAppShare from "~/components/ui/whatsapp-share";
-import type { Event } from "~/models/event";
 import { cn } from "~/helpers/cn";
+import { getEventsByNewest } from "~/helpers/get-events-by-newest";
 
 const { slug } = Astro.params;
 const lang = getLangFromUrl(Astro.url);
+
 const event = await getEvent(slug ?? "");
 
 const eventUrl =
@@ -30,6 +31,7 @@ const eventImage = event?.eventImage ?? {
   width: 600,
   height: 400,
 };
+
 const ogImage =
   eventImage && "formats" in eventImage && eventImage.formats?.medium?.url
     ? new URL(eventImage.formats.medium.url, baseURL).toString()
@@ -48,29 +50,8 @@ const { events: allEvents } = await listEvents({
   pageSize: totalEvents,
 });
 
-const getEventTimestamp = (event: Event) => {
-  const created = event?.createdAt
-    ? new Date(event.createdAt).getTime()
-    : Number.NaN;
-  if (!Number.isNaN(created)) {
-    return created;
-  }
-
-  const scheduled = event?.eventDate
-    ? new Date(event.eventDate).getTime()
-    : Number.NaN;
-
-  if (!Number.isNaN(scheduled)) {
-    return scheduled;
-  }
-
-  return 0;
-};
-
 // Sort by creation time so latest posts appear first.
-const eventsByNewest = [...allEvents].sort(
-  (a, b) => getEventTimestamp(b) - getEventTimestamp(a),
-);
+const eventsByNewest = getEventsByNewest(allEvents);
 
 const absoluteImageURL = ogImage;
 const eventIndex = eventsByNewest.findIndex((e) => e.slug === slug);
