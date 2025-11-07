@@ -15,7 +15,7 @@ const t = useTranslations(lang);
     class="relative h-[40vh] bg-cover bg-center bg-no-repeat md:hidden"
     style={`background-image: url(${churchHeroMobile.src})`}
   >
-    <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/65"></div>
+    <div class="absolute inset-0 bg-linear-to-b from-transparent to-black/65"></div>
     <div
       class="relative flex flex-col items-center justify-center h-full text-center px-4 pt-35"
     >
@@ -36,21 +36,21 @@ const t = useTranslations(lang);
     class="hidden md:block relative h-[85vh] bg-cover bg-center bg-no-repeat"
     style={`background-image: url(${churchHeroDesktop.src})`}
   >
-    <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/65"></div>
+    <div class="absolute inset-0 bg-linear-to-b from-transparent to-black/65"></div>
     <div
-      class="relative flex flex-col items-center justify-center h-full text-center px-4 pt-35"
+      class="relative flex flex-col items-center justify-center h-full text-center px-4 pt-55"
     >
 
     <div class="relative flex flex-col items-center justify-center h-full text-center px-4">
       <h1
         class={cn(
-          "text-5xl font-semibold text-natgeo-yellow tracking-wide mb-4",
+          "text-6xl font-semibold text-natgeo-yellow tracking-wide mb-4",
           { "font-semibold tracking-wide": lang === Locale.KOK },
         )}
       >
         {t("landing.church-name")}
       </h1>
-      <p class="text-3xl text-white">{t("landing.town-name")}</p>
+      <p class="text-4xl text-white">{t("landing.town-name")}</p>
     </div>
   </div>
 
