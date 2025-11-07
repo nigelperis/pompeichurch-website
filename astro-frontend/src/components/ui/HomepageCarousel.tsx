@@ -68,7 +68,7 @@ export const HomepageCarousel: React.FC<HomepageCarouselProps> = ({
   return (
     <div className={cn("relative w-full mx-auto", className)}>
       {/* Carousel Container */}
-      <div className="overflow-visible" ref={emblaRef}>
+      <div className="overflow-hidden" ref={emblaRef}>
         <div className="flex">
           {slides.map((slide, index) => (
             <div
@@ -80,7 +80,7 @@ export const HomepageCarousel: React.FC<HomepageCarouselProps> = ({
                   "relative aspect-4/3 md:aspect-auto md:max-h-[570px] md:h-[670px] rounded-lg overflow-hidden transition-all duration-500 ease-out shadow-sm",
                   "transform-gpu",
                   index === selectedIndex
-                    ? "scale-100 opacity-100"
+                    ? "scale-99 opacity-100"
                     : "scale-90 opacity-70",
                 )}
                 onClick={() => scrollTo(index)}

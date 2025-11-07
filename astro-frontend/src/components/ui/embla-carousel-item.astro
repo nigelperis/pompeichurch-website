@@ -13,12 +13,6 @@ const { class: className, style, ...rest } = Astro.props;
     "mx-3 flex w-4/6 md:w-3/6 min-w-0 flex-none items-center justify-center rounded-lg max-h-[500px] transition-transform duration-300 ease-out",
     className,
   )}
-  style={{
-    boxShadow:
-      "0px 4px 4px -1px rgba(12, 12, 13, 0.1), 0px 4px 4px -1px rgba(12, 12, 13, 0.05)",
-      borderRadius: "8px",
-    ...style,
-  }}
   {...rest}
 >
   <slot />
