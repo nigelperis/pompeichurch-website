@@ -16,7 +16,6 @@ import { cn } from "~/helpers/cn";
 
 const { slug } = Astro.params;
 const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
 
 const event = await getEvent(slug ?? "");
 
@@ -97,7 +96,7 @@ if (!event) {
   image={absoluteImageURL}
   url={ogUrl}
 >
-  <main class="mx-auto max-w-screen-lg overflow-hidden bg-white text-justify">
+  <main class="mx-auto max-w-5xl overflow-hidden bg-white text-justify">
     <section class="flex flex-col p-6 lg:p-8">
       <h1
         class={cn(
@@ -159,7 +158,7 @@ if (!event) {
                 </div>
                 <div
                   class={cn("text-lg font-medium text-black", {
-                    "pt-[8px]": lang === Locale.KOK,
+                    "pt-2": lang === Locale.KOK,
                   })}
                 >
                   {prevEvent.konkaniTitle}
@@ -178,7 +177,7 @@ if (!event) {
                 </div>
                 <div
                   class={cn("text-lg font-medium text-black", {
-                    "pt-[8px]": lang === Locale.KOK,
+                    "pt-2": lang === Locale.KOK,
                   })}
                 >
                   {nextEvent.konkaniTitle}

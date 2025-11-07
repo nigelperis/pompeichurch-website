@@ -16,8 +16,6 @@ import { cn } from "~/helpers/cn";
 
 const { slug } = Astro.params;
 const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
-
 const event = await getEvent(slug ?? "");
 
 const eventUrl =

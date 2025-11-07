@@ -7,7 +7,7 @@ import NetworkImage from "~/components/ui/network-image.astro";
 const landingCarouselImages = await fetchCarouselImages();
 ---
 
-<EmblaCarosuel autoScroll={true} showDots={true}>
+<EmblaCarosuel autoScroll={true}>
   {
     landingCarouselImages?.map((item) =>
       item.carouselImage?.map((img) => (
