@@ -17,6 +17,7 @@ import UpcomingEventsSection from "~/components/sections/landing-page/upcoming-e
 import ObituarySection from "~/components/sections/landing-page/obituary-section.astro";
 import stayTuned from "~/assets/static-assets/stay-tuned.png";
 import stayTunedKok from "~/assets/static-assets/stay-tuned-kok.png";
+import HomepageCarouselSection from "~/components/sections/landing-page/homepage-carousel-section.astro";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -61,7 +62,8 @@ if (section === "upcoming-events") {
 <Layout title={pageTitle} image={pageImage} url={url.toString()}>
   <main>
     <HeroSection />
-    <LandingCarousel />
+    <HomepageCarouselSection />
+    <!-- <LandingCarousel /> -->
     <ParishPriestSpeaks />
     <AboutChurch />
     <PastoralParishadSection />
