@@ -9,10 +9,8 @@ interface Props {
   shouldDragFreely?: boolean;
   showArrows?: boolean;
   autoScroll?: boolean;
-  showDots?: boolean
 }
-
-const { carouselType, shouldLoop, shouldDragFreely, showArrows, autoScroll, showDots } =
+const { carouselType, shouldLoop, shouldDragFreely, showArrows, autoScroll } =
   Astro.props;
 
 const carouselTypeToUse = carouselType ?? "opacityTransition";
@@ -21,7 +19,7 @@ const shouldDragFreelyFlagToUse = shouldDragFreely ?? false;
 ---
 
 <div
-  class="embla relative overflow-hidden p-6"
+  class="embla relative overflow-hidden p-4"
   data-carousel-type={carouselTypeToUse}
   data-should-loop={String(shouldLoopFlagToUse)}
   data-drag-freely={String(shouldDragFreelyFlagToUse)}
@@ -37,20 +35,17 @@ const shouldDragFreelyFlagToUse = shouldDragFreely ?? false;
           class="embla__prev absolute left-1.5 top-1/2 -translate-y-1/2 rounded-full bg-black/50 p-1.5"
           aria-label="Previous"
         >
-          <Icon name="chevron-left" class="stroke-[4] text-white" size={30} />
+          <Icon name="chevron-left" class="stroke-4 text-white" size={30} />
         </button>
         <button
           class="embla__next absolute right-1.5 top-1/2 -translate-y-1/2 rounded-full bg-black/50 p-1.5"
           aria-label="Next"
         >
-          <Icon name="chevron-right" class="stroke-[4] text-white" size={30} />
+          <Icon name="chevron-right" class="stroke-4 text-white" size={30} />
         </button>
       </>
     )
   }
-  {showDots && (
-  <div class="embla__dots flex justify-center mt-8" />
-  )}
 </div>
 
 <script>

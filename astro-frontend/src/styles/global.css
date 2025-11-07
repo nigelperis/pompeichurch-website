@@ -88,3 +88,11 @@ html {
 html {
   scroll-behavior: smooth;
 }
+
+:root {
+  --sds-size-depth-0: 0px;
+  --sds-size-depth-100: 4px;
+  --sds-size-depth-negative-025: -1px;
+  --sds-color-black-100: rgba(0, 0, 0, 0.1);
+  --sds-color-black-200: rgba(0, 0, 0, 0.2);
+}
