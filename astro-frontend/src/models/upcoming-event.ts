@@ -41,7 +41,7 @@ interface Media {
 export interface UpcomingEvent {
   id: number;
   documentId: string;
-  eventEndDate?: string;
+  eventDate?: string;
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
