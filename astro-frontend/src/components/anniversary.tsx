@@ -21,7 +21,7 @@ export default function AnniversaryFireworks() {
   const [isActive, setIsActive] = useState(false);
   const [countdown, setCountdown] = useState(0);
   const [showModal, setShowModal] = useState(false);
-  const DURATION = 10; // fireworks duration in seconds
+  const DURATION = 5; // fireworks duration in seconds
 
   useEffect(() => {
     if (containerRef.current) {
@@ -114,7 +114,7 @@ export default function AnniversaryFireworks() {
       <AnimatePresence>
         {showModal && (
           <motion.div
-            className="fixed inset-0 z-[60] flex items-center justify-center bg-black/70 backdrop-blur-sm"
+            className="fixed inset-0 z-60 flex items-center justify-center bg-black/70 backdrop-blur-sm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -138,7 +138,7 @@ export default function AnniversaryFireworks() {
 
               {/* Text with soft gradient glow */}
               <motion.h2
-                className="text-3xl sm:text-4xl font-semibold py-4 bg-gradient-to-r from-yellow-300 via-orange-300 to-yellow-200 bg-clip-text text-transparent"
+                className="text-3xl sm:text-4xl font-semibold py-4 bg-linear-to-r from-yellow-300 via-orange-300 to-yellow-200 bg-clip-text text-transparent"
                 initial={{ y: 10, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.2 }}

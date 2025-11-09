@@ -96,3 +96,17 @@ html {
   --sds-color-black-100: rgba(0, 0, 0, 0.1);
   --sds-color-black-200: rgba(0, 0, 0, 0.2);
 }
+
+.hero-zoom {
+  animation: zoomOut 4s ease-in-out forwards;
+  will-change: transform;
+}
+
+@keyframes zoomOut {
+  from {
+    transform: scale(1.14);
+  }
+  to {
+    transform: scale(1);
+  }
+}

@@ -10,48 +10,47 @@ const t = useTranslations(lang);
 ---
 
 <section class="relative w-full">
-  <!-- Mobile hero -->
+<div class="relative h-[40vh] md:hidden overflow-hidden">
   <div
-    class="relative h-[40vh] bg-cover bg-center bg-no-repeat md:hidden"
+    class="absolute inset-0 bg-cover bg-center bg-no-repeat hero-zoom"
     style={`background-image: url(${churchHeroMobile.src})`}
-  >
-    <div class="absolute inset-0 bg-linear-to-b from-transparent to-black/65"></div>
-    <div
-      class="relative flex flex-col items-center justify-center h-full text-center px-4 pt-35"
-    >
-      <h1
-        class={cn(
-          "text-2xl font-semibold text-natgeo-yellow tracking-wide mb-2",
-          { "font-semibold tracking-wide": lang === Locale.KOK },
-        )}
-      >
-        {t("landing.church-name")}
-      </h1>
-      <p class="text-md text-white">{t("landing.town-name")}</p>
-    </div>
-  </div>
+  ></div>
 
-  <!-- Desktop hero -->
+  <div class="absolute inset-0 bg-linear-to-b from-transparent to-black/65"></div>
+
+  <div class="relative flex flex-col items-center justify-center h-full text-center px-4 pt-35">
+    <h1
+      class={cn(
+        "text-2xl font-semibold text-natgeo-yellow tracking-wide mb-2",
+        { "font-semibold tracking-wide": lang === Locale.KOK },
+      )}
+    >
+      {t("landing.church-name")}
+    </h1>
+    <p class="text-md text-white">{t("landing.town-name")}</p>
+  </div>
+</div>
+
+<!-- Desktop hero -->
+<div class="hidden md:block z-0 relative h-[85vh] overflow-hidden">
   <div
-    class="hidden md:block relative h-[85vh] bg-cover bg-center bg-no-repeat"
+    class="absolute inset-0 bg-cover bg-center bg-no-repeat hero-zoom"
     style={`background-image: url(${churchHeroDesktop.src})`}
-  >
-    <div class="absolute inset-0 bg-linear-to-b from-transparent to-black/65"></div>
-    <div
-      class="relative flex flex-col items-center justify-center h-full text-center px-4 pt-55"
+  ></div>
+
+  <div class="absolute inset-0 bg-linear-to-b from-transparent to-black/65"></div>
+
+  <div class="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 pt-55">
+    <h1
+      class={cn(
+        "text-6xl font-semibold text-natgeo-yellow tracking-wide mb-4",
+        { "font-semibold tracking-wide": lang === Locale.KOK },
+      )}
     >
-
-    <div class="relative flex flex-col items-center justify-center h-full text-center px-4">
-      <h1
-        class={cn(
-          "text-6xl font-semibold text-natgeo-yellow tracking-wide mb-4",
-          { "font-semibold tracking-wide": lang === Locale.KOK },
-        )}
-      >
-        {t("landing.church-name")}
-      </h1>
-      <p class="text-4xl text-white">{t("landing.town-name")}</p>
-    </div>
+      {t("landing.church-name")}
+    </h1>
+    <p class="text-4xl text-white">{t("landing.town-name")}</p>
   </div>
-
+</div>
 </section>
+
