@@ -26,7 +26,7 @@ const upcomingEvents = await listUpcomingEvents();
 const filteredEvents = upcomingEvents.filter((event) => {
   if (!event.eventDate) return false;
   const eventDate = parseISO(event.eventDate);
-  return eventDate > today;
+  return fromZonedTime(eventDate, "Asia/Kolkata") > today;
 });
 ---
 
