@@ -7,7 +7,10 @@ const STRAPI_URL = process.env.STRAPI_URL || "https://strapi.pompeichurch.in";
 function setEventDateToEndOfDay(data: any) {
   if (data.eventDate) {
     const eventDate = new Date(data.eventDate);
-    eventDate.setHours(23, 59, 59, 999);
+
+    // Set the time to 18:29:59 UTC, which is 23:59:59 IST
+    eventDate.setUTCHours(18, 29, 59, 999);
+
     data.eventDate = eventDate.toISOString();
   }
 }
