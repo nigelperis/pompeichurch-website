@@ -4,7 +4,7 @@ export default {
 
     const events = await strapi.entityService.findMany('api::upcoming-event.upcoming-event', {
       filters: {
-        eventEndDate: { $lt: today },
+        eventDate: { $lt: today },
       },
       fields: ['id'],
     });

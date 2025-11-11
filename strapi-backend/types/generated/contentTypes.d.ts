@@ -1257,7 +1257,7 @@ export interface ApiUpcomingEventUpcomingEvent
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    eventEndDate: Schema.Attribute.Date;
+    eventDate: Schema.Attribute.DateTime;
     eventImage: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios'
     >;

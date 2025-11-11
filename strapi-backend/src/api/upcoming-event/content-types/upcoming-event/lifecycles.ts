@@ -4,10 +4,18 @@ import { sendPushNotification } from "../../../../utils/send-push-notifications"
 
 const STRAPI_URL = process.env.STRAPI_URL || "https://strapi.pompeichurch.in";
 
+function setEventDateToEndOfDay(data: any) {
+  if (data.eventDate) {
+    const eventDate = new Date(data.eventDate);
+    eventDate.setHours(23, 59, 59, 999);
+    data.eventDate = eventDate.toISOString();
+  }
+}
+
 async function maybeSendUpcomingEventEmail(result: any) {
   if (!result.publishedAt) return;
 
-  const { eventEndDate } = result;
+  const { eventDate } = result;
 
   const upcomingEventImage = result.eventImage?.url
     ? new URL(result.eventImage.url, STRAPI_URL).toString()
@@ -23,7 +31,7 @@ async function maybeSendUpcomingEventEmail(result: any) {
   const html = `
     <h2>New Upcoming Event</h2>
     <ul>
-      <li><strong>Event End Date:</strong> ${eventEndDate}</li>
+      <li><strong>Event Date:</strong> ${eventDate}</li>
       <li><strong>View Upcoming Event:</strong> <a href="${SITE_URL}?section=upcoming-events">${SITE_URL}?section=upcoming-events</a></li>
     </ul>
     <p><strong>Published By:</strong> ${publisherName}</p>
@@ -42,6 +50,12 @@ async function maybeSendUpcomingEventEmail(result: any) {
 }
 
 export default {
+  beforeCreate(event: any) {
+    setEventDateToEndOfDay(event.params.data);
+  },
+  beforeUpdate(event: any) {
+    setEventDateToEndOfDay(event.params.data);
+  },
   async afterCreate(event: any) {
     await maybeSendUpcomingEventEmail(event.result);
   },
