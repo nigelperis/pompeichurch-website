@@ -20,7 +20,7 @@ const t = useTranslations(lang);
 
 <div class="border border-gray-200 overflow-hidden">
   <div
-    class="bg-gradient-to-r from-yellow-50 to-yellow-50 border-b border-yellow-200 p-6"
+    class="bg-linear-to-r from-yellow-50 to-yellow-50 border-b border-yellow-200 p-6"
   >
     <div class="flex items-start space-x-4">
       <div class="flex-1 min-w-0">
@@ -44,7 +44,7 @@ const t = useTranslations(lang);
   <div class="p-6">
     <div class="space-y-4">
       {
-        subCommissions?.map((subCommission, index) => (
+        subCommissions?.map((subCommission) => (
           <div class="group bg-gray-50 p-4">
             <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
               <div class="flex-1">
@@ -52,7 +52,7 @@ const t = useTranslations(lang);
                   {subCommission.title}
                 </h5>
               </div>
-              <div class="flex items-center space-x-2 sm:flex-shrink-0">
+              <div class="flex items-center space-x-2 sm:shrink-0">
                 <div class="flex items-center space-x-2">
                   <span class="text-sm text-gray-700 font-medium">
                     {subCommission.secretary}

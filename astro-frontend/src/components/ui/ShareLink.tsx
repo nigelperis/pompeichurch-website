@@ -32,7 +32,7 @@ const ShareLink: React.FC<ShareLinkProps> = ({
           navigator.clipboard
             .writeText(shareData.url || window.location.href)
             .then(() => {})
-            .catch((err) => {});
+            .catch(() => {});
         } else {
           alert("Sharing not supported on this device.");
         }
@@ -42,7 +42,7 @@ const ShareLink: React.FC<ShareLinkProps> = ({
         navigator.clipboard
           .writeText(shareData.url || window.location.href)
           .then(() => {})
-          .catch((err) => {});
+          .catch(() => {});
       } else {
         alert("Sharing not supported on this device.");
       }
