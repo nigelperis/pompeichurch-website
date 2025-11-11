@@ -30,7 +30,7 @@ const currentPage = Number(Astro.url.searchParams.get("p")) || 1;
 
 const { events: filteredEvents } = await listEvents({
   page: 1,
-  pageSize: 500, //Todo Comment
+  pageSize: 500,
   filters: { "association.slug": { $eq: slug } },
 });
 
@@ -51,7 +51,7 @@ const emptyStateMessage =
 ---
 
 <Layout title={pageTitle}>
-  <main class="mx-auto max-w-screen-lg overflow-hidden bg-white">
+  <main class="mx-auto max-w-5xl overflow-hidden bg-white">
     <section id="events" class="flex flex-col p-6 lg:p-8">
       <PushNotification />
 

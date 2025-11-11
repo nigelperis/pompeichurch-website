@@ -10,13 +10,12 @@ import ParishPriestSpeaks from "~/components/sections/landing-page/parish-priest
 import AboutChurch from "~/components/sections/landing-page/about-church-section.astro";
 import PastoralParishadSection from "~/components/sections/landing-page/pastoral-council-section.astro";
 import MassTimingsSection from "~/components/sections/landing-page/mass-timings-section.astro";
-import SocialGrid from "~/components/sections/landing-page/social-grid.astro";
 import ChurchEventsSection from "~/components/sections/landing-page/church-events-section.astro";
-import LandingCarousel from "~/components/sections/landing-page/landing-carousel.astro";
 import UpcomingEventsSection from "~/components/sections/landing-page/upcoming-events-section.astro";
 import ObituarySection from "~/components/sections/landing-page/obituary-section.astro";
 import stayTuned from "~/assets/static-assets/stay-tuned.png";
 import stayTunedKok from "~/assets/static-assets/stay-tuned-kok.png";
+import HomepageCarouselSection from "~/components/sections/landing-page/homepage-carousel-section.astro";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -61,14 +60,14 @@ if (section === "upcoming-events") {
 <Layout title={pageTitle} image={pageImage} url={url.toString()}>
   <main>
     <HeroSection />
-    <LandingCarousel />
+    <HomepageCarouselSection />
     <ParishPriestSpeaks />
     <AboutChurch />
     <PastoralParishadSection />
     <UpcomingEventsSection />
     <ChurchEventsSection />
     <ObituarySection />
-    <SocialGrid />
+    <!-- <SocialGrid /> -->
     <MassTimingsSection />
   </main>
 </Layout>

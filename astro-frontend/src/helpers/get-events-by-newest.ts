@@ -22,6 +22,6 @@ const getEventTimestamp = (event: Event) => {
 // Sort by creation time so latest posts appear first.
 export function getEventsByNewest(events: Event[]): Event[] {
   return [...events].sort(
-  (a, b) => getEventTimestamp(b) - getEventTimestamp(a),
- );
+    (a, b) => getEventTimestamp(b) - getEventTimestamp(a),
+  );
 }
