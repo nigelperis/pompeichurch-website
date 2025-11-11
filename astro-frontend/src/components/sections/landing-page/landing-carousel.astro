@@ -11,13 +11,13 @@ const landingCarouselImages = await fetchCarouselImages();
   {
     landingCarouselImages?.map((item) =>
       item.carouselImage?.map((img) => (
-        <EmblaCarosuelItem class="h-[210px] md:h-[670px]">
+        <EmblaCarosuelItem class="h-[210px] md:h-[670px] pt-2">
           <NetworkImage
             src={img.url}
             alt={img.name}
             width={img.width ?? 800}
             height={img.height ?? 600}
-            class="object-cover h-full"
+            class="object-cover h-full rounded-lg"
           />
         </EmblaCarosuelItem>
       )),

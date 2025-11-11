@@ -15,7 +15,7 @@ const description =
   description={description}
   image={ourLadyOfPompeiImage.src}
 >
-  <main class="mx-auto max-w-screen-lg overflow-hidden bg-white">
+  <main class="mx-auto max-w-5xl overflow-hidden bg-white">
     <section id="patron-of-parish" class="flex flex-col p-6 lg:p-8">
       <h1
         class={cn(
@@ -327,7 +327,7 @@ const description =
           >
             {/* Author */}
             <div class="flex-1 max-w-xl flex items-center space-x-4">
-              <div class="flex-shrink-0">
+              <div class="shrink-0">
                 <img
                   src={authorImage.src}
                   alt="Rev. Fr. Dr. Pius Fidelis Pinto"
@@ -354,7 +354,6 @@ const description =
 
           if (!section || !icon || !button) return; // Safety check
 
-          const wasHidden = section.classList.contains("hidden");
           section.classList.toggle("hidden");
 
           const nowHidden = section.classList.contains("hidden");

@@ -9,6 +9,7 @@ import NetworkImage from "~/components/ui/network-image.astro";
 import { Locale } from "~/enums/locale";
 
 import { Message } from "~/constants/message.ts";
+import FireworksButton from "~/components/anniversary";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -32,11 +33,10 @@ const parishPriestName =
 ---
 
 <section
-  class="mx-6 mt-6 flex flex-col lg:mx-28 lg:mb-3 lg:mt-0 lg:min-h-[70svh] lg:justify-evenly"
+  class="mx-6 flex flex-col lg:mx-28 lg:mb-3 lg:mt-0 lg:min-h-[70svh] lg:justify-evenly"
   data-lang={lang}
 >
   <h2
-    data-aos="fade-right"
     class={cn(
       "font-black mb-4 inline-block border-l-4 border-natgeo-yellow pl-3 text-2xl lg:text-4xl",
       {
@@ -49,10 +49,7 @@ const parishPriestName =
 
   <div class="flex flex-col gap-x-10 lg:flex-row">
     <div class="lg:min-w-72 xl:min-w-96">
-      <div
-        data-aos="fade-in"
-        class="relative mx-auto flex w-fit flex-col items-center"
-      >
+      <div class="relative mx-auto flex w-fit flex-col items-center">
         <div
           class="absolute top-full -z-10 h-[43%] w-[103%] pointer-events-none"
         >
@@ -122,4 +119,5 @@ const parishPriestName =
       )
     }
   </div>
+  <FireworksButton client:only="react" />
 </section>
