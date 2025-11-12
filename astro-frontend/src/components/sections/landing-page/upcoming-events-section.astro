@@ -2,7 +2,6 @@
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import { cn } from "~/helpers/cn";
 import { parseISO } from "date-fns";
-import { fromZonedTime } from "date-fns-tz";
 
 // Components
 import { listUpcomingEvents } from "~/services/list-upcoming-events";
@@ -27,7 +26,7 @@ const upcomingEvents = await listUpcomingEvents();
 const filteredEvents = upcomingEvents.filter((event) => {
   if (!event.eventDate) return false;
   const eventDate = parseISO(event.eventDate);
-  return fromZonedTime(eventDate, "Asia/Kolkata") > today;
+  return eventDate > today;
 });
 ---
 
