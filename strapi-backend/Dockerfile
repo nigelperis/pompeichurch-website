@@ -1,4 +1,4 @@
-FROM node:22.16.0-alpine as builder
+FROM node:24.11.1-alpine as builder
 RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev vips-dev git > /dev/null 2>&1 py3-setuptools
 RUN npm install --global corepack@latest
 ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0
