@@ -1,10 +1,12 @@
 ---
-import { novenaPrayer } from "~/constants/novena";
+import { getNovenaPrayer } from "~/constants/novena";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import { cn } from "~/helpers/cn";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+const novenaPrayer = getNovenaPrayer(lang);
+const fontClass = lang === "kok" ? "font-noto-sans-kannada" : "font-roboto";
 ---
 
 <div class="font-bold">
@@ -16,4 +18,4 @@ const t = useTranslations(lang);
     {t("prayer.pray-for-us")}
   </h3>
 </div>
-<p class="text-justify font-roboto" set:html={novenaPrayer} />
+<p class={cn("text-justify", fontClass)} set:html={novenaPrayer} />
