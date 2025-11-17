@@ -45,7 +45,7 @@
     "vite-plugin-svgr": "4.5.0"
   },
   "engines": {
-    "node": ">=22.16.0"
+    "node": ">=24.11.1 <25.0.0"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.4",
