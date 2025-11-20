@@ -4,11 +4,11 @@ We would like to thank all the contributors who have helped make this project be
 
 - **Aroma Peris - [aromaperis](https://github.com/aromaperis)**
 
-- **Reevan DSouza - [reevan-manglore](https://github.com/reevan-manglore)**
+- **Reevan Dsouza - [reevan-manglore](https://github.com/reevan-manglore)**
 
 - **Mir Mubashshir - [mirmubashshir](https://github.com/mirmubashshir)**
 
-- **Santhsim DSouza - [SANTHSIM22](https://github.com/SANTHSIM22)**
+- **Santhsim Dsouza - [SANTHSIM22](https://github.com/SANTHSIM22)**
 
 - **Avinash Valder - [avinashvalder](https://github.com/avinashvalder)**
 
@@ -16,7 +16,9 @@ We would like to thank all the contributors who have helped make this project be
 
 - **S Varshith - [S Varshith](https://github.com/varshith03)**
 
-- **Shawn DSouza - [Shawn-D-souza](https://github.com/Shawn-D-souza)**
+- **Shawn Dsouza - [Shawn-D-souza](https://github.com/Shawn-D-souza)**
+
+- **Ashton Dsilva - [ashtondsilva](https://github.com/ashtondsilva)**
 
 ## Special Thanks
 - **GitHub** - [@github](https://github.com/github)
