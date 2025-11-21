@@ -7,7 +7,7 @@
 
 ## Key Features
 
-🙌🕊️📅⏰🏠 With comprehensive information about the church since its inception, we aim to share current affairs through a dedicated events webpage and offer heartfelt tributes to parishioners who have departed for their heavenly abode. Mass Timings helps one to plan their spiritual journey effortlessly. Sections for Wards, Associations, Halls, Convents, and Institutions and much more!
+With comprehensive information about the church since its inception, we aim to share current affairs through a dedicated events webpage and offer heartfelt tributes to parishioners who have departed for their heavenly abode. Mass Timings helps one to plan their spiritual journey effortlessly. Sections for Wards, Associations, Halls, Convents, and Institutions and much more!
 
 ## Highlights That Set Us Apart
 
@@ -15,7 +15,6 @@
 ✨ Prayer Corner
 ✨ Upcoming Events
 ✨ Rich Gallery
-✨ Social Media Integration
 
 ## 🚀 Getting Started
 
