@@ -33,7 +33,8 @@ async function maybeSendUpcomingEventEmail(result: any) {
   const subject = `📢 New Upcoming Event Published`;
   const html = `
     <h2>New Upcoming Event</h2>
-      <li><strong>Event Date:</strong> ${new Date(eventDate).toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata' })}</li>
+    <ul>
+     <li><strong>Event Date:</strong> ${new Date(eventDate).toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata' })}</li>
       <li><strong>View Upcoming Event:</strong> <a href="${SITE_URL}?section=upcoming-events">${SITE_URL}?section=upcoming-events</a></li>
     </ul>
     <p><strong>Published By:</strong> ${publisherName}</p>
