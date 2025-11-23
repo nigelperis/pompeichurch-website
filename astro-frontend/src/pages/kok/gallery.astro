@@ -11,7 +11,7 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 const title = t("gallery.title");
-const description = t("gallery.subtitle");
+
 
 const galleryImages = await listGalleryImages();
 const strapiBaseUrl = import.meta.env.PUBLIC_STRAPI_URL;
@@ -28,7 +28,7 @@ const emptyStateMessage =
     : Message.GALLERY_IMAGES_NOT_FOUND;
 ---
 
-<Layout title={`${title}`} description={description} image={ogImageUrl}>
+<Layout title={`${title}`} image={ogImageUrl}>
   <main class="mx-auto max-w-screen-lg overflow-hidden bg-white">
     <section id="gallery" class="flex flex-col p-6 lg:p-8">
       <h1
@@ -41,9 +41,7 @@ const emptyStateMessage =
       >
         {t("gallery.title")}
       </h1>
-      <p class="pt-4 text-lg text-justify font-normal text-slate-700">
-        {description}
-      </p>
+
       {
         galleryImages.length > 0 ? (
           <MasonryGallery images={galleryImages} />
