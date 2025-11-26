@@ -423,6 +423,9 @@ export const ui = {
     "push.disable": "Not Now!",
     download: "View PDF",
     all: "All",
+    "christmas.title": "Merry Christmas!",
+    "christmas.message":
+      "Wishing you and your family a blessed Christmas filled with joy, peace, and love.",
   },
   kok: {
     "nav.home": "ಹೋಮ್",
@@ -841,5 +844,8 @@ export const ui = {
     "push.disable": "ಆತಾಂ ನಾಕಾ!",
     download: "PDF ಪಳೆಯಾ",
     all: "ಸಕ್ಕಡ್",
+    "christmas.title": "ಭಾಗಿ ನತಲಾಂ ಫೆಸ್ತ್!",
+    "christmas.message":
+      "ತುಮ್ಕಾಂ ಆನಿ ತುಮ್ಚ್ಯಾ ಕುಟ್ಮಾಕ್ ಸಂತೊಸ್, ಶಾಂತಿ ಆನಿ ಮೊಗಾನ್ ಭರ್ಲೆಲೆಂ ನತಲಾಂ ಫೆಸ್ತ್ ಮಾಗ್ತಾಂವ್.",
   },
 } as const;

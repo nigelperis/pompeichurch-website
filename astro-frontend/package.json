@@ -39,6 +39,7 @@
     "photoswipe": "^5.4.4",
     "react": "19.2.0",
     "react-dom": "19.2.0",
+    "react-snowfall": "2.3.0",
     "sharp": "0.34.4",
     "simple-icons-astro": "15.17.0",
     "tailwind-merge": "3.3.1",
