@@ -849,7 +849,7 @@ export const ui = {
     all: "ಸಕ್ಕಡ್",
     "footer.our-lady-of-pompei-church":"ಪೊಂಪೈ ಮಾಯೆಚಿ ಫಿರ್ಗಜ್",
     "footer.all-rights-reserved": " ಸರ್ವ್ ಹಕ್ಕಾಂ ಅಮಾನತ್ ದವರ್ಲ್ಯಾಂತ್",
-    "footer.powered-by": "ಪ್ರವರ್ತೀತ್",
+    "footer.powered-by": "ಸಹಯೋಗ್",
     "footer.commission": "ಸಾಮಾಜಿಕ್ ಸಂವಹನ್ ಆಯೋಗ್, ಗುರ್ಪುರ್ ಕೈಕಂಬ",
   },
 } as const;
