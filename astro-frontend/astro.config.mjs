@@ -5,10 +5,6 @@ import icon from "astro-icon";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
 import svgr from "vite-plugin-svgr";
-import path from 'path';
-import { fileURLToPath } from 'url';
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // https://astro.build/config
 export default defineConfig({
@@ -43,11 +39,6 @@ export default defineConfig({
   },
   vite: {
     plugins: [tailwindcss(), svgr()],
-    resolve: {
-    alias: {
-    '@': path.resolve(__dirname, './src'),
-    },
-  },
     ssr: {
       noExternal: ["aos"],
     },
