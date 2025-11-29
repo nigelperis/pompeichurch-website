@@ -1257,10 +1257,11 @@ export interface ApiUpcomingEventUpcomingEvent
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    eventDate: Schema.Attribute.DateTime;
+    eventDate: Schema.Attribute.DateTime & Schema.Attribute.Required;
     eventImage: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios'
-    >;
+    > &
+      Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
