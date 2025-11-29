@@ -8,12 +8,15 @@ const currentYear = new Date().getFullYear();
 ---
 
 <footer
-  class="font-roboto text-white border-natgeo-yellow-400 border-t-2 bg-gray-900 p-5 pb-8 text-sm xl:px-28"
+  class:list={[
+    "border-natgeo-yellow-400 border-t-2 bg-gray-900 p-5 pb-8 text-sm text-white xl:px-28",
+    lang === "kok" ? "font-noto-sans-kannada" : "font-roboto"
+  ]}
 >
   <div class="flex flex-col-reverse items-center justify-between">
     <div class="mt-6 text-center">
       <p class="text-sm text-gray-100">
-        &copy;{currentYear}, {t("landing.church-name")}. {t("footer.all-rights-reserved")}.
+        &copy;{currentYear},{t("footer.our-lady-of-pompei-church")}. {t("footer.all-rights-reserved")}.
       </p>
       <p class="mt-6">
         <b>{t("footer.powered-by")}</b>: {t("footer.commission")}.
