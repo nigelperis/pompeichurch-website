@@ -1,5 +1,6 @@
 ---
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
+import { Image } from "astro:assets";
 import churchHeroMobile from "~/assets/landing-page/church-hero.webp";
 import churchHeroDesktop from "~/assets/landing-page/church-improved.png";
 import { cn } from "~/helpers/cn";
@@ -10,12 +11,13 @@ const t = useTranslations(lang);
 ---
 
 <section class="relative w-full">
+  <!-- Mobile hero -->
   <div class="relative h-[40vh] md:hidden overflow-hidden">
-    <div
-      class="absolute inset-0 bg-cover bg-center bg-no-repeat hero-zoom"
-      style={`background-image: url(${churchHeroMobile.src})`}
-    >
-    </div>
+    <Image
+      src={churchHeroMobile}
+      alt="Church hero"
+      class="absolute inset-0 w-full h-full object-cover hero-zoom"
+    />
 
     <div class="absolute inset-0 bg-linear-to-b from-transparent to-black/65">
     </div>
@@ -37,11 +39,11 @@ const t = useTranslations(lang);
 
   <!-- Desktop hero -->
   <div class="hidden md:block z-0 relative h-[85vh] overflow-hidden">
-    <div
-      class="absolute inset-0 bg-cover bg-center bg-no-repeat hero-zoom"
-      style={`background-image: url(${churchHeroDesktop.src})`}
-    >
-    </div>
+    <Image
+      src={churchHeroDesktop}
+      alt="Church hero desktop"
+      class="absolute inset-0 w-full h-full object-cover hero-zoom"
+    />
 
     <div class="absolute inset-0 bg-linear-to-b from-transparent to-black/65">
     </div>
