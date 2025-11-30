@@ -16,6 +16,8 @@ import ObituarySection from "~/components/sections/landing-page/obituary-section
 import stayTuned from "~/assets/static-assets/stay-tuned.png";
 import stayTunedKok from "~/assets/static-assets/stay-tuned-kok.png";
 import HomepageCarouselSection from "~/components/sections/landing-page/homepage-carousel-section.astro";
+import ChristmasSnowfall from "~/components/ChristmasSnowfall";
+import ChristmasPopup from "~/components/ChristmasPopup";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -58,6 +60,12 @@ if (section === "upcoming-events") {
 ---
 
 <Layout title={pageTitle} image={pageImage} url={url.toString()}>
+  <ChristmasSnowfall client:load />
+  <!-- <ChristmasPopup
+    client:load
+    title={t("christmas.title")}
+    message={t("christmas.message")}
+  /> -->
   <main>
     <HeroSection />
     <HomepageCarouselSection />
