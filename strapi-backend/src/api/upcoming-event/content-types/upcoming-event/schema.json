@@ -13,12 +13,13 @@
   "pluginOptions": {},
   "attributes": {
     "eventDate": {
-      "type": "datetime"
+      "type": "datetime",
+      "required": true
     },
     "eventImage": {
       "type": "media",
       "multiple": false,
-      "required": false,
+      "required": true,
       "allowedTypes": [
         "images",
         "files",
