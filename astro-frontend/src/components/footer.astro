@@ -1,19 +1,22 @@
 ---
 import { Icon } from "astro-icon/components";
+import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 const currentYear = new Date().getFullYear();
 ---
 
 <footer
-  class="font-roboto text-white border-natgeo-yellow-400 border-t-2 bg-gray-900 p-5 pb-8 text-sm xl:px-28"
+  class="text-white border-natgeo-yellow-400 border-t-2 bg-gray-900 p-5 pb-8 text-sm xl:px-28"
 >
   <div class="flex flex-col-reverse items-center justify-between">
     <div class="mt-6 text-center">
       <p class="text-sm text-gray-100">
-        &copy;{currentYear}, Our Lady of Pompei Church. All Rights Reserved.
+        &copy;{currentYear}, {t("landing.church-name")}. {t("footer.all-rights-reserved")}.
       </p>
       <p class="mt-6">
-        <b>Powered by</b>: Commission for Social Communication, Gurpur Kaikamba.
+        <b>{t("footer.powered-by")}</b>: {t("footer.commission")}.
       </p>
     </div>
     <div class="mt-6 flex items-center space-x-4">
