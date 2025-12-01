@@ -3,8 +3,7 @@ import Layout from "~/layouts/layout.astro";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import { Locale } from "~/enums/locale";
 import { listUpcomingEvents } from "~/services/list-upcoming-events";
-import { parseISO } from "date-fns";
-import { fromZonedTime } from "date-fns-tz";
+import { parseISO, addDays } from "date-fns";
 import HeroSection from "~/components/sections/landing-page/hero-section.astro";
 import ParishPriestSpeaks from "~/components/sections/landing-page/parish-priest-speaks-section.astro";
 import AboutChurch from "~/components/sections/landing-page/about-church-section.astro";
@@ -42,7 +41,8 @@ if (section === "upcoming-events") {
     const filteredEvents = upcomingEvents.filter((event) => {
       if (!event.eventDate) return false;
       const eventDate = parseISO(event.eventDate);
-      return fromZonedTime(eventDate, "Asia/Kolkata") > today;
+      const extendedDate = addDays(eventDate, 1);
+      return extendedDate > today;
     });
 
     if (filteredEvents.length > 0 && filteredEvents[0].eventImage?.url) {
@@ -90,7 +90,7 @@ const showChristmasLights = isChristmasSeason();
 
     if (section === "upcoming-events") {
       const element = document.getElementById("upcoming-events");
-
+      
       if (element) {
         setTimeout(() => {
           element.scrollIntoView({
@@ -106,7 +106,7 @@ const showChristmasLights = isChristmasSeason();
               behavior: "smooth",
               block: "start",
             });
-          }
+           }
         }, 500);
       }
     }
