@@ -1,8 +1,7 @@
 ---
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import { cn } from "~/helpers/cn";
-import { parseISO } from "date-fns";
-
+import { parseISO, addDays } from "date-fns";
 // Components
 import { listUpcomingEvents } from "~/services/list-upcoming-events";
 import NetworkImage from "~/components/ui/network-image.astro";
@@ -26,7 +25,8 @@ const upcomingEvents = await listUpcomingEvents();
 const filteredEvents = upcomingEvents.filter((event) => {
   if (!event.eventDate) return false;
   const eventDate = parseISO(event.eventDate);
-  return eventDate > today;
+  const extendedDate = addDays(eventDate, 1);
+  return extendedDate > today;
 });
 ---
 

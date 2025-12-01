@@ -1,27 +1,13 @@
 import { sendEmail } from '../../../../utils/send-email';
 import { SITE_URL } from '../../../../constants';
 import { sendPushNotification } from '../../../../utils/send-push-notifications';
-import { fromZonedTime } from 'date-fns-tz';
 
 const STRAPI_URL = process.env.STRAPI_URL || 'https://strapi.pompeichurch.in';
-
-function setEventDateToEndOfDay(data: any) {
-  if (data.eventDate) {
-    const eventDate = new Date(data.eventDate);
-
-    // Set the time to 18:29:59 UTC, which is 23:59:59 IST
-    eventDate.setUTCHours(18, 29, 59, 999);
-
-    data.eventDate = eventDate.toISOString();
-  }
-}
 
 async function maybeSendUpcomingEventEmail(result: any) {
   if (!result.publishedAt) return;
 
   const { eventDate } = result;
-  const eventDateInIST = fromZonedTime(new Date(eventDate), 'Asia/Kolkata');
-  const formattedEventDate = eventDateInIST.toISOString().split('T')[0];
 
   const upcomingEventImage = result.eventImage?.url
     ? new URL(result.eventImage.url, STRAPI_URL).toString()
@@ -37,7 +23,7 @@ async function maybeSendUpcomingEventEmail(result: any) {
   const html = `
     <h2>New Upcoming Event</h2>
     <ul>
-      <li><strong>Event Date:</strong> ${formattedEventDate}</li>
+      <li><strong>Event Date:</strong> ${eventDate}</li>
       <li><strong>View Upcoming Event:</strong> <a href="${SITE_URL}?section=upcoming-events">${SITE_URL}?section=upcoming-events</a></li>
     </ul>
     <p><strong>Published By:</strong> ${publisherName}</p>
@@ -56,12 +42,6 @@ async function maybeSendUpcomingEventEmail(result: any) {
 }
 
 export default {
-  beforeCreate(event: any) {
-    setEventDateToEndOfDay(event.params.data);
-  },
-  beforeUpdate(event: any) {
-    setEventDateToEndOfDay(event.params.data);
-  },
   async afterCreate(event: any) {
     await maybeSendUpcomingEventEmail(event.result);
   },

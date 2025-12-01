@@ -13,7 +13,7 @@
   "pluginOptions": {},
   "attributes": {
     "eventDate": {
-      "type": "datetime",
+      "type": "date",
       "required": true
     },
     "eventImage": {
