@@ -16,8 +16,9 @@ import UpcomingEventsSection from "~/components/sections/landing-page/upcoming-e
 import ObituarySection from "~/components/sections/landing-page/obituary-section.astro";
 import stayTuned from "~/assets/static-assets/stay-tuned.png";
 import stayTunedKok from "~/assets/static-assets/stay-tuned-kok.png";
-import ChristmasSnowfall from "~/components/ChristmasSnowfall";
 import ChristmasPopup from "~/components/ChristmasPopup";
+import SnowWithPile from "~/components/SnowWithPile";
+import { isChristmasSeason } from "~/helpers/is-christmas";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -57,15 +58,17 @@ if (section === "upcoming-events") {
     pageImage = lang === Locale.KOK ? stayTunedKok.src : stayTuned.src;
   }
 }
+
+const showChristmasLights = isChristmasSeason();
 ---
 
 <Layout title={pageTitle} image={pageImage} url={url.toString()}>
-  <ChristmasSnowfall client:load />
   <!-- <ChristmasPopup
     client:load
     title={t("christmas.title")}
     message={t("christmas.message")}
   /> -->
+  {showChristmasLights && <SnowWithPile client:load/>}
 
   <main>
     <HeroSection />

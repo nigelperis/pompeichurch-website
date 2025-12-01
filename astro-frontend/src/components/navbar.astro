@@ -9,6 +9,8 @@ import { listAssociations } from "~/services/associations/list-associations";
 import { Locale } from "~/enums/locale";
 import "~/styles/navbar-styles.css";
 import { LanguageSwitcher } from "~/components/ui/LanguageSwitcher";
+import ChristmasLights from "./ui/ChristmasLights";
+import { isChristmasSeason } from "~/helpers/is-christmas";
 
 const currentLocale = Astro.currentLocale;
 
@@ -26,10 +28,13 @@ try {
 } catch (e) {
   associations = [];
 }
+
+const showChristmasLights = isChristmasSeason();
 ---
 
 <ScrollProgress />
 <header class="sticky top-0 z-10 w-full shadow-sm bg-white p-3 xl:px-28">
+ {showChristmasLights && <ChristmasLights client:load />}
   <section class="flex items-center justify-between">
     <a href={lang === Locale.KOK ? "/kok/" : "/"}>
       <img
