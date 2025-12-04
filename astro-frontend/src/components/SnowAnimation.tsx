@@ -14,9 +14,9 @@ export default function SnowEffect() {
   const animationFrameRef = useRef<number>(0);
   const windRef = useRef<number>(0);
   const windTargetRef = useRef<number>(0);
-  const isSnowingRef = useRef<boolean>(false);
+  const isSnowingRef = useRef<boolean>(true);
   const flakesRef = useRef<Flake[]>([]);
-  const [isSnowing, setIsSnowing] = useState(false);
+  const [isSnowing, setIsSnowing] = useState(true);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -98,6 +98,10 @@ export default function SnowEffect() {
   const toggleSnow = () => {
     isSnowingRef.current = !isSnowingRef.current;
     setIsSnowing(!isSnowing);
+
+    if (!isSnowingRef.current) {
+      flakesRef.current = [];
+    }
   };
 
   return (
