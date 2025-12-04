@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface Flake {
   x: number;
@@ -9,18 +9,14 @@ interface Flake {
   turbulence: number;
 }
 
-interface PileFlake {
-  x: number;
-  y: number;
-  r: number;
-}
-
-export default function SnowWithPile() {
+export default function SnowEffect() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const pileRef = useRef<PileFlake[]>([]);
   const animationFrameRef = useRef<number>(0);
   const windRef = useRef<number>(0);
   const windTargetRef = useRef<number>(0);
+  const isSnowingRef = useRef<boolean>(false);
+  const flakesRef = useRef<Flake[]>([]);
+  const [isSnowing, setIsSnowing] = useState(false);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -31,8 +27,6 @@ export default function SnowWithPile() {
 
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-
-    const flakes: Flake[] = [];
 
     function createFlake(): Flake {
       return {
@@ -45,17 +39,10 @@ export default function SnowWithPile() {
       };
     }
 
-    // initial snow
-    for (let i = 0; i < 80; i++) flakes.push(createFlake());
-
-    // Wind gust system
     function updateWind() {
-      // Randomly change wind target every 2-4 seconds
       if (Math.random() < 0.01) {
         windTargetRef.current = (Math.random() - 0.5) * 3;
       }
-
-      // Smoothly transition to target wind
       windRef.current += (windTargetRef.current - windRef.current) * 0.02;
     }
 
@@ -66,19 +53,11 @@ export default function SnowWithPile() {
 
       updateWind();
 
-      pileRef.current.forEach((p) => {
-        ctx.fillStyle = "rgba(100, 150, 200, 0.3)";
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fill();
+      if (isSnowingRef.current && flakesRef.current.length < 80) {
+        flakesRef.current.push(createFlake());
+      }
 
-        ctx.fillStyle = "#E8F4F8";
-        ctx.beginPath();
-        ctx.arc(p.x - 0.5, p.y - 0.5, p.r, 0, Math.PI * 2);
-        ctx.fill();
-      });
-
-      flakes.forEach((flake, i) => {
+      flakesRef.current.forEach((flake, i) => {
         const turbulenceX = (Math.random() - 0.5) * flake.turbulence;
         const turbulenceY = (Math.random() - 0.5) * flake.turbulence * 0.5;
 
@@ -89,12 +68,8 @@ export default function SnowWithPile() {
         if (flake.x < 0) flake.x = canvas.width;
 
         if (flake.y >= canvas.height - flake.r) {
-          pileRef.current.push({
-            x: flake.x,
-            y: canvas.height - flake.r,
-            r: flake.r,
-          });
-          flakes[i] = createFlake();
+          flakesRef.current.splice(i, 1);
+          return;
         }
 
         ctx.fillStyle = "rgba(100, 150, 200, 0.2)";
@@ -120,8 +95,9 @@ export default function SnowWithPile() {
     };
   }, []);
 
-  const clearPile = () => {
-    pileRef.current = [];
+  const toggleSnow = () => {
+    isSnowingRef.current = !isSnowingRef.current;
+    setIsSnowing(!isSnowing);
   };
 
   return (
@@ -139,20 +115,22 @@ export default function SnowWithPile() {
       />
 
       <button
-        onClick={clearPile}
+        onClick={toggleSnow}
         style={{
           position: "fixed",
           bottom: 20,
           left: 20,
           zIndex: 10000,
-          padding: "8px 14px",
-          background: "rgba(255, 255, 255, 0.8)",
+          padding: "10px 16px",
+          background: "rgba(255, 255, 255, 0.9)",
           color: "#333",
           borderRadius: "6px",
           cursor: "pointer",
+          border: "none",
+          fontWeight: "500",
         }}
       >
-        Clear Snow ❄️
+        {isSnowing ? "Stop Snow 🛑" : "Start Snow ❄️"}
       </button>
     </>
   );
