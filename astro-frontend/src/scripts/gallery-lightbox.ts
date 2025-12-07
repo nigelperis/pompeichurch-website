@@ -10,9 +10,11 @@ let masonryInstance: Masonry;
 export const masonry = () => {
   masonryInstance = new Masonry(masonryGrid, {
     itemSelector: ".masonry-grid-item",
+    columnWidth: ".masonry-grid-item",  // Added: Use item width as column width
     resize: true,
     percentPosition: true,
     transitionDuration: 300,
+    gutter: 0,  // Added: Control spacing between columns
   });
 
   imagesLoaded(masonryGrid).on("progress", () => {
