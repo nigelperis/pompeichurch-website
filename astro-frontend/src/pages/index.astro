@@ -17,7 +17,7 @@ import stayTuned from "~/assets/static-assets/stay-tuned.png";
 import stayTunedKok from "~/assets/static-assets/stay-tuned-kok.png";
 import ChristmasPopup from "~/components/ChristmasPopup";
 import SnowWithPile from "~/components/SnowAnimation";
-import { isChristmasSeason } from "~/helpers/is-christmas";
+import { isChristmasSeason, isChristmasWeek } from "~/helpers/is-christmas";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -63,14 +63,15 @@ if (section === "upcoming-events") {
 }
 
 const showChristmasLights = isChristmasSeason();
+const showChristmasMessage = isChristmasWeek()
 ---
 
 <Layout title={pageTitle} image={pageImage} url={url.toString()}>
-  <!-- <ChristmasPopup
+  {showChristmasMessage && <ChristmasPopup
     client:load
-    title={t("christmas.title")}
     message={t("christmas.message")}
-  /> -->
+  />
+  }
   {showChristmasLights && <SnowWithPile client:load/>}
 
   <main>
@@ -94,7 +95,7 @@ const showChristmasLights = isChristmasSeason();
 
     if (section === "upcoming-events") {
       const element = document.getElementById("upcoming-events");
-      
+
       if (element) {
         setTimeout(() => {
           element.scrollIntoView({

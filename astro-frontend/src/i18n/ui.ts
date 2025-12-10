@@ -423,10 +423,11 @@ export const ui = {
     "push.disable": "Not Now!",
     download: "View PDF",
     all: "All",
-    "footer.our-lady-of-pompei-church":"Our Lady of Pompei Church",
+    "footer.our-lady-of-pompei-church": "Our Lady of Pompei Church",
     "footer.all-rights-reserved": "All Rights Reserved",
     "footer.powered-by": "Powered by",
     "footer.commission": "Commission for Social Communication, Gurpur Kaikamba",
+    "christmas.message": "Wishing you all a very happy and blessed Christmas! "
   },
   kok: {
     "nav.home": "ಹೋಮ್",
@@ -845,9 +846,10 @@ export const ui = {
     "push.disable": "ಆತಾಂ ನಾಕಾ!",
     download: "PDF ಪಳೆಯಾ",
     all: "ಸಕ್ಕಡ್",
-    "footer.our-lady-of-pompei-church":"ಪೊಂಪೈ ಮಾಯೆಚಿ ಫಿರ್ಗಜ್",
+    "footer.our-lady-of-pompei-church": "ಪೊಂಪೈ ಮಾಯೆಚಿ ಫಿರ್ಗಜ್",
     "footer.all-rights-reserved": " ಸರ್ವ್ ಹಕ್ಕಾಂ ಅಮಾನತ್ ದವರ್ಲ್ಯಾಂತ್",
     "footer.powered-by": "ಸಹಯೋಗ್",
     "footer.commission": "ಸಾಮಾಜಿಕ್ ಸಂವಹನ್ ಆಯೋಗ್, ಗುರ್ಪುರ್ ಕೈಕಂಬ",
+    "christmas.message": "ತುಮ್ಕಾಂ ಸಮೇಸ್ತಾಂಕ್ ಸಂತೊಸ್ಭರಿತ್ ನತಾಲಾಂ ಫೆಸ್ತ್ ಮಾಗ್ತಾಂವ್!"
   },
 } as const;

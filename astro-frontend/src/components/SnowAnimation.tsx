@@ -124,7 +124,7 @@ export default function SnowEffect() {
           position: "fixed",
           bottom: 20,
           left: 20,
-          zIndex: 10000,
+          zIndex: 50,
           padding: "10px 16px",
           background: "rgba(255, 255, 255, 0.9)",
           color: "#333",
