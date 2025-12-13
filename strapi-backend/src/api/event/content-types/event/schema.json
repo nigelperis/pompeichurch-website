@@ -25,12 +25,7 @@
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
+      "allowedTypes": ["images", "files", "videos", "audios"]
     },
     "shortDescriptionEn": {
       "type": "string"
@@ -53,7 +48,8 @@
     },
     "slug": {
       "type": "uid",
-      "targetField": "englishTitle"
+      "targetField": "englishTitle",
+      "required": true
     },
     "association": {
       "type": "relation",
