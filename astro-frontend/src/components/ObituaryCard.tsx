@@ -48,6 +48,8 @@ const relationMapKok: Record<string, string> = {
   "W/O": "ಪತಿಣ್",
   "D/O": "ಧುವ್",
   "S/O": "ಪುತ್",
+  "Sister of": "ಭಯ್ಣ್",
+  "Brother of": "ಭಾವ್",
 };
 
 const activeLabels = {
@@ -214,9 +216,10 @@ export default function ObituaryCard({
                   <strong>{relationLabel}:</strong>{" "}
                   {lang === "kok"
                     ? `${relationNameKok || ""} ${
-                        relationType === "H/O"
+                        relationType === "H/O" || relationType === "Brother of"
                           ? "ಹಿಚೊ"
-                          : relationType === "W/O"
+                          : relationType === "W/O" ||
+                              relationType === "Sister of"
                             ? "ಹಾಚಿ"
                             : ""
                       }`

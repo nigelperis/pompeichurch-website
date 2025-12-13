@@ -29,9 +29,11 @@ function getGenderFromRelation(relationType?: RelationType): Gender {
   switch (relationType) {
     case RelationType.HUSBAND:
     case RelationType.SON:
+    case RelationType.BROTHER:
       return Gender.MALE;
     case RelationType.WIFE:
     case RelationType.DAUGHTER:
+    case RelationType.SISTER:
       return Gender.FEMALE;
     default:
       return Gender.MALE;
