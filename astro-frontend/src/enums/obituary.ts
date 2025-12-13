@@ -3,6 +3,8 @@ export enum RelationType {
   "WIFE" = "W/O",
   "DAUGHTER" = "D/O",
   "SON" = "S/O",
+  "BROTHER" = "Brother of",
+  "SISTER" = "Sister of",
 }
 
 export enum Gender {

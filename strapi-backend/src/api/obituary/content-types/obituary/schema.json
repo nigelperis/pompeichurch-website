@@ -25,28 +25,19 @@
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
+      "allowedTypes": ["images", "files", "videos", "audios"]
     },
     "englishName": {
       "type": "string"
     },
     "slug": {
       "type": "uid",
-      "targetField": "englishName"
+      "targetField": "englishName",
+      "required": true
     },
     "relationType": {
       "type": "enumeration",
-      "enum": [
-        "H/O",
-        "W/O",
-        "S/O",
-        "D/O"
-      ]
+      "enum": ["H/O", "W/O", "S/O", "D/O", "Brother of", "Sister of"]
     },
     "relationNameEn": {
       "type": "string"
