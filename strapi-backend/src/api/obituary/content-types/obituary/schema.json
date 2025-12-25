@@ -25,12 +25,7 @@
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
+      "allowedTypes": ["images", "files", "videos", "audios"]
     },
     "englishName": {
       "type": "string"
@@ -41,12 +36,7 @@
     },
     "relationType": {
       "type": "enumeration",
-      "enum": [
-        "H/O",
-        "W/O",
-        "S/O",
-        "D/O"
-      ]
+      "enum": ["H/O", "W/O", "S/O", "D/O", "b/o", "s/o"]
     },
     "relationNameEn": {
       "type": "string"
