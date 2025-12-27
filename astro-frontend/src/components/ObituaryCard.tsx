@@ -48,8 +48,8 @@ const relationMapKok: Record<string, string> = {
   "W/O": "ಪತಿಣ್",
   "D/O": "ಧುವ್",
   "S/O": "ಪುತ್",
-  "s/o": "ಭಯ್ಣ್",
-  "b/o": "ಭಾವ್",
+  "Sister of": "ಭಯ್ಣ್",
+  "Brother of": "ಭಾವ್",
 };
 
 const activeLabels = {
