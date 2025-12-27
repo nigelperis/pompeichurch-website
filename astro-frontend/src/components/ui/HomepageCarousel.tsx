@@ -8,6 +8,8 @@ interface CarouselSlide {
   title: string;
   image: string;
   alt?: string;
+  width?: number;
+  height?: number;
 }
 
 interface HomepageCarouselProps {
@@ -61,12 +63,44 @@ export const HomepageCarousel: React.FC<HomepageCarouselProps> = ({
     return () => clearInterval(autoplayInterval);
   }, [emblaApi, autoplay, autoplayDelay]);
 
+  // Initialize PhotoSwipe lightbox
+  useEffect(() => {
+    let lightbox: any;
+
+    const initLightbox = async () => {
+      const PhotoSwipeLightbox = (await import("photoswipe/lightbox")).default;
+      await import("photoswipe/style.css");
+
+      lightbox = new PhotoSwipeLightbox({
+        mainClass: "pswp--custom-icon-colors",
+        gallery: ".homepage-carousel-lightbox",
+        children: "a",
+        pswpModule: () => import("photoswipe"),
+      });
+
+      lightbox.init();
+    };
+
+    initLightbox();
+
+    return () => {
+      if (lightbox) {
+        lightbox.destroy();
+      }
+    };
+  }, []);
+
   if (!slides || slides.length === 0) {
     return null;
   }
 
   return (
-    <div className={cn("relative w-full mx-auto", className)}>
+    <div
+      className={cn(
+        "relative w-full mx-auto homepage-carousel-lightbox",
+        className,
+      )}
+    >
       {/* Carousel Container */}
       <div className="overflow-hidden" ref={emblaRef}>
         <div className="flex">
@@ -82,18 +116,36 @@ export const HomepageCarousel: React.FC<HomepageCarouselProps> = ({
                     ? "scale-99 opacity-100"
                     : "scale-90 opacity-70",
                 )}
-                onClick={() => scrollTo(index)}
                 style={{
                   boxShadow:
                     "var(--sds-size-depth-0) var(--sds-size-depth-100) var(--sds-size-depth-100) var(--sds-size-depth-negative-025) var(--sds-color-black-200)",
                 }}
               >
-                <img
-                  src={slide.image}
-                  alt={slide.alt || slide.title}
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
+                {/* ✅ Corrected clickable wrapper */}
+                <a
+                  href={slide.image}
+                  role="button"
+                  aria-label={`View full-size image: ${
+                    slide.alt || slide.title
+                  }`}
+                  data-pswp-src={slide.image}
+                  data-pswp-width={slide.width || 1200}
+                  data-pswp-height={slide.height || 800}
+                  className="block w-full h-full cursor-zoom-in"
+                  onClick={(e) => {
+                    if (index !== selectedIndex) {
+                      e.preventDefault();
+                      scrollTo(index);
+                    }
+                  }}
+                >
+                  <img
+                    src={slide.image}
+                    alt={slide.alt || slide.title}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </a>
               </div>
             </div>
           ))}

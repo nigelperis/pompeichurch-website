@@ -11,6 +11,9 @@ const slides =
       title: img.alternativeText || img.name || `Slide ${index + 1}`,
       image: new URL(img.url, import.meta.env.PUBLIC_STRAPI_URL).toString(),
       alt: img.alternativeText || img.name,
+      link: item.link,
+      width: img.width || 1920,
+      height: img.height || 1080,
     })),
   ) || [];
 ---
