@@ -216,9 +216,10 @@ export default function ObituaryCard({
                   <strong>{relationLabel}:</strong>{" "}
                   {lang === "kok"
                     ? `${relationNameKok || ""} ${
-                        relationType === "H/O" || relationType === "b/o"
+                        relationType === "H/O" || relationType === "Brother of"
                           ? "ಹಿಚೊ"
-                          : relationType === "W/O" || relationType === "s/o"
+                          : relationType === "W/O" ||
+                              relationType === "Sister of"
                             ? "ಹಾಚಿ"
                             : ""
                       }`

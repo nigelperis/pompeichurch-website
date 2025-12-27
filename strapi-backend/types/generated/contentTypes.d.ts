@@ -685,7 +685,7 @@ export interface ApiObituaryObituary extends Struct.CollectionTypeSchema {
     relationNameEn: Schema.Attribute.String;
     relationNameKok: Schema.Attribute.String;
     relationType: Schema.Attribute.Enumeration<
-      ['H/O', 'W/O', 'S/O', 'D/O', 'b/o', 's/o']
+      ['H/O', 'W/O', 'S/O', 'D/O', 'Brother of', 'Sister of']
     >;
     slug: Schema.Attribute.UID<'englishName'>;
     updatedAt: Schema.Attribute.DateTime;

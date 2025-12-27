@@ -36,7 +36,7 @@
     },
     "relationType": {
       "type": "enumeration",
-      "enum": ["H/O", "W/O", "S/O", "D/O", "b/o", "s/o"]
+      "enum": ["H/O", "W/O", "S/O", "D/O", "Brother of", "Sister of"]
     },
     "relationNameEn": {
       "type": "string"
