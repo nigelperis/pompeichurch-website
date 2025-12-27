@@ -32,7 +32,8 @@
     },
     "slug": {
       "type": "uid",
-      "targetField": "englishName"
+      "targetField": "englishName",
+      "required": true
     },
     "relationType": {
       "type": "enumeration",
