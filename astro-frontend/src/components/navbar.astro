@@ -20,13 +20,13 @@ const t = useTranslations(lang);
 // Load dynamic associations for nav with locale fallback to EN
 let associations: { slug: string; name: string }[] = [];
 try {
-const [localizedAssocs, englishAssocs] = await Promise.all([
-  listAssociations({ locale: lang as Locale }),
-  listAssociations({ locale: Locale.EN }),
-]);
-associations = localizedAssocs.length ? localizedAssocs : englishAssocs;
+  const [localizedAssocs, englishAssocs] = await Promise.all([
+    listAssociations({ locale: lang as Locale }),
+    listAssociations({ locale: Locale.EN }),
+  ]);
+  associations = localizedAssocs.length ? localizedAssocs : englishAssocs;
 } catch (e) {
-associations = [];
+  associations = [];
 }
 
 const showChristmasLights = isChristmasSeason();
@@ -34,207 +34,207 @@ const showChristmasLights = isChristmasSeason();
 
 <ScrollProgress />
 <header class="sticky top-0 z-10 w-full shadow-sm bg-white p-3 xl:px-28">
-{showChristmasLights && <ChristmasLights client:load />}
-<section class="flex items-center justify-between">
-  <a href={lang === Locale.KOK ? "/kok/" : "/"}>
-    <img
-      src="/church-logo.webp"
-      alt="Our Lady of Pompei Church logo"
-      width={50}
-      height={50}
-    />
-  </a>
+  {showChristmasLights && <ChristmasLights client:load />}
+  <section class="flex items-center justify-between">
+    <a href={lang === Locale.KOK ? "/kok/" : "/"}>
+      <img
+        src="/church-logo.webp"
+        alt="Our Lady of Pompei Church logo"
+        width={50}
+        height={50}
+      />
+    </a>
 
-  <!-- Navbar for Web -->
-  <div class="hidden items-center justify-center flex-1 lg:flex">
-    <ul
-      class={cn("flex items-center justify-center gap-6", {
-        "lg:pt-2": lang === Locale.KOK,
-      })}
-    >
-      {
-        navLinks
-          .filter((link) => link.title !== "nav.home")
-          .map((link) => (
-            <li
-              class={cn("group relative", {
-                "expandable-link": link.type === "expandable",
-              })}
-            >
-              <a
-                href={
-                  link.type === "link"
-                    ? getRelativeLocaleUrl(lang, link.href || "")
-                    : "#"
-                }
-                role={link.type === "expandable" ? "button" : undefined}
-                aria-haspopup={
-                  link.type === "expandable" ? "true" : undefined
-                }
-                aria-expanded="false"
-                aria-label={t(link.title)}
-                class="relative font-semibold text-black transition-all p-2 duration-300 after:absolute after:left-0 after:bottom-[-0.3px] after:h-0.5 after:w-0 after:bg-natgeo-yellow after:transition-all after:duration-300 hover:after:w-full"
+    <!-- Navbar for Web -->
+    <div class="hidden items-center justify-center flex-1 lg:flex">
+      <ul
+        class={cn("flex items-center justify-center gap-6", {
+          "lg:pt-2": lang === Locale.KOK,
+        })}
+      >
+        {
+          navLinks
+            .filter((link) => link.title !== "nav.home")
+            .map((link) => (
+              <li
+                class={cn("group relative", {
+                  "expandable-link": link.type === "expandable",
+                })}
               >
-                {t(link.title)}
-              </a>
+                <a
+                  href={
+                    link.type === "link"
+                      ? getRelativeLocaleUrl(lang, link.href || "")
+                      : "#"
+                  }
+                  role={link.type === "expandable" ? "button" : undefined}
+                  aria-haspopup={
+                    link.type === "expandable" ? "true" : undefined
+                  }
+                  aria-expanded="false"
+                  aria-label={t(link.title)}
+                  class="relative font-semibold text-black transition-all p-2 duration-300 after:absolute after:left-0 after:bottom-[-0.3px] after:h-0.5 after:w-0 after:bg-natgeo-yellow after:transition-all after:duration-300 hover:after:w-full"
+                >
+                  {t(link.title)}
+                </a>
 
-              {link.type === "expandable" && (
-                <ul class="absolute top-full mt-2 hidden w-60 rounded-md p-2 shadow-md group-hover:block md:flex bg-white">
-                  {link.title === "nav.associations"
-                    ? associations.map((assoc) => (
-                        <li class="w-full">
-                          <a
-                            href={getRelativeLocaleUrl(
-                              lang,
-                              `/associations/${assoc.slug}`,
-                            )}
-                            class={cn(
-                              "hover:bg-natgeo-yellow block rounded-md px-2 py-2 text-sm transition-all font-normal",
-                              {
-                                "font-[350]": lang === Locale.KOK,
-                              },
-                            )}
-                          >
-                            {assoc.name}
-                          </a>
-                        </li>
-                      ))
-                    : link.expandedLinks?.map((sublink) => (
-                        <li class="w-full">
-                          <a
-                            href={getRelativeLocaleUrl(lang, sublink.href)}
-                            class={cn(
-                              "hover:bg-natgeo-yellow block rounded-md px-2 py-2 text-sm transition-all font-normal",
-                              {
-                                "font-[350]": lang === Locale.KOK,
-                              },
-                            )}
-                          >
-                            {t(sublink.title)}
-                          </a>
-                        </li>
-                      ))}
-                </ul>
-              )}
-            </li>
-          ))
-      }
-    </ul>
-  </div>
+                {link.type === "expandable" && (
+                  <ul class="absolute top-full mt-2 hidden w-60 rounded-md p-2 shadow-md group-hover:block md:flex bg-white">
+                    {link.title === "nav.associations"
+                      ? associations.map((assoc) => (
+                          <li class="w-full">
+                            <a
+                              href={getRelativeLocaleUrl(
+                                lang,
+                                `/associations/${assoc.slug}`,
+                              )}
+                              class={cn(
+                                "hover:bg-natgeo-yellow block rounded-md px-2 py-2 text-sm transition-all font-normal",
+                                {
+                                  "font-[350]": lang === Locale.KOK,
+                                },
+                              )}
+                            >
+                              {assoc.name}
+                            </a>
+                          </li>
+                        ))
+                      : link.expandedLinks?.map((sublink) => (
+                          <li class="w-full">
+                            <a
+                              href={getRelativeLocaleUrl(lang, sublink.href)}
+                              class={cn(
+                                "hover:bg-natgeo-yellow block rounded-md px-2 py-2 text-sm transition-all font-normal",
+                                {
+                                  "font-[350]": lang === Locale.KOK,
+                                },
+                              )}
+                            >
+                              {t(sublink.title)}
+                            </a>
+                          </li>
+                        ))}
+                  </ul>
+                )}
+              </li>
+            ))
+        }
+      </ul>
+    </div>
 
-  <div class="flex flex-row-reverse">
-    <div
-      id="hamburger"
-      class="ml-3 flex cursor-pointer flex-col items-end lg:hidden"
-    >
-      <Icon name="menu" class="mt-1" size={35} />
+    <div class="flex flex-row-reverse">
+      <div
+        id="hamburger"
+        class="ml-3 flex cursor-pointer flex-col items-end lg:hidden"
+      >
+        <Icon name="menu" class="mt-1" size={35} />
+      </div>
+      <div class="ml-5">
+        <LanguageSwitcher currentLocale={currentLocale as Locale} client:load />
+      </div>
     </div>
-    <div class="ml-5">
-      <LanguageSwitcher currentLocale={currentLocale as Locale} client:load />
-    </div>
-  </div>
-</section>
+  </section>
 </header>
 
 <!-- Navbar for Mobile -->
 <nav
-class="fixed inset-0 z-10000 w-full overflow-hidden bg-white px-6 py-6 transition-transform duration-500 ease-out"
-id="navbar"
+  class="fixed inset-0 z-10000 w-full overflow-hidden bg-white px-6 py-6 transition-transform duration-500 ease-out"
+  id="navbar"
 >
-<Icon
-  name="cancel"
-  id="hamburger-close"
-  class="relative ml-auto cursor-pointer rounded-full text-3xl"
-/>
+  <Icon
+    name="cancel"
+    id="hamburger-close"
+    class="relative ml-auto cursor-pointer rounded-full text-3xl"
+  />
 
-<ul class="flex flex-col gap-y-5">
-  {
-    navLinks.map((link) => (
-      <li>
-        <a
-          data-expandable-links={
-            link.type === "expandable" ? "true" : "false"
-          }
-          href={
-            link.type === "link" ? getRelativeLocaleUrl(lang, link.href) : "#"
-          }
-          class={cn(
-            "group flex items-center justify-between font-bold text-xl text-black",
-            {
-              "font-extrablack": lang === Locale.EN,
-            },
-          )}
-        >
-          <span
-            class={cn("transition-all duration-150", {
-              "mt-1": lang === Locale.KOK,
-            })}
+  <ul class="flex flex-col gap-y-5">
+    {
+      navLinks.map((link) => (
+        <li>
+          <a
+            data-expandable-links={
+              link.type === "expandable" ? "true" : "false"
+            }
+            href={
+              link.type === "link" ? getRelativeLocaleUrl(lang, link.href) : "#"
+            }
+            class={cn(
+              "group flex items-center justify-between font-bold text-xl text-black",
+              {
+                "font-extrablack": lang === Locale.EN,
+              },
+            )}
           >
-            {t(link.title)}
-          </span>
+            <span
+              class={cn("transition-all duration-150", {
+                "mt-1": lang === Locale.KOK,
+              })}
+            >
+              {t(link.title)}
+            </span>
+
+            {link.type === "expandable" ? (
+              <Icon
+                name="chevron-right"
+                class="stroke-2 text-3xl"
+                data-icon-name="chevron-right"
+              />
+            ) : null}
+          </a>
 
           {link.type === "expandable" ? (
-            <Icon
-              name="chevron-right"
-              class="stroke-2 text-3xl"
-              data-icon-name="chevron-right"
-            />
+            <ul class="expandable-links max-h-0 overflow-hidden transition-all duration-500 ease-out">
+              {link.title === "nav.associations"
+                ? associations.map((assoc) => (
+                    <li>
+                      <a
+                        href={getRelativeLocaleUrl(
+                          lang,
+                          `/associations/${assoc.slug}`,
+                        )}
+                        class="group mb-4 flex items-center justify-between text-2xl"
+                      >
+                        <span
+                          class={cn(
+                            "text-lg font-normal transition-all duration-150",
+                            {
+                              "font-[350]": lang === Locale.KOK,
+                            },
+                          )}
+                        >
+                          {assoc.name}
+                        </span>
+                      </a>
+                    </li>
+                  ))
+                : link.expandedLinks?.map((sublinks) => (
+                    <li>
+                      <a
+                        href={getRelativeLocaleUrl(lang, sublinks.href)}
+                        class="group mb-4 flex items-center justify-between text-2xl"
+                      >
+                        <span
+                          class={cn(
+                            "text-lg font-normal transition-all duration-150",
+                            {
+                              "font-[350]": lang === Locale.KOK,
+                            },
+                          )}
+                        >
+                          {t(sublinks.title)}
+                        </span>
+                      </a>
+                    </li>
+                  ))}
+            </ul>
           ) : null}
-        </a>
-
-        {link.type === "expandable" ? (
-          <ul class="expandable-links max-h-0 overflow-hidden transition-all duration-500 ease-out">
-            {link.title === "nav.associations"
-              ? associations.map((assoc) => (
-                  <li>
-                    <a
-                      href={getRelativeLocaleUrl(
-                        lang,
-                        `/associations/${assoc.slug}`,
-                      )}
-                      class="group mb-4 flex items-center justify-between text-2xl"
-                    >
-                      <span
-                        class={cn(
-                          "text-lg font-normal transition-all duration-150",
-                          {
-                            "font-[350]": lang === Locale.KOK,
-                          },
-                        )}
-                      >
-                        {assoc.name}
-                      </span>
-                    </a>
-                  </li>
-                ))
-              : link.expandedLinks?.map((sublinks) => (
-                  <li>
-                    <a
-                      href={getRelativeLocaleUrl(lang, sublinks.href)}
-                      class="group mb-4 flex items-center justify-between text-2xl"
-                    >
-                      <span
-                        class={cn(
-                          "text-lg font-normal transition-all duration-150",
-                          {
-                            "font-[350]": lang === Locale.KOK,
-                          },
-                        )}
-                      >
-                        {t(sublinks.title)}
-                      </span>
-                    </a>
-                  </li>
-                ))}
-          </ul>
-        ) : null}
-      </li>
-    ))
-  }
-</ul>
+        </li>
+      ))
+    }
+  </ul>
 </nav>
 
 <script>
-import { handleNav } from "~/scripts/handle-nav";
-handleNav();
+  import { handleNav } from "~/scripts/handle-nav";
+  handleNav();
 </script>
