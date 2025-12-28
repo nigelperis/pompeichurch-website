@@ -64,11 +64,11 @@ const showChristmasMessage = isChristmasWeek();
 ---
 
 <Layout title={pageTitle} image={pageImage} url={url.toString()}>
-  {showChristmasLights && <SnowWithPile client:load/>}
-  {showChristmasMessage && <ChristmasPopup
-    client:load
-    message={t("christmas.message")}
-  />
+  {showChristmasLights && <SnowWithPile client:load />}
+  {
+    showChristmasMessage && (
+      <ChristmasPopup client:load message={t("christmas.message")} />
+    )
   }
   <main>
     <HeroSection />
@@ -107,7 +107,7 @@ const showChristmasMessage = isChristmasWeek();
               behavior: "smooth",
               block: "start",
             });
-           }
+          }
         }, 500);
       }
     }
