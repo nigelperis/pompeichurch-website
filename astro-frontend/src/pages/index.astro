@@ -63,16 +63,16 @@ if (section === "upcoming-events") {
 }
 
 const showChristmasLights = isChristmasSeason();
-const showChristmasMessage = isChristmasWeek()
+const showChristmasMessage = isChristmasWeek();
 ---
 
 <Layout title={pageTitle} image={pageImage} url={url.toString()}>
-  {showChristmasMessage && <ChristmasPopup
-    client:load
-    message={t("christmas.message")}
-  />
+  {
+    showChristmasMessage && (
+      <ChristmasPopup client:load message={t("christmas.message")} />
+    )
   }
-  {showChristmasLights && <SnowWithPile client:load/>}
+  {showChristmasLights && <SnowWithPile client:load />}
 
   <main>
     <HeroSection />
@@ -111,7 +111,7 @@ const showChristmasMessage = isChristmasWeek()
               behavior: "smooth",
               block: "start",
             });
-           }
+          }
         }, 500);
       }
     }

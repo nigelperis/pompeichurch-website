@@ -12,7 +12,6 @@ const t = useTranslations(lang);
 
 const title = t("gallery.title");
 
-
 const galleryImages = await listGalleryImages();
 const strapiBaseUrl = import.meta.env.PUBLIC_STRAPI_URL;
 const firstGalleryImage = galleryImages[0];
