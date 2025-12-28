@@ -34,7 +34,7 @@ const showChristmasLights = isChristmasSeason();
 
 <ScrollProgress />
 <header class="sticky top-0 z-10 w-full shadow-sm bg-white p-3 xl:px-28">
- {showChristmasLights && <ChristmasLights client:load />}
+  {showChristmasLights && <ChristmasLights client:load />}
   <section class="flex items-center justify-between">
     <a href={lang === Locale.KOK ? "/kok/" : "/"}>
       <img
@@ -138,7 +138,7 @@ const showChristmasLights = isChristmasSeason();
 
 <!-- Navbar for Mobile -->
 <nav
-  class="fixed inset-0 z-10000 w-full overflow-y-auto bg-white px-6 py-6 transition-transform duration-500 ease-out"
+  class="fixed inset-0 z-10000 w-full overflow-hidden bg-white px-6 py-6 transition-transform duration-500 ease-out"
   id="navbar"
 >
   <Icon

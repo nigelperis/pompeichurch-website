@@ -11,6 +11,7 @@ export const handleNav = () => {
 
   hamburgerMenu?.addEventListener("click", () => {
     navbar?.classList.add("open");
+    document.body.style.overflow = "hidden";
   });
 
   hamburgerClose?.addEventListener("click", () => {
@@ -22,6 +23,7 @@ export const handleNav = () => {
     });
 
     navbar?.classList.remove("open");
+    document.body.style.overflow = "";
   });
 
   expandableLinks.forEach((element) => {
@@ -69,6 +71,7 @@ export const handleNav = () => {
 
       // Close the navbar menu on mobile
       navbar?.classList?.remove("open");
+      document.body.style.overflow = "";
 
       // Redirect to the link's href
       const anchorElement = link as HTMLAnchorElement;
