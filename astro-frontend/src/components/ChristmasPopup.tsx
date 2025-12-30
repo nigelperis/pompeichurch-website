@@ -7,6 +7,9 @@ interface ChristmasPopupProps {
 
 export default function ChristmasPopup({ message }: ChristmasPopupProps) {
   const [isVisible, setIsVisible] = useState(true);
+  const newYear = new Date().getFullYear() + 1;
+
+  message = message.replace("{newYear}", newYear.toString());
 
   if (!isVisible) return null;
 

@@ -427,7 +427,8 @@ export const ui = {
     "footer.all-rights-reserved": "All Rights Reserved",
     "footer.powered-by": "Powered by",
     "footer.commission": "Commission for Social Communication, Gurpur Kaikamba",
-    "christmas.message": "Wishing you all a very happy and blessed Christmas! ",
+    "christmas.message":
+      "Wishing you all a very happy and blessed Christmas, and a prosperous New Year {newYear}!",
   },
   kok: {
     "nav.home": "ಹೋಮ್",
@@ -851,6 +852,6 @@ export const ui = {
     "footer.powered-by": "ಸಹಯೋಗ್",
     "footer.commission": "ಸಾಮಾಜಿಕ್ ಸಂವಹನ್ ಆಯೋಗ್, ಗುರ್ಪುರ್ ಕೈಕಂಬ",
     "christmas.message":
-      "ತುಮ್ಕಾಂ ಸಮೇಸ್ತಾಂಕ್ ಸಂತೊಸ್ಭರಿತ್ ನತಾಲಾಂ ಫೆಸ್ತ್ ಮಾಗ್ತಾಂವ್!",
+      "ತುಮ್ಕಾಂ ಸಮೇಸ್ತಾಂಕ್ ಸಂತೊಸ್ಭರಿತ್ ನತಾಲಾಂ ಫೆಸ್ತ್ ಆನಿ ಭಾಗಿ ನವೆಂ ವರಸ್ {newYear} ಮಾಗ್ತಾಂವ್!",
   },
 } as const;
