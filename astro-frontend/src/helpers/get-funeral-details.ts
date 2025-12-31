@@ -84,7 +84,7 @@ export function getFuneralDetails(
 
   return `${
     weekdayKey ? `${days.en[weekdayKey]} (${formattedDate}), ` : ""
-  }${homeT ? `viewing at home from ${homeT}` : ""}${
+  }${homeT ? `funeral cortege leaves residence at ${homeT}` : ""}${
     homeT && massT ? ", followed by " : ""
   }${massT ? `Mass at the church at ${massT}` : ""}.`;
 }
