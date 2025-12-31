@@ -428,7 +428,7 @@ export const ui = {
     "footer.powered-by": "Powered by",
     "footer.commission": "Commission for Social Communication, Gurpur Kaikamba",
     "christmas.message":
-      "Wishing you all a very happy and blessed Christmas, and a prosperous New Year {newYear}!",
+      "Wishing you all a very happy Christmas and a prosperous New Year {newYear}!",
   },
   kok: {
     "nav.home": "ಹೋಮ್",
