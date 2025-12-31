@@ -58,7 +58,7 @@ const pageTitle = selectedObituary
   image={absoluteImage}
   url={obituaryUrl}
 >
-  <main class="mx-auto max-w-screen-lg overflow-hidden bg-white">
+  <main class="mx-auto max-w-5xl overflow-hidden bg-white">
     <section class="flex flex-col p-6 lg:p-8">
       <h1
         class={cn(
@@ -88,9 +88,7 @@ const pageTitle = selectedObituary
         relationNameEn={selectedObituary.relationNameEn}
         relationNameKok={selectedObituary.relationNameKok}
         ward={selectedObituary.ward}
-        dateOfDeath={selectedObituary.dateOfDeath
-          ? new Date(selectedObituary.dateOfDeath).toISOString()
-          : ""}
+        dateOfDeath={selectedObituary.dateOfDeath}
         imageWidth={340}
         imageHeight={400}
         imageUrl={obituaryImage}
