@@ -581,7 +581,7 @@ export interface ApiEventEvent extends Struct.CollectionTypeSchema {
     publishedAt: Schema.Attribute.DateTime;
     shortDescriptionEn: Schema.Attribute.String;
     shortDescriptionKok: Schema.Attribute.String;
-    slug: Schema.Attribute.UID<'englishTitle'>;
+    slug: Schema.Attribute.UID<'englishTitle'> & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -684,8 +684,10 @@ export interface ApiObituaryObituary extends Struct.CollectionTypeSchema {
     publishedAt: Schema.Attribute.DateTime;
     relationNameEn: Schema.Attribute.String;
     relationNameKok: Schema.Attribute.String;
-    relationType: Schema.Attribute.Enumeration<['H/O', 'W/O', 'S/O', 'D/O']>;
-    slug: Schema.Attribute.UID<'englishName'>;
+    relationType: Schema.Attribute.Enumeration<
+      ['H/O', 'W/O', 'S/O', 'D/O', 'Brother of', 'Sister of']
+    >;
+    slug: Schema.Attribute.UID<'englishName'> & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
