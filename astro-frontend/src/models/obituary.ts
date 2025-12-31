@@ -52,11 +52,11 @@ export interface Obituary {
   relationNameKok?: string;
   youtubeLink?: string;
   ward: string;
-  dateOfDeath: Date;
+  dateOfDeath: string;
   funeralDetailsUpdatedOn?: Date;
   homeTime: string;
   massTime: string;
-  funeralDate: Date;
+  funeralDate: string;
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
