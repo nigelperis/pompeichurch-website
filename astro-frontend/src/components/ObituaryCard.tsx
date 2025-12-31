@@ -11,7 +11,10 @@ import YoutubeIcon from "~/assets/react-icons/youtube.svg?react";
 import CoffinIcon from "~/assets/react-icons/coffin.svg?react";
 import WhatsAppShare from "~/components/ui/whatsapp-share.tsx";
 import { EXPIRE_TIME } from "~/constants/index.ts";
-import { getFuneralDetails } from "~/helpers/get-funeral-details";
+import {
+  getFuneralDetails,
+  parseDateOnly,
+} from "~/helpers/get-funeral-details";
 import { FuneralInfoButton } from "./ui/FuneralInfoButton";
 
 interface Props {
@@ -29,7 +32,7 @@ interface Props {
   slug: string;
   massTime?: string;
   homeTime?: string;
-  funeralDate?: Date;
+  funeralDate?: string;
   funeralDetailsUpdatedOn?: Date | string;
   youtubeLink?: string;
   className?: string;
@@ -135,6 +138,7 @@ export default function ObituaryCard({
       : relationType || "Relation";
 
   let formattedDate = "";
+
   if (dateOfDeath) {
     const dateObj = new Date(dateOfDeath);
     if (!isNaN(dateObj.getTime())) {
@@ -186,7 +190,7 @@ export default function ObituaryCard({
             flipped ? "opacity-0 delay-0" : "opacity-100 delay-500",
           )}
         >
-          <div className="aspect-[3/4] bg-gray-100 relative md:h-[330px]">
+          <div className="aspect-3/4 bg-gray-100 relative md:h-[330px]">
             <img
               src={imageUrl}
               alt={`Image of ${name}`}

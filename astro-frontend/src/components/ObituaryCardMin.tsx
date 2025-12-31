@@ -8,7 +8,10 @@ import CloseIcon from "~/assets/react-icons/x.svg?react";
 import YoutubeIcon from "~/assets/react-icons/youtube.svg?react";
 import WhatsAppShare from "~/components/ui/whatsapp-share.tsx";
 import { EXPIRE_TIME } from "~/constants/index.ts";
-import { getFuneralDetails } from "~/helpers/get-funeral-details";
+import {
+  getFuneralDetails,
+  parseDateOnly,
+} from "~/helpers/get-funeral-details";
 import { FuneralInfoButton } from "./ui/FuneralInfoButton";
 
 interface Props {
@@ -23,7 +26,7 @@ interface Props {
   blurred?: boolean;
   homeTime?: string;
   massTime?: string;
-  funeralDate: Date;
+  funeralDate: string;
   funeralDetailsUpdatedOn?: Date | string;
   youtubeLink?: string;
   className?: string;
@@ -143,7 +146,7 @@ export default function ObituaryCardMin({
     return (
       <div className={cn("flex-none relative h-full", className)}>
         <div className={cn("flex-none relative h-full", className)}>
-          <div className="w-64 snap-start first:snap-align-none max-w-xs flex-shrink-0 border border-gray-200 duration-200 ease-in-out sm:w-64 min-h-[380px] h-[380px]">
+          <div className="w-64 snap-start first:snap-align-none max-w-xs shrink-0 border border-gray-200 duration-200 ease-in-out sm:w-64 min-h-[380px] h-[380px]">
             <div className="opacity-50 blur-md">
               <div className="card-image flex-none">
                 <img
@@ -162,7 +165,7 @@ export default function ObituaryCardMin({
                       {name}
                     </span>
                     {age ? (
-                      <span className="flex-shrink-0">&nbsp;({age})</span>
+                      <span className="shrink-0">&nbsp;({age})</span>
                     ) : null}
                   </p>
                   {dateOfDeath && (
@@ -179,7 +182,7 @@ export default function ObituaryCardMin({
         <div className="absolute inset-0 z-5 flex items-center justify-center lg:hidden">
           <a
             href={lang === Locale.KOK ? "/kok/obituary" : "/obituary"}
-            className="from-natgeo-yellow to-natgeo-yellow hoverable-link border-natgeo-yellow border-b-2 bg-gradient-to-r px-2 py-1 inline-block text-xl font-bold text-black hover:border-transparent hover:text-black mb-2 mt-2"
+            className="from-natgeo-yellow to-natgeo-yellow hoverable-link border-natgeo-yellow border-b-2 bg-linear-to-r px-2 py-1 inline-block text-xl font-bold text-black hover:border-transparent hover:text-black mb-2 mt-2"
           >
             {t ? t("ui.view-all") : "View All"}
           </a>
@@ -203,9 +206,7 @@ export default function ObituaryCardMin({
                 <span className="truncate max-w-[190px]" title={name}>
                   {name}
                 </span>
-                {age ? (
-                  <span className="flex-shrink-0">&nbsp;({age})</span>
-                ) : null}
+                {age ? <span className="shrink-0">&nbsp;({age})</span> : null}
               </p>
 
               {dateOfDeath && (
@@ -255,7 +256,7 @@ export default function ObituaryCardMin({
       <div
         ref={cardRef}
         className={cn(
-          "relative w-64 max-w-xs flex-shrink-0 border border-gray-200 sm:w-64 transition-transform duration-1000 transform-style",
+          "relative w-64 max-w-xs shrink-0 border border-gray-200 sm:w-64 transition-transform duration-1000 transform-style",
           flipped ? "rotate-y-180" : "",
         )}
         style={{
@@ -296,9 +297,7 @@ export default function ObituaryCardMin({
               <span className="truncate max-w-[190px]" title={name}>
                 {name}
               </span>
-              {age ? (
-                <span className="flex-shrink-0">&nbsp;({age})</span>
-              ) : null}
+              {age ? <span className="shrink-0">&nbsp;({age})</span> : null}
             </p>
 
             {dateOfDeath && (
