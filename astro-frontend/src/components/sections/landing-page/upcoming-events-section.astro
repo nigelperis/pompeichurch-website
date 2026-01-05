@@ -18,15 +18,25 @@ import NetworkVideo from "~/components/ui/network-video.astro";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const today = new Date();
-
 const upcomingEvents = await listUpcomingEvents();
+
+function toLocalDateOnly(d: Date) {
+  const x = new Date(d);
+  x.setHours(0, 0, 0, 0);
+  return x;
+}
+
+const today = toLocalDateOnly(new Date());
 
 const filteredEvents = upcomingEvents.filter((event) => {
   if (!event.eventDate) return false;
-  const eventDate = parseISO(event.eventDate);
-  const extendedDate = addDays(eventDate, 1);
-  return extendedDate > today;
+
+  const [y, m, d] = event.eventDate.split("-").map(Number);
+  const eventDate = new Date(y, m - 1, d);
+
+  eventDate.setDate(eventDate.getDate() + 1);
+
+  return eventDate >= today;
 });
 ---
 
