@@ -77,16 +77,12 @@ export const HomepageCarousel: React.FC<HomepageCarouselProps> = ({
             >
               <div
                 className={cn(
-                  "relative aspect-4/3 md:aspect-auto md:max-h-[570px] md:h-[670px] rounded-lg overflow-hidden transition-all duration-500 ease-out transform-gpu",
+                  "relative aspect-4/3 md:aspect-auto md:max-h-[570px] md:h-[670px] rounded-lg overflow-hidden transition-all duration-500 ease-out transform-gpu shadow-xl",
                   index === selectedIndex
                     ? "scale-99 opacity-100"
                     : "scale-90 opacity-70",
                 )}
                 onClick={() => scrollTo(index)}
-                style={{
-                  boxShadow:
-                    "var(--sds-size-depth-0) var(--sds-size-depth-100) var(--sds-size-depth-100) var(--sds-size-depth-negative-025) var(--sds-color-black-200)",
-                }}
               >
                 <img
                   src={slide.image}
