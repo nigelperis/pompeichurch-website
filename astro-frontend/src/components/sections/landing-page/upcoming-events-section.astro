@@ -36,7 +36,7 @@ const filteredEvents = upcomingEvents.filter((event) => {
 
   eventDate.setDate(eventDate.getDate() + 1);
 
-  return eventDate >= today;
+  return eventDate > today;
 });
 ---
 
