@@ -485,7 +485,7 @@ export const ui = {
     "landing.pastoral-commission-coordinator-name": "ಶ್ರೀಮತಿ ಹಿಲ್ಡಾ ಮಿನೇಜಸ್",
     "landing.about-church": "ಆಮ್ಚ್ಯಾ ಫಿರ್ಗಜೆಚಿ ಮಾಹೆತ್",
     "landing.pastoral-parishad": "ಫಿರ್ಗಜ್ ಗೊವ್ಳಿಕ್ ಪರಿಷದ್ ಕಾರ್ಯಕಾರಿ ಸಮಿತಿ",
-    "parish.pastoral-parishad": "ಗೊವ್ಳಿಕ್ ಪರಿಷಧ್",
+    "parish.pastoral-parishad": "ಗೊವ್ಳಿಕ್ ಪರಿಷದ್",
     "landing.mass-timings": "ಮಿಸಾಚೊ ವೇಳ್",
     "landing.adoration-note":
       "(ಸಾಕ್ರಾಮೆಂತಾಚೆಂ ಆರಾಧನ್ ಮಹಿನ್ಯಾಚಾ ಪಯ್ಲ್ಯಾ ಆಯ್ತಾರಾ ಸಕಾಳಿಂ ಮಿಸಾ ಉಪ್ರಾಂತ್)",
