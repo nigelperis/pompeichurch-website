@@ -442,7 +442,7 @@ export const ui = {
     "nav.contact": "ಸಂಪರ್ಕ್",
     "nav.parish-history": "ಫಿರ್ಗಜೆಚಿ ಚರಿತ್ರಾ",
     "nav.parish-priests-and-deacons": "ಫಿರ್ಗಜೆಚೆ ವಿಗಾರ್ ಅನಿ ದಿಯಾಕೊನ್",
-    "nav.parish-pastoral-council": "ಫಿರ್ಗಜ್ ಗೊವ್ಳಿಕ್ ಪರಿಷಧ್",
+    "nav.parish-pastoral-council": "ಫಿರ್ಗಜ್ ಗೊವ್ಳಿಕ್ ಪರಿಷದ್",
     "nav.parish-finance-committee": "ಫಿರ್ಗಜ್ ಆರ್ಥಿಕ್ ಸಮಿತಿ",
     "nav.parish-pastoral-21-commissions": "21 ಆಯೋಗ್",
     "nav.ex-vp-secretaries": "ಫಿರ್ಗಜೆoತ್ ಸೆವಾ ದಿಲ್ಲೆ ಉಪಾಧ್ಯಕ್ಷ್ ಅನಿ ಕಾರ್ಯದರ್ಶಿ",
