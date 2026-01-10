@@ -2,14 +2,11 @@
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import type { PrayerForTheYear } from "~/models/prayer-for-the-year";
 import { Locale } from "~/enums/locale";
-
-import StrapiBlocksRenderer from "~/components/ui/strapi-blocks-renderer";
-import type { BlocksContent } from "@strapi/blocks-react-renderer";
-
 import { Message } from "~/constants/message";
 import NetworkImage from "~/components/ui/network-image.astro";
 import NetworkVideo from "~/components/ui/network-video.astro";
-import { isAborted } from "astro:schema";
+import type { BlocksContent } from "@strapi/blocks-react-renderer";
+import StrapiBlocksRenderer from "~/components/ui/strapi-blocks-renderer";
 
 const lang = getLangFromUrl(Astro.url);
 
@@ -23,15 +20,43 @@ interface Props {
 const { prayerData, baseUrl } = Astro.props as Props;
 
 const title =
-  locale === Locale.KOK ? prayerData?.kokTitle : prayerData?.enTitle;
+  locale === Locale.KOK
+    ? (prayerData?.kokTitle ?? prayerData?.enTitle)
+    : (prayerData?.enTitle ?? prayerData?.kokTitle);
 
 const logo =
   locale === Locale.KOK
     ? (prayerData?.kokLogo ?? prayerData?.enLogo)
     : (prayerData?.enLogo ?? prayerData?.kokLogo);
 
+const isPrayerEmpty = (prayer: BlocksContent | undefined) => {
+  if (!prayer || prayer.length === 0) {
+    return true;
+  }
+
+  if (Array.isArray(prayer)) {
+    for (const block of prayer) {
+      if (block.type === "paragraph" && block.children) {
+        const hasText = block.children.some(
+          (child) => child.type === "text" && child.text.trim() !== "",
+        );
+        if (hasText) {
+          return false;
+        }
+      }
+    }
+  }
+  return true;
+};
+
 const prayer =
-  locale === Locale.KOK ? prayerData?.kokPrayer : prayerData?.enPrayer;
+  locale === Locale.KOK
+    ? isPrayerEmpty(prayerData?.kokPrayer)
+      ? prayerData?.enPrayer
+      : prayerData?.kokPrayer
+    : isPrayerEmpty(prayerData?.enPrayer)
+      ? prayerData?.kokPrayer
+      : prayerData?.enPrayer;
 
 const additionalMedia = prayerData?.additionalMedia || [];
 
@@ -75,7 +100,9 @@ const getAudioURL = (src: string) => {
         />
       </p>
     ) : (
-      <p>{Message.PRAYER_FOR_THE_YEAR_NOT_FOUND}</p>
+      <p class="py-8 text-center text-3xl font-semibold">
+        {Message.PRAYER_FOR_THE_YEAR_NOT_FOUND}
+      </p>
     )
   }
   {
