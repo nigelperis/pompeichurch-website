@@ -29,6 +29,7 @@ const logo =
     ? (prayerData?.kokLogo ?? prayerData?.enLogo)
     : (prayerData?.enLogo ?? prayerData?.kokLogo);
 
+// Function to check if the prayer content is empty
 const isPrayerEmpty = (prayer: BlocksContent | undefined) => {
   if (!prayer || prayer.length === 0) {
     return true;
