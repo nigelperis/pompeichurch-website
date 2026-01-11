@@ -561,6 +561,9 @@ export interface ApiEventEvent extends Struct.CollectionTypeSchema {
       'manyToOne',
       'api::association.association'
     >;
+    commissions: Schema.Attribute.Enumeration<
+      ['Parish Pastoral 21 Commissions']
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

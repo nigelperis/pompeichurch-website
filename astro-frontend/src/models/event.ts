@@ -106,6 +106,7 @@ interface Event {
     name: string;
     slug: string;
   } | null;
+  commissions: string;
 }
 
 interface EventData {
