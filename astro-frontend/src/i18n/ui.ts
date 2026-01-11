@@ -416,7 +416,8 @@ export const ui = {
       "Celebrating the moments that unite our parish community.",
     "funeral.rites": "Funeral Rites",
     "parish-priest-and-parishioners": "Parish Priest and Parishioners",
-    "funeral.youtube": "Watch on YouTube",
+    youtube: "Watch on YouTube",
+    "more-info": "Click for more information",
     "push.notification":
       "Stay informed about upcoming events, event highlights, and obituaries",
     "push.enable": "Enable",
@@ -840,7 +841,8 @@ export const ui = {
     "events.subtitle": "ಫಿರ್ಗಜ್ ಕುಟ್ಮಾಚ್ಯಾ ಎಕ್ವಟ್ಪಣಾಚ್ಯೊ ಘಡಿಯೊ",
     "funeral.rites": "ಮೊರ್ಣಾಚಿ ರೀತ್",
     "parish-priest-and-parishioners": "ವಿಗಾರ್ ಆನಿ ಫಿರ್ಗಜ್ ಕುಟಾಮ್",
-    "funeral.youtube": "ಯೂಟೂಬಾರ್ ಪಳೆಯಾ",
+    youtube: "ಯೂಟೂಬಾರ್ ಪಳೆಯಾ",
+    "more-info": "ಚಡಿತ್ ಮಾಹಿತ್ ಜೊಡ್ಚ್ಯಾಕ್ ಕ್ಲಿಕ್ ಕರಾ",
     "push.notification":
       "ಫಿರ್ಗಜೆಂತ್ಲಿ ಫುಡ್ಲಿಂ ಕಾರ್ಯಿಂ, ಘಡಿತಾಂಚಿ ಝಳಕ್ ಆನಿ ಮೊರ್ಣಾಚಿ ಖಬರ್ ಅಪ್ಣಾಂವ್ಕ್",
     "push.enable": "ಕ್ರಿಯಾಳ್ ಕರಾ",

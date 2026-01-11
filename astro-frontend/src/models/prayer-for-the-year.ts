@@ -49,6 +49,8 @@ interface PrayerForTheYear {
   kokPrayer?: BlocksContent;
   enPrayer?: BlocksContent;
   additionalMedia?: Media[];
+  youtubeLink?: string;
+  moreInfoLink?: string;
   createdAt: string;
   updatedAt: string;
   publishedAt: string;

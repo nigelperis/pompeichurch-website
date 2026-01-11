@@ -54,6 +54,12 @@
         "videos",
         "audios"
       ]
+    },
+    "youtubeLink": {
+      "type": "string"
+    },
+    "moreInfoLink": {
+      "type": "string"
     }
   }
 }

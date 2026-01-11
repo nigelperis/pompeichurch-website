@@ -1242,10 +1242,12 @@ export interface ApiPrayerForTheYearPrayerForTheYear
       'api::prayer-for-the-year.prayer-for-the-year'
     > &
       Schema.Attribute.Private;
+    moreInfoLink: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    youtubeLink: Schema.Attribute.String;
   };
 }
 

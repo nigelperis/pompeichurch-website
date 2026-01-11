@@ -7,8 +7,11 @@ import NetworkImage from "~/components/ui/network-image.astro";
 import NetworkVideo from "~/components/ui/network-video.astro";
 import type { BlocksContent } from "@strapi/blocks-react-renderer";
 import StrapiBlocksRenderer from "~/components/ui/strapi-blocks-renderer";
+import YoutubeIcon from "~/assets/react-icons/youtube.svg?react";
+import InfoIcon from "~/assets/react-icons/info.svg?react";
 
 const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 const locale = lang === Locale.KOK ? Locale.KOK : Locale.EN;
 
@@ -138,6 +141,49 @@ const getAudioURL = (src: string) => {
               />
             )
           ),
+        )}
+      </div>
+    )
+  }
+  {
+    (prayerData?.youtubeLink || prayerData?.moreInfoLink) && (
+      <div class="md:flex flex-row gap-4">
+        {prayerData?.youtubeLink && (
+          <a
+            href={prayerData.youtubeLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white text-base py-2 w-full mt-2"
+            style={{ letterSpacing: "0.04em" }}
+          >
+            <YoutubeIcon className="w-6 h-6" />
+            <span
+              class={
+                lang === Locale.KOK ? "block leading-none mt-1.5" : "block"
+              }
+            >
+              {t("youtube")}
+            </span>
+          </a>
+        )}
+
+        {prayerData?.moreInfoLink && (
+          <a
+            href={prayerData.moreInfoLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-base py-2 w-full mt-2"
+            style={{ letterSpacing: "0.04em" }}
+          >
+            <InfoIcon className="w-6 h-6" />
+            <span
+              class={
+                lang === Locale.KOK ? "block leading-none mt-1.5" : "block"
+              }
+            >
+              {t("more-info")}
+            </span>
+          </a>
         )}
       </div>
     )
