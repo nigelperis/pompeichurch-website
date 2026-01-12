@@ -1,0 +1,65 @@
+{
+  "kind": "singleType",
+  "collectionName": "prayer_for_the_years",
+  "info": {
+    "singularName": "prayer-for-the-year",
+    "pluralName": "prayer-for-the-years",
+    "displayName": "Prayer for the Year"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "kokTitle": {
+      "type": "string",
+      "required": true
+    },
+    "enTitle": {
+      "type": "string",
+      "required": true
+    },
+    "kokLogo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "enLogo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "kokPrayer": {
+      "type": "blocks"
+    },
+    "enPrayer": {
+      "type": "blocks"
+    },
+    "additionalMedia": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "youtubeLink": {
+      "type": "string"
+    },
+    "moreInfoLink": {
+      "type": "string"
+    }
+  }
+}

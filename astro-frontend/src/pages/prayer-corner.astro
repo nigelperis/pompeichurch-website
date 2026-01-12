@@ -7,6 +7,8 @@ import Psalms from "~/components/sections/prayer-corner/psalms.astro";
 import Novena from "~/components/sections/prayer-corner/novena.astro";
 import PopesIntention from "~/components/sections/prayer-corner/popes-intention.astro";
 import PrayerCard from "~/components/sections/prayer-corner/prayer-card.astro";
+import { getPrayerForTheYear } from "~/services/get-prayer-for-the-year";
+import PrayerForTheYear from "~/components/sections/prayer-corner/prayer-for-the-year.astro";
 import Layout from "~/layouts/layout.astro";
 import { Locale } from "~/enums/locale";
 
@@ -18,10 +20,12 @@ const description =
     ? "ಮಾಗ್ಣ್ಯಾಕ್ ಆಮ್ಚೆ ಹಾತ್ ಜೊಡ್ಯಾಂ"
     : "Let's join hands in prayer";
 const ogImageUrl = candles.src;
+
+const prayerOfTheYear = await getPrayerForTheYear();
 ---
 
 <Layout title={`${title}`} description={description} image={ogImageUrl}>
-  <main class="mx-auto max-w-screen-lg overflow-hidden bg-white">
+  <main class="mx-auto max-w-5xl overflow-hidden bg-white">
     <section id="parish-history" class="flex flex-col p-6 lg:p-8">
       <h1
         class={cn(
@@ -40,6 +44,7 @@ const ogImageUrl = candles.src;
       <Novena />
       <Psalms />
       <PopesIntention />
+      {prayerOfTheYear && <PrayerForTheYear prayerData={prayerOfTheYear} />}
     </section>
   </main>
 </Layout>
