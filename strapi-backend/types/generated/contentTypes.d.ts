@@ -1214,6 +1214,46 @@ export interface ApiPopesIntentionPopesIntention
   };
 }
 
+export interface ApiPrayerForTheYearPrayerForTheYear
+  extends Struct.SingleTypeSchema {
+  collectionName: 'prayer_for_the_years';
+  info: {
+    displayName: 'Prayer for the Year';
+    pluralName: 'prayer-for-the-years';
+    singularName: 'prayer-for-the-year';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    additionalMedia: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    enLogo: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    enPrayer: Schema.Attribute.Blocks;
+    enTitle: Schema.Attribute.String & Schema.Attribute.Required;
+    kokLogo: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    kokPrayer: Schema.Attribute.Blocks;
+    kokTitle: Schema.Attribute.String & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::prayer-for-the-year.prayer-for-the-year'
+    > &
+      Schema.Attribute.Private;
+    moreInfoLink: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    youtubeLink: Schema.Attribute.String;
+  };
+}
+
 export interface ApiPushNotificationPushNotification
   extends Struct.CollectionTypeSchema {
   collectionName: 'push_notifications';
@@ -1886,6 +1926,7 @@ declare module '@strapi/strapi' {
       'api::parishioners-achievement.parishioners-achievement': ApiParishionersAchievementParishionersAchievement;
       'api::pompeichem-falkem.pompeichem-falkem': ApiPompeichemFalkemPompeichemFalkem;
       'api::popes-intention.popes-intention': ApiPopesIntentionPopesIntention;
+      'api::prayer-for-the-year.prayer-for-the-year': ApiPrayerForTheYearPrayerForTheYear;
       'api::push-notification.push-notification': ApiPushNotificationPushNotification;
       'api::upcoming-event.upcoming-event': ApiUpcomingEventUpcomingEvent;
       'api::ward.ward': ApiWardWard;

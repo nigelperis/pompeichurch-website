@@ -325,7 +325,7 @@ export default function ObituaryCard({
                         : "block"
                     }
                   >
-                    {t("funeral.youtube")}
+                    {t("youtube")}
                   </span>
                 </a>
               )}

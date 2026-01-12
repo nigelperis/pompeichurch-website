@@ -366,7 +366,7 @@ export default function ObituaryCardMin({
                     lang === Locale.KOK ? "block leading-none mt-1.5" : "block"
                   }
                 >
-                  {t("funeral.youtube")}
+                  {t("youtube")}
                 </span>
               </a>
             )}

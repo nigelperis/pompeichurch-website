@@ -1,0 +1,163 @@
+---
+import { getLangFromUrl, useTranslations } from "~/i18n/utils";
+import type { PrayerForTheYear } from "~/models/prayer-for-the-year";
+import { Locale } from "~/enums/locale";
+import { Message } from "~/constants/message";
+import NetworkImage from "~/components/ui/network-image.astro";
+import NetworkVideo from "~/components/ui/network-video.astro";
+import InfoIcon from "~/assets/react-icons/info.svg?react";
+import { isPrayerEmpty } from "~/helpers/is-rich-text-empty";
+import StrapiBlocksRenderer from "~/components/ui/strapi-blocks-renderer";
+import { getYouTubeEmbedUrl } from "~/helpers/get-youtube-url";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const locale = lang === Locale.KOK ? Locale.KOK : Locale.EN;
+
+interface Props {
+  prayerData: PrayerForTheYear;
+  baseUrl?: string;
+}
+
+const { prayerData, baseUrl } = Astro.props as Props;
+
+const title =
+  locale === Locale.KOK
+    ? (prayerData?.kokTitle ?? prayerData?.enTitle)
+    : (prayerData?.enTitle ?? prayerData?.kokTitle);
+
+const logo =
+  locale === Locale.KOK
+    ? (prayerData?.kokLogo ?? prayerData?.enLogo)
+    : (prayerData?.enLogo ?? prayerData?.kokLogo);
+
+const prayer =
+  locale === Locale.KOK
+    ? isPrayerEmpty(prayerData?.kokPrayer)
+      ? prayerData?.enPrayer
+      : prayerData?.kokPrayer
+    : isPrayerEmpty(prayerData?.enPrayer)
+      ? prayerData?.kokPrayer
+      : prayerData?.enPrayer;
+
+const additionalMedia = prayerData?.additionalMedia || [];
+
+const getAudioURL = (src: string) => {
+  const urlToUse = baseUrl
+    ? new URL(src, baseUrl)
+    : new URL(src, import.meta.env.PUBLIC_STRAPI_URL);
+
+  return urlToUse.toString();
+};
+
+const youtubeVideo = prayerData?.youtubeLink
+  ? getYouTubeEmbedUrl(prayerData.youtubeLink)
+  : null;
+---
+
+<h2
+  class="mb-4 mt-4 border-b-2 border-b-natgeo-yellow pb-2 text-2xl font-bold lg:text-3xl"
+>
+  {title}
+</h2>
+
+<div class="w-full space-y-4">
+  {
+    logo && (
+      <div class="w-full">
+        <NetworkImage
+          src={logo.url}
+          alt={title}
+          class="w-full object-contain md:h-[400px]"
+          width={logo.width ?? 600}
+          height={logo.height ?? 400}
+        />
+      </div>
+    )
+  }
+  {
+    prayer ? (
+      <p>
+        <StrapiBlocksRenderer
+          content={prayer}
+          paraClassName={
+            lang === Locale.EN ? "font-roboto" : "font-noto-sans-kannada"
+          }
+        />
+      </p>
+    ) : (
+      <p class="py-8 text-center text-3xl font-semibold">
+        {Message.PRAYER_FOR_THE_YEAR_NOT_FOUND}
+      </p>
+    )
+  }
+  {
+    additionalMedia.length > 0 && (
+      <div class="mt-4 flex flex-col gap-5">
+        {additionalMedia.map((media) =>
+          media?.mime?.startsWith("image/") ? (
+            <NetworkImage
+              src={media.url}
+              alt={media.alternativeText || "Additional Media"}
+              width={media.width ?? 600}
+              height={media.height ?? 400}
+              class="w-full object-contain md:h-[400px]"
+            />
+          ) : media?.mime?.startsWith("video/") ? (
+            <NetworkVideo
+              src={media.url}
+              class="w-full md:h-[400px]"
+              width={media.width ?? 600}
+              height={media.height ?? 400}
+              muted
+              controls
+              autoplay
+            />
+          ) : (
+            media?.mime?.startsWith("audio/") && (
+              <audio
+                src={getAudioURL(media.url)}
+                class="w-full"
+                controls
+                muted
+              />
+            )
+          ),
+        )}
+      </div>
+    )
+  }
+
+  {
+    youtubeVideo && (
+      <div class="relative aspect-video w-full mt-4">
+        <iframe
+          src={youtubeVideo}
+          class="absolute inset-0 h-full w-full"
+          title="YouTube video"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        />
+      </div>
+    )
+  }
+
+  {
+    prayerData?.moreInfoLink && (
+      <div class="mt-8 flex justify-center">
+        <a
+          href={prayerData.moreInfoLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center gap-2 bg-blue-600 px-6 py-2 text-white text-base font-semibold hover:bg-blue-700 transition"
+        >
+          <InfoIcon className="w-5 h-5" />
+          <span class={lang === Locale.KOK ? "block mt-1.5" : "block"}>
+            {t("more-info")}
+          </span>
+        </a>
+      </div>
+    )
+  }
+</div>
