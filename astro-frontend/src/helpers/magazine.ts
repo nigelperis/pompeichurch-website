@@ -32,8 +32,7 @@ export function getMagazineDisplayTitle(
 export function isSpecialEdition(magazine: PompeichemFalkem): boolean {
   return Boolean(
     (magazine.specialEditionTitle && magazine.specialEditionTitle.trim()) ||
-      (magazine.specialEditionTitleKok &&
-        magazine.specialEditionTitleKok.trim()),
+    (magazine.specialEditionTitleKok && magazine.specialEditionTitleKok.trim()),
   );
 }
 

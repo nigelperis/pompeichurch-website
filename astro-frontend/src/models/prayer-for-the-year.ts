@@ -1,4 +1,4 @@
-import type { BlocksContent } from '@strapi/blocks-react-renderer';
+import type { BlocksContent } from "@strapi/blocks-react-renderer";
 
 interface ImageFormat {
   ext: string;
@@ -61,7 +61,4 @@ interface PrayerForTheYearData {
   meta: Record<string, any>;
 }
 
-export type {
-  PrayerForTheYear,
-  PrayerForTheYearData
-};
+export type { PrayerForTheYear, PrayerForTheYearData };

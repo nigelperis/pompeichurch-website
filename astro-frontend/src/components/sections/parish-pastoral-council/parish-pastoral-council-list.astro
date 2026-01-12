@@ -10,19 +10,23 @@ const { pastoralCouncilImage } = Astro.props;
 ---
 
 <div>
-  {pastoralCouncilImage && (
-    <NetworkImage
-      src={pastoralCouncilImage?.pastoralCouncilImage?.url
-        ? new URL(
-            pastoralCouncilImage?.pastoralCouncilImage?.url,
-            import.meta.env.PUBLIC_STRAPI_URL,
-          ).toString()
-        : getPlaceholderImage({ text: "Parish Pastoral Council" })}
-      width={pastoralCouncilImage?.pastoralCouncilImage?.width || 600}
-      height={pastoralCouncilImage?.pastoralCouncilImage?.height || 400}
-      class="w-full object-contain py-6"
-    />
-  )}
+  {
+    pastoralCouncilImage && (
+      <NetworkImage
+        src={
+          pastoralCouncilImage?.pastoralCouncilImage?.url
+            ? new URL(
+                pastoralCouncilImage?.pastoralCouncilImage?.url,
+                import.meta.env.PUBLIC_STRAPI_URL,
+              ).toString()
+            : getPlaceholderImage({ text: "Parish Pastoral Council" })
+        }
+        width={pastoralCouncilImage?.pastoralCouncilImage?.width || 600}
+        height={pastoralCouncilImage?.pastoralCouncilImage?.height || 400}
+        class="w-full object-contain py-6"
+      />
+    )
+  }
   <table class="mx-auto w-full mt-4 border border-gray-200">
     <tbody>
       {

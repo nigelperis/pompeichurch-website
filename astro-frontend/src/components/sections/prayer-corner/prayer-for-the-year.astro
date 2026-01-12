@@ -5,10 +5,10 @@ import { Locale } from "~/enums/locale";
 import { Message } from "~/constants/message";
 import NetworkImage from "~/components/ui/network-image.astro";
 import NetworkVideo from "~/components/ui/network-video.astro";
-import type { BlocksContent } from "@strapi/blocks-react-renderer";
-import StrapiBlocksRenderer from "~/components/ui/strapi-blocks-renderer";
-import YoutubeIcon from "~/assets/react-icons/youtube.svg?react";
 import InfoIcon from "~/assets/react-icons/info.svg?react";
+import { isPrayerEmpty } from "~/helpers/is-rich-text-empty";
+import StrapiBlocksRenderer from "~/components/ui/strapi-blocks-renderer";
+import { getYouTubeEmbedUrl } from "~/helpers/get-youtube-url";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -32,27 +32,6 @@ const logo =
     ? (prayerData?.kokLogo ?? prayerData?.enLogo)
     : (prayerData?.enLogo ?? prayerData?.kokLogo);
 
-// Function to check if the prayer content is empty
-const isPrayerEmpty = (prayer: BlocksContent | undefined) => {
-  if (!prayer || prayer.length === 0) {
-    return true;
-  }
-
-  if (Array.isArray(prayer)) {
-    for (const block of prayer) {
-      if (block.type === "paragraph" && block.children) {
-        const hasText = block.children.some(
-          (child) => child.type === "text" && child.text.trim() !== "",
-        );
-        if (hasText) {
-          return false;
-        }
-      }
-    }
-  }
-  return true;
-};
-
 const prayer =
   locale === Locale.KOK
     ? isPrayerEmpty(prayerData?.kokPrayer)
@@ -71,6 +50,10 @@ const getAudioURL = (src: string) => {
 
   return urlToUse.toString();
 };
+
+const youtubeVideo = prayerData?.youtubeLink
+  ? getYouTubeEmbedUrl(prayerData.youtubeLink)
+  : null;
 ---
 
 <h2
@@ -145,46 +128,35 @@ const getAudioURL = (src: string) => {
       </div>
     )
   }
-  {
-    (prayerData?.youtubeLink || prayerData?.moreInfoLink) && (
-      <div class="md:flex flex-row gap-4">
-        {prayerData?.youtubeLink && (
-          <a
-            href={prayerData.youtubeLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white text-base py-2 w-full mt-2"
-            style={{ letterSpacing: "0.04em" }}
-          >
-            <YoutubeIcon className="w-6 h-6" />
-            <span
-              class={
-                lang === Locale.KOK ? "block leading-none mt-1.5" : "block"
-              }
-            >
-              {t("youtube")}
-            </span>
-          </a>
-        )}
 
-        {prayerData?.moreInfoLink && (
-          <a
-            href={prayerData.moreInfoLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-base py-2 w-full mt-2"
-            style={{ letterSpacing: "0.04em" }}
-          >
-            <InfoIcon className="w-6 h-6" />
-            <span
-              class={
-                lang === Locale.KOK ? "block leading-none mt-1.5" : "block"
-              }
-            >
-              {t("more-info")}
-            </span>
-          </a>
-        )}
+  {
+    youtubeVideo && (
+      <div class="relative aspect-video w-full mt-4">
+        <iframe
+          src={youtubeVideo}
+          class="absolute inset-0 h-full w-full"
+          title="YouTube video"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        />
+      </div>
+    )
+  }
+
+  {
+    prayerData?.moreInfoLink && (
+      <div class="mt-8 flex justify-center">
+        <a
+          href={prayerData.moreInfoLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center gap-2 bg-blue-600 px-6 py-2 text-white text-base font-semibold hover:bg-blue-700 transition"
+        >
+          <InfoIcon className="w-5 h-5" />
+          <span class={lang === Locale.KOK ? "block mt-1.5" : "block"}>
+            {t("more-info")}
+          </span>
+        </a>
       </div>
     )
   }
