@@ -40,6 +40,7 @@ export interface CarouselItem {
   updatedAt: string;
   publishedAt: string;
   carouselImage: Media[];
+  link?: string;
 }
 
 interface Pagination {

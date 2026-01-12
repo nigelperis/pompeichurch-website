@@ -9,6 +9,8 @@ export class Message {
   public static readonly MAGAZINES_NOT_FOUND = "No Magazines available!";
   public static readonly POPES_INTENTION_NOT_FOUND =
     "Popes Intention Not found!";
+  public static readonly PRAYER_FOR_THE_YEAR_NOT_FOUND =
+    "Prayer for the Year Not found!";
   public static readonly CORE_COMMITTEE_NOT_FOUND = "No Core Committee Found!";
   public static readonly FINANCE_COMMITTEE_NOT_FOUND =
     "No Finance Committee Found!";

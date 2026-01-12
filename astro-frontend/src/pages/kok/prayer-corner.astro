@@ -11,6 +11,8 @@ import PopesIntention from "~/components/sections/prayer-corner/popes-intention.
 import PrayerCard from "~/components/sections/prayer-corner/prayer-card.astro";
 import Layout from "~/layouts/layout.astro";
 import { Locale } from "~/enums/locale";
+import { getPrayerForTheYear } from "~/services/get-prayer-for-the-year";
+import PrayerForTheYear from "~/components/sections/prayer-corner/prayer-for-the-year.astro";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -20,6 +22,8 @@ const description =
     ? "ಮಾಗ್ಣ್ಯಾಕ್ ಆಮ್ಚೆ ಹಾತ್ ಜೊಡ್ಯಾಂ"
     : "Let's join hands in prayer";
 const ogImageUrl = candles.src;
+
+const prayForTheYear = await getPrayerForTheYear();
 ---
 
 <Layout title={`${title}`} description={description} image={ogImageUrl}>
@@ -42,6 +46,7 @@ const ogImageUrl = candles.src;
       <Novena />
       <Psalms />
       <PopesIntention />
+      {prayForTheYear && <PrayerForTheYear prayerData={prayForTheYear} />}
     </section>
   </main>
 </Layout>

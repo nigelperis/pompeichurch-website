@@ -7,6 +7,7 @@ export const ROUTES = {
   ASSOCIATIONS: "/associations",
   PARISHIONERS_ACHIEVEMENTS: "/parishioners-achievements",
   POPES_INTENTION: "/popes-intentions",
+  PRAYER_FOR_THE_YEAR: "/prayer-for-the-year",
   PARISH_PASTORAL_COUNCIL: "/parish-pastoral-councils",
   PARISH_PASTORAL_COUNCIL_IMAGE: "/parish-pastoral-council-image",
   ASSCIATION_OFFICE_BEARERS: "/association-office-bearer",
