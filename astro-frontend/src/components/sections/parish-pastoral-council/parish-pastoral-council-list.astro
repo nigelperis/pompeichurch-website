@@ -6,30 +6,32 @@ import type { ParishPastoralCouncil, ParishPastoralCouncilImage } from "~/models
 const { pastoralCouncilData } = Astro.props as {
   pastoralCouncilData: ParishPastoralCouncil[];
 };
-const { pastoralCouncilImage } = Astro.props as {
-  pastoralCouncilImage: ParishPastoralCouncilImage;
+const { councilImage } = Astro.props as {
+  councilImage: ParishPastoralCouncilImage;
 };
+
+const parishPastoralCouncilImage = councilImage?.pastoralCouncilImage;
 ---
 
 <div>
   {
-    pastoralCouncilImage?.pastoralCouncilImage && (
+    parishPastoralCouncilImage && (
       <NetworkImage
         src={
-          pastoralCouncilImage?.pastoralCouncilImage?.url
+          parishPastoralCouncilImage?.url
             ? new URL(
-                pastoralCouncilImage?.pastoralCouncilImage?.url,
+                parishPastoralCouncilImage?.url,
                 import.meta.env.PUBLIC_STRAPI_URL,
               ).toString()
             : getPlaceholderImage({ text: "Parish Pastoral Council" })
         }
-        width={pastoralCouncilImage?.pastoralCouncilImage?.width || 600}
-        height={pastoralCouncilImage?.pastoralCouncilImage?.height || 400}
+        width={parishPastoralCouncilImage?.width || 600}
+        height={parishPastoralCouncilImage?.height || 400}
         class="w-full object-contain py-6"
       />
     )
   }
-  <table class="mx-auto w-full mt-2 border border-gray-200">
+  <table class="mx-auto w-full mt-4 border border-gray-200">
     <tbody>
       {
         pastoralCouncilData.map((member) => {
