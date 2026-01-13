@@ -1,17 +1,19 @@
 ---
 import NetworkImage from "~/components/ui/network-image.astro";
 import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
-import type { ParishPastoralCouncil } from "~/models/parish-pastoral-council";
+import type { ParishPastoralCouncil, ParishPastoralCouncilImage } from "~/models/parish-pastoral-council";
 
 const { pastoralCouncilData } = Astro.props as {
   pastoralCouncilData: ParishPastoralCouncil[];
 };
-const { pastoralCouncilImage } = Astro.props;
+const { pastoralCouncilImage } = Astro.props as {
+  pastoralCouncilImage: ParishPastoralCouncilImage;
+};
 ---
 
 <div>
   {
-    pastoralCouncilImage && (
+    pastoralCouncilImage?.pastoralCouncilImage && (
       <NetworkImage
         src={
           pastoralCouncilImage?.pastoralCouncilImage?.url
@@ -27,7 +29,7 @@ const { pastoralCouncilImage } = Astro.props;
       />
     )
   }
-  <table class="mx-auto w-full mt-4 border border-gray-200">
+  <table class="mx-auto w-full mt-2 border border-gray-200">
     <tbody>
       {
         pastoralCouncilData.map((member) => {

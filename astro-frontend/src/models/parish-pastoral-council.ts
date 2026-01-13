@@ -71,7 +71,7 @@ export interface ParishPastoralCouncilImage {
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
-  pastoralCouncilImage: Media;
+  pastoralCouncilImage: Media | null;
 }
 
 interface ParishPastoralCouncilImageData {
