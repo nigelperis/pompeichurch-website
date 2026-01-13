@@ -9,6 +9,7 @@ import InfoIcon from "~/assets/react-icons/info.svg?react";
 import { isPrayerEmpty } from "~/helpers/is-rich-text-empty";
 import StrapiBlocksRenderer from "~/components/ui/strapi-blocks-renderer";
 import { getYouTubeEmbedUrl } from "~/helpers/get-youtube-url";
+import { cn } from "~/helpers/cn";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -81,9 +82,10 @@ const youtubeVideo = prayerData?.youtubeLink
       <p>
         <StrapiBlocksRenderer
           content={prayer}
-          paraClassName={
-            lang === Locale.EN ? "font-roboto" : "font-noto-sans-kannada"
-          }
+          paraClassName={cn(
+            "text-justify",
+            lang === Locale.EN ? "font-roboto" : "font-noto-sans-kannada",
+          )}
         />
       </p>
     ) : (
