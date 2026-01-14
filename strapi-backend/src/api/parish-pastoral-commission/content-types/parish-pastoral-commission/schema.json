@@ -1,0 +1,67 @@
+{
+  "kind": "collectionType",
+  "collectionName": "parish_pastoral_commissions",
+  "info": {
+    "singularName": "parish-pastoral-commission",
+    "pluralName": "parish-pastoral-commissions",
+    "displayName": "Parish Pastoral Commissions",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "commissionsTitle": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "default": "Parish Pastoral 22 Commissions",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "targetField": "commissionsTitle",
+      "required": true
+    },
+    "commissions": {
+      "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "shared.commission-block",
+      "repeatable": true,
+      "required": true
+    },
+    "coordinatorName": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::parish-pastoral-council-core-committee.parish-pastoral-council-core-committee",
+      "inversedBy": "positionRelation"
+    },
+    "kokCommissionsTitle": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "default": "22 ಆಯೋಗ್",
+      "required": true
+    }
+  }
+}

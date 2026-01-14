@@ -11,14 +11,33 @@
       "type": "string",
       "required": true
     },
+    "noOfCommissions": {
+      "type": "integer",
+      "required": true
+    },
     "convenor": {
       "type": "string",
       "required": true
     },
+    "sexOfConvenor": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "Male ",
+        "Female"
+      ]
+    },
+    "imageOfConvenor": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
     "subCommissions": {
       "type": "component",
-      "repeatable": true,
       "component": "shared.commission",
+      "repeatable": true,
       "required": true
     }
   }
