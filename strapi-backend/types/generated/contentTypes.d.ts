@@ -888,7 +888,7 @@ export interface ApiParishPastoralCouncilCoreCommitteeParishPastoralCouncilCoreC
       }>;
     positionRelation: Schema.Attribute.Relation<
       'oneToOne',
-      'api::parish-pastoral-21-commission.parish-pastoral-21-commission'
+      'api::parish-pastoral-commission.parish-pastoral-commission'
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;

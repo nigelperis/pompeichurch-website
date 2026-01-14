@@ -16,10 +16,12 @@ const t = useTranslations(lang);
 
 const currentPage = Number(Astro.url.searchParams.get("p")) || 1;
 
+const commissionsTitleSlug = Astro.params.commissionsTitleSlug || "parish-pastoral-22-commissions";
+
 const { events: filteredEvents } = await listEvents({
   page: 1,
   pageSize: 500,
-  filters: { "commissions": { $eq: "Parish Pastoral 21 Commissions" } },
+  filters: { "commissions": { $eq: commissionsTitleSlug } },
 });
 
 const totalEvents = filteredEvents.length;
@@ -30,7 +32,7 @@ const paginatedEvents = filteredEvents.slice(
   currentPage * ITEMS_PER_PAGE,
 );
 
-const pageTitle = `21 ಆಯೋಗಾಚಿ ಘಡಿತಾಂ | Pompei Church`;
+const pageTitle = `${commissionsTitleSlug} Events | Pompei Church`;
 
 const emptyStateMessage =
   lang === Locale.KOK ? Message.EVENTS_NOT_FOUND_KOK : Message.EVENTS_NOT_FOUND;

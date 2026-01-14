@@ -26,6 +26,16 @@
       "default": "Parish Pastoral 22 Commissions",
       "required": true
     },
+    "kokCommissionsTitle": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "default": "22 ಆಯೋಗ್",
+      "required": true
+    },
     "slug": {
       "type": "uid",
       "pluginOptions": {
@@ -52,16 +62,6 @@
       "relation": "oneToOne",
       "target": "api::parish-pastoral-council-core-committee.parish-pastoral-council-core-committee",
       "inversedBy": "positionRelation"
-    },
-    "kokCommissionsTitle": {
-      "type": "string",
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      },
-      "default": "22 ಆಯೋಗ್",
-      "required": true
     }
   }
 }
