@@ -57,6 +57,7 @@ export interface Obituary {
   homeTime: string;
   massTime: string;
   funeralDate: string;
+  startsFromChurch?: boolean;
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
