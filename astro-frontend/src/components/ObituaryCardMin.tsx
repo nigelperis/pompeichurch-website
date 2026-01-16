@@ -27,6 +27,7 @@ interface Props {
   homeTime?: string;
   massTime?: string;
   funeralDate: string;
+  startsFromChurch?: boolean;
   funeralDetailsUpdatedOn?: Date | string;
   youtubeLink?: string;
   className?: string;
@@ -66,6 +67,7 @@ export default function ObituaryCardMin({
   homeTime,
   massTime,
   funeralDate,
+  startsFromChurch,
   youtubeLink,
   className = "",
   funeralDetailsUpdatedOn,
@@ -91,6 +93,7 @@ export default function ObituaryCardMin({
     funeralDate,
     homeTime,
     massTime,
+    startsFromChurch,
   );
 
   const cardRef = useRef<HTMLDivElement>(null);

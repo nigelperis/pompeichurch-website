@@ -710,6 +710,7 @@ export interface ApiObituaryObituary extends Struct.CollectionTypeSchema {
       ]
     >;
     youtubeLink: Schema.Attribute.String;
+    startsFromChurch: Schema.Attribute.Boolean;
   };
 }
 
