@@ -21,7 +21,7 @@ async function listPastoralCommissionsData(args?: {
     "populate[0]": "coordinatorName",
     "populate[1]": "coordinatorName.image",
     "populate[2]": "commissions.subCommissions",
-    "populate[3]": "commissions.imageOfConvenor",
+    "populate[3]": "commissions.convenorImage",
     locale: locale,
   });
 

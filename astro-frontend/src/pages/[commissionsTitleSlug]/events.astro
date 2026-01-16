@@ -10,18 +10,19 @@ import PushNotification from "~/components/push-notification.astro";
 import Pagination from "~/components/pagination.astro";
 import { getPaginationRange } from "~/helpers/get-pagination-range";
 import { ITEMS_PER_PAGE } from "~/constants/index.ts";
+import { listPastoralCommissionsData } from "~/services/list-parish-pastoral-commissions";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 const currentPage = Number(Astro.url.searchParams.get("p")) || 1;
 
-const commissionsTitleSlug = Astro.params.commissionsTitleSlug || "parish-pastoral-22-commissions";
-
+const commissionsData = await listPastoralCommissionsData()
+const commissionsTitle = commissionsData[0].commissionsTitle ?? "Parish Pastoral 22 Commissions";
 const { events: filteredEvents } = await listEvents({
   page: 1,
   pageSize: 500,
-  filters: { "commissions": { $eq: commissionsTitleSlug } },
+  filters: { "commissions.commissionsTitle": { $eq: commissionsTitle } },
 });
 
 const totalEvents = filteredEvents.length;
@@ -32,7 +33,7 @@ const paginatedEvents = filteredEvents.slice(
   currentPage * ITEMS_PER_PAGE,
 );
 
-const pageTitle = `${commissionsTitleSlug} Events | Pompei Church`;
+const pageTitle = `${commissionsTitle} Events | Pompei Church`;
 
 const emptyStateMessage =
   lang === Locale.KOK ? Message.EVENTS_NOT_FOUND_KOK : Message.EVENTS_NOT_FOUND;

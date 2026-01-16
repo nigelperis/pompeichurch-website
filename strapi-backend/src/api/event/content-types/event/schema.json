@@ -63,10 +63,10 @@
       "inversedBy": "events"
     },
     "commissions": {
-      "type": "enumeration",
-      "enum": [
-        "Parish Pastoral 21 Commissions"
-      ]
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::parish-pastoral-commission.parish-pastoral-commission",
+      "inversedBy": "events"
     }
   }
 }

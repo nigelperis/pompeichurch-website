@@ -34,7 +34,9 @@ if (Astro.params.commissionsTitleSlug !== commissionsTitleSlug) {
   return Astro.redirect("/404", 302);
 }
 
-const commissionsTitle = pastoralCommissionsData[0]?.commissionsTitle || "Parish Pastoral 22 Commissions";
+const commissionsTitle =
+  pastoralCommissionsData[0]?.commissionsTitle ||
+  "Parish Pastoral 22 Commissions";
 
 const kokCommissionsTitle =
   pastoralCommissionsData[0]?.kokCommissionsTitle || "22 ಆಯೋಗ್";
@@ -52,7 +54,7 @@ const allEvents = await listEvents({
   page: 1,
   pageSize: 6,
   sortBy: ["eventDate:desc"],
-  filters: { commissions: { $eq: commissionsTitleSlug } },
+  filters: { "commissions.commissionsTitle": { $eq: commissionsTitle } },
 });
 
 const recentEvents = allEvents.events?.slice(0, 2) || [];
@@ -83,17 +85,34 @@ const coordinatorData = pastoralCommissionsData[0]?.coordinatorName;
 
         {
           pastoralCommissionsData.length > 0 && (
-            <div class="border border-gray-200 p-6 mt-6">
+            <div class="border border-gray-200 p-6 mt-6 md:flex md:justify-between">
               <div class="flex items-center space-x-3">
+                {/* Mobile */}
+                <div class="shrink-0 md:hidden">
+                  <NetworkImage
+                    src={
+                      coordinatorData?.image?.url
+                        ? new URL(
+                            coordinatorData?.image?.url,
+                            import.meta.env.PUBLIC_STRAPI_URL,
+                          ).toString()
+                        : getPlaceholderImage({ text: coordinatorData?.name })
+                    }
+                    width={coordinatorData?.image?.width || 600}
+                    height={coordinatorData?.image?.height || 400}
+                    alt={coordinatorData?.name || "Coordinator Image"}
+                    class="w-32 h-32 rounded-full object-cover object-top"
+                  />
+                </div>
                 <div>
-                  <h2 class="text-xl font-semibold">
+                  <h2 class="text-2xl font-semibold">
                     {coordinatorData?.position}
                   </h2>
-                  <p class="text-slate-900">{coordinatorData?.name}</p>
+                  <p class="text-xl text-slate-900">{coordinatorData?.name}</p>
                 </div>
               </div>
-
-              <div class="shrink-0">
+              {/* Desktop */}
+              <div class="shrink-0 hidden md:block">
                 <NetworkImage
                   src={
                     coordinatorData?.image?.url
@@ -101,9 +120,7 @@ const coordinatorData = pastoralCommissionsData[0]?.coordinatorName;
                           coordinatorData?.image?.url,
                           import.meta.env.PUBLIC_STRAPI_URL,
                         ).toString()
-                      : getPlaceholderImage({
-                          text: coordinatorData?.name,
-                        })
+                      : getPlaceholderImage({ text: coordinatorData?.name })
                   }
                   width={coordinatorData?.image?.width || 600}
                   height={coordinatorData?.image?.height || 400}
@@ -118,14 +135,13 @@ const coordinatorData = pastoralCommissionsData[0]?.coordinatorName;
 
       {
         pastoralCommissionsData.length > 0 ? (
-          <div class="grid gap-8 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2">
+          <div class="grid gap-8 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 mb-7">
             {pastoralCommissionsData[0]?.commissions.map((commission) => (
               <CommissionCard
                 title={commission.commissionTitle}
-                noOfCommissions={commission.noOfCommissions}
-                convenor={commission.convenor}
-                sexOfConvenor={commission.sexOfConvenor}
-                imageOfConvenor={commission.imageOfConvenor}
+                convenorName={commission.convenorName}
+                convenorSex={commission.convenorSex}
+                convenorImage={commission.convenorImage}
                 subCommissions={commission.subCommissions}
               />
             ))}

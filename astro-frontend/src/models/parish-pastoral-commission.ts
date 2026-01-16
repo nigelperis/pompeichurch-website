@@ -50,10 +50,9 @@ export interface SubCommission {
 export interface CommissionBlock {
   id: number;
   commissionTitle: string;
-  noOfCommissions: number;
-  convenor: string;
-  sexOfConvenor: string;
-  imageOfConvenor: Media;
+  convenorName: string;
+  convenorSex: string;
+  convenorImage: Media;
   subCommissions: SubCommission[];
 }
 

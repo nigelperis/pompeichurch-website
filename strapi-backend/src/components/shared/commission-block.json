@@ -11,15 +11,11 @@
       "type": "string",
       "required": true
     },
-    "noOfCommissions": {
-      "type": "integer",
-      "required": true
-    },
-    "convenor": {
+    "convenorName": {
       "type": "string",
       "required": true
     },
-    "sexOfConvenor": {
+    "convenorSex": {
       "type": "enumeration",
       "required": true,
       "enum": [
@@ -27,7 +23,7 @@
         "Female"
       ]
     },
-    "imageOfConvenor": {
+    "convenorImage": {
       "type": "media",
       "multiple": false,
       "allowedTypes": [
