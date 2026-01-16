@@ -33,6 +33,7 @@ export function getFuneralDetails(
   funeralDate?: string,
   homeTime?: string,
   massTime?: string,
+  startsFromChurch?: boolean,
 ) {
   const dateObj = funeralDate ? parseDateOnly(funeralDate) : null;
 
@@ -57,29 +58,40 @@ export function getFuneralDetails(
 
   if (lang === Locale.KOK) {
     if (!homeT && !massT) {
-      return `${
-        weekdayKey ? `${days.kok[weekdayKey]} (${formattedDate}), ` : ""
-      }ಕೆದಾಳಾ ಮ್ಹಣ್ ಮುಖಾರ್ ತಿಳ್ಸಿತೆಲ್ಯಾಂವ್.`;
+      return `${weekdayKey ? `${days.kok[weekdayKey]} (${formattedDate}), ` : ""}ಕೆದಾಳಾ ಮ್ಹಣ್ ಮುಖಾರ್ ತಿಳ್ಸಿತೆಲ್ಯಾಂವ್.`;
     }
 
-    return `${
-      weekdayKey ? `${days.kok[weekdayKey]} (${formattedDate}), ` : ""
-    }${homeT ? ` ${homeT} ವ್ಹರಾರ್ ಘರಾ ಥಾವ್ನ್` : ""}${
-      homeT && massT ? ", " : ""
-    }${massT ? `${massT} ವ್ಹರಾರ್ ಇಗರ್ಜೆಂತ್ ಮಿಸಾ ಸವೆಂ ಚಲ್ತೆಲಿ.` : ""}`;
-  }
+    if (startsFromChurch) {
+      return `${weekdayKey ? `${days.kok[weekdayKey]} (${formattedDate}), ` : ""}${
+        homeT ? `${homeT} ವ್ಹರಾರ್ ಇಗರ್ಜೆಂತ್` : ""
+      }${homeT && massT ? ", " : ""}${
+        massT ? `${massT} ವ್ಹರಾರ್ ಮಿಸಾ ಸವೆಂ ಚಲ್ತೆಲಿ.` : ""
+      }`;
+    }
 
+    return `${weekdayKey ? `${days.kok[weekdayKey]} (${formattedDate}), ` : ""}${
+      homeT ? `${homeT} ವ್ಹರಾರ್ ಘರಾ ಥಾವ್ನ್` : ""
+    }${homeT && massT ? ", " : ""}${
+      massT ? `${massT} ವ್ಹರಾರ್ ಇಗರ್ಜೆಂತ್ ಮಿಸಾ ಸವೆಂ ಚಲ್ತೆಲಿ.` : ""
+    }`;
+  }
   if (!homeT && !massT) {
-    return `${
-      weekdayKey ? `${days.en[weekdayKey]} (${formattedDate}), ` : ""
-    }Will be informed soon.`;
+    return `${weekdayKey ? `${days.en[weekdayKey]} (${formattedDate}), ` : ""}Will be informed soon.`;
   }
 
-  return `${
-    weekdayKey ? `${days.en[weekdayKey]} (${formattedDate}), ` : ""
-  }${homeT ? `funeral cortege leaves residence at ${homeT}` : ""}${
-    homeT && massT ? ", followed by " : ""
-  }${massT ? `Mass at the church at ${massT}` : ""}.`;
+  if (startsFromChurch) {
+    return `${weekdayKey ? `${days.en[weekdayKey]} (${formattedDate}), ` : ""}${
+      homeT ? `arrives at the church at ${homeT}` : ""
+    }${homeT && massT ? ", followed by " : ""}${
+      massT ? `Mass at ${massT}` : ""
+    }.`;
+  }
+
+  return `${weekdayKey ? `${days.en[weekdayKey]} (${formattedDate}), ` : ""}${
+    homeT ? `funeral cortege leaves residence at ${homeT}` : ""
+  }${homeT && massT ? ", followed by " : ""}${
+    massT ? `Mass at the church at ${massT}` : ""
+  }.`;
 }
 
 export function parseDateOnly(date?: string | null): Date | null {
