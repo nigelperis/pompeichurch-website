@@ -37,6 +37,7 @@ interface Props {
   youtubeLink?: string;
   className?: string;
   autoFlip?: boolean;
+  startsFromChurch?: boolean;
 }
 
 // Simple lang detection from URL
@@ -88,6 +89,7 @@ export default function ObituaryCard({
   massTime,
   funeralDate,
   autoFlip = false,
+  startsFromChurch,
 }: Props) {
   const [flipped, setFlipped] = useState(false);
   const obituaryUrl =
@@ -111,6 +113,7 @@ export default function ObituaryCard({
     funeralDate,
     homeTime,
     massTime,
+    startsFromChurch,
   );
 
   useEffect(() => {
