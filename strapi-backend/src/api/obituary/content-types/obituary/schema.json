@@ -74,6 +74,10 @@
     },
     "funeralDate": {
       "type": "date"
+    },
+    "startsFromChurch": {
+      "type": "boolean",
+      "default": false
     }
   }
 }
