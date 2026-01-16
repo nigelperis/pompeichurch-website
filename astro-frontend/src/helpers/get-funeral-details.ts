@@ -65,7 +65,7 @@ export function getFuneralDetails(
       return `${weekdayKey ? `${days.kok[weekdayKey]} (${formattedDate}), ` : ""}${
         homeT ? `${homeT} ವ್ಹರಾರ್ ಇಗರ್ಜೆಂತ್` : ""
       }${homeT && massT ? ", " : ""}${
-        massT ? `${massT} ವ್ಹರಾರ್ ಇಗರ್ಜೆಂತ್ ಮಿಸಾ ಸವೆಂ ಚಲ್ತೆಲಿ.` : ""
+        massT ? `${massT} ವ್ಹರಾರ್ ಮಿಸಾ ಸವೆಂ ಚಲ್ತೆಲಿ.` : ""
       }`;
     }
 
