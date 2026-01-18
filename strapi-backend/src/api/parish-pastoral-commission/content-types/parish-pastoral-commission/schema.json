@@ -23,27 +23,16 @@
           "localized": false
         }
       },
-      "default": "Parish Pastoral 22 Commissions",
+      "default": "Parish Pastoral Commissions",
       "required": true
     },
-    "kokCommissionsTitle": {
-      "type": "string",
+    "totalCommissions": {
+      "type": "integer",
       "pluginOptions": {
         "i18n": {
           "localized": false
         }
       },
-      "default": "22 ಆಯೋಗ್",
-      "required": true
-    },
-    "slug": {
-      "type": "uid",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "targetField": "commissionsTitle",
       "required": true
     },
     "commissions": {

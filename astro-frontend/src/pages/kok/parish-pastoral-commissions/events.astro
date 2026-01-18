@@ -18,7 +18,7 @@ const t = useTranslations(lang);
 const currentPage = Number(Astro.url.searchParams.get("p")) || 1;
 
 const commissionsData = await listPastoralCommissionsData()
-const commissionsTitle = commissionsData[0].commissionsTitle ?? "Parish Pastoral 22 Commissions";
+const commissionsTitle = commissionsData[0].commissionsTitle ?? "Parish Pastoral Commissions";
 const { events: filteredEvents } = await listEvents({
   page: 1,
   pageSize: 500,

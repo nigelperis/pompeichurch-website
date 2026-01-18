@@ -30,15 +30,6 @@ try {
   associations = [];
 }
 
-const pastoralCommissionsData = await listPastoralCommissionsData();
-const commissionsTitle =
-  lang === Locale.KOK
-    ? (pastoralCommissionsData[0]?.kokCommissionsTitle ?? "22 ಆಯೋಗ್")
-    : (pastoralCommissionsData[0]?.commissionsTitle ??
-      "Parish Pastoral 22 Commissions");
-const commissionsTitleSlug =
-  pastoralCommissionsData[0]?.slug ?? "parish-pastoral-22-commissions";
-
 const showChristmasLights = isChristmasSeason();
 ---
 
@@ -112,17 +103,7 @@ const showChristmasLights = isChristmasSeason();
                       : link.expandedLinks?.map((sublink) => (
                           <li class="w-full">
                             <a
-                              href={
-                                sublink.href.includes("/{commissionsTitleSlug}")
-                                  ? getRelativeLocaleUrl(
-                                      lang,
-                                      sublink.href.replace(
-                                        "{commissionsTitleSlug}",
-                                        commissionsTitleSlug,
-                                      ),
-                                    )
-                                  : getRelativeLocaleUrl(lang, sublink.href)
-                              }
+                              href={getRelativeLocaleUrl(lang, sublink.href)}
                               class={cn(
                                 "hover:bg-natgeo-yellow block rounded-md px-2 py-2 text-sm transition-all font-normal",
                                 {
@@ -130,12 +111,7 @@ const showChristmasLights = isChristmasSeason();
                                 },
                               )}
                             >
-                              {sublink.title.includes("{commissionsTitle}")
-                                ? sublink.title.replace(
-                                    "{commissionsTitle}",
-                                    commissionsTitle,
-                                  )
-                                : t(sublink.title)}
+                              {t(sublink.title)}
                             </a>
                           </li>
                         ))}
@@ -235,17 +211,7 @@ const showChristmasLights = isChristmasSeason();
                 : link.expandedLinks?.map((sublinks) => (
                     <li>
                       <a
-                        href={
-                          sublinks.href.includes("/{commissionsTitleSlug}")
-                            ? getRelativeLocaleUrl(
-                                lang,
-                                sublinks.href.replace(
-                                  "{commissionsTitleSlug}",
-                                  commissionsTitleSlug,
-                                ),
-                              )
-                            : getRelativeLocaleUrl(lang, sublinks.href)
-                        }
+                        href={getRelativeLocaleUrl(lang, sublinks.href)}
                         class="group mb-4 flex items-center justify-between text-2xl"
                       >
                         <span
@@ -256,12 +222,7 @@ const showChristmasLights = isChristmasSeason();
                             },
                           )}
                         >
-                          {sublinks.title.includes("{commissionsTitle}")
-                            ? sublinks.title.replace(
-                                "{commissionsTitle}",
-                                commissionsTitle,
-                              )
-                            : t(sublinks.title)}
+                          {t(sublinks.title)}
                         </span>
                       </a>
                     </li>

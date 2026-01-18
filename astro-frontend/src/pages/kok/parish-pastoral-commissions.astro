@@ -28,28 +28,14 @@ if (pastoralCommissionsData.length === 0) {
       : (await listPastoralCommissionsData({ locale: Locale.EN })) || [];
 }
 
-const commissionsTitleSlug =
-  pastoralCommissionsData[0]?.slug || "parish-pastoral-22-commissions";
-if (Astro.params.commissionsTitleSlug !== commissionsTitleSlug) {
-  return Astro.redirect("/404", 302);
-}
-
-const commissionsTitle =
-  pastoralCommissionsData[0]?.commissionsTitle ||
-  "Parish Pastoral 22 Commissions";
-
-const kokCommissionsTitle =
-  pastoralCommissionsData[0]?.kokCommissionsTitle || "22 ಆಯೋಗ್";
-
-const title = commissionsTitle
-  ? lang === Locale.KOK
-    ? kokCommissionsTitle
-    : commissionsTitle
-  : lang === Locale.KOK
-    ? "22 ಆಯೋಗ್"
-    : "Parish Pastoral 22 Commissions";
+const totalCommissions = pastoralCommissionsData[0]?.totalCommissions ?? 22;
+const title =
+  lang === Locale.KOK
+    ? `${totalCommissions} ಆಯೋಗ್`
+    : `Parish Pastoral ${totalCommissions} Commissions`;
 
 // Fetch recent events links
+const commissionsTitle = pastoralCommissionsData[0]?.commissionsTitle ?? "Parish Pastoral Commissions";
 const allEvents = await listEvents({
   page: 1,
   pageSize: 6,
@@ -62,8 +48,8 @@ const totalEventCount = allEvents.events?.length ?? 0;
 
 const eventsUrl =
   lang === Locale.KOK
-    ? `/kok/${commissionsTitleSlug}/events`
-    : `/${commissionsTitleSlug}/events`;
+    ? `/kok/parish-pastoral-commissions/events`
+    : `/parish-pastoral-commissions/events`;
 
 const coordinatorData = pastoralCommissionsData[0]?.coordinatorName;
 ---
@@ -80,7 +66,7 @@ const coordinatorData = pastoralCommissionsData[0]?.coordinatorName;
             },
           )}
         >
-          {kokCommissionsTitle}
+          {title}
         </h1>
 
         {
