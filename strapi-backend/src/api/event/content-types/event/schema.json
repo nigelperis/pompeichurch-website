@@ -25,7 +25,12 @@
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": ["images", "files", "videos", "audios"]
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     },
     "shortDescriptionEn": {
       "type": "string"
@@ -55,6 +60,12 @@
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::association.association",
+      "inversedBy": "events"
+    },
+    "commissions": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::parish-pastoral-commission.parish-pastoral-commission",
       "inversedBy": "events"
     }
   }

@@ -60,7 +60,7 @@
     "positionRelation": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "api::parish-pastoral-21-commission.parish-pastoral-21-commission",
+      "target": "api::parish-pastoral-commission.parish-pastoral-commission",
       "private": true,
       "mappedBy": "coordinatorName"
     }
