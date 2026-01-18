@@ -46,19 +46,19 @@ const psalms = {
       content: `
         <sup>1</sup> I lift up my eyes to the mountains—<br>
         where does my help come from?<br>
-        <sup>2</sup> My help comes from the LORD,<br>
+        <sup>2</sup> My help comes from the Lord,<br>
         the Maker of heaven and earth.<br>
         <sup>3</sup> He will not let your foot slip—<br>
         he who watches over you will not slumber;<br>
         <sup>4</sup> indeed, he who watches over Israel<br>
         will neither slumber nor sleep.<br>
-        <sup>5</sup> The LORD watches over you—<br>
-        the LORD is your shade at your right hand;<br>
+        <sup>5</sup> The Lord watches over you—<br>
+        the Lord is your shade at your right hand;<br>
         <sup>6</sup> the sun will not harm you by day,<br>
         nor the moon by night.<br>
-        <sup>7</sup> The LORD will keep you from all harm—<br>
+        <sup>7</sup> The Lord will keep you from all harm—<br>
         he will watch over your life;<br>
-        <sup>8</sup> the LORD will watch over your coming and going<br>
+        <sup>8</sup> the Lord will watch over your coming and going<br>
         both now and forevermore.
       `,
     },
