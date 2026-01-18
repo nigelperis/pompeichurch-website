@@ -692,6 +692,8 @@ export interface ApiObituaryObituary extends Struct.CollectionTypeSchema {
       ['H/O', 'W/O', 'S/O', 'D/O', 'Brother of', 'Sister of']
     >;
     slug: Schema.Attribute.UID<'englishName'> & Schema.Attribute.Required;
+    startsFromChurch: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -710,7 +712,6 @@ export interface ApiObituaryObituary extends Struct.CollectionTypeSchema {
       ]
     >;
     youtubeLink: Schema.Attribute.String;
-    startsFromChurch: Schema.Attribute.Boolean;
   };
 }
 

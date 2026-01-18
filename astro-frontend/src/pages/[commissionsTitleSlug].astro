@@ -41,7 +41,7 @@ const commissionsTitle =
 const kokCommissionsTitle =
   pastoralCommissionsData[0]?.kokCommissionsTitle || "22 ಆಯೋಗ್";
 
-const title = commissionsTitleSlug
+const title = commissionsTitle
   ? lang === Locale.KOK
     ? kokCommissionsTitle
     : commissionsTitle
@@ -85,34 +85,8 @@ const eventsUrl =
 
         {
           pastoralCommissionsData.length > 0 && (
-            <div class="border border-gray-200 p-6 mt-6 md:flex md:justify-between">
-              <div class="flex items-center space-x-3">
-                {/* Mobile */}
-                <div class="shrink-0 md:hidden">
-                  <NetworkImage
-                    src={
-                      coordinatorData?.image?.url
-                        ? new URL(
-                            coordinatorData?.image?.url,
-                            import.meta.env.PUBLIC_STRAPI_URL,
-                          ).toString()
-                        : getPlaceholderImage({ text: coordinatorData?.name })
-                    }
-                    width={coordinatorData?.image?.width || 600}
-                    height={coordinatorData?.image?.height || 400}
-                    alt={coordinatorData?.name || "Coordinator Image"}
-                    class="w-32 h-32 rounded-full object-cover object-top"
-                  />
-                </div>
-                <div>
-                  <h2 class="text-2xl font-semibold">
-                    {coordinatorData?.position}
-                  </h2>
-                  <p class="text-xl text-slate-900">{coordinatorData?.name}</p>
-                </div>
-              </div>
-              {/* Desktop */}
-              <div class="shrink-0 hidden md:block">
+            <div class="flex flex-col md:flex-row md:space-x-6 space-y-6 md:space-y-0 mt-7 border border-gray-200 p-3 flex-1 items-center space-x-4">
+              <div class="shrink-0 md:mb-1">
                 <NetworkImage
                   src={
                     coordinatorData?.image?.url
@@ -127,6 +101,14 @@ const eventsUrl =
                   alt={coordinatorData?.name || "Coordinator Image"}
                   class="w-32 h-32 rounded-full object-cover object-top"
                 />
+              </div>
+              <div>
+                <h4 class="text-xl font-semibold text-gray-900 md:text-2xl">
+                  {coordinatorData?.name}
+                </h4>
+                <p class="text-lg text-gray-900 md:text-xl">
+                  {coordinatorData?.position}
+                </p>
               </div>
             </div>
           )
