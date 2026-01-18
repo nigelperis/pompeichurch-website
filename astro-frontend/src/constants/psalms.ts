@@ -41,6 +41,27 @@ const psalms = {
 				and show him my salvation.
 			`,
     },
+    {
+      title: "Psalm 121",
+      content: `
+        <sup>1</sup> I lift up my eyes to the mountains—<br>
+        where does my help come from?<br>
+        <sup>2</sup> My help comes from the Lord,<br>
+        the Maker of heaven and earth.<br>
+        <sup>3</sup> He will not let your foot slip—<br>
+        he who watches over you will not slumber;<br>
+        <sup>4</sup> indeed, he who watches over Israel<br>
+        will neither slumber nor sleep.<br>
+        <sup>5</sup> The Lord watches over you—<br>
+        the Lord is your shade at your right hand;<br>
+        <sup>6</sup> the sun will not harm you by day,<br>
+        nor the moon by night.<br>
+        <sup>7</sup> The Lord will keep you from all harm—<br>
+        he will watch over your life;<br>
+        <sup>8</sup> the Lord will watch over your coming and going<br>
+        both now and forevermore.
+      `,
+    },
   ],
   kok: [
     {
@@ -62,6 +83,19 @@ const psalms = {
 				<sup>14</sup> “ತೊ ಮ್ಹಜೊ ಮೋಗ್ ಕರ್ತಾ ದೆಕುನ್ ಹಾಂವ್ ತಾಕಾ ನಿವಾರ್ತಲೊಂ, ಮ್ಹಜೆಂ ನಾಂವ್ ತೊ ಒಳ್ಕತಾ ದೆಕುನ್ ಹಾಂವ್ ತಾಕಾ ರಾಕ್ತಲೊಂ.<br>
 				<sup>15</sup> ತೊ ಮ್ಹಾಕಾ ಉಲೊ ಮಾರ್ತಾನಾ ಹಾಂವ್ ತಾಕಾ ಜಾಪ್ ದಿತಾಂ, ಆಕಾಂತಾಂತ್ ಹಾಂವ್ ತಾಚೆ ಲಾಗಿಂ ಆಸಾಂ, ತಾಕಾ ನಿವಾರ್ತಾಂ ಆನಿ ತಾಕಾ ಸನ್ಮಾನ್ ಕರ್ತಾಂ.<br>
 				<sup>16</sup> ಲಾಂಬ್ ಆವ್ಕ್ ದಿವ್ನ್ ತಾಕಾ ಧಾದೊಶಿ ಕರ್ತಾಂ, ಮ್ಹಜೆಂ ತಾರಣ್ ಪಳೆಂವ್ಕ್ ತಾಕಾ ಫಾವೊ ಕರ್ತಾಂ.
+			`,
+    },
+    {
+      title: "ಕೀರ್ತನ್ 121",
+      content: `
+				<sup>1</sup> ಪರ್ವತಾಂಚೆರ್ ಹಾಂವ್ ಮ್ಹಜೆ ದೊಳೆ ಉಬಾರ್ತಾಂ: ಖಂಯ್ ಥಾವ್ನ್ ಯೆತಾ ಮ್ಹಜೊ ಆಧಾರ್?<br>
+				<sup>2</sup> ಸರ್ವೆಸ್ಪರಾ ಥಾವ್ನ್ ಯೆತಾ ಮ್ಹಜೊ ಆಧಾರ್, ತಾಣೆಂ ರಚ್ಲಾ ಸರ್ಗ್ ಆನಿ ಸಂಸಾರ್.<br>
+				<sup>3</sup> ತೊ ತುಜೆ ಪಾಂಯ್ ನಿಸ್ರುಂಕ್ ದಿಂವ್ಚೊ ನಾ, ಜೊ ತುಕಾ ರಾಕ್ತಾ, ತೊ ನಿದನಾ.<br>
+				<sup>4</sup> ನಾ, ಇಸ್ರಾಯೆಲಾಚೊ ರಾಕ್ಣೊ ನಿದನಾ, ಜೆಮೆನಾ.<br>
+				<sup>5</sup> ಸರ್ವೆಸ್ಪರ್ ತುಜೊ ರಾಕ್ಣೊ, ತೊ ತುಕಾ ಸಾವ್ಳಿ ದಿತಾ, ಸರ್ವೆಸ್ಪರ್ ತುಜ್ಯಾ ಉಜ್ವ್ಯಾಕ್ ಆಸಾ.<br>
+				<sup>6</sup> ದಿಸಾಚೊ ಸುರ್ಯೊ ತುಕಾ ಬಾದ್ ಕರ್ಚೊ ನಾ ಆನಿ ರಾತ್ಚೊ ಚಂದ್ರಿಮ್ ತುಕಾ ತ್ರಾಸ್ ದಿಂವ್ಚೊ ನಾ.<br>
+				<sup>7</sup> ಸಗ್ಳ್ಯಾ ವಾಯ್ಟಾಂತ್ಲೊ ಸರ್ವೆಸ್ಪರ್ ತುಕಾ ರಾಕ್ತಲೊ, ತೊ ತುಜೊ ಜೀವ್ ರಾಕ್ತಲೊ.<br>
+				<sup>8</sup> ತುಂ ಭಾಯ್ರ್ ಭಿತರ್ ಸರ್ತಾನಾ ಸರ್ವೆಸ್ಪರ್ ತುಕಾ ರಾಕ್ತಲೊ, ಆತಾಂ ಆನಿ ಸದಾಂಕಾಲ್.
 			`,
     },
   ],
