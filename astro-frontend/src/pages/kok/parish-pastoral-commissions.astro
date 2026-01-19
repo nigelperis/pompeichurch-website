@@ -35,12 +35,12 @@ const title =
     : `Parish Pastoral ${totalCommissions} Commissions`;
 
 // Fetch recent events links
-const commissionsTitle = pastoralCommissionsData[0]?.commissionsTitle ?? "Parish Pastoral Commissions";
+const pastoralCommissionsTitle = pastoralCommissionsData[0]?.pastoralCommissionsTitle ?? "Parish Pastoral Commissions";
 const allEvents = await listEvents({
   page: 1,
   pageSize: 6,
   sortBy: ["eventDate:desc"],
-  filters: { "commissions.commissionsTitle": { $eq: commissionsTitle } },
+  filters: { "pastoralCommissions": { $eq: pastoralCommissionsTitle } },
 });
 
 const recentEvents = allEvents.events?.slice(0, 2) || [];

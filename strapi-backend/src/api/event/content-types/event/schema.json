@@ -62,11 +62,11 @@
       "target": "api::association.association",
       "inversedBy": "events"
     },
-    "commissions": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::parish-pastoral-commission.parish-pastoral-commission",
-      "inversedBy": "events"
+    "pastoralCommissions": {
+      "type": "enumeration",
+      "enum": [
+        "Parish Pastoral Commissions"
+      ]
     }
   }
 }

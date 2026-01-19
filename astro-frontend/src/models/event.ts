@@ -106,7 +106,7 @@ interface Event {
     name: string;
     slug: string;
   } | null;
-  commissions: string;
+  pastoralCommissions: string;
 }
 
 interface EventData {

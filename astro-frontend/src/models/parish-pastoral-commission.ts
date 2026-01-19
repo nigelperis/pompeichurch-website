@@ -63,7 +63,7 @@ interface ParishPastoralCommission {
   updatedAt: string;
   publishedAt: string;
   locale: Locale;
-  commissionsTitle: string;
+  pastoralCommissionsTitle: string;
   totalCommissions: number;
   coordinatorName: PastoralCoreCommittee;
   commissions: CommissionBlock[];

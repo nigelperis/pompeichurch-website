@@ -16,7 +16,7 @@
     }
   },
   "attributes": {
-    "commissionsTitle": {
+    "pastoralCommissionsTitle": {
       "type": "string",
       "pluginOptions": {
         "i18n": {
@@ -51,12 +51,6 @@
       "relation": "oneToOne",
       "target": "api::parish-pastoral-council-core-committee.parish-pastoral-council-core-committee",
       "inversedBy": "positionRelation"
-    },
-    "events": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::event.event",
-      "mappedBy": "commissions"
     }
   }
 }

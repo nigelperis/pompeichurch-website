@@ -18,11 +18,11 @@ const t = useTranslations(lang);
 const currentPage = Number(Astro.url.searchParams.get("p")) || 1;
 
 const commissionsData = await listPastoralCommissionsData()
-const commissionsTitle = commissionsData[0].commissionsTitle ?? "Parish Pastoral Commissions";
+const pastoralCommissionsTitle = commissionsData[0].pastoralCommissionsTitle ?? "Parish Pastoral Commissions";
 const { events: filteredEvents } = await listEvents({
   page: 1,
   pageSize: 500,
-  filters: { "commissions.commissionsTitle": { $eq: commissionsTitle } },
+  filters: { "pastoralCommissions": { $eq: pastoralCommissionsTitle } },
 });
 
 const totalEvents = filteredEvents.length;
@@ -33,7 +33,7 @@ const paginatedEvents = filteredEvents.slice(
   currentPage * ITEMS_PER_PAGE,
 );
 
-const pageTitle = `${commissionsTitle} Events | Pompei Church`;
+const pageTitle = `${pastoralCommissionsTitle} Events | Pompei Church`;
 
 const emptyStateMessage =
   lang === Locale.KOK ? Message.EVENTS_NOT_FOUND_KOK : Message.EVENTS_NOT_FOUND;

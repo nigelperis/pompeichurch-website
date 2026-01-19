@@ -561,10 +561,6 @@ export interface ApiEventEvent extends Struct.CollectionTypeSchema {
       'manyToOne',
       'api::association.association'
     >;
-    commissions: Schema.Attribute.Relation<
-      'manyToOne',
-      'api::parish-pastoral-commission.parish-pastoral-commission'
-    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -582,6 +578,9 @@ export interface ApiEventEvent extends Struct.CollectionTypeSchema {
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::event.event'> &
       Schema.Attribute.Private;
+    pastoralCommissions: Schema.Attribute.Enumeration<
+      ['Parish Pastoral Commissions']
+    >;
     publishedAt: Schema.Attribute.DateTime;
     shortDescriptionEn: Schema.Attribute.String;
     shortDescriptionKok: Schema.Attribute.String;
@@ -801,14 +800,6 @@ export interface ApiParishPastoralCommissionParishPastoralCommission
           localized: true;
         };
       }>;
-    commissionsTitle: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }> &
-      Schema.Attribute.DefaultTo<'Parish Pastoral Commissions'>;
     coordinatorName: Schema.Attribute.Relation<
       'oneToOne',
       'api::parish-pastoral-council-core-committee.parish-pastoral-council-core-committee'
@@ -816,12 +807,19 @@ export interface ApiParishPastoralCommissionParishPastoralCommission
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    events: Schema.Attribute.Relation<'oneToMany', 'api::event.event'>;
     locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::parish-pastoral-commission.parish-pastoral-commission'
     >;
+    pastoralCommissionsTitle: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Schema.Attribute.DefaultTo<'Parish Pastoral Commissions'>;
     publishedAt: Schema.Attribute.DateTime;
     totalCommissions: Schema.Attribute.Integer &
       Schema.Attribute.Required &
