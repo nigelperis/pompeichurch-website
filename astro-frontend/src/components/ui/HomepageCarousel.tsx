@@ -58,43 +58,32 @@ export const HomepageCarousel: React.FC<HomepageCarouselProps> = ({
 
   useEffect(() => {
     if (!emblaApi || !autoplay) return;
-
-    const autoplayInterval = setInterval(() => {
-      emblaApi.scrollNext();
-    }, autoplayDelay);
-
-    return () => clearInterval(autoplayInterval);
+    const interval = setInterval(() => emblaApi.scrollNext(), autoplayDelay);
+    return () => clearInterval(interval);
   }, [emblaApi, autoplay, autoplayDelay]);
 
-  // Initialize PhotoSwipe lightbox
   useEffect(() => {
     let lightbox: any;
 
-    const initLightbox = async () => {
+    const init = async () => {
       const PhotoSwipeLightbox = (await import("photoswipe/lightbox")).default;
 
       lightbox = new PhotoSwipeLightbox({
-        mainClass: "pswp--custom-icon-colors",
         gallery: ".homepage-carousel-lightbox",
         children: "a",
+        mainClass: "pswp--custom-icon-colors",
         pswpModule: () => import("photoswipe"),
       });
 
       lightbox.init();
     };
 
-    initLightbox();
+    init();
 
-    return () => {
-      if (lightbox) {
-        lightbox.destroy();
-      }
-    };
+    return () => lightbox && lightbox.destroy();
   }, []);
 
-  if (!slides || slides.length === 0) {
-    return null;
-  }
+  if (!slides.length) return null;
 
   return (
     <div
@@ -103,9 +92,10 @@ export const HomepageCarousel: React.FC<HomepageCarouselProps> = ({
         className,
       )}
     >
-      {/* Carousel Container - always rendered, just with placeholders until ready */}
+      {/* Carousel */}
       <div className="overflow-hidden" ref={emblaRef}>
-        <div className="flex">
+        {/* 👇 THIS LINE FIXES THE LEFT OFFSET */}
+        <div className="flex pl-[10%] md:pl-[16.666667%]">
           {slides.map((slide, index) => (
             <div
               key={slide.id}
@@ -113,9 +103,9 @@ export const HomepageCarousel: React.FC<HomepageCarouselProps> = ({
             >
               <div
                 className={cn(
-                  "relative aspect-4/3 md:aspect-auto md:max-h-[570px] md:h-[670px] rounded-lg overflow-hidden transition-all duration-500 ease-out transform-gpu",
+                  "relative aspect-4/3 md:aspect-auto md:h-[670px] md:max-h-[570px] rounded-lg overflow-hidden transition-all duration-500 ease-out transform-gpu",
                   index === selectedIndex
-                    ? "scale-99 opacity-100"
+                    ? "scale-100 opacity-100"
                     : "scale-90 opacity-70",
                 )}
                 style={{
@@ -132,7 +122,7 @@ export const HomepageCarousel: React.FC<HomepageCarouselProps> = ({
                   data-pswp-src={slide.image}
                   data-pswp-width={slide.width || 1200}
                   data-pswp-height={slide.height || 800}
-                  className="block w-full h-full cursor-zoom-in"
+                  className="relative block w-full h-full cursor-zoom-in"
                   onClick={(e) => {
                     if (index !== selectedIndex) {
                       e.preventDefault();
@@ -140,17 +130,24 @@ export const HomepageCarousel: React.FC<HomepageCarouselProps> = ({
                     }
                   }}
                 >
-                  {/* Show gray placeholder until ready, then show image */}
-                  {!isReady ? (
-                    <div className="w-full h-full bg-gray-200 animate-pulse" />
-                  ) : (
-                    <img
-                      src={slide.image}
-                      alt={slide.alt || slide.title}
-                      className="w-full h-full object-cover"
-                      loading="lazy"
-                    />
-                  )}
+                  {/* Skeleton */}
+                  <div
+                    className={cn(
+                      "absolute inset-0 bg-gray-200 animate-pulse transition-opacity duration-300",
+                      isReady ? "opacity-0" : "opacity-100",
+                    )}
+                  />
+
+                  {/* Image */}
+                  <img
+                    src={slide.image}
+                    alt={slide.alt || slide.title}
+                    className={cn(
+                      "absolute inset-0 w-full h-full object-cover transition-opacity duration-300",
+                      isReady ? "opacity-100" : "opacity-0",
+                    )}
+                    loading="lazy"
+                  />
                 </a>
               </div>
             </div>
@@ -158,19 +155,19 @@ export const HomepageCarousel: React.FC<HomepageCarouselProps> = ({
         </div>
       </div>
 
-      {/* Dots Indicator */}
+      {/* Dots */}
       <div className="flex justify-center mt-6 md:mt-8 space-x-2">
         {slides.map((_, index) => (
           <button
             key={index}
+            onClick={() => scrollTo(index)}
+            aria-label={`Go to slide ${index + 1}`}
             className={cn(
               "transition-all duration-300 rounded-full",
               index === selectedIndex
                 ? "w-8 h-2 bg-yellow-400"
                 : "w-2 h-2 bg-gray-400",
             )}
-            onClick={() => scrollTo(index)}
-            aria-label={`Go to slide ${index + 1}`}
           />
         ))}
       </div>
