@@ -103,10 +103,48 @@ export const HomepageCarousel: React.FC<HomepageCarouselProps> = ({
         className,
       )}
     >
-      {/* Loading skeleton - shows while carousel initializess */}
+      {/* Loading skeleton - shows while carousel initializes */}
       {!isReady && (
         <div className="animate-pulse">
-          <div className="aspect-4/3 md:h-[670px] bg-gray-200 rounded-lg" />
+          {/* Mimic the carousel layout with centered slide and side previews */}
+          <div className="overflow-hidden">
+            <div className="flex justify-center items-center gap-4">
+              {/* Left preview slide (partial, faded) */}
+              <div className="flex-[0_0_80%] md:flex-[0_0_66.666667%] min-w-0 opacity-70 scale-90 transform">
+                <div
+                  className="aspect-4/3 md:h-[670px] bg-gray-200 rounded-lg"
+                  style={{
+                    boxShadow:
+                      "var(--sds-size-depth-0) var(--sds-size-depth-100) var(--sds-size-depth-100) var(--sds-size-depth-negative-025) var(--sds-color-black-200)",
+                  }}
+                />
+              </div>
+
+              {/* Center active slide (full size, visible) */}
+              <div className="flex-[0_0_80%] md:flex-[0_0_66.666667%] min-w-0 opacity-100 scale-99 transform">
+                <div
+                  className="aspect-4/3 md:h-[670px] bg-gray-200 rounded-lg"
+                  style={{
+                    boxShadow:
+                      "var(--sds-size-depth-0) var(--sds-size-depth-100) var(--sds-size-depth-100) var(--sds-size-depth-negative-025) var(--sds-color-black-200)",
+                  }}
+                />
+              </div>
+
+              {/* Right preview slide (partial, faded) */}
+              <div className="flex-[0_0_80%] md:flex-[0_0_66.666667%] min-w-0 opacity-70 scale-90 transform">
+                <div
+                  className="aspect-4/3 md:h-[670px] bg-gray-200 rounded-lg"
+                  style={{
+                    boxShadow:
+                      "var(--sds-size-depth-0) var(--sds-size-depth-100) var(--sds-size-depth-100) var(--sds-size-depth-negative-025) var(--sds-color-black-200)",
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Skeleton dots matching the real dots */}
           <div className="flex justify-center mt-6 md:mt-8 space-x-2">
             <div className="w-8 h-2 bg-gray-300 rounded-full" />
             <div className="w-2 h-2 bg-gray-300 rounded-full" />
