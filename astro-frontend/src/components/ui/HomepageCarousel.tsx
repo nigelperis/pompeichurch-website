@@ -103,118 +103,76 @@ export const HomepageCarousel: React.FC<HomepageCarouselProps> = ({
         className,
       )}
     >
-      {/* Loading skeleton - shows while carousel initializes */}
-      {!isReady && (
-        <div className="animate-pulse">
-          {/* Use EXACT same structure as real carousel */}
-          <div className="overflow-hidden">
+      {/* Carousel Container - always rendered, just with placeholders until ready */}
+      <div className="overflow-hidden" ref={emblaRef}>
+        <div className="flex">
+          {slides.map((slide, index) => (
             <div
-              className="flex"
-              style={{ transform: "translateX(calc(-80% * 0 + 10%))" }}
+              key={slide.id}
+              className="flex-[0_0_80%] md:flex-[0_0_66.666667%] min-w-0"
             >
-              {/* Generate 3 skeleton slides matching real carousel */}
-              {[0, 1, 2].map((index) => (
-                <div
-                  key={index}
-                  className="flex-[0_0_80%] md:flex-[0_0_66.666667%] min-w-0"
-                >
-                  <div
-                    className={cn(
-                      "relative aspect-4/3 md:aspect-auto md:max-h-[570px] md:h-[670px] rounded-lg overflow-hidden transition-all duration-500 ease-out transform-gpu",
-                      index === 0
-                        ? "scale-99 opacity-100"
-                        : "scale-90 opacity-70",
-                    )}
-                    style={{
-                      boxShadow:
-                        "var(--sds-size-depth-0) var(--sds-size-depth-100) var(--sds-size-depth-100) var(--sds-size-depth-negative-025) var(--sds-color-black-200)",
-                    }}
-                  >
-                    <div className="w-full h-full bg-gray-200" />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Skeleton dots matching the real dots */}
-          <div className="flex justify-center mt-6 md:mt-8 space-x-2">
-            <div className="w-8 h-2 bg-gray-300 rounded-full" />
-            <div className="w-2 h-2 bg-gray-300 rounded-full" />
-            <div className="w-2 h-2 bg-gray-300 rounded-full" />
-          </div>
-        </div>
-      )}
-
-      {/* Real carousel - hidden until ready */}
-      <div className={cn(!isReady && "hidden")}>
-        {/* Carousel Container */}
-        <div className="overflow-hidden" ref={emblaRef}>
-          <div className="flex">
-            {slides.map((slide, index) => (
               <div
-                key={slide.id}
-                className="flex-[0_0_80%] md:flex-[0_0_66.666667%] min-w-0"
+                className={cn(
+                  "relative aspect-4/3 md:aspect-auto md:max-h-[570px] md:h-[670px] rounded-lg overflow-hidden transition-all duration-500 ease-out transform-gpu",
+                  index === selectedIndex
+                    ? "scale-99 opacity-100"
+                    : "scale-90 opacity-70",
+                )}
+                style={{
+                  boxShadow:
+                    "var(--sds-size-depth-0) var(--sds-size-depth-100) var(--sds-size-depth-100) var(--sds-size-depth-negative-025) var(--sds-color-black-200)",
+                }}
               >
-                <div
-                  className={cn(
-                    "relative aspect-4/3 md:aspect-auto md:max-h-[570px] md:h-[670px] rounded-lg overflow-hidden transition-all duration-500 ease-out transform-gpu",
-                    index === selectedIndex
-                      ? "scale-99 opacity-100"
-                      : "scale-90 opacity-70",
-                  )}
-                  style={{
-                    boxShadow:
-                      "var(--sds-size-depth-0) var(--sds-size-depth-100) var(--sds-size-depth-100) var(--sds-size-depth-negative-025) var(--sds-color-black-200)",
+                <a
+                  href={slide.image}
+                  role="button"
+                  aria-label={`View full-size image: ${
+                    slide.alt || slide.title
+                  }`}
+                  data-pswp-src={slide.image}
+                  data-pswp-width={slide.width || 1200}
+                  data-pswp-height={slide.height || 800}
+                  className="block w-full h-full cursor-zoom-in"
+                  onClick={(e) => {
+                    if (index !== selectedIndex) {
+                      e.preventDefault();
+                      scrollTo(index);
+                    }
                   }}
                 >
-                  {/* ✅ Corrected clickable wrapper */}
-                  <a
-                    href={slide.image}
-                    role="button"
-                    aria-label={`View full-size image: ${
-                      slide.alt || slide.title
-                    }`}
-                    data-pswp-src={slide.image}
-                    data-pswp-width={slide.width || 1200}
-                    data-pswp-height={slide.height || 800}
-                    className="block w-full h-full cursor-zoom-in"
-                    onClick={(e) => {
-                      if (index !== selectedIndex) {
-                        e.preventDefault();
-                        scrollTo(index);
-                      }
-                    }}
-                  >
+                  {/* Show gray placeholder until ready, then show image */}
+                  {!isReady ? (
+                    <div className="w-full h-full bg-gray-200 animate-pulse" />
+                  ) : (
                     <img
                       src={slide.image}
                       alt={slide.alt || slide.title}
                       className="w-full h-full object-cover"
                       loading="lazy"
                     />
-                  </a>
-                </div>
+                  )}
+                </a>
               </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Dots Indicator */}
-        <div className="flex justify-center mt-6 md:mt-8 space-x-2">
-          {slides.map((_, index) => (
-            <button
-              key={index}
-              className={cn(
-                "transition-all duration-300 rounded-full",
-                index === selectedIndex
-                  ? "w-8 h-2 bg-yellow-400"
-                  : "w-2 h-2 bg-gray-400",
-              )}
-              onClick={() => scrollTo(index)}
-              aria-label={`Go to slide ${index + 1}`}
-            />
+            </div>
           ))}
         </div>
+      </div>
+
+      {/* Dots Indicator */}
+      <div className="flex justify-center mt-6 md:mt-8 space-x-2">
+        {slides.map((_, index) => (
+          <button
+            key={index}
+            className={cn(
+              "transition-all duration-300 rounded-full",
+              index === selectedIndex
+                ? "w-8 h-2 bg-yellow-400"
+                : "w-2 h-2 bg-gray-400",
+            )}
+            onClick={() => scrollTo(index)}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
       </div>
     </div>
   );
