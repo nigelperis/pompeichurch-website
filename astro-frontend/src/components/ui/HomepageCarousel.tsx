@@ -103,7 +103,7 @@ export const HomepageCarousel: React.FC<HomepageCarouselProps> = ({
         className,
       )}
     >
-      {/* Loading skeleton - shows while carousel initializes */}
+      {/* Loading skeleton - shows while carousel initializess */}
       {!isReady && (
         <div className="animate-pulse">
           <div className="aspect-4/3 md:h-[670px] bg-gray-200 rounded-lg" />
