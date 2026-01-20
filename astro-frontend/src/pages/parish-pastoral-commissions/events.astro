@@ -1,0 +1,78 @@
+---
+import Layout from "~/layouts/layout.astro";
+import { getLangFromUrl, useTranslations } from "~/i18n/utils";
+import { listEvents } from "~/services/events/list-events";
+import EventsList from "~/components/sections/events/events-list.astro";
+import { Locale } from "~/enums/locale";
+import { cn } from "~/helpers/cn";
+import { Message } from "~/constants/message.ts";
+import PushNotification from "~/components/push-notification.astro";
+import Pagination from "~/components/pagination.astro";
+import { getPaginationRange } from "~/helpers/get-pagination-range";
+import { ITEMS_PER_PAGE } from "~/constants/index.ts";
+import { listPastoralCommissionsData } from "~/services/list-parish-pastoral-commissions";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const currentPage = Number(Astro.url.searchParams.get("p")) || 1;
+
+const commissionsData = await listPastoralCommissionsData()
+const pastoralCommissionsTitle = commissionsData[0].pastoralCommissionsTitle ?? "Parish Pastoral Commissions";
+const { events: filteredEvents } = await listEvents({
+  page: 1,
+  pageSize: 500,
+  filters: { "pastoralCommissions": { $eq: pastoralCommissionsTitle } },
+});
+
+const totalEvents = filteredEvents.length;
+const totalPages = Math.ceil(totalEvents / ITEMS_PER_PAGE);
+
+const paginatedEvents = filteredEvents.slice(
+  (currentPage - 1) * ITEMS_PER_PAGE,
+  currentPage * ITEMS_PER_PAGE,
+);
+
+const pageTitle = `${pastoralCommissionsTitle} Events | Pompei Church`;
+
+const emptyStateMessage =
+  lang === Locale.KOK ? Message.EVENTS_NOT_FOUND_KOK : Message.EVENTS_NOT_FOUND;
+---
+
+<Layout title={pageTitle}>
+  <main class="mx-auto max-w-5xl overflow-hidden bg-white">
+    <section id="events" class="flex flex-col p-6 lg:p-8">
+      <PushNotification />
+
+      <div
+        class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between pb-6 lg:pb-8"
+      >
+        <h1
+          class={cn(
+            "font-black border-natgeo-yellow border-l-4 pl-3 text-3xl lg:text-4xl",
+            { "pt-[13px] font-bold": lang === Locale.KOK },
+          )}
+        >
+          {t("nav.events")}
+        </h1>
+      </div>
+
+      {
+        paginatedEvents.length > 0 ? (
+          <>
+            <EventsList events={paginatedEvents} />
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              getPaginationRange={getPaginationRange}
+            />
+          </>
+        ) : (
+          <p class="py-8 text-center text-3xl font-semibold">
+            {emptyStateMessage}
+          </p>
+        )
+      }
+    </section>
+  </main>
+</Layout>

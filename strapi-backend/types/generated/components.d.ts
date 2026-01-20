@@ -46,7 +46,10 @@ export interface SharedCommissionBlock extends Struct.ComponentSchema {
   };
   attributes: {
     commissionTitle: Schema.Attribute.String & Schema.Attribute.Required;
-    convenor: Schema.Attribute.String & Schema.Attribute.Required;
+    convenorImage: Schema.Attribute.Media<'images'>;
+    convenorName: Schema.Attribute.String & Schema.Attribute.Required;
+    convenorSex: Schema.Attribute.Enumeration<['Male ', 'Female']> &
+      Schema.Attribute.Required;
     subCommissions: Schema.Attribute.Component<'shared.commission', true> &
       Schema.Attribute.Required;
   };

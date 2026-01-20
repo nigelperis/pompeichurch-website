@@ -1,0 +1,179 @@
+---
+import Layout from "~/layouts/layout.astro";
+import CommissionCard from "~/components/sections/parish-pastoral-commissions/commission-card.astro";
+import { getLangFromUrl, useTranslations } from "~/i18n/utils";
+import { cn } from "~/helpers/cn";
+import { Locale } from "~/enums/locale";
+import type { ParishPastoralCommission } from "~/models/parish-pastoral-commission";
+import { listPastoralCommissionsData } from "~/services/list-parish-pastoral-commissions";
+import { Message } from "~/constants/message";
+import { listEvents } from "~/services/events/list-events";
+import HoverableLink from "~/components/ui/hoverable-link.astro";
+import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
+import EventCard from "~/components/event-card.astro";
+import NetworkImage from "~/components/ui/network-image.astro";
+
+const lang = getLangFromUrl(Astro.url) as Locale;
+const t = useTranslations(lang);
+
+let pastoralCommissionsData: ParishPastoralCommission[] =
+  lang === Locale.EN
+    ? (await listPastoralCommissionsData({ locale: Locale.EN })) || []
+    : (await listPastoralCommissionsData({ locale: Locale.KOK })) || [];
+
+if (pastoralCommissionsData.length === 0) {
+  pastoralCommissionsData =
+    lang === Locale.EN
+      ? (await listPastoralCommissionsData({ locale: Locale.KOK })) || []
+      : (await listPastoralCommissionsData({ locale: Locale.EN })) || [];
+}
+
+const totalCommissions = pastoralCommissionsData[0]?.totalCommissions;
+const title = totalCommissions ?
+  lang === Locale.KOK
+    ? `${totalCommissions} ಆಯೋಗ್`
+    : `Parish Pastoral ${totalCommissions} Commissions`
+  : lang === Locale.KOK ? "ಆಯೋಗ್" : "Parish Pastoral Commissions";
+
+const coordinatorData = pastoralCommissionsData[0]?.coordinatorName;
+
+// Fetch recent events links
+const pastoralCommissionsTitle = pastoralCommissionsData[0]?.pastoralCommissionsTitle ?? "Parish Pastoral Commissions";
+const allEvents = await listEvents({
+  page: 1,
+  pageSize: 6,
+  sortBy: ["eventDate:desc"],
+  filters: { "pastoralCommissions": { $eq: pastoralCommissionsTitle } },
+});
+
+const recentEvents = allEvents.events?.slice(0, 2) || [];
+const totalEventCount = allEvents.events?.length ?? 0;
+
+const eventsUrl =
+  lang === Locale.KOK
+    ? `/kok/parish-pastoral-commissions/events`
+    : `/parish-pastoral-commissions/events`;
+---
+
+<Layout title={title}>
+  <main class="mx-auto max-w-screen-lg overflow-hidden bg-white">
+    <section id="pastoral-commissions" class="flex flex-col p-6 lg:p-8">
+      <div class="mb-8">
+        <h1
+          class={cn(
+            "border-natgeo-yellow border-l-4 pl-3 text-left text-3xl lg:text-4xl font-black",
+            {
+              "pt-[13px] font-bold": lang === Locale.KOK,
+            },
+          )}
+        >
+          {title}
+        </h1>
+
+        {
+          pastoralCommissionsData.length > 0 && (
+            <div class="flex flex-col md:flex-row md:space-x-6 space-y-6 md:space-y-0 mt-7 border border-gray-200 p-3 flex-1 items-center space-x-4">
+              <div class="shrink-0 md:mb-1">
+                <NetworkImage
+                  src={
+                    coordinatorData?.image?.url
+                      ? new URL(
+                          coordinatorData?.image?.url,
+                          import.meta.env.PUBLIC_STRAPI_URL,
+                        ).toString()
+                      : getPlaceholderImage({ text: coordinatorData?.name })
+                  }
+                  width={coordinatorData?.image?.width || 600}
+                  height={coordinatorData?.image?.height || 400}
+                  alt={coordinatorData?.name || "Coordinator Image"}
+                  class="w-32 h-32 rounded-full object-cover object-top"
+                />
+              </div>
+              <div>
+                <h4 class="text-xl font-semibold text-gray-900 md:text-2xl">
+                  {coordinatorData?.name}
+                </h4>
+                <p class="text-lg text-gray-900 md:text-xl">
+                  {coordinatorData?.position}
+                </p>
+              </div>
+            </div>
+          )
+        }
+      </div>
+
+      {
+        pastoralCommissionsData.length > 0 ? (
+          <div class="grid gap-8 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 mb-7">
+            {pastoralCommissionsData[0].commissions.map((commission) => (
+              <CommissionCard
+                title={commission.commissionTitle}
+                convenorName={commission.convenorName}
+                convenorSex={commission.convenorSex}
+                convenorImage={commission.convenorImage}
+                subCommissions={commission.subCommissions}
+              />
+            ))}
+          </div>
+        ) : (
+          <div class="p-12 text-center">
+            <p class="py-8 text-center text-3xl font-semibold">
+              {Message.COMMISSIONS_NOT_FOUND}
+            </p>
+          </div>
+        )
+      }
+      {
+        recentEvents.length > 0 && (
+          <>
+            <h2
+              class={cn("font-bold mt-1 text-left text-2xl text-slate-900", {
+                "font-bold": lang === Locale.KOK,
+              })}
+            >
+              {t("commissions.events")}
+            </h2>
+
+            <div
+              class={cn("grid grid-cols-1 gap-8 sm:grid-cols-2 my-4", {
+                "mb-5 mt-2.5": lang === Locale.KOK,
+              })}
+            >
+              {recentEvents.map((event) => (
+                <EventCard
+                  eventName={event.englishTitle}
+                  eventNameKok={event.konkaniTitle}
+                  imageUrl={
+                    event.eventImage?.url
+                      ? new URL(
+                          event.eventImage?.url,
+                          import.meta.env.PUBLIC_STRAPI_URL,
+                        ).toString()
+                      : getPlaceholderImage({ text: event.englishTitle })
+                  }
+                  imageWidth={event.eventImage?.width || 600}
+                  imageHeight={event.eventImage?.height || 400}
+                  shortDescriptionEn={event.shortDescriptionEn}
+                  shortDescriptionKok={event.shortDescriptionKok}
+                  facebookLink={event.facebookLink}
+                  slug={event.slug}
+                  instagramLink={event.instagramLink}
+                />
+              ))}
+            </div>
+          </>
+        )
+      }
+
+      {
+        totalEventCount > 2 && (
+          <div class="flex justify-center">
+            <HoverableLink href={eventsUrl} class="mx-5">
+              {t("ui.show-more-events")}
+            </HoverableLink>
+          </div>
+        )
+      }
+    </section>
+  </main>
+</Layout>

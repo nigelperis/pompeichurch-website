@@ -46,8 +46,8 @@ export const navLinks = [
         href: "/parish-finance-committee",
       },
       {
-        title: "nav.parish-pastoral-21-commissions",
-        href: "/parish-pastoral-21-commissions",
+        title: "nav.parish-pastoral-commissions",
+        href: "/parish-pastoral-commissions",
       },
       {
         title: "nav.ex-vp-secretaries",
