@@ -27,6 +27,7 @@ export const HomepageCarousel: React.FC<HomepageCarouselProps> = ({
   className,
 }) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [isReady, setIsReady] = useState(false);
 
   const [emblaRef, emblaApi] = useEmblaCarousel(
     {
@@ -52,6 +53,7 @@ export const HomepageCarousel: React.FC<HomepageCarouselProps> = ({
     onSelect();
     emblaApi.on("select", onSelect);
     emblaApi.on("reInit", onSelect);
+    setIsReady(true);
   }, [emblaApi, onSelect]);
 
   useEffect(() => {
@@ -97,7 +99,8 @@ export const HomepageCarousel: React.FC<HomepageCarouselProps> = ({
   return (
     <div
       className={cn(
-        "relative w-full mx-auto homepage-carousel-lightbox",
+        "relative w-full mx-auto homepage-carousel-lightbox transition-opacity duration-300",
+        isReady ? "opacity-100" : "opacity-0",
         className,
       )}
     >
