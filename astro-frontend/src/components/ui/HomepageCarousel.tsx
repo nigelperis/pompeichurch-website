@@ -27,7 +27,6 @@ export const HomepageCarousel: React.FC<HomepageCarouselProps> = ({
   className,
 }) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [isReady, setIsReady] = useState(false);
 
   const [emblaRef, emblaApi] = useEmblaCarousel(
     {
@@ -53,7 +52,6 @@ export const HomepageCarousel: React.FC<HomepageCarouselProps> = ({
     onSelect();
     emblaApi.on("select", onSelect);
     emblaApi.on("reInit", onSelect);
-    setIsReady(true);
   }, [emblaApi, onSelect]);
 
   useEffect(() => {
@@ -103,86 +101,76 @@ export const HomepageCarousel: React.FC<HomepageCarouselProps> = ({
         className,
       )}
     >
-      {/* Loading skeleton */}
-      {!isReady && (
-        <div className="animate-pulse">
-          <div className="aspect-4/3 md:h-[670px] bg-gray-200 rounded-lg" />
-          <div className="flex justify-center mt-6 md:mt-8 space-x-2">
-            <div className="w-8 h-2 bg-gray-300 rounded-full" />
-            <div className="w-2 h-2 bg-gray-300 rounded-full" />
-            <div className="w-2 h-2 bg-gray-300 rounded-full" />
-          </div>
-        </div>
-      )}
-      {/* Real carousel */}
-      <div className={cn(!isReady && "hidden")}>
-        {/* Carousel Container */}
-        <div className="overflow-hidden" ref={emblaRef}>
-          <div className="flex">
-            {slides.map((slide, index) => (
+      {/* Carousel Container */}
+      <div
+        className="overflow-hidden"
+        ref={emblaRef}
+        style={{ visibility: emblaApi ? "visible" : "hidden" }}
+      >
+        <div className="flex">
+          {slides.map((slide, index) => (
+            <div
+              key={slide.id}
+              className="flex-[0_0_80%] md:flex-[0_0_66.666667%] min-w-0"
+            >
               <div
-                key={slide.id}
-                className="flex-[0_0_80%] md:flex-[0_0_66.666667%] min-w-0"
+                className={cn(
+                  "relative aspect-4/3 md:aspect-auto md:max-h-[570px] md:h-[670px] rounded-lg overflow-hidden transition-all duration-500 ease-out transform-gpu",
+                  index === selectedIndex
+                    ? "scale-99 opacity-100"
+                    : "scale-90 opacity-70",
+                )}
+                style={{
+                  boxShadow:
+                    "var(--sds-size-depth-0) var(--sds-size-depth-100) var(--sds-size-depth-100) var(--sds-size-depth-negative-025) var(--sds-color-black-200)",
+                }}
               >
-                <div
-                  className={cn(
-                    "relative aspect-4/3 md:aspect-auto md:max-h-[570px] md:h-[670px] rounded-lg overflow-hidden transition-all duration-500 ease-out transform-gpu",
-                    index === selectedIndex
-                      ? "scale-99 opacity-100"
-                      : "scale-90 opacity-70",
-                  )}
-                  style={{
-                    boxShadow:
-                      "var(--sds-size-depth-0) var(--sds-size-depth-100) var(--sds-size-depth-100) var(--sds-size-depth-negative-025) var(--sds-color-black-200)",
+                {/* ✅ Corrected clickable wrapper */}
+                <a
+                  href={slide.image}
+                  role="button"
+                  aria-label={`View full-size image: ${
+                    slide.alt || slide.title
+                  }`}
+                  data-pswp-src={slide.image}
+                  data-pswp-width={slide.width || 1200}
+                  data-pswp-height={slide.height || 800}
+                  className="block w-full h-full cursor-zoom-in"
+                  onClick={(e) => {
+                    if (index !== selectedIndex) {
+                      e.preventDefault();
+                      scrollTo(index);
+                    }
                   }}
                 >
-                  {/* ✅ Corrected clickable wrapper */}
-                  <a
-                    href={slide.image}
-                    role="button"
-                    aria-label={`View full-size image: ${
-                      slide.alt || slide.title
-                    }`}
-                    data-pswp-src={slide.image}
-                    data-pswp-width={slide.width || 1200}
-                    data-pswp-height={slide.height || 800}
-                    className="block w-full h-full cursor-zoom-in"
-                    onClick={(e) => {
-                      if (index !== selectedIndex) {
-                        e.preventDefault();
-                        scrollTo(index);
-                      }
-                    }}
-                  >
-                    <img
-                      src={slide.image}
-                      alt={slide.alt || slide.title}
-                      className="w-full h-full object-cover"
-                      loading="lazy"
-                    />
-                  </a>
-                </div>
+                  <img
+                    src={slide.image}
+                    alt={slide.alt || slide.title}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </a>
               </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Dots Indicator */}
-        <div className="flex justify-center mt-6 md:mt-8 space-x-2">
-          {slides.map((_, index) => (
-            <button
-              key={index}
-              className={cn(
-                "transition-all duration-300 rounded-full",
-                index === selectedIndex
-                  ? "w-8 h-2 bg-yellow-400"
-                  : "w-2 h-2 bg-gray-400",
-              )}
-              onClick={() => scrollTo(index)}
-              aria-label={`Go to slide ${index + 1}`}
-            />
+            </div>
           ))}
         </div>
+      </div>
+
+      {/* Dots Indicator */}
+      <div className="flex justify-center mt-6 md:mt-8 space-x-2">
+        {slides.map((_, index) => (
+          <button
+            key={index}
+            className={cn(
+              "transition-all duration-300 rounded-full",
+              index === selectedIndex
+                ? "w-8 h-2 bg-yellow-400"
+                : "w-2 h-2 bg-gray-400",
+            )}
+            onClick={() => scrollTo(index)}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
       </div>
     </div>
   );
