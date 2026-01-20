@@ -1,3 +1,4 @@
+import "photoswipe/style.css";
 import React, { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { WheelGesturesPlugin } from "embla-carousel-wheel-gestures";
@@ -69,7 +70,6 @@ export const HomepageCarousel: React.FC<HomepageCarouselProps> = ({
 
     const initLightbox = async () => {
       const PhotoSwipeLightbox = (await import("photoswipe/lightbox")).default;
-      await import("photoswipe/style.css");
 
       lightbox = new PhotoSwipeLightbox({
         mainClass: "pswp--custom-icon-colors",
