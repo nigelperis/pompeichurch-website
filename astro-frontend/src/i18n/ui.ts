@@ -557,7 +557,7 @@ export const ui = {
     "achievement.congratulations": "ಅಭಿನಂದನ್",
     "achievement.warm-wishes": "ಆಶೀರ್ವಾದಾಂ ಆನಿ ಬರೆಂ ಮಾಗ್ತಾತ್,",
     achievement: "ಸಾಧನ್",
-    "commissions.events": "ಆಯೋಗಾಚಿ ಘಡಿತಾಂ",
+    "commissions.events": "ಆಯೋಗಾಂಚಿ ಘಡಿತಾಂ",
     "associations.about-us": "ಆಮ್ಚ್ಯಾ ಸಂಘಾ ವಿಶ್ಯಾoತ್",
     "associations.office-bearers": "ಪದಾಧಿಕಾರಿ",
     "associations.events": "ಸಂಘ್-ಸಂಸ್ಥ್ಯಾಚಿ ಘಡಿತಾಂ",

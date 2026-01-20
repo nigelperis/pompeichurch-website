@@ -579,7 +579,7 @@ export interface ApiEventEvent extends Struct.CollectionTypeSchema {
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::event.event'> &
       Schema.Attribute.Private;
     pastoralCommissions: Schema.Attribute.Enumeration<
-      ['Parish Pastoral Commissions']
+      ['Parish Pastoral Commissions', 'None']
     >;
     publishedAt: Schema.Attribute.DateTime;
     shortDescriptionEn: Schema.Attribute.String;

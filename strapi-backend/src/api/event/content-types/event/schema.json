@@ -65,7 +65,8 @@
     "pastoralCommissions": {
       "type": "enumeration",
       "enum": [
-        "Parish Pastoral Commissions"
+        "Parish Pastoral Commissions",
+        "None"
       ]
     }
   }

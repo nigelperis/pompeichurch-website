@@ -28,11 +28,12 @@ if (pastoralCommissionsData.length === 0) {
       : (await listPastoralCommissionsData({ locale: Locale.EN })) || [];
 }
 
-const totalCommissions = pastoralCommissionsData[0]?.totalCommissions ?? 22;
-const title =
+const totalCommissions = pastoralCommissionsData[0]?.totalCommissions;
+const title = totalCommissions ?
   lang === Locale.KOK
     ? `${totalCommissions} ಆಯೋಗ್`
-    : `Parish Pastoral ${totalCommissions} Commissions`;
+    : `Parish Pastoral ${totalCommissions} Commissions`
+  : lang === Locale.KOK ? "ಆಯೋಗ್" : "Parish Pastoral Commissions";
 
 const coordinatorData = pastoralCommissionsData[0]?.coordinatorName;
 
