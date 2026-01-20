@@ -106,41 +106,34 @@ export const HomepageCarousel: React.FC<HomepageCarouselProps> = ({
       {/* Loading skeleton - shows while carousel initializes */}
       {!isReady && (
         <div className="animate-pulse">
-          {/* Mimic the carousel layout with centered slide and side previews */}
+          {/* Use EXACT same structure as real carousel */}
           <div className="overflow-hidden">
-            <div className="flex justify-center items-center gap-4">
-              {/* Left preview slide (partial, faded) */}
-              <div className="flex-[0_0_80%] md:flex-[0_0_66.666667%] min-w-0 opacity-70 scale-90 transform">
+            <div
+              className="flex"
+              style={{ transform: "translateX(calc(-80% * 0 + 10%))" }}
+            >
+              {/* Generate 3 skeleton slides matching real carousel */}
+              {[0, 1, 2].map((index) => (
                 <div
-                  className="aspect-4/3 md:h-[670px] bg-gray-200 rounded-lg"
-                  style={{
-                    boxShadow:
-                      "var(--sds-size-depth-0) var(--sds-size-depth-100) var(--sds-size-depth-100) var(--sds-size-depth-negative-025) var(--sds-color-black-200)",
-                  }}
-                />
-              </div>
-
-              {/* Center active slide (full size, visible) */}
-              <div className="flex-[0_0_80%] md:flex-[0_0_66.666667%] min-w-0 opacity-100 scale-99 transform">
-                <div
-                  className="aspect-4/3 md:h-[670px] bg-gray-200 rounded-lg"
-                  style={{
-                    boxShadow:
-                      "var(--sds-size-depth-0) var(--sds-size-depth-100) var(--sds-size-depth-100) var(--sds-size-depth-negative-025) var(--sds-color-black-200)",
-                  }}
-                />
-              </div>
-
-              {/* Right preview slide (partial, faded) */}
-              <div className="flex-[0_0_80%] md:flex-[0_0_66.666667%] min-w-0 opacity-70 scale-90 transform">
-                <div
-                  className="aspect-4/3 md:h-[670px] bg-gray-200 rounded-lg"
-                  style={{
-                    boxShadow:
-                      "var(--sds-size-depth-0) var(--sds-size-depth-100) var(--sds-size-depth-100) var(--sds-size-depth-negative-025) var(--sds-color-black-200)",
-                  }}
-                />
-              </div>
+                  key={index}
+                  className="flex-[0_0_80%] md:flex-[0_0_66.666667%] min-w-0"
+                >
+                  <div
+                    className={cn(
+                      "relative aspect-4/3 md:aspect-auto md:max-h-[570px] md:h-[670px] rounded-lg overflow-hidden transition-all duration-500 ease-out transform-gpu",
+                      index === 0
+                        ? "scale-99 opacity-100"
+                        : "scale-90 opacity-70",
+                    )}
+                    style={{
+                      boxShadow:
+                        "var(--sds-size-depth-0) var(--sds-size-depth-100) var(--sds-size-depth-100) var(--sds-size-depth-negative-025) var(--sds-color-black-200)",
+                    }}
+                  >
+                    <div className="w-full h-full bg-gray-200" />
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
 
