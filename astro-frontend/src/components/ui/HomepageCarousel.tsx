@@ -29,7 +29,7 @@ const CarouselSkeleton: React.FC<{ className?: string }> = ({ className }) => {
           {/* Left partial image skeleton - positioned to be cut off on the left */}
           <div className="flex-[0_0_80%] md:flex-[0_0_66.666667%] min-w-0">
             <div
-              className="relative aspect-4/3 md:aspect-auto md:max-h-[570px] md:h-[670px] rounded-lg overflow-hidden scale-90 opacity-70"
+              className="relative aspect-[4/3] md:aspect-auto md:h-[570px] rounded-lg overflow-hidden scale-90 opacity-70"
               style={{
                 boxShadow:
                   "var(--sds-size-depth-0) var(--sds-size-depth-100) var(--sds-size-depth-100) var(--sds-size-depth-negative-025) var(--sds-color-black-200)",
@@ -42,7 +42,7 @@ const CarouselSkeleton: React.FC<{ className?: string }> = ({ className }) => {
           {/* Center main image skeleton */}
           <div className="flex-[0_0_80%] md:flex-[0_0_66.666667%] min-w-0">
             <div
-              className="relative aspect-4/3 md:aspect-auto md:max-h-[570px] md:h-[670px] rounded-lg overflow-hidden scale-99 opacity-100"
+              className="relative aspect-[4/3] md:aspect-auto md:h-[570px] rounded-lg overflow-hidden scale-99 opacity-100"
               style={{
                 boxShadow:
                   "var(--sds-size-depth-0) var(--sds-size-depth-100) var(--sds-size-depth-100) var(--sds-size-depth-negative-025) var(--sds-color-black-200)",
@@ -63,7 +63,7 @@ const CarouselSkeleton: React.FC<{ className?: string }> = ({ className }) => {
           {/* Right partial image skeleton */}
           <div className="flex-[0_0_80%] md:flex-[0_0_66.666667%] min-w-0">
             <div
-              className="relative aspect-4/3 md:aspect-auto md:max-h-[570px] md:h-[670px] rounded-lg overflow-hidden scale-90 opacity-70"
+              className="relative aspect-[4/3] md:aspect-auto md:h-[570px] rounded-lg overflow-hidden scale-90 opacity-70"
               style={{
                 boxShadow:
                   "var(--sds-size-depth-0) var(--sds-size-depth-100) var(--sds-size-depth-100) var(--sds-size-depth-negative-025) var(--sds-color-black-200)",
