@@ -25,7 +25,7 @@ const CarouselSkeleton: React.FC<{ className?: string }> = ({ className }) => {
     <div className={cn("relative w-full mx-auto", className)}>
       {/* Carousel Container Skeleton */}
       <div className="overflow-hidden">
-        <div className="flex" style={{ transform: 'translateX(calc(-80% / 2 + 50%))' }}>
+        <div className="flex translate-x-[calc(-40%+50%)] md:translate-x-[calc(-33.333333%+50%)]">
           {/* Left partial image skeleton - positioned to be cut off on the left */}
           <div className="flex-[0_0_80%] md:flex-[0_0_66.666667%] min-w-0">
             <div
