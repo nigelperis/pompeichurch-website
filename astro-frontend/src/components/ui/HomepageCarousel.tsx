@@ -131,14 +131,14 @@ export const HomepageCarousel: React.FC<HomepageCarouselProps> = ({
   useEffect(() => {
     if (!emblaApi) return;
 
-    // Set ready after a small delay to allow Embla to position
-    const timer = setTimeout(() => {
-      setIsEmblaReady(true);
-    }, 100);
-
     onSelect();
     emblaApi.on("select", onSelect);
     emblaApi.on("reInit", onSelect);
+
+    // Set ready after emblaApi is available and positioned
+    const timer = setTimeout(() => {
+      setIsEmblaReady(true);
+    }, 50);
 
     return () => {
       clearTimeout(timer);
@@ -146,14 +146,14 @@ export const HomepageCarousel: React.FC<HomepageCarouselProps> = ({
   }, [emblaApi, onSelect]);
 
   useEffect(() => {
-    if (!emblaApi || !autoplay) return;
+    if (!emblaApi || !autoplay || !isEmblaReady) return;
 
     const autoplayInterval = setInterval(() => {
       emblaApi.scrollNext();
     }, autoplayDelay);
 
     return () => clearInterval(autoplayInterval);
-  }, [emblaApi, autoplay, autoplayDelay]);
+  }, [emblaApi, autoplay, autoplayDelay, isEmblaReady]);
 
   // Initialize PhotoSwipe lightbox
   useEffect(() => {
@@ -182,14 +182,12 @@ export const HomepageCarousel: React.FC<HomepageCarouselProps> = ({
     };
   }, []);
 
-  // Show skeleton while loading OR while Embla is initializing
-  if (isLoading || !isEmblaReady) {
-    return <CarouselSkeleton className={className} />;
-  }
-
   if (!slides || slides.length === 0) {
     return null;
   }
+
+  // Show skeleton only if explicitly loading
+  const showSkeleton = isLoading || (!isEmblaReady && slides.length > 0);
 
   return (
     <div
@@ -198,8 +196,15 @@ export const HomepageCarousel: React.FC<HomepageCarouselProps> = ({
         className,
       )}
     >
-      {/* Carousel Container */}
-      <div className="overflow-hidden" ref={emblaRef}>
+      {/* Show skeleton overlay while initializing */}
+      {showSkeleton && (
+        <div className="absolute inset-0 z-10">
+          <CarouselSkeleton />
+        </div>
+      )}
+
+      {/* Carousel Container - always render but hide while skeleton shows */}
+      <div className={cn("overflow-hidden", showSkeleton && "opacity-0")} ref={emblaRef}>
         <div className="flex">
           {slides.map((slide, index) => (
             <div
@@ -218,7 +223,6 @@ export const HomepageCarousel: React.FC<HomepageCarouselProps> = ({
                     "var(--sds-size-depth-0) var(--sds-size-depth-100) var(--sds-size-depth-100) var(--sds-size-depth-negative-025) var(--sds-color-black-200)",
                 }}
               >
-                {/* ✅ Corrected clickable wrapper */}
                 <a
                   href={slide.image}
                   role="button"
@@ -250,7 +254,7 @@ export const HomepageCarousel: React.FC<HomepageCarouselProps> = ({
       </div>
 
       {/* Dots Indicator */}
-      <div className="flex justify-center mt-6 md:mt-8 space-x-2">
+      <div className={cn("flex justify-center mt-6 md:mt-8 space-x-2", showSkeleton && "opacity-0")}>
         {slides.map((_, index) => (
           <button
             key={index}
