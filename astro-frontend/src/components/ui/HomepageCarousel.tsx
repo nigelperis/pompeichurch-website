@@ -131,23 +131,17 @@ export const HomepageCarousel: React.FC<HomepageCarouselProps> = ({
   useEffect(() => {
     if (!emblaApi) return;
 
-    const onInit = () => {
+    // Set ready after a small delay to allow Embla to position
+    const timer = setTimeout(() => {
       setIsEmblaReady(true);
-    };
-
-    // Wait for Embla to initialize and position correctly
-    if (emblaApi.slideNodes().length > 0) {
-      onInit();
-    } else {
-      emblaApi.on("init", onInit);
-    }
+    }, 100);
 
     onSelect();
     emblaApi.on("select", onSelect);
     emblaApi.on("reInit", onSelect);
 
     return () => {
-      emblaApi.off("init", onInit);
+      clearTimeout(timer);
     };
   }, [emblaApi, onSelect]);
 
