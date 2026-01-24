@@ -35,8 +35,8 @@ const CarouselSkeleton: React.FC<{ className?: string }> = ({ className }) => {
             >
               <div
                 className={cn(
-                  "relative aspect-[4/3] md:aspect-auto md:max-h-[570px] md:h-[670px] rounded-lg overflow-hidden transition-all duration-500",
-                  index === 1 ? "scale-99 opacity-100" : "scale-90 opacity-70"
+                  "relative aspect-[4/3] md:aspect-auto md:h-[670px] rounded-lg overflow-hidden transition-all duration-500",
+                  index === 1 ? "scale-99 opacity-100" : "scale-90 opacity-70",
                 )}
                 style={{
                   boxShadow:
@@ -48,8 +48,8 @@ const CarouselSkeleton: React.FC<{ className?: string }> = ({ className }) => {
                     <div
                       className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
                       style={{
-                        animation: 'shimmer 2s infinite',
-                        transform: 'translateX(-100%)'
+                        animation: "shimmer 2s infinite",
+                        transform: "translateX(-100%)",
                       }}
                     />
                   )}
@@ -67,7 +67,7 @@ const CarouselSkeleton: React.FC<{ className?: string }> = ({ className }) => {
             key={index}
             className={cn(
               "rounded-full bg-gray-300 animate-pulse",
-              index === 0 ? "w-8 h-2" : "w-2 h-2"
+              index === 0 ? "w-8 h-2" : "w-2 h-2",
             )}
           />
         ))}
@@ -189,7 +189,10 @@ export const HomepageCarousel: React.FC<HomepageCarouselProps> = ({
       )}
 
       {/* Carousel Container - always render but hide while skeleton shows */}
-      <div className={cn("overflow-hidden", showSkeleton && "opacity-0")} ref={emblaRef}>
+      <div
+        className={cn("overflow-hidden", showSkeleton && "opacity-0")}
+        ref={emblaRef}
+      >
         <div className="flex">
           {slides.map((slide, index) => (
             <div
@@ -239,7 +242,12 @@ export const HomepageCarousel: React.FC<HomepageCarouselProps> = ({
       </div>
 
       {/* Dots Indicator */}
-      <div className={cn("flex justify-center mt-6 md:mt-8 space-x-2", showSkeleton && "opacity-0")}>
+      <div
+        className={cn(
+          "flex justify-center mt-6 md:mt-8 space-x-2",
+          showSkeleton && "opacity-0",
+        )}
+      >
         {slides.map((_, index) => (
           <button
             key={index}
