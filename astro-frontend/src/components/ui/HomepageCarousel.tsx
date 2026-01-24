@@ -25,53 +25,37 @@ const CarouselSkeleton: React.FC<{ className?: string }> = ({ className }) => {
     <div className={cn("relative w-full mx-auto", className)}>
       {/* Carousel Container Skeleton */}
       <div className="overflow-hidden">
-        <div className="flex translate-x-[calc(-40%+50%)] md:translate-x-[calc(-33.333333%+50%)]">
-          {/* Left partial image skeleton - positioned to be cut off on the left */}
-          <div className="flex-[0_0_80%] md:flex-[0_0_66.666667%] min-w-0">
+        <div className="flex">
+          {/* Show 3 slides with the center one being the focus */}
+          {[0, 1, 2].map((index) => (
             <div
-              className="relative aspect-[4/3] md:aspect-auto md:h-[570px] rounded-lg overflow-hidden scale-90 opacity-70"
-              style={{
-                boxShadow:
-                  "var(--sds-size-depth-0) var(--sds-size-depth-100) var(--sds-size-depth-100) var(--sds-size-depth-negative-025) var(--sds-color-black-200)",
-              }}
+              key={index}
+              className="flex-[0_0_80%] md:flex-[0_0_66.666667%] min-w-0"
             >
-              <div className="w-full h-full bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 animate-pulse" />
-            </div>
-          </div>
-
-          {/* Center main image skeleton */}
-          <div className="flex-[0_0_80%] md:flex-[0_0_66.666667%] min-w-0">
-            <div
-              className="relative aspect-[4/3] md:aspect-auto md:h-[570px] rounded-lg overflow-hidden scale-99 opacity-100"
-              style={{
-                boxShadow:
-                  "var(--sds-size-depth-0) var(--sds-size-depth-100) var(--sds-size-depth-100) var(--sds-size-depth-negative-025) var(--sds-color-black-200)",
-              }}
-            >
-              <div className="w-full h-full relative bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 animate-pulse overflow-hidden">
-                <div
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
-                  style={{
-                    animation: 'shimmer 2s infinite',
-                    transform: 'translateX(-100%)'
-                  }}
-                />
+              <div
+                className={cn(
+                  "relative aspect-[4/3] md:aspect-auto md:h-[570px] rounded-lg overflow-hidden transition-all duration-500",
+                  index === 1 ? "scale-99 opacity-100" : "scale-90 opacity-70"
+                )}
+                style={{
+                  boxShadow:
+                    "var(--sds-size-depth-0) var(--sds-size-depth-100) var(--sds-size-depth-100) var(--sds-size-depth-negative-025) var(--sds-color-black-200)",
+                }}
+              >
+                <div className="w-full h-full relative bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 animate-pulse overflow-hidden">
+                  {index === 1 && (
+                    <div
+                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+                      style={{
+                        animation: 'shimmer 2s infinite',
+                        transform: 'translateX(-100%)'
+                      }}
+                    />
+                  )}
+                </div>
               </div>
             </div>
-          </div>
-
-          {/* Right partial image skeleton */}
-          <div className="flex-[0_0_80%] md:flex-[0_0_66.666667%] min-w-0">
-            <div
-              className="relative aspect-[4/3] md:aspect-auto md:h-[570px] rounded-lg overflow-hidden scale-90 opacity-70"
-              style={{
-                boxShadow:
-                  "var(--sds-size-depth-0) var(--sds-size-depth-100) var(--sds-size-depth-100) var(--sds-size-depth-negative-025) var(--sds-color-black-200)",
-              }}
-            >
-              <div className="w-full h-full bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 animate-pulse" />
-            </div>
-          </div>
+          ))}
         </div>
       </div>
 
