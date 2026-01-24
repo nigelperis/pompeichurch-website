@@ -35,7 +35,7 @@ const CarouselSkeleton: React.FC<{ className?: string }> = ({ className }) => {
             >
               <div
                 className={cn(
-                  "relative aspect-[4/3] md:aspect-auto md:h-[570px] rounded-lg overflow-hidden transition-all duration-500",
+                  "relative aspect-[4/3] md:aspect-auto md:max-h-[570px] md:h-[670px] rounded-lg overflow-hidden transition-all duration-500",
                   index === 1 ? "scale-99 opacity-100" : "scale-90 opacity-70"
                 )}
                 style={{
