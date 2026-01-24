@@ -25,8 +25,8 @@ const CarouselSkeleton: React.FC<{ className?: string }> = ({ className }) => {
     <div className={cn("relative w-full mx-auto", className)}>
       {/* Carousel Container Skeleton */}
       <div className="overflow-hidden">
-        {/* Transform to center the middle slide - matching Embla's align: "center" */}
-        <div className="flex -translate-x-[80%] md:-translate-x-[66.666667%]">
+        {/* Match Embla's exact positioning: 10% on mobile, 16.67% on desktop */}
+        <div className="flex translate-x-[10%] md:translate-x-[16.67%]">
           {/* Show 3 slides with the center one being the focus */}
           {[0, 1, 2].map((index) => (
             <div
