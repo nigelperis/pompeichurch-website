@@ -22,15 +22,19 @@ export default function PsalmViewer({
 
   return (
     <div className="flex flex-col">
-      <div className={cn(
+      <div
+        className={cn(
           "mt-4 flex flex-col gap-4",
-          "md:flex-row md:items-center md:justify-between md:border-b-2 md:border-b-natgeo-yellow md:pb-2"
-        )}>
-        <h2 className={cn(
+          "md:flex-row md:items-center md:justify-between md:border-b-2 md:border-b-natgeo-yellow md:pb-2",
+        )}
+      >
+        <h2
+          className={cn(
             "text-2xl font-bold lg:text-3xl",
             "border-b-2 border-b-natgeo-yellow pb-2",
-            "md:border-b-0 md:pb-0"
-          )}>
+            "md:border-b-0 md:pb-0",
+          )}
+        >
           {sectionTitle}
         </h2>
 
