@@ -1,7 +1,10 @@
 ---
 import NetworkImage from "~/components/ui/network-image.astro";
 import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
-import type { ParishPastoralCouncil, ParishPastoralCouncilImage } from "~/models/parish-pastoral-council";
+import type {
+  ParishPastoralCouncil,
+  ParishPastoralCouncilImage,
+} from "~/models/parish-pastoral-council";
 
 const { pastoralCouncilData } = Astro.props as {
   pastoralCouncilData: ParishPastoralCouncil[];
