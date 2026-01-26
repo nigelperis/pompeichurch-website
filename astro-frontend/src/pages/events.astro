@@ -13,6 +13,7 @@ import PushNotification from "~/components/push-notification.astro";
 import { ITEMS_PER_PAGE } from "~/constants/index.ts";
 import SelectAssociationRedirect from "~/components/ui/SelectAssociationRedirect";
 import { getEventsByNewest } from "~/helpers/get-events-by-newest";
+import EventSearch from "~/components/EventSearch";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -74,6 +75,9 @@ const eventsByNewest = getEventsByNewest(events);
           {t("nav.events")}
         </h1>
 
+        <div class="w-full md:w-72">
+      <EventSearch client:load />
+    </div>
         {
           associations.length > 0 && (
             <div class="w-full md:w-64">
