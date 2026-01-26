@@ -41,6 +41,7 @@ const CarouselSkeleton: React.FC<{ className?: string }> = ({ className }) => {
                 style={{
                   boxShadow:
                     "var(--sds-size-depth-0) var(--sds-size-depth-100) var(--sds-size-depth-100) var(--sds-size-depth-negative-025) var(--sds-color-black-200)",
+                  transformOrigin: "center center",
                 }}
               >
                 <div className="w-full h-full relative bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 animate-pulse overflow-hidden">
