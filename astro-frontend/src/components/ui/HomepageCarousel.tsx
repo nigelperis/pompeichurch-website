@@ -20,56 +20,48 @@ interface HomepageCarouselProps {
   isLoading?: boolean;
 }
 
-const CarouselSkeleton: React.FC<{ className?: string }> = ({ className }) => {
-  return (
-    <div className={cn("relative w-full mx-auto", className)}>
-      {/* Carousel Container Skeleton */}
-      <div className="overflow-hidden">
-        {/* Match Embla's exact positioning: 10% on mobile, 16.67% on desktop */}
-        <div className="flex translate-x-[10%] md:translate-x-[16.67%]">
-          {/* Show 3 slides with the center one being the focus */}
-          {[0, 1, 2].map((index) => (
-            <div
-              key={index}
-              className="flex-[0_0_80%] md:flex-[0_0_66.666667%] min-w-0"
-            >
-              <div
-                className={cn(
-                  "relative aspect-[4/3] md:aspect-auto md:h-[670px] rounded-lg overflow-hidden transition-all duration-500",
-                  index === 1 ? "scale-99 opacity-100" : "scale-90 opacity-70",
-                )}
-                style={{
-                  boxShadow:
-                    "var(--sds-size-depth-0) var(--sds-size-depth-100) var(--sds-size-depth-100) var(--sds-size-depth-negative-025) var(--sds-color-black-200)",
-                }}
-              >
-                <div className="w-full h-full relative bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 animate-pulse overflow-hidden">
-                  {index === 1 && (
-                    <div
-                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
-                      style={{
-                        animation: "shimmer 2s infinite",
-                        transform: "translateX(-100%)",
-                      }}
-                    />
-                  )}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+/* -------------------------------------------------------------------------- */
+/*                               SLIDE SHELL                                  */
+/* -------------------------------------------------------------------------- */
 
-      {/* Dots Indicator Skeleton */}
-      <div className="flex justify-center mt-6 md:mt-8 space-x-2">
-        {[...Array(6)].map((_, index) => (
-          <div
-            key={index}
-            className={cn(
-              "rounded-full bg-gray-300 animate-pulse",
-              index === 0 ? "w-8 h-2" : "w-2 h-2",
-            )}
-          />
+const SlideShell: React.FC<{
+  isActive: boolean;
+  children: React.ReactNode;
+}> = ({ isActive, children }) => {
+  return (
+    <div className="flex-[0_0_80%] md:flex-[0_0_66.666667%] min-w-0">
+      <div
+        className={cn(
+          "relative aspect-4/3 md:aspect-auto md:max-h-[570px] md:h-[670px] rounded-lg overflow-hidden transition-all duration-500 ease-out transform-gpu",
+          isActive ? "scale-99 opacity-100" : "scale-90 opacity-70",
+        )}
+        style={{
+          boxShadow:
+            "var(--sds-size-depth-0) var(--sds-size-depth-100) var(--sds-size-depth-100) var(--sds-size-depth-negative-025) var(--sds-color-black-200)",
+        }}
+      >
+        {children}
+      </div>
+    </div>
+  );
+};
+
+/* -------------------------------------------------------------------------- */
+/*                              SKELETON TRACK                                 */
+/* -------------------------------------------------------------------------- */
+
+const CarouselSkeleton: React.FC = () => {
+  return (
+    <div className="overflow-hidden">
+      <div className="flex">
+        {[0, 1, 2].map((index) => (
+          <SlideShell key={index} isActive={index === 1}>
+            <div className="relative w-full h-full bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 animate-pulse">
+              {index === 1 && (
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-[shimmer_2s_infinite]" />
+              )}
+            </div>
+          </SlideShell>
         ))}
       </div>
 
@@ -84,6 +76,10 @@ const CarouselSkeleton: React.FC<{ className?: string }> = ({ className }) => {
   );
 };
 
+/* -------------------------------------------------------------------------- */
+/*                             MAIN COMPONENT                                  */
+/* -------------------------------------------------------------------------- */
+
 export const HomepageCarousel: React.FC<HomepageCarouselProps> = ({
   slides,
   autoplay = false,
@@ -92,7 +88,7 @@ export const HomepageCarousel: React.FC<HomepageCarouselProps> = ({
   isLoading = false,
 }) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [isEmblaReady, setIsEmblaReady] = useState(false);
+  const [imagesLoaded, setImagesLoaded] = useState(0);
 
   const [emblaRef, emblaApi] = useEmblaCarousel(
     {
@@ -103,10 +99,7 @@ export const HomepageCarousel: React.FC<HomepageCarouselProps> = ({
     [WheelGesturesPlugin()],
   );
 
-  const scrollTo = useCallback(
-    (index: number) => emblaApi && emblaApi.scrollTo(index),
-    [emblaApi],
-  );
+  /* ------------------------------- EMBLA STATE ------------------------------ */
 
   const onSelect = useCallback(() => {
     if (!emblaApi) return;
@@ -119,37 +112,30 @@ export const HomepageCarousel: React.FC<HomepageCarouselProps> = ({
     onSelect();
     emblaApi.on("select", onSelect);
     emblaApi.on("reInit", onSelect);
-
-    // Set ready after emblaApi is available and positioned
-    const timer = setTimeout(() => {
-      setIsEmblaReady(true);
-    }, 50);
-
-    return () => {
-      clearTimeout(timer);
-    };
   }, [emblaApi, onSelect]);
 
-  useEffect(() => {
-    if (!emblaApi || !autoplay || !isEmblaReady) return;
+  /* -------------------------------- AUTOPLAY -------------------------------- */
 
-    const autoplayInterval = setInterval(() => {
+  useEffect(() => {
+    if (!emblaApi || !autoplay) return;
+
+    const interval = setInterval(() => {
       emblaApi.scrollNext();
     }, autoplayDelay);
 
-    return () => clearInterval(autoplayInterval);
-  }, [emblaApi, autoplay, autoplayDelay, isEmblaReady]);
+    return () => clearInterval(interval);
+  }, [emblaApi, autoplay, autoplayDelay]);
 
-  // Initialize PhotoSwipe lightbox
+  /* ---------------------------- PHOTOSWIPE INIT ----------------------------- */
+
   useEffect(() => {
     let lightbox: any;
 
-    const initLightbox = async () => {
+    const init = async () => {
       const PhotoSwipeLightbox = (await import("photoswipe/lightbox")).default;
       await import("photoswipe/style.css");
 
       lightbox = new PhotoSwipeLightbox({
-        mainClass: "pswp--custom-icon-colors",
         gallery: ".homepage-carousel-lightbox",
         children: "a",
         pswpModule: () => import("photoswipe"),
@@ -158,21 +144,21 @@ export const HomepageCarousel: React.FC<HomepageCarouselProps> = ({
       lightbox.init();
     };
 
-    initLightbox();
+    init();
 
     return () => {
-      if (lightbox) {
-        lightbox.destroy();
-      }
+      if (lightbox) lightbox.destroy();
     };
   }, []);
 
-  if (!slides || slides.length === 0) {
-    return null;
-  }
+  if (!slides || slides.length === 0) return null;
 
-  // Show skeleton only if explicitly loading
-  const showSkeleton = isLoading || (!isEmblaReady && slides.length > 0);
+  /* ----------------------------- LOADING LOGIC ------------------------------ */
+
+  const MIN_IMAGES_FOR_LAYOUT = Math.min(3, slides.length);
+  const showSkeleton = isLoading || imagesLoaded < MIN_IMAGES_FOR_LAYOUT;
+
+  /* -------------------------------- RENDER ---------------------------------- */
 
   return (
     <div
@@ -181,67 +167,54 @@ export const HomepageCarousel: React.FC<HomepageCarouselProps> = ({
         className,
       )}
     >
-      {/* Show skeleton overlay while initializing */}
+      {/* Skeleton Overlay */}
       {showSkeleton && (
-        <div className="absolute inset-0 z-10">
+        <div className="absolute inset-0 z-10 pointer-events-none">
           <CarouselSkeleton />
         </div>
       )}
 
-      {/* Carousel Container - always render but hide while skeleton shows */}
+      {/* Embla Viewport */}
       <div
-        className={cn("overflow-hidden", showSkeleton && "opacity-0")}
         ref={emblaRef}
+        className={cn("overflow-hidden", showSkeleton && "opacity-0")}
       >
         <div className="flex">
           {slides.map((slide, index) => (
-            <div
-              key={slide.id}
-              className="flex-[0_0_80%] md:flex-[0_0_66.666667%] min-w-0"
-            >
-              <div
-                className={cn(
-                  "relative aspect-4/3 md:aspect-auto md:max-h-[570px] md:h-[670px] rounded-lg overflow-hidden transition-all duration-500 ease-out transform-gpu",
-                  index === selectedIndex
-                    ? "scale-99 opacity-100"
-                    : "scale-90 opacity-70",
-                )}
-                style={{
-                  boxShadow:
-                    "var(--sds-size-depth-0) var(--sds-size-depth-100) var(--sds-size-depth-100) var(--sds-size-depth-negative-025) var(--sds-color-black-200)",
+            <SlideShell key={slide.id} isActive={index === selectedIndex}>
+              <a
+                href={slide.image}
+                role="button"
+                aria-label={`View full-size image: ${slide.alt || slide.title}`}
+                data-pswp-src={slide.image}
+                data-pswp-width={slide.width || 1200}
+                data-pswp-height={slide.height || 800}
+                className="block w-full h-full cursor-zoom-in"
+                onClick={(e) => {
+                  if (index !== selectedIndex) {
+                    e.preventDefault();
+                    emblaApi?.scrollTo(index);
+                  }
                 }}
               >
-                <a
-                  href={slide.image}
-                  role="button"
-                  aria-label={`View full-size image: ${
-                    slide.alt || slide.title
-                  }`}
-                  data-pswp-src={slide.image}
-                  data-pswp-width={slide.width || 1200}
-                  data-pswp-height={slide.height || 800}
-                  className="block w-full h-full cursor-zoom-in"
-                  onClick={(e) => {
-                    if (index !== selectedIndex) {
-                      e.preventDefault();
-                      scrollTo(index);
-                    }
-                  }}
-                >
-                  <img
-                    src={slide.image}
-                    alt={slide.alt || slide.title}
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                  />
-                </a>
-              </div>
-            </div>
+                <img
+                  src={slide.image}
+                  alt={slide.alt || slide.title}
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                  onLoad={() =>
+                    setImagesLoaded((v) =>
+                      Math.min(v + 1, MIN_IMAGES_FOR_LAYOUT),
+                    )
+                  }
+                />
+              </a>
+            </SlideShell>
           ))}
         </div>
       </div>
 
-      {/* Dots Indicator */}
+      {/* Dots */}
       <div
         className={cn(
           "flex justify-center mt-6 md:mt-8 space-x-2",
@@ -257,7 +230,7 @@ export const HomepageCarousel: React.FC<HomepageCarouselProps> = ({
                 ? "w-8 h-2 bg-yellow-400"
                 : "w-2 h-2 bg-gray-400",
             )}
-            onClick={() => scrollTo(index)}
+            onClick={() => emblaApi?.scrollTo(index)}
             aria-label={`Go to slide ${index + 1}`}
           />
         ))}
