@@ -32,6 +32,7 @@ const CarouselSkeleton: React.FC<{ className?: string }> = ({ className }) => {
             <div
               key={index}
               className="flex-[0_0_80%] md:flex-[0_0_66.666667%] min-w-0"
+              style={{ zIndex: index === 1 ? 10 : 1 }}
             >
               <div
                 className={cn(
@@ -264,6 +265,7 @@ export const HomepageCarousel: React.FC<HomepageCarouselProps> = ({
             <div
               key={slide.id}
               className="flex-[0_0_80%] md:flex-[0_0_66.666667%] min-w-0"
+              style={{ zIndex: index === selectedIndex ? 10 : 1 }}
             >
               <div
                 className={cn(
@@ -275,6 +277,7 @@ export const HomepageCarousel: React.FC<HomepageCarouselProps> = ({
                 style={{
                   boxShadow:
                     "var(--sds-size-depth-0) var(--sds-size-depth-100) var(--sds-size-depth-100) var(--sds-size-depth-negative-025) var(--sds-color-black-200)",
+                  transformOrigin: "center center",
                 }}
               >
                 <a
