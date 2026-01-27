@@ -11,10 +11,7 @@ import YoutubeIcon from "~/assets/react-icons/youtube.svg?react";
 import CoffinIcon from "~/assets/react-icons/coffin.svg?react";
 import WhatsAppShare from "~/components/ui/whatsapp-share.tsx";
 import { EXPIRE_TIME } from "~/constants/index.ts";
-import {
-  getFuneralDetails,
-  parseDateOnly,
-} from "~/helpers/get-funeral-details";
+import { getFuneralDetails } from "~/helpers/get-funeral-details";
 import { FuneralInfoButton } from "./ui/FuneralInfoButton";
 
 interface Props {

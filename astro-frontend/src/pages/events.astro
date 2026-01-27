@@ -76,7 +76,7 @@ const eventsByNewest = getEventsByNewest(events);
         </h1>
 
         <div class="w-full md:w-72">
-          <EventSearch client:load />
+          <EventSearch client:load locale={lang as Locale} />
         </div>
         {
           associations.length > 0 && (

@@ -8,10 +8,7 @@ import CloseIcon from "~/assets/react-icons/x.svg?react";
 import YoutubeIcon from "~/assets/react-icons/youtube.svg?react";
 import WhatsAppShare from "~/components/ui/whatsapp-share.tsx";
 import { EXPIRE_TIME } from "~/constants/index.ts";
-import {
-  getFuneralDetails,
-  parseDateOnly,
-} from "~/helpers/get-funeral-details";
+import { getFuneralDetails } from "~/helpers/get-funeral-details";
 import { FuneralInfoButton } from "./ui/FuneralInfoButton";
 
 interface Props {
@@ -283,7 +280,7 @@ export default function ObituaryCardMin({
               alt={`Image of ${name}`}
               width={imageWidth}
               height={imageHeight}
-              className="h-[300px] w-full object-cover border-none"
+              className="h-75 w-full object-cover border-none"
               loading="lazy"
             />
             {showFlip && !flipped && (

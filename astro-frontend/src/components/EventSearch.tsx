@@ -3,7 +3,9 @@ import * as Popover from "@radix-ui/react-popover";
 import SearchIcon from "~/assets/icons/search.svg?react";
 import ChevronClose from "~/assets/icons/cancel.svg?react";
 import type { Event } from "~/models/event";
+import { Locale } from "~/enums/locale";
 import { searchEvents } from "~/services/events/event-search";
+import { Message } from "~/constants/message";
 
 function highlightText(text: string, query: string) {
   if (!query) return text;
@@ -21,13 +23,25 @@ function highlightText(text: string, query: string) {
   );
 }
 
-export default function EventSearch() {
+interface EventSearchProps {
+  locale: Locale;
+}
+
+export default function EventSearch({ locale }: EventSearchProps) {
   const [query, setQuery] = React.useState("");
   const [results, setResults] = React.useState<Event[]>([]);
   const [loading, setLoading] = React.useState(false);
   const [activeIndex, setActiveIndex] = React.useState(-1);
   const [open, setOpen] = React.useState(false);
   const inputRef = React.useRef<HTMLInputElement>(null);
+
+  const emptyStateMessage =
+    locale === Locale.KOK
+      ? Message.EVENTS_NOT_FOUND_KOK
+      : Message.EVENTS_NOT_FOUND;
+
+  const searchEventsMessage =
+    locale === Locale.KOK ? "ಘಡಿತಾ ಸೊಧಾ..." : "Search events...";
 
   React.useEffect(() => {
     if (query.length < 2) {
@@ -39,7 +53,7 @@ export default function EventSearch() {
     const timer = setTimeout(async () => {
       setLoading(true);
       setOpen(true);
-      const data = await searchEvents(query);
+      const data = await searchEvents(query, locale);
       setResults(data);
       setActiveIndex(-1);
       setLoading(false);
@@ -55,7 +69,6 @@ export default function EventSearch() {
     setActiveIndex(-1);
   }
 
-  /* -------- Keyboard navigation -------- */
   function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
     if (!results.length) return;
 
@@ -83,7 +96,6 @@ export default function EventSearch() {
       <div className="relative w-full max-w-md">
         <Popover.Anchor asChild>
           <div className="relative w-full">
-            {/* Search icon */}
             <div className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none">
               <SearchIcon width={18} height={18} />
             </div>
@@ -96,7 +108,7 @@ export default function EventSearch() {
               onFocus={() => {
                 if (query.length >= 2 && results.length > 0) setOpen(true);
               }}
-              placeholder="Search events..."
+              placeholder={searchEventsMessage}
               aria-label="Search events"
               className="
                 w-full
@@ -145,25 +157,34 @@ export default function EventSearch() {
 
             {!loading && results.length > 0 && (
               <ul className="max-h-64 overflow-y-auto">
-                {results.map((event, index) => (
-                  <li
-                    key={event.id}
-                    className={`px-4 py-2 cursor-pointer ${
-                      activeIndex === index ? "bg-gray-100" : "hover:bg-gray-50"
-                    }`}
-                    onMouseEnter={() => setActiveIndex(index)}
-                    onClick={() =>
-                      (window.location.href = `/events/${event.slug}`)
-                    }
-                  >
-                    {highlightText(event.englishTitle, query)}
-                  </li>
-                ))}
+                {results.map((event, index) => {
+                  const title =
+                    locale === Locale.KOK
+                      ? event.konkaniTitle
+                      : event.englishTitle;
+
+                  return (
+                    <li
+                      key={event.id}
+                      className={`px-4 py-2 cursor-pointer ${
+                        activeIndex === index
+                          ? "bg-gray-100"
+                          : "hover:bg-gray-50"
+                      }`}
+                      onMouseEnter={() => setActiveIndex(index)}
+                      onClick={() =>
+                        (window.location.href = `/events/${event.slug}`)
+                      }
+                    >
+                      {highlightText(title, query)}
+                    </li>
+                  );
+                })}
               </ul>
             )}
 
             {!loading && query.length >= 2 && results.length === 0 && (
-              <div className="px-4 py-2 text-gray-500">No events found</div>
+              <div className="px-4 py-2 text-gray-500">{emptyStateMessage}</div>
             )}
           </Popover.Content>
         </Popover.Portal>
