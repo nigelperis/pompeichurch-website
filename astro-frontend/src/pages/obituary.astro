@@ -13,6 +13,7 @@ import { cn } from "~/helpers/cn";
 import { getWardNameKok } from "~/helpers/get-ward-names-kok";
 import { wards as allWards } from "~/constants/wards";
 import { ITEMS_PER_PAGE } from "~/constants/index.ts";
+import ObituarySearch from "~/components/ObituarySearch";
 
 const url = new URL(Astro.url);
 const lang = getLangFromUrl(Astro.url) as Locale;
@@ -97,7 +98,7 @@ const ogImageUrl = firstObituary?.image?.url
           class={cn(
             "border-natgeo-yellow border-l-4 pl-3 text-left text-3xl lg:text-4xl font-black",
             {
-              "pt-[13px] font-bold": lang === Locale.KOK,
+              "pt-3.25 font-bold": lang === Locale.KOK,
             },
           )}
         >
@@ -120,7 +121,9 @@ const ogImageUrl = firstObituary?.image?.url
       >
         {t("obituary.subtitle")}
       </p>
-
+      <div class="w-full md:w-72">
+          <ObituarySearch client:load locale={lang as Locale} />
+        </div>
       {
         paginatedObituaries.length > 0 ? (
           <>
