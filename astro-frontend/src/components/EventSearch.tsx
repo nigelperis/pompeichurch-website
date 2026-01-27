@@ -6,6 +6,7 @@ import type { Event } from "~/models/event";
 import { Locale } from "~/enums/locale";
 import { searchEvents } from "~/services/events/event-search";
 import { Message } from "~/constants/message";
+import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
 
 function highlightText(text: string, query: string) {
   if (!query) return text;
@@ -41,7 +42,7 @@ export default function EventSearch({ locale }: EventSearchProps) {
       : Message.EVENTS_NOT_FOUND;
 
   const searchEventsMessage =
-    locale === Locale.KOK ? "ಘಡಿತಾ ಸೊಧಾ..." : "Search events...";
+    locale === Locale.KOK ? "ಘಡಿತಾಂ ಸೊಧಾ..." : "Search events...";
 
   React.useEffect(() => {
     if (query.length < 2) {
@@ -83,7 +84,8 @@ export default function EventSearch({ locale }: EventSearchProps) {
     }
 
     if (e.key === "Enter" && activeIndex >= 0) {
-      window.location.href = `/events/${results[activeIndex].slug}`;
+      const base = locale === Locale.KOK ? "/kok" : "";
+      window.location.href = `${base}/events/${results[activeIndex].slug}`;
     }
 
     if (e.key === "Escape") {
@@ -149,34 +151,80 @@ export default function EventSearch({ locale }: EventSearchProps) {
               <ul>
                 {[1, 2, 3].map((i) => (
                   <li key={i} className="px-4 py-2 animate-pulse">
-                    <div className="h-4 bg-gray-200 w-3/4" />
+                    <li className="flex items-center gap-3 px-4 py-3 animate-pulse">
+                      <div className="flex-1 space-y-2">
+                        <div className="h-4 bg-gray-200 w-3/4" />
+                        <div className="h-3 bg-gray-100 w-1/2" />
+                      </div>
+                      <div className="h-12 w-12 rounded-full bg-gray-200" />
+                    </li>{" "}
                   </li>
                 ))}
               </ul>
             )}
 
             {!loading && results.length > 0 && (
-              <ul className="max-h-64 overflow-y-auto">
+              <ul
+                className="max-h-64 overflow-y-auto"
+                onMouseLeave={() => setActiveIndex(-1)}
+              >
                 {results.map((event, index) => {
                   const title =
                     locale === Locale.KOK
                       ? event.konkaniTitle
                       : event.englishTitle;
 
+                  const shortDescription =
+                    locale === Locale.KOK
+                      ? event.shortDescriptionKok
+                      : event.shortDescriptionEn;
+
+                  const eventImage = event.eventImage?.url
+                    ? new URL(
+                        event.eventImage.url,
+                        import.meta.env.PUBLIC_STRAPI_URL,
+                      ).toString()
+                    : getPlaceholderImage({
+                        text: event.englishTitle,
+                        width: 48,
+                        height: 48,
+                      });
+
+
                   return (
                     <li
                       key={event.id}
-                      className={`px-4 py-2 cursor-pointer ${
+                      className={`flex items-center gap-3 px-4 py-3 cursor-pointer ${
                         activeIndex === index
                           ? "bg-gray-100"
                           : "hover:bg-gray-50"
                       }`}
                       onMouseEnter={() => setActiveIndex(index)}
-                      onClick={() =>
-                        (window.location.href = `/events/${event.slug}`)
-                      }
+                      onClick={() => {
+                        const base = locale === Locale.KOK ? "/kok" : "";
+                        window.location.href = `${base}/events/${event.slug}`;
+                      }}
                     >
-                      {highlightText(title, query)}
+                      <div className="flex-1 min-w-0">
+                        <div className="text-sm font-medium text-slate-900 truncate">
+                          {highlightText(title, query)}
+                        </div>
+
+                        {shortDescription && (
+                          <div className="mt-0.5 text-xs text-slate-500 line-clamp-2">
+                            {shortDescription}
+                          </div>
+                        )}
+                      </div>
+
+                      {event.eventImage?.url && (
+                        <img
+                          src={eventImage}
+                          alt=""
+                          className="h-12 w-12 rounded-full object-cover shrink-0"
+                          loading="lazy"
+                        />
+                      )}
                     </li>
                   );
                 })}
@@ -184,7 +232,9 @@ export default function EventSearch({ locale }: EventSearchProps) {
             )}
 
             {!loading && query.length >= 2 && results.length === 0 && (
-              <div className="px-4 py-2 text-gray-500">{emptyStateMessage}</div>
+              <div className="p-4  text-center text-md text-gray-500">
+                {emptyStateMessage}
+              </div>
             )}
           </Popover.Content>
         </Popover.Portal>
