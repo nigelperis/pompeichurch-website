@@ -38,11 +38,11 @@ export default function ObituarySearch({ locale }: Props) {
 
   const emptyStateMessage =
     locale === Locale.KOK
-      ? Message.EVENTS_NOT_FOUND_KOK
-      : Message.EVENTS_NOT_FOUND;
+      ? Message.OBITUARIES_NOT_FOUND_KOK
+      : Message.OBITUARIES_NOT_FOUND;
 
-  const searchEventsMessage =
-    locale === Locale.KOK ? "ಘಡಿತಾಂ ಸೊಧಾ..." : "Search obituaries...";
+  const searchObituaryMessage =
+    locale === Locale.KOK ? "ಸೊದಪ್" : "Search obituaries...";
 
   React.useEffect(() => {
     if (query.length < 2) {
@@ -85,7 +85,7 @@ export default function ObituarySearch({ locale }: Props) {
 
     if (e.key === "Enter" && activeIndex >= 0) {
       const base = locale === Locale.KOK ? "/kok" : "";
-      window.location.href = `${base}/events/${results[activeIndex].slug}`;
+      window.location.href = `${base}/obituary/${results[activeIndex].slug}`;
     }
 
     if (e.key === "Escape") {
@@ -110,8 +110,8 @@ export default function ObituarySearch({ locale }: Props) {
               onFocus={() => {
                 if (query.length >= 2 && results.length > 0) setOpen(true);
               }}
-              placeholder={searchEventsMessage}
-              aria-label="Search events"
+              placeholder={searchObituaryMessage}
+              aria-label="Search obituaries"
               className="
                 w-full
                 border border-gray-300
@@ -196,7 +196,7 @@ export default function ObituarySearch({ locale }: Props) {
                       onMouseEnter={() => setActiveIndex(index)}
                       onClick={() => {
                         const base = locale === Locale.KOK ? "/kok" : "";
-                        window.location.href = `${base}/events/${obituary.slug}`;
+                        window.location.href = `${base}/obituary/${obituary.slug}`;
                       }}
                     >
                       <div className="flex-1 min-w-0">
@@ -206,7 +206,7 @@ export default function ObituarySearch({ locale }: Props) {
 
                         {obituary.age && (
                           <div className="mt-0.5 text-xs text-slate-500 line-clamp-2">
-                            {obituary.age}
+                            {`Age: ${obituary.age}`}
                           </div>
                         )}
                       </div>

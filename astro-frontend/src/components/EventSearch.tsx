@@ -42,7 +42,7 @@ export default function EventSearch({ locale }: EventSearchProps) {
       : Message.EVENTS_NOT_FOUND;
 
   const searchEventsMessage =
-    locale === Locale.KOK ? "ಘಡಿತಾಂ ಸೊಧಾ..." : "Search events...";
+    locale === Locale.KOK ? "ಸೊದಪ್..." : "Search events...";
 
   React.useEffect(() => {
     if (query.length < 2) {
@@ -189,7 +189,6 @@ export default function EventSearch({ locale }: EventSearchProps) {
                         width: 48,
                         height: 48,
                       });
-
 
                   return (
                     <li

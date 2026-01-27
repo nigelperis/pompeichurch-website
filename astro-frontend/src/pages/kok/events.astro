@@ -61,12 +61,11 @@ const eventsByNewest = getEventsByNewest(events);
   <main class="mx-auto max-w-5xl overflow-hidden bg-white">
     <section id="events" class="flex flex-col p-6 lg:p-8">
       <PushNotification />
-      <div
-        class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between pb-6 lg:pb-8"
-      >
+
+      <div class="flex flex-col gap-6 pb-6 lg:pb-8 md:hidden">
         <h1
           class={cn(
-            "border-natgeo-yellow border-l-4 pl-3 text-left text-3xl lg:text-4xl font-black",
+            "border-natgeo-yellow border-l-4 pl-3 text-left text-3xl font-black",
             {
               "pt-3.25 font-bold": lang === Locale.KOK,
             },
@@ -75,12 +74,9 @@ const eventsByNewest = getEventsByNewest(events);
           {t("nav.events")}
         </h1>
 
-        <div class="w-full md:w-72">
-          <EventSearch client:load locale={lang as Locale} />
-        </div>
         {
           associations.length > 0 && (
-            <div class="w-full md:w-64">
+            <div class="w-full">
               <SelectAssociationRedirect
                 client:load
                 associations={associations}
@@ -90,7 +86,55 @@ const eventsByNewest = getEventsByNewest(events);
             </div>
           )
         }
+
+        <div class="w-full">
+          <EventSearch client:load locale={lang as Locale} />
+        </div>
       </div>
+
+      <div
+        class="hidden md:grid md:grid-cols-12 md:gap-6 md:items-center pb-6 lg:pb-8"
+      >
+        <div class="md:col-span-3">
+          <h1
+            class={cn(
+              "border-natgeo-yellow border-l-4 pl-3 text-left text-3xl lg:text-4xl font-black",
+              {
+                "pt-3.25 font-bold": lang === Locale.KOK,
+              },
+            )}
+          >
+            {t("nav.events")}
+          </h1>
+        </div>
+
+        {
+          associations.length > 0 && (
+            <div class="md:col-span-3 flex justify-center">
+              <div class="w-full">
+                <SelectAssociationRedirect
+                  client:load
+                  associations={associations}
+                  placeholder={t("nav.associations")}
+                  allLabel={t("all")}
+                />
+              </div>
+            </div>
+          )
+        }
+
+        <div
+          class={cn(
+            "flex justify-end",
+            associations.length > 0 ? "md:col-span-6" : "md:col-span-9",
+          )}
+        >
+          <div class="w-full max-w-md">
+            <EventSearch client:load locale={lang as Locale} />
+          </div>
+        </div>
+      </div>
+
       <p class="pb-6 lg:pb-8 text-lg font-normal text-slate-700">
         {t("events.subtitle")}
       </p>

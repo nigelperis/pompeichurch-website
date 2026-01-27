@@ -23,7 +23,7 @@ async function listObituaries(args?: {
     pageSize = 25,
     sortBy = "dateOfDeath:desc",
     ward,
-    filters
+    filters,
   } = args ?? {};
 
   const queryParams = new URLSearchParams({
