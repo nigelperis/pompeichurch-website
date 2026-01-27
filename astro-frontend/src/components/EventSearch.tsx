@@ -63,6 +63,20 @@ export default function EventSearch({ locale }: EventSearchProps) {
     return () => clearTimeout(timer);
   }, [query]);
 
+  // Clear search on page visibility change (when returning to page)
+  React.useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "visible") {
+        handleClear();
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, []);
+
   function handleClear() {
     setQuery("");
     setResults([]);
