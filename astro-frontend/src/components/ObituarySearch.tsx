@@ -188,9 +188,9 @@ export default function ObituarySearch({ locale }: Props) {
                       ? obituary.konkaniName
                       : obituary.englishName;
 
-                  const obituaryImage = obituary.image?.url
+                  const obituaryImage = obituary.image?.formats.thumbnail.url
                     ? new URL(
-                        obituary.image.url,
+                        obituary.image?.formats.thumbnail.url,
                         import.meta.env.PUBLIC_STRAPI_URL,
                       ).toString()
                     : getPlaceholderImage({
@@ -225,14 +225,12 @@ export default function ObituarySearch({ locale }: Props) {
                         )}
                       </div>
 
-                      {obituary.image?.url && (
-                        <img
-                          src={obituaryImage}
-                          alt=""
-                          className="h-12 w-12 rounded-full object-cover shrink-0"
-                          loading="lazy"
-                        />
-                      )}
+                      <img
+                        src={obituaryImage}
+                        alt=""
+                        className="h-12 w-12 rounded-full object-cover shrink-0"
+                        loading="lazy"
+                      />
                     </li>
                   );
                 })}

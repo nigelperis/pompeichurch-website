@@ -193,9 +193,9 @@ export default function EventSearch({ locale }: EventSearchProps) {
                       ? event.shortDescriptionKok
                       : event.shortDescriptionEn;
 
-                  const eventImage = event.eventImage?.url
+                  const eventImage = event.eventImage?.formats.thumbnail.url
                     ? new URL(
-                        event.eventImage.url,
+                        event.eventImage?.formats.thumbnail.url,
                         import.meta.env.PUBLIC_STRAPI_URL,
                       ).toString()
                     : getPlaceholderImage({
@@ -229,15 +229,12 @@ export default function EventSearch({ locale }: EventSearchProps) {
                           </div>
                         )}
                       </div>
-
-                      {event.eventImage?.url && (
-                        <img
-                          src={eventImage}
-                          alt=""
-                          className="h-12 w-12 rounded-full object-cover shrink-0"
-                          loading="lazy"
-                        />
-                      )}
+                      <img
+                        src={eventImage}
+                        alt=""
+                        className="h-12 w-12 rounded-full object-cover shrink-0"
+                        loading="lazy"
+                      />
                     </li>
                   );
                 })}
