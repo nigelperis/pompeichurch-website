@@ -8,10 +8,15 @@ import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
 import type { Obituary } from "~/models/obituary";
 import { searchObituaries } from "~/services/obituaries/obituary-search";
 
+function escapeRegExp(value: string) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
 function highlightText(text: string, query: string) {
   if (!query) return text;
 
-  const parts = text.split(new RegExp(`(${query})`, "gi"));
+  const safeQuery = escapeRegExp(query);
+  const parts = text.split(new RegExp(`(${safeQuery})`, "gi"));
 
   return parts.map((part, index) =>
     part.toLowerCase() === query.toLowerCase() ? (
@@ -34,6 +39,7 @@ export default function ObituarySearch({ locale }: Props) {
   const [loading, setLoading] = React.useState(false);
   const [activeIndex, setActiveIndex] = React.useState(-1);
   const [open, setOpen] = React.useState(false);
+
   const inputRef = React.useRef<HTMLInputElement>(null);
 
   const emptyStateMessage =
@@ -42,28 +48,39 @@ export default function ObituarySearch({ locale }: Props) {
       : Message.OBITUARIES_NOT_FOUND;
 
   const searchObituaryMessage =
-    locale === Locale.KOK ? "ಸೊದಪ್" : "Search obituaries...";
+    locale === Locale.KOK ? "ಸೊದಪ್..." : "Search obituaries...";
 
   React.useEffect(() => {
     if (query.length < 2) {
       setResults([]);
       setOpen(false);
+      setLoading(false);
       return;
     }
+
+    let cancelled = false;
 
     const timer = setTimeout(async () => {
       setLoading(true);
       setOpen(true);
-      const data = await searchObituaries(query, locale);
-      setResults(data);
-      setActiveIndex(-1);
-      setLoading(false);
+
+      try {
+        const data = await searchObituaries(query);
+        if (!cancelled) {
+          setResults(data);
+          setActiveIndex(-1);
+        }
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
     }, 300);
 
-    return () => clearTimeout(timer);
-  }, [query]);
+    return () => {
+      cancelled = true;
+      clearTimeout(timer);
+    };
+  }, [query, locale]);
 
-  // Clear search on page visibility change (when returning to page)
   React.useEffect(() => {
     const handleVisibilityChange = () => {
       if (document.visibilityState === "visible") {
@@ -72,9 +89,8 @@ export default function ObituarySearch({ locale }: Props) {
     };
 
     document.addEventListener("visibilitychange", handleVisibilityChange);
-    return () => {
+    return () =>
       document.removeEventListener("visibilitychange", handleVisibilityChange);
-    };
   }, []);
 
   function handleClear() {
@@ -82,6 +98,7 @@ export default function ObituarySearch({ locale }: Props) {
     setResults([]);
     setOpen(false);
     setActiveIndex(-1);
+    inputRef.current?.focus();
   }
 
   function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
@@ -97,22 +114,32 @@ export default function ObituarySearch({ locale }: Props) {
       setActiveIndex((i) => Math.max(i - 1, 0));
     }
 
-    if (e.key === "Enter" && activeIndex >= 0) {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      const index = activeIndex >= 0 ? activeIndex : 0;
       const base = locale === Locale.KOK ? "/kok" : "";
-      window.location.href = `${base}/obituary/${results[activeIndex].slug}`;
+      window.location.href = `${base}/obituary/${results[index].slug}`;
     }
 
     if (e.key === "Escape") {
       setOpen(false);
+      setActiveIndex(-1);
     }
   }
 
   return (
-    <Popover.Root open={open} onOpenChange={setOpen} modal={false}>
+    <Popover.Root
+      open={open}
+      modal={false}
+      onOpenChange={(value) => {
+        setOpen(value);
+        if (!value) setActiveIndex(-1);
+      }}
+    >
       <div className="relative w-full max-w-md">
         <Popover.Anchor asChild>
           <div className="relative w-full">
-            <div className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none">
+            <div className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-500">
               <SearchIcon width={18} height={18} />
             </div>
 
@@ -122,10 +149,12 @@ export default function ObituarySearch({ locale }: Props) {
               onChange={(e) => setQuery(e.target.value)}
               onKeyDown={handleKeyDown}
               onFocus={() => {
-                if (query.length >= 2 && results.length > 0) setOpen(true);
+                if (query.length >= 2 && results.length) setOpen(true);
               }}
               placeholder={searchObituaryMessage}
               aria-label="Search obituaries"
+              aria-autocomplete="list"
+              aria-expanded={open}
               className="
                 w-full
                 border border-gray-300
@@ -139,8 +168,8 @@ export default function ObituarySearch({ locale }: Props) {
               <button
                 type="button"
                 onClick={handleClear}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 cursor-pointer"
                 aria-label="Clear search"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 cursor-pointer"
               >
                 <ChevronClose width={18} height={18} />
               </button>
@@ -164,14 +193,14 @@ export default function ObituarySearch({ locale }: Props) {
             {loading && (
               <ul>
                 {[1, 2, 3].map((i) => (
-                  <li key={i} className="px-4 py-2 animate-pulse">
-                    <li className="flex items-center gap-3 px-4 py-3 animate-pulse">
+                  <li key={i} className="px-4 py-3 animate-pulse">
+                    <div className="flex items-center gap-3">
                       <div className="flex-1 space-y-2">
-                        <div className="h-4 bg-gray-200 w-3/4" />
-                        <div className="h-3 bg-gray-100 w-1/2" />
+                        <div className="h-4 w-3/4 bg-gray-200" />
+                        <div className="h-3 w-1/2 bg-gray-100" />
                       </div>
                       <div className="h-12 w-12 rounded-full bg-gray-200" />
-                    </li>{" "}
+                    </div>
                   </li>
                 ))}
               </ul>
@@ -179,6 +208,7 @@ export default function ObituarySearch({ locale }: Props) {
 
             {!loading && results.length > 0 && (
               <ul
+                role="listbox"
                 className="max-h-64 overflow-y-auto"
                 onMouseLeave={() => setActiveIndex(-1)}
               >
@@ -188,9 +218,9 @@ export default function ObituarySearch({ locale }: Props) {
                       ? obituary.konkaniName
                       : obituary.englishName;
 
-                  const obituaryImage = obituary.image?.formats.thumbnail.url
+                  const obituaryImage = obituary.image?.formats?.thumbnail?.url
                     ? new URL(
-                        obituary.image?.formats.thumbnail.url,
+                        obituary.image.formats.thumbnail.url,
                         import.meta.env.PUBLIC_STRAPI_URL,
                       ).toString()
                     : getPlaceholderImage({
@@ -202,7 +232,9 @@ export default function ObituarySearch({ locale }: Props) {
                   return (
                     <li
                       key={obituary.id}
-                      className={`flex items-center gap-3 px-4 py-3 cursor-pointer ${
+                      role="option"
+                      aria-selected={activeIndex === index}
+                      className={`flex cursor-pointer items-center gap-3 px-4 py-3 ${
                         activeIndex === index
                           ? "bg-gray-100"
                           : "hover:bg-gray-50"
@@ -213,14 +245,16 @@ export default function ObituarySearch({ locale }: Props) {
                         window.location.href = `${base}/obituary/${obituary.slug}`;
                       }}
                     >
-                      <div className="flex-1 min-w-0">
-                        <div className="text-sm font-medium text-slate-900 truncate">
+                      <div className="min-w-0 flex-1">
+                        <div className="truncate text-sm font-medium text-slate-900">
                           {highlightText(name, query)}
                         </div>
 
                         {obituary.age && (
-                          <div className="mt-0.5 text-xs text-slate-500 line-clamp-2">
-                            {`Age: ${obituary.age}`}
+                          <div className="mt-0.5 text-xs text-slate-500">
+                            {locale === Locale.KOK
+                              ? `ಪ್ರಾಯ್: ${obituary.age}`
+                              : `Age: ${obituary.age}`}
                           </div>
                         )}
                       </div>
@@ -228,8 +262,8 @@ export default function ObituarySearch({ locale }: Props) {
                       <img
                         src={obituaryImage}
                         alt=""
-                        className="h-12 w-12 rounded-full object-cover shrink-0"
                         loading="lazy"
+                        className="h-12 w-12 shrink-0 rounded-full object-cover"
                       />
                     </li>
                   );
@@ -238,7 +272,7 @@ export default function ObituarySearch({ locale }: Props) {
             )}
 
             {!loading && query.length >= 2 && results.length === 0 && (
-              <div className="p-4  text-center text-md text-gray-500">
+              <div className="p-4 text-center text-md text-gray-500">
                 {emptyStateMessage}
               </div>
             )}

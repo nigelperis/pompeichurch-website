@@ -39,7 +39,22 @@ async function listObituaries(args?: {
 
   if (filters) {
     Object.entries(filters).forEach(([key, value]) => {
+      if ((key === "$or" || key === "$and") && Array.isArray(value)) {
+        value.forEach((condition, index) => {
+          Object.entries(condition).forEach(([field, ops]) => {
+            Object.entries(ops as Record<string, any>).forEach(([op, val]) => {
+              queryParams.append(
+                `filters[${key}][${index}][${field}][${op}]`,
+                String(val),
+              );
+            });
+          });
+        });
+        return;
+      }
+
       const keyPath = key.includes(".") ? key.replaceAll(".", "][") : key;
+
       if (typeof value === "object" && value !== null) {
         Object.entries(value).forEach(([op, val]) => {
           queryParams.append(`filters[${keyPath}][${op}]`, String(val));

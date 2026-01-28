@@ -88,52 +88,27 @@ const ogImageUrl = firstObituary?.image?.url
   url={Astro.url.toString()}
 >
   <main class="mx-auto max-w-5xl overflow-hidden bg-white">
-    <section class="flex flex-col p-6 lg:p-8">
+    <section id="obituary" class="flex flex-col p-6 lg:p-8">
       <PushNotification />
 
-      <div class="flex flex-col gap-6 pb-6 lg:pb-8 md:hidden">
+      <div class="flex flex-col gap-4 pb-5">
         <h1
           class={cn(
-            "border-natgeo-yellow border-l-4 pl-3 text-left text-3xl font-black",
-            {
-              "pt-3.25 font-bold": lang === Locale.KOK,
-            },
+            "border-natgeo-yellow border-l-4 pl-3 text-left text-3xl lg:text-4xl font-black mb-2",
+            { "pt-3.25 font-bold": lang === Locale.KOK },
           )}
         >
           {t("nav.obituary")}
         </h1>
 
-        <div class="w-full">
-          <SelectWardRedirect
-            client:load
-            wards={uniqueWards}
-            placeholder={t("ward.select-label")}
-          />
-        </div>
+        <div
+          class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between"
+        >
+          <div class="order-1 w-full md:order-1 md:max-w-md">
+            <ObituarySearch client:load locale={lang as Locale} />
+          </div>
 
-        <div class="w-full">
-          <ObituarySearch client:load locale={lang as Locale} />
-        </div>
-      </div>
-
-      <div
-        class="hidden md:grid md:grid-cols-12 md:gap-6 md:items-center pb-6 lg:pb-8"
-      >
-        <div class="md:col-span-3">
-          <h1
-            class={cn(
-              "border-natgeo-yellow border-l-4 pl-3 text-left text-3xl lg:text-4xl font-black",
-              {
-                "pt-3.25 font-bold": lang === Locale.KOK,
-              },
-            )}
-          >
-            {t("nav.obituary")}
-          </h1>
-        </div>
-
-        <div class="md:col-span-3 flex justify-center">
-          <div class="w-full">
+          <div class="order-2 w-full md:order-2 md:w-64">
             <SelectWardRedirect
               client:load
               wards={uniqueWards}
@@ -141,16 +116,10 @@ const ogImageUrl = firstObituary?.image?.url
             />
           </div>
         </div>
-
-        <div class="md:col-span-6 flex justify-end">
-          <div class="w-full max-w-md">
-            <ObituarySearch client:load locale={lang as Locale} />
-          </div>
-        </div>
       </div>
 
       <p
-        class={cn("pb-6 lg:pb-8 text-2xl font-bold italic text-red-600", {
+        class={cn("mb-4 text-2xl font-bold italic text-red-600", {
           "font-semibold": lang === Locale.KOK,
         })}
       >
