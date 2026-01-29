@@ -1,7 +1,7 @@
 ---
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import { cn } from "~/helpers/cn";
-import { parseISO, addDays } from "date-fns";
+
 // Components
 import { listUpcomingEvents } from "~/services/list-upcoming-events";
 import NetworkImage from "~/components/ui/network-image.astro";
@@ -167,10 +167,10 @@ const filteredEvents = upcomingEvents.filter((event) => {
         <div class="event-gallery hidden items-center justify-center gap-4 md:flex">
           {filteredEvents.map((event) =>
             event.eventImage?.mime?.startsWith("video/") ? (
-              <div class="transition-transform duration-300 ease-in-out hover:transform-[scale(1.02)] max-h-[400px] flex items-center justify-center">
+              <div class="transition-transform duration-300 ease-in-out hover:transform-[scale(1.02)] max-h-100 flex items-center justify-center">
                 <NetworkVideo
                   src={event.eventImage.url}
-                  class="max-h-[400px] w-auto object-contain"
+                  class="max-h-100 w-auto object-contain"
                   width={event.eventImage.width || 0}
                   height={event.eventImage.height || 0}
                   controls
@@ -191,7 +191,7 @@ const filteredEvents = upcomingEvents.filter((event) => {
                 }
                 data-pswp-width={event.eventImage?.width}
                 data-pswp-height={event.eventImage?.height}
-                class="transition-transform duration-300 ease-in-out hover:transform-[scale(1.02)] max-h-[400px] flex items-center justify-center"
+                class="transition-transform duration-300 ease-in-out hover:transform-[scale(1.02)] max-h-100 flex items-center justify-center"
               >
                 <NetworkImage
                   src={
@@ -202,7 +202,7 @@ const filteredEvents = upcomingEvents.filter((event) => {
                         ).toString()
                       : getPlaceholderImage({ text: event.eventImage?.name })
                   }
-                  class="max-h-[400px] w-auto object-contain"
+                  class="max-h-100 w-auto object-contain"
                   width={event.eventImage?.width || 0}
                   height={event.eventImage?.height || 0}
                 />

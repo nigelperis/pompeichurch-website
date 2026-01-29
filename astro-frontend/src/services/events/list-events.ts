@@ -36,6 +36,27 @@ async function listEvents(args?: {
   if (filters) {
     Object.entries(filters).forEach(([key, value]) => {
       const keyPath = key.includes(".") ? key.replaceAll(".", "][") : key;
+
+      // Handle $or / $and
+      if ((key === "$or" || key === "$and") && Array.isArray(value)) {
+        value.forEach((condition, index) => {
+          Object.entries(condition).forEach(([field, ops]) => {
+            const fieldPath = field.includes(".")
+              ? field.replaceAll(".", "][")
+              : field;
+
+            Object.entries(ops as Record<string, any>).forEach(([op, val]) => {
+              queryParams.append(
+                `filters[${key}][${index}][${fieldPath}][${op}]`,
+                String(val),
+              );
+            });
+          });
+        });
+        return;
+      }
+
+      // Handle normal filters (including relation.slug)
       if (typeof value === "object" && value !== null) {
         Object.entries(value).forEach(([op, val]) => {
           queryParams.append(`filters[${keyPath}][${op}]`, String(val));

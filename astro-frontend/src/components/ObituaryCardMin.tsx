@@ -8,10 +8,7 @@ import CloseIcon from "~/assets/react-icons/x.svg?react";
 import YoutubeIcon from "~/assets/react-icons/youtube.svg?react";
 import WhatsAppShare from "~/components/ui/whatsapp-share.tsx";
 import { EXPIRE_TIME } from "~/constants/index.ts";
-import {
-  getFuneralDetails,
-  parseDateOnly,
-} from "~/helpers/get-funeral-details";
+import { getFuneralDetails } from "~/helpers/get-funeral-details";
 import { FuneralInfoButton } from "./ui/FuneralInfoButton";
 
 interface Props {
@@ -149,7 +146,7 @@ export default function ObituaryCardMin({
     return (
       <div className={cn("flex-none relative h-full", className)}>
         <div className={cn("flex-none relative h-full", className)}>
-          <div className="w-64 snap-start first:snap-align-none max-w-xs shrink-0 border border-gray-200 duration-200 ease-in-out sm:w-64 min-h-[380px] h-[380px]">
+          <div className="w-64 snap-start first:snap-align-none max-w-xs shrink-0 border border-gray-200 duration-200 ease-in-out sm:w-64 min-h-95 h-95">
             <div className="opacity-50 blur-md">
               <div className="card-image flex-none">
                 <img
@@ -157,14 +154,14 @@ export default function ObituaryCardMin({
                   alt={`Image of ${name}`}
                   width={imageWidth}
                   height={imageHeight}
-                  className="h-[300px] w-full object-cover border-none"
+                  className="h-75 w-full object-cover border-none"
                   loading="lazy"
                 />
               </div>
               <div className="flex flex-1 flex-col justify-start space-y-1 p-3">
                 <div className="space-y-1">
                   <p className="text-lg font-bold leading-snug text-slate-900 flex items-center">
-                    <span className="truncate max-w-[190px]" title={name}>
+                    <span className="truncate max-w-47.5" title={name}>
                       {name}
                     </span>
                     {age ? (
@@ -199,14 +196,14 @@ export default function ObituaryCardMin({
               alt={`Image of ${name}`}
               width={imageWidth}
               height={imageHeight}
-              className="h-[300px] w-full object-cover border-none"
+              className="h-75 w-full object-cover border-none"
               loading="lazy"
             />
           </div>
           <div className="flex flex-1 flex-col justify-start space-y-1 p-3">
             <div className="space-y-1">
               <p className="text-lg font-bold leading-snug text-slate-900 flex items-center">
-                <span className="truncate max-w-[190px]" title={name}>
+                <span className="truncate max-w-47.5" title={name}>
                   {name}
                 </span>
                 {age ? <span className="shrink-0">&nbsp;({age})</span> : null}
@@ -283,7 +280,7 @@ export default function ObituaryCardMin({
               alt={`Image of ${name}`}
               width={imageWidth}
               height={imageHeight}
-              className="h-[300px] w-full object-cover border-none"
+              className="h-75 w-full object-cover border-none"
               loading="lazy"
             />
             {showFlip && !flipped && (
@@ -297,7 +294,7 @@ export default function ObituaryCardMin({
           </div>
           <div className="flex flex-1 flex-col justify-start space-y-1 p-3">
             <p className="text-lg font-bold leading-snug text-slate-900 flex items-center">
-              <span className="truncate max-w-[190px]" title={name}>
+              <span className="truncate max-w-47.5" title={name}>
                 {name}
               </span>
               {age ? <span className="shrink-0">&nbsp;({age})</span> : null}

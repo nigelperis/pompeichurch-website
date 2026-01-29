@@ -13,6 +13,7 @@ import Pagination from "~/components/pagination.astro";
 import { getPaginationRange } from "~/helpers/get-pagination-range";
 import { ITEMS_PER_PAGE } from "~/constants/index.ts";
 import SelectAssociationRedirect from "~/components/ui/SelectAssociationRedirect";
+import EventSearch from "~/components/EventSearch";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -30,7 +31,7 @@ const currentPage = Number(Astro.url.searchParams.get("p")) || 1;
 
 const { events: filteredEvents } = await listEvents({
   page: 1,
-  pageSize: 500, //Todo Comment
+  pageSize: 500,
   filters: { "association.slug": { $eq: slug } },
 });
 
@@ -55,30 +56,44 @@ const emptyStateMessage =
     <section id="events" class="flex flex-col p-6 lg:p-8">
       <PushNotification />
 
-      <div
-        class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between pb-6 lg:pb-8"
-      >
+      <div class="flex flex-col gap-4 pb-6 lg:pb-8">
         <h1
           class={cn(
-            "font-black border-natgeo-yellow border-l-4 pl-3 text-3xl lg:text-4xl",
-            { "pt-[13px] font-bold": lang === Locale.KOK },
+            "font-black border-natgeo-yellow border-l-4 pl-3 text-3xl lg:text-4xl mb-2",
+            { "pt-3.25 font-bold": lang === Locale.KOK },
           )}
         >
           {t("nav.events")} - {title}
         </h1>
 
-        {
-          associations.length > 0 && (
-            <div class="w-full md:w-64">
-              <SelectAssociationRedirect
-                client:load
-                associations={associations}
-                placeholder={title}
-                allLabel={t("all")}
-              />
-            </div>
-          )
-        }
+        <div
+          class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between"
+        >
+          {
+            totalEvents > 6 && (
+              <div class="order-1 w-full md:order-1 md:max-w-md">
+                <EventSearch
+                  client:load
+                  locale={lang as Locale}
+                  associationSlug={slug}
+                />
+              </div>
+            )
+          }
+
+          {
+            associations.length > 0 && (
+              <div class="order-2 w-full md:order-2 md:w-64">
+                <SelectAssociationRedirect
+                  client:load
+                  associations={associations}
+                  placeholder={title}
+                  allLabel={t("all")}
+                />
+              </div>
+            )
+          }
+        </div>
       </div>
 
       {
