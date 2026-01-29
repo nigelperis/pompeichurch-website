@@ -9,6 +9,9 @@ export async function searchObituaries(query: string) {
     $or: [
       { konkaniName: { $containsi: query } },
       { englishName: { $containsi: query } },
+      { age: { $containsi: query } },
+      { relationNameEn: { $containsi: query } },
+      { relationNameKok: { $containsi: query } },
     ],
   };
 

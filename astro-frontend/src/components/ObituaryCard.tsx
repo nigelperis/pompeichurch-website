@@ -13,6 +13,7 @@ import WhatsAppShare from "~/components/ui/whatsapp-share.tsx";
 import { EXPIRE_TIME } from "~/constants/index.ts";
 import { getFuneralDetails } from "~/helpers/get-funeral-details";
 import { FuneralInfoButton } from "./ui/FuneralInfoButton";
+import { obituaryRelationMapKok } from "~/constants/obituary-relation-map-kok";
 
 interface Props {
   id?: string | number;
@@ -43,15 +44,6 @@ const lang =
   window.location.pathname.startsWith(`/${Locale.KOK}`)
     ? Locale.KOK
     : Locale.EN;
-
-const relationMapKok: Record<string, string> = {
-  "H/O": "ಪತಿ",
-  "W/O": "ಪತಿಣ್",
-  "D/O": "ಧುವ್",
-  "S/O": "ಪುತ್",
-  "Sister of": "ಭಯ್ಣ್",
-  "Brother of": "ಭಾವ್",
-};
 
 const activeLabels = {
   en: {
@@ -134,7 +126,7 @@ export default function ObituaryCard({
   const labels = activeLabels[lang as keyof typeof activeLabels];
   const relationLabel =
     lang === Locale.KOK
-      ? relationMapKok[relationType ?? ""] || "Spouse"
+      ? obituaryRelationMapKok[relationType ?? ""] || "Spouse"
       : relationType || "Relation";
 
   let formattedDate = "";

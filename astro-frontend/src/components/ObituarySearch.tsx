@@ -3,11 +3,11 @@ import * as Popover from "@radix-ui/react-popover";
 import SearchIcon from "~/assets/icons/search.svg?react";
 import ChevronClose from "~/assets/icons/cancel.svg?react";
 import { Locale } from "~/enums/locale";
-import { Message } from "~/constants/message";
 import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
 import type { Obituary } from "~/models/obituary";
 import { searchObituaries } from "~/services/obituaries/obituary-search";
 import { getNoResultsMessage } from "~/helpers/get-no-result-message";
+import { obituaryRelationMapKok } from "~/constants/obituary-relation-map-kok";
 
 function escapeRegExp(value: string) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -195,7 +195,7 @@ export default function ObituarySearch({ locale }: Props) {
                         <div className="h-4 w-3/4 bg-gray-200" />
                         <div className="h-3 w-1/2 bg-gray-100" />
                       </div>
-                      <div className="h-12 w-12 rounded-full bg-gray-200" />
+                      <div className="h-13 w-13 rounded-full bg-gray-200" />
                     </div>
                   </li>
                 ))}
@@ -245,12 +245,59 @@ export default function ObituarySearch({ locale }: Props) {
                         <div className="truncate text-sm font-medium text-slate-900">
                           {highlightText(name, query)}
                         </div>
-
+                        {(obituary.relationType ||
+                          obituary.relationNameEn ||
+                          obituary.relationNameKok) && (
+                          <div className="mt-0.5 text-xs text-slate-500">
+                            {locale === Locale.KOK ? (
+                              <>
+                                {obituary.relationType && (
+                                  <span>
+                                    {highlightText(
+                                      obituaryRelationMapKok[
+                                        obituary.relationType
+                                      ] || obituary.relationType,
+                                      query,
+                                    )}
+                                    :{" "}
+                                  </span>
+                                )}
+                                {obituary.relationNameKok &&
+                                  highlightText(
+                                    obituary.relationNameKok,
+                                    query,
+                                  )}
+                              </>
+                            ) : (
+                              <>
+                                {obituary.relationType && (
+                                  <span>
+                                    {highlightText(
+                                      obituary.relationType,
+                                      query,
+                                    )}
+                                    :{" "}
+                                  </span>
+                                )}
+                                {obituary.relationNameEn &&
+                                  highlightText(obituary.relationNameEn, query)}
+                              </>
+                            )}
+                          </div>
+                        )}
                         {obituary.age && (
                           <div className="mt-0.5 text-xs text-slate-500">
-                            {locale === Locale.KOK
-                              ? `ಪ್ರಾಯ್: ${obituary.age}`
-                              : `Age: ${obituary.age}`}
+                            {locale === Locale.KOK ? (
+                              <>
+                                ಪ್ರಾಯ್:{" "}
+                                {highlightText(String(obituary.age), query)}
+                              </>
+                            ) : (
+                              <>
+                                Age:{" "}
+                                {highlightText(String(obituary.age), query)}
+                              </>
+                            )}
                           </div>
                         )}
                       </div>
@@ -259,7 +306,7 @@ export default function ObituarySearch({ locale }: Props) {
                         src={obituaryImage}
                         alt=""
                         loading="lazy"
-                        className="h-12 w-12 shrink-0 rounded-full object-cover"
+                        className="h-13 w-13 shrink-0 rounded-full object-cover"
                       />
                     </li>
                   );

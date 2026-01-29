@@ -5,7 +5,6 @@ import ChevronClose from "~/assets/icons/cancel.svg?react";
 import type { Event } from "~/models/event";
 import { Locale } from "~/enums/locale";
 import { searchEvents } from "~/services/events/event-search";
-import { Message } from "~/constants/message";
 import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
 import { getNoResultsMessage } from "~/helpers/get-no-result-message";
 
@@ -199,7 +198,7 @@ export default function EventSearch({
                         <div className="h-4 w-3/4 bg-gray-200" />
                         <div className="h-3 w-1/2 bg-gray-100" />
                       </div>
-                      <div className="h-12 w-12 rounded-full bg-gray-200" />
+                      <div className="h-13 w-13 rounded-full bg-gray-200" />
                     </div>
                   </li>
                 ))}
@@ -266,7 +265,7 @@ export default function EventSearch({
                         src={eventImage}
                         alt=""
                         loading="lazy"
-                        className="h-12 w-12 shrink-0 rounded-full object-cover"
+                        className="h-13 w-13 shrink-0 rounded-full object-cover"
                       />
                     </li>
                   );
