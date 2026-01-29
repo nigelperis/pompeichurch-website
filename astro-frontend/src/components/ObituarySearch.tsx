@@ -151,6 +151,7 @@ export default function ObituarySearch({ locale }: Props) {
               aria-label="Search obituaries"
               aria-autocomplete="list"
               aria-expanded={open}
+              maxLength={50}
               className="
                 w-full
                 border border-gray-300
@@ -331,7 +332,7 @@ export default function ObituarySearch({ locale }: Props) {
             )}
 
             {!loading && query.length >= 2 && results.length === 0 && (
-              <div className="p-4 text-center text-md text-gray-500">
+              <div className="p-4 text-center text-md text-gray-500 overflow-hidden">
                 {getNoResultsMessage(query, locale)}
               </div>
             )}

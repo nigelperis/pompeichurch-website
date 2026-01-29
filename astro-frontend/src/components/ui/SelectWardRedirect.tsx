@@ -74,7 +74,7 @@ export default function SelectWardRedirect({
   );
 
   return (
-    <div className="w-full">
+    <div className="w-full max-w-md ml-auto">
       <Radix.Root value={value} onValueChange={setValue}>
         <Radix.Trigger
           ref={triggerRef}
@@ -88,7 +88,7 @@ export default function SelectWardRedirect({
         <Radix.Portal>
           <Radix.Content
             side="top"
-            align="start"
+            align="end"
             sideOffset={0}
             avoidCollisions={false}
             collisionPadding={0}

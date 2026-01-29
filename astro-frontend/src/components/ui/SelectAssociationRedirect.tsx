@@ -58,7 +58,7 @@ export default function SelectAssociationRedirect({
   );
 
   return (
-    <div className="w-full">
+    <div className="w-full max-w-md ml-auto">
       <Radix.Root value={value} onValueChange={setValue}>
         <Radix.Trigger
           ref={triggerRef}

@@ -64,7 +64,7 @@ const basePath = `${Astro.url.pathname}?`;
 ---
 
 <Layout title={pageTitle}>
-  <main class="mx-auto max-w-screen-lg overflow-hidden bg-white">
+  <main class="mx-auto max-w-5xl overflow-hidden bg-white">
     <section class="flex flex-col p-6 lg:p-8">
       <PushNotification />
 
@@ -80,9 +80,9 @@ const basePath = `${Astro.url.pathname}?`;
           {t("nav.obituary")}
         </h1>
 
-        <div class="w-full md:w-64">
+        <div class="order-2 w-full md:order-2 md:max-w-md md:ml-auto">
           <SelectWardRedirect
-            client:only="react"
+            client:load
             wards={uniqueWards}
             placeholder={t("ward.select-label")}
           />
