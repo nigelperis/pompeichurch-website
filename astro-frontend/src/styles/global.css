@@ -45,6 +45,9 @@
 
   --animation-slidein: slidein 1s ease-out var(--slidein-delay, 0) forwards;
 }
+ul, ol, li {
+  font-family: inherit !important;
+}
 html {
   scroll-behavior: smooth;
 }
