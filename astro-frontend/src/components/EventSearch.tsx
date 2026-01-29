@@ -7,6 +7,7 @@ import { Locale } from "~/enums/locale";
 import { searchEvents } from "~/services/events/event-search";
 import { Message } from "~/constants/message";
 import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
+import { getNoResultsMessage } from "~/helpers/get-no-result-message";
 
 function escapeRegExp(value: string) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -45,11 +46,6 @@ export default function EventSearch({
   const [open, setOpen] = React.useState(false);
 
   const inputRef = React.useRef<HTMLInputElement>(null);
-
-  const emptyStateMessage =
-    locale === Locale.KOK
-      ? Message.EVENTS_NOT_FOUND_KOK
-      : Message.EVENTS_NOT_FOUND;
 
   const searchEventsMessage =
     locale === Locale.KOK ? "ಸೊದಪ್..." : "Search events...";
@@ -280,7 +276,7 @@ export default function EventSearch({
 
             {!loading && query.length >= 2 && results.length === 0 && (
               <div className="p-4 text-center text-md text-gray-500">
-                {emptyStateMessage}
+                {getNoResultsMessage(query, locale)}
               </div>
             )}
           </Popover.Content>

@@ -7,6 +7,7 @@ import { Message } from "~/constants/message";
 import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
 import type { Obituary } from "~/models/obituary";
 import { searchObituaries } from "~/services/obituaries/obituary-search";
+import { getNoResultsMessage } from "~/helpers/get-no-result-message";
 
 function escapeRegExp(value: string) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -41,11 +42,6 @@ export default function ObituarySearch({ locale }: Props) {
   const [open, setOpen] = React.useState(false);
 
   const inputRef = React.useRef<HTMLInputElement>(null);
-
-  const emptyStateMessage =
-    locale === Locale.KOK
-      ? Message.OBITUARIES_NOT_FOUND_KOK
-      : Message.OBITUARIES_NOT_FOUND;
 
   const searchObituaryMessage =
     locale === Locale.KOK ? "ಸೊದಪ್..." : "Search obituaries...";
@@ -273,7 +269,7 @@ export default function ObituarySearch({ locale }: Props) {
 
             {!loading && query.length >= 2 && results.length === 0 && (
               <div className="p-4 text-center text-md text-gray-500">
-                {emptyStateMessage}
+                {getNoResultsMessage(query, locale)}
               </div>
             )}
           </Popover.Content>
