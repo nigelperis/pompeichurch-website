@@ -262,11 +262,27 @@ export default function ObituarySearch({ locale }: Props) {
                                     :{" "}
                                   </span>
                                 )}
-                                {obituary.relationNameKok &&
-                                  highlightText(
-                                    obituary.relationNameKok,
-                                    query,
-                                  )}
+                                {obituary.relationNameKok && (
+                                  <>
+                                    {highlightText(
+                                      obituary.relationNameKok,
+                                      query,
+                                    )}
+                                    {obituary.relationType && (
+                                      <span>
+                                        {" "}
+                                        {obituary.relationType === "H/O" ||
+                                        obituary.relationType === "Brother of"
+                                          ? "ಹಿಚೊ"
+                                          : obituary.relationType === "W/O" ||
+                                              obituary.relationType ===
+                                                "Sister of"
+                                            ? "ಹಾಚಿ"
+                                            : ""}
+                                      </span>
+                                    )}
+                                  </>
+                                )}
                               </>
                             ) : (
                               <>
