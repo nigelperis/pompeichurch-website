@@ -19,7 +19,7 @@ const { src, width, height, class: className, name, position } = Astro.props;
 
 <div
   class={cn(
-    "w-64 snap-start first:snap-align-none max-w-xs flex-shrink-0 bg-white border border-gray-200 duration-200 ease-in-out sm:w-64",
+    "w-64 snap-start first:snap-align-none max-w-xs shrink-0 bg-white border border-gray-200 duration-200 ease-in-out sm:w-64",
     className,
   )}
 >
@@ -31,13 +31,13 @@ const { src, width, height, class: className, name, position } = Astro.props;
           width={width}
           height={height}
           alt={`${position} of Our Lady of Pompei Church`}
-          class="h-[300px] w-full object-cover"
+          class="h-75 w-full object-cover"
         />
       ) : (
         <Image
           src={placeholderImage}
           alt="Blank Profile Image"
-          class="h-[300px] w-full object-cover"
+          class="h-75 w-full object-cover"
           width={width}
           height={height}
         />

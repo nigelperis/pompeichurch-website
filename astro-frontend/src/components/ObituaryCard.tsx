@@ -11,11 +11,9 @@ import YoutubeIcon from "~/assets/react-icons/youtube.svg?react";
 import CoffinIcon from "~/assets/react-icons/coffin.svg?react";
 import WhatsAppShare from "~/components/ui/whatsapp-share.tsx";
 import { EXPIRE_TIME } from "~/constants/index.ts";
-import {
-  getFuneralDetails,
-  parseDateOnly,
-} from "~/helpers/get-funeral-details";
+import { getFuneralDetails } from "~/helpers/get-funeral-details";
 import { FuneralInfoButton } from "./ui/FuneralInfoButton";
+import { obituaryRelationMapKok } from "~/constants/obituary-relation-map-kok";
 
 interface Props {
   id?: string | number;
@@ -140,7 +138,7 @@ export default function ObituaryCard({
   const labels = activeLabels[lang as keyof typeof activeLabels];
   const relationLabel =
     lang === Locale.KOK
-      ? relationMapKok[relationType ?? ""] || "Spouse"
+      ? obituaryRelationMapKok[relationType ?? ""] || "Spouse"
       : relationType || "Relation";
 
   let formattedDate = "";
@@ -171,7 +169,7 @@ export default function ObituaryCard({
     <div
       id={cardId.replace(/\s+/g, "-").toLowerCase()}
       className={cn(
-        "relative mx-auto w-[280px] h-[580px] md:w-[250px] md:h-[510px] m-auto perspective",
+        "relative mx-auto w-70 h-145 md:w-62.5 md:h-127.5 m-auto perspective",
         className,
       )}
       style={{ perspective: "1000px" }}
@@ -196,7 +194,7 @@ export default function ObituaryCard({
             flipped ? "opacity-0 delay-0" : "opacity-100 delay-500",
           )}
         >
-          <div className="aspect-3/4 bg-gray-100 relative md:h-[330px]">
+          <div className="aspect-3/4 bg-gray-100 relative md:h-82.5">
             <img
               src={imageUrl}
               alt={`Image of ${name}`}
@@ -215,8 +213,9 @@ export default function ObituaryCard({
               </div>
             )}
           </div>
+
           {/* Details Section */}
-          <div className="flex flex-col justify-between p-3 h-full min-h-[180px] relative">
+          <div className="flex flex-col justify-between p-3 h-full min-h-45 relative">
             <div className="space-y-1">
               <p className="text-xl font-bold text-slate-900 line-clamp-2">
                 {name}
