@@ -8,7 +8,7 @@ import { Locale } from "~/enums/locale";
 
 const { obituaries } = Astro.props as { obituaries: Obituary[] };
 
-const lang = getLangFromUrl(Astro.url);
+const lang = getLangFromUrl(Astro.url) as Locale;
 const obituaryDataFormatted = obituaries
   ?.map((obituary) => {
     const rawDate = obituary.dateOfDeath
