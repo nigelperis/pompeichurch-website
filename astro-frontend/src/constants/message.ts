@@ -3,7 +3,7 @@ export class Message {
   public static readonly EVENTS_NOT_FOUND = "No Events Found!";
   public static readonly EVENTS_NOT_FOUND_KOK = "ಘಡಿತಾಂ ನಾಂತ್!";
   public static readonly OBITUARIES_NOT_FOUND = "No Obituaries Found!";
-  public static readonly OBITUARIES_NOT_FOUND_KOK = "ಕಾಂಯ್ ನಾ!";
+  public static readonly OBITUARIES_NOT_FOUND_KOK = "ಕಾಂಯ್ ನಾ!";
   public static readonly COUNCIL_MEMBERS_NOT_FOUND =
     "No Council Members Found!";
   public static readonly MAGAZINES_NOT_FOUND = "No Magazines available!";

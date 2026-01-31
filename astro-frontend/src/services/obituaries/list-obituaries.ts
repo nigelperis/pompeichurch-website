@@ -16,12 +16,14 @@ async function listObituaries(args?: {
   pageSize?: number;
   sortBy?: string;
   ward?: string;
+  filters?: Record<string, any>;
 }): Promise<ObituaryPagination> {
   const {
     page = 1,
     pageSize = 25,
     sortBy = "dateOfDeath:desc",
     ward,
+    filters,
   } = args ?? {};
 
   const queryParams = new URLSearchParams({
@@ -33,6 +35,34 @@ async function listObituaries(args?: {
 
   if (ward) {
     queryParams.append("filters[ward][$eqi]", ward); // case-insensitive
+  }
+
+  if (filters) {
+    Object.entries(filters).forEach(([key, value]) => {
+      if ((key === "$or" || key === "$and") && Array.isArray(value)) {
+        value.forEach((condition, index) => {
+          Object.entries(condition).forEach(([field, ops]) => {
+            Object.entries(ops as Record<string, any>).forEach(([op, val]) => {
+              queryParams.append(
+                `filters[${key}][${index}][${field}][${op}]`,
+                String(val),
+              );
+            });
+          });
+        });
+        return;
+      }
+
+      const keyPath = key.includes(".") ? key.replaceAll(".", "][") : key;
+
+      if (typeof value === "object" && value !== null) {
+        Object.entries(value).forEach(([op, val]) => {
+          queryParams.append(`filters[${keyPath}][${op}]`, String(val));
+        });
+      } else {
+        queryParams.append(`filters[${keyPath}]`, String(value));
+      }
+    });
   }
 
   const data = await strapiFetch<ObituaryData>({
