@@ -2,7 +2,7 @@
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import { cn } from "~/helpers/cn";
 import HoverableLink from "~/components/ui/hoverable-link.astro";
-import ObituaryCardMin from "~/components/ObituaryCardMin.tsx";
+import ObituaryCard from "~/components/ObituaryCard.tsx";
 import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
 import { listObituaries } from "~/services/obituaries/list-obituaries";
 import { Message } from "~/constants/message.ts";
@@ -48,7 +48,7 @@ const obituaryDataFormatted = obituaries.map((obituary) => ({
                 i === 4 ? "lg:hidden overflow-hidden" : "",
               )}
             >
-              <ObituaryCardMin
+              <ObituaryCard
                 client:load
                 id={o.id}
                 name={lang === "kok" ? o.konkaniName : o.englishName}
@@ -64,11 +64,16 @@ const obituaryDataFormatted = obituaries.map((obituary) => ({
                         height: 400,
                       })
                 }
+                imageWidth={340}
+                imageHeight={400}
                 dateOfDeath={o.dateOfDeath}
                 age={o.age}
+                relationType={o.relationType}
+                relationNameEn={o.relationNameEn}
+                relationNameKok={o.relationNameKok}
+                ward={o.ward}
                 slug={o.slug}
                 youtubeLink={o.youtubeLink}
-                blurred={i === 4}
                 homeTime={o.homeTime}
                 massTime={o.massTime}
                 funeralDate={o.funeralDate}
@@ -76,6 +81,7 @@ const obituaryDataFormatted = obituaries.map((obituary) => ({
                 className="h-full"
                 funeralDetailsUpdatedOn={o.funeralDetailsUpdatedOn}
                 autoFlip={true}
+                locale={lang}
               />
             </div>
           ))}
