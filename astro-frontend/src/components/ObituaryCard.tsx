@@ -36,14 +36,17 @@ interface Props {
   className?: string;
   autoFlip?: boolean;
   startsFromChurch?: boolean;
+  locale?: Locale;
 }
 
-// Simple lang detection from URL
-const lang =
-  typeof window !== "undefined" &&
-  window.location.pathname.startsWith(`/${Locale.KOK}`)
-    ? Locale.KOK
-    : Locale.EN;
+const relationMapKok: Record<string, string> = {
+  "H/O": "ಪತಿ",
+  "W/O": "ಪತಿಣ್",
+  "D/O": "ಧುವ್",
+  "S/O": "ಪುತ್",
+  "Sister of": "ಭಯ್ಣ್",
+  "Brother of": "ಭಾವ್",
+};
 
 const activeLabels = {
   en: {
@@ -79,8 +82,17 @@ export default function ObituaryCard({
   funeralDate,
   autoFlip = false,
   startsFromChurch,
+  locale,
 }: Props) {
   const [flipped, setFlipped] = useState(false);
+
+  const lang =
+    locale ||
+    (typeof window !== "undefined" &&
+    window.location.pathname.startsWith(`/${Locale.KOK}`)
+      ? Locale.KOK
+      : Locale.EN);
+
   const obituaryUrl =
     lang === Locale.EN ? `/obituary/${slug}/` : `/kok/obituary/${slug}/`;
 

@@ -78,6 +78,7 @@ const pageTitle = selectedObituary
 
       <ObituaryCard
         client:load
+        locale={lang}
         id={selectedObituary.id}
         name={lang === Locale.EN
           ? selectedObituary.englishName
