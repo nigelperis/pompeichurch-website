@@ -26,11 +26,12 @@ const obituaryDataFormatted = obituaries.map((obituary) => ({
 ---
 
 <section
-  class="mt-1 flex flex-col lg:mx-28 lg:min-h-[70svh] lg:justify-evenly mb-5"
+  id="obituary-section"
+  class="mt-1 flex flex-col py-8 lg:mx-28 lg:py-12"
 >
   <h1
     class={cn(
-      "font-black mx-6 mb-4 inline-block border-l-4 border-natgeo-yellow pl-3 text-2xl lg:mx-0 lg:text-4xl",
+      "font-black mx-6 mb-6 inline-block border-l-4 border-natgeo-yellow pl-3 text-2xl lg:mx-0 lg:mb-8 lg:text-4xl",
       { "font-extrabold pt-2": lang === Locale.KOK },
     )}
   >
@@ -39,15 +40,53 @@ const obituaryDataFormatted = obituaries.map((obituary) => ({
 
   {
     obituaryDataFormatted.length > 0 ? (
-      <>
-        <div class="my-4 flex w-full space-x-8 overflow-x-auto pl-6 pr-3 scrollbar-none lg:flex-wrap lg:justify-center lg:space-x-8 lg:overflow-x-visible xl:space-x-10 overflow-y-visible">
-          {obituaryDataFormatted.slice(0, 5).map((o, i) => (
-            <div
-              class={cn(
-                "flex-none relative h-full",
-                i === 4 ? "lg:hidden overflow-hidden" : "",
-              )}
-            >
+      <div class="w-full">
+        {/* Mobile: Horizontal scroll */}
+        <div class="flex gap-4 overflow-x-auto px-6 pb-8 lg:hidden snap-x snap-mandatory items-start">
+          {obituaryDataFormatted.slice(0, 4).map((o, index) => (
+            <div class="flex-shrink-0 w-[280px] snap-center">
+              <ObituaryCard
+                client:load
+                id={o.id}
+                name={lang === "kok" ? o.konkaniName : o.englishName}
+                imageUrl={
+                  o.image?.url
+                    ? new URL(
+                        o.image.url,
+                        import.meta.env.PUBLIC_STRAPI_URL,
+                      ).toString()
+                    : getPlaceholderImage({
+                        text: o.englishName,
+                        width: 280,
+                        height: 350,
+                      })
+                }
+                imageWidth={280}
+                imageHeight={350}
+                dateOfDeath={o.dateOfDeath}
+                age={o.age}
+                relationType={o.relationType}
+                relationNameEn={o.relationNameEn}
+                relationNameKok={o.relationNameKok}
+                ward={o.ward}
+                slug={o.slug}
+                youtubeLink={o.youtubeLink}
+                homeTime={o.homeTime}
+                massTime={o.massTime}
+                funeralDate={o.funeralDate}
+                startsFromChurch={o.startsFromChurch}
+                funeralDetailsUpdatedOn={o.funeralDetailsUpdatedOn}
+                autoFlip={true}
+                locale={lang}
+              />
+            </div>
+          ))}
+        </div>
+
+        {/* Desktop: Grid layout */}
+        <div class="hidden lg:flex flex-wrap justify-center gap-8 px-6 pb-8">
+          {obituaryDataFormatted.slice(0, 4).map((o) => (
+            <div class="flex-none">
               <ObituaryCard
                 client:load
                 id={o.id}
@@ -78,19 +117,19 @@ const obituaryDataFormatted = obituaries.map((obituary) => ({
                 massTime={o.massTime}
                 funeralDate={o.funeralDate}
                 startsFromChurch={o.startsFromChurch}
-                className="h-full"
                 funeralDetailsUpdatedOn={o.funeralDetailsUpdatedOn}
                 autoFlip={true}
+                locale={lang}
               />
             </div>
           ))}
         </div>
 
-        {/* Only on desktop, show a View All button below */}
-        <div class="hidden justify-center pb-2 lg:flex">
+        {/* View All button */}
+        <div class="flex justify-center px-6">
           <HoverableLink href={obituaryLink}>{t("ui.view-all")}</HoverableLink>
         </div>
-      </>
+      </div>
     ) : (
       <p class="py-8 text-center text-3xl font-semibold">
         {Message.OBITUARIES_NOT_FOUND}
