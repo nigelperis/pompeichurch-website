@@ -57,6 +57,8 @@ const eventsUrl =
   lang === Locale.KOK
     ? `/kok/parish-pastoral-commissions/events`
     : `/parish-pastoral-commissions/events`;
+
+const mediumCoorninatorImage = coordinatorData?.image?.formats?.medium ?? coordinatorData?.image;
 ---
 
 <Layout title={title}>
@@ -80,15 +82,15 @@ const eventsUrl =
               <div class="shrink-0 md:mb-1">
                 <NetworkImage
                   src={
-                    coordinatorData?.image?.url
+                    mediumCoorninatorImage?.url
                       ? new URL(
-                          coordinatorData?.image?.url,
+                          mediumCoorninatorImage?.url,
                           import.meta.env.PUBLIC_STRAPI_URL,
                         ).toString()
                       : getPlaceholderImage({ text: coordinatorData?.name })
                   }
-                  width={coordinatorData?.image?.width || 600}
-                  height={coordinatorData?.image?.height || 400}
+                  width={mediumCoorninatorImage?.width || 600}
+                  height={mediumCoorninatorImage?.height || 400}
                   alt={coordinatorData?.name || "Coordinator Image"}
                   class="w-32 h-32 rounded-full object-cover object-top"
                 />
