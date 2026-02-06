@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import Layout from "~/layouts/layout.astro";
 import CommissionCard from "~/components/sections/parish-pastoral-commissions/commission-card.astro";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
@@ -10,6 +11,7 @@ import { Message } from "~/constants/message";
 import { listEvents } from "~/services/events/list-events";
 import HoverableLink from "~/components/ui/hoverable-link.astro";
 import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
+import placeholderImage from "~/assets/static-assets/blank.jpeg";
 import EventCard from "~/components/event-card.astro";
 import NetworkImage from "~/components/ui/network-image.astro";
 
@@ -58,7 +60,8 @@ const eventsUrl =
     ? `/kok/parish-pastoral-commissions/events`
     : `/parish-pastoral-commissions/events`;
 
-const mediumCoorninatorImage = coordinatorData?.image?.formats?.medium ?? coordinatorData?.image;
+const mediumCoorninatorImage =
+  coordinatorData?.image?.formats?.medium ?? coordinatorData?.image;
 ---
 
 <Layout title={title}>
@@ -80,20 +83,30 @@ const mediumCoorninatorImage = coordinatorData?.image?.formats?.medium ?? coordi
           pastoralCommissionsData.length > 0 && (
             <div class="flex flex-col md:flex-row md:space-x-6 space-y-6 md:space-y-0 mt-7 border border-gray-200 p-3 flex-1 items-center space-x-4">
               <div class="shrink-0 md:mb-1">
-                <NetworkImage
-                  src={
-                    mediumCoorninatorImage?.url
-                      ? new URL(
-                          mediumCoorninatorImage?.url,
-                          import.meta.env.PUBLIC_STRAPI_URL,
-                        ).toString()
-                      : getPlaceholderImage({ text: coordinatorData?.name })
-                  }
-                  width={mediumCoorninatorImage?.width || 600}
-                  height={mediumCoorninatorImage?.height || 400}
-                  alt={coordinatorData?.name || "Coordinator Image"}
-                  class="w-32 h-32 rounded-full object-cover object-top"
-                />
+                {mediumCoorninatorImage ? (
+                  <NetworkImage
+                    src={
+                      mediumCoorninatorImage?.url
+                        ? new URL(
+                            mediumCoorninatorImage?.url,
+                            import.meta.env.PUBLIC_STRAPI_URL,
+                          ).toString()
+                        : getPlaceholderImage({ text: coordinatorData?.name })
+                    }
+                    width={mediumCoorninatorImage?.width || 600}
+                    height={mediumCoorninatorImage?.height || 400}
+                    alt={coordinatorData?.name || "Coordinator Image"}
+                    class="w-32 h-32 rounded-full object-cover object-top"
+                  />
+                ) : (
+                  <Image
+                    src={placeholderImage}
+                    alt="Blank Profile Image"
+                    class="w-32 h-32 rounded-full object-cover object-top"
+                    width={300}
+                    height={300}
+                  />
+                )}
               </div>
               <div>
                 <h4 class="text-xl font-semibold text-gray-900 md:text-2xl">

@@ -5,6 +5,7 @@ import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
 import type { Obituary } from "~/models/obituary";
 import ObituaryCard from "~/components/ObituaryCard";
 import { Locale } from "~/enums/locale";
+import placeholderImage from "~/assets/static-assets/blank.jpeg";
 
 const { obituaries } = Astro.props as { obituaries: Obituary[] };
 
@@ -21,11 +22,12 @@ const obituaryDataFormatted = obituaries
           obituary.image.url,
           import.meta.env.PUBLIC_STRAPI_URL,
         ).toString()
-      : getPlaceholderImage({
+      : (placeholderImage?.src ??
+        getPlaceholderImage({
           text: obituary.englishName,
           width: 340,
           height: 400,
-        });
+        })); // Fallback to a single placeholder image
 
     return {
       ...obituary,

@@ -8,6 +8,7 @@ import type { Obituary } from "~/models/obituary";
 import { searchObituaries } from "~/services/obituaries/obituary-search";
 import { getNoResultsMessage } from "~/helpers/get-no-result-message";
 import { obituaryRelationMapKok } from "~/constants/obituary-relation-map-kok";
+import placeholderImage from "~/assets/static-assets/blank.jpeg";
 
 function escapeRegExp(value: string) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -220,11 +221,12 @@ export default function ObituarySearch({ locale }: Props) {
                         obituary.image.formats.thumbnail.url,
                         import.meta.env.PUBLIC_STRAPI_URL,
                       ).toString()
-                    : getPlaceholderImage({
+                    : (placeholderImage?.src ??
+                      getPlaceholderImage({
                         text: obituary.englishName,
                         width: 48,
                         height: 48,
-                      });
+                      }));
 
                   return (
                     <li

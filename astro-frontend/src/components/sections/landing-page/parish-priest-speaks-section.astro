@@ -1,7 +1,8 @@
 ---
+import { Image } from "astro:assets";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import { cn } from "~/helpers/cn";
-import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
+import placeholderImage from "~/assets/static-assets/blank.jpeg";
 
 import { fetchParishPriestMessage } from "~/services/get-parish-priest-message";
 
@@ -9,6 +10,7 @@ import NetworkImage from "~/components/ui/network-image.astro";
 import { Locale } from "~/enums/locale";
 
 import { Message } from "~/constants/message.ts";
+import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -54,7 +56,7 @@ const parishPriestName =
         >
         </div>
         {
-          (
+          parishPriestImage ? (
             <NetworkImage
               src={
                 parishPriestImage?.url
@@ -67,7 +69,15 @@ const parishPriestName =
               alt={parishPriestName || "Parish Priest"}
               width={parishPriestImage?.width || 300}
               height={parishPriestImage?.height || 300}
-              class="w-[300px]"
+              class="w-75"
+            />
+          ) : (
+            <Image
+              src={placeholderImage}
+              alt="Blank Profile Image"
+              class="h-75 w-full object-cover"
+              width={300}
+              height={300}
             />
           )
         }

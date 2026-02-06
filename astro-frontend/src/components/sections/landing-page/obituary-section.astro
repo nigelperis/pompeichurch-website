@@ -7,6 +7,7 @@ import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
 import { listObituaries } from "~/services/obituaries/list-obituaries";
 import { Message } from "~/constants/message.ts";
 import { Locale } from "~/enums/locale";
+import placeholderImage from "~/assets/static-assets/blank.jpeg";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -58,11 +59,12 @@ const obituaryDataFormatted = obituaries.map((obituary) => ({
                         o.image.url,
                         import.meta.env.PUBLIC_STRAPI_URL,
                       ).toString()
-                    : getPlaceholderImage({
+                    : (placeholderImage?.src ??
+                      getPlaceholderImage({
                         text: o.englishName,
                         width: 340,
                         height: 400,
-                      })
+                      }))
                 }
                 dateOfDeath={o.dateOfDeath}
                 age={o.age}

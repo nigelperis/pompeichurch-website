@@ -24,4 +24,6 @@ export class Message {
     "ಫಿರ್ಗಜ್ಗಾರಾಂಚಿ ಸಾಧನಾಂ ನಾಂತ್!";
   public static readonly GALLERY_IMAGES_NOT_FOUND = "No Images Found!";
   public static readonly GALLERY_IMAGES_NOT_FOUND_KOK = "ತಸ್ವಿರೊ ನಾಂತ್!";
+  public static readonly WARDS_NOT_FOUND = "No Wards Found!";
+  public static readonly WARDS_NOT_FOUND_KOK = "ವಾಡೆ ನಾಂತ್!";
 }
