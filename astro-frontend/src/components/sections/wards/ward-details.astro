@@ -7,6 +7,7 @@ import NetworkImage from "~/components/ui/network-image.astro";
 import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
 import { getGurkarTitle } from "~/helpers/get-gurkar-title";
 import { getWardNameKok } from "~/helpers/get-ward-names-kok";
+import placeholderImage from "~/assets/static-assets/blank.jpeg";
 
 const lang = getLangFromUrl(Astro.url) as Locale;
 const t = useTranslations(lang);
@@ -58,20 +59,30 @@ const slug = (name: string) =>
 
           <div class="border border-gray-200 overflow-hidden md:row-span-2">
             <div class="w-full aspect-[1/1.4]">
-              <NetworkImage
-                src={
-                  ward.wardLeaderImage?.url
-                    ? new URL(
-                        ward.wardLeaderImage.url,
-                        import.meta.env.PUBLIC_STRAPI_URL,
-                      ).toString()
-                    : getPlaceholderImage({ text: ward.wardLeader })
-                }
-                alt={ward.wardLeader || t("ward.leaderAlt")}
-                width={ward.wardLeaderImage?.width ?? 365}
-                height={ward.wardLeaderImage?.height ?? 365}
-                class="w-full h-full object-cover"
-              />
+              {ward.wardLeaderImage ? (
+                <NetworkImage
+                  src={
+                    ward.wardLeaderImage?.url
+                      ? new URL(
+                          ward.wardLeaderImage.url,
+                          import.meta.env.PUBLIC_STRAPI_URL,
+                        ).toString()
+                      : getPlaceholderImage({ text: ward.wardLeader })
+                  }
+                  alt={ward.wardLeader || t("ward.leaderAlt")}
+                  width={ward.wardLeaderImage?.width ?? 365}
+                  height={ward.wardLeaderImage?.height ?? 365}
+                  class="w-full h-full object-cover"
+                />
+              ) : (
+                <Image
+                  src={placeholderImage}
+                  alt="Blank Profile Image"
+                  class="h-75 w-full object-cover"
+                  width={365}
+                  height={365}
+                />
+              )}
             </div>
             <div class="p-3 text-center">
               <h3 class="font-semibold text-base md:text-lg text-slate-900 mb-1">

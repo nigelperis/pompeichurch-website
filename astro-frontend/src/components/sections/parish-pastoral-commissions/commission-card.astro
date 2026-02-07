@@ -1,9 +1,11 @@
 ---
+import { Image } from "astro:assets";
 import { Locale } from "~/enums/locale";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import { cn } from "~/helpers/cn";
 import NetworkImage from "~/components/ui/network-image.astro";
 import type { Media } from "~/models/parish-pastoral-commission";
+import placeholderImage from "~/assets/static-assets/blank.jpeg";
 import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
 
 interface SubCommissions {
@@ -23,6 +25,8 @@ const { title, convenorName, convenorSex, convenorImage, subCommissions } =
   Astro.props;
 
 const lang = getLangFromUrl(Astro.url);
+
+const mediumConvenorImage = convenorImage?.formats?.medium ?? convenorImage;
 ---
 
 <div class="border border-gray-200 overflow-hidden">
@@ -37,27 +41,43 @@ const lang = getLangFromUrl(Astro.url);
         <div class="flex flex-row justify-center space-x-8">
           <div class="flex items-center justify-center">
             <div class="shrink-0">
-              <NetworkImage
-                src={convenorImage?.url
-                  ? new URL(
-                      convenorImage?.url,
-                      import.meta.env.PUBLIC_STRAPI_URL,
-                    ).toString()
-                  : getPlaceholderImage({ text: convenorName })}
-                width={convenorImage?.width || 600}
-                height={convenorImage?.height || 400}
-                alt={convenorName}
-                class="w-24 h-24 rounded-full object-cover object-top"
-              />
+              {
+                mediumConvenorImage ? (
+                  <NetworkImage
+                    src={
+                      mediumConvenorImage?.url
+                        ? new URL(
+                            mediumConvenorImage?.url,
+                            import.meta.env.PUBLIC_STRAPI_URL,
+                          ).toString()
+                        : getPlaceholderImage({ text: convenorName })
+                    }
+                    width={mediumConvenorImage?.width || 600}
+                    height={mediumConvenorImage?.height || 400}
+                    alt={convenorName}
+                    class="w-24 h-24 rounded-full object-cover object-top"
+                  />
+                ) : (
+                  <Image
+                    src={placeholderImage}
+                    alt="Blank Profile Image"
+                    class="w-24 h-24 rounded-full object-cover object-top"
+                    width={600}
+                    height={400}
+                  />
+                )
+              }
             </div>
           </div>
-          <div class="mt-3 flex flex-col space-x-2 gap-2">
-            <span class="text-md pl-3 mt-3 font-medium text-slate-900">
+          <div class="mt-3 flex flex-col space-x-2 gap-2 w-36 md:w-46">
+            <span
+              class="text-md pl-3 mt-3 font-medium text-slate-900 text-breaking-normal"
+            >
               {convenorName}
             </span>
             <span
               class={cn(
-                "text-md font-medium text-yellow-700 bg-yellow-100 px-3 py-1 rounded-full",
+                "text-md font-medium text-yellow-700 bg-yellow-100 px-3 py-1 rounded-full w-fit",
                 lang === Locale.KOK ? "font-noto-sans-kannada" : "font-roboto",
               )}
             >
