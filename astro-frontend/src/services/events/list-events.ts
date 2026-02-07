@@ -21,7 +21,7 @@ async function listEvents(args?: {
   const {
     page = 1,
     pageSize = 25,
-    sortBy = ["eventDate:desc"],
+    sortBy = ["eventDate:desc", "createdAt:desc"],
     filters,
   } = args ?? {};
 
