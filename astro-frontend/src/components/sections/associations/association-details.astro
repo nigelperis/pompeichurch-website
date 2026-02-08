@@ -45,7 +45,7 @@ const eventsUrl =
 const allEvents = await listEvents({
   page: 1,
   pageSize: 6,
-  sortBy: ["eventDate:desc"],
+  sortBy: ["eventDate:desc", "createdAt:desc"],
   filters: { "association.slug": { $eq: slug } },
 });
 
