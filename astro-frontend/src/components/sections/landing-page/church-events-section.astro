@@ -3,7 +3,6 @@ import HoverableLink from "~/components/ui/hoverable-link.astro";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import EventCard from "~/components/event-card.astro";
 import { Message } from "~/constants/message.ts";
-import { getEventsByNewest } from "~/helpers/get-events-by-newest";
 
 import { cn } from "~/helpers/cn";
 
@@ -18,8 +17,7 @@ import PushNotification from "~/components/push-notification.astro";
 
 const data = (await listEvents({ page: 1, pageSize: 3 })) || [];
 
-// Sort by creation time so latest posts appear first.
-const eventsByNewest = getEventsByNewest(data.events);
+const events = data.events;
 
 const emptyStateMessage =
   lang === Locale.KOK ? Message.EVENTS_NOT_FOUND_KOK : Message.EVENTS_NOT_FOUND;
@@ -42,9 +40,9 @@ const emptyStateMessage =
   </h1>
 
   {
-    eventsByNewest?.length > 0 ? (
+    events?.length > 0 ? (
       <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 md:gap-4 lg:grid-cols-3 lg:gap-8">
-        {eventsByNewest.map((event) => (
+        {events.map((event) => (
           <EventCard
             eventName={event.englishTitle}
             eventNameKok={event.konkaniTitle}
@@ -71,7 +69,7 @@ const emptyStateMessage =
   }
 
   {
-    data.events.length > 0 && (
+    events.length > 0 && (
       <div class="flex justify-center">
         <HoverableLink href={eventsUrl} class="m-5">
           {t("ui.show-more-events")}
