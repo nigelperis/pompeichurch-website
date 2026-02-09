@@ -48,6 +48,7 @@ const pastoralCommissionsTitle =
 const allEvents = await listEvents({
   page: 1,
   pageSize: 6,
+  sortBy: ["eventDate:desc"],
   filters: { pastoralCommissions: { $eq: pastoralCommissionsTitle } },
 });
 
