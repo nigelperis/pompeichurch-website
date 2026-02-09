@@ -1,5 +1,17 @@
 import { listObituaries } from "./list-obituaries";
 
+/**
+ * Searches for obituaries based on the given query.
+ * The query is searched in the following fields:
+ * - konkaniName (Konkani name)
+ * - englishName (English name)
+ * - age (age)
+ * - relationNameEn (English relationship name)
+ * - relationNameKok (Konkani relationship name)
+ * If the query is empty or less than 2 characters, an empty array is returned.
+ * @param {string} query - The query to search for.
+ * @returns {Promise<Obituary[]>} A promise that resolves to an array of obituaries.
+ */
 export async function searchObituaries(query: string) {
   if (!query || query.length < 2) {
     return [];
