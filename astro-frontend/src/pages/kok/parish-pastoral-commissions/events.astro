@@ -34,7 +34,15 @@ const paginatedEvents = filteredEvents.slice(
   currentPage * ITEMS_PER_PAGE,
 );
 
-const pageTitle = `${pastoralCommissionsTitle} Events | Pompei Church`;
+const totalCommissions = commissionsData[0]?.totalCommissions;
+const title = totalCommissions
+  ? lang === Locale.KOK
+    ? `${totalCommissions} ಆಯೋಗ್`
+    : `Parish Pastoral ${totalCommissions} Commissions`
+  : lang === Locale.KOK
+    ? "ಆಯೋಗ್"
+    : "Parish Pastoral Commissions";
+const pageTitle = totalPages > 1 ?`ಪಾನ್ ${currentPage} | ${title} | ಘಡಿತಾಂ` : `${title} | ಘಡಿತಾಂ`;
 
 const emptyStateMessage =
   lang === Locale.KOK ? Message.EVENTS_NOT_FOUND_KOK : Message.EVENTS_NOT_FOUND;
@@ -54,7 +62,7 @@ const emptyStateMessage =
             { "pt-[13px] font-bold": lang === Locale.KOK },
           )}
         >
-          {t("nav.events")}
+          {t("nav.events")} - {title}
         </h1>
       </div>
 

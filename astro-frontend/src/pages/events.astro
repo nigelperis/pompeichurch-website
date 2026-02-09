@@ -12,7 +12,6 @@ import { cn } from "~/helpers/cn";
 import PushNotification from "~/components/push-notification.astro";
 import { ITEMS_PER_PAGE } from "~/constants/index.ts";
 import SelectAssociationRedirect from "~/components/ui/SelectAssociationRedirect";
-import { getEventsByNewest } from "~/helpers/get-events-by-newest";
 import EventSearch from "~/components/EventSearch";
 
 const lang = getLangFromUrl(Astro.url);
@@ -44,17 +43,14 @@ const ogDescription =
   lang === Locale.KOK
     ? "ಫಿರ್ಗಜ್ ಕುಟ್ಮಾಚ್ಯಾ ಎಕ್ವಟ್ಪಣಾಚ್ಯೊ ಘಡಿಯೊ"
     : "Celebrating the moments that unite our parish community.";
-const pageTitle = `Page ${currentPage}`;
+const pageTitle = totalPages > 1 ? `Page ${currentPage} | ${ogTitle}` : ogTitle;
 
 const emptyStateMessage =
   lang === Locale.KOK ? Message.EVENTS_NOT_FOUND_KOK : Message.EVENTS_NOT_FOUND;
-
-// Sort by creation time so latest posts appear first.
-const eventsByNewest = getEventsByNewest(events);
 ---
 
 <Layout
-  title=`${pageTitle} | ${ogTitle}`
+  title=`${pageTitle}`
   image={ogImageUrl}
   description={ogDescription}
 >
@@ -85,7 +81,7 @@ const eventsByNewest = getEventsByNewest(events);
                 <SelectAssociationRedirect
                   client:load
                   associations={associations}
-                  placeholder={t("nav.associations")}
+                  placeholder={t("association.select-label")}
                   allLabel={t("all")}
                 />
               </div>
@@ -100,7 +96,7 @@ const eventsByNewest = getEventsByNewest(events);
       {
         events.length > 0 ? (
           <>
-            <EventsList events={eventsByNewest} />
+            <EventsList events={events} />
             <Pagination
               currentPage={currentPage}
               totalPages={totalPages}

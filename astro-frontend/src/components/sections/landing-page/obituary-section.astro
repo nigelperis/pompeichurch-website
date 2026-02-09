@@ -3,7 +3,6 @@ import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import { cn } from "~/helpers/cn";
 import HoverableLink from "~/components/ui/hoverable-link.astro";
 import ObituaryCardMin from "~/components/ObituaryCardMin.tsx";
-import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
 import { listObituaries } from "~/services/obituaries/list-obituaries";
 import { Message } from "~/constants/message.ts";
 import { Locale } from "~/enums/locale";
@@ -59,12 +58,7 @@ const obituaryDataFormatted = obituaries.map((obituary) => ({
                         o.image.url,
                         import.meta.env.PUBLIC_STRAPI_URL,
                       ).toString()
-                    : (placeholderImage?.src ??
-                      getPlaceholderImage({
-                        text: o.englishName,
-                        width: 340,
-                        height: 400,
-                      }))
+                    : placeholderImage?.src
                 }
                 dateOfDeath={o.dateOfDeath}
                 age={o.age}
