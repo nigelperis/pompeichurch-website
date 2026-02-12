@@ -12,7 +12,6 @@ import { cn } from "~/helpers/cn";
 import PushNotification from "~/components/push-notification.astro";
 import { ITEMS_PER_PAGE } from "~/constants/index.ts";
 import SelectAssociationRedirect from "~/components/ui/SelectAssociationRedirect";
-import { getEventsByNewest } from "~/helpers/get-events-by-newest";
 import EventSearch from "~/components/EventSearch";
 
 const lang = getLangFromUrl(Astro.url);
@@ -48,9 +47,6 @@ const pageTitle = `Page ${currentPage}`;
 
 const emptyStateMessage =
   lang === Locale.KOK ? Message.EVENTS_NOT_FOUND_KOK : Message.EVENTS_NOT_FOUND;
-
-// Sort by creation time so latest posts appear first.
-const eventsByNewest = getEventsByNewest(events);
 ---
 
 <Layout
@@ -100,7 +96,7 @@ const eventsByNewest = getEventsByNewest(events);
       {
         events.length > 0 ? (
           <>
-            <EventsList events={eventsByNewest} />
+            <EventsList events={events} />
             <Pagination
               currentPage={currentPage}
               totalPages={totalPages}
