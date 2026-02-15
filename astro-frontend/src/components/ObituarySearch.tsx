@@ -3,7 +3,6 @@ import * as Popover from "@radix-ui/react-popover";
 import SearchIcon from "~/assets/icons/search.svg?react";
 import ChevronClose from "~/assets/icons/cancel.svg?react";
 import { Locale } from "~/enums/locale";
-import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
 import type { Obituary } from "~/models/obituary";
 import { searchObituaries } from "~/services/obituaries/obituary-search";
 import { getNoResultsMessage } from "~/helpers/get-no-result-message";

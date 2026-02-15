@@ -43,14 +43,14 @@ const ogDescription =
   lang === Locale.KOK
     ? "ಫಿರ್ಗಜ್ ಕುಟ್ಮಾಚ್ಯಾ ಎಕ್ವಟ್ಪಣಾಚ್ಯೊ ಘಡಿಯೊ"
     : "Celebrating the moments that unite our parish community.";
-const pageTitle = `Page ${currentPage}`;
+const pageTitle = totalPages > 1 ? `Page ${currentPage} | ${ogTitle}` : ogTitle;
 
 const emptyStateMessage =
   lang === Locale.KOK ? Message.EVENTS_NOT_FOUND_KOK : Message.EVENTS_NOT_FOUND;
 ---
 
 <Layout
-  title=`${pageTitle} | ${ogTitle}`
+  title=`${pageTitle}`
   image={ogImageUrl}
   description={ogDescription}
 >

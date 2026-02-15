@@ -25,7 +25,7 @@ const totalPages = pagination.pageCount;
 ---
 
 <Layout
-  title={currentPage > 1
+  title={totalPages > 1
     ? `ಪಾನ್ ${currentPage} | ${t("nav.parishioners-achievements")}`
     : `${t("nav.parishioners-achievements")}`}
   description={t("parishioners-achievements.subtitle")}
