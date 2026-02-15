@@ -42,7 +42,7 @@ const uniqueYears = Array.from(
 ).sort((a, b) => a - b);
 
 const totalPages = pagination.pageCount;
-const title = lang === Locale.KOK ? "ಪೊಂಪೈಚೆಂ ಫಾಲ್ಕೆಂ" : "Pompeichem Falkem";
+const title = lang === Locale.KOK ? `ಪಾನ್ ${currentPage} | ಪೊಂಪೈಚೆಂ ಫಾಲ್ಕೆಂ` : `Page ${currentPage} | Pompeichem Falkem`;
 
 const baseURL = import.meta.env.PUBLIC_STRAPI_URL;
 const firstMagazine = magazines?.[0];

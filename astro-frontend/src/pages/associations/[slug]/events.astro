@@ -43,7 +43,7 @@ const paginatedEvents = filteredEvents.slice(
   currentPage * ITEMS_PER_PAGE,
 );
 
-const pageTitle = `${title} Events | Pompei Church`;
+const pageTitle = `Page ${currentPage} | ${title} - Events`;
 
 const associations = await listAssociations({ locale: lang as Locale });
 

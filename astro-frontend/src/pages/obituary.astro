@@ -67,7 +67,7 @@ const baseURL = import.meta.env.PUBLIC_STRAPI_URL;
 
 const firstObituary = formattedObituaries?.[0];
 
-const ogTitle = lang === Locale.KOK ? "ಫಿರ್ಗಜೆಂತ್ ಮರಣ್" : "Obituary";
+const ogTitle = lang === Locale.KOK ? `ಪಾನ್ ${currentPage} | ಫಿರ್ಗಜೆಂತ್ ಮರಣ್` : `Page ${currentPage} | Obituary`;
 
 const ogDescription =
   lang === Locale.KOK ? "ಮೊಗಾಚೊ ಉಡಾಸ್" : "Tribute of love...";
