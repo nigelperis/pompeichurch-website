@@ -43,7 +43,7 @@ const paginatedEvents = filteredEvents.slice(
   currentPage * ITEMS_PER_PAGE,
 );
 
-const pageTitle = totalPages > 1 ? `ಪಾನ್ ${currentPage} | ${title} - ಘಡಿತಾಂ` : `${title} - ಘಡಿತಾಂ`;
+const pageTitle = totalPages > 1 ? `ಪಾನ್ ${currentPage} | ${title} | ಘಡಿತಾಂ` : `${title} | ಘಡಿತಾಂ`;
 
 const associations = await listAssociations({ locale: lang as Locale });
 

@@ -590,7 +590,7 @@ export const ui = {
     "ward.patron-pompei-b": "ನಿತ್ಯಾದಾರ್ ಮಾಯೆಕ್",
     "ward.patron-monel": "ಸಾಂ ಅನ್ನಾಕ್",
     "ward.select-label": "ವಾಡೊ ವಿಂಚಾ",
-    "association.select-label": "ಸಂಘ್-ಸಂಸ್ಥೆ ವಿಂಚಾ",
+    "association.select-label": "ಸಂಘ್-ಸಂಸ್ಥೊ ವಿಂಚಾ",
     "president-male": "ಅಧ್ಯಕ್ಷ್",
     "president-female": "ಅಧ್ಯಕ್ಷಿಣ್",
     "coordinator-male": "ಸಂಯೋಜಕ್",
