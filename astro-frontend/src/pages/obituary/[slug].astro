@@ -6,7 +6,6 @@ import { Locale } from "~/enums/locale";
 import ObituaryCard from "~/components/ObituaryCard.tsx";
 import { cn } from "~/helpers/cn";
 import { getWardNameKok } from "~/helpers/get-ward-names-kok";
-import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
 import placeholderImage from "~/assets/static-assets/blank.jpeg";
 
 const { slug } = Astro.params; // Get the slug from the URL
@@ -25,19 +24,11 @@ const absoluteImage = selectedObituary.image?.formats?.medium?.url
   ? new URL(selectedObituary.image.formats.medium.url, baseURL).toString()
   : selectedObituary.image?.url
     ? new URL(selectedObituary.image.url, baseURL).toString()
-    : getPlaceholderImage({
-        text: selectedObituary.englishName,
-        width: 340,
-        height: 400,
-      });
+    : placeholderImage?.src;
 
 const obituaryImage = selectedObituary.image?.url
   ? new URL(selectedObituary.image.url, baseURL).toString()
-  : placeholderImage?.src ?? getPlaceholderImage({
-      text: selectedObituary.englishName,
-      width: 340,
-      height: 400,
-    });
+  : placeholderImage?.src
 
 const obituaryUrl = new URL(
   lang === Locale.EN ? `/obituary/${slug}` : `/kok/obituary/${slug}`,

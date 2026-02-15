@@ -35,6 +35,15 @@ interface Props {
   locale: Locale;
 }
 
+/**
+ * A component to search for obituaries.
+ *
+ * @param {Locale} locale - The language of the search results.
+ *
+ * @returns {React.ReactNode} The ObituarySearch component.
+ *
+ * @see {@link searchObituaries} - The API call to fetch obituaries based on the search query.
+ */
 export default function ObituarySearch({ locale }: Props) {
   const [query, setQuery] = React.useState("");
   const [results, setResults] = React.useState<Obituary[]>([]);
@@ -221,12 +230,7 @@ export default function ObituarySearch({ locale }: Props) {
                         obituary.image.formats.thumbnail.url,
                         import.meta.env.PUBLIC_STRAPI_URL,
                       ).toString()
-                    : (placeholderImage?.src ??
-                      getPlaceholderImage({
-                        text: obituary.englishName,
-                        width: 48,
-                        height: 48,
-                      }));
+                    : placeholderImage?.src
 
                   return (
                     <li
