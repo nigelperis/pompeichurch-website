@@ -5,13 +5,17 @@ import ReligiousPriestsList from "~/components/sections/religious-priests/religi
 import ReligiousNunsList from "~/components/sections/religious-nuns/religious-nuns-list.astro";
 import { Locale } from "~/enums/locale";
 import { cn } from "~/helpers/cn";
-
-import { religiousPriests } from "~/constants/religious-vocations";
+import { getReligiousVocations } from "~/services/religious-vocations/get-religious-vocations";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const ogImageUrl = religiousPriests[0]?.imageUrl.src;
+const locale = lang === Locale.KOK ? "kok" : "en";
+const allVocations = await getReligiousVocations(locale);
+const priests = allVocations.filter((v) => v.role === "priest");
+const nuns = allVocations.filter((v) => v.role === "nun");
+
+const ogImageUrl = priests[0]?.imageUrl;
 const ogTitle =
   lang === Locale.KOK
     ? "ಆಮ್ಚ್ಯೆ ಫಿರ್ಗಜಿಂತ್ಲಿ ಧಾರ್ಮಿಕಾಂ"
@@ -42,11 +46,11 @@ const ogDescription =
       <h2 class="mt-6 text-3xl font-semibold italic text-red-600 lg:text-3xl">
         {t("vocation.subtitle1")}
       </h2>
-      <ReligiousPriestsList />
+      <ReligiousPriestsList priests={priests} />
       <h2 class="mt-6 text-3xl font-semibold italic text-red-600 lg:text-3xl">
         {t("vocation.subtitle2")}
       </h2>
-      <ReligiousNunsList />
+      <ReligiousNunsList nuns={nuns} />
     </section>
   </main>
 </Layout>
