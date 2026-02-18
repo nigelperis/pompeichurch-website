@@ -11,10 +11,21 @@ import ScrollTop from '~/components/scroll-top.astro';
 import GoogleAnalytics from '~/components/google-analytics.astro';
 import "~/styles/global.css";
 import { cn } from "~/helpers/cn";
+import { getRelativeLocaleUrl } from "astro:i18n";
 import { getLangFromUrl } from '~/i18n/utils';
 import { Locale } from '~/enums/locale';
+import { Hreflang } from "~/enums/hreflang";
 
 const lang = getLangFromUrl(Astro.url);
+const currentPath = Astro.url.pathname;
+const localePrefix = lang === Locale.KOK ? `/${Locale.KOK}` : "";
+const pathWithoutLocale = currentPath.startsWith(localePrefix)
+  ? currentPath.slice(localePrefix.length)
+  : currentPath;
+
+const hreflangEn = new URL(getRelativeLocaleUrl(Locale.EN, pathWithoutLocale), Astro.site).toString();
+const hreflangKok = new URL(getRelativeLocaleUrl(Locale.KOK, pathWithoutLocale), Astro.site).toString();
+const hreflangDefault = hreflangEn;
 
 export interface Props {
   title: string;
@@ -68,6 +79,10 @@ const pageUrl = url || "https://pompeichurch.in/";
 <meta name="apple-mobile-web-app-title" content="PompeiChurch" />
 <meta name="msvalidate.01" content="BEA18465C48B90A839493EB6EE14A0BD" />
 <meta name="keywords" content="Gurpur Church, Pompei Church, Kaikamba Church" />
+
+<link rel="alternate" hreflang={Hreflang.X_DEFAULT} href={hreflangDefault} />
+<link rel="alternate" hreflang={Hreflang.EN} href={hreflangEn} />
+<link rel="alternate" hreflang={Hreflang.KOK} href={hreflangKok} />
 
 <link rel="icon" href="/favicon.ico" type="image/x-icon" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
