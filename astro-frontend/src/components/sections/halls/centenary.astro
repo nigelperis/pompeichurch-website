@@ -16,7 +16,10 @@ const t = useTranslations(lang);
 <h1
   class={cn(
     "border-natgeo-yellow border-l-4 pl-3 text-left text-3xl lg:text-4xl font-black",
-    { "pt-[13px] font-bold": lang === Locale.KOK },
+    {
+      "pt-[13px] font-bold font-noto-sans-kannada": lang === Locale.KOK,
+      "font-roboto": lang !== Locale.KOK,
+    },
   )}
 >
   {t("centenaryhall.title")}
@@ -27,34 +30,39 @@ const t = useTranslations(lang);
     alt="Exterior view of Centenary Memorial Hall at Our Lady of Pompei Church"
   />
 </div>
-<div class="font-roboto pb-4">
-  <p class="mb-4 text-lg font-bold">Capacity: 200</p>
+<div
+  class={cn("pb-4", {
+    "font-noto-sans-kannada": lang === Locale.KOK,
+    "font-roboto": lang !== Locale.KOK,
+  })}
+>
+  <p class="mb-4 text-lg font-bold">{t("hall.capacity")}: 200</p>
 
-  <h4 class="mb-2 text-lg font-bold">Timings:</h4>
+  <h4 class="mb-2 text-lg font-bold">{t("hall.timings")}:</h4>
 
   <div class="text-gray-700">
-    <p class="mb-1 font-semibold">Day:</p>
+    <p class="mb-1 font-semibold">{t("hall.day")}:</p>
     <ul class="mb-4 list-inside list-disc">
-      <li>Music Stop: 3:00 PM</li>
-      <li>Vacate: 3:30 PM</li>
+      <li>{t("hall.music-stop")}: 3:00 PM</li>
+      <li>{t("hall.vacate")}: 3:30 PM</li>
     </ul>
 
-    <p class="mb-1 font-semibold">Night:</p>
+    <p class="mb-1 font-semibold">{t("hall.night")}:</p>
     <ul class="list-inside list-disc">
-      <li>Music Stop: 10:15 PM</li>
-      <li>Vacate: 10:45 PM</li>
+      <li>{t("hall.music-stop")}: 10:15 PM</li>
+      <li>{t("hall.vacate")}: 10:45 PM</li>
     </ul>
   </div>
 </div>
 <div class="flex flex-col gap-4 pb-4 md:flex-row">
   <Image
     src={centenaryHall1}
-    alt="Centenery Hall Image 1"
+    alt="Centenary Hall Image 1"
     class="w-full md:w-1/2"
   />
   <Image
     src={centenaryHall2}
-    alt="Centenery Hall Image 2"
+    alt="Centenary Hall Image 2"
     class="w-full md:w-1/2"
   />
 </div>

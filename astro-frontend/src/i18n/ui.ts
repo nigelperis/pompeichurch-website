@@ -430,6 +430,14 @@ export const ui = {
     "footer.commission": "Commission for Social Communication, Gurpur Kaikamba",
     "christmas.message":
       "Wishing you all a very happy Christmas and a prosperous New Year {newYear}!",
+    "hall.capacity": "Capacity",
+    "hall.timings": "Timings",
+    "hall.day": "Day",
+    "hall.music-stop": "Music Stop",
+    "hall.vacate": "Vacate",
+    "hall.night": "Night",
+    "hall.pompei-sabha-bhavan-interior": "Pompei Sabha Bhavan Interior",
+    "hall.pompei-sabha-bhavan-exterior": "Pompei Sabha Bhavan Exterior",
   },
   kok: {
     "nav.home": "ಹೋಮ್",
@@ -855,5 +863,13 @@ export const ui = {
     "footer.commission": "ಸಾಮಾಜಿಕ್ ಸಂವಹನ್ ಆಯೋಗ್, ಗುರ್ಪುರ್ ಕೈಕಂಬ",
     "christmas.message":
       "ತುಮ್ಕಾಂ ಸಮೇಸ್ತಾಂಕ್ ಸಂತೊಸ್ಭರಿತ್ ನತಾಲಾಂ ಫೆಸ್ತ್ ಆನಿ ಭಾಗಿ ನವೆಂ ವರಸ್ {newYear} ಮಾಗ್ತಾಂವ್!",
+    "hall.capacity": "ಕ್ಷಮತಾ",
+    "hall.timings": "ವೇಳ್",
+    "hall.day": "ದಿಸಾಚೆಂ",
+    "hall.music-stop": "ಸಂಗೀತ್ ರಾವೊಂವ್ಕ್",
+    "hall.vacate": "ನಿರ್ಗಮನ್",
+    "hall.night": "ರಾತಿಂ",
+    "hall.pompei-sabha-bhavan-interior": "ಪೊಂಪೈ ಸಭಾ ಭವನ್ ಭಿತರ್ಲ್ಯಾನ್",
+    "hall.pompei-sabha-bhavan-exterior": "ಪೊಂಪೈ ಸಭಾ ಭವನ್ ಭಾಯ್ಲ್ಯಾನ್"
   },
 } as const;
