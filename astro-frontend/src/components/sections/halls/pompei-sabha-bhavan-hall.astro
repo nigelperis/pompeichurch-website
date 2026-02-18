@@ -17,8 +17,11 @@ const t = useTranslations(lang);
 
 <h1
   class={cn(
-    "border-natgeo-yellow border-l-4 pl-3 text-left text-3xl lg:text-4xl font-black font-noto-sans-kannada",
-    { "pt-[13px] font-bold": lang === Locale.KOK },
+    "border-natgeo-yellow border-l-4 pl-3 text-left text-3xl lg:text-4xl font-black",
+    {
+      "pt-[13px] font-bold font-noto-sans-kannada": lang === Locale.KOK,
+      "font-roboto": lang !== Locale.KOK,
+    },
   )}
 >
   {t("hall.title")}
@@ -29,7 +32,12 @@ const t = useTranslations(lang);
     alt="Exterior view of Pompei Sabha Bhavan at Our Lady of Pompei Church"
   />
 </div>
-<div class="font-noto-sans-kannada pb-4">
+<div
+  class={cn("pb-4", {
+    "font-noto-sans-kannada": lang === Locale.KOK,
+    "font-roboto": lang !== Locale.KOK,
+  })}
+>
   <p class="mb-4 text-lg font-bold">{t("hall.capacity")}: 500</p>
 
   <h4 class="mb-2 text-lg font-bold">{t("hall.timings")}:</h4>
@@ -48,10 +56,15 @@ const t = useTranslations(lang);
     </ul>
   </div>
 </div>
-<h2 class="font-noto-sans-kannada pb-4 text-lg font-bold text-slate-800">
-  Pompei Sabha Bhavan Interior
+<h2
+  class={cn("pb-4 text-lg font-bold text-slate-800", {
+    "font-noto-sans-kannada": lang === Locale.KOK,
+    "font-roboto": lang !== Locale.KOK,
+  })}
+>
+  {t("hall.pompei-sabha-bhavan-interior")}
 </h2>
-<div class="font-noto-sans-kannada flex flex-col gap-4 pb-4 md:flex-row">
+<div class="flex flex-col gap-4 pb-4 md:flex-row">
   <Image
     src={pbs1}
     alt="Pompei Sabha Bhavan Interior Image 1"
@@ -63,8 +76,13 @@ const t = useTranslations(lang);
     class="w-full md:w-1/2"
   />
 </div>
-<h2 class="font-noto-sans-kannada pb-4 text-lg font-bold text-slate-800">
-  Pompei Sabha Bhavan Exterior
+<h2
+  class={cn("pb-4 text-lg font-bold text-slate-800", {
+    "font-noto-sans-kannada": lang === Locale.KOK,
+    "font-roboto": lang !== Locale.KOK,
+  })}
+>
+  {t("hall.pompei-sabha-bhavan-exterior")}
 </h2>
 <div class="flex flex-col gap-4 md:flex-row">
   <Image

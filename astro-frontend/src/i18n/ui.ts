@@ -436,6 +436,8 @@ export const ui = {
     "hall.music-stop": "Music Stop",
     "hall.vacate": "Vacate",
     "hall.night": "Night",
+    "hall.pompei-sabha-bhavan-interior": "Pompei Sabha Bhavan Interior",
+    "hall.pompei-sabha-bhavan-exterior": "Pompei Sabha Bhavan Exterior",
   },
   kok: {
     "nav.home": "ಹೋಮ್",
@@ -867,5 +869,7 @@ export const ui = {
     "hall.music-stop": "ಸಂಗೀತ್ ರಾವೊಂವ್ಕ್",
     "hall.vacate": "ನಿರ್ಗಮನ್",
     "hall.night": "ರಾತಿಂ",
+    "hall.pompei-sabha-bhavan-interior": "ಪೊಂಪೈ ಸಭಾ ಭವನ್ ಭಿತರ್ಲ್ಯಾನ್",
+    "hall.pompei-sabha-bhavan-exterior": "ಪೊಂಪೈ ಸಭಾ ಭವನ್ ಭಾಯ್ಲ್ಯಾನ್"
   },
 } as const;

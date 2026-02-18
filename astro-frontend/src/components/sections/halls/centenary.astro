@@ -15,8 +15,11 @@ const t = useTranslations(lang);
 
 <h1
   class={cn(
-    "border-natgeo-yellow border-l-4 pl-3 text-left text-3xl lg:text-4xl font-black font-noto-sans-kannada",
-    { "pt-[13px] font-bold": lang === Locale.KOK },
+    "border-natgeo-yellow border-l-4 pl-3 text-left text-3xl lg:text-4xl font-black",
+    {
+      "pt-[13px] font-bold font-noto-sans-kannada": lang === Locale.KOK,
+      "font-roboto": lang !== Locale.KOK,
+    },
   )}
 >
   {t("centenaryhall.title")}
@@ -27,7 +30,12 @@ const t = useTranslations(lang);
     alt="Exterior view of Centenary Memorial Hall at Our Lady of Pompei Church"
   />
 </div>
-<div class="font-noto-sans-kannada pb-4">
+<div
+  class={cn("pb-4", {
+    "font-noto-sans-kannada": lang === Locale.KOK,
+    "font-roboto": lang !== Locale.KOK,
+  })}
+>
   <p class="mb-4 text-lg font-bold">{t("hall.capacity")}: 200</p>
 
   <h4 class="mb-2 text-lg font-bold">{t("hall.timings")}:</h4>
@@ -49,12 +57,12 @@ const t = useTranslations(lang);
 <div class="flex flex-col gap-4 pb-4 md:flex-row">
   <Image
     src={centenaryHall1}
-    alt="Centenery Hall Image 1"
+    alt="Centenary Hall Image 1"
     class="w-full md:w-1/2"
   />
   <Image
     src={centenaryHall2}
-    alt="Centenery Hall Image 2"
+    alt="Centenary Hall Image 2"
     class="w-full md:w-1/2"
   />
 </div>
