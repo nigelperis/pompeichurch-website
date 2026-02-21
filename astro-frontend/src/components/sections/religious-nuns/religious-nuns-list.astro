@@ -1,25 +1,29 @@
 ---
-import { religiousNuns } from "~/constants/religious-vocations";
-import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import VocationCard from "~/components/vocation-card.astro";
+import type { ReligiousVocationItem } from "~/services/religious-vocations/get-religious-vocations";
 
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
+interface Props {
+  nuns: ReligiousVocationItem[];
+}
+
+const { nuns } = Astro.props;
 ---
 
 <div
   class="xs:grid-cols-1 mx-auto grid w-full grid-cols-1 gap-x-20 gap-y-10 pt-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
 >
   {
-    religiousNuns.map((nun) => (
+    nuns.map((nun) => (
       <VocationCard
-        imageUrl={nun.imageUrl}
-        name={t(`nun.${nun.name}`)}
-        ward={t(`nun.${nun.ward}`)}
+        imageUrl={nun.imageUrl || ""}
+        imageWidth={nun.imageWidth}
+        imageHeight={nun.imageHeight}
+        name={nun.name}
+        ward={nun.ward || ""}
         dob={nun.dob}
         dod={nun.dod}
-        congregation={t(`nun.${nun.congregation}`)}
-        parents={t(`nun.${nun.parents}`)}
+        congregation={nun.congregation}
+        parents={nun.parents}
         role={nun.role}
       />
     ))

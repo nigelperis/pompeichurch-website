@@ -4,7 +4,9 @@ import { cn } from "~/helpers/cn";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 
 export interface Props {
-  imageUrl: ImageMetadata;
+  imageUrl: ImageMetadata | string;
+  imageWidth?: number;
+  imageHeight?: number;
   name: string;
   ward: string;
   dob?: string;
@@ -16,8 +18,18 @@ export interface Props {
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const { imageUrl, name, ward, dob, dod, congregation, parents, role } =
-  Astro.props;
+const {
+  imageUrl,
+  imageWidth,
+  imageHeight,
+  name,
+  ward,
+  dob,
+  dod,
+  congregation,
+  parents,
+  role,
+} = Astro.props;
 ---
 
 <div
@@ -26,18 +38,31 @@ const { imageUrl, name, ward, dob, dod, congregation, parents, role } =
   <div
     class="relative mx-auto mb-6 h-[300px] w-[230px] overflow-hidden rounded-full border-4 border-gray-200 shadow-md md:h-[280px] md:w-[210px]"
   >
-    <Image
-      src={imageUrl}
-      alt={name}
-      class="h-full w-full object-cover"
-      sizes="(max-width: 768px) 50vw, 25vw"
-    />
+    {
+      typeof imageUrl === "string" ? (
+        <Image
+          src={imageUrl}
+          alt={name}
+          class="h-full w-full object-cover"
+          sizes="(max-width: 768px) 50vw, 25vw"
+          width={imageWidth ?? 230}
+          height={imageHeight ?? 300}
+        />
+      ) : (
+        <Image
+          src={imageUrl}
+          alt={name}
+          class="h-full w-full object-cover"
+          sizes="(max-width: 768px) 50vw, 25vw"
+        />
+      )
+    }
   </div>
 
   <div class={cn({ "font-bold": lang === "kok" })}>
     <h3 class="mb-2 text-lg font-semibold text-red-700 lg:text-xl">{name}</h3>
     {
-      congregation && role && (
+      congregation && (
         <p class="mb-2 font-medium text-blue-700 lg:text-sm">{congregation}</p>
       )
     }

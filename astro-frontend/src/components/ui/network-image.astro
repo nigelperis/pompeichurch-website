@@ -7,6 +7,7 @@ interface Props {
   baseUrl?: string;
   width: number;
   height: number;
+  sizes?: string;
   alt?: string;
   class?: string;
 }
@@ -16,6 +17,7 @@ const {
   baseUrl,
   width,
   height,
+  sizes,
   alt,
   class: className,
   ...rest
@@ -30,6 +32,7 @@ const urlToUse = baseUrl
   src={urlToUse.toString()}
   width={width}
   height={height}
+  sizes={sizes}
   alt={alt ?? "no alternative  text found"}
   class={cn("", className)}
   {...rest}

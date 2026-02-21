@@ -19,6 +19,7 @@ export const ROUTES = {
   PARISH_PASTORAL_COMMISSION: "/parish-pastoral-commissions",
   CONTACT: "/contact",
   WARDS: "/wards",
+  RELIGIOUS_VOCATIONS: "/religious-vocations",
   PUSH_NOTIFICATIONS: "/push-notifications",
   PUSH_NOTIFICATIONS_CHECK: "/push-notifications/check",
 } as const;
