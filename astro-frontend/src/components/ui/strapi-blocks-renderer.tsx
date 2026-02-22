@@ -118,7 +118,10 @@ export default StrapiBlocksRenderer;
 function Link(props: { url: string; children: React.ReactNode }) {
   const { children, url } = props;
   return (
-    <a className={cn("text-blue-700 font-medium hover:underline")} href={url}>
+    <a
+      className={cn("text-blue-700 font-medium md:hover:underline")}
+      href={url}
+    >
       {children}
     </a>
   );

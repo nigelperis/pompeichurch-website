@@ -96,7 +96,7 @@ if (!event) {
         <div class="flex w-full justify-start gap-10">
           {
             socialLinks.map(({ platform, url }) => (
-              <div class="mb-1 mt-4 h-5 w-5 transition-transform duration-200 hover:scale-110">
+              <div class="mb-1 mt-4 h-5 w-5 transition-transform duration-200 md:hover:scale-110">
                 <a href={url} target="_blank">
                   <Icon name={platform} size={42} />
                 </a>
@@ -127,7 +127,7 @@ if (!event) {
               <a
                 href={`/${lang === Locale.EN ? "" : "kok/"}events/${prevEvent.slug}`}
                 rel="prev"
-                class={`flex items-center gap-3 rounded-lg border border-gray-300 px-4 py-3 shadow-md transition-colors hover:border-black ${nextEvent ? "sm:w-1/2" : "w-full"}`}
+                class={`flex items-center gap-3 rounded-lg border border-gray-300 px-4 py-3 shadow-md transition-colors md:hover:border-black ${nextEvent ? "sm:w-1/2" : "w-full"}`}
               >
                 <div class="shrink-0 text-3xl text-slate-900">
                   <Icon name="chevron-left" class="stroke-2" />
@@ -148,7 +148,7 @@ if (!event) {
               <a
                 href={`/${lang === Locale.EN ? "" : "kok/"}events/${nextEvent.slug}`}
                 rel="next"
-                class={`flex flex-row-reverse items-center gap-3 rounded-lg border border-gray-300 px-4 py-3 text-right shadow-md transition-colors hover:border-black ${prevEvent ? "sm:w-1/2" : "w-full"}`}
+                class={`flex flex-row-reverse items-center gap-3 rounded-lg border border-gray-300 px-4 py-3 text-right shadow-md transition-colors md:hover:border-black ${prevEvent ? "sm:w-1/2" : "w-full"}`}
               >
                 <div class="shrink-0 text-3xl text-slate-900">
                   <Icon name="chevron-right" class="stroke-2" />

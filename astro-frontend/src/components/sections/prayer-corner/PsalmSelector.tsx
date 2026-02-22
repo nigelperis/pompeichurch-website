@@ -37,7 +37,7 @@ export default function PsalmSelector({
     <Radix.Root value={value} onValueChange={onValueChange}>
       <Radix.Trigger
         ref={triggerRef}
-        className="border border-gray-300 px-4 py-2 flex justify-between items-center w-50 md:w-full bg-white hover:cursor-pointer outline-none focus:ring-0"
+        className="border border-gray-300 px-4 py-2 flex justify-between items-center w-50 md:w-full bg-white md:hover:cursor-pointer outline-none focus:ring-0"
         aria-label="Select Psalm"
       >
         <Radix.Value>{currentPsalm.title}</Radix.Value>
@@ -59,7 +59,7 @@ export default function PsalmSelector({
               <Radix.Item
                 key={index}
                 value={index.toString()}
-                className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                className="px-4 py-2 md:hover:bg-gray-100 cursor-pointer"
               >
                 <Radix.ItemText>{psalm.title}</Radix.ItemText>
               </Radix.Item>

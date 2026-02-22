@@ -182,7 +182,7 @@ export default function ObituaryCardMin({
         <div className="absolute inset-0 z-5 flex items-center justify-center lg:hidden">
           <a
             href={lang === Locale.KOK ? "/kok/obituary" : "/obituary"}
-            className="from-natgeo-yellow to-natgeo-yellow hoverable-link border-natgeo-yellow border-b-2 bg-linear-to-r px-2 py-1 inline-block text-xl font-bold text-black hover:border-transparent hover:text-black mb-2 mt-2"
+            className="from-natgeo-yellow to-natgeo-yellow hoverable-link border-natgeo-yellow border-b-2 bg-linear-to-r px-2 py-1 inline-block text-xl font-bold text-black md:hover:border-transparent md:hover:text-black mb-2 mt-2"
           >
             {t ? t("ui.view-all") : "View All"}
           </a>
@@ -224,7 +224,7 @@ export default function ObituaryCardMin({
                 size={28}
               />
               <ShareLink
-                className="cursor-pointer transform transition-transform duration-300 hover:scale-110"
+                className="cursor-pointer transform transition-transform duration-300 md:hover:scale-110"
                 shareData={{
                   title: name,
                   url: obituaryUrl,
@@ -316,7 +316,7 @@ export default function ObituaryCardMin({
               size={28}
             />
             <ShareLink
-              className="cursor-pointer transform transition-transform duration-300 hover:scale-110"
+              className="cursor-pointer transform transition-transform duration-300 md:hover:scale-110"
               shareData={{
                 title: name,
                 url: obituaryUrl,
@@ -336,7 +336,7 @@ export default function ObituaryCardMin({
           >
             <button
               type="button"
-              className="absolute top-2 right-1 rounded-full hover:scale-115 cursor-pointer transition"
+              className="absolute top-2 right-1 rounded-full md:hover:scale-115 cursor-pointer transition"
               onClick={() => setFlipped(false)}
             >
               <CloseIcon className="h-8 w-8 text-red-600" />
@@ -357,7 +357,7 @@ export default function ObituaryCardMin({
                 href={youtubeLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white text-base py-2 w-full mt-2"
+                className="flex items-center justify-center gap-2 bg-red-600 md:hover:bg-red-700 text-white text-base py-2 w-full mt-2"
                 style={{ letterSpacing: "0.04em" }}
               >
                 <YoutubeIcon className="w-6 h-6" />

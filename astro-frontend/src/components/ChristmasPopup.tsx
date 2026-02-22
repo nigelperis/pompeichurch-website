@@ -20,7 +20,7 @@ export default function ChristmasPopup({ message }: ChristmasPopupProps) {
         <button
           onClick={() => setIsVisible(false)}
           aria-label="Close Popup"
-          className="absolute top-4 right-4 text-gray-600 hover:text-black transition"
+          className="absolute top-4 right-4 text-gray-600 md:hover:text-black transition"
         >
           <Cancel className="w-5 h-5 cursor-pointer" />
         </button>

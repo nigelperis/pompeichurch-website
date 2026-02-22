@@ -66,7 +66,7 @@ export default function SelectYearRedirect({
     <Radix.Root value={value} onValueChange={setValue}>
       <Radix.Trigger
         ref={triggerRef}
-        className="border border-gray-300 px-4 py-2 flex justify-between items-center w-[50%] md:w-full hover:cursor-pointer"
+        className="border border-gray-300 px-4 py-2 flex justify-between items-center w-[50%] md:w-full md:hover:cursor-pointer"
         aria-label={dynamicPlaceholder}
       >
         <Radix.Value placeholder={dynamicPlaceholder} />
@@ -88,7 +88,7 @@ export default function SelectYearRedirect({
               <Radix.Item
                 key={opt}
                 value={opt}
-                className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                className="px-4 py-2 md:hover:bg-gray-100 cursor-pointer"
               >
                 <Radix.ItemText>
                   {opt === "__all__" ? allYearsLabel : opt}

@@ -36,7 +36,7 @@ export function FuneralInfoButton({
         floating ? "absolute top-4 right-0" : "",
         "flex items-center px-4 py-1.5 rounded-l-full",
         "bg-white/80 backdrop-blur-md shadow-md border border-white/40 font-semibold text-black",
-        "transition-all duration-300 hover:bg-white/90 cursor-pointer",
+        "transition-all duration-300 md:hover:bg-white/90 cursor-pointer",
         "gap-1 z-10",
       ].join(" ")}
       onClick={onClick}

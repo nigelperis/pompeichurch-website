@@ -167,7 +167,7 @@ const filteredEvents = upcomingEvents.filter((event) => {
         <div class="event-gallery hidden items-center justify-center gap-4 md:flex">
           {filteredEvents.map((event) =>
             event.eventImage?.mime?.startsWith("video/") ? (
-              <div class="transition-transform duration-300 ease-in-out hover:transform-[scale(1.02)] max-h-100 flex items-center justify-center">
+              <div class="transition-transform duration-300 ease-in-out md:hover:transform-[scale(1.02)] max-h-100 flex items-center justify-center">
                 <NetworkVideo
                   src={event.eventImage.url}
                   class="max-h-100 w-auto object-contain"
@@ -191,7 +191,7 @@ const filteredEvents = upcomingEvents.filter((event) => {
                 }
                 data-pswp-width={event.eventImage?.width}
                 data-pswp-height={event.eventImage?.height}
-                class="transition-transform duration-300 ease-in-out hover:transform-[scale(1.02)] max-h-100 flex items-center justify-center"
+                class="transition-transform duration-300 ease-in-out md:hover:transform-[scale(1.02)] max-h-100 flex items-center justify-center"
               >
                 <NetworkImage
                   src={
