@@ -39,7 +39,7 @@ const buildHref = (page: number) => {
       ) : (
         <a
           href={buildHref(currentPage - 1)}
-          class="flex h-10 w-10 items-center justify-center font-bold transition-all duration-200 hover:bg-gray-100"
+          class="flex h-10 w-10 items-center justify-center font-bold transition-all duration-200 md:hover:bg-gray-100"
           aria-label="Previous Page"
         >
           <Icon name="chevron-left" class="stroke-2 text-2xl text-black" />
@@ -63,7 +63,7 @@ const buildHref = (page: number) => {
               `flex h-10 w-10 items-center justify-center transition-all duration-200 ${
                 currentPage === page
                   ? "bg-natgeo-yellow font-medium text-black"
-                  : "hover:bg-gray-100 font-medium text-gray-700"
+                  : "md:hover:bg-gray-100 font-medium text-gray-700"
               }`,
               lang === Locale.KOK ? "pt-[6px]" : "",
             )}
@@ -84,7 +84,7 @@ const buildHref = (page: number) => {
       ) : (
         <a
           href={buildHref(currentPage + 1)}
-          class="flex h-10 w-10 items-center justify-center hover:bg-gray-100"
+          class="flex h-10 w-10 items-center justify-center md:hover:bg-gray-100"
           aria-label="Next Page"
         >
           <Icon name="chevron-right" class="stroke-2 text-2xl text-black" />

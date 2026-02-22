@@ -46,7 +46,7 @@ export function LanguageSwitcher({ currentLocale: initialLocale }: Props) {
               "px-3 py-2 rounded-full transition-all duration-300 cursor-pointer font-medium",
               currentLocale === language.code
                 ? "bg-white text-black shadow-md"
-                : "text-black hover:text-black/90",
+                : "text-black md:hover:text-black/90",
               language.code === Locale.KOK
                 ? "font-noto-sans-kannada pb-0.5"
                 : "font-roboto",

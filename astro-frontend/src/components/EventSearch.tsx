@@ -252,7 +252,7 @@ export default function EventSearch({
                       className={`flex cursor-pointer items-center gap-3 px-4 py-3 ${
                         activeIndex === index
                           ? "bg-gray-100"
-                          : "hover:bg-gray-50"
+                          : "md:hover:bg-gray-50"
                       }`}
                       onMouseEnter={() => setActiveIndex(index)}
                       onClick={() => {

@@ -14,7 +14,7 @@ const { class: className, shareData, size = 30 } = Astro.props;
 <button
   data-share-data={JSON.stringify(shareData)}
   class={cn(
-    "share-button cursor-pointer transform transition-transform duration-300 hover:scale-110",
+    "share-button cursor-pointer transform transition-transform duration-300 md:hover:scale-110",
     className,
   )}
   id="share"

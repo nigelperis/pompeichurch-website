@@ -245,7 +245,7 @@ export default function ObituaryCard({
             <div className="absolute bottom-4 right-2 flex items-center gap-2 ">
               <WhatsAppShare shareData={{ title: name, url: obituaryUrl }} />
               <ShareLink
-                className="cursor-pointer transform transition-transform duration-300 hover:scale-110"
+                className="cursor-pointer transform transition-transform duration-300 md:hover:scale-110"
                 shareData={{
                   title: name,
                   url: obituaryUrl,
@@ -265,7 +265,7 @@ export default function ObituaryCard({
           >
             <button
               type="button"
-              className="absolute top-2 right-2 p-1 rounded-full hover:scale-115 cursor-pointer transition"
+              className="absolute top-2 right-2 p-1 rounded-full md:hover:scale-115 cursor-pointer transition"
               onClick={() => setFlipped(false)}
             >
               <CloseIcon className="h-8 w-8 md:h-6 md:w-6 text-red-600" />
@@ -310,7 +310,7 @@ export default function ObituaryCard({
                   href={youtubeLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white text-base py-2 w-full mt-2"
+                  className="flex items-center justify-center gap-2 bg-red-600 md:hover:bg-red-700 text-white text-base py-2 w-full mt-2"
                   style={{ letterSpacing: "0.04em" }}
                 >
                   <YoutubeIcon className="w-6 h-6" />

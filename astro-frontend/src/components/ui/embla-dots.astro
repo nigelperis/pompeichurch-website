@@ -16,7 +16,7 @@ const { total, selectedIndex } = Astro.props;
           "transition-all duration-300 rounded-full bg-gray-300",
           selectedIndex === i
             ? "w-6 h-2 bg-natgeo-yellow"
-            : "w-2 h-2 hover:bg-gray-300",
+            : "w-2 h-2 md:hover:bg-gray-300",
         ]}
         aria-label={`Go to slide ${i + 1}`}
       />

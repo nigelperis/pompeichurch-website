@@ -49,7 +49,7 @@ const WhatsAppShare: React.FC<Props> = ({
       target="_blank"
       rel="noopener noreferrer"
       className={clsx(
-        "whatsapp-share cursor-pointer transform transition-transform duration-300 hover:scale-110",
+        "whatsapp-share cursor-pointer transform transition-transform duration-300 md:hover:scale-110",
         className,
       )}
       aria-label="Share on WhatsApp"
