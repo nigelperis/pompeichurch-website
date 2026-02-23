@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Custom variant for hover on devices that support it (not touch screens) */
+@variant can-hover (@media (hover: hover) and (pointer: fine));
+
 @keyframes slidein {
   from {
     opacity: 0;

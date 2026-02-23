@@ -119,10 +119,11 @@ function Link(props: { url: string; children: React.ReactNode }) {
   const { children, url } = props;
   return (
     <a
-      className={cn("text-blue-700 font-medium md:hover:underline")}
+      className={cn("text-blue-700 font-medium can-hover:hover:underline")}
       href={url}
     >
       {children}
     </a>
   );
 }
+

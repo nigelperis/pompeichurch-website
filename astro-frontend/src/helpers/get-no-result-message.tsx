@@ -16,3 +16,4 @@ export function getNoResultsMessage(query: string, locale: Locale) {
     </>
   );
 }
+

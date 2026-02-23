@@ -171,3 +171,4 @@ export const HomepageCarousel: React.FC<HomepageCarouselProps> = ({
     </div>
   );
 };
+

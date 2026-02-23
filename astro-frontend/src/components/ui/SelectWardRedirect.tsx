@@ -78,7 +78,7 @@ export default function SelectWardRedirect({
       <Radix.Root value={value} onValueChange={setValue}>
         <Radix.Trigger
           ref={triggerRef}
-          className="border border-gray-300 px-4 py-2 flex justify-between items-center w-full md:hover:cursor-pointer"
+          className="border border-gray-300 px-4 py-2 flex justify-between items-center w-full can-hover:hover:cursor-pointer"
           aria-label={dynamicPlaceholder}
         >
           <Radix.Value placeholder={dynamicPlaceholder} />
@@ -100,7 +100,7 @@ export default function SelectWardRedirect({
                 <Radix.Item
                   key={w.name}
                   value={w.name}
-                  className="px-4 py-2 md:hover:bg-gray-100 cursor-pointer"
+                  className="px-4 py-2 can-hover:hover:bg-gray-100 cursor-pointer"
                 >
                   <Radix.ItemText>{w.label}</Radix.ItemText>
                 </Radix.Item>
@@ -112,3 +112,4 @@ export default function SelectWardRedirect({
     </div>
   );
 }
+

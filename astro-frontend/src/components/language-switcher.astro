@@ -16,7 +16,7 @@ const lang = getLangFromUrl(Astro.url);
       type="button"
       id="lang-button"
       class={cn(
-        "inline-flex font-semibold justify-center rounded-md bg-natgeo-yellow px-2 lg:py-1 pt-1 pb-1 mt-1 md:hover:bg-natgeo-yellow lg:pb-[0.4rem] cursor-pointer",
+        "inline-flex font-semibold justify-center rounded-md bg-natgeo-yellow px-2 lg:py-1 pt-1 pb-1 mt-1 can-hover:hover:bg-natgeo-yellow lg:pb-[0.4rem] cursor-pointer",
         lang === Locale.KOK &&
           "pt-2 font-semibold lg:pb-[0.2rem] lg:pt-[0.6rem]",
       )}
@@ -46,7 +46,7 @@ const lang = getLangFromUrl(Astro.url);
           <button
             type="button"
             class={cn(
-              "md:hover:bg-natgeo-yellow w-full rounded-md py-2 text-sm transition-all cursor-pointer",
+              "can-hover:hover:bg-natgeo-yellow w-full rounded-md py-2 text-sm transition-all cursor-pointer",
               lang === Locale.KOK ? "lg:font-[350]" : "font-normal",
               language === "ಕೊಂಕಣಿ" ? "font-noto-sans-kannada" : "font-roboto",
             )}
@@ -85,3 +85,5 @@ const lang = getLangFromUrl(Astro.url);
     visibility: visible;
   }
 </style>
+
+
