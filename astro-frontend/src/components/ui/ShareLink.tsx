@@ -52,7 +52,7 @@ const ShareLink: React.FC<ShareLinkProps> = ({
   return (
     <button
       className={cn(
-        "share-button cursor-pointer transform transition-transform duration-300 can-hover:hover:scale-110",
+        "share-button cursor-pointer transform transition-transform duration-300 [@media(hover:hover)]:hover:scale-110",
         className,
       )}
       aria-label="Share this content"

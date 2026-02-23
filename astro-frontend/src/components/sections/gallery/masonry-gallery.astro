@@ -61,10 +61,10 @@ const galleryItems = images
               alt={image.alt}
               width={image.width}
               height={image.height}
-              class="object-cover w-full h-full transition-transform duration-400 can-hover:hover:scale-110"
+              class="object-cover w-full h-full transition-transform duration-400 [@media(hover:hover)]:hover:scale-110"
             />
 
-            <div class="absolute top-2 right-2 opacity-100 md:opacity-0 can-hover:group-hover:opacity-100 transition-opacity duration-200">
+            <div class="absolute top-2 right-2 opacity-100 md:opacity-0 [@media(hover:hover)]:group-hover:opacity-100 transition-opacity duration-200">
               <svg
                 class="w-7 h-7 text-white drop-shadow-md"
                 fill="none"

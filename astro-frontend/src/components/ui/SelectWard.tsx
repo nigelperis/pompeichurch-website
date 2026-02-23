@@ -46,7 +46,7 @@ export default function SelectWard({
     <Radix.Root value={value} onValueChange={setValue}>
       <Radix.Trigger
         ref={triggerRef}
-        className="border border-gray-300 px-4 py-2 flex justify-between items-center w-[50%] md:w-full can-hover:hover:cursor-pointer"
+        className="border border-gray-300 px-4 py-2 flex justify-between items-center w-[50%] md:w-full [@media(hover:hover)]:hover:cursor-pointer"
         aria-label={placeholder}
       >
         <Radix.Value placeholder={placeholder} />
@@ -68,7 +68,7 @@ export default function SelectWard({
               <Radix.Item
                 key={w.name}
                 value={w.name}
-                className="px-4 py-2 can-hover:hover:bg-gray-100 cursor-pointer"
+                className="px-4 py-2 [@media(hover:hover)]:hover:bg-gray-100 cursor-pointer"
               >
                 <Radix.ItemText>{w.label}</Radix.ItemText>
               </Radix.Item>
