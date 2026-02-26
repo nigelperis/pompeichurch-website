@@ -56,13 +56,12 @@ const galleryItems = images
       >
         <div class="relative overflow-hidden rounded-md pt-2 px-1 pb-1 md:px-1.5 md:pb-1.5">
           <div class="img-hover-zoom img-hover-zoom--xyz relative w-full overflow-hidden group">
-          <div class="img-hover-zoom img-hover-zoom--xyz relative w-full overflow-hidden group">
             <NetworkImage
               src={image.src}
               alt={image.alt}
               width={image.width}
               height={image.height}
-              class="object-cover w-full h-full transition-transform duration-400 hover:scale-110"
+              class="object-cover w-full h-full transition-transform duration-300 group-hover:scale-110"
             />
 
             <div class="absolute top-2 right-2 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-200">
