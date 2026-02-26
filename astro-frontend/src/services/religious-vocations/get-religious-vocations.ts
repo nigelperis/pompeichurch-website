@@ -5,10 +5,11 @@ import type {
   ReligiousVocationData,
   ReligiousVocation,
 } from "~/models/religious-vocation";
+import { ReligiousVocationRole } from "~/enums/religious-vocation-role";
 
 export interface ReligiousVocationItem {
   name: string;
-  role: string;
+  role: ReligiousVocationRole;
   ward?: string;
   congregation?: string;
   parents?: string;
@@ -58,11 +59,13 @@ function pickLocaleValue(
   return enValue ?? "";
 }
 
-export async function getReligiousVocations(locale: Locale): Promise<ReligiousVocationItem[]> {
+export async function getReligiousVocations(
+  locale: Locale,
+): Promise<ReligiousVocationItem[]> {
   const queryParams = new URLSearchParams();
   queryParams.append("populate[0]", "image");
   queryParams.append("pagination[pageSize]", "200");
-  queryParams.append("sort[0]", "name_en:asc");
+  queryParams.append("sort[0]", "englishName:asc");
 
   const response = await strapiFetch<ReligiousVocationData>({
     endpoint: ROUTES.RELIGIOUS_VOCATIONS,
@@ -72,13 +75,18 @@ export async function getReligiousVocations(locale: Locale): Promise<ReligiousVo
   const list = response?.data ?? [];
 
   return list.map((item: ReligiousVocation) => {
-    const name = pickLocaleValue(locale, item.name_en, item.name_kok);
+    const name = pickLocaleValue(locale, item.englishName, item.konkaniName);
     const congregation = pickLocaleValue(
       locale,
-      item.congregation_eng,
-      item.congregation_kok,
+      item.englishCongregationName,
+      item.konkaniCongregationName,
     );
-    const parents = pickLocaleValue(locale, item.parents_eng, item.parents_kok) || undefined;
+    const parents =
+      pickLocaleValue(
+        locale,
+        item.englishParentsName,
+        item.konkaniParentsName,
+      ) || undefined;
 
     const url = item.image?.url;
     const width = item.image?.width;
@@ -90,8 +98,8 @@ export async function getReligiousVocations(locale: Locale): Promise<ReligiousVo
       ward: getWardLabel(item.ward, locale),
       congregation,
       parents,
-      dob: item.dob ?? undefined,
-      dod: item.dod ?? undefined,
+      dob: item.dateOfBirth ?? undefined,
+      dod: item.dateofDeath ?? undefined,
       imageUrl: normalizeImageUrl(url),
       imageWidth: width,
       imageHeight: height,

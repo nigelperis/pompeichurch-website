@@ -1315,24 +1315,26 @@ export interface ApiReligiousVocationReligiousVocation
     draftAndPublish: true;
   };
   attributes: {
-    congregation_eng: Schema.Attribute.String & Schema.Attribute.Required;
-    congregation_kok: Schema.Attribute.String & Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    dob: Schema.Attribute.Date;
-    dod: Schema.Attribute.Date;
+    dateOfBirth: Schema.Attribute.Date;
+    dateofDeath: Schema.Attribute.Date;
+    englishCongregationName: Schema.Attribute.String &
+      Schema.Attribute.Required;
+    englishName: Schema.Attribute.String & Schema.Attribute.Required;
+    englishParentsName: Schema.Attribute.String;
     image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    konkaniCongregationName: Schema.Attribute.String &
+      Schema.Attribute.Required;
+    konkaniName: Schema.Attribute.String;
+    konkaniParentsName: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::religious-vocation.religious-vocation'
     > &
       Schema.Attribute.Private;
-    name_en: Schema.Attribute.String & Schema.Attribute.Required;
-    name_kok: Schema.Attribute.String;
-    parents_eng: Schema.Attribute.String;
-    parents_kok: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     role: Schema.Attribute.Enumeration<['priest', 'nun']> &
       Schema.Attribute.Required;

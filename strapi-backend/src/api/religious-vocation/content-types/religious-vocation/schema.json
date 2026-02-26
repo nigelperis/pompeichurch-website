@@ -11,11 +11,11 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "name_en": {
+    "englishName": {
       "type": "string",
       "required": true
     },
-    "name_kok": {
+    "konkaniName": {
       "type": "string"
     },
     "role": {
@@ -52,24 +52,24 @@
         "Pompei B"
       ]
     },
-    "congregation_eng": {
+    "englishCongregationName": {
       "type": "string",
       "required": true
     },
-    "congregation_kok": {
+    "konkaniCongregationName": {
       "type": "string",
       "required": true
     },
-    "parents_eng": {
+    "englishParentsName": {
       "type": "string"
     },
-    "parents_kok": {
+    "konkaniParentsName": {
       "type": "string"
     },
-    "dob": {
+    "dateOfBirth": {
       "type": "date"
     },
-    "dod": {
+    "dateofDeath": {
       "type": "date"
     }
   }

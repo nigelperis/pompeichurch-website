@@ -4,6 +4,7 @@ import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import ReligiousPriestsList from "~/components/sections/religious-priests/religious-priests-list.astro";
 import ReligiousNunsList from "~/components/sections/religious-nuns/religious-nuns-list.astro";
 import { Locale } from "~/enums/locale";
+import { ReligiousVocationRole } from "~/enums/religious-vocation-role";
 import { cn } from "~/helpers/cn";
 import { getReligiousVocations } from "~/services/religious-vocations/get-religious-vocations";
 
@@ -12,8 +13,8 @@ const t = useTranslations(lang);
 
 const locale = lang === Locale.KOK ? "kok" : "en";
 const allVocations = await getReligiousVocations(locale);
-const priests = allVocations.filter((v) => v.role === "priest");
-const nuns = allVocations.filter((v) => v.role === "nun");
+const priests = allVocations.filter((v) => v.role === ReligiousVocationRole.PRIEST);
+const nuns = allVocations.filter((v) => v.role === ReligiousVocationRole.NUN);
 
 const ogImageUrl = priests[0]?.imageUrl;
 const ogTitle =
