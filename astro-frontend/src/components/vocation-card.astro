@@ -52,7 +52,7 @@ const {
         />
       ) : imageUrl ? (
         <Image
-          src={imageUrl}
+          src={imageUrl as ImageMetadata}
           alt={name}
           class="h-full w-full object-cover"
           sizes="(max-width: 768px) 50vw, 25vw"
@@ -100,7 +100,9 @@ const {
       parents && role && (
         <p class="mb-1 text-slate-700 lg:text-sm">
           <span class="font-semibold">
-            {role === ReligiousVocationRole.NUN ? t("vocation.do") : t("vocation.so")}
+            {role === ReligiousVocationRole.NUN
+              ? t("vocation.do")
+              : t("vocation.so")}
           </span>
           {parents}
         </p>
