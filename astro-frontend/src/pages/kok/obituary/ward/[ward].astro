@@ -64,7 +64,7 @@ const basePath = `${Astro.url.pathname}?`;
 ---
 
 <Layout title={pageTitle}>
-  <main class="mx-auto max-w-screen-lg overflow-hidden bg-white">
+  <main class="mx-auto max-w-5xl overflow-hidden bg-white">
     <section class="flex flex-col p-6 lg:p-8">
       <PushNotification />
 
@@ -80,42 +80,42 @@ const basePath = `${Astro.url.pathname}?`;
           {t("nav.obituary")}
         </h1>
 
-        <div class="w-full md:w-64">
+        <div class="order-2 w-full md:order-2 md:max-w-md md:ml-auto">
           <SelectWardRedirect
-            client:only="react"
+            client:load
             wards={uniqueWards}
             placeholder={t("ward.select-label")}
           />
         </div>
+
+        <p
+          class={cn("py-6 lg:py-8 text-2xl font-bold italic text-red-600", {
+            "font-semibold": lang === Locale.KOK,
+          })}
+        >
+          {t("obituary.subtitle")}
+        </p>
+
+        {
+          paginatedObituaries.length > 0 ? (
+            <>
+              <ObituaryList obituaries={paginatedObituaries} />
+
+              {totalPages > 1 && (
+                <Pagination
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  basePath={basePath}
+                />
+              )}
+            </>
+          ) : (
+            <p class="py-8 text-center text-2xl font-semibold text-gray-700">
+              {Message.OBITUARIES_NOT_FOUND_KOK}
+            </p>
+          )
+        }
       </div>
-
-      <p
-        class={cn("py-6 lg:py-8 text-2xl font-bold italic text-red-600", {
-          "font-semibold": lang === Locale.KOK,
-        })}
-      >
-        {t("obituary.subtitle")}
-      </p>
-
-      {
-        paginatedObituaries.length > 0 ? (
-          <>
-            <ObituaryList obituaries={paginatedObituaries} />
-
-            {totalPages > 1 && (
-              <Pagination
-                currentPage={currentPage}
-                totalPages={totalPages}
-                basePath={basePath}
-              />
-            )}
-          </>
-        ) : (
-          <p class="py-8 text-center text-2xl font-semibold text-gray-700">
-            {Message.OBITUARIES_NOT_FOUND_KOK}
-          </p>
-        )
-      }
     </section>
   </main>
 </Layout>

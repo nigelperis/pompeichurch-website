@@ -1,7 +1,7 @@
 ---
 import Layout from "~/layouts/layout.astro";
 import { Icon } from "astro-icon/components";
-import { getLangFromUrl, useTranslations } from "~/i18n/utils";
+import { getLangFromUrl } from "~/i18n/utils";
 import ShareLink from "~/components/ui/share-link.astro";
 import { getEvent } from "~/services/events/get-event";
 import NetworkImage from "~/components/ui/network-image.astro";
@@ -12,7 +12,6 @@ import { Locale } from "~/enums/locale";
 import { SITE_URL } from "~/constants/index";
 import WhatsAppShare from "~/components/ui/whatsapp-share";
 import { cn } from "~/helpers/cn";
-import { getEventsByNewest } from "~/helpers/get-events-by-newest";
 
 const { slug } = Astro.params;
 const lang = getLangFromUrl(Astro.url);
@@ -50,15 +49,12 @@ const { events: allEvents } = await listEvents({
   pageSize: totalEvents,
 });
 
-// Sort by creation time so latest posts appear first.
-const eventsByNewest = getEventsByNewest(allEvents);
-
 const absoluteImageURL = ogImage;
-const eventIndex = eventsByNewest.findIndex((e) => e.slug === slug);
-const prevEvent = eventIndex > 0 ? eventsByNewest[eventIndex - 1] : undefined;
+const eventIndex = allEvents.findIndex((e) => e.slug === slug);
+const prevEvent = eventIndex > 0 ? allEvents[eventIndex - 1] : undefined;
 const nextEvent =
-  eventIndex >= 0 && eventIndex < eventsByNewest.length - 1
-    ? eventsByNewest[eventIndex + 1]
+  eventIndex >= 0 && eventIndex < allEvents.length - 1
+    ? allEvents[eventIndex + 1]
     : undefined;
 
 const socialLinks = [

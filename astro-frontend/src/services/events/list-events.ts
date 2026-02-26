@@ -8,7 +8,7 @@ import type { EventData, EventsPagination } from "~/models/event";
  * @param {Object} [args] - Optional parameters for fetching events.
  * @param {number} [args.page=1] - The page number to fetch.
  * @param {number} [args.pageSize=25] - The number of events per page.
- * @param {string[]} [args.sortBy=['eventDate:desc']] - Sorting order for events.
+ * @param {string[]} [args.sortBy=['eventDate:desc', 'createdAt:desc']] - Sorting order for events.
  * @param {Record<string, any>} [args.filters] - Filters to apply when fetching events.
  * @returns {Promise<EventsPagination>} A promise resolving to an object containing the events and pagination metadata.
  */
@@ -21,7 +21,7 @@ async function listEvents(args?: {
   const {
     page = 1,
     pageSize = 25,
-    sortBy = ["eventDate:desc"],
+    sortBy = ["eventDate:desc", "createdAt:desc"],
     filters,
   } = args ?? {};
 
@@ -36,6 +36,27 @@ async function listEvents(args?: {
   if (filters) {
     Object.entries(filters).forEach(([key, value]) => {
       const keyPath = key.includes(".") ? key.replaceAll(".", "][") : key;
+
+      // Handle $or / $and
+      if ((key === "$or" || key === "$and") && Array.isArray(value)) {
+        value.forEach((condition, index) => {
+          Object.entries(condition).forEach(([field, ops]) => {
+            const fieldPath = field.includes(".")
+              ? field.replaceAll(".", "][")
+              : field;
+
+            Object.entries(ops as Record<string, any>).forEach(([op, val]) => {
+              queryParams.append(
+                `filters[${key}][${index}][${fieldPath}][${op}]`,
+                String(val),
+              );
+            });
+          });
+        });
+        return;
+      }
+
+      // Handle normal filters (including relation.slug)
       if (typeof value === "object" && value !== null) {
         Object.entries(value).forEach(([op, val]) => {
           queryParams.append(`filters[${keyPath}][${op}]`, String(val));

@@ -25,7 +25,12 @@
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": ["images", "files", "videos", "audios"]
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     },
     "shortDescriptionEn": {
       "type": "string"
@@ -56,6 +61,13 @@
       "relation": "manyToOne",
       "target": "api::association.association",
       "inversedBy": "events"
+    },
+    "pastoralCommissions": {
+      "type": "enumeration",
+      "enum": [
+        "Parish Pastoral Commissions",
+        "None"
+      ]
     }
   }
 }

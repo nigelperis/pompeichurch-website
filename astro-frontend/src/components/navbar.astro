@@ -7,10 +7,10 @@ import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import { navLinks } from "~/constants/nav-links.ts";
 import { listAssociations } from "~/services/associations/list-associations";
 import { Locale } from "~/enums/locale";
-import "~/styles/navbar-styles.css";
 import { LanguageSwitcher } from "~/components/ui/LanguageSwitcher";
 import ChristmasLights from "./ui/ChristmasLights";
 import { isChristmasSeason } from "~/helpers/is-christmas";
+import "~/styles/navbar-styles.css";
 
 const currentLocale = Astro.currentLocale;
 

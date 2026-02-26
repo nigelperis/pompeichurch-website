@@ -1,6 +1,6 @@
 ---
 import Layout from "~/layouts/layout.astro";
-import { getLangFromUrl, useTranslations } from "~/i18n/utils";
+import { getLangFromUrl } from "~/i18n/utils";
 import AssociationDetails from "~/components/sections/associations/association-details.astro";
 import { listAssociations } from "~/services/associations/list-associations";
 import { getAssociation } from "~/services/associations/get-association";
@@ -69,7 +69,7 @@ const ogImageUrl = ogImage;
         class={cn(
           "border-natgeo-yellow border-l-4 pl-3 text-left text-3xl lg:text-4xl font-black",
           {
-            "pt-[13px] font-bold": lang === Locale.KOK,
+            "pt-3.25 font-bold": lang === Locale.KOK,
           },
         )}
       >

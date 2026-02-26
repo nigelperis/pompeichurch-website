@@ -12,10 +12,11 @@ import eliasRodrigues from "~/assets/vice-presidents/elias-rodrigues.jpeg";
 import georgePinto from "~/assets/vice-presidents/george-pinto.jpeg";
 import jeraldRasquinha from "~/assets/vice-presidents/jerald-rasquinha.jpeg";
 import johnsonLobo from "~/assets/vice-presidents/johnson-lobo.jpg";
-import richardFernandes from "~/assets/vice-presidents/richard-fernandes.jpeg";
+import richardFernandes from "~/assets/vice-presidents/richard-fernandes.jpg";
 import richardLobo from "~/assets/vice-presidents/richard-lobo.jpeg";
 import romansLobo from "~/assets/vice-presidents/romans-lobo.jpg";
 import wilfredPinto from "~/assets/vice-presidents/wilfred-pinto.jpeg";
+import delcyrodrigues from "~/assets/vice-presidents/delcy-rodrigues.jpg";
 
 //Secretaries
 import praveenLobo from "~/assets/secretaries/mr-praveen-lobo.jpg";
@@ -120,8 +121,13 @@ const vicePresidents = [
     imageUrl: romansLobo,
     name: "romanslobo",
     term1: "01-01-2011 : 31-12-2013",
-    term2: "01-01-2023 : Present",
+    term2: "01-01-2023 : 31-12-2025",
   },
+  {
+    imageUrl: delcyrodrigues,
+    name: "delcyrodrigues",
+    term: "01-01-2026 : Present",
+  }
 ];
 
 const secretaries = [
@@ -169,11 +175,6 @@ const secretaries = [
     term2: "01-01-2014 : 31-12-2016",
   },
   {
-    imageUrl: richardFernandes,
-    name: "richardfernandes",
-    term: "01-01-2011 : 31-12-2013",
-  },
-  {
     imageUrl: jeraldLobo,
     name: "jeraldlobo",
     term1: "01-01-2017 : 31-12-2019",
@@ -187,7 +188,13 @@ const secretaries = [
   {
     imageUrl: johnsonLobo,
     name: "johnsonlobo",
-    term: "01-01-2023 : Present",
+    term: "01-01-2023 : 31-12-2025",
+  },
+  {
+    imageUrl: richardFernandes,
+    name: "richardfernandes",
+    term1: "01-01-2011 : 31-12-2013",
+    term2: "01-01-2026 : Present",
   },
 ];
 

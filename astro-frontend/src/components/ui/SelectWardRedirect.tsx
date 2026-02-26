@@ -43,14 +43,14 @@ export default function SelectWardRedirect({
 
   React.useLayoutEffect(() => {
     if (triggerRef.current) {
-      setTriggerWidth(triggerRef.current.getBoundingClientRect().width);
+      setTriggerWidth(triggerRef.current.offsetWidth);
     }
   }, []);
 
   React.useEffect(() => {
     const handleResize = () => {
       if (triggerRef.current) {
-        setTriggerWidth(triggerRef.current.getBoundingClientRect().width);
+        setTriggerWidth(triggerRef.current.offsetWidth);
       }
     };
     window.addEventListener("resize", handleResize);
@@ -74,39 +74,41 @@ export default function SelectWardRedirect({
   );
 
   return (
-    <Radix.Root value={value} onValueChange={setValue}>
-      <Radix.Trigger
-        ref={triggerRef}
-        className="border border-gray-300 px-4 py-2 flex justify-between items-center w-[50%] md:w-full hover:cursor-pointer"
-        aria-label={dynamicPlaceholder}
-      >
-        <Radix.Value placeholder={dynamicPlaceholder} />
-        <ChevronDown width={24} height={24} className="text-slate-700" />
-      </Radix.Trigger>
-
-      <Radix.Portal>
-        <Radix.Content
-          side="top"
-          align="start"
-          sideOffset={0}
-          avoidCollisions
-          collisionPadding={0}
-          style={{ width: triggerWidth * 1.1 }}
-          className="mb-2 border border-gray-300 bg-white shadow-lg overflow-hidden"
+    <div className="w-full max-w-md ml-auto">
+      <Radix.Root value={value} onValueChange={setValue}>
+        <Radix.Trigger
+          ref={triggerRef}
+          className="border border-gray-300 px-4 py-2 flex justify-between items-center w-full hover:cursor-pointer"
+          aria-label={dynamicPlaceholder}
         >
-          <Radix.Viewport className="p-1">
-            {options.map((w) => (
-              <Radix.Item
-                key={w.name}
-                value={w.name}
-                className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-              >
-                <Radix.ItemText>{w.label}</Radix.ItemText>
-              </Radix.Item>
-            ))}
-          </Radix.Viewport>
-        </Radix.Content>
-      </Radix.Portal>
-    </Radix.Root>
+          <Radix.Value placeholder={dynamicPlaceholder} />
+          <ChevronDown width={24} height={24} className="text-slate-700" />
+        </Radix.Trigger>
+
+        <Radix.Portal>
+          <Radix.Content
+            side="top"
+            align="end"
+            sideOffset={0}
+            avoidCollisions={false}
+            collisionPadding={0}
+            style={{ width: `${triggerWidth}px` }}
+            className="mb-2 border border-gray-300 bg-white shadow-lg overflow-hidden"
+          >
+            <Radix.Viewport className="p-1">
+              {options.map((w) => (
+                <Radix.Item
+                  key={w.name}
+                  value={w.name}
+                  className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                >
+                  <Radix.ItemText>{w.label}</Radix.ItemText>
+                </Radix.Item>
+              ))}
+            </Radix.Viewport>
+          </Radix.Content>
+        </Radix.Portal>
+      </Radix.Root>
+    </div>
   );
 }
