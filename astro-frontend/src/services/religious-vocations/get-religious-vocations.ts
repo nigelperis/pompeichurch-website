@@ -99,7 +99,7 @@ export async function getReligiousVocations(
       congregation,
       parents,
       dob: item.dateOfBirth ?? undefined,
-      dod: item.dateofDeath ?? undefined,
+      dod: item.dateOfDeath ?? undefined,
       imageUrl: normalizeImageUrl(url),
       imageWidth: width,
       imageHeight: height,

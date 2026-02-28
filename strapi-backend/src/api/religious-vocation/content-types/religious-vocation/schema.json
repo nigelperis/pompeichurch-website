@@ -16,14 +16,15 @@
       "required": true
     },
     "konkaniName": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "role": {
       "type": "enumeration",
       "required": true,
       "enum": [
-        "priest",
-        "nun"
+        "Priest",
+        "Nun"
       ]
     },
     "image": {
@@ -53,12 +54,10 @@
       ]
     },
     "englishCongregationName": {
-      "type": "string",
-      "required": true
+      "type": "string"
     },
     "konkaniCongregationName": {
-      "type": "string",
-      "required": true
+      "type": "string"
     },
     "englishParentsName": {
       "type": "string"
@@ -69,7 +68,7 @@
     "dateOfBirth": {
       "type": "date"
     },
-    "dateofDeath": {
+    "dateOfDeath": {
       "type": "date"
     }
   }

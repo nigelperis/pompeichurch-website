@@ -47,11 +47,19 @@ const ogDescription =
       <h2 class="mt-6 text-3xl font-semibold italic text-red-600 lg:text-3xl">
         {t("vocation.subtitle1")}
       </h2>
-      <ReligiousPriestsList priests={priests} />
+      {priests.length > 0 ? (
+        <ReligiousPriestsList priests={priests} />
+      ) : (
+        <p class="py-6 text-lg text-slate-500 italic">{t("vocation.no-priests")}</p>
+      )}
       <h2 class="mt-6 text-3xl font-semibold italic text-red-600 lg:text-3xl">
         {t("vocation.subtitle2")}
       </h2>
-      <ReligiousNunsList nuns={nuns} />
+      {nuns.length > 0 ? (
+        <ReligiousNunsList nuns={nuns} />
+      ) : (
+        <p class="py-6 text-lg text-slate-500 italic">{t("vocation.no-nuns")}</p>
+      )}
     </section>
   </main>
 </Layout>

@@ -1319,15 +1319,13 @@ export interface ApiReligiousVocationReligiousVocation
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     dateOfBirth: Schema.Attribute.Date;
-    dateofDeath: Schema.Attribute.Date;
-    englishCongregationName: Schema.Attribute.String &
-      Schema.Attribute.Required;
+    dateOfDeath: Schema.Attribute.Date;
+    englishCongregationName: Schema.Attribute.String;
     englishName: Schema.Attribute.String & Schema.Attribute.Required;
     englishParentsName: Schema.Attribute.String;
     image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    konkaniCongregationName: Schema.Attribute.String &
-      Schema.Attribute.Required;
-    konkaniName: Schema.Attribute.String;
+    konkaniCongregationName: Schema.Attribute.String;
+    konkaniName: Schema.Attribute.String & Schema.Attribute.Required;
     konkaniParentsName: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -1336,7 +1334,7 @@ export interface ApiReligiousVocationReligiousVocation
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    role: Schema.Attribute.Enumeration<['priest', 'nun']> &
+    role: Schema.Attribute.Enumeration<['Priest', 'Nun']> &
       Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &

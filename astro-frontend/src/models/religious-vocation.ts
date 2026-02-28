@@ -10,19 +10,19 @@ export interface ReligiousVocation {
   id: number;
   documentId?: string;
   englishName: string;
-  konkaniName?: string | null;
+  konkaniName: string;
   role: ReligiousVocationRole;
   ward: string;
-  englishCongregationName: string;
+  englishCongregationName?: string | null;
   konkaniCongregationName?: string | null;
   englishParentsName?: string | null;
   konkaniParentsName?: string | null;
   dateOfBirth?: string | null;
-  dateofDeath?: string | null;
+  dateOfDeath?: string | null;
   image?: ReligiousVocationImage | null;
-  createdAt?: string;
-  updatedAt?: string;
-  publishedAt?: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
 }
 
 interface Pagination {
