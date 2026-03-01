@@ -127,7 +127,7 @@ const vicePresidents = [
     imageUrl: delcyrodrigues,
     name: "delcyrodrigues",
     term: "01-01-2026 : Present",
-  }
+  },
 ];
 
 const secretaries = [
