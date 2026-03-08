@@ -1,11 +1,16 @@
 ---
-import { vicePresidents } from "~/constants/ex-vp-secretaries";
+import { ExOfficeBearersRole } from "~/enums/ex-office-bearers-role";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
-
+import { listExVicePresidentsAndSecretaries } from "~/services/list-ex-vice-presidents-and-secretaries-data";
 import VpsecCard from "~/components/vpsec-card.astro";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+const vicePresidents = await listExVicePresidentsAndSecretaries({
+  page: 1,
+  pageSize: 100,
+  filters: { role: {$eq: ExOfficeBearersRole.VICE_PRESIDENT} },
+})
 ---
 
 <div
@@ -15,11 +20,27 @@ const t = useTranslations(lang);
     vicePresidents.map((vp) => (
       <VpsecCard
         class="m-auto"
-        imageUrl={vp.imageUrl}
-        name={t(`vp.${vp.name}`)}
-        term={vp.term}
-        term1={vp.term1}
-        term2={vp.term2}
+        imageUrl={
+           vp.image?.url &&
+           new URL(
+              vp.image.url,
+              import.meta.env.PUBLIC_STRAPI_URL
+          ).toString()
+        }
+        name={lang === "kok" ? vp.nameKok : vp.nameEn}
+        term={
+          vp.terms?.[0]
+            ? `${vp.terms[0].startDate} : ${vp.terms[0].endDate}`
+            : undefined
+        }
+
+        term2={
+          vp.terms?.[1]
+            ? `${vp.terms[1].startDate} : ${vp.terms[1].endDate}`
+            : undefined
+
+          }
+
       />
     ))
   }

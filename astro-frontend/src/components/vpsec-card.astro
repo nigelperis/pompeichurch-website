@@ -3,12 +3,14 @@ import { Image } from "astro:assets";
 import { Locale } from "~/enums/locale";
 import { cn } from "~/helpers/cn";
 import { getLangFromUrl } from "~/i18n/utils";
+import NetworkImage from "~/components/ui/network-image.astro";
+import placeholderImage from "~/assets/static-assets/blank.jpeg";
 
 const lang = getLangFromUrl(Astro.url);
 
 interface Props {
   name: string;
-  imageUrl: ImageMetadata;
+  imageUrl?: string;
   subtitle?: string;
   class?: string;
   term?: string;
@@ -27,11 +29,25 @@ const { name, class: className, imageUrl, term, term1, term2 } = Astro.props;
   )}
 >
   <div class="flex-none">
-    <Image
-      src={imageUrl}
-      alt={`Image of ${name}`}
-      class="h-[300px] w-full object-cover"
-    />
+    {
+      imageUrl ? (
+        <NetworkImage
+          src={imageUrl}
+          alt={name}
+          width={600}
+          height={400}
+          class="h-[300px] w-full object-cover"
+        />
+      ) : (
+        <Image
+          src={placeholderImage}
+          alt="Blank Profile Image"
+          width={600}
+          height={400}
+          class="h-[300px] w-full object-cover"
+        />
+      )
+    }
   </div>
 
   <div
@@ -46,19 +62,20 @@ const { name, class: className, imageUrl, term, term1, term2 } = Astro.props;
       {name}
     </h3>
     {
-      term && (
-        <p class="text-black">
-          <b>I</b> : <span class="font-semibold text-red-400">{term}</span>
-        </p>
-      )
-    }
-    {
       term2 && (
         <p class="text-black">
           <b>II</b> : <span class="font-semibold text-red-400">{term2}</span>
         </p>
       )
     }
+    {
+      term && (
+        <p class="text-black">
+          <b>I</b> : <span class="font-semibold text-red-400">{term}</span>
+        </p>
+      )
+    }
+
     {
       term1 && (
         <p class="text-black">

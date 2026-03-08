@@ -75,6 +75,18 @@ export interface SharedSocialLink extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedTerms extends Struct.ComponentSchema {
+  collectionName: 'components_shared_terms';
+  info: {
+    displayName: 'terms';
+  };
+  attributes: {
+    endDate: Schema.Attribute.String & Schema.Attribute.Required;
+    startDate: Schema.Attribute.String & Schema.Attribute.Required;
+    termNo: Schema.Attribute.Integer & Schema.Attribute.Required;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
@@ -82,6 +94,7 @@ declare module '@strapi/strapi' {
       'shared.commission': SharedCommission;
       'shared.commission-block': SharedCommissionBlock;
       'shared.social-link': SharedSocialLink;
+      'shared.terms': SharedTerms;
     }
   }
 }

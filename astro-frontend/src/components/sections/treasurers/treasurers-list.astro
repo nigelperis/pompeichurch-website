@@ -1,11 +1,18 @@
 ---
-import { treasurers } from "~/constants/ex-vp-secretaries";
-import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 
+import { getLangFromUrl, useTranslations } from "~/i18n/utils";
+import { ExOfficeBearersRole } from "~/enums/ex-office-bearers-role";
 import VpsecCard from "~/components/vpsec-card.astro";
+import { listExVicePresidentsAndSecretaries } from "~/services/list-ex-vice-presidents-and-secretaries-data";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+const treasurers = await listExVicePresidentsAndSecretaries({
+  page: 1,
+  pageSize: 100,
+  filters: { role: {$eq: ExOfficeBearersRole.TREASURER} },
+});
+
 ---
 
 <div
@@ -15,8 +22,15 @@ const t = useTranslations(lang);
     treasurers.map((treasurer) => (
       <VpsecCard
         class="m-auto"
-        imageUrl={treasurer.imageUrl}
-        name={t(`treasurer.${treasurer.name}`)}
+        imageUrl={
+          treasurer.image?.url &&
+          new URL(
+            treasurer.image.url,
+            import.meta.env.PUBLIC_STRAPI_URL
+          ).toString()
+        }
+        name={lang === "kok" ? treasurer.nameKok : treasurer.nameEn}
+
       />
     ))
   }
