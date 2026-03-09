@@ -150,6 +150,7 @@ export const ui = {
     "ward.kandar-a-ward": "Kandar A",
     "ward.kandar-b-ward": "Kandar B",
     "ward.addoor-ward": "Addoor",
+    "ward.kandar-ward": "Kandar",
     "ward.gurkar": "Gurkar",
     "ward.gurkarn": "Gurkarn",
     "ward.pratinidi": "Representative",

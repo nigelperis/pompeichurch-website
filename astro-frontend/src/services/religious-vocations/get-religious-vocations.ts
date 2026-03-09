@@ -20,6 +20,7 @@ const WARD_I18N_KEY: Record<string, string> = {
   "Pompei B": "ward.pompei-b-ward",
   "Kandar A": "ward.kandar-a-ward",
   "Kandar B": "ward.kandar-b-ward",
+  Kandar: "ward.kandar-ward",
   "Kowdoor A": "ward.kowdoor-a-ward",
   "Kowdoor B": "ward.kowdoor-b-ward",
 };

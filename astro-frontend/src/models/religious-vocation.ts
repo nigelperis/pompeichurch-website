@@ -73,7 +73,7 @@ interface ReligiousVocationData {
 
 export interface ReligiousVocationItem {
   name: string;
-  role: ReligiousVocationRole;
+  role?: ReligiousVocationRole;
   ward?: string;
   congregation?: string;
   parents?: string;
