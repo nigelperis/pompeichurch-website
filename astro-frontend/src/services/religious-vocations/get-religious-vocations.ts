@@ -4,23 +4,12 @@ import { ui } from "~/i18n/ui";
 import type {
   ReligiousVocationData,
   ReligiousVocation,
+  ReligiousVocationItem,
 } from "~/models/religious-vocation";
-import { ReligiousVocationRole } from "~/enums/religious-vocation-role";
+import { Locale } from "~/enums/locale";
+import { formatDate } from "~/helpers/format-date";
 
-export interface ReligiousVocationItem {
-  name: string;
-  role: ReligiousVocationRole;
-  ward?: string;
-  congregation?: string;
-  parents?: string;
-  dob?: string;
-  dod?: string;
-  imageUrl?: string;
-  imageWidth?: number;
-  imageHeight?: number;
-}
-
-type Locale = "en" | "kok";
+export type { ReligiousVocationItem };
 
 const WARD_I18N_KEY: Record<string, string> = {
   Addoor: "ward.addoor-ward",
@@ -37,7 +26,7 @@ const WARD_I18N_KEY: Record<string, string> = {
 
 function getWardLabel(ward: string | undefined, locale: Locale): string {
   if (!ward) return "";
-  if (locale === "en") return ward;
+  if (locale === Locale.EN) return ward;
   const key = WARD_I18N_KEY[ward];
   if (!key) return ward;
   const value = (ui[locale] as Record<string, unknown>)[key];
@@ -55,16 +44,25 @@ function pickLocaleValue(
   enValue: string | null | undefined,
   kokValue: string | null | undefined,
 ): string {
-  if (locale === "kok") return kokValue ?? enValue ?? "";
+  if (locale === Locale.KOK) return kokValue ?? enValue ?? "";
   return enValue ?? "";
 }
 
+/**
+ * Fetches religious vocations from the Strapi backend and transforms them for display.
+ *
+ * @param {Locale} locale - The locale to use for fetching localized content (Locale.EN or Locale.KOK)
+ * @returns {Promise<ReligiousVocationItem[]>} A promise that resolves to an array of religious vocation items
+ *
+ * @example
+ * const vocations = await getReligiousVocations(Locale.EN);
+ */
 export async function getReligiousVocations(
   locale: Locale,
 ): Promise<ReligiousVocationItem[]> {
   const queryParams = new URLSearchParams();
   queryParams.append("populate[0]", "image");
-  queryParams.append("pagination[pageSize]", "200");
+  queryParams.append("pagination[pageSize]", "1000");
   queryParams.append("sort[0]", "englishName:asc");
 
   const response = await strapiFetch<ReligiousVocationData>({
@@ -98,8 +96,8 @@ export async function getReligiousVocations(
       ward: getWardLabel(item.ward, locale),
       congregation,
       parents,
-      dob: item.dateOfBirth ?? undefined,
-      dod: item.dateOfDeath ?? undefined,
+      dob: formatDate(item.dateOfBirth),
+      dod: formatDate(item.dateOfDeath),
       imageUrl: normalizeImageUrl(url),
       imageWidth: width,
       imageHeight: height,

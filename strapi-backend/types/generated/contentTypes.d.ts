@@ -1323,7 +1323,7 @@ export interface ApiReligiousVocationReligiousVocation
     englishCongregationName: Schema.Attribute.String;
     englishName: Schema.Attribute.String & Schema.Attribute.Required;
     englishParentsName: Schema.Attribute.String;
-    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    image: Schema.Attribute.Media<'images'>;
     konkaniCongregationName: Schema.Attribute.String;
     konkaniName: Schema.Attribute.String & Schema.Attribute.Required;
     konkaniParentsName: Schema.Attribute.String;
@@ -1334,8 +1334,7 @@ export interface ApiReligiousVocationReligiousVocation
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    role: Schema.Attribute.Enumeration<['Priest', 'Nun']> &
-      Schema.Attribute.Required;
+    role: Schema.Attribute.Enumeration<['Priest', 'Nun']>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1344,6 +1343,7 @@ export interface ApiReligiousVocationReligiousVocation
         'Addoor',
         'Church',
         'Gurpur',
+        'Kandar',
         'Kandar A',
         'Kandar B',
         'Kowdoor A',

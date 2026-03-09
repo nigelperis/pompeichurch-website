@@ -71,4 +71,17 @@ interface ReligiousVocationData {
   };
 }
 
+export interface ReligiousVocationItem {
+  name: string;
+  role: ReligiousVocationRole;
+  ward?: string;
+  congregation?: string;
+  parents?: string;
+  dob?: string;
+  dod?: string;
+  imageUrl?: string;
+  imageWidth?: number;
+  imageHeight?: number;
+}
+
 export type { ReligiousVocationData };
