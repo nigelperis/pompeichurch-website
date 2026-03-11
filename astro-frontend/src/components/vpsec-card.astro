@@ -5,6 +5,7 @@ import { cn } from "~/helpers/cn";
 import { getLangFromUrl } from "~/i18n/utils";
 import NetworkImage from "~/components/ui/network-image.astro";
 import placeholderImage from "~/assets/static-assets/blank.jpeg";
+import { TermNumberLabel, TermNumber } from "~/enums/term-number";
 
 const lang = getLangFromUrl(Astro.url);
 
@@ -13,12 +14,10 @@ interface Props {
   imageUrl?: string;
   subtitle?: string;
   class?: string;
-  term?: string;
-  term1?: string;
-  term2?: string;
+  terms?: { termNo: number; startDate: string; endDate: string }[]
 }
 
-const { name, class: className, imageUrl, term, term1, term2 } = Astro.props;
+const { name, class: className, imageUrl, terms } = Astro.props;
 ---
 
 <div
@@ -62,26 +61,16 @@ const { name, class: className, imageUrl, term, term1, term2 } = Astro.props;
       {name}
     </h3>
     {
-      term2 && (
-        <p class="text-black">
-          <b>II</b> : <span class="font-semibold text-red-400">{term2}</span>
-        </p>
-      )
-    }
-    {
-      term && (
-        <p class="text-black">
-          <b>I</b> : <span class="font-semibold text-red-400">{term}</span>
-        </p>
-      )
-    }
-
-    {
-      term1 && (
-        <p class="text-black">
-          <b>I</b> : <span class="font-semibold text-red-400">{term1}</span>
-        </p>
-      )
+      terms && [...terms]
+        .sort((a, b) => b.termNo - a.termNo)
+        .map((term) => (
+          <p class="text-black">
+            <b>{TermNumberLabel[term.termNo]}</b> :
+            <span class="font-semibold text-red-400">
+              {term.startDate} : {term.endDate}
+            </span>
+          </p>
+        ))
     }
   </div>
 </div>

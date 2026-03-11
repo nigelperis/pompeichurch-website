@@ -1,9 +1,10 @@
 ---
-
+import { Locale } from "~/enums/locale";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import { ExOfficeBearersRole } from "~/enums/ex-office-bearers-role";
 import VpsecCard from "~/components/vpsec-card.astro";
 import { listExVicePresidentsAndSecretaries } from "~/services/list-ex-vice-presidents-and-secretaries-data";
+import { Message } from "~/constants/message.ts";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -18,18 +19,24 @@ const administrators = await listExVicePresidentsAndSecretaries({
   class="grid-cols-1 mx-auto grid w-full gap-x-20 gap-y-10 pt-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
 >
   {
-    administrators.map((administrator) => (
-      <VpsecCard
-        class="m-auto"
-        imageUrl={
-          administrator.image?.url &&
-          new URL(
-              administrator.image.url,
-              import.meta.env.PUBLIC_STRAPI_URL
-          ).toString()
-        }
-        name={lang === "kok" ? administrator.nameKok : administrator.nameEn}
-      />
-    ))
+    administrators.length > 0 ? (
+      administrators.map((administrator) => (
+        <VpsecCard
+          class="m-auto"
+          imageUrl={
+            administrator.image?.url &&
+            new URL(
+                administrator.image.url,
+                import.meta.env.PUBLIC_STRAPI_URL
+            ).toString()
+          }
+          name={lang === Locale.KOK ? administrator.nameKok : administrator.nameEn}
+        />
+      ))
+    ) : (
+      <p class="py-8 text-center text-3xl font-semibold">
+        {Message.ADMINISTRATORS_NOT_FOUND}
+      </p>
+    )
   }
 </div>

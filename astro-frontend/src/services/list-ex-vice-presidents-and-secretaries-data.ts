@@ -13,7 +13,6 @@ import { ExOfficeBearersRole } from "~/enums/ex-office-bearers-role";
  * @param {number} [args.page=1] - The page number to retrieve.
  * @param {number} [args.pageSize=25] - The number of members per page.
  * @param {string} [args.sortBy='createdAt:asc'] - The sorting order of the members.
-
  * @param {Record<string, any>} [args.filters] - Additional filters to apply to the query.
  * @returns {Promise<ExVicePresidentsAndSecretaries[]>} A promise that resolves to an array of ExVicePresidentsAndSecretaries objects.
  */
@@ -21,7 +20,6 @@ async function listExVicePresidentsAndSecretaries(args?: {
   page?: number;
   pageSize?: number;
   sortBy?: string;
-
   filters?: Record<string, any>;
 }): Promise<ExVicePresidentsAndSecretaries[]> {
   const batchSize = 100;
@@ -32,7 +30,6 @@ async function listExVicePresidentsAndSecretaries(args?: {
   const {
     pageSize = 25,
     sortBy = "createdAt:asc",
-
     filters = { role: { $eq: ExOfficeBearersRole.VICE_PRESIDENT } },
   } = args ?? {};
 
