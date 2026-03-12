@@ -59,7 +59,7 @@ export interface ReligiousVocation {
   image: ReligiousVocationImage | null;
 }
 
-interface ReligiousVocationData {
+export interface ReligiousVocationData {
   data: ReligiousVocation[];
   meta: {
     pagination: {
@@ -83,5 +83,3 @@ export interface ReligiousVocationItem {
   imageWidth?: number;
   imageHeight?: number;
 }
-
-export type { ReligiousVocationData };

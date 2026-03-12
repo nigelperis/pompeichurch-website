@@ -6,7 +6,7 @@ import { ReligiousVocationRole } from "~/enums/religious-vocation-role";
 import placeholderImage from "~/assets/static-assets/blank.jpeg";
 
 export interface Props {
-  imageUrl: ImageMetadata | string;
+  imageUrl?: string;
   imageWidth?: number;
   imageHeight?: number;
   name: string;
@@ -41,28 +41,19 @@ const {
     class="relative mx-auto mb-6 h-[300px] w-[230px] overflow-hidden rounded-full border-4 border-gray-200 shadow-md md:h-[280px] md:w-[210px]"
   >
     {
-      imageUrl && typeof imageUrl === "string" ? (
+      imageUrl ? (
         <Image
           src={imageUrl}
           alt={name}
           class="h-full w-full object-cover"
-          sizes="(max-width: 768px) 50vw, 25vw"
           width={imageWidth ?? 230}
           height={imageHeight ?? 300}
-        />
-      ) : imageUrl ? (
-        <Image
-          src={imageUrl as ImageMetadata}
-          alt={name}
-          class="h-full w-full object-cover"
-          sizes="(max-width: 768px) 50vw, 25vw"
         />
       ) : (
         <Image
           src={placeholderImage}
           alt="Blank Profile Image"
           class="h-full w-full object-cover"
-          sizes="(max-width: 768px) 50vw, 25vw"
         />
       )
     }

@@ -9,8 +9,6 @@ import type {
 import { Locale } from "~/enums/locale";
 import { formatDate } from "~/helpers/format-date";
 
-export type { ReligiousVocationItem };
-
 const WARD_I18N_KEY: Record<string, string> = {
   Addoor: "ward.addoor-ward",
   Church: "ward.church-ward",
@@ -61,25 +59,40 @@ function pickLocaleValue(
 export async function getReligiousVocations(
   locale: Locale,
 ): Promise<ReligiousVocationItem[]> {
-  const queryParams = new URLSearchParams();
-  queryParams.append("populate[0]", "image");
-  queryParams.append("pagination[pageSize]", "1000");
-  queryParams.append("sort[0]", "englishName:asc");
+  const allVocations: ReligiousVocation[] = [];
+  let currentPage = 1;
+  let totalPages = 1;
 
-  const response = await strapiFetch<ReligiousVocationData>({
-    endpoint: ROUTES.RELIGIOUS_VOCATIONS,
-    queryParams,
-  });
+  do {
+    const queryParams = new URLSearchParams();
+    queryParams.append("populate[0]", "image");
+    queryParams.append("pagination[page]", String(currentPage));
+    queryParams.append("pagination[pageSize]", "100");
+    queryParams.append("sort[0]", "englishName:asc");
 
-  const list = response?.data ?? [];
+    const response = await strapiFetch<ReligiousVocationData>({
+      endpoint: ROUTES.RELIGIOUS_VOCATIONS,
+      queryParams,
+    });
+
+    if (response?.data) {
+      allVocations.push(...response.data);
+      totalPages = response.meta?.pagination?.pageCount ?? 1;
+    }
+
+    currentPage++;
+  } while (currentPage <= totalPages);
+
+  const list = allVocations;
 
   return list.map((item: ReligiousVocation) => {
     const name = pickLocaleValue(locale, item.englishName, item.konkaniName);
-    const congregation = pickLocaleValue(
-      locale,
-      item.englishCongregationName,
-      item.konkaniCongregationName,
-    );
+    const congregation =
+      pickLocaleValue(
+        locale,
+        item.englishCongregationName,
+        item.konkaniCongregationName,
+      ) || undefined;
     const parents =
       pickLocaleValue(
         locale,

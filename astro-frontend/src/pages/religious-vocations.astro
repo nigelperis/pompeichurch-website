@@ -11,7 +11,7 @@ import { getReligiousVocations } from "~/services/religious-vocations/get-religi
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const locale = lang === Locale.KOK ? "kok" : "en";
+const locale = lang === Locale.KOK ? Locale.KOK : Locale.EN;
 const allVocations = await getReligiousVocations(locale);
 const priests = allVocations.filter((v) => v.role === ReligiousVocationRole.PRIEST);
 const nuns = allVocations.filter((v) => v.role === ReligiousVocationRole.NUN);
