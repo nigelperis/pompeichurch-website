@@ -15,11 +15,11 @@ const { nuns } = Astro.props;
   {
     nuns.map((nun) => (
       <VocationCard
-        imageUrl={nun.imageUrl || ""}
+        imageUrl={nun.imageUrl}
         imageWidth={nun.imageWidth}
         imageHeight={nun.imageHeight}
         name={nun.name}
-        ward={nun.ward || ""}
+        ward={nun.ward}
         dob={nun.dob}
         dod={nun.dod}
         congregation={nun.congregation}

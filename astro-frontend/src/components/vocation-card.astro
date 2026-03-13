@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import { cn } from "~/helpers/cn";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import { ReligiousVocationRole } from "~/enums/religious-vocation-role";
+import NetworkImage from "./ui/network-image.astro";
 import placeholderImage from "~/assets/static-assets/blank.jpeg";
 
 export interface Props {
@@ -10,7 +11,7 @@ export interface Props {
   imageWidth?: number;
   imageHeight?: number;
   name: string;
-  ward: string;
+  ward?: string;
   dob?: string;
   dod?: string;
   congregation?: string;
@@ -42,12 +43,11 @@ const {
   >
     {
       imageUrl ? (
-        <Image
+        <NetworkImage
           src={imageUrl}
-          alt={name}
+          width={imageWidth || 230}
+          height={imageHeight || 300}
           class="h-full w-full object-cover"
-          width={imageWidth ?? 230}
-          height={imageHeight ?? 300}
         />
       ) : (
         <Image
@@ -92,8 +92,8 @@ const {
         <p class="mb-1 text-slate-700 lg:text-sm">
           <span class="font-semibold">
             {role === ReligiousVocationRole.NUN
-              ? t("vocation.do")
-              : t("vocation.so")}
+              ? t("vocation.daughter-of")
+              : t("vocation.son-of")}
           </span>
           {parents}
         </p>

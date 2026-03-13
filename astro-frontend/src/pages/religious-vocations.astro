@@ -12,20 +12,12 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 const locale = lang === Locale.KOK ? Locale.KOK : Locale.EN;
-const allVocations = await getReligiousVocations(locale);
-const priests = allVocations.filter((v) => v.role === ReligiousVocationRole.PRIEST);
-const nuns = allVocations.filter((v) => v.role === ReligiousVocationRole.NUN);
+const priests = await getReligiousVocations(locale, ReligiousVocationRole.PRIEST);
+const nuns = await getReligiousVocations(locale, ReligiousVocationRole.NUN);
 
 const ogImageUrl = priests[0]?.imageUrl;
-const ogTitle =
-  lang === Locale.KOK
-    ? "ಆಮ್ಚ್ಯೆ ಫಿರ್ಗಜಿಂತ್ಲಿ ಧಾರ್ಮಿಕಾಂ"
-    : "Religious Vocations";
-
-const ogDescription =
-  lang === Locale.KOK
-    ? "ಸೊಮ್ಯಾಚ್ಯಾ ಶೆತಾಂತ್ಲೆಂ ದೇವ್ ಆಪೊವ್ಣ್ಯಾಕ್ ಪಾಳೊ ದೀವ್ನ್ ದೆವಾಚೆಂ ರಾಜ್ ವಿಸ್ತಾರುನ್ ಆಸ್ಚ್ಯಾ ಆಮ್ಚ್ಯಾ ಫಿರ್ಗಜ್ ಗಾರಾಂಚಿಂ ಝಳಕ್."
-    : "A glimpse of our parishioners who have embraced religious vocations, and are spreading God's kingdom.";
+const ogTitle = t("vocation.page-title");
+const ogDescription = t("vocation.page-description");
 ---
 
 <Layout description={ogDescription} title={ogTitle} image={ogImageUrl}>

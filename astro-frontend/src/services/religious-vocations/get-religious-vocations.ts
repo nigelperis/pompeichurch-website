@@ -1,41 +1,40 @@
 import { ROUTES } from "~/constants/strapi-endpoints";
 import { strapiFetch } from "~/helpers/strapi-fetch";
-import { ui } from "~/i18n/ui";
+import { parseDateOnly } from "~/helpers/get-funeral-details";
 import type {
   ReligiousVocationData,
   ReligiousVocation,
   ReligiousVocationItem,
 } from "~/models/religious-vocation";
 import { Locale } from "~/enums/locale";
-import { formatDate } from "~/helpers/format-date";
+import { ReligiousVocationRole } from "~/enums/religious-vocation-role";
+import { ui } from "~/i18n/ui";
 
-const WARD_I18N_KEY: Record<string, string> = {
-  Addoor: "ward.addoor-ward",
-  Church: "ward.church-ward",
-  Gurpur: "ward.gurpur-ward",
-  Monel: "ward.monel-ward",
-  "Pompei A": "ward.pompei-a-ward",
-  "Pompei B": "ward.pompei-b-ward",
-  "Kandar A": "ward.kandar-a-ward",
-  "Kandar B": "ward.kandar-b-ward",
-  Kandar: "ward.kandar-ward",
-  "Kowdoor A": "ward.kowdoor-a-ward",
-  "Kowdoor B": "ward.kowdoor-b-ward",
-};
+function toWardI18nKey(ward: string): string {
+  return `ward.${ward.toLowerCase().replace(/ /g, "-")}-ward`;
+}
 
 function getWardLabel(ward: string | undefined, locale: Locale): string {
   if (!ward) return "";
   if (locale === Locale.EN) return ward;
-  const key = WARD_I18N_KEY[ward];
-  if (!key) return ward;
+  const key = toWardI18nKey(ward);
   const value = (ui[locale] as Record<string, unknown>)[key];
   return typeof value === "string" ? value : ward;
 }
 
-function normalizeImageUrl(url: string | undefined): string | undefined {
-  if (!url) return undefined;
-  if (url.startsWith("http")) return url;
-  return `${import.meta.env.PUBLIC_STRAPI_URL}${url}`;
+function formatDate(
+  isoDate: string | null | undefined,
+): string | undefined {
+  const dateObj = parseDateOnly(isoDate);
+  if (!dateObj) return undefined;
+
+  return new Intl.DateTimeFormat("en-GB", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  })
+    .format(dateObj)
+    .replace(/\//g, "-");
 }
 
 function pickLocaleValue(
@@ -51,13 +50,16 @@ function pickLocaleValue(
  * Fetches religious vocations from the Strapi backend and transforms them for display.
  *
  * @param {Locale} locale - The locale to use for fetching localized content (Locale.EN or Locale.KOK)
+ * @param {ReligiousVocationRole} [role] - Optional role filter to fetch only priests or nuns
  * @returns {Promise<ReligiousVocationItem[]>} A promise that resolves to an array of religious vocation items
  *
  * @example
- * const vocations = await getReligiousVocations(Locale.EN);
+ * const priests = await getReligiousVocations(Locale.EN, ReligiousVocationRole.PRIEST);
+ * const nuns = await getReligiousVocations(Locale.EN, ReligiousVocationRole.NUN);
  */
 export async function getReligiousVocations(
   locale: Locale,
+  role?: ReligiousVocationRole,
 ): Promise<ReligiousVocationItem[]> {
   const allVocations: ReligiousVocation[] = [];
   let currentPage = 1;
@@ -69,6 +71,10 @@ export async function getReligiousVocations(
     queryParams.append("pagination[page]", String(currentPage));
     queryParams.append("pagination[pageSize]", "100");
     queryParams.append("sort[0]", "englishName:asc");
+
+    if (role) {
+      queryParams.append("filters[role][$eq]", role);
+    }
 
     const response = await strapiFetch<ReligiousVocationData>({
       endpoint: ROUTES.RELIGIOUS_VOCATIONS,
@@ -83,9 +89,7 @@ export async function getReligiousVocations(
     currentPage++;
   } while (currentPage <= totalPages);
 
-  const list = allVocations;
-
-  return list.map((item: ReligiousVocation) => {
+  return allVocations.map((item: ReligiousVocation) => {
     const name = pickLocaleValue(locale, item.englishName, item.konkaniName);
     const congregation =
       pickLocaleValue(
@@ -100,10 +104,6 @@ export async function getReligiousVocations(
         item.konkaniParentsName,
       ) || undefined;
 
-    const url = item.image?.url;
-    const width = item.image?.width;
-    const height = item.image?.height;
-
     return {
       name,
       role: item.role,
@@ -112,9 +112,9 @@ export async function getReligiousVocations(
       parents,
       dob: formatDate(item.dateOfBirth),
       dod: formatDate(item.dateOfDeath),
-      imageUrl: normalizeImageUrl(url),
-      imageWidth: width,
-      imageHeight: height,
+      imageUrl: item.image?.url,
+      imageWidth: item.image?.width,
+      imageHeight: item.image?.height,
     };
   });
 }
