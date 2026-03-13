@@ -12,6 +12,7 @@ async function maybeSendUpcomingEventEmail(result: any) {
   const upcomingEventImage = result.eventImage?.url
     ? new URL(result.eventImage.url, STRAPI_URL).toString()
     : null;
+  const upcomingEventFilename = result.eventImage?.name || null;
 
   const publisher = result.updatedBy || result.createdBy || null;
 
@@ -24,6 +25,7 @@ async function maybeSendUpcomingEventEmail(result: any) {
     <h2>New Upcoming Event</h2>
     <ul>
       <li><strong>Event Date:</strong> ${eventDate}</li>
+      <li><strong>Event Name:</strong> ${upcomingEventFilename}</li>
       <li><strong>View Upcoming Event:</strong> <a href="${SITE_URL}?section=upcoming-events">${SITE_URL}?section=upcoming-events</a></li>
     </ul>
     <p><strong>Published By:</strong> ${publisherName}</p>
