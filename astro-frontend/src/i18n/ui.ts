@@ -587,7 +587,6 @@ export const ui = {
     "ward.pompei-b-ward": "ಪೊಂಪೈ ಬಿ",
     "ward.kandar-a-ward": "ಕಂದಾರ್ ಎ",
     "ward.kandar-b-ward": "ಕಂದಾರ್ ಬಿ",
-    "ward.kandar-ward": "ಕಂದಾರ್",
     "ward.addoor-ward": "ಅಡ್ಡೂರ್",
     "ward.gurkar": "ಗುರ್ಕಾರ್",
     "ward.gurkarn": "ಗುರ್ಕಾರ್ನ್",
