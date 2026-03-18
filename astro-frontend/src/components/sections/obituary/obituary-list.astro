@@ -21,7 +21,7 @@ const obituaryDataFormatted = obituaries
           obituary.image.url,
           import.meta.env.PUBLIC_STRAPI_URL,
         ).toString()
-      : placeholderImage?.src  // Fallback to a single placeholder image
+      : placeholderImage?.src; // Fallback to a single placeholder image
 
     return {
       ...obituary,

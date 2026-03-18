@@ -28,7 +28,7 @@ const absoluteImage = selectedObituary.image?.formats?.medium?.url
 
 const obituaryImage = selectedObituary.image?.url
   ? new URL(selectedObituary.image.url, baseURL).toString()
-  : placeholderImage?.src
+  : placeholderImage?.src;
 
 const obituaryUrl = new URL(
   lang === Locale.EN ? `/obituary/${slug}` : `/kok/obituary/${slug}`,

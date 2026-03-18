@@ -870,6 +870,6 @@ export const ui = {
     "hall.vacate": "ನಿರ್ಗಮನ್",
     "hall.night": "ರಾತಿಂ",
     "hall.pompei-sabha-bhavan-interior": "ಪೊಂಪೈ ಸಭಾ ಭವನ್ ಭಿತರ್ಲ್ಯಾನ್",
-    "hall.pompei-sabha-bhavan-exterior": "ಪೊಂಪೈ ಸಭಾ ಭವನ್ ಭಾಯ್ಲ್ಯಾನ್"
+    "hall.pompei-sabha-bhavan-exterior": "ಪೊಂಪೈ ಸಭಾ ಭವನ್ ಭಾಯ್ಲ್ಯಾನ್",
   },
 } as const;
