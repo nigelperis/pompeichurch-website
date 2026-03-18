@@ -4,23 +4,20 @@ import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import ReligiousPriestsList from "~/components/sections/religious-priests/religious-priests-list.astro";
 import ReligiousNunsList from "~/components/sections/religious-nuns/religious-nuns-list.astro";
 import { Locale } from "~/enums/locale";
+import { ReligiousVocationRole } from "~/enums/religious-vocation-role";
 import { cn } from "~/helpers/cn";
-
-import { religiousPriests } from "~/constants/religious-vocations";
+import { getReligiousVocations } from "~/services/religious-vocations/get-religious-vocations";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const ogImageUrl = religiousPriests[0]?.imageUrl.src;
-const ogTitle =
-  lang === Locale.KOK
-    ? "ಆಮ್ಚ್ಯೆ ಫಿರ್ಗಜಿಂತ್ಲಿ ಧಾರ್ಮಿಕಾಂ"
-    : "Religious Vocations";
+const locale = lang === Locale.KOK ? Locale.KOK : Locale.EN;
+const priests = await getReligiousVocations(locale, ReligiousVocationRole.PRIEST);
+const nuns = await getReligiousVocations(locale, ReligiousVocationRole.NUN);
 
-const ogDescription =
-  lang === Locale.KOK
-    ? "ಸೊಮ್ಯಾಚ್ಯಾ ಶೆತಾಂತ್ಲೆಂ ದೇವ್ ಆಪೊವ್ಣ್ಯಾಕ್ ಪಾಳೊ ದೀವ್ನ್ ದೆವಾಚೆಂ ರಾಜ್ ವಿಸ್ತಾರುನ್ ಆಸ್ಚ್ಯಾ ಆಮ್ಚ್ಯಾ ಫಿರ್ಗಜ್ ಗಾರಾಂಚಿಂ ಝಳಕ್."
-    : "A glimpse of our parishioners who have embraced religious vocations, and are spreading God's kingdom.";
+const ogImageUrl = priests[0]?.imageUrl;
+const ogTitle = t("vocation.page-title");
+const ogDescription = t("vocation.page-description");
 ---
 
 <Layout description={ogDescription} title={ogTitle} image={ogImageUrl}>
@@ -42,11 +39,19 @@ const ogDescription =
       <h2 class="mt-6 text-3xl font-semibold italic text-red-600 lg:text-3xl">
         {t("vocation.subtitle1")}
       </h2>
-      <ReligiousPriestsList />
+      {priests.length > 0 ? (
+        <ReligiousPriestsList priests={priests} />
+      ) : (
+        <p class="py-6 text-lg text-slate-500 italic">{t("vocation.no-priests")}</p>
+      )}
       <h2 class="mt-6 text-3xl font-semibold italic text-red-600 lg:text-3xl">
         {t("vocation.subtitle2")}
       </h2>
-      <ReligiousNunsList />
+      {nuns.length > 0 ? (
+        <ReligiousNunsList nuns={nuns} />
+      ) : (
+        <p class="py-6 text-lg text-slate-500 italic">{t("vocation.no-nuns")}</p>
+      )}
     </section>
   </main>
 </Layout>
