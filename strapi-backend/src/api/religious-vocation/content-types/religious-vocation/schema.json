@@ -1,0 +1,68 @@
+{
+  "kind": "collectionType",
+  "collectionName": "religious_vocations",
+  "info": {
+    "singularName": "religious-vocation",
+    "pluralName": "religious-vocations",
+    "displayName": "Religious Vocation"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "englishName": {
+      "type": "string",
+      "required": true
+    },
+    "konkaniName": {
+      "type": "string",
+      "required": true
+    },
+    "role": {
+      "type": "enumeration",
+      "required": false,
+      "enum": ["Priest", "Nun"]
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "ward": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "Addoor",
+        "Church",
+        "Gurpur",
+        "Kandar",
+        "Kandar A",
+        "Kandar B",
+        "Kowdoor A",
+        "Kowdoor B",
+        "Monel",
+        "Pompei A",
+        "Pompei B"
+      ]
+    },
+    "englishCongregationName": {
+      "type": "string"
+    },
+    "konkaniCongregationName": {
+      "type": "string"
+    },
+    "englishParentsName": {
+      "type": "string"
+    },
+    "konkaniParentsName": {
+      "type": "string"
+    },
+    "dateOfBirth": {
+      "type": "date"
+    },
+    "dateOfDeath": {
+      "type": "date"
+    }
+  }
+}
