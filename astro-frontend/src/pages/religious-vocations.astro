@@ -12,8 +12,10 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 const locale = lang === Locale.KOK ? Locale.KOK : Locale.EN;
-const priests = await getReligiousVocations(locale, ReligiousVocationRole.PRIEST);
-const nuns = await getReligiousVocations(locale, ReligiousVocationRole.NUN);
+const [priests, nuns] = await Promise.all([
+  getReligiousVocations(locale, ReligiousVocationRole.PRIEST),
+  getReligiousVocations(locale, ReligiousVocationRole.NUN),
+]);
 const ogImageUrl = priests[0]?.imageUrl;
 const ogTitle = t("vocation.page-title");
 const ogDescription = t("vocation.page-description");
