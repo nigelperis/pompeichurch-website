@@ -19,10 +19,16 @@ export class Message {
   public static readonly COMMISSIONS_NOT_FOUND =
     "No Pastoral Commissions Found!";
   public static readonly TREASURERS_NOT_FOUND = "No Treasurers Found!";
+  public static readonly TREASURERS_NOT_FOUND_KOK = "ತ್ರಿದೆರಾಂಚಿ ಮಾಹೆತ್ ನಾ!";
   public static readonly ADMINISTRATORS_NOT_FOUND = "No Administrators Found!";
+  public static readonly ADMINISTRATORS_NOT_FOUND_KOK =
+    "ಅಡಳ್ತೆದಾರಾಂಚಿ ಮಾಹೆತ್ ನಾ!";
   public static readonly VICE_PRESIDENTS_NOT_FOUND =
     "No Vice Presidents Found!";
+  public static readonly VICE_PRESIDENTS_NOT_FOUND_KOK =
+    "ಉಪಾಧ್ಯಕ್ಷಾಂಚಿ ಮಾಹೆತ್ ನಾ!";
   public static readonly SECRETARIES_NOT_FOUND = "No Secretaries Found!";
+  public static readonly SECRETARIES_NOT_FOUND_KOK = "ಕಾರ್ಯದರ್ಶಿಂಚಿ ಮಾಹೆತ್ ನಾ!";
   public static readonly ACHIEVEMENTS_NOT_FOUND =
     "No Parishioners Achievements Found!";
   public static readonly ACHIEVEMENTS_NOT_FOUND_KOK =

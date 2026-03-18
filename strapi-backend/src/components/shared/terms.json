@@ -10,12 +10,11 @@
       "required": true
     },
     "startDate": {
-      "type": "string",
+      "type": "date",
       "required": true
     },
     "endDate": {
-      "type": "string",
-      "required": true
+      "type": "date"
     }
   },
   "config": {}

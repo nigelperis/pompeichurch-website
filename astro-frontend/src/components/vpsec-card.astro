@@ -5,7 +5,8 @@ import { cn } from "~/helpers/cn";
 import { getLangFromUrl } from "~/i18n/utils";
 import NetworkImage from "~/components/ui/network-image.astro";
 import placeholderImage from "~/assets/static-assets/blank.jpeg";
-import { TermNumberLabel, TermNumber } from "~/enums/term-number";
+import { TermNumberLabel } from "~/enums/term-number";
+import { renderEndDate, formatDate } from "~/helpers/term-utils";
 
 const lang = getLangFromUrl(Astro.url);
 
@@ -14,7 +15,7 @@ interface Props {
   imageUrl?: string;
   subtitle?: string;
   class?: string;
-  terms?: { termNo: number; startDate: string; endDate: string }[]
+  terms?: { termNo: number; startDate: string; endDate: string | null }[]
 }
 
 const { name, class: className, imageUrl, terms } = Astro.props;
@@ -67,7 +68,7 @@ const { name, class: className, imageUrl, terms } = Astro.props;
           <p class="text-black">
             <b>{TermNumberLabel[term.termNo]}</b> :
             <span class="font-semibold text-red-400">
-              {term.startDate} : {term.endDate}
+              {formatDate(term.startDate)} : {renderEndDate(term.endDate, lang)}
             </span>
           </p>
         ))

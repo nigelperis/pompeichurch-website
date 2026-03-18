@@ -1,13 +1,13 @@
 ---
 import { Locale } from "~/enums/locale";
-import { getLangFromUrl, useTranslations } from "~/i18n/utils";
+import { getLangFromUrl } from "~/i18n/utils";
 import { ExOfficeBearersRole } from "~/enums/ex-office-bearers-role";
 import VpsecCard from "~/components/vpsec-card.astro";
 import { listExVicePresidentsAndSecretaries } from "~/services/list-ex-vice-presidents-and-secretaries-data";
 import { Message } from "~/constants/message.ts";
 
 const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
+
 const administrators = await listExVicePresidentsAndSecretaries({
   page: 1,
   pageSize: 100,
@@ -34,8 +34,8 @@ const administrators = await listExVicePresidentsAndSecretaries({
         />
       ))
     ) : (
-      <p class="py-8 text-center text-3xl font-semibold">
-        {Message.ADMINISTRATORS_NOT_FOUND}
+      <p class="col-span-full py-8 text-center text-3xl font-semibold">
+        {lang === Locale.KOK ? Message.ADMINISTRATORS_NOT_FOUND_KOK : Message.ADMINISTRATORS_NOT_FOUND}
       </p>
     )
   }

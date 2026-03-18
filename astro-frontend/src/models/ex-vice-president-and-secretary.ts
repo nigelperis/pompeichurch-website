@@ -43,7 +43,7 @@ interface Image {
 interface Terms {
   termNo: number;
   startDate: string;
-  endDate: string;
+  endDate: string | null;
 }
 
 interface ExVicePresidentsAndSecretaries {

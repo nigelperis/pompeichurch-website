@@ -81,8 +81,8 @@ export interface SharedTerms extends Struct.ComponentSchema {
     displayName: 'terms';
   };
   attributes: {
-    endDate: Schema.Attribute.String & Schema.Attribute.Required;
-    startDate: Schema.Attribute.String & Schema.Attribute.Required;
+    endDate: Schema.Attribute.Date;
+    startDate: Schema.Attribute.Date & Schema.Attribute.Required;
     termNo: Schema.Attribute.Integer & Schema.Attribute.Required;
   };
 }
