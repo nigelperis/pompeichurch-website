@@ -17,11 +17,11 @@ const { achievementsList } = Astro.props as {
       <AchievementCard
         name={lang === Locale.KOK ? item.konkaniName : item.englishName}
         imageUrl={
-          item.achieverImage?.url
-            && new URL(
-                item.achieverImage?.url,
-                import.meta.env.PUBLIC_STRAPI_URL,
-              ).toString()
+          item.achieverImage?.url &&
+          new URL(
+            item.achieverImage?.url,
+            import.meta.env.PUBLIC_STRAPI_URL,
+          ).toString()
         }
         imageWidth={item.achieverImage?.width || 600}
         imageHeight={item.achieverImage?.height || 400}

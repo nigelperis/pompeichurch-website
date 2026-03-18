@@ -49,11 +49,7 @@ const emptyStateMessage =
   lang === Locale.KOK ? Message.EVENTS_NOT_FOUND_KOK : Message.EVENTS_NOT_FOUND;
 ---
 
-<Layout
-  title={`${pageTitle}`}
-  image={ogImageUrl}
-  description={ogDescription}
->
+<Layout title={`${pageTitle}`} image={ogImageUrl} description={ogDescription}>
   <main class="mx-auto max-w-5xl overflow-hidden bg-white">
     <section id="events" class="flex flex-col p-6 lg:p-8">
       <PushNotification />
