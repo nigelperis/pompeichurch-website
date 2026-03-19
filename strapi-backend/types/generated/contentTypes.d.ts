@@ -1339,6 +1339,60 @@ export interface ApiPushNotificationPushNotification
   };
 }
 
+export interface ApiReligiousVocationReligiousVocation
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'religious_vocations';
+  info: {
+    displayName: 'Religious Vocation';
+    pluralName: 'religious-vocations';
+    singularName: 'religious-vocation';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    dateOfBirth: Schema.Attribute.Date;
+    dateOfDeath: Schema.Attribute.Date;
+    englishCongregationName: Schema.Attribute.String;
+    englishName: Schema.Attribute.String & Schema.Attribute.Required;
+    englishParentsName: Schema.Attribute.String;
+    image: Schema.Attribute.Media<'images'>;
+    konkaniCongregationName: Schema.Attribute.String;
+    konkaniName: Schema.Attribute.String & Schema.Attribute.Required;
+    konkaniParentsName: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::religious-vocation.religious-vocation'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    role: Schema.Attribute.Enumeration<['Priest', 'Nun']>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    ward: Schema.Attribute.Enumeration<
+      [
+        'Addoor',
+        'Church',
+        'Gurpur',
+        'Kandar',
+        'Kandar A',
+        'Kandar B',
+        'Kowdoor A',
+        'Kowdoor B',
+        'Monel',
+        'Pompei A',
+        'Pompei B',
+      ]
+    > &
+      Schema.Attribute.Required;
+  };
+}
+
 export interface ApiUpcomingEventUpcomingEvent
   extends Struct.CollectionTypeSchema {
   collectionName: 'upcoming_events';
@@ -1982,6 +2036,7 @@ declare module '@strapi/strapi' {
       'api::popes-intention.popes-intention': ApiPopesIntentionPopesIntention;
       'api::prayer-for-the-year.prayer-for-the-year': ApiPrayerForTheYearPrayerForTheYear;
       'api::push-notification.push-notification': ApiPushNotificationPushNotification;
+      'api::religious-vocation.religious-vocation': ApiReligiousVocationReligiousVocation;
       'api::upcoming-event.upcoming-event': ApiUpcomingEventUpcomingEvent;
       'api::ward.ward': ApiWardWard;
       'plugin::content-releases.release': PluginContentReleasesRelease;
