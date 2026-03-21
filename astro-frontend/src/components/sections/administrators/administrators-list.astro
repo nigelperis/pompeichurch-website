@@ -1,23 +1,42 @@
 ---
-import { administrators } from "~/constants/ex-vp-secretaries";
-import { getLangFromUrl, useTranslations } from "~/i18n/utils";
-
+import { Locale } from "~/enums/locale";
+import { getLangFromUrl } from "~/i18n/utils";
+import { ExOfficeBearersRole } from "~/enums/ex-office-bearers-role";
 import VpsecCard from "~/components/vpsec-card.astro";
+import { listExVicePresidentsAndSecretaries } from "~/services/list-ex-vice-presidents-and-secretaries-data";
+import { Message } from "~/constants/message.ts";
 
 const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
+
+const administrators = await listExVicePresidentsAndSecretaries({
+  page: 1,
+  pageSize: 100,
+  filters: { role: {$eq: ExOfficeBearersRole.ADMINISTRATOR} },
+})
 ---
 
 <div
   class="grid-cols-1 mx-auto grid w-full gap-x-20 gap-y-10 pt-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
 >
   {
-    administrators.map((administrator) => (
-      <VpsecCard
-        class="m-auto"
-        imageUrl={administrator.imageUrl}
-        name={t(`administrator.${administrator.name}`)}
-      />
-    ))
+    administrators.length > 0 ? (
+      administrators.map((administrator) => (
+        <VpsecCard
+          class="m-auto"
+          imageUrl={
+            administrator.image?.url &&
+            new URL(
+                administrator.image.url,
+                import.meta.env.PUBLIC_STRAPI_URL
+            ).toString()
+          }
+          name={lang === Locale.KOK ? administrator.nameKok : administrator.nameEn}
+        />
+      ))
+    ) : (
+      <p class="col-span-full py-8 text-center text-3xl font-semibold">
+        {lang === Locale.KOK ? Message.ADMINISTRATORS_NOT_FOUND_KOK : Message.ADMINISTRATORS_NOT_FOUND}
+      </p>
+    )
   }
 </div>
