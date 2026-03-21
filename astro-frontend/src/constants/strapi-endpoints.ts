@@ -22,4 +22,5 @@ export const ROUTES = {
   RELIGIOUS_VOCATIONS: "/religious-vocations",
   PUSH_NOTIFICATIONS: "/push-notifications",
   PUSH_NOTIFICATIONS_CHECK: "/push-notifications/check",
+  EX_VICE_PRESIDENTS_AND_SECRETARIES: "/ex-vice-presidents-and-secretaries",
 } as const;

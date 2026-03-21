@@ -591,6 +591,42 @@ export interface ApiEventEvent extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiExVicePresidentAndSecretaryExVicePresidentAndSecretary
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'ex_vice_presidents_and_secretaries';
+  info: {
+    displayName: 'Ex Vice-Presidents and Secretaries';
+    pluralName: 'ex-vice-presidents-and-secretaries';
+    singularName: 'ex-vice-president-and-secretary';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    image: Schema.Attribute.Media<'images'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::ex-vice-president-and-secretary.ex-vice-president-and-secretary'
+    > &
+      Schema.Attribute.Private;
+    nameEn: Schema.Attribute.String & Schema.Attribute.Required;
+    nameKok: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    role: Schema.Attribute.Enumeration<
+      ['Treasurer', 'Administrator', 'Vice President', 'Secretary']
+    > &
+      Schema.Attribute.Required;
+    terms: Schema.Attribute.Component<'shared.terms', true>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiGalleryImageGalleryImage
   extends Struct.CollectionTypeSchema {
   collectionName: 'gallery_images';
@@ -1984,6 +2020,7 @@ declare module '@strapi/strapi' {
       'api::association.association': ApiAssociationAssociation;
       'api::contact.contact': ApiContactContact;
       'api::event.event': ApiEventEvent;
+      'api::ex-vice-president-and-secretary.ex-vice-president-and-secretary': ApiExVicePresidentAndSecretaryExVicePresidentAndSecretary;
       'api::gallery-image.gallery-image': ApiGalleryImageGalleryImage;
       'api::landing-page-carousel.landing-page-carousel': ApiLandingPageCarouselLandingPageCarousel;
       'api::obituary.obituary': ApiObituaryObituary;
