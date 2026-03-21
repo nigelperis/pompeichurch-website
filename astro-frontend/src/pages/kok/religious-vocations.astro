@@ -12,10 +12,16 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 const locale = lang === Locale.KOK ? Locale.KOK : Locale.EN;
-const priests = await getReligiousVocations(locale, ReligiousVocationRole.PRIEST);
-const nuns = await getReligiousVocations(locale, ReligiousVocationRole.NUN);
+const baseURL = import.meta.env.PUBLIC_STRAPI_URL;
+const [priests, nuns] = await Promise.all([
+  getReligiousVocations(locale, ReligiousVocationRole.PRIEST),
+  getReligiousVocations(locale, ReligiousVocationRole.NUN),
+]);
 
-const ogImageUrl = priests[0]?.imageUrl;
+const rawImageUrl = priests[0]?.imageUrl;
+const ogImageUrl = rawImageUrl
+  ? new URL(rawImageUrl, baseURL).toString()
+  : undefined;
 const ogTitle = t("vocation.page-title");
 const ogDescription = t("vocation.page-description");
 ---
@@ -39,19 +45,27 @@ const ogDescription = t("vocation.page-description");
       <h2 class="mt-6 text-3xl font-semibold italic text-red-600 lg:text-3xl">
         {t("vocation.subtitle1")}
       </h2>
-      {priests.length > 0 ? (
-        <ReligiousPriestsList priests={priests} />
-      ) : (
-        <p class="py-6 text-lg text-slate-500 italic">{t("vocation.no-priests")}</p>
-      )}
+      {
+        priests.length > 0 ? (
+          <ReligiousPriestsList priests={priests} />
+        ) : (
+          <p class="py-6 text-lg text-slate-500 italic">
+            {t("vocation.no-priests")}
+          </p>
+        )
+      }
       <h2 class="mt-6 text-3xl font-semibold italic text-red-600 lg:text-3xl">
         {t("vocation.subtitle2")}
       </h2>
-      {nuns.length > 0 ? (
-        <ReligiousNunsList nuns={nuns} />
-      ) : (
-        <p class="py-6 text-lg text-slate-500 italic">{t("vocation.no-nuns")}</p>
-      )}
+      {
+        nuns.length > 0 ? (
+          <ReligiousNunsList nuns={nuns} />
+        ) : (
+          <p class="py-6 text-lg text-slate-500 italic">
+            {t("vocation.no-nuns")}
+          </p>
+        )
+      }
     </section>
   </main>
 </Layout>
