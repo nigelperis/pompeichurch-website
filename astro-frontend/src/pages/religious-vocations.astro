@@ -7,7 +7,7 @@ import { Locale } from "~/enums/locale";
 import { ReligiousVocationRole } from "~/enums/religious-vocation-role";
 import { cn } from "~/helpers/cn";
 import { getReligiousVocations } from "~/services/religious-vocations/get-religious-vocations";
-
+import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
@@ -20,7 +20,11 @@ const [priests, nuns] = await Promise.all([
 const rawImageUrl = priests[0]?.imageUrl;
 const ogImageUrl = rawImageUrl
   ? new URL(rawImageUrl, baseURL).toString()
-  : undefined;
+  : getPlaceholderImage({
+      width: 800,
+      height: 1200,
+      text: "Religious Vocations",
+    });
 const ogTitle = t("vocation.page-title");
 const ogDescription = t("vocation.page-description");
 ---

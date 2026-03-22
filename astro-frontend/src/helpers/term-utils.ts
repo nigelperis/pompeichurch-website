@@ -7,7 +7,7 @@ export function formatDate(date: string): string {
 
 export function renderEndDate(endDate: string | null, lang: string): string {
   if (!endDate) {
-    return lang === Locale.KOK ? "ಪ್ರಸ್ತುತ" : "Present";
+    return lang === Locale.KOK ? "ಪ್ರಸ್ತುತ್" : "Present";
   }
   return formatDate(endDate);
 }
