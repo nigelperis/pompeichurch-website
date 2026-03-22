@@ -22,9 +22,7 @@ function getWardLabel(ward: string | undefined, locale: Locale): string {
   return typeof value === "string" ? value : ward;
 }
 
-function formatDate(
-  isoDate: string | null | undefined,
-): string | undefined {
+function formatDate(isoDate: string | null | undefined): string | undefined {
   const dateObj = parseDateOnly(isoDate);
   if (!dateObj) return undefined;
 
