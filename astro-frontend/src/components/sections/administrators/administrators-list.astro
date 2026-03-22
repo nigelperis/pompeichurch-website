@@ -11,8 +11,8 @@ const lang = getLangFromUrl(Astro.url);
 const administrators = await listExVicePresidentsAndSecretaries({
   page: 1,
   pageSize: 100,
-  filters: { role: {$eq: ExOfficeBearersRole.ADMINISTRATOR} },
-})
+  filters: { role: { $eq: ExOfficeBearersRole.ADMINISTRATOR } },
+});
 ---
 
 <div
@@ -26,16 +26,20 @@ const administrators = await listExVicePresidentsAndSecretaries({
           imageUrl={
             administrator.image?.url &&
             new URL(
-                administrator.image.url,
-                import.meta.env.PUBLIC_STRAPI_URL
+              administrator.image.url,
+              import.meta.env.PUBLIC_STRAPI_URL,
             ).toString()
           }
-          name={lang === Locale.KOK ? administrator.nameKok : administrator.nameEn}
+          name={
+            lang === Locale.KOK ? administrator.nameKok : administrator.nameEn
+          }
         />
       ))
     ) : (
       <p class="col-span-full py-8 text-center text-3xl font-semibold">
-        {lang === Locale.KOK ? Message.ADMINISTRATORS_NOT_FOUND_KOK : Message.ADMINISTRATORS_NOT_FOUND}
+        {lang === Locale.KOK
+          ? Message.ADMINISTRATORS_NOT_FOUND_KOK
+          : Message.ADMINISTRATORS_NOT_FOUND}
       </p>
     )
   }

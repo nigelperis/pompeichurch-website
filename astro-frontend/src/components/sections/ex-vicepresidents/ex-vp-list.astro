@@ -25,10 +25,7 @@ const vicePresidents = await listExVicePresidentsAndSecretaries({
           class="m-auto"
           imageUrl={
             vp.image?.url &&
-            new URL(
-              vp.image.url,
-              import.meta.env.PUBLIC_STRAPI_URL
-            ).toString()
+            new URL(vp.image.url, import.meta.env.PUBLIC_STRAPI_URL).toString()
           }
           name={lang === Locale.KOK ? vp.nameKok : vp.nameEn}
           terms={vp.terms}
@@ -36,7 +33,9 @@ const vicePresidents = await listExVicePresidentsAndSecretaries({
       ))
     ) : (
       <p class="col-span-full py-8 text-center text-3xl font-semibold">
-        {lang === Locale.KOK ? Message.VICE_PRESIDENTS_NOT_FOUND_KOK : Message.VICE_PRESIDENTS_NOT_FOUND}
+        {lang === Locale.KOK
+          ? Message.VICE_PRESIDENTS_NOT_FOUND_KOK
+          : Message.VICE_PRESIDENTS_NOT_FOUND}
       </p>
     )
   }

@@ -11,7 +11,7 @@ const lang = getLangFromUrl(Astro.url);
 const treasurers = await listExVicePresidentsAndSecretaries({
   page: 1,
   pageSize: 100,
-  filters: { role: {$eq: ExOfficeBearersRole.TREASURER} },
+  filters: { role: { $eq: ExOfficeBearersRole.TREASURER } },
 });
 ---
 
@@ -27,7 +27,7 @@ const treasurers = await listExVicePresidentsAndSecretaries({
             treasurer.image?.url &&
             new URL(
               treasurer.image.url,
-              import.meta.env.PUBLIC_STRAPI_URL
+              import.meta.env.PUBLIC_STRAPI_URL,
             ).toString()
           }
           name={lang === Locale.KOK ? treasurer.nameKok : treasurer.nameEn}
@@ -35,7 +35,9 @@ const treasurers = await listExVicePresidentsAndSecretaries({
       ))
     ) : (
       <p class="col-span-full py-8 text-center text-3xl font-semibold">
-        {lang === Locale.KOK ? Message.TREASURERS_NOT_FOUND_KOK : Message.TREASURERS_NOT_FOUND}
+        {lang === Locale.KOK
+          ? Message.TREASURERS_NOT_FOUND_KOK
+          : Message.TREASURERS_NOT_FOUND}
       </p>
     )
   }

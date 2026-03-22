@@ -88,15 +88,6 @@ const basePath = `${Astro.url.pathname}?`;
           />
         </div>
       </div>
-
-      <p
-        class={cn("py-6 lg:py-8 text-2xl font-bold italic text-red-600", {
-          "font-semibold": lang === Locale.KOK,
-        })}
-      >
-        {t("obituary.subtitle")}
-      </p>
-
       {
         paginatedObituaries.length > 0 ? (
           <>
