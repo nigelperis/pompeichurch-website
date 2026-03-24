@@ -124,15 +124,6 @@ const ogImageUrl = firstObituary?.image?.url
           </div>
         </div>
       </div>
-
-      <p
-        class={cn("mb-4 text-2xl font-bold italic text-red-600", {
-          "font-semibold": lang === Locale.KOK,
-        })}
-      >
-        {t("obituary.subtitle")}
-      </p>
-
       {
         paginatedObituaries.length > 0 ? (
           <>
