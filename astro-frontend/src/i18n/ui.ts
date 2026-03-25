@@ -129,7 +129,6 @@ export const ui = {
     "hall.title": "Pompei Sabha Bhavan",
     "centenaryhall.title": "Centenary Memorial Hall",
     "church.patron": "Vailankani Mai",
-    "obituary.subtitle": "Tribute of love ",
     "parishioners-achievements.subtitle":
       "Celebrating the excellence of our parishioners and giving glory to God through their gifts, efforts, and achievements.",
     "achievement.congratulations": "Congratulations",
@@ -357,7 +356,6 @@ export const ui = {
     "hall.title": "ಪೊಂಪೈ ಸಭಾ ಭವನ್",
     "centenaryhall.title": "ಶತಾಬ್ದಿ ಸ್ಮಾರಕ್ ಭವನ್",
     "church.patron": "ವೈಲಂಕಣಿ ಮಾಯ್",
-    "obituary.subtitle": "ಮೊಗಾಚೊ ಉಡಾಸ್",
     "parishioners-achievements.subtitle":
       "ಫಿರ್ಗಜ್‌ಗಾರಾಂನಿ ದೆವಾ ಥಾವ್ನ್ ಲಾಬ್ಲೆಲ್ಯಾ ದೆಣ್ಯಾವರ್ವಿಂ ಆನಿ ಪರಿಶ್ರಮಾದ್ವಾರಿಂ ಕೆಲ್ಲ್ಯಾ ಸಾಧನಾಕ್ ಉಲ್ಲಾಸ್ ಪಾಟವ್ನ್ ಬರೆಂ ಮಾಗ್ಚೆಂ ಪಾನ್.",
     "achievement.congratulations": "ಅಭಿನಂದನ್",
