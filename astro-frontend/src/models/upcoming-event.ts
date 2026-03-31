@@ -41,11 +41,11 @@ interface Media {
 export interface UpcomingEvent {
   id: number;
   documentId: string;
-  eventDate?: string;
+  eventDate: string;
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
-  eventImage?: Media;
+  eventImage: Media;
 }
 
 interface Pagination {

@@ -45,9 +45,9 @@ export interface PompeichemFalkem {
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
-  magazineTitle?: string | null;
-  specialEditionTitle?: string | null;
-  specialEditionTitleKok?: string | null;
+  magazineTitle: string | null;
+  specialEditionTitle: string | null;
+  specialEditionTitleKok: string | null;
   coverImage: CoverImage;
   pdfFile: {
     id: number;

@@ -16,12 +16,12 @@ interface Props {
   imageUrl: string;
   imageWidth: number;
   imageHeight: number;
-  shortDescriptionEn?: string;
-  shortDescriptionKok?: string;
-  facebookLink?: string;
+  shortDescriptionEn: string | null;
+  shortDescriptionKok: string | null;
+  facebookLink: string | null;
   slug: string;
   class?: string;
-  instagramLink?: string;
+  instagramLink: string | null;
 }
 
 const {

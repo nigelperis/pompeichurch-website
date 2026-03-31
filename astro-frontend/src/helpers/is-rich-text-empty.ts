@@ -1,6 +1,6 @@
 import type { BlocksContent } from "@strapi/blocks-react-renderer";
 
-export const isPrayerEmpty = (prayer: BlocksContent | undefined) => {
+export const isPrayerEmpty = (prayer: BlocksContent | undefined | null) => {
   if (!prayer || prayer.length === 0) {
     return true;
   }

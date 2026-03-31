@@ -11,12 +11,12 @@ export interface Props {
   imageWidth?: number;
   imageHeight?: number;
   name: string;
-  ward?: string;
+  ward: string;
   dob?: string;
   dod?: string;
   congregation?: string;
   parents?: string;
-  role?: ReligiousVocationRole;
+  role: ReligiousVocationRole | null;
 }
 
 const lang = getLangFromUrl(Astro.url);

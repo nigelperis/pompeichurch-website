@@ -15,7 +15,7 @@ interface Media {
   id: number;
   documentId: string;
   name: string;
-  alternativeText?: string | null;
+  alternativeText: string | null;
   caption?: string | null;
   width?: number;
   height?: number;
@@ -25,7 +25,7 @@ interface Media {
   mime: string;
   size: number;
   url: string;
-  previewUrl?: string | null;
+  previewUrl: string | null;
   provider: string;
   provider_metadata?: any;
   createdAt: string;

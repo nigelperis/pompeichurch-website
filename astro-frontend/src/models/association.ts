@@ -60,7 +60,7 @@ export interface Association {
   documentId: string;
   name: string;
   slug: string;
-  shortDescription?: string;
+  shortDescription: string | null;
   description?: BlocksContent;
   groupImage?: MediaItem | null;
   logo?: MediaItem | null;

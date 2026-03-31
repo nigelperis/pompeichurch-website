@@ -51,11 +51,11 @@ interface ExVicePresidentsAndSecretaries {
   documentId: string;
   nameEn: string;
   nameKok: string;
-  terms?: Terms[];
+  terms: Terms[] | [];
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
-  image?: Image;
+  image: Image | null;
   role: ExOfficeBearersRole;
 }
 

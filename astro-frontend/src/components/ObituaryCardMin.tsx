@@ -13,20 +13,20 @@ import { FuneralInfoButton } from "./ui/FuneralInfoButton";
 
 interface Props {
   id?: string | number;
-  name?: string;
-  age?: string | number;
-  dateOfDeath?: string;
+  name: string | null;
+  age?: string | number | null;
+  dateOfDeath: string | null;
   imageUrl: string;
   imageWidth?: number;
   imageHeight?: number;
   slug?: string;
   blurred?: boolean;
-  homeTime?: string;
-  massTime?: string;
-  funeralDate: string;
+  homeTime: string | null;
+  massTime: string | null;
+  funeralDate: string | null;
   startsFromChurch?: boolean;
-  funeralDetailsUpdatedOn?: Date | string;
-  youtubeLink?: string;
+  funeralDetailsUpdatedOn: Date | string | null;
+  youtubeLink: string | null;
   className?: string;
   autoFlip?: boolean;
 }
@@ -161,7 +161,7 @@ export default function ObituaryCardMin({
               <div className="flex flex-1 flex-col justify-start space-y-1 p-3">
                 <div className="space-y-1">
                   <p className="text-lg font-bold leading-snug text-slate-900 flex items-center">
-                    <span className="truncate max-w-47.5" title={name}>
+                    <span className="truncate max-w-47.5" title={name || ""}>
                       {name}
                     </span>
                     {age ? (
@@ -203,7 +203,7 @@ export default function ObituaryCardMin({
           <div className="flex flex-1 flex-col justify-start space-y-1 p-3">
             <div className="space-y-1">
               <p className="text-lg font-bold leading-snug text-slate-900 flex items-center">
-                <span className="truncate max-w-47.5" title={name}>
+                <span className="truncate max-w-47.5" title={name || ""}>
                   {name}
                 </span>
                 {age ? <span className="shrink-0">&nbsp;({age})</span> : null}
@@ -294,7 +294,7 @@ export default function ObituaryCardMin({
           </div>
           <div className="flex flex-1 flex-col justify-start space-y-1 p-3">
             <p className="text-lg font-bold leading-snug text-slate-900 flex items-center">
-              <span className="truncate max-w-47.5" title={name}>
+              <span className="truncate max-w-47.5" title={name || ""}>
                 {name}
               </span>
               {age ? <span className="shrink-0">&nbsp;({age})</span> : null}

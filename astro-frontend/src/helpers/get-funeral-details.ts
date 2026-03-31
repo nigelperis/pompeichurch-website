@@ -30,9 +30,9 @@ function formatTimeTo12Hour(time: string) {
 
 export function getFuneralDetails(
   lang: Locale,
-  funeralDate?: string,
-  homeTime?: string,
-  massTime?: string,
+  funeralDate: string | null,
+  homeTime: string | null,
+  massTime: string | null,
   startsFromChurch?: boolean,
 ) {
   const dateObj = funeralDate ? parseDateOnly(funeralDate) : null;

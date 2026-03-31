@@ -25,7 +25,7 @@ const englishPronouns = {
   },
 };
 
-function getGenderFromRelation(relationType?: RelationType): Gender {
+function getGenderFromRelation(relationType: RelationType | null): Gender {
   switch (relationType) {
     case RelationType.HUSBAND:
     case RelationType.SON:
@@ -42,7 +42,7 @@ function getGenderFromRelation(relationType?: RelationType): Gender {
 
 export function getFuneralPrayer(
   lang: Locale,
-  relationType?: RelationType,
+  relationType: RelationType | null,
 ): string {
   const gender = getGenderFromRelation(relationType);
 
