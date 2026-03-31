@@ -60,15 +60,6 @@ const pageTitle = selectedObituary
       >
         {t("nav.obituary")}
       </h1>
-
-      <p
-        class={cn("py-6 lg:py-8 text-2xl font-bold italic text-red-600", {
-          "font-semibold": lang === Locale.KOK,
-        })}
-      >
-        {t("obituary.subtitle")}
-      </p>
-
       <ObituaryCard
         client:load
         locale={lang}
