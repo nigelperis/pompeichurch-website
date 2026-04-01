@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "ex_vice_presidents_and_secretaries",
+  "info": {
+    "singularName": "ex-vice-president-and-secretary",
+    "pluralName": "ex-vice-presidents-and-secretaries",
+    "displayName": "Ex Vice-Presidents and Secretaries"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "nameEn": {
+      "type": "string",
+      "required": true
+    },
+    "nameKok": {
+      "type": "string",
+      "required": true
+    },
+    "role": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "Treasurer",
+        "Administrator",
+        "Vice President",
+        "Secretary"
+      ]
+    },
+    "terms": {
+      "type": "component",
+      "component": "shared.terms",
+      "repeatable": true
+    }
+  }
+}

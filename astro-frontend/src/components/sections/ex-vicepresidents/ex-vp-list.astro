@@ -1,26 +1,42 @@
 ---
-import { vicePresidents } from "~/constants/ex-vp-secretaries";
-import { getLangFromUrl, useTranslations } from "~/i18n/utils";
-
+import { Locale } from "~/enums/locale";
+import { ExOfficeBearersRole } from "~/enums/ex-office-bearers-role";
+import { getLangFromUrl } from "~/i18n/utils";
+import { listExVicePresidentsAndSecretaries } from "~/services/list-ex-vice-presidents-and-secretaries-data";
 import VpsecCard from "~/components/vpsec-card.astro";
+import { Message } from "~/constants/message.ts";
 
 const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
+
+const vicePresidents = await listExVicePresidentsAndSecretaries({
+  page: 1,
+  pageSize: 100,
+  filters: { role: { $eq: ExOfficeBearersRole.VICE_PRESIDENT } },
+});
 ---
 
 <div
   class="grid-cols-1 mx-auto grid w-full gap-x-20 gap-y-10 pt-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
 >
   {
-    vicePresidents.map((vp) => (
-      <VpsecCard
-        class="m-auto"
-        imageUrl={vp.imageUrl}
-        name={t(`vp.${vp.name}`)}
-        term={vp.term}
-        term1={vp.term1}
-        term2={vp.term2}
-      />
-    ))
+    vicePresidents.length > 0 ? (
+      vicePresidents.map((vp) => (
+        <VpsecCard
+          class="m-auto"
+          imageUrl={
+            vp.image?.url &&
+            new URL(vp.image.url, import.meta.env.PUBLIC_STRAPI_URL).toString()
+          }
+          name={lang === Locale.KOK ? vp.nameKok : vp.nameEn}
+          terms={vp.terms}
+        />
+      ))
+    ) : (
+      <p class="col-span-full py-8 text-center text-3xl font-semibold">
+        {lang === Locale.KOK
+          ? Message.VICE_PRESIDENTS_NOT_FOUND_KOK
+          : Message.VICE_PRESIDENTS_NOT_FOUND}
+      </p>
+    )
   }
 </div>

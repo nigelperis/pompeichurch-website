@@ -591,6 +591,42 @@ export interface ApiEventEvent extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiExVicePresidentAndSecretaryExVicePresidentAndSecretary
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'ex_vice_presidents_and_secretaries';
+  info: {
+    displayName: 'Ex Vice-Presidents and Secretaries';
+    pluralName: 'ex-vice-presidents-and-secretaries';
+    singularName: 'ex-vice-president-and-secretary';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    image: Schema.Attribute.Media<'images'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::ex-vice-president-and-secretary.ex-vice-president-and-secretary'
+    > &
+      Schema.Attribute.Private;
+    nameEn: Schema.Attribute.String & Schema.Attribute.Required;
+    nameKok: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    role: Schema.Attribute.Enumeration<
+      ['Treasurer', 'Administrator', 'Vice President', 'Secretary']
+    > &
+      Schema.Attribute.Required;
+    terms: Schema.Attribute.Component<'shared.terms', true>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiGalleryImageGalleryImage
   extends Struct.CollectionTypeSchema {
   collectionName: 'gallery_images';
@@ -1303,6 +1339,60 @@ export interface ApiPushNotificationPushNotification
   };
 }
 
+export interface ApiReligiousVocationReligiousVocation
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'religious_vocations';
+  info: {
+    displayName: 'Religious Vocation';
+    pluralName: 'religious-vocations';
+    singularName: 'religious-vocation';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    dateOfBirth: Schema.Attribute.Date;
+    dateOfDeath: Schema.Attribute.Date;
+    englishCongregationName: Schema.Attribute.String;
+    englishName: Schema.Attribute.String & Schema.Attribute.Required;
+    englishParentsName: Schema.Attribute.String;
+    image: Schema.Attribute.Media<'images'>;
+    konkaniCongregationName: Schema.Attribute.String;
+    konkaniName: Schema.Attribute.String & Schema.Attribute.Required;
+    konkaniParentsName: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::religious-vocation.religious-vocation'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    role: Schema.Attribute.Enumeration<['Priest', 'Nun']>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    ward: Schema.Attribute.Enumeration<
+      [
+        'Addoor',
+        'Church',
+        'Gurpur',
+        'Kandar',
+        'Kandar A',
+        'Kandar B',
+        'Kowdoor A',
+        'Kowdoor B',
+        'Monel',
+        'Pompei A',
+        'Pompei B',
+      ]
+    > &
+      Schema.Attribute.Required;
+  };
+}
+
 export interface ApiUpcomingEventUpcomingEvent
   extends Struct.CollectionTypeSchema {
   collectionName: 'upcoming_events';
@@ -1930,6 +2020,7 @@ declare module '@strapi/strapi' {
       'api::association.association': ApiAssociationAssociation;
       'api::contact.contact': ApiContactContact;
       'api::event.event': ApiEventEvent;
+      'api::ex-vice-president-and-secretary.ex-vice-president-and-secretary': ApiExVicePresidentAndSecretaryExVicePresidentAndSecretary;
       'api::gallery-image.gallery-image': ApiGalleryImageGalleryImage;
       'api::landing-page-carousel.landing-page-carousel': ApiLandingPageCarouselLandingPageCarousel;
       'api::obituary.obituary': ApiObituaryObituary;
@@ -1945,6 +2036,7 @@ declare module '@strapi/strapi' {
       'api::popes-intention.popes-intention': ApiPopesIntentionPopesIntention;
       'api::prayer-for-the-year.prayer-for-the-year': ApiPrayerForTheYearPrayerForTheYear;
       'api::push-notification.push-notification': ApiPushNotificationPushNotification;
+      'api::religious-vocation.religious-vocation': ApiReligiousVocationReligiousVocation;
       'api::upcoming-event.upcoming-event': ApiUpcomingEventUpcomingEvent;
       'api::ward.ward': ApiWardWard;
       'plugin::content-releases.release': PluginContentReleasesRelease;

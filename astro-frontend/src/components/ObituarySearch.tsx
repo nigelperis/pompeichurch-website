@@ -229,7 +229,7 @@ export default function ObituarySearch({ locale }: Props) {
                         obituary.image.formats.thumbnail.url,
                         import.meta.env.PUBLIC_STRAPI_URL,
                       ).toString()
-                    : placeholderImage?.src
+                    : placeholderImage?.src;
 
                   return (
                     <li
