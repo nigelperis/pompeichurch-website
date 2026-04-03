@@ -27,7 +27,7 @@ const themes: Record<
   easter: {
     border: "border-amber-100",
     panel: "bg-cover bg-center bg-no-repeat",
-    overlay: "bg-white/30 backdrop-blur-[1px]",
+    overlay: "bg-white/70 backdrop-blur-[1px]",
     closeButton: "hover:text-amber-700",
     backgroundImage: "url('/easter-background.avif')",
   },

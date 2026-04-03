@@ -13,15 +13,14 @@ interface Particle {
   opacity: number;
   color: string;
   accentColor: string;
-  kind: "egg" | "lily" | "sparkle";
 }
 
 export default function EasterPetals() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationFrameRef = useRef<number>(0);
   const particlesRef = useRef<Particle[]>([]);
-  const isPetalsRunningRef = useRef(true);
-  const [isPetalsRunning, setIsPetalsRunning] = useState(true);
+  const isEggsRunningRef = useRef(true);
+  const [isEggsRunning, setIsEggsRunning] = useState(true);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -38,16 +37,6 @@ export default function EasterPetals() {
       { color: "#E4C1F9", accentColor: "#A85DC4", pattern: "stripes" },
       { color: "#FFC8DD", accentColor: "#E27AA4", pattern: "zigzag" },
     ];
-    const lilyPalette = [
-      { color: "#FFF9F2", accentColor: "#F4C542" },
-      { color: "#FFF4D6", accentColor: "#E9A83A" },
-      { color: "#F8F0FF", accentColor: "#D2B1FF" },
-    ];
-    const sparklePalette = [
-      { color: "#FFF7CC", accentColor: "#FFD76A" },
-      { color: "#FFF2F8", accentColor: "#F6B4D2" },
-      { color: "#F2FBFF", accentColor: "#A8E8FF" },
-    ];
 
     const resizeCanvas = () => {
       const dpr = window.devicePixelRatio || 1;
@@ -58,98 +47,24 @@ export default function EasterPetals() {
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
 
-    const pickPalette = (kind: Particle["kind"]) => {
-      if (kind === "egg") {
-        return eggPalette[Math.floor(Math.random() * eggPalette.length)];
-      }
-
-      if (kind === "lily") {
-        return lilyPalette[Math.floor(Math.random() * lilyPalette.length)];
-      }
-
-      return sparklePalette[Math.floor(Math.random() * sparklePalette.length)];
-    };
-
     const createParticle = (): Particle => {
-      const kindRoll = Math.random();
-      const kind =
-        kindRoll < 0.42 ? "egg" : kindRoll < 0.8 ? "lily" : "sparkle";
-      const palette = pickPalette(kind);
-      const size =
-        kind === "sparkle"
-          ? 4 + Math.random() * 4
-          : kind === "lily"
-            ? 10 + Math.random() * 7
-            : 11 + Math.random() * 9;
+      const palette = eggPalette[Math.floor(Math.random() * eggPalette.length)];
+      const size = 11 + Math.random() * 9;
 
       return {
         x: Math.random() * window.innerWidth,
         y: -40 - Math.random() * 120,
         size,
-        speed:
-          kind === "sparkle"
-            ? 0.35 + Math.random() * 0.45
-            : 0.55 + Math.random() * 0.8,
+        speed: 0.55 + Math.random() * 0.8,
         drift: (Math.random() - 0.5) * 0.65,
         rotation: Math.random() * Math.PI * 2,
         rotationSpeed: (Math.random() - 0.5) * 0.018,
         swayOffset: Math.random() * Math.PI * 2,
         wobble: 0.4 + Math.random() * 0.75,
-        opacity: kind === "sparkle" ? 0.2 + Math.random() * 0.2 : 1,
+        opacity: 1,
         color: palette.color,
         accentColor: palette.accentColor,
-        kind,
       };
-    };
-
-    const drawLily = (particle: Particle) => {
-      for (let i = 0; i < 6; i++) {
-        ctx.save();
-        ctx.rotate((Math.PI * 2 * i) / 6);
-        ctx.beginPath();
-        ctx.ellipse(
-          0,
-          particle.size * 0.72,
-          particle.size * 0.42,
-          particle.size * 0.95,
-          0,
-          0,
-          Math.PI * 2,
-        );
-        ctx.fillStyle = particle.color;
-        ctx.fill();
-        ctx.restore();
-      }
-
-      ctx.beginPath();
-      ctx.arc(0, 0, particle.size * 0.18, 0, Math.PI * 2);
-      ctx.fillStyle = particle.accentColor;
-      ctx.fill();
-
-      ctx.strokeStyle = particle.accentColor;
-      ctx.lineWidth = 1.1;
-      for (let i = 0; i < 3; i++) {
-        ctx.save();
-        ctx.rotate(-Math.PI / 8 + i * (Math.PI / 8));
-        ctx.beginPath();
-        ctx.moveTo(0, particle.size * 0.1);
-        ctx.lineTo(0, particle.size * 0.62);
-        ctx.stroke();
-
-        ctx.beginPath();
-        ctx.ellipse(
-          0,
-          particle.size * 0.62,
-          particle.size * 0.06,
-          particle.size * 0.12,
-          0,
-          0,
-          Math.PI * 2,
-        );
-        ctx.fillStyle = particle.accentColor;
-        ctx.fill();
-        ctx.restore();
-      }
     };
 
     const drawEgg = (particle: Particle) => {
@@ -240,46 +155,12 @@ export default function EasterPetals() {
       ctx.stroke();
     };
 
-    const drawSparkle = (particle: Particle) => {
-      const outerRadius = particle.size;
-      const innerRadius = particle.size * 0.4;
-
-      ctx.beginPath();
-      for (let i = 0; i < 8; i++) {
-        const radius = i % 2 === 0 ? outerRadius : innerRadius;
-        const angle = (Math.PI / 4) * i;
-        const x = Math.cos(angle) * radius;
-        const y = Math.sin(angle) * radius;
-
-        if (i === 0) {
-          ctx.moveTo(x, y);
-        } else {
-          ctx.lineTo(x, y);
-        }
-      }
-      ctx.closePath();
-      ctx.fillStyle = particle.color;
-      ctx.fill();
-
-      ctx.beginPath();
-      ctx.arc(0, 0, particle.size * 0.22, 0, Math.PI * 2);
-      ctx.fillStyle = particle.accentColor;
-      ctx.fill();
-    };
-
     const drawParticle = (particle: Particle) => {
       ctx.save();
       ctx.translate(particle.x, particle.y);
       ctx.rotate(particle.rotation);
       ctx.globalAlpha = particle.opacity;
-
-      if (particle.kind === "egg") {
-        drawEgg(particle);
-      } else if (particle.kind === "lily") {
-        drawLily(particle);
-      } else {
-        drawSparkle(particle);
-      }
+      drawEgg(particle);
 
       ctx.restore();
     };
@@ -293,7 +174,7 @@ export default function EasterPetals() {
       ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
 
       if (
-        isPetalsRunningRef.current &&
+        isEggsRunningRef.current &&
         particlesRef.current.length < 36 &&
         Math.random() < 0.7
       ) {
@@ -329,11 +210,11 @@ export default function EasterPetals() {
     };
   }, []);
 
-  const togglePetals = () => {
-    isPetalsRunningRef.current = !isPetalsRunningRef.current;
-    setIsPetalsRunning(isPetalsRunningRef.current);
+  const toggleEggs = () => {
+    isEggsRunningRef.current = !isEggsRunningRef.current;
+    setIsEggsRunning(isEggsRunningRef.current);
 
-    if (!isPetalsRunningRef.current) {
+    if (!isEggsRunningRef.current) {
       particlesRef.current = [];
     }
   };
@@ -352,7 +233,7 @@ export default function EasterPetals() {
       />
 
       <button
-        onClick={togglePetals}
+        onClick={toggleEggs}
         style={{
           position: "fixed",
           bottom: 20,
@@ -367,7 +248,7 @@ export default function EasterPetals() {
           fontWeight: "500",
         }}
       >
-        {isPetalsRunning ? "Stop Petals" : "Start Petals"}
+        {isEggsRunning ? "Stop Eggs" : "Start Eggs"}
       </button>
     </>
   );
