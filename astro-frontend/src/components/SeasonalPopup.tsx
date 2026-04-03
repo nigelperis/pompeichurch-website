@@ -15,7 +15,6 @@ const themes: Record<
     panel: string;
     overlay: string;
     closeButton: string;
-    dots: string[];
     backgroundImage?: string;
   }
 > = {
@@ -24,14 +23,12 @@ const themes: Record<
     panel: "bg-white",
     overlay: "",
     closeButton: "hover:text-red-700",
-    dots: ["bg-red-400", "bg-emerald-400", "bg-amber-400"],
   },
   easter: {
     border: "border-amber-100",
     panel: "bg-cover bg-center bg-no-repeat",
-    overlay: "bg-white/80 backdrop-blur-[1px]",
+    overlay: "bg-white/30 backdrop-blur-[1px]",
     closeButton: "hover:text-amber-700",
-    dots: ["bg-amber-300", "bg-rose-300", "bg-sky-300"],
     backgroundImage: "url('/easter-background.avif')",
   },
 };
@@ -79,15 +76,6 @@ export default function SeasonalPopup({
           <p className="pt-8 text-lg font-medium leading-relaxed text-gray-800">
             {resolvedMessage}
           </p>
-
-          <div className="mt-6 flex justify-center gap-2">
-            {theme.dots.map((dotColor, index) => (
-              <span
-                key={`${variant}-${index}`}
-                className={`h-2.5 w-2.5 rounded-full ${dotColor}`}
-              />
-            ))}
-          </div>
         </div>
       </div>
     </div>

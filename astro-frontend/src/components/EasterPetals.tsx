@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface Particle {
   x: number;
@@ -20,6 +20,8 @@ export default function EasterPetals() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationFrameRef = useRef<number>(0);
   const particlesRef = useRef<Particle[]>([]);
+  const isPetalsRunningRef = useRef(true);
+  const [isPetalsRunning, setIsPetalsRunning] = useState(true);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -93,7 +95,7 @@ export default function EasterPetals() {
         rotationSpeed: (Math.random() - 0.5) * 0.018,
         swayOffset: Math.random() * Math.PI * 2,
         wobble: 0.4 + Math.random() * 0.75,
-        opacity: kind === "sparkle" ? 0.55 + Math.random() * 0.2 : 0.8,
+        opacity: kind === "sparkle" ? 0.2 + Math.random() * 0.2 : 1,
         color: palette.color,
         accentColor: palette.accentColor,
         kind,
@@ -290,7 +292,11 @@ export default function EasterPetals() {
 
       ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
 
-      if (particlesRef.current.length < 36 && Math.random() < 0.7) {
+      if (
+        isPetalsRunningRef.current &&
+        particlesRef.current.length < 36 &&
+        Math.random() < 0.7
+      ) {
         particlesRef.current.push(createParticle());
       }
 
@@ -323,16 +329,46 @@ export default function EasterPetals() {
     };
   }, []);
 
+  const togglePetals = () => {
+    isPetalsRunningRef.current = !isPetalsRunningRef.current;
+    setIsPetalsRunning(isPetalsRunningRef.current);
+
+    if (!isPetalsRunningRef.current) {
+      particlesRef.current = [];
+    }
+  };
+
   return (
-    <canvas
-      ref={canvasRef}
-      style={{
-        position: "fixed",
-        inset: 0,
-        pointerEvents: "none",
-        zIndex: 9999,
-        background: "transparent",
-      }}
-    />
+    <>
+      <canvas
+        ref={canvasRef}
+        style={{
+          position: "fixed",
+          inset: 0,
+          pointerEvents: "none",
+          zIndex: 9999,
+          background: "transparent",
+        }}
+      />
+
+      <button
+        onClick={togglePetals}
+        style={{
+          position: "fixed",
+          bottom: 20,
+          left: 20,
+          zIndex: 50,
+          padding: "10px 16px",
+          background: "rgba(253, 199, 0, 0.9)",
+          color: "#333",
+          borderRadius: "6px",
+          cursor: "pointer",
+          border: "none",
+          fontWeight: "500",
+        }}
+      >
+        {isPetalsRunning ? "Stop Petals" : "Start Petals"}
+      </button>
+    </>
   );
 }
