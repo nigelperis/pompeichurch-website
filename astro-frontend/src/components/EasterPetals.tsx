@@ -236,7 +236,7 @@ export default function EasterPetals() {
         onClick={toggleEggs}
         style={{
           position: "fixed",
-          bottom: 20,
+          bottom: 35,
           left: 20,
           zIndex: 50,
           padding: "10px 16px",
@@ -248,7 +248,7 @@ export default function EasterPetals() {
           fontWeight: "500",
         }}
       >
-        {isEggsRunning ? "Stop Eggs" : "Start Eggs"}
+        {isEggsRunning ? "Stop Animation" : "Start Animation"}
       </button>
     </>
   );

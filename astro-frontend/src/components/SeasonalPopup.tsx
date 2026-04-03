@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import Cancel from "~/assets/icons/cancel.svg?react";
 
 type SeasonalVariant = "christmas" | "easter";
@@ -50,14 +50,27 @@ export default function SeasonalPopup({
     return message.replace("{newYear}", nextYear.toString());
   }, [message, variant]);
 
+  // ✅ ESC key close
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsVisible(false);
+    };
+    window.addEventListener("keydown", handleEsc);
+    return () => window.removeEventListener("keydown", handleEsc);
+  }, []);
+
   if (!isVisible) return null;
 
   const theme = themes[variant];
 
   return (
-    <div className="fixed inset-0 z-10000 flex items-center justify-center bg-black/40 p-4 animate-in fade-in duration-300">
+    <div
+      className="fixed inset-0 z-10000 flex items-center justify-center bg-black/40 p-4 animate-in fade-in duration-300"
+      onClick={() => setIsVisible(false)}
+    >
       <div
-        className={`relative w-full max-w-md overflow-hidden rounded-3xl border text-center shadow-2xl animate-in zoom-in-95 duration-300 ${theme.border} ${theme.panel}`}
+        onClick={(e) => e.stopPropagation()}
+        className={`relative w-full max-w-md overflow-hidden rounded-3xl text-center shadow-2xl animate-in zoom-in-95 duration-300 ${theme.border} ${theme.panel}`}
         style={
           theme.backgroundImage
             ? { backgroundImage: theme.backgroundImage }
