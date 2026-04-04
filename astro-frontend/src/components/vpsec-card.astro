@@ -15,7 +15,7 @@ interface Props {
   imageUrl?: string;
   subtitle?: string;
   class?: string;
-  terms?: { termNo: number; startDate: string; endDate: string | null }[]
+  terms?: { termNo: number; startDate: string; endDate: string | null }[];
 }
 
 const { name, class: className, imageUrl, terms } = Astro.props;
@@ -62,16 +62,18 @@ const { name, class: className, imageUrl, terms } = Astro.props;
       {name}
     </h3>
     {
-      terms && [...terms]
-        .sort((a, b) => b.termNo - a.termNo)
-        .map((term) => (
-          <p class="text-black">
-            <b>{TermNumberLabel[term.termNo]}</b> :
-            <span class="font-semibold text-red-400">
-              {formatDate(term.startDate)} : {renderEndDate(term.endDate, lang)}
-            </span>
-          </p>
-        ))
+      terms &&
+        [...terms]
+          .sort((a, b) => b.termNo - a.termNo)
+          .map((term) => (
+            <p class="text-black">
+              <b>{TermNumberLabel[term.termNo]}</b> :
+              <span class="font-semibold text-red-400">
+                {formatDate(term.startDate)} :{" "}
+                {renderEndDate(term.endDate, lang)}
+              </span>
+            </p>
+          ))
     }
   </div>
 </div>

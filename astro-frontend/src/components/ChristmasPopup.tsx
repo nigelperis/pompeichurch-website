@@ -16,7 +16,6 @@ export default function ChristmasPopup({ message }: ChristmasPopupProps) {
   return (
     <div className="fixed inset-0 z-10000 flex items-center justify-center p-4 bg-black/40 animate-in fade-in duration-300">
       <div className="relative max-w-md w-full bg-white rounded-2xl shadow-2xl p-8 text-center animate-in zoom-in-95 duration-300">
-        {/* Simple Close Button */}
         <button
           onClick={() => setIsVisible(false)}
           aria-label="Close Popup"
