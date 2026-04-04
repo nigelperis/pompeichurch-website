@@ -50,7 +50,14 @@ export default function SeasonalPopup({
     return message.replace("{newYear}", nextYear.toString());
   }, [message, variant]);
 
-  // ✅ ESC key close
+  useEffect(() => {
+    if (!isVisible) return;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isVisible]);
+
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === "Escape") setIsVisible(false);
@@ -86,7 +93,7 @@ export default function SeasonalPopup({
             <Cancel className="h-5 w-5 cursor-pointer" />
           </button>
 
-          <p className="pt-8 text-lg font-medium leading-relaxed text-gray-800">
+          <p className="pt-4 text-lg font-medium leading-relaxed text-gray-800">
             {resolvedMessage}
           </p>
         </div>
