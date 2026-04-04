@@ -51,14 +51,6 @@ export default function SeasonalPopup({
   }, [message, variant]);
 
   useEffect(() => {
-    if (!isVisible) return;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [isVisible]);
-
-  useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === "Escape") setIsVisible(false);
     };
