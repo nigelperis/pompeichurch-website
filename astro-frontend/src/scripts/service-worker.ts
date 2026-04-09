@@ -9,6 +9,13 @@ function urlBase64ToUint8Array(base64String: string) {
 }
 
 export async function registerPush() {
+  const vapidPublicKey = import.meta.env.PUBLIC_VAPID_PUBLIC_KEY;
+
+  if (!vapidPublicKey) {
+    console.error("VAPID public key is not set.");
+    return;
+  }
+
   if (!("serviceWorker" in navigator)) {
     console.warn("Service workers are not supported.");
     return;
@@ -27,9 +34,7 @@ export async function registerPush() {
     if (!subscription) {
       subscription = await registration.pushManager.subscribe({
         userVisibleOnly: true,
-        applicationServerKey: urlBase64ToUint8Array(
-          import.meta.env.PUBLIC_VAPID_PUBLIC_KEY,
-        ),
+        applicationServerKey: urlBase64ToUint8Array(vapidPublicKey),
       });
     }
 
