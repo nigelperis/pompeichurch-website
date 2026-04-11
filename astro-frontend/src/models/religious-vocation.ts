@@ -75,10 +75,10 @@ export interface ReligiousVocationItem {
   name: string;
   role: ReligiousVocationRole | null;
   ward: string;
-  congregation?: string;
-  parents?: string;
-  dob?: string;
-  dod?: string;
+  congregation: string | null;
+  parents: string | null;
+  dob: string | null;
+  dod: string | null;
   imageUrl?: string;
   imageWidth?: number;
   imageHeight?: number;

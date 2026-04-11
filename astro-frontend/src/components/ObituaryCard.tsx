@@ -21,7 +21,7 @@ interface Props {
   imageUrl: string;
   imageWidth: number;
   imageHeight: number;
-  age?: string | number | null;
+  age: string | number | null;
   relationType: RelationType | null;
   relationNameEn: string | null;
   relationNameKok: string | null;
@@ -35,7 +35,7 @@ interface Props {
   youtubeLink: string | null;
   className?: string;
   autoFlip?: boolean;
-  startsFromChurch?: boolean;
+  startsFromChurch: boolean;
   locale?: Locale;
 }
 

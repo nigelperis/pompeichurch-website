@@ -12,10 +12,10 @@ export interface Props {
   imageHeight?: number;
   name: string;
   ward: string;
-  dob?: string;
-  dod?: string;
-  congregation?: string;
-  parents?: string;
+  dob: string | null;
+  dod: string | null;
+  congregation: string | null;
+  parents: string | null;
   role: ReligiousVocationRole | null;
 }
 

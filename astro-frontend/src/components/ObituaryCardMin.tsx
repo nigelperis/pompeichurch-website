@@ -12,9 +12,9 @@ import { getFuneralDetails } from "~/helpers/get-funeral-details";
 import { FuneralInfoButton } from "./ui/FuneralInfoButton";
 
 interface Props {
-  id?: string | number;
+  id: string | number;
   name: string | null;
-  age?: string | number | null;
+  age: string | number | null;
   dateOfDeath: string | null;
   imageUrl: string;
   imageWidth?: number;
@@ -24,7 +24,7 @@ interface Props {
   homeTime: string | null;
   massTime: string | null;
   funeralDate: string | null;
-  startsFromChurch?: boolean;
+  startsFromChurch: boolean;
   funeralDetailsUpdatedOn: Date | string | null;
   youtubeLink: string | null;
   className?: string;
@@ -161,7 +161,10 @@ export default function ObituaryCardMin({
               <div className="flex flex-1 flex-col justify-start space-y-1 p-3">
                 <div className="space-y-1">
                   <p className="text-lg font-bold leading-snug text-slate-900 flex items-center">
-                    <span className="truncate max-w-47.5" title={name || ""}>
+                    <span
+                      className="truncate max-w-47.5"
+                      title={name || "Name"}
+                    >
                       {name}
                     </span>
                     {age ? (
