@@ -7,6 +7,7 @@ import { Locale } from "~/enums/locale";
 import { searchEvents } from "~/services/events/event-search";
 import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
 import { getNoResultsMessage } from "~/helpers/get-no-result-message";
+import { getEventListPageUrl } from "~/helpers/get-event-list-page-url";
 
 function escapeRegExp(value: string) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -53,6 +54,7 @@ export default function EventSearch({
   const [loading, setLoading] = React.useState(false);
   const [activeIndex, setActiveIndex] = React.useState(-1);
   const [open, setOpen] = React.useState(false);
+  const [navigating, setNavigating] = React.useState(false);
 
   const inputRef = React.useRef<HTMLInputElement>(null);
 
@@ -126,8 +128,10 @@ export default function EventSearch({
     if (e.key === "Enter") {
       e.preventDefault();
       const index = activeIndex >= 0 ? activeIndex : 0;
-      const base = locale === Locale.KOK ? "/kok" : "";
-      window.location.href = `${base}/events/${results[index].slug}`;
+      setNavigating(true);
+      getEventListPageUrl(results[index].id, locale).then((url) => {
+        window.location.href = url;
+      });
     }
 
     if (e.key === "Escape") {
@@ -219,7 +223,9 @@ export default function EventSearch({
             {!loading && results.length > 0 && (
               <ul
                 role="listbox"
-                className="max-h-64 overflow-y-auto"
+                className={`max-h-64 overflow-y-auto ${
+                  navigating ? "pointer-events-none opacity-60" : ""
+                }`}
                 onMouseLeave={() => setActiveIndex(-1)}
               >
                 {results.map((event, index) => {
@@ -256,8 +262,10 @@ export default function EventSearch({
                       }`}
                       onMouseEnter={() => setActiveIndex(index)}
                       onClick={() => {
-                        const base = locale === Locale.KOK ? "/kok" : "";
-                        window.location.href = `${base}/events/${event.slug}`;
+                        setNavigating(true);
+                        getEventListPageUrl(event.id, locale).then((url) => {
+                          window.location.href = url;
+                        });
                       }}
                     >
                       <div className="min-w-0 flex-1">
