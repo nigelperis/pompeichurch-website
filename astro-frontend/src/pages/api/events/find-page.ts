@@ -4,14 +4,19 @@ import { ROUTES } from "~/constants/strapi-endpoints";
 import { ITEMS_PER_PAGE } from "~/constants/index.ts";
 import type { EventData } from "~/models/event";
 
+const SORT_PARAMS = {
+  "sort[0]": "eventDate:desc",
+  "sort[1]": "createdAt:desc",
+};
+
 /**
  * GET /api/events/find-page?id=<eventId>
  *
  * Fetches all event IDs from Strapi in the same sort order as the events list
  * page, then computes which page the given event falls on based on ITEMS_PER_PAGE.
  *
- * Uses a single Strapi request fetching only the `id` field (no populate) for
- * maximum efficiency.
+ * Step 1: Fetch one record with `pagination[withCount]=true` to get the real total.
+ * Step 2: Fetch all IDs using that total as pageSize (fields[0]=id only, no populate).
  *
  * @returns JSON `{ page: number }` — the 1-based page number the event appears on.
  */
@@ -34,17 +39,36 @@ export const GET: APIRoute = async ({ url }) => {
     });
   }
 
-  const queryParams = new URLSearchParams({
-    "fields[0]": "id",
-    "pagination[page]": "1",
-    "pagination[pageSize]": "1000",
-    "sort[0]": "eventDate:desc",
-    "sort[1]": "createdAt:desc",
+  // Step 1: get the real total count without fetching all records
+  const countData = await strapiFetch<EventData>({
+    endpoint: ROUTES.EVENTS,
+    queryParams: new URLSearchParams({
+      "fields[0]": "id",
+      "pagination[page]": "1",
+      "pagination[pageSize]": "1",
+      "pagination[withCount]": "true",
+      ...SORT_PARAMS,
+    }),
   });
 
+  const total = countData?.meta?.pagination?.total ?? 0;
+
+  if (total === 0) {
+    return new Response(JSON.stringify({ error: "Event not found" }), {
+      status: 404,
+      headers: { "Content-Type": "application/json" },
+    });
+  }
+
+  // Step 2: fetch all IDs in sort order using the real total as the page size
   const data = await strapiFetch<EventData>({
     endpoint: ROUTES.EVENTS,
-    queryParams,
+    queryParams: new URLSearchParams({
+      "fields[0]": "id",
+      "pagination[page]": "1",
+      "pagination[pageSize]": String(total),
+      ...SORT_PARAMS,
+    }),
   });
 
   const ids = data?.data?.map((e) => e.id) ?? [];
