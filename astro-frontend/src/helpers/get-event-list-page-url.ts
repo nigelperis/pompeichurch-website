@@ -21,11 +21,12 @@ async function getEventListPageUrl(
 
     if (!res.ok) return fallback;
 
-    const json = (await res.json()) as { page?: number };
+    const json = (await res.json()) as { page?: number; slug?: string };
 
     if (!json.page || json.page < 1) return fallback;
 
-    return `${base}/events?p=${json.page}`;
+    const hash = json.slug ? `#${json.slug}` : "";
+    return `${base}/events?p=${json.page}${hash}`;
   } catch {
     return fallback;
   }

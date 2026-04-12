@@ -18,7 +18,7 @@ const SORT_PARAMS = {
  * Step 1: Fetch one record with `pagination[withCount]=true` to get the real total.
  * Step 2: Fetch all IDs using that total as pageSize (fields[0]=id only, no populate).
  *
- * @returns JSON `{ page: number }` — the 1-based page number the event appears on.
+ * @returns JSON `{ page: number, slug: string }` — the 1-based page number and event slug.
  */
 export const GET: APIRoute = async ({ url }) => {
   const rawId = url.searchParams.get("id");
@@ -65,6 +65,7 @@ export const GET: APIRoute = async ({ url }) => {
     endpoint: ROUTES.EVENTS,
     queryParams: new URLSearchParams({
       "fields[0]": "id",
+      "fields[1]": "slug",
       "pagination[page]": "1",
       "pagination[pageSize]": String(total),
       ...SORT_PARAMS,
@@ -83,8 +84,9 @@ export const GET: APIRoute = async ({ url }) => {
   }
 
   const page = Math.floor(index / ITEMS_PER_PAGE) + 1;
+  const slug = data?.data?.[index]?.slug ?? "";
 
-  return new Response(JSON.stringify({ page }), {
+  return new Response(JSON.stringify({ page, slug }), {
     status: 200,
     headers: { "Content-Type": "application/json" },
   });
