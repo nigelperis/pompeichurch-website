@@ -26,7 +26,7 @@ const slug = (name: string) =>
     return (
       <div class="mb-12">
         <h2
-          id={`ward-${slug(ward.wardName)}`}
+          id={`ward-${slug(ward.wardName || "Ward")}`}
           class="scroll-mt-24 text-3xl font-bold text-slate-900"
         >
           {lang === Locale.KOK
@@ -67,7 +67,7 @@ const slug = (name: string) =>
                           ward.wardLeaderImage.url,
                           import.meta.env.PUBLIC_STRAPI_URL,
                         ).toString()
-                      : getPlaceholderImage({ text: ward.wardLeader })
+                      : getPlaceholderImage({ text: ward.wardLeader || "Ward Leader" })
                   }
                   alt={ward.wardLeader || t("ward.leaderAlt")}
                   width={ward.wardLeaderImage?.width ?? 365}

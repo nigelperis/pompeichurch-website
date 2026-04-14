@@ -249,7 +249,7 @@ export default function ObituarySearch({ locale }: Props) {
                     >
                       <div className="min-w-0 flex-1">
                         <div className="truncate text-sm font-medium text-slate-900">
-                          {highlightText(name, query)}
+                          {highlightText(name || "", query)}
                         </div>
                         {(obituary.relationType ||
                           obituary.relationNameEn ||

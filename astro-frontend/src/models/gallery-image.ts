@@ -40,7 +40,7 @@ interface GalleryImage {
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
-  image?: Media[] | Media | null;
+  image: Media[] | Media | null;
 }
 
 interface GalleryMediaItem {

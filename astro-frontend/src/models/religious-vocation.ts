@@ -45,14 +45,14 @@ export interface ReligiousVocation {
   documentId: string;
   englishName: string;
   konkaniName: string;
-  role: ReligiousVocationRole;
+  role: ReligiousVocationRole | null;
   ward: string;
-  englishCongregationName?: string | null;
-  konkaniCongregationName?: string | null;
-  englishParentsName?: string | null;
-  konkaniParentsName?: string | null;
-  dateOfBirth?: string | null;
-  dateOfDeath?: string | null;
+  englishCongregationName: string | null;
+  konkaniCongregationName: string | null;
+  englishParentsName: string | null;
+  konkaniParentsName: string | null;
+  dateOfBirth: string | null;
+  dateOfDeath: string | null;
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
@@ -73,12 +73,12 @@ export interface ReligiousVocationData {
 
 export interface ReligiousVocationItem {
   name: string;
-  role?: ReligiousVocationRole;
-  ward?: string;
-  congregation?: string;
-  parents?: string;
-  dob?: string;
-  dod?: string;
+  role: ReligiousVocationRole | null;
+  ward: string;
+  congregation: string | null;
+  parents: string | null;
+  dob: string | null;
+  dod: string | null;
   imageUrl?: string;
   imageWidth?: number;
   imageHeight?: number;

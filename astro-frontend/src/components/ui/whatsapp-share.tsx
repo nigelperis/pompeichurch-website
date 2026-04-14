@@ -5,7 +5,7 @@ interface Props {
   className?: string;
   size?: number;
   shareData: {
-    title?: string;
+    title: string | null;
     url?: string;
   };
 }

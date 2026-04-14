@@ -44,8 +44,8 @@ interface ParishPriestImage {
 export interface ParishPriestMessage {
   id: number;
   documentId: string;
-  parishPriestName: string;
-  message: BlocksContent;
+  parishPriestName: string | null;
+  message: BlocksContent | null;
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
