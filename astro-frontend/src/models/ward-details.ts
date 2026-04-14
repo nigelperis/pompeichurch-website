@@ -43,12 +43,12 @@ interface WardLeaderImage {
 export interface WardDetails {
   id: number;
   documentId: string;
-  wardName: string;
-  wardLeader: string;
-  wardRepresentative1: string;
-  wardRepresentative2: string;
-  wardLeaderSex: string;
-  familyCount: number;
+  wardName: string | null;
+  wardLeader: string | null;
+  wardRepresentative1: string | null;
+  wardRepresentative2: string | null;
+  wardLeaderSex: string | null;
+  familyCount: number | null;
   updatedAt: string;
   publishedAt: string;
   locale: Locale;

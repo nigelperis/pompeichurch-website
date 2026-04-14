@@ -6,7 +6,7 @@ type ShareLinkProps = {
   className?: string;
   size?: number;
   shareData: {
-    title?: string;
+    title: string | null;
     text?: string;
     url?: string;
   };

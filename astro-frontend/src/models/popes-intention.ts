@@ -7,9 +7,9 @@ export interface PopesIntention {
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
-  locale?: Locale;
-  month?: string;
-  monthlyIntention?: BlocksContent;
+  locale: Locale;
+  month: string | null;
+  monthlyIntention: BlocksContent | null;
 }
 
 interface Pagination {

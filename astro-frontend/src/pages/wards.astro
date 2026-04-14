@@ -56,11 +56,11 @@ const ogImageUrl = firstWardPatronImage
             client:load
             placeholder={t("ward.select-label")}
             wards={wardDetails.map((w) => ({
-              name: w.wardName,
+              name: w.wardName || "Ward",
               label:
                 lang === Locale.KOK
                   ? getWardNameKok(w.wardName, lang)
-                  : w.wardName,
+                  : w.wardName || "Ward",
             }))}
           />
         </div>

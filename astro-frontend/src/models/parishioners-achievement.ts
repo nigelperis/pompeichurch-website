@@ -53,7 +53,7 @@ interface ParishionersAchievement {
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
-  achieverImage: Media | null;
+  achieverImage?: Media;
 }
 
 interface ParishionersAchievementsData {

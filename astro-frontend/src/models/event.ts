@@ -90,15 +90,15 @@ interface Event {
   konkaniTitle: string;
   englishTitle: string;
   eventDate: string;
-  shortDescriptionEn: string;
-  shortDescriptionKok: string;
-  description: BlocksContent;
-  facebookLink: string;
-  instagramLink: string;
+  shortDescriptionEn: string | null;
+  shortDescriptionKok: string | null;
+  description: BlocksContent | null;
+  facebookLink: string | null;
+  instagramLink: string | null;
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
-  eventImage: EventImage;
+  eventImage?: EventImage;
   associationName?: string;
   association?: {
     id: number;
@@ -106,7 +106,7 @@ interface Event {
     name: string;
     slug: string;
   } | null;
-  pastoralCommissions: string;
+  pastoralCommissions: string | null;
 }
 
 interface EventData {

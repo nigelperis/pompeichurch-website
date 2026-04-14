@@ -94,13 +94,13 @@ export async function getReligiousVocations(
         locale,
         item.englishCongregationName,
         item.konkaniCongregationName,
-      ) || undefined;
+      ) || null;
     const parents =
       pickLocaleValue(
         locale,
         item.englishParentsName,
         item.konkaniParentsName,
-      ) || undefined;
+      ) || null;
 
     return {
       name,
@@ -108,8 +108,8 @@ export async function getReligiousVocations(
       ward: getWardLabel(item.ward, locale),
       congregation,
       parents,
-      dob: formatDate(item.dateOfBirth),
-      dod: formatDate(item.dateOfDeath),
+      dob: formatDate(item.dateOfBirth) || null,
+      dod: formatDate(item.dateOfDeath) || null,
       imageUrl: item.image?.url,
       imageWidth: item.image?.width,
       imageHeight: item.image?.height,
