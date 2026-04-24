@@ -147,24 +147,68 @@ const buildHref = (page: number) => {
         Number.isFinite(max) &&
         (parsedValue < min || parsedValue > max)
       ) {
-        input.setCustomValidity("This page doesn’t exist");
+        input.setCustomValidity("This page doesn\u2019t exist");
         return;
       }
 
       input.setCustomValidity("");
     };
 
-    input.addEventListener("input", syncValidationMessage);
-    input.addEventListener("invalid", syncValidationMessage);
-    form.addEventListener("submit", () => {
-      const parsedValue = Number(input.value);
-      const max = Number(input.max);
-      if (!Number.isFinite(parsedValue) || !Number.isFinite(max)) {
+    const navigateToPage = () => {
+      syncValidationMessage();
+      if (!input.reportValidity()) {
         return;
       }
 
-      input.value = String(Math.min(Math.max(Math.trunc(parsedValue), 1), max));
-      syncValidationMessage();
+      const parsedValue = Number(input.value);
+      const min = Number(input.min);
+      const max = Number(input.max);
+      if (
+        !Number.isFinite(parsedValue) ||
+        !Number.isFinite(min) ||
+        !Number.isFinite(max)
+      ) {
+        return;
+      }
+
+      const targetPage = Math.min(Math.max(Math.trunc(parsedValue), min), max);
+      const currentPage =
+        new URLSearchParams(window.location.search).get("p") ?? "1";
+      if (String(targetPage) === currentPage) {
+        return;
+      }
+
+      input.value = String(targetPage);
+
+      const query = new URLSearchParams();
+      new FormData(form).forEach((value, key) => {
+        if (typeof value === "string") {
+          query.set(key, value);
+        }
+      });
+
+      window.location.assign(`${form.action}?${query.toString()}`);
+    };
+
+    input.addEventListener("input", syncValidationMessage);
+    input.addEventListener("invalid", syncValidationMessage);
+    input.addEventListener("change", navigateToPage);
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      navigateToPage();
     });
   });
 </script>
+
+<style>
+  .pagination-page-jump {
+    appearance: auto;
+    -moz-appearance: auto;
+  }
+
+  .pagination-page-jump::-webkit-outer-spin-button,
+  .pagination-page-jump::-webkit-inner-spin-button {
+    opacity: 1;
+    margin: 0;
+  }
+</style>
