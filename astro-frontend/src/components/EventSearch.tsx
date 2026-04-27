@@ -129,7 +129,7 @@ export default function EventSearch({
       e.preventDefault();
       const index = activeIndex >= 0 ? activeIndex : 0;
       setNavigating(true);
-      getEventListPageUrl(results[index].id, locale).then((url) => {
+      getEventListPageUrl(results[index].id, locale, associationSlug).then((url) => {
         window.location.href = url;
       });
     }
@@ -263,7 +263,7 @@ export default function EventSearch({
                       onMouseEnter={() => setActiveIndex(index)}
                       onClick={() => {
                         setNavigating(true);
-                        getEventListPageUrl(event.id, locale).then((url) => {
+                        getEventListPageUrl(event.id, locale, associationSlug).then((url) => {
                           window.location.href = url;
                         });
                       }}

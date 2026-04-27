@@ -1,19 +1,17 @@
 import type { APIRoute } from "astro";
 import { strapiFetch } from "~/helpers/strapi-fetch";
 import { ROUTES } from "~/constants/strapi-endpoints";
-import { ITEMS_PER_PAGE } from "~/constants/index.ts";
+import { ITEMS_PER_PAGE, EVENT_DEFAULT_SORT } from "~/constants/index.ts";
 import type { EventData } from "~/models/event";
 
-const SORT_PARAMS = {
-  "sort[0]": "eventDate:desc",
-  "sort[1]": "createdAt:desc",
-};
-
 /**
- * GET /api/events/find-page?id=<eventId>
+ * GET /api/events/find-page?id=<eventId>[&association=<slug>]
  *
  * Fetches all event IDs from Strapi in the same sort order as the events list
  * page, then computes which page the given event falls on based on ITEMS_PER_PAGE.
+ *
+ * When `association` is provided the lookup is scoped to that association's
+ * events, so the returned page number is correct for /associations/[slug]/events.
  *
  * Step 1: Fetch one record with `pagination[withCount]=true` to get the real total.
  * Step 2: Fetch all IDs using that total as pageSize (fields[0]=id only, no populate).
@@ -22,6 +20,7 @@ const SORT_PARAMS = {
  */
 export const GET: APIRoute = async ({ url }) => {
   const rawId = url.searchParams.get("id");
+  const associationSlug = url.searchParams.get("association") ?? undefined;
 
   if (!rawId) {
     return new Response(JSON.stringify({ error: "Missing required param: id" }), {
@@ -39,15 +38,24 @@ export const GET: APIRoute = async ({ url }) => {
     });
   }
 
+  // Build shared query params (sort + optional association filter)
+  function buildQueryParams(extra: Record<string, string>) {
+    const params = new URLSearchParams(extra);
+    EVENT_DEFAULT_SORT.forEach((s, i) => params.append(`sort[${i}]`, s));
+    if (associationSlug) {
+      params.append("filters[association][slug][$eq]", associationSlug);
+    }
+    return params;
+  }
+
   // Step 1: get the real total count without fetching all records
   const countData = await strapiFetch<EventData>({
     endpoint: ROUTES.EVENTS,
-    queryParams: new URLSearchParams({
+    queryParams: buildQueryParams({
       "fields[0]": "id",
       "pagination[page]": "1",
       "pagination[pageSize]": "1",
       "pagination[withCount]": "true",
-      ...SORT_PARAMS,
     }),
   });
 
@@ -63,12 +71,11 @@ export const GET: APIRoute = async ({ url }) => {
   // Step 2: fetch all IDs in sort order using the real total as the page size
   const data = await strapiFetch<EventData>({
     endpoint: ROUTES.EVENTS,
-    queryParams: new URLSearchParams({
+    queryParams: buildQueryParams({
       "fields[0]": "id",
       "fields[1]": "slug",
       "pagination[page]": "1",
       "pagination[pageSize]": String(total),
-      ...SORT_PARAMS,
     }),
   });
 
