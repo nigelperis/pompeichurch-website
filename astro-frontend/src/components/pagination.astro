@@ -192,7 +192,6 @@ const buildHref = (page: number) => {
 
     input.addEventListener("input", syncValidationMessage);
     input.addEventListener("invalid", syncValidationMessage);
-    input.addEventListener("change", navigateToPage);
     form.addEventListener("submit", (event) => {
       event.preventDefault();
       navigateToPage();
