@@ -3,10 +3,11 @@ import { Icon } from "astro-icon/components";
 import { Locale } from "~/enums/locale";
 import { cn } from "~/helpers/cn";
 import { getPaginationRange } from "~/helpers/get-pagination-range";
-import { getLangFromUrl } from "~/i18n/utils";
+import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 
 const url = new URL(Astro.url);
 const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 const pathname = url.pathname.split("?")[0].replace(/\/$/, "");
 
 const { currentPage, totalPages } = Astro.props as {
@@ -30,7 +31,7 @@ const buildHref = (page: number) => {
 
 {
   showPagination && (
-    <div class="mt-8 flex flex-col items-center gap-4">
+    <div class="mt-8 flex flex-col items-center gap-4 lg:flex-row lg:justify-center">
       <div class="flex flex-wrap items-center justify-center gap-2 text-base">
         {currentPage === 1 ? (
           <span
@@ -99,13 +100,13 @@ const buildHref = (page: number) => {
       <form
         method="get"
         action={pathname}
-        class="flex items-center justify-center gap-3"
+        class="flex items-center justify-center gap-2 lg:shrink-0"
         data-pagination-jump-form
+        data-invalid-message={t("pagination.invalid-page")}
       >
         {preservedParamsWithoutPage.map(([key, value]) => (
           <input type="hidden" name={key} value={value} />
         ))}
-        <span class="text-sm font-medium text-gray-700">Go to:</span>
         <input
           name="p"
           type="number"
@@ -114,10 +115,19 @@ const buildHref = (page: number) => {
           required
           inputmode="numeric"
           enterkeyhint="go"
-          placeholder="Page"
+          placeholder={t("pagination.page-placeholder")}
           class="pagination-page-jump h-10 w-20 border border-gray-300 px-3 text-sm text-gray-900 outline-none transition-colors duration-200 placeholder:text-gray-400 focus:border-gray-300"
-          aria-label="Go to page number"
+          aria-label={t("pagination.page-input-label")}
         />
+        <button
+          type="submit"
+          class={cn(
+            "h-10 bg-natgeo-yellow px-4 text-sm font-medium text-gray-900 transition-colors duration-200 hover:opacity-90 cursor-pointer",
+            lang === Locale.KOK ? "pt-1" : "",
+          )}
+        >
+          {t("pagination.go-button")}
+        </button>
       </form>
     </div>
   )
@@ -135,66 +145,32 @@ const buildHref = (page: number) => {
       return;
     }
 
+    const invalidMessage =
+      form.dataset.invalidMessage ?? "This page doesn't exist";
+    const min = Number(input.min) || 1;
+    const max = Number(input.max) || min;
     const syncValidationMessage = () => {
-      const parsedValue = Number(input.value);
-      const min = Number(input.min);
-      const max = Number(input.max);
-
-      if (
+      const value = Number(input.value);
+      const isOutOfRange =
         input.value !== "" &&
-        Number.isFinite(parsedValue) &&
-        Number.isFinite(min) &&
-        Number.isFinite(max) &&
-        (parsedValue < min || parsedValue > max)
-      ) {
-        input.setCustomValidity("This page doesn\u2019t exist");
-        return;
-      }
+        Number.isFinite(value) &&
+        (value < min || value > max);
 
-      input.setCustomValidity("");
-    };
-
-    const navigateToPage = () => {
-      syncValidationMessage();
-      if (!input.reportValidity()) {
-        return;
-      }
-
-      const parsedValue = Number(input.value);
-      const min = Number(input.min);
-      const max = Number(input.max);
-      if (
-        !Number.isFinite(parsedValue) ||
-        !Number.isFinite(min) ||
-        !Number.isFinite(max)
-      ) {
-        return;
-      }
-
-      const targetPage = Math.min(Math.max(Math.trunc(parsedValue), min), max);
-      const currentPage =
-        new URLSearchParams(window.location.search).get("p") ?? "1";
-      if (String(targetPage) === currentPage) {
-        return;
-      }
-
-      input.value = String(targetPage);
-
-      const query = new URLSearchParams();
-      new FormData(form).forEach((value, key) => {
-        if (typeof value === "string") {
-          query.set(key, value);
-        }
-      });
-
-      window.location.assign(`${form.action}?${query.toString()}`);
+      input.setCustomValidity(isOutOfRange ? invalidMessage : "");
     };
 
     input.addEventListener("input", syncValidationMessage);
     input.addEventListener("invalid", syncValidationMessage);
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
-      navigateToPage();
+    form.addEventListener("submit", () => {
+      const parsedValue = Number(input.value);
+      if (!Number.isFinite(parsedValue)) {
+        return;
+      }
+
+      input.value = String(
+        Math.min(Math.max(Math.trunc(parsedValue), min), max),
+      );
+      syncValidationMessage();
     });
   });
 </script>
