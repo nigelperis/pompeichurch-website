@@ -32,22 +32,25 @@ const buildHref = (page: number) => {
 {
   showPagination && (
     <div class="mt-8 flex flex-col items-center gap-4 lg:flex-row lg:justify-center">
-      <div class="flex flex-wrap items-center justify-center gap-2 text-base">
+      <div class="flex max-w-full flex-nowrap items-center justify-center gap-1 overflow-x-auto text-sm sm:gap-2 sm:text-base">
         {currentPage === 1 ? (
           <span
-            class="pointer-events-none flex h-10 w-10 items-center justify-center text-gray-300"
+            class="pointer-events-none flex h-8 w-8 shrink-0 items-center justify-center text-gray-300 sm:h-10 sm:w-10"
             aria-label="Previous Page (Disabled)"
             tabindex="-1"
           >
-            <Icon name="chevron-left" class="stroke-2 text-2xl" />
+            <Icon name="chevron-left" class="stroke-2 text-xl sm:text-2xl" />
           </span>
         ) : (
           <a
             href={buildHref(currentPage - 1)}
-            class="flex h-10 w-10 items-center justify-center font-bold transition-all duration-200 hover:bg-gray-100"
+            class="flex h-8 w-8 shrink-0 items-center justify-center font-bold transition-all duration-200 hover:bg-gray-100 sm:h-10 sm:w-10"
             aria-label="Previous Page"
           >
-            <Icon name="chevron-left" class="stroke-2 text-2xl text-black" />
+            <Icon
+              name="chevron-left"
+              class="stroke-2 text-xl text-black sm:text-2xl"
+            />
           </a>
         )}
 
@@ -55,7 +58,7 @@ const buildHref = (page: number) => {
         {paginationRange.map((page) => {
           if (typeof page === "string") {
             return (
-              <span class="flex h-10 w-10 items-center justify-center text-gray-500">
+              <span class="flex h-8 w-8 shrink-0 items-center justify-center text-gray-500 sm:h-10 sm:w-10">
                 ...
               </span>
             );
@@ -65,7 +68,7 @@ const buildHref = (page: number) => {
             <a
               href={buildHref(page)}
               class={cn(
-                `flex h-10 w-10 items-center justify-center transition-all duration-200 ${
+                `flex h-8 w-8 shrink-0 items-center justify-center transition-all duration-200 sm:h-10 sm:w-10 ${
                   currentPage === page
                     ? "bg-natgeo-yellow font-medium text-black"
                     : "hover:bg-gray-100 font-medium text-gray-700"
@@ -80,19 +83,22 @@ const buildHref = (page: number) => {
         })}
         {currentPage === totalPages ? (
           <span
-            class="pointer-events-none flex h-10 w-10 items-center justify-center text-gray-300"
+            class="pointer-events-none flex h-8 w-8 shrink-0 items-center justify-center text-gray-300 sm:h-10 sm:w-10"
             aria-label="Next Page (Disabled)"
             tabindex="-1"
           >
-            <Icon name="chevron-right" class="stroke-2 text-2xl" />
+            <Icon name="chevron-right" class="stroke-2 text-xl sm:text-2xl" />
           </span>
         ) : (
           <a
             href={buildHref(currentPage + 1)}
-            class="flex h-10 w-10 items-center justify-center hover:bg-gray-100"
+            class="flex h-8 w-8 shrink-0 items-center justify-center hover:bg-gray-100 sm:h-10 sm:w-10"
             aria-label="Next Page"
           >
-            <Icon name="chevron-right" class="stroke-2 text-2xl text-black" />
+            <Icon
+              name="chevron-right"
+              class="stroke-2 text-xl text-black sm:text-2xl"
+            />
           </a>
         )}
       </div>
