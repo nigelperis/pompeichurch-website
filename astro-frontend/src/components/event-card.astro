@@ -47,7 +47,7 @@ const displayDescription =
     : (shortDescriptionKok ?? shortDescriptionEn ?? "No description available");
 ---
 
-<div class={cn("flex flex-col border border-gray-200", className)} {...rest}>
+<div id={slug} class={cn("flex flex-col border border-gray-200 scroll-mt-24", className)} {...rest}>
   <div class="event-image w-full">
     <NetworkImage
       src={imageUrl}

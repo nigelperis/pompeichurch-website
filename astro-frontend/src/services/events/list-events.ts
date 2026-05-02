@@ -1,6 +1,7 @@
 import { ROUTES } from "~/constants/strapi-endpoints";
 import { strapiFetch } from "~/helpers/strapi-fetch";
 import type { EventData, EventsPagination } from "~/models/event";
+import { EVENT_DEFAULT_SORT } from "~/constants/index.ts";
 
 /**
  * Fetches a paginated list of events from the Strapi CMS.
@@ -21,7 +22,7 @@ async function listEvents(args?: {
   const {
     page = 1,
     pageSize = 25,
-    sortBy = ["eventDate:desc", "createdAt:desc"],
+    sortBy = EVENT_DEFAULT_SORT,
     filters,
   } = args ?? {};
 
