@@ -5,6 +5,14 @@ export const getPaginationRange = (
   totalPages: number,
   siblingCount: number = PAGINATION_BETWEEN_COUNT,
 ) => {
+  if (totalPages <= 4) {
+    return Array.from({ length: totalPages }, (_, index) => index + 1);
+  }
+
+  if (currentPage === 1) {
+    return [1, 2, "...", totalPages - 1, totalPages];
+  }
+
   const range: (number | string)[] = [];
 
   range.push(1);
