@@ -108,6 +108,8 @@ const buildHref = (page: number) => {
         action={pathname}
         class="flex items-center justify-center gap-2 lg:shrink-0"
         data-pagination-jump-form
+        data-required-message={t("pagination.required-field")}
+        data-invalid-number-message={t("pagination.invalid-number")}
         data-invalid-message={t("pagination.invalid-page")}
       >
         {preservedParamsWithoutPage.map(([key, value]) => (
@@ -153,6 +155,10 @@ const buildHref = (page: number) => {
 
     const invalidMessage =
       form.dataset.invalidMessage ?? "This page doesn't exist";
+    const requiredMessage =
+      form.dataset.requiredMessage ?? "Please fill out this field.";
+    const invalidNumberMessage =
+      form.dataset.invalidNumberMessage ?? "Please enter a valid number.";
     const min = Number(input.min) || 1;
     const max = Number(input.max) || min;
     const syncValidationMessage = () => {
@@ -161,6 +167,18 @@ const buildHref = (page: number) => {
         input.value !== "" &&
         Number.isFinite(value) &&
         (value < min || value > max);
+
+      input.setCustomValidity("");
+
+      if (input.validity.valueMissing) {
+        input.setCustomValidity(requiredMessage);
+        return;
+      }
+
+      if (input.validity.badInput || input.validity.stepMismatch) {
+        input.setCustomValidity(invalidNumberMessage);
+        return;
+      }
 
       input.setCustomValidity(isOutOfRange ? invalidMessage : "");
     };
