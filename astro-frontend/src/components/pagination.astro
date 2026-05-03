@@ -3,10 +3,11 @@ import { Icon } from "astro-icon/components";
 import { Locale } from "~/enums/locale";
 import { cn } from "~/helpers/cn";
 import { getPaginationRange } from "~/helpers/get-pagination-range";
-import { getLangFromUrl } from "~/i18n/utils";
+import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 
 const url = new URL(Astro.url);
 const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 const pathname = url.pathname.split("?")[0].replace(/\/$/, "");
 
 const { currentPage, totalPages } = Astro.props as {
@@ -18,6 +19,9 @@ const showPagination = totalPages > 1;
 const paginationRange = getPaginationRange(currentPage, totalPages);
 
 const preservedParams = url.searchParams;
+const preservedParamsWithoutPage = Array.from(preservedParams.entries()).filter(
+  ([key]) => key !== "p",
+);
 const buildHref = (page: number) => {
   const query = new URLSearchParams(preservedParams);
   query.set("p", String(page));
@@ -27,69 +31,183 @@ const buildHref = (page: number) => {
 
 {
   showPagination && (
-    <div class="mt-8 flex items-center justify-center gap-2 text-base">
-      {currentPage === 1 ? (
-        <span
-          class="flex h-10 w-10 items-center justify-center pointer-events-none text-gray-300"
-          aria-label="Previous Page (Disabled)"
-          tabindex="-1"
-        >
-          <Icon name="chevron-left" class="stroke-2 text-2xl" />
-        </span>
-      ) : (
-        <a
-          href={buildHref(currentPage - 1)}
-          class="flex h-10 w-10 items-center justify-center font-bold transition-all duration-200 hover:bg-gray-100"
-          aria-label="Previous Page"
-        >
-          <Icon name="chevron-left" class="stroke-2 text-2xl text-black" />
-        </a>
-      )}
-
-      {/* Page Numbers */}
-      {paginationRange.map((page) => {
-        if (typeof page === "string") {
-          return (
-            <span class="flex h-10 w-10 items-center justify-center text-gray-500">
-              ...
-            </span>
-          );
-        }
-
-        return (
-          <a
-            href={buildHref(page)}
-            class={cn(
-              `flex h-10 w-10 items-center justify-center transition-all duration-200 ${
-                currentPage === page
-                  ? "bg-natgeo-yellow font-medium text-black"
-                  : "hover:bg-gray-100 font-medium text-gray-700"
-              }`,
-              lang === Locale.KOK ? "pt-[6px]" : "",
-            )}
-            aria-label={`Page ${page}`}
+    <div class="mt-8 flex w-full flex-col items-center gap-4 lg:flex-row lg:justify-center">
+      <div class="flex w-full max-w-full items-center justify-between text-lg sm:w-auto sm:justify-center sm:gap-2 sm:text-base">
+        {currentPage === 1 ? (
+          <span
+            class="pointer-events-none flex h-9 w-9 shrink-0 items-center justify-center text-gray-300 sm:h-10 sm:w-10"
+            aria-label="Previous Page (Disabled)"
+            tabindex="-1"
           >
-            {page}
+            <Icon name="chevron-left" class="stroke-2 text-xl sm:text-2xl" />
+          </span>
+        ) : (
+          <a
+            href={buildHref(currentPage - 1)}
+            class="flex h-9 w-9 shrink-0 items-center justify-center font-bold transition-all duration-200 hover:bg-gray-100 sm:h-10 sm:w-10"
+            aria-label="Previous Page"
+          >
+            <Icon
+              name="chevron-left"
+              class="stroke-2 text-xl text-black sm:text-2xl"
+            />
           </a>
-        );
-      })}
-      {currentPage === totalPages ? (
-        <span
-          class="flex h-10 w-10 items-center justify-center pointer-events-none text-gray-300"
-          aria-label="Next Page (Disabled)"
-          tabindex="-1"
+        )}
+
+        {/* Page Numbers */}
+        {paginationRange.map((page) => {
+          if (typeof page === "string") {
+            return (
+              <span class="flex h-9 w-9 shrink-0 items-center justify-center text-gray-500 sm:h-10 sm:w-10">
+                ...
+              </span>
+            );
+          }
+
+          return (
+            <a
+              href={buildHref(page)}
+              class={cn(
+                `flex h-9 w-9 shrink-0 items-center justify-center transition-all duration-200 sm:h-10 sm:w-10 ${
+                  currentPage === page
+                    ? "bg-natgeo-yellow font-medium text-black"
+                    : "hover:bg-gray-100 font-medium text-gray-700"
+                }`,
+                lang === Locale.KOK ? "pt-[6px]" : "",
+              )}
+              aria-label={`Page ${page}`}
+            >
+              {page}
+            </a>
+          );
+        })}
+        {currentPage === totalPages ? (
+          <span
+            class="pointer-events-none flex h-9 w-9 shrink-0 items-center justify-center text-gray-300 sm:h-10 sm:w-10"
+            aria-label="Next Page (Disabled)"
+            tabindex="-1"
+          >
+            <Icon name="chevron-right" class="stroke-2 text-xl sm:text-2xl" />
+          </span>
+        ) : (
+          <a
+            href={buildHref(currentPage + 1)}
+            class="flex h-9 w-9 shrink-0 items-center justify-center hover:bg-gray-100 sm:h-10 sm:w-10"
+            aria-label="Next Page"
+          >
+            <Icon
+              name="chevron-right"
+              class="stroke-2 text-xl text-black sm:text-2xl"
+            />
+          </a>
+        )}
+      </div>
+
+      <form
+        method="get"
+        action={pathname}
+        class="flex items-center justify-center gap-2 lg:shrink-0"
+        data-pagination-jump-form
+        data-required-message={t("pagination.required-field")}
+        data-invalid-number-message={t("pagination.invalid-number")}
+        data-invalid-message={t("pagination.invalid-page")}
+      >
+        {preservedParamsWithoutPage.map(([key, value]) => (
+          <input type="hidden" name={key} value={value} />
+        ))}
+        <input
+          name="p"
+          type="number"
+          min="1"
+          max={totalPages}
+          required
+          inputmode="numeric"
+          enterkeyhint="go"
+          placeholder={t("pagination.page-placeholder")}
+          class="pagination-page-jump h-10 w-20 border border-gray-300 px-3 text-lg text-gray-900 outline-none transition-colors duration-200 placeholder:text-gray-400 focus:border-gray-300 sm:text-base"
+          aria-label={t("pagination.page-input-label")}
+        />
+        <button
+          type="submit"
+          class={cn(
+            "h-10 bg-natgeo-yellow px-4 text-lg font-medium text-gray-900 transition-colors duration-200 hover:opacity-90 cursor-pointer sm:text-base",
+            lang === Locale.KOK ? "pt-1" : "",
+          )}
         >
-          <Icon name="chevron-right" class="stroke-2 text-2xl" />
-        </span>
-      ) : (
-        <a
-          href={buildHref(currentPage + 1)}
-          class="flex h-10 w-10 items-center justify-center hover:bg-gray-100"
-          aria-label="Next Page"
-        >
-          <Icon name="chevron-right" class="stroke-2 text-2xl text-black" />
-        </a>
-      )}
+          {t("pagination.go-button")}
+        </button>
+      </form>
     </div>
   )
 }
+
+<script>
+  document.querySelectorAll("[data-pagination-jump-form]").forEach((form) => {
+    if (!(form instanceof HTMLFormElement) || form.dataset.bound === "true") {
+      return;
+    }
+
+    form.dataset.bound = "true";
+    const input = form.elements.namedItem("p");
+    if (!(input instanceof HTMLInputElement)) {
+      return;
+    }
+
+    const invalidMessage =
+      form.dataset.invalidMessage ?? "This page doesn't exist";
+    const requiredMessage =
+      form.dataset.requiredMessage ?? "Please fill out this field.";
+    const invalidNumberMessage =
+      form.dataset.invalidNumberMessage ?? "Please enter a valid number.";
+    const min = Number(input.min) || 1;
+    const max = Number(input.max) || min;
+    const syncValidationMessage = () => {
+      const value = Number(input.value);
+      const isOutOfRange =
+        input.value !== "" &&
+        Number.isFinite(value) &&
+        (value < min || value > max);
+
+      input.setCustomValidity("");
+
+      if (input.validity.valueMissing) {
+        input.setCustomValidity(requiredMessage);
+        return;
+      }
+
+      if (input.validity.badInput || input.validity.stepMismatch) {
+        input.setCustomValidity(invalidNumberMessage);
+        return;
+      }
+
+      input.setCustomValidity(isOutOfRange ? invalidMessage : "");
+    };
+
+    input.addEventListener("input", syncValidationMessage);
+    input.addEventListener("invalid", syncValidationMessage);
+    form.addEventListener("submit", () => {
+      const parsedValue = Number(input.value);
+      if (!Number.isFinite(parsedValue)) {
+        return;
+      }
+
+      input.value = String(
+        Math.min(Math.max(Math.trunc(parsedValue), min), max),
+      );
+      syncValidationMessage();
+    });
+  });
+</script>
+
+<style>
+  .pagination-page-jump {
+    appearance: auto;
+    -moz-appearance: auto;
+  }
+
+  .pagination-page-jump::-webkit-outer-spin-button,
+  .pagination-page-jump::-webkit-inner-spin-button {
+    opacity: 1;
+    margin: 0;
+  }
+</style>
