@@ -15,6 +15,9 @@ const { parishPriestsAndDeacons } = Astro.props;
         url={priestOrDeacon.image?.url}
         name={priestOrDeacon.name}
         date={priestOrDeacon.servicePeriod}
+        width={priestOrDeacon.image?.width}
+        height={priestOrDeacon.image?.height}
+        imageClass="h-[300px] w-full object-cover"
       />
     ))
   }
