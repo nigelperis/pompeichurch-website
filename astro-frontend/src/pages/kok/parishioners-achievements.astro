@@ -9,6 +9,7 @@ import Pagination from "~/components/pagination.astro";
 import { getPaginationRange } from "~/helpers/get-pagination-range";
 import { Message } from "~/constants/message";
 import { ITEMS_PER_PAGE } from "~/constants/index.ts";
+import PushNotification from "~/components/push-notification.astro"
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -32,6 +33,7 @@ const totalPages = pagination.pageCount;
 >
   <main class="mx-auto max-w-screen-lg overflow-hidden bg-white">
     <section id="parishioner-achievements" class="flex flex-col p-6 lg:p-8">
+      <PushNotification />
       <h1
         class={cn(
           "border-natgeo-yellow border-l-4 pl-3 text-left text-3xl lg:text-4xl font-black",
