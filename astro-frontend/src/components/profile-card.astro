@@ -17,7 +17,6 @@ interface Props {
   class?: string;
   width?: number;
   height?: number;
-  imageClass?: string;
 }
 
 const {
@@ -28,7 +27,6 @@ const {
   class: className,
   width,
   height,
-  imageClass,
 } = Astro.props;
 ---
 
@@ -46,7 +44,7 @@ const {
           src={url}
           width={width || 300}
           height={height || 300}
-          class={imageClass || "h-[300px] w-full object-cover"}
+          class="h-[300px] w-full object-cover"
         />
       ) : (
         <Image
