@@ -15,8 +15,8 @@ const { parishFinanceCommittee } = Astro.props;
         url={member.image?.url}
         name={member.name}
         subtitle={member.position}
-        width={300}
-        height={300}
+        width={member.image?.width}
+        height={member.image?.height}
       />
     ))
   }

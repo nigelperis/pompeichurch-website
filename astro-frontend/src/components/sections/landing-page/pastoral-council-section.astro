@@ -67,8 +67,8 @@ const financeCommitteeMember =
               src={member?.image?.url}
               name={member.name}
               position={member.position}
-              width={300}
-              height={300}
+              width={member?.image?.width || 300}
+              height={member?.image?.height || 300}
             />
           ))}
 
@@ -87,8 +87,8 @@ const financeCommitteeMember =
                   src={financeCommitteeMember?.image?.url}
                   name={financeCommitteeMember.name}
                   position={financeCommitteeMember.position}
-                  width={300}
-                  height={300}
+                  width={financeCommitteeMember?.image?.width || 300}
+                  height={financeCommitteeMember?.image?.height || 300}
                 />
               )}
             </div>

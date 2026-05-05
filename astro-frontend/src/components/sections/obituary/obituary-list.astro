@@ -1,8 +1,10 @@
 ---
+import { Image } from "astro:assets";
 import { format } from "date-fns-tz";
 import { getLangFromUrl } from "~/i18n/utils";
 import type { Obituary } from "~/models/obituary";
 import ObituaryCard from "~/components/ObituaryCard";
+import NetworkImage from "~/components/ui/network-image.astro";
 import { Locale } from "~/enums/locale";
 import placeholderImage from "~/assets/static-assets/blank.jpeg";
 
@@ -46,8 +48,8 @@ const obituaryDataFormatted = obituaries
         id={item.englishName}
         name={lang === Locale.EN ? item.englishName : item.konkaniName}
         imageUrl={item.imageUrl}
-        imageWidth={340}
-        imageHeight={400}
+        imageWidth={item.image?.width || 340}
+        imageHeight={item.image?.height || 400}
         age={item.age}
         ward={item.ward}
         dateOfDeath={item.formattedDate}
@@ -62,7 +64,27 @@ const obituaryDataFormatted = obituaries
         funeralDetailsUpdatedOn={item.funeralDetailsUpdatedOn}
         autoFlip={true}
         startsFromChurch={item.startsFromChurch}
-      />
+      >
+        {
+          item.image?.url ? (
+            <NetworkImage
+              src={item.image.url}
+              width={item.image.width}
+              height={item.image.height}
+              alt={`Image of ${lang === Locale.EN ? item.englishName : item.konkaniName}`}
+              class="object-cover w-full h-full"
+            />
+          ) : (
+            <Image
+              src={placeholderImage}
+              alt="Blank Obituary Image"
+              width={340}
+              height={400}
+              class="object-cover w-full h-full"
+            />
+          )
+        }
+      </ObituaryCard>
     ))
   }
 </div>

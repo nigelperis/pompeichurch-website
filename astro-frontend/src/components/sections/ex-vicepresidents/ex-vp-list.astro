@@ -27,6 +27,8 @@ const vicePresidents = await listExVicePresidentsAndSecretaries({
             vp.image?.url &&
             new URL(vp.image.url, import.meta.env.PUBLIC_STRAPI_URL).toString()
           }
+          imageWidth={vp.image?.width}
+          imageHeight={vp.image?.height}
           name={lang === Locale.KOK ? vp.nameKok : vp.nameEn}
           terms={vp.terms}
         />

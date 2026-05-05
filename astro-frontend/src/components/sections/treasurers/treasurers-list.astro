@@ -30,6 +30,8 @@ const treasurers = await listExVicePresidentsAndSecretaries({
               import.meta.env.PUBLIC_STRAPI_URL,
             ).toString()
           }
+          imageWidth={treasurer.image?.width}
+          imageHeight={treasurer.image?.height}
           name={lang === Locale.KOK ? treasurer.nameKok : treasurer.nameEn}
         />
       ))

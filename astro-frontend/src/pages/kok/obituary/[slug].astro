@@ -1,9 +1,11 @@
 ---
+import { Image } from "astro:assets";
 import Layout from "~/layouts/layout.astro";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import { listObituaries } from "~/services/obituaries/list-obituaries";
 import { Locale } from "~/enums/locale";
 import ObituaryCard from "~/components/ObituaryCard.tsx";
+import NetworkImage from "~/components/ui/network-image.astro";
 import { cn } from "~/helpers/cn";
 import { getWardNameKok } from "~/helpers/get-ward-names-kok";
 import placeholderImage from "~/assets/static-assets/blank.jpeg";
@@ -74,8 +76,8 @@ const pageTitle = selectedObituary
         relationNameKok={selectedObituary.relationNameKok}
         ward={selectedObituary.ward}
         dateOfDeath={selectedObituary.dateOfDeath}
-        imageWidth={340}
-        imageHeight={400}
+        imageWidth={selectedObituary.image?.width || 340}
+        imageHeight={selectedObituary.image?.height || 400}
         imageUrl={obituaryImage}
         slug={selectedObituary.slug}
         funeralDate={selectedObituary.funeralDate}
@@ -86,7 +88,27 @@ const pageTitle = selectedObituary
         className="mx-auto"
         autoFlip={true}
         startsFromChurch={selectedObituary.startsFromChurch}
-      />
+      >
+        {
+          selectedObituary.image?.url ? (
+            <NetworkImage
+              src={selectedObituary.image.url}
+              width={selectedObituary.image.width}
+              height={selectedObituary.image.height}
+              alt={`Image of ${lang === Locale.EN ? selectedObituary.englishName : selectedObituary.konkaniName}`}
+              class="object-cover w-full h-full"
+            />
+          ) : (
+            <Image
+              src={placeholderImage}
+              alt="Blank Obituary Image"
+              width={340}
+              height={400}
+              class="object-cover w-full h-full"
+            />
+          )
+        }
+      </ObituaryCard>
     </section>
   </main>
 </Layout>
