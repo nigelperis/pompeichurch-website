@@ -1,5 +1,5 @@
 ---
-import { listMagazines } from "~/services/list-magazines";
+import { listAllMagazines } from "~/services/list-magazines";
 import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
 import { getMagazineDisplayTitle } from "~/helpers/magazine";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
@@ -15,7 +15,7 @@ function extractSlug(fileUrl: string): string | null {
   return fileName.split("_").slice(0, -1).join("_").replace(".pdf", "");
 }
 
-const { magazines } = await listMagazines();
+const magazines = await listAllMagazines();
 
 const magazine = magazines.find((m) => {
   const fileUrl = m.pdfFile?.url
