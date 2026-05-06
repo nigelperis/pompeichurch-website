@@ -4,7 +4,7 @@ import Layout from "~/layouts/layout.astro";
 import Pagination from "~/components/pagination.astro";
 import SelectYearRedirect from "~/components/ui/SelectYearRedirect";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
-import { listMagazines } from "~/services/list-magazines";
+import { listMagazines, listAllMagazines } from "~/services/list-magazines";
 import { isCentenaryEdition } from "~/helpers/magazine";
 import type { PompeichemFalkem } from "~/models/pompeichem-falkem";
 import { Message } from "~/constants/message.ts";
@@ -26,10 +26,7 @@ const { magazines, pagination } = await listMagazines({
   sortBy: selectedYear ? "dateOfPublish:asc" : "dateOfPublish:desc",
 });
 
-const { magazines: allMagazines } = await listMagazines({
-  page: 1,
-  pageSize: 1000,
-});
+const allMagazines = await listAllMagazines();
 const latestMagazineId = allMagazines?.[0]?.id;
 const uniqueYears = Array.from(
   new Set(

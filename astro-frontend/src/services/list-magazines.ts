@@ -67,4 +67,31 @@ async function listMagazines(args?: {
   };
 }
 
-export { listMagazines };
+/**
+ * Fetches every magazine from Strapi by paginating through all pages.
+ * Use this whenever you need the full catalogue (e.g. slug lookup),
+ * rather than a single page for display.
+ */
+async function listAllMagazines(
+  sortBy = "dateOfPublish:desc",
+): Promise<PompeichemFalkem[]> {
+  const all: PompeichemFalkem[] = [];
+  let page = 1;
+
+  while (true) {
+    const { magazines, pagination } = await listMagazines({
+      page,
+      pageSize: 100, // Strapi's max allowed pageSize per request
+      sortBy,
+    });
+
+    all.push(...magazines);
+
+    if (page >= pagination.pageCount) break;
+    page++;
+  }
+
+  return all;
+}
+
+export { listMagazines, listAllMagazines };
