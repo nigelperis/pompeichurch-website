@@ -23,22 +23,27 @@ export const GET: APIRoute = async ({ url }) => {
   const associationSlug = url.searchParams.get("association") ?? undefined;
 
   if (!rawId) {
-    return new Response(JSON.stringify({ error: "Missing required param: id" }), {
-      status: 400,
-      headers: { "Content-Type": "application/json" },
-    });
+    return new Response(
+      JSON.stringify({ error: "Missing required param: id" }),
+      {
+        status: 400,
+        headers: { "Content-Type": "application/json" },
+      },
+    );
   }
 
   const eventId = Number(rawId);
 
   if (!Number.isInteger(eventId) || eventId <= 0) {
-    return new Response(JSON.stringify({ error: "Invalid id: must be a positive integer" }), {
-      status: 400,
-      headers: { "Content-Type": "application/json" },
-    });
+    return new Response(
+      JSON.stringify({ error: "Invalid id: must be a positive integer" }),
+      {
+        status: 400,
+        headers: { "Content-Type": "application/json" },
+      },
+    );
   }
 
-  // Build shared query params (sort + optional association filter)
   function buildQueryParams(extra: Record<string, string>) {
     const params = new URLSearchParams(extra);
     EVENT_DEFAULT_SORT.forEach((s, i) => params.append(`sort[${i}]`, s));
@@ -48,7 +53,6 @@ export const GET: APIRoute = async ({ url }) => {
     return params;
   }
 
-  // Step 1: get the real total count without fetching all records
   const countData = await strapiFetch<EventData>({
     endpoint: ROUTES.EVENTS,
     queryParams: buildQueryParams({
