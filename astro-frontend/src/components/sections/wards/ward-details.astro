@@ -67,7 +67,9 @@ const slug = (name: string) =>
                           ward.wardLeaderImage.url,
                           import.meta.env.PUBLIC_STRAPI_URL,
                         ).toString()
-                      : getPlaceholderImage({ text: ward.wardLeader || "Ward Leader" })
+                      : getPlaceholderImage({
+                          text: ward.wardLeader || "Ward Leader",
+                        })
                   }
                   alt={ward.wardLeader || t("ward.leaderAlt")}
                   width={ward.wardLeaderImage?.width ?? 365}
