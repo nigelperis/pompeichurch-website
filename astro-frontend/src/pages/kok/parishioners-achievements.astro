@@ -9,7 +9,7 @@ import Pagination from "~/components/pagination.astro";
 import { getPaginationRange } from "~/helpers/get-pagination-range";
 import { Message } from "~/constants/message";
 import { ITEMS_PER_PAGE } from "~/constants/index.ts";
-import PushNotification from "~/components/push-notification.astro"
+import PushNotification from "~/components/push-notification.astro";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
