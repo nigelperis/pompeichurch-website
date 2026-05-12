@@ -7,6 +7,8 @@ import { listObituaries } from "~/services/obituaries/list-obituaries";
 import { Message } from "~/constants/message.ts";
 import { Locale } from "~/enums/locale";
 import placeholderImage from "~/assets/static-assets/blank.jpeg";
+import NetworkImage from "~/components/ui/network-image.astro";
+import { Image } from "astro:assets";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -22,6 +24,12 @@ const obituaryDataFormatted = obituaries.map((obituary) => ({
   slug:
     obituary.slug ??
     `${(obituary.englishName ?? "").replace(/\s+/g, "-").toLowerCase()}-${obituary.id}`,
+  imageUrl: obituary.image?.url
+    ? new URL(
+        obituary.image.url,
+        import.meta.env.PUBLIC_STRAPI_URL,
+      ).toString()
+    : placeholderImage?.src,
 }));
 ---
 
@@ -52,14 +60,7 @@ const obituaryDataFormatted = obituaries.map((obituary) => ({
                 client:load
                 id={o.id}
                 name={lang === "kok" ? o.konkaniName : o.englishName}
-                imageUrl={
-                  o.image?.url
-                    ? new URL(
-                        o.image.url,
-                        import.meta.env.PUBLIC_STRAPI_URL,
-                      ).toString()
-                    : placeholderImage?.src
-                }
+                imageUrl={o.imageUrl}
                 dateOfDeath={o.dateOfDeath}
                 age={o.age}
                 slug={o.slug}
@@ -72,7 +73,25 @@ const obituaryDataFormatted = obituaries.map((obituary) => ({
                 className="h-full"
                 funeralDetailsUpdatedOn={o.funeralDetailsUpdatedOn}
                 autoFlip={true}
-              />
+              >
+                {o.image?.url ? (
+                  <NetworkImage
+                    src={o.image.url}
+                    width={o.image.width}
+                    height={o.image.height}
+                    alt={`Image of ${lang === Locale.EN ? o.englishName : o.konkaniName}`}
+                    class="h-75 w-full object-cover border-none"
+                  />
+                ) : (
+                  <Image
+                    src={placeholderImage}
+                    alt="Blank Obituary Image"
+                    width={340}
+                    height={400}
+                    class="h-75 w-full object-cover border-none"
+                  />
+                )}
+              </ObituaryCardMin>
             </div>
           ))}
         </div>
