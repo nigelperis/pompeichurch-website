@@ -32,9 +32,9 @@ const {
 
 <div
   class={cn(
-    "max-w-xs flex-shrink-0 border border-gray-200 sm:w-64",
+    "max-w-xs shrink-0 border border-gray-200 sm:w-64",
     className,
-    "w-[250px] h-[410px]",
+    "w-62.5 h-102.5",
   )}
 >
   <div class="flex-none">
@@ -44,13 +44,13 @@ const {
           src={url}
           width={width || 300}
           height={height || 300}
-          class="h-[300px] w-full object-cover"
+          class="h-75 w-full object-cover"
         />
       ) : (
         <Image
           src={placeholderImage}
           alt="Blank Profile Image"
-          class="h-[300px] w-full object-cover"
+          class="h-75 w-full object-cover"
           width={width}
           height={height}
         />

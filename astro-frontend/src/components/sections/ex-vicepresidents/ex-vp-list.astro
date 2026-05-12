@@ -29,6 +29,8 @@ const vicePresidents = await listExVicePresidentsAndSecretaries({
           }
           name={lang === Locale.KOK ? vp.nameKok : vp.nameEn}
           terms={vp.terms}
+          imageWidth={vp.image?.width || 300}
+          imageHeight={vp.image?.height || 300}
         />
       ))
     ) : (
