@@ -31,6 +31,8 @@ const treasurers = await listExVicePresidentsAndSecretaries({
             ).toString()
           }
           name={lang === Locale.KOK ? treasurer.nameKok : treasurer.nameEn}
+          imageWidth={treasurer.image?.width}
+          imageHeight={treasurer.image?.height}
         />
       ))
     ) : (
