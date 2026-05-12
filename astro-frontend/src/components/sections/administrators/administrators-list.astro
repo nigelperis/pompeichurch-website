@@ -30,6 +30,8 @@ const administrators = await listExVicePresidentsAndSecretaries({
               import.meta.env.PUBLIC_STRAPI_URL,
             ).toString()
           }
+          imageWidth={administrator.image?.width}
+          imageHeight={administrator.image?.height}
           name={
             lang === Locale.KOK ? administrator.nameKok : administrator.nameEn
           }

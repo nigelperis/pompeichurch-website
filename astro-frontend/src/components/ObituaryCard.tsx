@@ -14,6 +14,7 @@ import { EXPIRE_TIME } from "~/constants/index.ts";
 import { getFuneralDetails } from "~/helpers/get-funeral-details";
 import { FuneralInfoButton } from "./ui/FuneralInfoButton";
 import { obituaryRelationMapKok } from "~/constants/obituary-relation-map-kok";
+import type { ReactNode } from "react";
 
 interface Props {
   id: string | number | null;
@@ -37,6 +38,7 @@ interface Props {
   autoFlip?: boolean;
   startsFromChurch: boolean;
   locale?: Locale;
+  children?: ReactNode;
 }
 
 const activeLabels = {
@@ -74,6 +76,7 @@ export default function ObituaryCard({
   autoFlip = false,
   startsFromChurch,
   locale,
+  children,
 }: Props) {
   const [flipped, setFlipped] = useState(false);
 
@@ -186,14 +189,16 @@ export default function ObituaryCard({
           )}
         >
           <div className="aspect-3/4 bg-gray-100 relative md:h-82.5">
-            <img
-              src={imageUrl}
-              alt={`Image of ${name}`}
-              width={imageWidth}
-              height={imageHeight}
-              className="object-cover w-full h-full"
-              loading="lazy"
-            />
+            {children || (
+              <img
+                src={imageUrl}
+                alt={`Image of ${name}`}
+                width={imageWidth}
+                height={imageHeight}
+                className="object-cover w-full h-full"
+                loading="lazy"
+              />
+            )}
             {showFlip && !flipped && (
               <div className="absolute top-2 right-0 z-10">
                 <FuneralInfoButton

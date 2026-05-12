@@ -10,6 +10,7 @@ import WhatsAppShare from "~/components/ui/whatsapp-share.tsx";
 import { EXPIRE_TIME } from "~/constants/index.ts";
 import { getFuneralDetails } from "~/helpers/get-funeral-details";
 import { FuneralInfoButton } from "./ui/FuneralInfoButton";
+import type { ReactNode } from "react";
 
 interface Props {
   id: string | number;
@@ -29,6 +30,7 @@ interface Props {
   youtubeLink: string | null;
   className?: string;
   autoFlip?: boolean;
+  children?: ReactNode;
 }
 
 // Simple lang detection from URL for label localization
@@ -69,6 +71,7 @@ export default function ObituaryCardMin({
   className = "",
   funeralDetailsUpdatedOn,
   autoFlip = true,
+  children,
 }: Props) {
   const [flipped, setFlipped] = useState(false);
   const obituaryUrl =
@@ -149,14 +152,16 @@ export default function ObituaryCardMin({
           <div className="w-64 snap-start first:snap-align-none max-w-xs shrink-0 border border-gray-200 duration-200 ease-in-out sm:w-64 min-h-95 h-95">
             <div className="opacity-50 blur-md">
               <div className="card-image flex-none">
-                <img
-                  src={imageUrl}
-                  alt={`Image of ${name}`}
-                  width={imageWidth}
-                  height={imageHeight}
-                  className="h-75 w-full object-cover border-none"
-                  loading="lazy"
-                />
+                {children ?? (
+                  <img
+                    src={imageUrl}
+                    alt={`Image of ${name}`}
+                    width={imageWidth}
+                    height={imageHeight}
+                    className="h-75 w-full object-cover border-none"
+                    loading="lazy"
+                  />
+                )}
               </div>
               <div className="flex flex-1 flex-col justify-start space-y-1 p-3">
                 <div className="space-y-1">
@@ -194,14 +199,16 @@ export default function ObituaryCardMin({
         <div className="hidden lg:block">
           {/* render the standard minimal card */}
           <div className="card-image flex-none">
-            <img
-              src={imageUrl}
-              alt={`Image of ${name}`}
-              width={imageWidth}
-              height={imageHeight}
-              className="h-75 w-full object-cover border-none"
-              loading="lazy"
-            />
+            {children ?? (
+              <img
+                src={imageUrl}
+                alt={`Image of ${name}`}
+                width={imageWidth}
+                height={imageHeight}
+                className="h-75 w-full object-cover border-none"
+                loading="lazy"
+              />
+            )}
           </div>
           <div className="flex flex-1 flex-col justify-start space-y-1 p-3">
             <div className="space-y-1">
@@ -278,14 +285,16 @@ export default function ObituaryCardMin({
           )}
         >
           <div className="flex-none relative">
-            <img
-              src={imageUrl}
-              alt={`Image of ${name}`}
-              width={imageWidth}
-              height={imageHeight}
-              className="h-75 w-full object-cover border-none"
-              loading="lazy"
-            />
+            {children ?? (
+              <img
+                src={imageUrl}
+                alt={`Image of ${name}`}
+                width={imageWidth}
+                height={imageHeight}
+                className="h-75 w-full object-cover border-none"
+                loading="lazy"
+              />
+            )}
             {showFlip && !flipped && (
               <FuneralInfoButton
                 label={t("funeral.rites")}
