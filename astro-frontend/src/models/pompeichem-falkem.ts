@@ -41,6 +41,7 @@ interface CoverImage {
 export interface PompeichemFalkem {
   id: number;
   documentId: string;
+  slug: string;
   dateOfPublish: string;
   createdAt: string;
   updatedAt: string;

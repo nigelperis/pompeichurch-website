@@ -1,5 +1,5 @@
 ---
-import { listMagazines } from "~/services/list-magazines";
+import { getMagazineBySlug } from "~/services/list-magazines";
 import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
 import { getMagazineDisplayTitle } from "~/helpers/magazine";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
@@ -9,21 +9,7 @@ const { slug } = Astro.params;
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-function extractSlug(fileUrl: string): string | null {
-  const fileName = new URL(fileUrl).pathname.split("/").pop();
-  if (!fileName) return null;
-  return fileName.split("_").slice(0, -1).join("_").replace(".pdf", "");
-}
-
-const { magazines } = await listMagazines();
-
-const magazine = magazines.find((m) => {
-  const fileUrl = m.pdfFile?.url
-    ? new URL(m.pdfFile.url, import.meta.env.PUBLIC_STRAPI_URL).toString()
-    : null;
-  const s = fileUrl ? extractSlug(fileUrl) : null;
-  return s === slug;
-});
+const magazine = await getMagazineBySlug(slug ?? "");
 
 if (!magazine) {
   throw new Error("Magazine not found");

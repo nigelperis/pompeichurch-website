@@ -5,22 +5,15 @@ import type {
   PompeichemFalkemData,
 } from "~/models/pompeichem-falkem";
 
-/**
- * Fetches a paginated list of "Pompeichem Falkem" magazines from the Strapi CMS.
- *
- * @param {Object} [args] - Optional parameters for fetching magazines.
- * @param {number} [args.page=1] - The page number to fetch (default: 1).
- * @param {number} [args.pageSize=25] - The number of magazines per page (default: 25).
- * @param {string} [args.sortBy='dateOfPublish:desc'] - The sorting order for magazines (default: 'dateOfPublish:desc').
- * @returns {Promise<{ magazines: PompeichemFalkem[]; pagination: { total: number; page: number; pageSize: number; pageCount: number } }>} A promise resolving to magazines and pagination meta.
- * @returns {Promise<{ magazines: PompeichemFalkem[]; pagination: { total: number; page: number; pageSize: number; pageCount: number } }>} A promise resolving to magazines and pagination meta.
- */
-async function listMagazines(args?: {
+type ListMagazinesArgs = {
   page?: number;
   pageSize?: number;
+  slug?: string;
   sortBy?: string;
   year?: number | string;
-}): Promise<{
+};
+
+type ListMagazinesResult = {
   magazines: PompeichemFalkem[];
   pagination: {
     total: number;
@@ -28,31 +21,27 @@ async function listMagazines(args?: {
     pageSize: number;
     pageCount: number;
   };
-}> {
+};
+
+const DEFAULT_SORT = "dateOfPublish:desc";
+async function listMagazines(
+  args?: ListMagazinesArgs,
+): Promise<ListMagazinesResult> {
   const {
     page = 1,
     pageSize = 25,
-    sortBy = "dateOfPublish:desc",
+    slug,
+    sortBy = DEFAULT_SORT,
     year,
   } = args ?? {};
 
-  const queryParams = new URLSearchParams({
-    "populate[0]": "coverImage",
-    "populate[1]": "pdfFile",
-    "sort[0]": sortBy,
-    "pagination[page]": String(page),
-    "pagination[pageSize]": String(pageSize),
+  const queryParams = buildMagazineQueryParams({
+    page,
+    pageSize,
+    slug,
+    sortBy,
+    year,
   });
-
-  if (year) {
-    const y = typeof year === "string" ? parseInt(year, 10) : year;
-    if (!Number.isNaN(y)) {
-      const start = `${y}-01-01`;
-      const end = `${y}-12-31`;
-      queryParams.set("filters[dateOfPublish][$gte]", start);
-      queryParams.set("filters[dateOfPublish][$lte]", end);
-    }
-  }
 
   const data = await strapiFetch<PompeichemFalkemData>({
     endpoint: ROUTES.POMPEICHEM_FALKEM,
@@ -67,4 +56,47 @@ async function listMagazines(args?: {
   };
 }
 
-export { listMagazines };
+async function getMagazineBySlug(
+  slug: string,
+): Promise<PompeichemFalkem | undefined> {
+  if (!slug) return undefined;
+
+  const { magazines } = await listMagazines({
+    page: 1,
+    pageSize: 1,
+    slug,
+  });
+
+  return magazines[0];
+}
+
+export { getMagazineBySlug, listMagazines };
+
+function buildMagazineQueryParams({
+  page,
+  pageSize,
+  slug,
+  sortBy,
+  year,
+}: Required<Pick<ListMagazinesArgs, "page" | "pageSize" | "sortBy">> &
+  Pick<ListMagazinesArgs, "slug" | "year">): URLSearchParams {
+  const queryParams = new URLSearchParams({
+    "populate[0]": "coverImage",
+    "populate[1]": "pdfFile",
+    "sort[0]": sortBy,
+    "pagination[page]": String(page),
+    "pagination[pageSize]": String(pageSize),
+  });
+
+  const parsedYear = typeof year === "string" ? parseInt(year, 10) : year;
+  if (typeof parsedYear === "number" && !Number.isNaN(parsedYear)) {
+    queryParams.set("filters[dateOfPublish][$gte]", `${parsedYear}-01-01`);
+    queryParams.set("filters[dateOfPublish][$lte]", `${parsedYear}-12-31`);
+  }
+
+  if (slug) {
+    queryParams.set("filters[slug][$eq]", slug);
+  }
+
+  return queryParams;
+}
