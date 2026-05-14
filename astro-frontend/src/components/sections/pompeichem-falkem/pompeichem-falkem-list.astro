@@ -5,6 +5,7 @@ import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
 import { getLangFromUrl } from "~/i18n/utils";
 import {
   getMagazineDisplayTitle,
+  getMagazinePagePath,
   isSpecialEdition,
   isCentenaryEdition,
 } from "~/helpers/magazine";
@@ -37,6 +38,7 @@ const magazinesOrdered = magazines;
       const isSpecial = isSpecialEdition(magazine);
       const isCentenary = isCentenaryEdition(magazine);
       const displayTitle = getMagazineDisplayTitle(magazine, lang);
+      const shareUrl = getMagazinePagePath(magazine, lang);
 
       return (
         <div class="h-full">
@@ -65,6 +67,7 @@ const magazinesOrdered = magazines;
                 : null
             }
             dateOfPublish={magazine.dateOfPublish}
+            shareUrl={shareUrl}
             latest={isLatest}
             specialEdition={isSpecial}
             centenaryEdition={isCentenary}

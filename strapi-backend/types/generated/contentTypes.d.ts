@@ -1210,10 +1210,11 @@ export interface ApiPompeichemFalkemPompeichemFalkem
     > &
       Schema.Attribute.Private;
     magazineTitle: Schema.Attribute.Enumeration<
-      ['Easter Issue', 'Monti Feast Issue', 'Christmas Issue']
+      ['Easter Edition', 'Monti Feast Edition', 'Christmas Edition']
     >;
     pdfFile: Schema.Attribute.Media<'files'>;
     publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.String & Schema.Attribute.Unique;
     specialEditionTitle: Schema.Attribute.String;
     specialEditionTitleKok: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;

@@ -14,6 +14,7 @@ export interface Props {
   imageWidth?: number;
   imageHeight?: number;
   fileUrl?: string | null;
+  shareUrl?: string | null;
   featured?: boolean;
   latest?: boolean;
   specialEdition?: boolean;
@@ -27,6 +28,7 @@ const {
   imageWidth = 600,
   imageHeight = 400,
   fileUrl,
+  shareUrl = null,
   latest = false,
   specialEdition = false,
   centenaryEdition = false,
@@ -36,19 +38,7 @@ const {
 const containerRatio = 0.75;
 
 const hasFile = Boolean(fileUrl);
-const sharePageUrl = (() => {
-  if (!fileUrl) return null;
-  try {
-    const fileName = new URL(fileUrl).pathname.split("/").pop();
-    if (!fileName) return null;
-    const base = fileName.replace(/\.pdf$/i, "");
-    const parts = base.split("_");
-    const slug = parts.length > 1 ? parts.slice(0, -1).join("_") : base;
-    return `${lang === "kok" ? "/kok" : ""}/pompeichem-falkem/${slug}`;
-  } catch {
-    return null;
-  }
-})();
+const resolvedShareUrl = shareUrl || fileUrl;
 const badgeLabel = latest
   ? t("magazine.latest")
   : centenaryEdition
@@ -120,9 +110,9 @@ const formattedPublishDate = (() => {
           <div class="flex items-center gap-2">
             <WhatsAppShare
               client:load
-              shareData={{ url: sharePageUrl || fileUrl!, title }}
+              shareData={{ url: resolvedShareUrl!, title }}
             />
-            <ShareLink shareData={{ url: sharePageUrl || fileUrl!, title }} />
+            <ShareLink shareData={{ url: resolvedShareUrl!, title }} />
           </div>
         )
       }

@@ -1,6 +1,12 @@
 import type { PompeichemFalkem } from "~/models/pompeichem-falkem";
 import { ui, defaultLang } from "~/i18n/ui";
 
+const MAGAZINE_TITLE_KEYS: Record<string, string> = {
+  "Easter Edition": "magazine.edition.easter",
+  "Monti Feast Edition": "magazine.edition.monti",
+  "Christmas Edition": "magazine.edition.christmas",
+};
+
 /**
  * Logic:
  * - If special edition, prefer Kok title when lang is 'kok', else English title
@@ -29,6 +35,18 @@ export function getMagazineDisplayTitle(
   return raw;
 }
 
+export function getMagazineSlug(magazine: PompeichemFalkem): string {
+  return magazine.slug;
+}
+
+export function getMagazinePagePath(
+  magazine: PompeichemFalkem,
+  lang: "en" | "kok" = "en",
+): string {
+  const prefix = lang === "kok" ? "/kok" : "";
+  return `${prefix}/pompeichem-falkem/${getMagazineSlug(magazine)}`;
+}
+
 export function isSpecialEdition(magazine: PompeichemFalkem): boolean {
   return Boolean(
     (magazine.specialEditionTitle && magazine.specialEditionTitle.trim()) ||
@@ -55,12 +73,5 @@ export function compareByPublishDateAsc(
 }
 
 function enumTitleToKey(value: string): string | null {
-  const v = value.toLowerCase();
-  if (!v) return null;
-  if (v.includes("easter") && v.includes("issue"))
-    return "magazine.issue.easter";
-  if (v.includes("monti") && v.includes("issue")) return "magazine.issue.monti";
-  if (v.includes("christmas") && v.includes("issue"))
-    return "magazine.issue.christmas";
-  return null;
+  return MAGAZINE_TITLE_KEYS[value] ?? null;
 }
