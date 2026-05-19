@@ -72,18 +72,35 @@ export const GET: APIRoute = async ({ url }) => {
     });
   }
 
-  // Step 2: fetch all IDs in sort order using the real total as the page size
-  const data = await strapiFetch<EventData>({
-    endpoint: ROUTES.EVENTS,
-    queryParams: buildQueryParams({
-      "fields[0]": "id",
-      "fields[1]": "slug",
-      "pagination[page]": "1",
-      "pagination[pageSize]": String(total),
-    }),
-  });
+  // Step 2: fetch IDs in chunks until we find the event
+  const ids: number[] = [];
+  let slug = "";
+  const pageSize = 100;
+  const pageCount = Math.ceil(total / pageSize);
 
-  const ids = data?.data?.map((e) => e.id) ?? [];
+  for (let p = 1; p <= pageCount; p++) {
+    const data = await strapiFetch<EventData>({
+      endpoint: ROUTES.EVENTS,
+      queryParams: buildQueryParams({
+        "fields[0]": "id",
+        "fields[1]": "slug",
+        "pagination[page]": String(p),
+        "pagination[pageSize]": String(pageSize),
+      }),
+    });
+
+    const items = data?.data ?? [];
+    for (const item of items) {
+      ids.push(item.id);
+      if (item.id === eventId) {
+        slug = item.slug ?? "";
+      }
+    }
+
+    if (slug) {
+      break;
+    }
+  }
 
   const index = ids.indexOf(eventId);
 
@@ -95,7 +112,6 @@ export const GET: APIRoute = async ({ url }) => {
   }
 
   const page = Math.floor(index / ITEMS_PER_PAGE) + 1;
-  const slug = data?.data?.[index]?.slug ?? "";
 
   return new Response(JSON.stringify({ page, slug }), {
     status: 200,
