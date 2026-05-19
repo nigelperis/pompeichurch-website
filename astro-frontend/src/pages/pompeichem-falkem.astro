@@ -66,7 +66,7 @@ const ogImageUrl = firstMagazine?.coverImage?.formats?.medium?.url
 ---
 
 <Layout title={`${title}`} image={ogImageUrl}>
-  <main class="mx-auto max-w-screen-lg overflow-hidden bg-white">
+  <main class="mx-auto max-w-5xl overflow-hidden bg-white">
     <section class="flex flex-col p-6 lg:p-8">
       <div
         class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between pb-6 lg:pb-8"
@@ -75,7 +75,7 @@ const ogImageUrl = firstMagazine?.coverImage?.formats?.medium?.url
           class={cn(
             "border-natgeo-yellow border-l-4 pl-3 text-left text-3xl lg:text-4xl font-black",
             {
-              "pt-[13px] font-bold": lang === Locale.KOK,
+              "pt-3.25 font-bold": lang === Locale.KOK,
             },
           )}
         >
@@ -99,7 +99,6 @@ const ogImageUrl = firstMagazine?.coverImage?.formats?.medium?.url
 
       {
         (() => {
-          // Default (no year): pin Centenary right after Latest across all pages; rest newest→oldest (desc)
           if (
             !selectedYear &&
             Array.isArray(allMagazines) &&
