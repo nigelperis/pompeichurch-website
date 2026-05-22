@@ -2,6 +2,8 @@
 import { getNovenaPrayer } from "~/constants/novena";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import { cn } from "~/helpers/cn";
+import holySpiritImage from "~/assets/static-assets/holy-spirit-prayer.jpg";
+import { Image } from "astro:assets";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -17,5 +19,16 @@ const fontClass = lang === "kok" ? "font-noto-sans-kannada" : "font-roboto";
   <h3 class={cn("card-title w-full text-black pb-4 pt-2 text-lg")}>
     {t("prayer.pray-for-us")}
   </h3>
+
+  <p class={cn("text-justify", fontClass)} set:html={novenaPrayer} />
+
+  <!-- TODO: Remove below after Pentecost -->
+  <h2 class={cn("border-b-2 border-b-natgeo-yellow pb-2 text-2xl lg:text-3xl mt-4")}>
+    {t("prayer.holy-spirit")}
+  </h2>
+  <Image
+    src={holySpiritImage}
+    alt="Holy Spirit Prayer"
+    class="my-5 h-auto w-full object-cover"
+  />
 </div>
-<p class={cn("text-justify", fontClass)} set:html={novenaPrayer} />
