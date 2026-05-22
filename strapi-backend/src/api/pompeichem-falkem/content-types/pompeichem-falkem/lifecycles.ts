@@ -72,7 +72,7 @@ async function maybeSendPompeichemFalkemEmail(result: any) {
 
 export default {
   async beforeCreate(event: any) {
-    await assignPompeichemFalkemSlug(strapi, event.params?.data);
+    assignPompeichemFalkemSlug(event.params?.data);
   },
   async beforeUpdate(event: any) {
     const data = event.params?.data ?? {};
@@ -88,13 +88,9 @@ export default {
     });
 
     const next = { ...current, ...data };
-    const slug = await assignPompeichemFalkemSlug(strapi, next, current);
+    const slug = assignPompeichemFalkemSlug(next);
 
     data.slug = slug;
-
-    if ("magazineTitle" in data) {
-      data.magazineTitle = next.magazineTitle;
-    }
   },
   async afterCreate(event: any) {
     await maybeSendPompeichemFalkemEmail(event.result);
