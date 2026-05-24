@@ -22,6 +22,8 @@ const { parishionersAchievements, pagination } =
     pageSize: ITEMS_PER_PAGE,
   });
 
+const ogImage = parishionersAchievements?.[0]?.achieverImage?.url;
+
 const totalPages = pagination.pageCount;
 ---
 
@@ -30,6 +32,7 @@ const totalPages = pagination.pageCount;
     ? `ಪಾನ್ ${currentPage} | ${t("nav.parishioners-achievements")}`
     : `${t("nav.parishioners-achievements")}`}
   description={t("parishioners-achievements.subtitle")}
+  image={ogImage}
 >
   <main class="mx-auto max-w-screen-lg overflow-hidden bg-white">
     <section id="parishioner-achievements" class="flex flex-col p-6 lg:p-8">
