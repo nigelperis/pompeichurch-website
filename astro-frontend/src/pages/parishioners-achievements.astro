@@ -22,7 +22,11 @@ const { parishionersAchievements, pagination } =
     pageSize: ITEMS_PER_PAGE,
   });
 
-const ogImage = parishionersAchievements?.[0]?.achieverImage?.url;
+const baseURL = import.meta.env.PUBLIC_STRAPI_URL;
+const rawImageUrl = parishionersAchievements?.[0]?.achieverImage?.url;
+const ogImage = rawImageUrl
+  ? new URL(rawImageUrl, baseURL).toString()
+  : undefined;
 
 const totalPages = pagination.pageCount;
 ---
