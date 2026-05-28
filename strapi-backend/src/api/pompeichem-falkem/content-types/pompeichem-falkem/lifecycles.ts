@@ -1,8 +1,10 @@
 import { SITE_URL } from "../../../../constants";
 import { sendEmail } from "../../../../utils/send-email";
 import { sendPushNotification } from "../../../../utils/send-push-notifications";
+import { assignPompeichemFalkemSlug } from "./slug";
 
 const STRAPI_URL = process.env.STRAPI_URL || "https://strapi.pompeichurch.in";
+const CONTENT_TYPE_UID = "api::pompeichem-falkem.pompeichem-falkem";
 
 function getDisplayTitleFromEntry(entry: any): string {
   const specialEn = (entry?.specialEditionTitle ?? "").trim();
@@ -13,23 +15,9 @@ function getDisplayTitleFromEntry(entry: any): string {
 }
 
 async function maybeSendPompeichemFalkemEmail(result: any) {
-  if (!result?.publishedAt) return;
+  if (!result?.publishedAt || !result?.slug) return;
 
-  const link = (() => {
-    const pdfUrl: string | undefined = result?.pdfFile?.url;
-    if (!pdfUrl) return `${SITE_URL}/pompeichem-falkem`;
-    try {
-      const fileName =
-        new URL(pdfUrl, STRAPI_URL).pathname.split("/").pop() || "";
-      const base = fileName.replace(/\.pdf$/i, "");
-      const parts = base.split("_");
-      const slug = parts.length > 1 ? parts.slice(0, -1).join("_") : base;
-      if (!slug) return `${SITE_URL}/pompeichem-falkem`;
-      return `${SITE_URL}/pompeichem-falkem/${slug}`;
-    } catch {
-      return `${SITE_URL}/pompeichem-falkem`;
-    }
-  })();
+  const link = `${SITE_URL}/pompeichem-falkem/${result.slug}`;
 
   const coverImage = result.coverImage?.url
     ? new URL(result.coverImage.url, STRAPI_URL).toString()
@@ -83,6 +71,27 @@ async function maybeSendPompeichemFalkemEmail(result: any) {
 }
 
 export default {
+  async beforeCreate(event: any) {
+    assignPompeichemFalkemSlug(event.params?.data);
+  },
+  async beforeUpdate(event: any) {
+    const data = event.params?.data ?? {};
+    const current = await strapi.db.query(CONTENT_TYPE_UID).findOne({
+      where: event.params?.where,
+      select: [
+        "id",
+        "documentId",
+        "dateOfPublish",
+        "magazineTitle",
+        "specialEditionTitle",
+      ],
+    });
+
+    const next = { ...current, ...data };
+    const slug = assignPompeichemFalkemSlug(next);
+
+    data.slug = slug;
+  },
   async afterCreate(event: any) {
     await maybeSendPompeichemFalkemEmail(event.result);
   },
