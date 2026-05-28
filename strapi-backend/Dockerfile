@@ -1,4 +1,4 @@
-FROM node:24.14.1-alpine AS builder
+FROM node:24.16.0-alpine AS builder
 RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev vips-dev git > /dev/null 2>&1 py3-setuptools
 RUN npm install --global corepack@0.34.6
 ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0
@@ -22,7 +22,7 @@ COPY . .
 RUN pnpm run build
 
 # RUNNER STAGE
-FROM node:24.14.1-alpine AS runner
+FROM node:24.16.0-alpine AS runner
 RUN apk add --no-cache vips-dev
 RUN npm install --global corepack@0.34.6
 ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0
