@@ -1,10 +1,8 @@
 import { SITE_URL } from "../../../../constants";
 import { sendEmail } from "../../../../utils/send-email";
 import { sendPushNotification } from "../../../../utils/send-push-notifications";
-import { assignPompeichemFalkemSlug } from "./slug";
 
 const STRAPI_URL = process.env.STRAPI_URL || "https://strapi.pompeichurch.in";
-const CONTENT_TYPE_UID = "api::pompeichem-falkem.pompeichem-falkem";
 
 function getDisplayTitleFromEntry(entry: any): string {
   const specialEn = (entry?.specialEditionTitle ?? "").trim();
@@ -24,20 +22,14 @@ async function maybeSendPompeichemFalkemEmail(result: any) {
     : null;
 
   const title = getDisplayTitleFromEntry(result);
-  const { dateOfPublish } = result;
 
-  const formattedDateOfPublish = (() => {
-    if (!dateOfPublish) return "";
-    const d = new Date(dateOfPublish);
-    if (isNaN(d.getTime())) return String(dateOfPublish);
-    return d
-      .toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit",
-      })
-      .replace(/\//g, "-");
-  })();
+  const formattedDateOfPublish = new Date(result.dateOfPublish)
+    .toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    })
+    .replace(/\//g, "-");
 
   const publisher = result.updatedBy || result.createdBy || null;
   const publisherName = publisher
@@ -71,27 +63,6 @@ async function maybeSendPompeichemFalkemEmail(result: any) {
 }
 
 export default {
-  async beforeCreate(event: any) {
-    assignPompeichemFalkemSlug(event.params?.data);
-  },
-  async beforeUpdate(event: any) {
-    const data = event.params?.data ?? {};
-    const current = await strapi.db.query(CONTENT_TYPE_UID).findOne({
-      where: event.params?.where,
-      select: [
-        "id",
-        "documentId",
-        "dateOfPublish",
-        "magazineTitle",
-        "specialEditionTitle",
-      ],
-    });
-
-    const next = { ...current, ...data };
-    const slug = assignPompeichemFalkemSlug(next);
-
-    data.slug = slug;
-  },
   async afterCreate(event: any) {
     await maybeSendPompeichemFalkemEmail(event.result);
   },

@@ -13,13 +13,13 @@ export interface Props {
   imageUrl: string;
   imageWidth?: number;
   imageHeight?: number;
-  fileUrl?: string | null;
+  fileUrl: string;
   shareUrl?: string | null;
   featured?: boolean;
   latest?: boolean;
   specialEdition?: boolean;
   centenaryEdition?: boolean;
-  dateOfPublish?: string | null;
+  dateOfPublish: string;
 }
 
 const {
@@ -32,12 +32,11 @@ const {
   latest = false,
   specialEdition = false,
   centenaryEdition = false,
-  dateOfPublish = null,
+  dateOfPublish,
 } = Astro.props as Props;
 
 const containerRatio = 0.75;
 
-const hasFile = Boolean(fileUrl);
 const resolvedShareUrl = shareUrl || fileUrl;
 const badgeLabel = latest
   ? t("magazine.latest")
@@ -51,7 +50,6 @@ const badgeClasses = centenaryEdition
   : "absolute top-2 right-2 bg-slate-900/70 text-white text-[13px] font-bold px-4 py-1 uppercase tracking-wide";
 
 const formattedPublishDate = (() => {
-  if (!dateOfPublish) return null;
   const d = new Date(dateOfPublish);
   if (isNaN(d.getTime())) return null;
   const monthKeys = [
@@ -95,27 +93,17 @@ const formattedPublishDate = (() => {
       )
     }
     <div class="bottom-4 left-4 right-4 flex justify-between items-center">
-      {
-        hasFile ? (
-          <HoverableLink href={fileUrl!} target="_blank">
-            {t("download")}
-          </HoverableLink>
-        ) : (
-          <span class="text-slate-400">{t("download")}</span>
-        )
-      }
+      <HoverableLink href={fileUrl} target="_blank">
+        {t("download")}
+      </HoverableLink>
 
-      {
-        hasFile && (
-          <div class="flex items-center gap-2">
-            <WhatsAppShare
-              client:load
-              shareData={{ url: resolvedShareUrl!, title }}
-            />
-            <ShareLink shareData={{ url: resolvedShareUrl!, title }} />
-          </div>
-        )
-      }
+      <div class="flex items-center gap-2">
+        <WhatsAppShare
+          client:load
+          shareData={{ url: resolvedShareUrl, title }}
+        />
+        <ShareLink shareData={{ url: resolvedShareUrl, title }} />
+      </div>
     </div>
   </div>
 </div>

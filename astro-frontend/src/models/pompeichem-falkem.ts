@@ -38,6 +38,17 @@ interface CoverImage {
   publishedAt: string;
 }
 
+interface PdfFile {
+  id: number;
+  url: string;
+  name: string;
+  ext: string;
+  mime: string;
+  size: number;
+  width: number;
+  height: number;
+}
+
 export interface PompeichemFalkem {
   id: number;
   documentId: string;
@@ -50,16 +61,7 @@ export interface PompeichemFalkem {
   specialEditionTitle: string | null;
   specialEditionTitleKok: string | null;
   coverImage: CoverImage;
-  pdfFile: {
-    id: number;
-    url: string;
-    name: string;
-    ext: string;
-    mime: string;
-    size: number;
-    width: number;
-    height: number;
-  } | null;
+  pdfFile: PdfFile;
 }
 
 interface Pagination {

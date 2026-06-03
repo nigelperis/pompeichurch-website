@@ -19,15 +19,17 @@
     "coverImage": {
       "type": "media",
       "multiple": false,
-      "required": false,
+      "required": true,
       "allowedTypes": ["images"]
     },
     "dateOfPublish": {
-      "type": "date"
+      "type": "date",
+      "required": true
     },
     "pdfFile": {
       "type": "media",
       "multiple": false,
+      "required": true,
       "allowedTypes": ["files"]
     },
     "specialEditionTitle": {
@@ -37,8 +39,8 @@
       "type": "string"
     },
     "slug": {
-      "type": "string",
-      "unique": true
+      "type": "uid",
+      "required": true
     }
   }
 }

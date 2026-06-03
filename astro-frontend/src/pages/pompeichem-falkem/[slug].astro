@@ -1,6 +1,5 @@
 ﻿---
 import { getMagazineBySlug } from "~/services/list-magazines";
-import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
 import { getMagazineDisplayTitle } from "~/helpers/magazine";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import { Locale } from "~/enums/locale";
@@ -15,30 +14,15 @@ if (!magazine) {
   throw new Error("Magazine not found");
 }
 
-if (!magazine.pdfFile?.url) {
-  throw new Error("PDF file is missing");
-}
-
 const fileUrl = new URL(
   magazine.pdfFile.url,
   import.meta.env.PUBLIC_STRAPI_URL,
 ).toString();
 
-const imageUrl = magazine.coverImage?.formats?.medium?.url
-  ? new URL(
-      magazine.coverImage.formats.medium.url,
-      import.meta.env.PUBLIC_STRAPI_URL,
-    ).toString()
-  : magazine.coverImage?.url
-    ? new URL(
-        magazine.coverImage.url,
-        import.meta.env.PUBLIC_STRAPI_URL,
-      ).toString()
-    : getPlaceholderImage({
-        width: 340,
-        height: 400,
-        text: getMagazineDisplayTitle(magazine, "en"),
-      });
+const imageUrl = new URL(
+  magazine.coverImage.url,
+  import.meta.env.PUBLIC_STRAPI_URL,
+).toString();
 
 const displayTitle = getMagazineDisplayTitle(
   magazine,

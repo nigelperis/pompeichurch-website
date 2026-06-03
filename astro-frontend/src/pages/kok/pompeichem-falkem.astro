@@ -6,7 +6,6 @@ import SelectYearRedirect from "~/components/ui/SelectYearRedirect";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import { listMagazines } from "~/services/list-magazines";
 import { isCentenaryEdition } from "~/helpers/magazine";
-import type { PompeichemFalkem } from "~/models/pompeichem-falkem";
 import { Message } from "~/constants/message.ts";
 import { cn } from "~/helpers/cn";
 import { Locale } from "~/enums/locale";
@@ -34,38 +33,38 @@ const latestMagazineId = allMagazines?.[0]?.id;
 const uniqueYears = Array.from(
   new Set(
     allMagazines
-      .map((m) =>
-        m.dateOfPublish ? new Date(m.dateOfPublish).getFullYear() : undefined,
-      )
-      .filter((y): y is number => typeof y === "number" && !isNaN(y)),
+      .map((m) => new Date(m.dateOfPublish).getFullYear())
+      .filter((y): y is number => !isNaN(y)),
   ),
 ).sort((a, b) => a - b);
 
+const visibleMagazines = selectedYear
+  ? magazines
+  : isCentenaryEdition(allMagazines).slice(
+      (currentPage - 1) * ITEMS_PER_PAGE,
+      currentPage * ITEMS_PER_PAGE,
+    );
+
 const totalPages = pagination.pageCount;
+const pageTitle = t("nav.pompeichem-falkem");
 const title =
   totalPages > 1
-    ? lang === Locale.KOK
-      ? `ಪಾನ್ ${currentPage} | ಪೊಂಪೈಚೆಂ ಫಾಲ್ಕೆಂ`
-      : `Page ${currentPage} | Pompeichem Falkem`
-    : lang === Locale.KOK
-      ? "ಪೊಂಪೈಚೆಂ ಫಾಲ್ಕೆಂ"
-      : "Pompeichem Falkem";
+    ? `${t("pagination.page-placeholder")} ${currentPage} | ${pageTitle}`
+    : pageTitle;
 const baseURL = import.meta.env.PUBLIC_STRAPI_URL;
-const firstMagazine = magazines?.[0];
+const firstMagazine = visibleMagazines[0];
 
-const ogImageUrl = firstMagazine?.coverImage?.formats?.medium?.url
-  ? new URL(firstMagazine.coverImage.formats.medium.url, baseURL).toString()
-  : firstMagazine?.coverImage?.url
-    ? new URL(firstMagazine.coverImage.url, baseURL).toString()
-    : getPlaceholderImage({
-        width: 300,
-        height: 400,
-        text: firstMagazine?.magazineTitle || "Pompeichem Falkem",
-      });
+const ogImageUrl = firstMagazine
+  ? new URL(firstMagazine.coverImage.url, baseURL).toString()
+  : getPlaceholderImage({
+      width: 300,
+      height: 400,
+      text: pageTitle,
+    });
 ---
 
-<Layout title={`${title}`} image={ogImageUrl}>
-  <main class="mx-auto max-w-screen-lg overflow-hidden bg-white">
+<Layout title={title} image={ogImageUrl}>
+  <main class="mx-auto max-w-5xl overflow-hidden bg-white">
     <section class="flex flex-col p-6 lg:p-8">
       <div
         class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between pb-6 lg:pb-8"
@@ -74,11 +73,11 @@ const ogImageUrl = firstMagazine?.coverImage?.formats?.medium?.url
           class={cn(
             "border-natgeo-yellow border-l-4 pl-3 text-left text-3xl lg:text-4xl font-black",
             {
-              "pt-[13px] font-bold": lang === Locale.KOK,
+              "pt-3.25 font-bold": lang === Locale.KOK,
             },
           )}
         >
-          {t("nav.pompeichem-falkem")}
+          {pageTitle}
         </h1>
 
         {
@@ -97,57 +96,19 @@ const ogImageUrl = firstMagazine?.coverImage?.formats?.medium?.url
       </div>
 
       {
-        (() => {
-          // Default (no year): pin Centenary right after Latest across all pages; rest newest→oldest (desc)
-          if (
-            !selectedYear &&
-            Array.isArray(allMagazines) &&
-            allMagazines.length
-          ) {
-            const latest = allMagazines[0];
-            const rest = allMagazines.slice(1);
-            const centenary = rest.find((m) => isCentenaryEdition(m)) || null;
-            const restWithoutCentenary = centenary
-              ? rest.filter((m) => m.id !== centenary.id)
-              : rest;
-            const ordered = centenary
-              ? [latest, centenary, ...restWithoutCentenary]
-              : [latest, ...restWithoutCentenary];
-            const start = (currentPage - 1) * ITEMS_PER_PAGE;
-            const pageItems = ordered.slice(
-              start,
-              start + ITEMS_PER_PAGE,
-            ) as PompeichemFalkem[];
-            return pageItems.length > 0 ? (
-              <>
-                <PompeichemFalkemList
-                  magazines={pageItems}
-                  latestMagazineId={latestMagazineId}
-                />
-                <Pagination currentPage={currentPage} totalPages={totalPages} />
-              </>
-            ) : (
-              <p class="py-8 text-center text-3xl font-semibold">
-                {Message.MAGAZINES_NOT_FOUND}
-              </p>
-            );
-          }
-
-          // Year selected: render as received (asc order from service)
-          return magazines.length > 0 ? (
-            <>
-              <PompeichemFalkemList
-                magazines={magazines as PompeichemFalkem[]}
-                latestMagazineId={latestMagazineId}
-              />
-              <Pagination currentPage={currentPage} totalPages={totalPages} />
-            </>
-          ) : (
-            <p class="py-8 text-center text-3xl font-semibold">
-              {Message.MAGAZINES_NOT_FOUND}
-            </p>
-          );
-        })()
+        visibleMagazines.length > 0 ? (
+          <>
+            <PompeichemFalkemList
+              magazines={visibleMagazines}
+              latestMagazineId={latestMagazineId}
+            />
+            <Pagination currentPage={currentPage} totalPages={totalPages} />
+          </>
+        ) : (
+          <p class="py-8 text-center text-3xl font-semibold">
+            {Message.MAGAZINES_NOT_FOUND}
+          </p>
+        )
       }
     </section>
   </main>
