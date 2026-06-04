@@ -14,13 +14,8 @@ type ListMagazinesArgs = {
 };
 
 type ListMagazinesResult = {
-  magazines: PompeichemFalkem[];
-  pagination: {
-    total: number;
-    page: number;
-    pageSize: number;
-    pageCount: number;
-  };
+  magazines: PompeichemFalkemData["data"];
+  pagination: PompeichemFalkemData["meta"]["pagination"];
 };
 
 const DEFAULT_SORT = "dateOfPublish:desc";

@@ -1,5 +1,6 @@
 import type { PompeichemFalkem } from "~/models/pompeichem-falkem";
 import { ui, defaultLang } from "~/i18n/ui";
+import { Locale } from "~/enums/locale";
 
 const MAGAZINE_TITLE_KEYS: Record<string, string> = {
   "Easter Edition": "magazine.edition.easter",
@@ -9,10 +10,10 @@ const MAGAZINE_TITLE_KEYS: Record<string, string> = {
 
 export function getMagazineDisplayTitle(
   magazine: PompeichemFalkem,
-  lang: "en" | "kok" = "en",
+  lang: Locale = Locale.EN,
 ): string {
   if (isSpecialEdition(magazine)) {
-    if (lang === "kok") {
+    if (lang === Locale.KOK) {
       const kok = (magazine.specialEditionTitleKok ?? "").trim();
       if (kok) return kok;
     }
@@ -32,10 +33,14 @@ export function getMagazineDisplayTitle(
 
 export function getMagazinePagePath(
   magazine: PompeichemFalkem,
-  lang: "en" | "kok" = "en",
+  lang: Locale = Locale.EN,
 ): string {
-  const prefix = lang === "kok" ? "/kok" : "";
+  const prefix = lang === Locale.KOK ? "/kok" : "";
   return `${prefix}/pompeichem-falkem/${magazine.slug}`;
+}
+
+export function getMagazineCoverImage(magazine: PompeichemFalkem) {
+  return magazine.coverImage.formats?.medium ?? magazine.coverImage;
 }
 
 export function isSpecialEdition(magazine: PompeichemFalkem): boolean {

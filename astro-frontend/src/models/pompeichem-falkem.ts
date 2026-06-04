@@ -20,11 +20,11 @@ interface CoverImage {
   width: number;
   height: number;
   formats: {
-    large: MediaFormat;
-    small: MediaFormat;
-    medium: MediaFormat;
-    thumbnail: MediaFormat;
-  };
+    large?: MediaFormat;
+    small?: MediaFormat;
+    medium?: MediaFormat;
+    thumbnail?: MediaFormat;
+  } | null;
   hash: string;
   ext: string;
   mime: string;

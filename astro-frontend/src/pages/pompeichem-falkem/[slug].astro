@@ -1,8 +1,10 @@
 ﻿---
 import { getMagazineBySlug } from "~/services/list-magazines";
-import { getMagazineDisplayTitle } from "~/helpers/magazine";
+import {
+  getMagazineCoverImage,
+  getMagazineDisplayTitle,
+} from "~/helpers/magazine";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
-import { Locale } from "~/enums/locale";
 
 const { slug } = Astro.params;
 const lang = getLangFromUrl(Astro.url);
@@ -19,15 +21,13 @@ const fileUrl = new URL(
   import.meta.env.PUBLIC_STRAPI_URL,
 ).toString();
 
+const coverImage = getMagazineCoverImage(magazine);
 const imageUrl = new URL(
-  magazine.coverImage.url,
+  coverImage.url,
   import.meta.env.PUBLIC_STRAPI_URL,
 ).toString();
 
-const displayTitle = getMagazineDisplayTitle(
-  magazine,
-  lang === Locale.KOK ? "kok" : "en",
-);
+const displayTitle = getMagazineDisplayTitle(magazine, lang);
 const metaDescription = t("magazine.view.description");
 ---
 

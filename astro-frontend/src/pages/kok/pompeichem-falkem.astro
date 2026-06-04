@@ -5,7 +5,10 @@ import Pagination from "~/components/pagination.astro";
 import SelectYearRedirect from "~/components/ui/SelectYearRedirect";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 import { listMagazines } from "~/services/list-magazines";
-import { isCentenaryEdition } from "~/helpers/magazine";
+import {
+  getMagazineCoverImage,
+  isCentenaryEdition,
+} from "~/helpers/magazine";
 import { Message } from "~/constants/message.ts";
 import { cn } from "~/helpers/cn";
 import { Locale } from "~/enums/locale";
@@ -53,9 +56,12 @@ const title =
     : pageTitle;
 const baseURL = import.meta.env.PUBLIC_STRAPI_URL;
 const firstMagazine = visibleMagazines[0];
+const firstMagazineCover = firstMagazine
+  ? getMagazineCoverImage(firstMagazine)
+  : undefined;
 
-const ogImageUrl = firstMagazine
-  ? new URL(firstMagazine.coverImage.url, baseURL).toString()
+const ogImageUrl = firstMagazineCover
+  ? new URL(firstMagazineCover.url, baseURL).toString()
   : getPlaceholderImage({
       width: 300,
       height: 400,
