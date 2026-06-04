@@ -1,36 +1,19 @@
 ﻿---
-import { listMagazines } from "~/services/list-magazines";
-import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
-import { getMagazineDisplayTitle } from "~/helpers/magazine";
+import { getMagazineBySlug } from "~/services/list-magazines";
+import {
+  getMagazineCoverImage,
+  getMagazineDisplayTitle,
+} from "~/helpers/magazine";
 import { getLangFromUrl, useTranslations } from "~/i18n/utils";
-import { Locale } from "~/enums/locale";
 
 const { slug } = Astro.params;
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-function extractSlug(fileUrl: string): string | null {
-  const fileName = new URL(fileUrl).pathname.split("/").pop();
-  if (!fileName) return null;
-  return fileName.split("_").slice(0, -1).join("_").replace(".pdf", "");
-}
-
-const { magazines } = await listMagazines();
-
-const magazine = magazines.find((m) => {
-  const fileUrl = m.pdfFile?.url
-    ? new URL(m.pdfFile.url, import.meta.env.PUBLIC_STRAPI_URL).toString()
-    : null;
-  const s = fileUrl ? extractSlug(fileUrl) : null;
-  return s === slug;
-});
+const magazine = await getMagazineBySlug(slug ?? "");
 
 if (!magazine) {
   throw new Error("Magazine not found");
-}
-
-if (!magazine.pdfFile?.url) {
-  throw new Error("PDF file is missing");
 }
 
 const fileUrl = new URL(
@@ -38,26 +21,13 @@ const fileUrl = new URL(
   import.meta.env.PUBLIC_STRAPI_URL,
 ).toString();
 
-const imageUrl = magazine.coverImage?.formats?.medium?.url
-  ? new URL(
-      magazine.coverImage.formats.medium.url,
-      import.meta.env.PUBLIC_STRAPI_URL,
-    ).toString()
-  : magazine.coverImage?.url
-    ? new URL(
-        magazine.coverImage.url,
-        import.meta.env.PUBLIC_STRAPI_URL,
-      ).toString()
-    : getPlaceholderImage({
-        width: 340,
-        height: 400,
-        text: getMagazineDisplayTitle(magazine, "en"),
-      });
+const coverImage = getMagazineCoverImage(magazine);
+const imageUrl = new URL(
+  coverImage.url,
+  import.meta.env.PUBLIC_STRAPI_URL,
+).toString();
 
-const displayTitle = getMagazineDisplayTitle(
-  magazine,
-  lang === Locale.KOK ? "kok" : "en",
-);
+const displayTitle = getMagazineDisplayTitle(magazine, lang);
 const metaDescription = t("magazine.view.description");
 ---
 

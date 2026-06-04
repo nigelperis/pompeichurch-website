@@ -1198,11 +1198,11 @@ export interface ApiPompeichemFalkemPompeichemFalkem
     draftAndPublish: true;
   };
   attributes: {
-    coverImage: Schema.Attribute.Media<'images'>;
+    coverImage: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    dateOfPublish: Schema.Attribute.Date;
+    dateOfPublish: Schema.Attribute.Date & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -1210,10 +1210,11 @@ export interface ApiPompeichemFalkemPompeichemFalkem
     > &
       Schema.Attribute.Private;
     magazineTitle: Schema.Attribute.Enumeration<
-      ['Easter Issue', 'Monti Feast Issue', 'Christmas Issue']
+      ['Easter Edition', 'Monti Feast Edition', 'Christmas Edition']
     >;
-    pdfFile: Schema.Attribute.Media<'files'>;
+    pdfFile: Schema.Attribute.Media<'files'> & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID & Schema.Attribute.Required;
     specialEditionTitle: Schema.Attribute.String;
     specialEditionTitleKok: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;

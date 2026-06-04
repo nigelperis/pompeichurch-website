@@ -14,35 +14,33 @@
   "attributes": {
     "magazineTitle": {
       "type": "enumeration",
-      "enum": [
-        "Easter Issue",
-        "Monti Feast Issue",
-        "Christmas Issue"
-      ]
+      "enum": ["Easter Edition", "Monti Feast Edition", "Christmas Edition"]
     },
     "coverImage": {
       "type": "media",
       "multiple": false,
-      "required": false,
-      "allowedTypes": [
-        "images"
-      ]
+      "required": true,
+      "allowedTypes": ["images"]
     },
     "dateOfPublish": {
-      "type": "date"
+      "type": "date",
+      "required": true
     },
     "pdfFile": {
       "type": "media",
       "multiple": false,
-      "allowedTypes": [
-        "files"
-      ]
+      "required": true,
+      "allowedTypes": ["files"]
     },
     "specialEditionTitle": {
       "type": "string"
     },
     "specialEditionTitleKok": {
       "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "required": true
     }
   }
 }

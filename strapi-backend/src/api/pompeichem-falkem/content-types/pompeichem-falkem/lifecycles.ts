@@ -13,43 +13,23 @@ function getDisplayTitleFromEntry(entry: any): string {
 }
 
 async function maybeSendPompeichemFalkemEmail(result: any) {
-  if (!result?.publishedAt) return;
+  if (!result?.publishedAt || !result?.slug) return;
 
-  const link = (() => {
-    const pdfUrl: string | undefined = result?.pdfFile?.url;
-    if (!pdfUrl) return `${SITE_URL}/pompeichem-falkem`;
-    try {
-      const fileName =
-        new URL(pdfUrl, STRAPI_URL).pathname.split("/").pop() || "";
-      const base = fileName.replace(/\.pdf$/i, "");
-      const parts = base.split("_");
-      const slug = parts.length > 1 ? parts.slice(0, -1).join("_") : base;
-      if (!slug) return `${SITE_URL}/pompeichem-falkem`;
-      return `${SITE_URL}/pompeichem-falkem/${slug}`;
-    } catch {
-      return `${SITE_URL}/pompeichem-falkem`;
-    }
-  })();
+  const link = `${SITE_URL}/pompeichem-falkem/${result.slug}`;
 
   const coverImage = result.coverImage?.url
     ? new URL(result.coverImage.url, STRAPI_URL).toString()
     : null;
 
   const title = getDisplayTitleFromEntry(result);
-  const { dateOfPublish } = result;
 
-  const formattedDateOfPublish = (() => {
-    if (!dateOfPublish) return "";
-    const d = new Date(dateOfPublish);
-    if (isNaN(d.getTime())) return String(dateOfPublish);
-    return d
-      .toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit",
-      })
-      .replace(/\//g, "-");
-  })();
+  const formattedDateOfPublish = new Date(result.dateOfPublish)
+    .toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    })
+    .replace(/\//g, "-");
 
   const publisher = result.updatedBy || result.createdBy || null;
   const publisherName = publisher

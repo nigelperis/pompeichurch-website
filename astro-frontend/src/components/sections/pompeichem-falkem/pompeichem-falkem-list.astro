@@ -1,10 +1,10 @@
 ---
 import MagazineCard from "~/components/magazine-card.astro";
 import type { PompeichemFalkem } from "~/models/pompeichem-falkem";
-import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
 import { getLangFromUrl } from "~/i18n/utils";
 import {
   getMagazineDisplayTitle,
+  getMagazinePagePath,
   isSpecialEdition,
   isCentenaryEdition,
 } from "~/helpers/magazine";
@@ -37,34 +37,24 @@ const magazinesOrdered = magazines;
       const isSpecial = isSpecialEdition(magazine);
       const isCentenary = isCentenaryEdition(magazine);
       const displayTitle = getMagazineDisplayTitle(magazine, lang);
+      const shareUrl = getMagazinePagePath(magazine, lang);
 
       return (
         <div class="h-full">
           <MagazineCard
             title={displayTitle}
-            imageUrl={
-              magazine.coverImage?.url
-                ? new URL(
-                    magazine.coverImage.url,
-                    import.meta.env.PUBLIC_STRAPI_URL,
-                  ).toString()
-                : getPlaceholderImage({
-                    text: displayTitle,
-                    width: magazine.coverImage?.width ?? 400,
-                    height: magazine.coverImage?.height ?? 500,
-                  })
-            }
-            imageWidth={magazine.coverImage?.width ?? 400}
-            imageHeight={magazine.coverImage?.height ?? 500}
-            fileUrl={
-              magazine.pdfFile?.url
-                ? new URL(
-                    magazine.pdfFile.url,
-                    import.meta.env.PUBLIC_STRAPI_URL,
-                  ).toString()
-                : null
-            }
+            imageUrl={new URL(
+              magazine.coverImage.url,
+              import.meta.env.PUBLIC_STRAPI_URL,
+            ).toString()}
+            imageWidth={magazine.coverImage.width}
+            imageHeight={magazine.coverImage.height}
+            fileUrl={new URL(
+              magazine.pdfFile.url,
+              import.meta.env.PUBLIC_STRAPI_URL,
+            ).toString()}
             dateOfPublish={magazine.dateOfPublish}
+            shareUrl={shareUrl}
             latest={isLatest}
             specialEdition={isSpecial}
             centenaryEdition={isCentenary}
