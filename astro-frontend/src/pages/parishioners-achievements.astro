@@ -9,6 +9,7 @@ import Pagination from "~/components/pagination.astro";
 import { getPaginationRange } from "~/helpers/get-pagination-range";
 import { Message } from "~/constants/message";
 import { ITEMS_PER_PAGE } from "~/constants/index.ts";
+import blankImage from "~/assets/static-assets/blank.jpeg";
 import PushNotification from "~/components/push-notification.astro";
 
 const lang = getLangFromUrl(Astro.url);
@@ -26,7 +27,7 @@ const baseURL = import.meta.env.PUBLIC_STRAPI_URL;
 const rawImageUrl = parishionersAchievements?.[0]?.achieverImage?.url;
 const ogImage = rawImageUrl
   ? new URL(rawImageUrl, baseURL).toString()
-  : undefined;
+  : blankImage.src;
 
 const totalPages = pagination.pageCount;
 ---
