@@ -8,6 +8,7 @@ import { listParishionersAchievements } from "~/services/parishioners-achievemen
 import Pagination from "~/components/pagination.astro";
 import { getPaginationRange } from "~/helpers/get-pagination-range";
 import { Message } from "~/constants/message";
+import blankImage from "~/assets/static-assets/blank.jpeg";
 import { ITEMS_PER_PAGE } from "~/constants/index.ts";
 import PushNotification from "~/components/push-notification.astro";
 
@@ -22,6 +23,12 @@ const { parishionersAchievements, pagination } =
     pageSize: ITEMS_PER_PAGE,
   });
 
+const baseURL = import.meta.env.PUBLIC_STRAPI_URL;
+const rawImageUrl = parishionersAchievements?.[0]?.achieverImage?.url;
+const ogImage = rawImageUrl
+  ? new URL(rawImageUrl, baseURL).toString()
+  : blankImage.src;
+
 const totalPages = pagination.pageCount;
 ---
 
@@ -30,6 +37,7 @@ const totalPages = pagination.pageCount;
     ? `ಪಾನ್ ${currentPage} | ${t("nav.parishioners-achievements")}`
     : `${t("nav.parishioners-achievements")}`}
   description={t("parishioners-achievements.subtitle")}
+  image={ogImage}
 >
   <main class="mx-auto max-w-screen-lg overflow-hidden bg-white">
     <section id="parishioner-achievements" class="flex flex-col p-6 lg:p-8">
