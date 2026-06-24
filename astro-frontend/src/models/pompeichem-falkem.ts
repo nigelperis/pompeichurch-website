@@ -20,11 +20,11 @@ interface CoverImage {
   width: number;
   height: number;
   formats: {
-    large: MediaFormat;
-    small: MediaFormat;
-    medium: MediaFormat;
-    thumbnail: MediaFormat;
-  };
+    large?: MediaFormat;
+    small?: MediaFormat;
+    medium?: MediaFormat;
+    thumbnail?: MediaFormat;
+  } | null;
   hash: string;
   ext: string;
   mime: string;
@@ -38,9 +38,21 @@ interface CoverImage {
   publishedAt: string;
 }
 
+interface PdfFile {
+  id: number;
+  url: string;
+  name: string;
+  ext: string;
+  mime: string;
+  size: number;
+  width: number;
+  height: number;
+}
+
 export interface PompeichemFalkem {
   id: number;
   documentId: string;
+  slug: string;
   dateOfPublish: string;
   createdAt: string;
   updatedAt: string;
@@ -49,16 +61,7 @@ export interface PompeichemFalkem {
   specialEditionTitle: string | null;
   specialEditionTitleKok: string | null;
   coverImage: CoverImage;
-  pdfFile: {
-    id: number;
-    url: string;
-    name: string;
-    ext: string;
-    mime: string;
-    size: number;
-    width: number;
-    height: number;
-  } | null;
+  pdfFile: PdfFile;
 }
 
 interface Pagination {

@@ -1,14 +1,15 @@
 import { defaultLang, ui } from "./ui";
+import { Locale } from "~/enums/locale";
 
-export function getLangFromUrl(url: URL) {
+export function getLangFromUrl(url: URL): Locale {
   const [, lang] = url.pathname.split("/");
-  if (lang in ui) return lang as keyof typeof ui;
-  return defaultLang;
+  if (lang === Locale.KOK) return Locale.KOK;
+  return Locale.EN;
 }
 
 type UiKeys = keyof (typeof ui)[typeof defaultLang];
 
-export function useTranslations(lang: keyof typeof ui) {
+export function useTranslations(lang: Locale) {
   function t(key: UiKeys): string;
   function t(key: string): string;
   function t(key: string): string {
