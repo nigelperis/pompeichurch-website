@@ -53,11 +53,15 @@ const totalPages = pagination.pageCount;
         {t("nav.parishioners-achievements")}
       </h1>
 
-      <p
-        class="pb-6 pt-4 lg:pb-8 text-lg text-justify font-normal text-slate-700"
-      >
-        {t("parishioners-achievements.subtitle")}
-      </p>
+      {
+        pagination.total > 0 && (
+          <p
+            class="pb-6 pt-4 lg:pb-8 text-lg text-justify font-normal text-slate-700"
+          >
+            {t("parishioners-achievements.subtitle")}
+          </p>
+        )
+      }
 
       {
         parishionersAchievements?.length > 0 ? (
