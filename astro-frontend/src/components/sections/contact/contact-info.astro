@@ -32,13 +32,14 @@ const contactDetails =
 
   <div class="mb-6 flex items-center border-gray-200 border-b-2 pb-4">
     <Icon name="contact-phone" size={22} class="text-gray-900" />
-    <p
+    <a
+      href={`tel:${contactDetails?.contactNumber}`}
       class={cn("ml-4 font-semibold text-slate-900", {
         "mt-[6px]": lang === Locale.KOK,
       })}
     >
       {contactDetails?.contactNumber}
-    </p>
+    </a>
   </div>
 
   <div class="mb-6 flex items-center border-gray-200 border-b-2 pb-4">
@@ -65,12 +66,13 @@ const contactDetails =
 
   <div class="mb-6 flex items-center pb-4">
     <Icon name="contact-mail" size={22} class="text-gray-900" />
-    <p
+    <a
+      href={`mailto:${contactDetails?.email}`}
       class={cn("font-roboto ml-4 font-semibold text-slate-900", {
         "mt-1": lang === Locale.KOK,
       })}
     >
       {contactDetails?.email}
-    </p>
+    </a>
   </div>
 </div>
