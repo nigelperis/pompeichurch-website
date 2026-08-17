@@ -88,7 +88,7 @@ export interface SharedTerms extends Struct.ComponentSchema {
 }
 
 declare module '@strapi/strapi' {
-  export module Public {
+  export namespace Public {
     export interface ComponentSchemas {
       'associations.office-bearer': AssociationsOfficeBearer;
       'shared.commission': SharedCommission;
