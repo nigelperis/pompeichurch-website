@@ -217,13 +217,13 @@ export default function SeasonalPopup({
               />
               <span
                 aria-hidden="true"
-                className="absolute inset-x-0 bottom-0 h-14 bg-gradient-to-t from-[#fffdf7] to-transparent"
+                className="absolute inset-x-0 bottom-0 h-14 bg-linear-to-t from-[#fffdf7] to-transparent"
               />
             </div>
           )}
 
           <div
-            className={`relative ${variant === "monthi" ? "p-[clamp(0.75rem,2.5dvh,1.75rem)]" : "p-8"} ${theme.overlay}`}
+            className={`relative ${variant === "monthi" ? "px-[clamp(0.75rem,2.5dvh,1.75rem)] py-[clamp(1.5rem,4dvh,2.25rem)]" : "p-8"} ${theme.overlay}`}
           >
             {variant === "monthi" && (
               <>
@@ -238,14 +238,6 @@ export default function SeasonalPopup({
               </>
             )}
 
-            {eyebrow && (
-              <p
-                className={`${variant === "monthi" ? "text-[clamp(0.625rem,1.6dvh,0.75rem)]" : "text-[0.68rem] sm:text-xs"} font-semibold uppercase leading-relaxed tracking-[0.16em] ${theme.eyebrow}`}
-              >
-                {eyebrow}
-              </p>
-            )}
-
             {title && (
               <h2
                 id={`seasonal-${variant}-title`}
@@ -254,13 +246,26 @@ export default function SeasonalPopup({
                 {title}
               </h2>
             )}
-
             <p
               id={`seasonal-${variant}-message`}
               className={`${variant === "monthi" ? "text-[clamp(0.75rem,2.2dvh,1.125rem)] leading-[1.45]" : "leading-relaxed sm:text-lg"} font-medium ${title ? (variant === "monthi" ? "mt-[clamp(0.375rem,1.5dvh,1rem)]" : "mt-3 sm:mt-4") : "pt-3 sm:pt-4"} ${theme.message}`}
             >
               {resolvedMessage}
             </p>
+
+            {variant === "monthi" && (
+              <div
+                aria-hidden="true"
+                className="mx-auto mt-6 flex w-fit items-center gap-3"
+              >
+                {[0, 1, 2, 3, 4].map((mark) => (
+                  <span
+                    key={mark}
+                    className="block h-4 w-2 rotate-45 rounded-full bg-[#d9ad32]"
+                  />
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>

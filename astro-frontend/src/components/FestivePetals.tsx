@@ -65,7 +65,7 @@ function createParticle(
     x: Math.random() * viewportWidth,
     y: -30 - Math.random() * 130,
     size: 6 + Math.random() * 7,
-    speed: 0.45 + Math.random() * 0.75,
+    speed: 0.9 + Math.random() * 1.2,
     drift: (Math.random() - 0.5) * 0.45,
     rotation: Math.random() * Math.PI * 2,
     rotationSpeed: (Math.random() - 0.5) * 0.022,
