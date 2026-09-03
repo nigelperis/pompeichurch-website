@@ -18,8 +18,10 @@ import stayTunedKok from "~/assets/static-assets/stay-tuned-kok.png";
 import SeasonalPopup from "~/components/SeasonalPopup";
 import SnowWithPile from "~/components/SnowAnimation";
 import EasterPetals from "~/components/EasterPetals";
+import MonthiFestPetals from "~/components/MonthiFestPetals";
 import { isChristmasSeason, isChristmasWeek } from "~/helpers/is-christmas";
 import { isEasterSeason, isEasterWeek } from "~/helpers/is-easter";
+import { isMonthiFestSeason, isMonthiFestWeek } from "~/helpers/is-monthi-fest";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -68,6 +70,10 @@ const showChristmasLights = isChristmasSeason();
 const showChristmasMessage = isChristmasWeek();
 const showEasterPetals = !showChristmasLights && isEasterSeason();
 const showEasterMessage = !showChristmasMessage && isEasterWeek();
+const showMonthiFestPetals =
+  !showChristmasLights && !showEasterPetals && isMonthiFestSeason();
+const showMonthiFestMessage =
+  !showChristmasMessage && !showEasterMessage && isMonthiFestWeek();
 ---
 
 <Layout title={pageTitle} image={pageImage} url={url.toString()}>
@@ -77,6 +83,7 @@ const showEasterMessage = !showChristmasMessage && isEasterWeek();
         client:load
         variant="christmas"
         message={t("christmas.message")}
+        closeLabel={t("seasonal.close")}
       />
     )
   }
@@ -87,10 +94,33 @@ const showEasterMessage = !showChristmasMessage && isEasterWeek();
         client:load
         variant="easter"
         message={t("easter.message")}
+        closeLabel={t("seasonal.close")}
       />
     )
   }
   {showEasterPetals && <EasterPetals client:load />}
+  {
+    showMonthiFestMessage && (
+      <SeasonalPopup
+        client:load
+        variant="monthi"
+        title={t("monthi.title")}
+        eyebrow={t("monthi.eyebrow")}
+        message={t("monthi.message")}
+        imageAlt={t("monthi.image-alt")}
+        closeLabel={t("seasonal.close")}
+      />
+    )
+  }
+  {
+    showMonthiFestPetals && (
+      <MonthiFestPetals
+        client:load
+        pauseLabel={t("monthi.animation.pause")}
+        playLabel={t("monthi.animation.play")}
+      />
+    )
+  }
 
   <main>
     <HeroSection />
