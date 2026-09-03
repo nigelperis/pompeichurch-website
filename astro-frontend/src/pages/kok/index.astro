@@ -17,8 +17,7 @@ import stayTunedKok from "~/assets/static-assets/stay-tuned-kok.png";
 import HomepageCarouselSection from "~/components/sections/landing-page/homepage-carousel-section.astro";
 import SeasonalPopup from "~/components/SeasonalPopup";
 import SnowWithPile from "~/components/SnowAnimation";
-import EasterPetals from "~/components/EasterPetals";
-import MonthiFestPetals from "~/components/MonthiFestPetals";
+import FestivePetals from "~/components/FestivePetals";
 import { isChristmasSeason, isChristmasWeek } from "~/helpers/is-christmas";
 import { isEasterSeason, isEasterWeek } from "~/helpers/is-easter";
 import { isMonthiFestSeason, isMonthiFestWeek } from "~/helpers/is-monthi-fest";
@@ -75,7 +74,7 @@ const showMonthiFestMessage =
 
 <Layout title={pageTitle} image={pageImage} url={url.toString()}>
   {showChristmasLights && <SnowWithPile client:load />}
-  {showEasterPetals && <EasterPetals client:load />}
+  {showEasterPetals && <FestivePetals client:load variant="easter" />}
   {
     showChristmasMessage && (
       <SeasonalPopup
@@ -109,15 +108,7 @@ const showMonthiFestMessage =
       />
     )
   }
-  {
-    showMonthiFestPetals && (
-      <MonthiFestPetals
-        client:load
-        pauseLabel={t("monthi.animation.pause")}
-        playLabel={t("monthi.animation.play")}
-      />
-    )
-  }
+  {showMonthiFestPetals && <FestivePetals client:load variant="monthi" />}
   <main>
     <HeroSection />
     <HomepageCarouselSection />
