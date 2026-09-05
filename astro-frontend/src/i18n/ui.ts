@@ -234,6 +234,10 @@ export const ui = {
       "Wishing you all a very happy Christmas and a prosperous New Year {newYear}!",
     "easter.message":
       "Wishing you and your family a blessed Easter filled with hope, peace and the joy of the Risen Lord!",
+    "monthi.title": "Happy Feast of Nativity",
+    "monthi.message":
+      "May the joy of Infant Mary fill every home with faith, gratitude and peace, and may God bless the first fruits of our harvest.",
+    "seasonal.close": "Close celebration message",
     "hall.capacity": "Capacity",
     "hall.timings": "Timings",
     "hall.day": "Day",
@@ -470,6 +474,9 @@ export const ui = {
       "ತುಮ್ಕಾಂ ಸಮೇಸ್ತಾಂಕ್ ಸಂತೊಸ್ಭರಿತ್ ನತಾಲಾಂ ಫೆಸ್ತ್ ಆನಿ ಭಾಗಿ ನವೆಂ ವರಸ್ {newYear} ಮಾಗ್ತಾಂವ್!",
     "easter.message":
       "ತುಮ್ಕಾಂ ಆನಿ ತುಮ್ಚ್ಯಾ ಕುಟ್ಮಾಕ್ ಜಿವಂತ್ ಜೆಜುಚ್ಯಾ ಭರ್ವಸ್ಯಾನ್, ಶಾಂತಿನ್ ಆನಿ ಸಂತೊಸಾನ್ ಭರ್ಲೆಲೆಂ ಪಾಸ್ಕಾಂಚೆ ಫೆಸ್ತ್ ಮಾಗ್ತಾಂವ್!",
+    "monthi.title": "ಭಾಗಿ ಮೊಂತಿ ಫೆಸ್ತ್",
+    "monthi.message":
+      "ತುಮ್ಕಾಂ ಆನಿ ತುಮ್ಚ್ಯಾ ಕುಟ್ಮಾಕ್ ಭರ್ವಸ್ಯಾನ್, ಶಾಂತಿನ್ ಆನಿ ಸಂತೊಸಾನ್ ಭರ್ಲೆಲೆಂ ಮೊಂತಿ ಫೆಸ್ತ್ ಮಾಗ್ತಾಂವ್!",
     "hall.capacity": "ಕ್ಷಮತಾ",
     "hall.timings": "ವೇಳ್",
     "hall.day": "ದಿಸಾಚೆಂ",
