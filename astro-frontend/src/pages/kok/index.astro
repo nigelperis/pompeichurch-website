@@ -17,9 +17,10 @@ import stayTunedKok from "~/assets/static-assets/stay-tuned-kok.png";
 import HomepageCarouselSection from "~/components/sections/landing-page/homepage-carousel-section.astro";
 import SeasonalPopup from "~/components/SeasonalPopup";
 import SnowWithPile from "~/components/SnowAnimation";
-import EasterPetals from "~/components/EasterPetals";
+import FestivePetals from "~/components/FestivePetals";
 import { isChristmasSeason, isChristmasWeek } from "~/helpers/is-christmas";
 import { isEasterSeason, isEasterWeek } from "~/helpers/is-easter";
+import { isMonthiFestSeason, isMonthiFestWeek } from "~/helpers/is-monthi-fest";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -65,17 +66,22 @@ const showChristmasLights = isChristmasSeason();
 const showChristmasMessage = isChristmasWeek();
 const showEasterPetals = !showChristmasLights && isEasterSeason();
 const showEasterMessage = !showChristmasMessage && isEasterWeek();
+const showMonthiFestPetals =
+  !showChristmasLights && !showEasterPetals && isMonthiFestSeason();
+const showMonthiFestMessage =
+  !showChristmasMessage && !showEasterMessage && isMonthiFestWeek();
 ---
 
 <Layout title={pageTitle} image={pageImage} url={url.toString()}>
   {showChristmasLights && <SnowWithPile client:load />}
-  {showEasterPetals && <EasterPetals client:load />}
+  {showEasterPetals && <FestivePetals client:load variant="easter" />}
   {
     showChristmasMessage && (
       <SeasonalPopup
         client:load
         variant="christmas"
         message={t("christmas.message")}
+        closeLabel={t("seasonal.close")}
       />
     )
   }
@@ -85,9 +91,21 @@ const showEasterMessage = !showChristmasMessage && isEasterWeek();
         client:load
         variant="easter"
         message={t("easter.message")}
+        closeLabel={t("seasonal.close")}
       />
     )
   }
+  {
+    showMonthiFestMessage && (
+      <SeasonalPopup
+        client:load
+        variant="monthi"
+        title={t("monthi.title")}
+        message={t("monthi.message")}
+      />
+    )
+  }
+  {showMonthiFestPetals && <FestivePetals client:load variant="monthi" />}
   <main>
     <HeroSection />
     <HomepageCarouselSection />

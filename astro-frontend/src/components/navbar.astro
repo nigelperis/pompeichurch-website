@@ -11,6 +11,7 @@ import { LanguageSwitcher } from "~/components/ui/LanguageSwitcher";
 import ChristmasLights from "./ui/ChristmasLights";
 import { isChristmasSeason } from "~/helpers/is-christmas";
 import { isEasterSeason } from "~/helpers/is-easter";
+import { isMonthiFestSeason } from "~/helpers/is-monthi-fest";
 import "~/styles/navbar-styles.css";
 
 const currentLocale = Astro.currentLocale;
@@ -30,7 +31,8 @@ try {
   associations = [];
 }
 
-const showSeasonalLights = isChristmasSeason() || isEasterSeason();
+const showSeasonalLights =
+  isChristmasSeason() || isEasterSeason() || isMonthiFestSeason();
 ---
 
 <ScrollProgress />
