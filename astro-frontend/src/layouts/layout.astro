@@ -26,6 +26,7 @@ const pathWithoutLocale = currentPath.startsWith(localePrefix)
 const hreflangEn = new URL(getRelativeLocaleUrl(Locale.EN, pathWithoutLocale), Astro.site).toString();
 const hreflangKok = new URL(getRelativeLocaleUrl(Locale.KOK, pathWithoutLocale), Astro.site).toString();
 const hreflangDefault = hreflangEn;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
 
 export interface Props {
   title: string;
@@ -83,6 +84,7 @@ const pageUrl = url || "https://pompeichurch.in/";
 <link rel="alternate" hreflang={Hreflang.X_DEFAULT} href={hreflangDefault} />
 <link rel="alternate" hreflang={Hreflang.EN} href={hreflangEn} />
 <link rel="alternate" hreflang={Hreflang.KOK} href={hreflangKok} />
+<link rel="canonical" href={canonicalUrl} />
 
 <link rel="icon" href="/favicon.ico" type="image/x-icon" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />

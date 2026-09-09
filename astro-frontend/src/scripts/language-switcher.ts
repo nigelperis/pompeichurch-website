@@ -18,7 +18,7 @@ export const languageSwitcher = () => {
 
     const handleLanguageChange = (lang: string): void => {
       const { pathname, search, hash } = window.location;
-      const pathWithLocaleStripped = pathname.replace(/^\/kok\//, "/");
+      const pathWithLocaleStripped = pathname.replace(/^\/kok(?:\/|$)/, "/");
       const localeToSwitchTo = lang === "ಕೊಂಕಣಿ" ? Locale.KOK : Locale.EN;
       const newPath =
         localeToSwitchTo === Locale.KOK
