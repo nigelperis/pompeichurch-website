@@ -17,6 +17,7 @@ export default defineConfig({
   prefetch: true,
   compressHTML: true,
   site: "https://pompeichurch.in",
+  trailingSlash: "always",
   integrations: [
     icon({
       iconDir: "src/assets/icons",
