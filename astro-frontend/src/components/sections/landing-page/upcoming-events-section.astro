@@ -163,52 +163,62 @@ const filteredEvents = upcomingEvents.filter((event) => {
           )}
         </div>
 
-        {/* Web UI */}
-        <div class="event-gallery hidden items-center justify-center gap-4 md:flex">
-          {filteredEvents.map((event) =>
-            event.eventImage?.mime?.startsWith("video/") ? (
-              <div class="transition-transform duration-300 ease-in-out hover:transform-[scale(1.02)] max-h-100 flex items-center justify-center">
-                <NetworkVideo
-                  src={event.eventImage.url}
-                  class="max-h-100 w-auto object-contain"
-                  width={event.eventImage.width || 0}
-                  height={event.eventImage.height || 0}
-                  controls
-                />
+        {/* Desktop: Show four posts, or five on wider screens. */}
+        <div class="event-gallery hidden md:block [&_.embla]:px-0">
+          <EmblaCarousel
+            align="start"
+            carouselType="scroll"
+            showArrows={filteredEvents.length > 1}
+          >
+            {filteredEvents.map((event) => (
+              <div class="mx-2 flex min-w-0 flex-[0_0_calc(25%-1rem)] items-center justify-center xl:flex-[0_0_calc(20%-1rem)]">
+                {event.eventImage?.mime?.startsWith("video/") ? (
+                  <div class="transition-transform duration-300 ease-in-out hover:transform-[scale(1.02)] max-h-100 flex items-center justify-center">
+                    <NetworkVideo
+                      src={event.eventImage.url}
+                      class="max-h-100 w-full object-contain"
+                      width={event.eventImage.width || 0}
+                      height={event.eventImage.height || 0}
+                      controls
+                    />
+                  </div>
+                ) : (
+                  <a
+                    href="#"
+                    role="button"
+                    aria-label="Upcoming event"
+                    data-pswp-src={
+                      event.eventImage?.url
+                        ? new URL(
+                            event.eventImage.url,
+                            import.meta.env.PUBLIC_STRAPI_URL,
+                          ).toString()
+                        : getPlaceholderImage({ text: event.eventImage?.name })
+                    }
+                    data-pswp-width={event.eventImage?.width}
+                    data-pswp-height={event.eventImage?.height}
+                    class="transition-transform duration-300 ease-in-out hover:transform-[scale(1.02)] max-h-100 flex items-center justify-center"
+                  >
+                    <NetworkImage
+                      src={
+                        event.eventImage?.url
+                          ? new URL(
+                              event.eventImage.url,
+                              import.meta.env.PUBLIC_STRAPI_URL,
+                            ).toString()
+                          : getPlaceholderImage({
+                              text: event.eventImage?.name,
+                            })
+                      }
+                      class="max-h-100 w-full object-contain"
+                      width={event.eventImage?.width || 0}
+                      height={event.eventImage?.height || 0}
+                    />
+                  </a>
+                )}
               </div>
-            ) : (
-              <a
-                href="#"
-                role="button"
-                aria-label="Upcoming event"
-                data-pswp-src={
-                  event.eventImage?.url
-                    ? new URL(
-                        event.eventImage.url,
-                        import.meta.env.PUBLIC_STRAPI_URL,
-                      ).toString()
-                    : getPlaceholderImage({ text: event.eventImage?.name })
-                }
-                data-pswp-width={event.eventImage?.width}
-                data-pswp-height={event.eventImage?.height}
-                class="transition-transform duration-300 ease-in-out hover:transform-[scale(1.02)] max-h-100 flex items-center justify-center"
-              >
-                <NetworkImage
-                  src={
-                    event.eventImage?.url
-                      ? new URL(
-                          event.eventImage.url,
-                          import.meta.env.PUBLIC_STRAPI_URL,
-                        ).toString()
-                      : getPlaceholderImage({ text: event.eventImage?.name })
-                  }
-                  class="max-h-100 w-auto object-contain"
-                  width={event.eventImage?.width || 0}
-                  height={event.eventImage?.height || 0}
-                />
-              </a>
-            ),
-          )}
+            ))}
+          </EmblaCarousel>
         </div>
       </>
     ) : (

@@ -77,12 +77,14 @@ export const emblaCarousel = async () => {
   const emblaNodes = document.querySelectorAll<HTMLDivElement>(".embla");
 
   for (const node of emblaNodes) {
+    const align = node.getAttribute("data-align");
     const carouselType = node.getAttribute("data-carousel-type");
     const shouldLoop = node.getAttribute("data-should-loop") === "true";
     const shouldDragFreely = node.getAttribute("data-drag-freely") === "true";
     const autoScroll = node.getAttribute("data-auto-scroll") === "true";
 
     const carouselOptions: EmblaOptionsType = {
+      align: align === "start" || align === "end" ? align : "center",
       loop: shouldLoop,
       dragFree: shouldDragFreely,
     };
