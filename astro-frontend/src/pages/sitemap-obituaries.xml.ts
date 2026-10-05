@@ -1,7 +1,7 @@
 import type { APIRoute } from "astro";
 import type { Obituary } from "~/models/obituary";
 import { Locale } from "~/enums/locale";
-import { SITE_URL } from "~/constants/index";
+import { sitemapUrl } from "~/helpers/sitemap-url";
 import { listObituaries } from "~/services/obituaries/list-obituaries";
 
 export const GET: APIRoute = async () => {
@@ -24,7 +24,7 @@ export const GET: APIRoute = async () => {
   allObituaries.forEach((obituary: Obituary) => {
     entry.push(
       `<url>
-            <loc>${SITE_URL}/obituary/${obituary.slug}</loc>
+            <loc>${sitemapUrl(`/obituary/${obituary.slug}`)}</loc>
             <lastmod>${obituary.updatedAt}</lastmod>
             <changefreq>weekly</changefreq>
             <priority>0.8</priority>
@@ -34,7 +34,7 @@ export const GET: APIRoute = async () => {
 
     entry.push(
       `<url>
-                <loc>${SITE_URL}/${Locale.KOK}/obituary/${obituary.slug}</loc>
+                <loc>${sitemapUrl(`/${Locale.KOK}/obituary/${obituary.slug}`)}</loc>
                 <lastmod>${obituary.updatedAt}</lastmod>
                 <changefreq>weekly</changefreq>
                 <priority>0.8</priority>

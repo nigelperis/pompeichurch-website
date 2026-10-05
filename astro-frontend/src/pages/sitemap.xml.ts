@@ -2,7 +2,7 @@ import type { APIRoute } from "astro";
 import { navLinks } from "../constants/nav-links";
 import { listAssociations } from "../services/associations/list-associations";
 import { Locale } from "../enums/locale";
-import { SITE_URL } from "../constants/index";
+import { sitemapUrl } from "~/helpers/sitemap-url";
 import { lastmod } from "../constants/last-modified-date";
 
 export const GET: APIRoute = async () => {
@@ -13,7 +13,7 @@ export const GET: APIRoute = async () => {
       navItem.expandedLinks.forEach((link) => {
         entry.push(
           `<url>
-              <loc>${SITE_URL}${link.href}</loc>
+              <loc>${sitemapUrl(`${link.href}`)}</loc>
               <lastmod>${lastmod}</lastmod>
               <changefreq>monthly</changefreq>
               <priority>0.9</priority>
@@ -23,7 +23,7 @@ export const GET: APIRoute = async () => {
 
         entry.push(
           `<url>
-              <loc>${SITE_URL}/${Locale.KOK}${link.href}</loc>
+              <loc>${sitemapUrl(`/${Locale.KOK}${link.href}`)}</loc>
               <lastmod>${lastmod}</lastmod>
               <changefreq>monthly</changefreq>
               <priority>0.9</priority>
@@ -34,7 +34,7 @@ export const GET: APIRoute = async () => {
     } else {
       entry.push(
         `<url>
-            <loc>${SITE_URL}${navItem.href}</loc>
+            <loc>${sitemapUrl(`${navItem.href}`)}</loc>
             <lastmod>${lastmod}</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.9</priority>
@@ -44,7 +44,7 @@ export const GET: APIRoute = async () => {
 
       entry.push(
         `<url>
-            <loc>${SITE_URL}/${Locale.KOK}${navItem.href}</loc>
+            <loc>${sitemapUrl(`/${Locale.KOK}${navItem.href}`)}</loc>
             <lastmod>${lastmod}</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.9</priority>
@@ -59,7 +59,7 @@ export const GET: APIRoute = async () => {
   assocs.forEach((a) => {
     entry.push(
       `<url>
-          <loc>${SITE_URL}/associations/${a.slug}</loc>
+          <loc>${sitemapUrl(`/associations/${a.slug}`)}</loc>
           <lastmod>${lastmod}</lastmod>
           <changefreq>monthly</changefreq>
           <priority>0.9</priority>
@@ -68,7 +68,7 @@ export const GET: APIRoute = async () => {
     );
     entry.push(
       `<url>
-          <loc>${SITE_URL}/${Locale.KOK}/associations/${a.slug}</loc>
+          <loc>${sitemapUrl(`/${Locale.KOK}/associations/${a.slug}`)}</loc>
           <lastmod>${lastmod}</lastmod>
           <changefreq>monthly</changefreq>
           <priority>0.9</priority>
