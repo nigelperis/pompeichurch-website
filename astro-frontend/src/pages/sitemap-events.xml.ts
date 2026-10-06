@@ -1,7 +1,7 @@
 import type { APIRoute } from "astro";
 import type { Event } from "~/models/event";
 import { Locale } from "~/enums/locale";
-import { SITE_URL } from "~/constants/index";
+import { sitemapUrl } from "~/helpers/sitemap-url";
 import { listEvents } from "~/services/events/list-events";
 
 export const GET: APIRoute = async () => {
@@ -21,7 +21,7 @@ export const GET: APIRoute = async () => {
   allEvents.forEach((event: Event) => {
     entry.push(
       `<url>
-            <loc>${SITE_URL}/events/${event.slug}</loc>
+            <loc>${sitemapUrl(`/events/${event.slug}`)}</loc>
             <lastmod>${event.updatedAt}</lastmod>
             <changefreq>weekly</changefreq>
             <priority>0.8</priority>
@@ -31,7 +31,7 @@ export const GET: APIRoute = async () => {
 
     entry.push(
       `<url>
-            <loc>${SITE_URL}/${Locale.KOK}/events/${event.slug}</loc>
+            <loc>${sitemapUrl(`/${Locale.KOK}/events/${event.slug}`)}</loc>
             <lastmod>${event.updatedAt}</lastmod>
             <changefreq>weekly</changefreq>
             <priority>0.8</priority>
