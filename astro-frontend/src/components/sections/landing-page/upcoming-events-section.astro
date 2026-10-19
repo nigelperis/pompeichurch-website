@@ -108,7 +108,7 @@ const filteredEvents = upcomingEvents.filter((event) => {
             </div>
           ) : (
             <div class="event-gallery">
-              <EmblaCarousel showArrows={true}>
+              <EmblaCarousel showArrows={true} shouldLoop={false}>
                 {filteredEvents.map((event) => (
                   <EmblaCarouselItem>
                     {event.eventImage?.mime?.startsWith("video/") ? (
@@ -166,8 +166,10 @@ const filteredEvents = upcomingEvents.filter((event) => {
         {/* Desktop: Show four posts, or five on wider screens. */}
         <div class="event-gallery hidden md:block [&_.embla]:px-0">
           <EmblaCarousel
-            align="start"
+            align="center"
             carouselType="scroll"
+            shouldLoop={false}
+            centerWhenFits={true}
             showArrows={filteredEvents.length > 1}
           >
             {filteredEvents.map((event) => (
