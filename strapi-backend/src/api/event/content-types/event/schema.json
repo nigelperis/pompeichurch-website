@@ -28,16 +28,20 @@
       "allowedTypes": ["images", "files", "videos", "audios"]
     },
     "shortDescriptionEn": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "shortDescriptionKok": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "descriptionEn": {
-      "type": "blocks"
+      "type": "blocks",
+      "required": true
     },
     "descriptionKok": {
-      "type": "blocks"
+      "type": "blocks",
+      "required": true
     },
     "facebookLink": {
       "type": "string"
