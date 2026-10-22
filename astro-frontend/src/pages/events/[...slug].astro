@@ -92,7 +92,9 @@ if (!event) {
       </div>
 
       <div class="min-w-0 [&_a]:wrap-break-word">
-        <StrapiBlocksRenderer content={event?.description ?? []} />
+        <StrapiBlocksRenderer
+          content={event?.descriptionEn ?? []}
+        />
       </div>
       <div class="flex">
         <div class="flex w-full justify-start gap-10">
