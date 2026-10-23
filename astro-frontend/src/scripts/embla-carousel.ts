@@ -73,6 +73,29 @@ export const setupTweenOpacity = (
   };
 };
 
+function setupNavigation(emblaApi: EmblaCarouselType, node: HTMLDivElement) {
+  const prevButton = node.querySelector<HTMLButtonElement>(".embla__prev");
+  const nextButton = node.querySelector<HTMLButtonElement>(".embla__next");
+
+  const updateNavigation = () => {
+    const canScrollPrev = emblaApi.canScrollPrev();
+    const canScrollNext = emblaApi.canScrollNext();
+
+    if (prevButton) prevButton.hidden = !canScrollPrev;
+    if (nextButton) nextButton.hidden = !canScrollNext;
+
+    if (node.dataset.centerWhenFits === "true") {
+      emblaApi.containerNode().style.justifyContent =
+        canScrollPrev || canScrollNext ? "" : "safe center";
+    }
+  };
+
+  prevButton?.addEventListener("click", () => emblaApi.scrollPrev());
+  nextButton?.addEventListener("click", () => emblaApi.scrollNext());
+  emblaApi.on("select", updateNavigation).on("reInit", updateNavigation);
+  updateNavigation();
+}
+
 export const emblaCarousel = async () => {
   const emblaNodes = document.querySelectorAll<HTMLDivElement>(".embla");
 
@@ -87,6 +110,8 @@ export const emblaCarousel = async () => {
       align: align === "start" || align === "end" ? align : "center",
       loop: shouldLoop,
       dragFree: shouldDragFreely,
+      watchDrag: (emblaApi) =>
+        emblaApi.canScrollPrev() || emblaApi.canScrollNext(),
     };
 
     const plugins = [];
@@ -108,15 +133,7 @@ export const emblaCarousel = async () => {
 
       const emblaApi = EmblaCarousel(node, carouselOptions, plugins);
 
-      const prevButton = node.querySelector(".embla__prev");
-      const nextButton = node.querySelector(".embla__next");
-
-      if (prevButton) {
-        prevButton.addEventListener("click", () => emblaApi.scrollPrev());
-      }
-      if (nextButton) {
-        nextButton.addEventListener("click", () => emblaApi.scrollNext());
-      }
+      setupNavigation(emblaApi, node);
 
       const removeTweenOpacity = setupTweenOpacity(emblaApi);
       emblaApi.on("destroy", removeTweenOpacity);
@@ -126,15 +143,7 @@ export const emblaCarousel = async () => {
         WheelGesturesPlugin.WheelGesturesPlugin({}),
       ]);
 
-      const prevButton = node.querySelector(".embla__prev");
-      const nextButton = node.querySelector(".embla__next");
-
-      if (prevButton) {
-        prevButton.addEventListener("click", () => emblaApi.scrollPrev());
-      }
-      if (nextButton) {
-        nextButton.addEventListener("click", () => emblaApi.scrollNext());
-      }
+      setupNavigation(emblaApi, node);
     }
   }
 };
