@@ -67,7 +67,7 @@ if (!event) {
 
 <Layout
   title={event?.konkaniTitle ?? ""}
-  description={event?.shortDescriptionKok ?? event?.shortDescriptionEn ?? ""}
+  description={event?.shortDescriptionKok ?? ""}
   image={absoluteImageURL}
   url={ogUrl}
 >
@@ -91,7 +91,7 @@ if (!event) {
       </div>
 
       <div class="min-w-0 [&_a]:wrap-anywhere">
-        <StrapiBlocksRenderer content={event?.description ?? []} />
+        <StrapiBlocksRenderer content={event?.descriptionKok ?? []} />
       </div>
       <div class="flex">
         <div class="flex w-full justify-start gap-10">
