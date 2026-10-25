@@ -38,7 +38,10 @@
     "shortDescriptionKok": {
       "type": "string"
     },
-    "description": {
+    "descriptionEn": {
+      "type": "blocks"
+    },
+    "descriptionKok": {
       "type": "blocks"
     },
     "facebookLink": {
