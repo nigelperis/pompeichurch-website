@@ -25,23 +25,24 @@
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": ["images", "files", "videos", "audios"]
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     },
     "shortDescriptionEn": {
-      "type": "string",
-      "required": true
+      "type": "string"
     },
     "shortDescriptionKok": {
-      "type": "string",
-      "required": true
+      "type": "string"
     },
     "descriptionEn": {
-      "type": "blocks",
-      "required": true
+      "type": "blocks"
     },
     "descriptionKok": {
-      "type": "blocks",
-      "required": true
+      "type": "blocks"
     },
     "facebookLink": {
       "type": "string"
@@ -66,7 +67,10 @@
     },
     "pastoralCommissions": {
       "type": "enumeration",
-      "enum": ["Parish Pastoral Commissions", "None"]
+      "enum": [
+        "Parish Pastoral Commissions",
+        "None"
+      ]
     }
   }
 }
