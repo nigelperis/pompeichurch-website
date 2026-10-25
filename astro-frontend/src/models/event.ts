@@ -92,8 +92,7 @@ interface Event {
   eventDate: string;
   shortDescriptionEn: string | null;
   shortDescriptionKok: string | null;
-  descriptionEn: BlocksContent | null;
-  descriptionKok: BlocksContent | null;
+  description: BlocksContent | null;
   facebookLink: string | null;
   instagramLink: string | null;
   createdAt: string;
