@@ -237,6 +237,8 @@ export const ui = {
     "monthi.title": "Happy Feast of Nativity",
     "monthi.message":
       "May the joy of Infant Mary fill every home with faith, gratitude and peace, and may God bless the first fruits of our harvest.",
+    "anniversary.title": "Our Parish Website Turns Two!",
+    "anniversary.message": `We extend our warmest Parish Feast greetings to you all. We are truly grateful for your encouragement and blessings over the past two years! With the intention of bringing our parish family even closer, going forward, we will be publishing all parish events on the website in English alongside Konkani. We pray for the abundant blessings of Our Lady of Pompei upon you and your families 🙏🏻`,
     "seasonal.close": "Close celebration message",
     "hall.capacity": "Capacity",
     "hall.timings": "Timings",
@@ -477,6 +479,8 @@ export const ui = {
     "monthi.title": "ಭಾಗಿ ಮೊಂತಿ ಫೆಸ್ತ್",
     "monthi.message":
       "ತುಮ್ಕಾಂ ಆನಿ ತುಮ್ಚ್ಯಾ ಕುಟ್ಮಾಕ್ ಭರ್ವಸ್ಯಾನ್, ಶಾಂತಿನ್ ಆನಿ ಸಂತೊಸಾನ್ ಭರ್ಲೆಲೆಂ ಮೊಂತಿ ಫೆಸ್ತ್ ಮಾಗ್ತಾಂವ್!",
+    "anniversary.title": "ಆಮ್ಚ್ಯಾ ಫಿರ್ಗಜ್ ವೆಬ್‌ಸೈಟಿಕ್ ದೋನ್ ವರ್ಸಾಂ!",
+    "anniversary.message": `ತುಮ್ಕಾಂ ಸಮೇಸ್ತಾಂಕ್ ಫಿರ್ಗಜ್ ಫೆಸ್ತಾಚ್ಯೆ ಶುಭಾಶಯ್ ಪಾಟಾಯ್ತಾಂವ್. ಪಾಟ್ಲ್ಯಾ ದೋನ್ ವರ್ಸಾಂನಿ ತುಮಿ ದಿಲ್ಲ್ಯಾ ಪ್ರೋತ್ಸಾವಾಕ್ ಆನಿ ಆಶೀರ್ವಾದಾಂಕ್ ಆಮಿ ಅಭಾರಿ! ಆಮ್ಚ್ಯಾ ಫಿರ್ಗಜ್ ಕುಟ್ಮಾಕ್ ಅನಿಕಿ ಲಾಗಿಂ ಹಾಡ್ಚ್ಯಾ ಉದ್ದೇಶಾನ್, ಆನಿ ಮುಕಾರ್ ಫಿರ್ಗಜೆಚಿಂ ಸರ್ವ್ ಘಡಿತಾಂ ಕೊಂಕ್ಣಿ ಸವೆಂ ಇಂಗ್ಲಿಷ್ ಭಾಷೆಂತ್‌ಯಿ ಆಮಿಂ ವೆಬ್‌ಸೈಟಿರ್ ಪರ್ಗಟ್ ಕರ್ತಲ್ಯಾಂವ್. ಪೊಂಪೈ ಮಾಯೆಚಿ ಧಾರಾಳ್ ಆಶೀರ್ವಾದಾಂ ತುಮ್ಚೆರ್ ಆನಿ ತುಮ್ಚ್ಯಾ ಕುಟ್ಮಾಚೆರ್ ಮಾಗ್ತಾಂವ್ 🙏🏻`,
     "hall.capacity": "ಕ್ಷಮತಾ",
     "hall.timings": "ವೇಳ್",
     "hall.day": "ದಿಸಾಚೆಂ",

@@ -1,8 +1,10 @@
 import { useMemo, useState, useEffect, useRef } from "react";
 import Cancel from "~/assets/icons/cancel.svg?react";
+import churchHeroImage from "~/assets/landing-page/church-hero.webp";
+import websiteLaunchImage from "~/assets/static-assets/website-launch.webp";
 import virginMaryImage from "~/assets/static-assets/virgin-mary.jpeg";
 
-type SeasonalVariant = "christmas" | "easter" | "monthi";
+type SeasonalVariant = "christmas" | "easter" | "monthi" | "anniversary";
 
 interface SeasonalPopupProps {
   message: string;
@@ -60,6 +62,18 @@ const themes: Record<
     backgroundImage:
       "radial-gradient(circle at 8% 10%, rgba(247, 178, 189, 0.46), transparent 25%), radial-gradient(circle at 92% 88%, rgba(245, 207, 85, 0.4), transparent 26%), linear-gradient(145deg, #fffdf7 0%, #f2f8f6 52%, #edf6f8 100%)",
   },
+  anniversary: {
+    border: "border-amber-200",
+    panel: "bg-[#fffdf7]",
+    backdrop: "bg-[#092f3b]/55",
+    overlay: "",
+    closeButton: "bg-white/90 shadow-sm hover:bg-white hover:text-[#155a70]",
+    message: "text-[#344c55]",
+    eyebrow: "text-[#1a6277]",
+    title: "text-[#174f65]",
+    backgroundImage:
+      "radial-gradient(circle at 8% 10%, rgba(247, 207, 106, 0.24), transparent 25%), linear-gradient(145deg, #fffdf7 0%, #f2f8f6 100%)",
+  },
 };
 
 export default function SeasonalPopup({
@@ -68,7 +82,7 @@ export default function SeasonalPopup({
   title,
   eyebrow,
   closeLabel = "Close celebration message",
-  imageAlt = "Infant Mary surrounded by flowers",
+  imageAlt = "Our Lady of Pompeii Church celebration",
 }: SeasonalPopupProps) {
   const [isVisible, setIsVisible] = useState(true);
   const dialogRef = useRef<HTMLDivElement>(null);
@@ -188,7 +202,7 @@ export default function SeasonalPopup({
         aria-label={title ? undefined : resolvedMessage}
         aria-describedby={title ? `seasonal-${variant}-message` : undefined}
         onClick={(e) => e.stopPropagation()}
-        className={`seasonal-popup-panel relative max-h-[calc(100dvh-2rem)] w-full overflow-hidden rounded-3xl text-center shadow-2xl ${variant === "monthi" ? "max-w-lg" : "max-w-md"} ${theme.border} ${theme.panel}`}
+        className={`seasonal-popup-panel relative max-h-[calc(100dvh-2rem)] w-full ${variant === "anniversary" ? "overflow-y-auto" : "overflow-hidden"} rounded-3xl text-center shadow-2xl ${variant === "monthi" ? "max-w-lg" : variant === "anniversary" ? "max-w-2xl" : "max-w-md"} ${theme.border} ${theme.panel}`}
         style={
           theme.backgroundImage
             ? { backgroundImage: theme.backgroundImage }
@@ -206,18 +220,36 @@ export default function SeasonalPopup({
         </button>
 
         <div className="overflow-hidden">
-          {variant === "monthi" && (
+          {(variant === "monthi" || variant === "anniversary") && (
             <div className="relative overflow-hidden">
               <img
-                src={virginMaryImage.src}
+                src={
+                  variant === "monthi"
+                    ? virginMaryImage.src
+                    : variant === "anniversary"
+                      ? websiteLaunchImage.src
+                      : churchHeroImage.src
+                }
                 alt={imageAlt}
-                width={virginMaryImage.width}
-                height={virginMaryImage.height}
-                className="h-[clamp(4.5rem,34dvh,18rem)] w-full object-cover object-center"
+                width={
+                  variant === "monthi"
+                    ? virginMaryImage.width
+                    : variant === "anniversary"
+                      ? websiteLaunchImage.width
+                      : churchHeroImage.width
+                }
+                height={
+                  variant === "monthi"
+                    ? virginMaryImage.height
+                    : variant === "anniversary"
+                      ? websiteLaunchImage.height
+                      : churchHeroImage.height
+                }
+                className={`w-full rounded-t-[1.5rem] border-b border-white/60 object-cover shadow-sm ${variant === "monthi" ? "h-[clamp(4.5rem,34dvh,18rem)] object-center" : "h-[clamp(9rem,28dvh,18rem)] object-center"}`}
               />
               <span
                 aria-hidden="true"
-                className="absolute inset-x-0 bottom-0 h-14 bg-linear-to-t from-[#fffdf7] to-transparent"
+                className={`absolute inset-x-0 bottom-0 h-14 ${variant === "monthi" ? "bg-linear-to-t from-[#fffdf7] to-transparent" : "bg-linear-to-t from-[#fffdf7] via-[#fffdf7]/60 to-transparent"}`}
               />
             </div>
           )}
@@ -228,14 +260,14 @@ export default function SeasonalPopup({
             {title && (
               <h2
                 id={`seasonal-${variant}-title`}
-                className={`${variant === "monthi" ? "mt-[clamp(0.25rem,1.2dvh,0.75rem)] text-[clamp(1.25rem,3.8dvh,1.875rem)]" : "mt-2 text-2xl sm:mt-3 sm:text-3xl"} font-bold leading-tight ${theme.title}`}
+                className={`${variant === "monthi" ? "mt-[clamp(0.25rem,1.2dvh,0.75rem)] text-[clamp(1.25rem,3.8dvh,1.875rem)]" : "text-2xl sm:text-3xl"} font-bold leading-tight ${theme.title}`}
               >
                 {title}
               </h2>
             )}
             <p
               id={`seasonal-${variant}-message`}
-              className={`${variant === "monthi" ? "text-[clamp(0.75rem,2.2dvh,1.125rem)] leading-[1.45]" : "leading-relaxed sm:text-lg"} font-medium ${title ? (variant === "monthi" ? "mt-[clamp(0.375rem,1.5dvh,1rem)]" : "mt-3 sm:mt-4") : "pt-3 sm:pt-4"} ${theme.message}`}
+              className={`${variant === "monthi" ? "text-[clamp(0.75rem,2.2dvh,1.125rem)] leading-[1.45]" : variant === "anniversary" ? "whitespace-pre-line text-left text-sm leading-relaxed sm:text-base" : "leading-relaxed sm:text-lg"} font-medium ${title ? (variant === "monthi" ? "mt-[clamp(0.375rem,1.5dvh,1rem)]" : "mt-3 sm:mt-4") : "pt-3 sm:pt-4"} ${theme.message}`}
             >
               {resolvedMessage}
             </p>

@@ -21,6 +21,7 @@ import FestivePetals from "~/components/FestivePetals";
 import { isChristmasSeason, isChristmasWeek } from "~/helpers/is-christmas";
 import { isEasterSeason, isEasterWeek } from "~/helpers/is-easter";
 import { isMonthiFestSeason, isMonthiFestWeek } from "~/helpers/is-monthi-fest";
+import { isWebsiteAnniversaryWindow } from "~/helpers/is-website-anniversary";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -73,6 +74,11 @@ const showMonthiFestPetals =
   !showChristmasLights && !showEasterPetals && isMonthiFestSeason();
 const showMonthiFestMessage =
   !showChristmasMessage && !showEasterMessage && isMonthiFestWeek();
+const showWebsiteAnniversary =
+  !showChristmasMessage &&
+  !showEasterMessage &&
+  !showMonthiFestMessage &&
+  isWebsiteAnniversaryWindow();
 ---
 
 <Layout title={pageTitle} image={pageImage} url={url.toString()}>
@@ -98,6 +104,17 @@ const showMonthiFestMessage =
     )
   }
   {showEasterPetals && <FestivePetals client:load variant="easter" />}
+  {
+    showWebsiteAnniversary && (
+      <SeasonalPopup
+        client:load
+        variant="anniversary"
+        title={t("anniversary.title")}
+        message={t("anniversary.message")}
+        closeLabel={t("seasonal.close")}
+      />
+    )
+  }
   {
     showMonthiFestMessage && (
       <SeasonalPopup
