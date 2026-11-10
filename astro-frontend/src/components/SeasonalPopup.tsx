@@ -260,7 +260,7 @@ export default function SeasonalPopup({
             {title && (
               <h2
                 id={`seasonal-${variant}-title`}
-                className={`${variant === "monthi" ? "mt-[clamp(0.25rem,1.2dvh,0.75rem)] text-[clamp(1.25rem,3.8dvh,1.875rem)]" : "text-2xl sm:text-3xl"} font-bold leading-tight ${theme.title}`}
+                className={`${variant === "monthi" ? "mt-[clamp(0.25rem,1.2dvh,0.75rem)] text-[clamp(1.25rem,3.8dvh,1.875rem)]" : variant === "anniversary" ? "mt-4 text-2xl sm:mt-0 sm:text-3xl" : "text-2xl sm:text-3xl"} font-bold leading-tight ${theme.title}`}
               >
                 {title}
               </h2>
