@@ -255,12 +255,12 @@ export default function SeasonalPopup({
           )}
 
           <div
-            className={`relative ${variant === "monthi" ? "px-[clamp(0.75rem,2.5dvh,1.75rem)] py-[clamp(1.5rem,4dvh,2.25rem)]" : "p-8"} ${theme.overlay}`}
+            className={`relative ${variant === "monthi" ? "px-[clamp(0.75rem,2.5dvh,1.75rem)] py-[clamp(1.5rem,4dvh,2.25rem)]" : variant === "anniversary" ? "px-6 pb-6 pt-2 sm:p-8" : "p-8"} ${theme.overlay}`}
           >
             {title && (
               <h2
                 id={`seasonal-${variant}-title`}
-                className={`${variant === "monthi" ? "mt-[clamp(0.25rem,1.2dvh,0.75rem)] text-[clamp(1.25rem,3.8dvh,1.875rem)]" : variant === "anniversary" ? "mt-4 text-2xl sm:mt-0 sm:text-3xl" : "text-2xl sm:text-3xl"} font-bold leading-tight ${theme.title}`}
+                className={`${variant === "monthi" ? "mt-[clamp(0.25rem,1.2dvh,0.75rem)] text-[clamp(1.25rem,3.8dvh,1.875rem)]" : variant === "anniversary" ? "mt-4 text-2xl sm:mt-0 sm:text-3xl" : "text-2xl sm:text-3xl"} font-bold ${variant === "anniversary" ? "leading-[1.42] sm:leading-tight" : "leading-tight"} ${theme.title}`}
               >
                 {title}
               </h2>
