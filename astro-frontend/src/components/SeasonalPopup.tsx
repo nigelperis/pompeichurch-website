@@ -267,7 +267,7 @@ export default function SeasonalPopup({
             )}
             <p
               id={`seasonal-${variant}-message`}
-              className={`${variant === "monthi" ? "text-[clamp(0.75rem,2.2dvh,1.125rem)] leading-[1.45]" : variant === "anniversary" ? "whitespace-pre-line text-center text-sm leading-relaxed sm:text-base" : "leading-relaxed sm:text-lg"} font-medium ${title ? (variant === "monthi" ? "mt-[clamp(0.375rem,1.5dvh,1rem)]" : "mt-3 sm:mt-4") : "pt-3 sm:pt-4"} ${theme.message}`}
+              className={`${variant === "monthi" ? "text-[clamp(0.75rem,2.2dvh,1.125rem)] leading-[1.45]" : variant === "anniversary" ? "whitespace-pre-line text-justify text-sm leading-relaxed sm:text-base" : "leading-relaxed sm:text-lg"} font-medium ${title ? (variant === "monthi" ? "mt-[clamp(0.375rem,1.5dvh,1rem)]" : "mt-3 sm:mt-4") : "pt-3 sm:pt-4"} ${theme.message}`}
             >
               {resolvedMessage}
             </p>
