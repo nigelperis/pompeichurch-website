@@ -11,6 +11,6 @@ export function isWebsiteAnniversaryWindow(
     now.getFullYear() === 2026 &&
     now.getMonth() === 10 &&
     now.getDate() >= 10 &&
-    now.getDate() <= 11
+    now.getDate() <= 15
   );
 }
