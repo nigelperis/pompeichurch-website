@@ -8,11 +8,13 @@ const measurementId = props.measurementId;
 	import.meta.env.MODE === 'production' &&
 	import.meta.env.PUBLIC_ENVIRONMENT === 'production' && (
 		<script
+			is:inline
 			type="text/partytown"
 			src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}
 		>
 		</script>
 		<script
+			is:inline
 			type="text/partytown"
 			data-ga-measurement-id={measurementId}
 			id="ga-init"

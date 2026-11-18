@@ -2,18 +2,12 @@
 import Layout from "~/layouts/layout.astro";
 import { getLangFromUrl } from "~/i18n/utils";
 import AssociationDetails from "~/components/sections/associations/association-details.astro";
-import { listAssociations } from "~/services/associations/list-associations";
 import { getAssociation } from "~/services/associations/get-association";
 import { Locale } from "~/enums/locale";
 import type { Association } from "~/models/association";
 import { cn } from "~/helpers/cn";
 
 const lang = getLangFromUrl(Astro.url);
-
-export async function getStaticPaths() {
-  const assocs = await listAssociations();
-  return assocs.map(({ slug }) => ({ params: { slug } }));
-}
 
 const { slug } = Astro.params as { slug: string };
 

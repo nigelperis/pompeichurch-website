@@ -38,11 +38,6 @@ interface EventSearchProps {
 /**
  * A search bar to search for events.
  *
- * @param {Locale} locale - The language of the search results.
- * @param {string} [associationSlug] - The slug of the association to filter events by.
- *
- * @returns {React.ReactNode} The EventSearch component.
- *
  * @see {@link searchEvents} - The API call to fetch events based on the search query.
  */
 export default function EventSearch({
