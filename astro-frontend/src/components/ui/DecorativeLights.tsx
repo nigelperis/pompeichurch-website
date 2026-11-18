@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-export default function ChristmasLights() {
+export default function DecorativeLights() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationFrameRef = useRef<number>(0);
 
@@ -11,51 +11,50 @@ export default function ChristmasLights() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = 40;
-    };
-    resizeCanvas();
-    window.addEventListener("resize", resizeCanvas);
-
     const colors = [
-      "#FF0000",
-      "#00FF00",
-      "#0066FF",
-      "#FFD700",
-      "#FF00FF",
-      "#00FFFF",
-      "#FFA500",
-      "#FFFF00",
+      "#F06449",
+      "#3AAFA9",
+      "#4361EE",
+      "#F4C95D",
+      "#9B5DE5",
+      "#00BBF9",
+      "#F9844A",
+      "#90BE6D",
     ];
 
     interface Light {
       x: number;
       y: number;
       color: string;
-      baseY: number;
       twinkle: number;
       twinkleSpeed: number;
       size: number;
     }
 
-    const lights: Light[] = [];
-    const numLights = Math.max(10, Math.floor(canvas.width / 60));
+    let lights: Light[] = [];
 
-    for (let i = 0; i <= numLights; i++) {
-      const x = (canvas.width / numLights) * i;
-      const baseY = 22;
-
-      lights.push({
-        x,
-        y: baseY,
-        baseY,
-        color: colors[i % colors.length],
-        twinkle: Math.random(),
-        twinkleSpeed: 0.02 + Math.random() * 0.03,
-        size: 7,
+    const createLights = () => {
+      const numLights = Math.max(10, Math.floor(canvas.width / 60));
+      lights = Array.from({ length: numLights + 1 }, (_, index) => {
+        const baseY = 22;
+        return {
+          x: (canvas.width / numLights) * index,
+          y: baseY,
+          color: colors[index % colors.length],
+          twinkle: Math.random(),
+          twinkleSpeed: 0.02 + Math.random() * 0.03,
+          size: 7,
+        };
       });
-    }
+    };
+
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = 40;
+      createLights();
+    };
+    resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);
 
     function animate() {
       if (!canvas || !ctx) return;

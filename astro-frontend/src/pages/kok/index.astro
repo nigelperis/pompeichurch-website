@@ -63,12 +63,12 @@ if (section === "upcoming-events") {
   }
 }
 
-const showChristmasLights = isChristmasSeason();
+const showChristmasSeason = isChristmasSeason();
 const showChristmasMessage = isChristmasWeek();
-const showEasterPetals = !showChristmasLights && isEasterSeason();
+const showEasterPetals = !showChristmasSeason && isEasterSeason();
 const showEasterMessage = !showChristmasMessage && isEasterWeek();
 const showMonthiFestPetals =
-  !showChristmasLights && !showEasterPetals && isMonthiFestSeason();
+  !showChristmasSeason && !showEasterPetals && isMonthiFestSeason();
 const showMonthiFestMessage =
   !showChristmasMessage && !showEasterMessage && isMonthiFestWeek();
 const showWebsiteAnniversary =
@@ -79,7 +79,7 @@ const showWebsiteAnniversary =
 ---
 
 <Layout title={pageTitle} image={pageImage} url={url.toString()}>
-  {showChristmasLights && <SnowWithPile client:load />}
+  {showChristmasSeason && <SnowWithPile client:load />}
   {showEasterPetals && <FestivePetals client:load variant="easter" />}
   {
     showChristmasMessage && (

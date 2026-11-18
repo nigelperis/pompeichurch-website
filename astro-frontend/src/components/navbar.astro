@@ -8,10 +8,12 @@ import { navLinks } from "~/constants/nav-links.ts";
 import { listAssociations } from "~/services/associations/list-associations";
 import { Locale } from "~/enums/locale";
 import { LanguageSwitcher } from "~/components/ui/LanguageSwitcher";
-import ChristmasLights from "./ui/ChristmasLights";
+import DecorativeLights from "./ui/DecorativeLights";
 import "~/styles/navbar-styles.css";
 
 const currentLocale = Astro.currentLocale;
+const showDecorativeLights =
+  import.meta.env.PUBLIC_DECORATIVE_LIGHTS === "true";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -32,7 +34,7 @@ try {
 
 <ScrollProgress />
 <header class="sticky top-0 z-10 w-full shadow-sm bg-white p-3 xl:px-28">
-  <!-- <ChristmasLights client:load /> -->
+  {showDecorativeLights && <DecorativeLights client:load />}
   <section class="flex items-center justify-between">
     <a href={lang === Locale.KOK ? "/kok/" : "/"}>
       <img
