@@ -105,4 +105,4 @@ const webpageSchema = {
 const seoSchema = [orgSchema, websiteSchema, breadcrumbSchema, webpageSchema];
 ---
 
-<script type="application/ld+json" set:html={JSON.stringify(seoSchema)} />
+<script is:inline type="application/ld+json" set:html={JSON.stringify(seoSchema)} />

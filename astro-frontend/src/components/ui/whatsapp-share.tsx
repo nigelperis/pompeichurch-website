@@ -16,17 +16,12 @@ const WhatsAppShare: React.FC<Props> = ({
   shareData,
 }) => {
   const [resolvedUrl, setResolvedUrl] = useState<string>("");
-  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    if (!shareData?.url) {
-      setIsLoading(false);
-      return;
-    }
+    if (!shareData?.url) return;
 
     const isAbsolute = shareData.url.startsWith("http");
     if (isAbsolute) {
       setResolvedUrl(shareData.url);
-      setIsLoading(false);
     } else {
       const baseUrl =
         typeof window !== "undefined" ? window.location.origin : "";
@@ -34,7 +29,6 @@ const WhatsAppShare: React.FC<Props> = ({
         ? shareData.url
         : `/${shareData.url}`;
       setResolvedUrl(`${baseUrl}${fullUrl}`);
-      setIsLoading(false);
     }
   }, [shareData?.url]);
 

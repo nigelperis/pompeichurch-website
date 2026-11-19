@@ -10,7 +10,6 @@ interface SeasonalPopupProps {
   message: string;
   variant: SeasonalVariant;
   title?: string;
-  eyebrow?: string;
   closeLabel?: string;
   imageAlt?: string;
 }
@@ -24,7 +23,6 @@ const themes: Record<
     overlay: string;
     closeButton: string;
     message: string;
-    eyebrow: string;
     title: string;
     backgroundImage?: string;
   }
@@ -36,7 +34,6 @@ const themes: Record<
     overlay: "",
     closeButton: "hover:text-red-700",
     message: "text-gray-800",
-    eyebrow: "text-red-700",
     title: "text-gray-900",
   },
   easter: {
@@ -46,7 +43,6 @@ const themes: Record<
     overlay: "bg-white/70 backdrop-blur-[1px]",
     closeButton: "hover:text-amber-700",
     message: "text-gray-800",
-    eyebrow: "text-amber-800",
     title: "text-gray-900",
     backgroundImage: "url('/easter-background.avif')",
   },
@@ -57,7 +53,6 @@ const themes: Record<
     overlay: "bg-white/25 backdrop-blur-[0.5px]",
     closeButton: "bg-white/90 shadow-sm hover:bg-white hover:text-[#155a70]",
     message: "text-[#344c55]",
-    eyebrow: "text-[#1a6277]",
     title: "text-[#174f65]",
     backgroundImage:
       "radial-gradient(circle at 8% 10%, rgba(247, 178, 189, 0.46), transparent 25%), radial-gradient(circle at 92% 88%, rgba(245, 207, 85, 0.4), transparent 26%), linear-gradient(145deg, #fffdf7 0%, #f2f8f6 52%, #edf6f8 100%)",
@@ -69,7 +64,6 @@ const themes: Record<
     overlay: "",
     closeButton: "bg-white/90 shadow-sm hover:bg-white hover:text-[#155a70]",
     message: "text-[#344c55]",
-    eyebrow: "text-[#1a6277]",
     title: "text-[#174f65]",
     backgroundImage:
       "radial-gradient(circle at 8% 10%, rgba(247, 207, 106, 0.24), transparent 25%), linear-gradient(145deg, #fffdf7 0%, #f2f8f6 100%)",
@@ -80,7 +74,6 @@ export default function SeasonalPopup({
   message,
   variant,
   title,
-  eyebrow,
   closeLabel = "Close celebration message",
   imageAlt = "Our Lady of Pompeii Church celebration",
 }: SeasonalPopupProps) {

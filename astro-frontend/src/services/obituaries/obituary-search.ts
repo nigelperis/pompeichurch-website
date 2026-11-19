@@ -9,8 +9,8 @@ import { listObituaries } from "./list-obituaries";
  * - relationNameEn
  * - relationNameKok
  * If no query or query length is less than 2, an empty array is returned.
- * @param {string} query - The query to search for.
- * @returns {Promise<Obituary[]>} A promise that resolves to an array of obituaries.
+ * @param query The query to search for.
+ * @returns A promise that resolves to matching obituaries.
  */
 export async function searchObituaries(query: string) {
   if (!query || query.length < 2) {

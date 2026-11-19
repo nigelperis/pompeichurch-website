@@ -37,10 +37,6 @@ interface Props {
 /**
  * A component to search for obituaries.
  *
- * @param {Locale} locale - The language of the search results.
- *
- * @returns {React.ReactNode} The ObituarySearch component.
- *
  * @see {@link searchObituaries} - The API call to fetch obituaries based on the search query.
  */
 export default function ObituarySearch({ locale }: Props) {
