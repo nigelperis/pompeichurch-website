@@ -8,7 +8,11 @@ import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 const url = new URL(Astro.url);
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const pathname = url.pathname.split("?")[0].replace(/\/$/, "");
+
+// Preserve the trailing slash required by Astro.
+const pathname = url.pathname.endsWith("/")
+  ? url.pathname
+  : `${url.pathname}/`;
 
 const { currentPage, totalPages } = Astro.props as {
   currentPage: number;
@@ -22,6 +26,7 @@ const preservedParams = url.searchParams;
 const preservedParamsWithoutPage = Array.from(preservedParams.entries()).filter(
   ([key]) => key !== "p",
 );
+
 const buildHref = (page: number) => {
   const query = new URLSearchParams(preservedParams);
   query.set("p", String(page));
@@ -58,37 +63,40 @@ const buildHref = (page: number) => {
         )}
 
         {/* Page Numbers */}
-        {paginationRange.map((page) => {
-          if (typeof page === "string") {
-            return (
-              <button
-                type="button"
-                class="flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center text-gray-500 sm:h-10 sm:w-10"
-                aria-label={t("pagination.page-input-label")}
-                data-pagination-ellipsis-button
-              >
-                ...
-              </button>
-            );
-          }
+        {
+          paginationRange.map((page) => {
+            if (typeof page === "string") {
+              return (
+                <button
+                  type="button"
+                  class="flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center text-gray-500 sm:h-10 sm:w-10"
+                  aria-label={t("pagination.page-input-label")}
+                  data-pagination-ellipsis-button
+                >
+                  ...
+                </button>
+              );
+            }
 
-          return (
-            <a
-              href={buildHref(page)}
-              class={cn(
-                `flex h-9 w-9 shrink-0 items-center justify-center transition-all duration-200 sm:h-10 sm:w-10 ${
-                  currentPage === page
-                    ? "bg-natgeo-yellow font-medium text-black"
-                    : "hover:bg-gray-100 font-medium text-gray-700"
-                }`,
-                lang === Locale.KOK ? "pt-1.5" : "",
-              )}
-              aria-label={`Page ${page}`}
-            >
-              {page}
-            </a>
-          );
-        })}
+            return (
+              <a
+                href={buildHref(page)}
+                class={cn(
+                  `flex h-9 w-9 shrink-0 items-center justify-center transition-all duration-200 sm:h-10 sm:w-10 ${
+                    currentPage === page
+                      ? "bg-natgeo-yellow font-medium text-black"
+                      : "hover:bg-gray-100 font-medium text-gray-700"
+                  }`,
+                  lang === Locale.KOK ? "pt-1.5" : "",
+                )}
+                aria-label={`Page ${page}`}
+              >
+                {page}
+              </a>
+            );
+          })
+        }
+
         {currentPage === totalPages ? (
           <span
             class="pointer-events-none flex h-9 w-9 shrink-0 items-center justify-center text-gray-300 sm:h-10 sm:w-10"
@@ -120,9 +128,11 @@ const buildHref = (page: number) => {
         data-invalid-number-message={t("pagination.invalid-number")}
         data-invalid-message={t("pagination.invalid-page")}
       >
-        {preservedParamsWithoutPage.map(([key, value]) => (
-          <input type="hidden" name={key} value={value} />
-        ))}
+        {
+          preservedParamsWithoutPage.map(([key, value]) => (
+            <input type="hidden" name={key} value={value} />
+          ))
+        }
         <input
           name="p"
           type="number"
@@ -174,6 +184,7 @@ const buildHref = (page: number) => {
       form.dataset.invalidNumberMessage ?? "Please enter a valid number.";
     const min = Number(input.min) || 1;
     const max = Number(input.max) || min;
+
     const syncValidationMessage = () => {
       const value = Number(input.value);
       const isOutOfRange =
@@ -198,6 +209,7 @@ const buildHref = (page: number) => {
 
     input.addEventListener("input", syncValidationMessage);
     input.addEventListener("invalid", syncValidationMessage);
+
     root
       .querySelectorAll("[data-pagination-ellipsis-button]")
       .forEach((button) => {
@@ -210,6 +222,7 @@ const buildHref = (page: number) => {
           input.select();
         });
       });
+
     form.addEventListener("submit", () => {
       const parsedValue = Number(input.value);
       if (!Number.isFinite(parsedValue)) {
