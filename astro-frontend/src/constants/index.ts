@@ -3,7 +3,7 @@ export const SITE_URL = "https://pompeichurch.in";
 export const ITEMS_PER_PAGE = 6; // number of items to show per page
 
 /** Default sort order for events — shared by listEvents and find-page.ts. */
-export const EVENT_DEFAULT_SORT = ["eventDate:desc", "createdAt:desc"];
+export const EVENT_DEFAULT_SORT = ["eventDate:desc", "createdAt:desc", "id:desc"]; // sort by eventDate descending, then createdAt descending, then id descending
 
 export const PAGINATION_BETWEEN_COUNT = 1; // how many pages to show on each side of currentPage
 
