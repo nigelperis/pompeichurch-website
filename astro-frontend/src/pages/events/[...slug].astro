@@ -7,69 +7,63 @@ import { getEvent } from "~/services/events/get-event";
 import NetworkImage from "~/components/ui/network-image.astro";
 import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
 import StrapiBlocksRenderer from "~/components/ui/strapi-blocks-renderer";
-import { listEvents } from "~/services/events/list-events";
 import { Locale } from "~/enums/locale";
 import { SITE_URL } from "~/constants/index";
 import WhatsAppShare from "~/components/ui/whatsapp-share";
 import { cn } from "~/helpers/cn";
+import { getAdjacentEvents } from "~/services/events/get-adjacent-events";
 
 const { slug } = Astro.params;
 const lang = getLangFromUrl(Astro.url);
 
+// Fetch current event
 const event = await getEvent(slug ?? "");
 
-const eventUrl =
-  lang === Locale.EN ? `/events/${slug}/` : `/kok/events/${slug}/`;
-
-const baseURL = import.meta.env.PUBLIC_STRAPI_URL;
-
-const ogUrl = new URL(eventUrl, SITE_URL).href;
-
-const eventImage = event?.eventImage ?? {
-  url: getPlaceholderImage({ text: event?.englishTitle }),
-  width: 600,
-  height: 400,
-};
-
-const ogImage =
-  eventImage && "formats" in eventImage && eventImage.formats?.medium?.url
-    ? new URL(eventImage.formats.medium.url, baseURL).toString()
-    : eventImage?.url
-      ? new URL(eventImage.url, baseURL).toString()
-      : getPlaceholderImage({
-          width: 800,
-          height: 600,
-          text: event?.englishTitle || "Parish Finance Committee",
-        });
-
-const { pagination: initialPagination } = await listEvents({ pageSize: 1 });
-const totalEvents = initialPagination.total;
-
-const { events: allEvents } = await listEvents({
-  pageSize: totalEvents,
-});
-
-const absoluteImageURL = ogImage;
-const eventIndex = allEvents.findIndex((e) => e.slug === slug);
-const prevEvent = eventIndex > 0 ? allEvents[eventIndex - 1] : undefined;
-const nextEvent =
-  eventIndex >= 0 && eventIndex < allEvents.length - 1
-    ? allEvents[eventIndex + 1]
-    : undefined;
-
-const socialLinks = [
-  { platform: "facebook", url: event?.facebookLink },
-  { platform: "instagram", url: event?.instagramLink },
-].filter((link) => link.url);
 if (!event) {
   return Astro.redirect("/404", 302);
 }
+
+// Centralized event URL generation
+const getEventUrl = (eventSlug: string) =>
+  `/${lang === Locale.EN ? "" : "kok/"}events/${eventSlug}/`;
+
+const eventUrl = getEventUrl(slug ?? "");
+const ogUrl = new URL(eventUrl, SITE_URL).href;
+
+// Fetch previous and next events
+const { prevEvent, nextEvent } = await getAdjacentEvents(event);
+
+// Event image with fallback
+const baseURL = import.meta.env.PUBLIC_STRAPI_URL;
+
+const eventImage = event.eventImage?.url
+  ? event.eventImage
+  : {
+      url: getPlaceholderImage({
+        text: event.englishTitle || "Event",
+      }),
+      width: 600,
+      height: 400,
+    };
+
+// Open Graph image
+const ogImage =
+  event.eventImage?.formats?.medium?.url
+    ? new URL(event.eventImage.formats.medium.url, baseURL).toString()
+    : event.eventImage?.url
+      ? new URL(event.eventImage.url, baseURL).toString()
+      : eventImage.url;
+
+const socialLinks = [
+  { platform: "facebook", url: event.facebookLink },
+  { platform: "instagram", url: event.instagramLink },
+].filter((link) => link.url);
 ---
 
 <Layout
-  title={event?.englishTitle ?? ""}
-  description={event?.shortDescriptionEn ?? ""}
-  image={absoluteImageURL}
+  title={event.englishTitle}
+  description={event.shortDescriptionEn ?? ""}
+  image={ogImage}
   url={ogUrl}
 >
   <main class="mx-auto max-w-5xl overflow-hidden bg-white text-justify">
@@ -77,47 +71,60 @@ if (!event) {
       <h1
         class={cn(
           "border-natgeo-yellow border-l-4 pl-3 text-left text-3xl lg:text-4xl font-black",
-          { "pt-3.25 font-bold": lang === Locale.KOK },
+          {
+            "pt-3.25 font-bold": lang === Locale.KOK,
+          },
         )}
       >
-        {event?.englishTitle}
+        {event.englishTitle}
       </h1>
+
       <div class="flex items-center justify-center py-6 lg:py-8">
         <NetworkImage
-          src={eventImage?.url}
-          width={eventImage?.width}
-          height={eventImage?.height}
+          src={eventImage.url}
+          width={eventImage.width}
+          height={eventImage.height}
           class="mx-auto md:w-3/4"
         />
       </div>
 
       <div class="min-w-0 [&_a]:wrap-break-word">
         <StrapiBlocksRenderer
-          content={event?.descriptionEn ?? []}
+          content={event.descriptionEn ?? []}
           paraClassName="font-roboto"
         />
       </div>
+
       <div class="flex">
         <div class="flex w-full justify-start gap-10">
-          {
-            socialLinks.map(({ platform, url }) => (
-              <div class="mb-1 mt-4 h-5 w-5 transition-transform duration-200 hover:scale-110">
-                <a href={url} target="_blank">
-                  <Icon name={platform} size={42} />
-                </a>
-              </div>
-            ))
-          }
+          {socialLinks.map(({ platform, url }) => (
+            <div class="mb-1 mt-4 h-5 w-5 transition-transform duration-200 hover:scale-110">
+              <a
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Visit our ${platform} page`}
+              >
+                <Icon name={platform} size={42} />
+              </a>
+            </div>
+          ))}
         </div>
 
         <div class="mt-2 flex items-center gap-2">
           <WhatsAppShare
             client:load
-            shareData={{ title: event?.englishTitle || "", url: eventUrl }}
+            shareData={{
+              title: event.englishTitle || "",
+              url: eventUrl,
+            }}
           />
 
           <ShareLink
-            shareData={{ title: event?.englishTitle || "", url: eventUrl }}
+            shareData={{
+              title: event.englishTitle || "",
+              url: eventUrl,
+            }}
             class="flex h-12 items-center"
           />
         </div>
@@ -130,13 +137,16 @@ if (!event) {
           <div class="flex flex-col gap-4 sm:flex-row sm:justify-between">
             {prevEvent && (
               <a
-                href={`/${lang === Locale.EN ? "" : "kok/"}events/${prevEvent.slug}`}
+                href={getEventUrl(prevEvent.slug)}
                 rel="prev"
-                class={`flex items-center gap-3 rounded-lg border border-gray-300 px-4 py-3 shadow-md transition-colors hover:border-black ${nextEvent ? "sm:w-1/2" : "w-full"}`}
+                class={`flex items-center gap-3 rounded-lg border border-gray-300 px-4 py-3 shadow-md transition-colors hover:border-black ${
+                  nextEvent ? "sm:w-1/2" : "w-full"
+                }`}
               >
                 <div class="shrink-0 text-3xl text-slate-900">
                   <Icon name="chevron-left" class="stroke-2" />
                 </div>
+
                 <span class="flex-1">
                   <div
                     class={cn("text-lg font-medium text-black", {
@@ -151,13 +161,16 @@ if (!event) {
 
             {nextEvent && (
               <a
-                href={`/${lang === Locale.EN ? "" : "kok/"}events/${nextEvent.slug}`}
+                href={getEventUrl(nextEvent.slug)}
                 rel="next"
-                class={`flex flex-row-reverse items-center gap-3 rounded-lg border border-gray-300 px-4 py-3 text-right shadow-md transition-colors hover:border-black ${prevEvent ? "sm:w-1/2" : "w-full"}`}
+                class={`flex flex-row-reverse items-center gap-3 rounded-lg border border-gray-300 px-4 py-3 text-right shadow-md transition-colors hover:border-black ${
+                  prevEvent ? "sm:w-1/2" : "w-full"
+                }`}
               >
                 <div class="shrink-0 text-3xl text-slate-900">
                   <Icon name="chevron-right" class="stroke-2" />
                 </div>
+
                 <div
                   class={cn("text-lg font-medium text-black", {
                     "pt-2": lang === Locale.KOK,

@@ -17,7 +17,12 @@ import EventSearch from "~/components/EventSearch";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const currentPage = Number(Astro.url.searchParams.get("p")) || 1;
+// Ensure the page number is a valid positive integer.
+const requestedPage = Number(Astro.url.searchParams.get("p"));
+const currentPage =
+  Number.isInteger(requestedPage) && requestedPage > 0
+    ? requestedPage
+    : 1;
 
 const { events, pagination } = await listEvents({
   page: currentPage,
@@ -43,13 +48,14 @@ const ogDescription =
   lang === Locale.KOK
     ? "ಫಿರ್ಗಜ್ ಕುಟ್ಮಾಚ್ಯಾ ಎಕ್ವಟ್ಪಣಾಚ್ಯೊ ಘಡಿಯೊ"
     : "Celebrating the moments that unite our parish community.";
+
 const pageTitle = totalPages > 1 ? `Page ${currentPage} | ${ogTitle}` : ogTitle;
 
 const emptyStateMessage =
   lang === Locale.KOK ? Message.EVENTS_NOT_FOUND_KOK : Message.EVENTS_NOT_FOUND;
 ---
 
-<Layout title=`${pageTitle}` image={ogImageUrl} description={ogDescription}>
+<Layout title={pageTitle} image={ogImageUrl} description={ogDescription}>
   <main class="mx-auto max-w-5xl overflow-hidden bg-white">
     <section id="events" class="flex flex-col p-6 lg:p-8">
       <PushNotification />
@@ -97,6 +103,7 @@ const emptyStateMessage =
           </p>
         )
       }
+
       {
         events.length > 0 ? (
           <>
