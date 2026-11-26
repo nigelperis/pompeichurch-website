@@ -80,7 +80,7 @@ function StrapiBlocksRenderer(props: StrapiBlocksProps) {
         },
         "list-item": ({ children }) => {
           return (
-            <li className="font-noto-sans-kannada leading-relaxed tracking-wide">
+            <li className="leading-relaxed tracking-wide">
               {children}
             </li>
           );

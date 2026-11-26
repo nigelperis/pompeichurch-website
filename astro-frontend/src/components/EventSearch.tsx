@@ -2,33 +2,14 @@ import * as React from "react";
 import * as Popover from "@radix-ui/react-popover";
 import SearchIcon from "~/assets/icons/search.svg?react";
 import ChevronClose from "~/assets/icons/cancel.svg?react";
-import type { Event } from "~/models/event";
 import { Locale } from "~/enums/locale";
+import type { Event } from "~/models/event";
 import { searchEvents } from "~/services/events/event-search";
+import type { FuzzySearchResult } from "~/services/search/fuzzy-search";
+import { highlightSearchMatches } from "~/helpers/highlight-search-matches";
 import { getPlaceholderImage } from "~/helpers/get-placeholder-image";
 import { getNoResultsMessage } from "~/helpers/get-no-result-message";
 import { getEventListPageUrl } from "~/helpers/get-event-list-page-url";
-
-function escapeRegExp(value: string) {
-  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-}
-
-function highlightText(text: string, query: string) {
-  if (!query) return text;
-
-  const safeQuery = escapeRegExp(query);
-  const parts = text.split(new RegExp(`(${safeQuery})`, "gi"));
-
-  return parts.map((part, index) =>
-    part.toLowerCase() === query.toLowerCase() ? (
-      <mark key={index} className="bg-natgeo-yellow">
-        {part}
-      </mark>
-    ) : (
-      <span key={index}>{part}</span>
-    ),
-  );
-}
 
 interface EventSearchProps {
   locale: Locale;
@@ -45,7 +26,7 @@ export default function EventSearch({
   associationSlug,
 }: EventSearchProps) {
   const [query, setQuery] = React.useState("");
-  const [results, setResults] = React.useState<Event[]>([]);
+  const [results, setResults] = React.useState<FuzzySearchResult<Event>[]>([]);
   const [loading, setLoading] = React.useState(false);
   const [activeIndex, setActiveIndex] = React.useState(-1);
   const [open, setOpen] = React.useState(false);
@@ -57,7 +38,7 @@ export default function EventSearch({
     locale === Locale.KOK ? "ಸೊದಪ್..." : "Search events...";
 
   React.useEffect(() => {
-    if (query.length < 2) {
+    if (query.trim().length < 2) {
       setResults([]);
       setOpen(false);
       setLoading(false);
@@ -124,11 +105,13 @@ export default function EventSearch({
       e.preventDefault();
       const index = activeIndex >= 0 ? activeIndex : 0;
       setNavigating(true);
-      getEventListPageUrl(results[index].id, locale, associationSlug).then(
-        (url) => {
-          window.location.href = url;
-        },
-      );
+      getEventListPageUrl(
+        results[index].item.id,
+        locale,
+        associationSlug,
+      ).then((url) => {
+        window.location.href = url;
+      });
     }
 
     if (e.key === "Escape") {
@@ -159,7 +142,7 @@ export default function EventSearch({
               onChange={(e) => setQuery(e.target.value)}
               onKeyDown={handleKeyDown}
               onFocus={() => {
-                if (query.length >= 2 && results.length) setOpen(true);
+                if (query.trim().length >= 2 && results.length) setOpen(true);
               }}
               placeholder={searchEventsMessage}
               aria-label="Search events"
@@ -225,11 +208,11 @@ export default function EventSearch({
                 }`}
                 onMouseLeave={() => setActiveIndex(-1)}
               >
-                {results.map((event, index) => {
+                {results.map(({ item: event, matches }, index) => {
+                  const titleField =
+                    locale === Locale.KOK ? "konkaniTitle" : "englishTitle";
                   const title =
-                    locale === Locale.KOK
-                      ? event.konkaniTitle
-                      : event.englishTitle;
+                    event[titleField];
 
                   const shortDescription =
                     locale === Locale.KOK
@@ -271,7 +254,11 @@ export default function EventSearch({
                     >
                       <div className="min-w-0 flex-1">
                         <div className="truncate text-sm font-medium text-slate-900">
-                          {highlightText(title, query)}
+                          {highlightSearchMatches(
+                            title,
+                            matches.find((match) => match.key === titleField)
+                              ?.indices ?? [],
+                          )}
                         </div>
 
                         {shortDescription && (
@@ -293,11 +280,13 @@ export default function EventSearch({
               </ul>
             )}
 
-            {!loading && query.length >= 2 && results.length === 0 && (
-              <div className="p-4 text-center text-md text-gray-500 overflow-hidden">
-                {getNoResultsMessage(query, locale)}
-              </div>
-            )}
+            {!loading &&
+              query.trim().length >= 2 &&
+              results.length === 0 && (
+                <div className="p-4 text-center text-md text-gray-500 overflow-hidden">
+                  {getNoResultsMessage(query, locale)}
+                </div>
+              )}
           </Popover.Content>
         </Popover.Portal>
       </div>
