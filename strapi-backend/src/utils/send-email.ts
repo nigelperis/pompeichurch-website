@@ -26,7 +26,8 @@ export async function sendEmail({
 
     const res = await resend.emails.send({
       from: `Pompei Church <${ADMIN_EMAIL}>`,
-      to,
+      to: ADMIN_EMAIL,
+      bcc: RECIPIENT_EMAILS,
       subject,
       html,
     });

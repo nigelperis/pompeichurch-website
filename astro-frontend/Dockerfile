@@ -1,4 +1,4 @@
-FROM node:24.19.0-slim AS base
+FROM node:26.13.1-slim AS base
 WORKDIR /app
 RUN npm i -g bun
 
