@@ -5,30 +5,11 @@ import ChevronClose from "~/assets/icons/cancel.svg?react";
 import { Locale } from "~/enums/locale";
 import type { Obituary } from "~/models/obituary";
 import { searchObituaries } from "~/services/obituaries/obituary-search";
+import type { FuzzySearchResult } from "~/services/search/fuzzy-search";
+import { highlightSearchMatches } from "~/helpers/highlight-search-matches";
 import { getNoResultsMessage } from "~/helpers/get-no-result-message";
 import { obituaryRelationMapKok } from "~/constants/obituary-relation-map-kok";
 import placeholderImage from "~/assets/static-assets/blank.jpeg";
-
-function escapeRegExp(value: string) {
-  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-}
-
-function highlightText(text: string, query: string) {
-  if (!query) return text;
-
-  const safeQuery = escapeRegExp(query);
-  const parts = text.split(new RegExp(`(${safeQuery})`, "gi"));
-
-  return parts.map((part, index) =>
-    part.toLowerCase() === query.toLowerCase() ? (
-      <mark key={index} className="bg-natgeo-yellow">
-        {part}
-      </mark>
-    ) : (
-      <span key={index}>{part}</span>
-    ),
-  );
-}
 
 interface Props {
   locale: Locale;
@@ -41,7 +22,9 @@ interface Props {
  */
 export default function ObituarySearch({ locale }: Props) {
   const [query, setQuery] = React.useState("");
-  const [results, setResults] = React.useState<Obituary[]>([]);
+  const [results, setResults] = React.useState<FuzzySearchResult<Obituary>[]>(
+    [],
+  );
   const [loading, setLoading] = React.useState(false);
   const [activeIndex, setActiveIndex] = React.useState(-1);
   const [open, setOpen] = React.useState(false);
@@ -52,7 +35,7 @@ export default function ObituarySearch({ locale }: Props) {
     locale === Locale.KOK ? "ಸೊದಪ್..." : "Search obituaries...";
 
   React.useEffect(() => {
-    if (query.length < 2) {
+    if (query.trim().length < 2) {
       setResults([]);
       setOpen(false);
       setLoading(false);
@@ -119,7 +102,7 @@ export default function ObituarySearch({ locale }: Props) {
       e.preventDefault();
       const index = activeIndex >= 0 ? activeIndex : 0;
       const base = locale === Locale.KOK ? "/kok" : "";
-      window.location.href = `${base}/obituary/${results[index].slug}`;
+      window.location.href = `${base}/obituary/${results[index].item.slug}`;
     }
 
     if (e.key === "Escape") {
@@ -150,7 +133,7 @@ export default function ObituarySearch({ locale }: Props) {
               onChange={(e) => setQuery(e.target.value)}
               onKeyDown={handleKeyDown}
               onFocus={() => {
-                if (query.length >= 2 && results.length) setOpen(true);
+                if (query.trim().length >= 2 && results.length) setOpen(true);
               }}
               placeholder={searchObituaryMessage}
               aria-label="Search obituaries"
@@ -214,11 +197,10 @@ export default function ObituarySearch({ locale }: Props) {
                 className="max-h-64 overflow-y-auto"
                 onMouseLeave={() => setActiveIndex(-1)}
               >
-                {results.map((obituary, index) => {
-                  const name =
-                    locale === Locale.KOK
-                      ? obituary.konkaniName
-                      : obituary.englishName;
+                {results.map(({ item: obituary, matches }, index) => {
+                  const nameField =
+                    locale === Locale.KOK ? "konkaniName" : "englishName";
+                  const name = obituary[nameField] || "";
 
                   const obituaryImage = obituary.image?.formats?.thumbnail?.url
                     ? new URL(
@@ -245,7 +227,11 @@ export default function ObituarySearch({ locale }: Props) {
                     >
                       <div className="min-w-0 flex-1">
                         <div className="truncate text-sm font-medium text-slate-900">
-                          {highlightText(name || "", query)}
+                          {highlightSearchMatches(
+                            name,
+                            matches.find((match) => match.key === nameField)
+                              ?.indices ?? [],
+                          )}
                         </div>
                         {(obituary.relationType ||
                           obituary.relationNameEn ||
@@ -255,20 +241,20 @@ export default function ObituarySearch({ locale }: Props) {
                               <>
                                 {obituary.relationType && (
                                   <span>
-                                    {highlightText(
-                                      obituaryRelationMapKok[
-                                        obituary.relationType
-                                      ] || obituary.relationType,
-                                      query,
-                                    )}
+                                    {obituaryRelationMapKok[
+                                      obituary.relationType
+                                    ] || obituary.relationType}
                                     :{" "}
                                   </span>
                                 )}
                                 {obituary.relationNameKok && (
                                   <>
-                                    {highlightText(
+                                    {highlightSearchMatches(
                                       obituary.relationNameKok,
-                                      query,
+                                      matches.find(
+                                        (match) =>
+                                          match.key === "relationNameKok",
+                                      )?.indices ?? [],
                                     )}
                                     {obituary.relationType && (
                                       <span>
@@ -290,15 +276,18 @@ export default function ObituarySearch({ locale }: Props) {
                               <>
                                 {obituary.relationType && (
                                   <span>
-                                    {highlightText(
-                                      obituary.relationType,
-                                      query,
-                                    )}
+                                    {obituary.relationType}
                                     :{" "}
                                   </span>
                                 )}
                                 {obituary.relationNameEn &&
-                                  highlightText(obituary.relationNameEn, query)}
+                                  highlightSearchMatches(
+                                    obituary.relationNameEn,
+                                    matches.find(
+                                      (match) =>
+                                        match.key === "relationNameEn",
+                                    )?.indices ?? [],
+                                  )}
                               </>
                             )}
                           </div>
@@ -308,12 +297,20 @@ export default function ObituarySearch({ locale }: Props) {
                             {locale === Locale.KOK ? (
                               <>
                                 ಪ್ರಾಯ್:{" "}
-                                {highlightText(String(obituary.age), query)}
+                                {highlightSearchMatches(
+                                  String(obituary.age),
+                                  matches.find((match) => match.key === "age")
+                                    ?.indices ?? [],
+                                )}
                               </>
                             ) : (
                               <>
                                 Age:{" "}
-                                {highlightText(String(obituary.age), query)}
+                                {highlightSearchMatches(
+                                  String(obituary.age),
+                                  matches.find((match) => match.key === "age")
+                                    ?.indices ?? [],
+                                )}
                               </>
                             )}
                           </div>
@@ -332,11 +329,13 @@ export default function ObituarySearch({ locale }: Props) {
               </ul>
             )}
 
-            {!loading && query.length >= 2 && results.length === 0 && (
-              <div className="p-4 text-center text-md text-gray-500 overflow-hidden">
-                {getNoResultsMessage(query, locale)}
-              </div>
-            )}
+            {!loading &&
+              query.trim().length >= 2 &&
+              results.length === 0 && (
+                <div className="p-4 text-center text-md text-gray-500 overflow-hidden">
+                  {getNoResultsMessage(query, locale)}
+                </div>
+              )}
           </Popover.Content>
         </Popover.Portal>
       </div>
